@@ -17,13 +17,13 @@ Triangle::Triangle(vk::Structure* vk_struct){
 Triangle::~Triangle(){}
 
 //Main function
-void Triangle::add_pipeline_triangle(vk::structure::Subpass& subpass){
+void Triangle::add_pipeline(vk::structure::Subpass& subpass){
   //---------------------------
 
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
-  this->set_pipeline(pipeline);
-  this->set_shader(pipeline);
-  this->set_binding(pipeline);
+  this->set_pipeline(*pipeline);
+  this->set_shader(*pipeline);
+  this->set_binding(*pipeline);
 
   //---------------------------
   subpass.vec_pipeline.push_back(pipeline);
@@ -33,10 +33,10 @@ void Triangle::add_pipeline_triangle(vk::structure::Subpass& subpass){
 void Triangle::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline->info.name = "triangle";
-  pipeline->info.topology = utl::topology::TRIANGLE;
-  pipeline->info.vec_attribut.push_back(vk::pipeline::XYZ);
-  pipeline->info.vec_attribut.push_back(vk::pipeline::RGBA);
+  pipeline.info.name = "triangle";
+  pipeline.info.topology = utl::topology::TRIANGLE;
+  pipeline.info.vec_attribut.push_back(vk::pipeline::XYZ);
+  pipeline.info.vec_attribut.push_back(vk::pipeline::RGBA);
 
   //---------------------------
 }
@@ -60,7 +60,7 @@ void Triangle::set_binding(vk::structure::Pipeline& pipeline){
 
   vk::binding::structure::Required descriptor;
   descriptor = vk_uniform->uniform_mvp();
-  pipeline->binding.vec_required_binding.push_back(descriptor);
+  pipeline.binding.vec_required_binding.push_back(descriptor);
 
   //---------------------------
 }

@@ -17,20 +17,20 @@ Point::Point(vk::Structure* vk_struct){
 Point::~Point(){}
 
 //Main function
-void Point::add_pipeline_point(vk::structure::Subpass& subpass){
+void Point::add_pipeline(vk::structure::Subpass& subpass){
   //---------------------------
 
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
-  this->set_pipeline(pipeline);
-  this->set_shader(pipeline);
-  this->set_binding(pipeline);
+  this->set_pipeline(*pipeline);
+  this->set_shader(*pipeline);
+  this->set_binding(*pipeline);
 
   //---------------------------
   subpass.vec_pipeline.push_back(pipeline);
 }
 
 //Subfunction
-void Line::set_pipeline(vk::structure::Pipeline& pipeline){
+void Point::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   pipeline.info.name = "point";
@@ -40,7 +40,7 @@ void Line::set_pipeline(vk::structure::Pipeline& pipeline){
 
   //---------------------------
 }
-void Line::set_shader(vk::structure::Pipeline& pipeline){
+void Point::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   utl::shader::Info* shader_info = new utl::shader::Info();
@@ -55,7 +55,7 @@ void Line::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
   pipeline.info.shader = shader_info;
 }
-void Line::set_binding(vk::structure::Pipeline& pipeline){
+void Point::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk::binding::structure::Required descriptor;

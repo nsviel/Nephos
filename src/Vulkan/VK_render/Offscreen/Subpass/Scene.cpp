@@ -15,7 +15,7 @@ Scene::Scene(vk::Structure* vk_struct){
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
   this->vk_drawer = new vk::draw::Drawer(vk_struct);
-  this->vk_topology = new vk::render::pipeline::Topology(vk_struct);
+  this->vk_factory = new vk::render::pipeline::Factory(vk_struct);
 
   //---------------------------
 }
@@ -29,9 +29,9 @@ void Scene::create_subpass(vk::structure::Renderpass* renderpass){
   subpass->target = vk::renderpass::SHADER;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_scene(subpass);};
 
-  vk_topology->add_pipeline_line(subpass);
-  vk_topology->add_pipeline_point(subpass);
-  vk_topology->add_pipeline_triangle(subpass);
+  vk_factory->add_pipeline_line(*subpass);
+  vk_factory->add_pipeline_point(*subpass);
+  vk_factory->add_pipeline_triangle(*subpass);
 
   //---------------------------
   renderpass->vec_subpass.push_back(subpass);

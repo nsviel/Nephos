@@ -3,7 +3,7 @@
 namespace vk{class Structure;}
 namespace vk::binding{class Uniform;}
 namespace vk::structure{class Subpass;}
-namespace vk::structure{class Renderpass;}
+namespace vk::structure{class Pipeline;}
 
 
 namespace vk::render::pipeline{
@@ -17,7 +17,7 @@ public:
 
 public:
   //Main function
-  void add_pipeline_triangle(vk::structure::Subpass& subpass);
+  void add_pipeline(vk::structure::Subpass& subpass);
 
   //Subfunction
   void set_pipeline(vk::structure::Pipeline& pipeline);

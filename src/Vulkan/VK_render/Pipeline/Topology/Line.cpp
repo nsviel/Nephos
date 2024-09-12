@@ -17,13 +17,13 @@ Line::Line(vk::Structure* vk_struct){
 Line::~Line(){}
 
 //Main function
-void Line::add_pipeline_line(vk::structure::Subpass& subpass){
+void Line::add_pipeline(vk::structure::Subpass& subpass){
   //---------------------------
 
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
-  this->set_pipeline(pipeline);
-  this->set_shader(pipeline);
-  this->set_binding(pipeline);
+  this->set_pipeline(*pipeline);
+  this->set_shader(*pipeline);
+  this->set_binding(*pipeline);
 
   //---------------------------
   subpass.vec_pipeline.push_back(pipeline);
@@ -35,7 +35,6 @@ void Line::set_pipeline(vk::structure::Pipeline& pipeline){
 
   pipeline.info.name = "line";
   pipeline.info.topology = utl::topology::LINE;
-  pipeline.info.shader = shader_info;
   pipeline.info.vec_attribut.push_back(vk::pipeline::XYZ);
   pipeline.info.vec_attribut.push_back(vk::pipeline::RGBA);
 
