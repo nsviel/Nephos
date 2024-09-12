@@ -19,9 +19,6 @@ public:
   //Main function
   void init();
 
-  //Subfunction
-  void create_renderpass(vk::structure::Renderpass& renderpass);
-
 private:
   vk::Structure* vk_struct;
   vk::render::offscreen::Scene* vk_scene;

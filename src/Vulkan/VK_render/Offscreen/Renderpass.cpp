@@ -19,24 +19,14 @@ Renderpass::~Renderpass(){}
 
 //Main function
 void Renderpass::init(){
+  vk::structure::Renderpass& renderpass = vk_struct->renderpass.offscreen;
   //---------------------------
 
-  vk::structure::Renderpass& renderpass = vk_struct->renderpass.offscreen;
-  this->create_renderpass(renderpass);
   vk_scene->create_subpass(renderpass);
   //vk_edl->create_subpass(renderpass);
 
   //---------------------------
-}
-
-//Subfunction
-void Renderpass::create_renderpass(vk::structure::Renderpass& renderpass){
-  //---------------------------
-
-  renderpass.name = "scene";
   vk_struct->renderpass.vector.push_back(&renderpass);
-
-  //---------------------------
 }
 
 }

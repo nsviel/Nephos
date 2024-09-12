@@ -18,9 +18,6 @@ public:
   //Main function
   void init();
 
-  //Init function
-  void create_renderpass(vk::structure::Renderpass& renderpass);
-
 private:
   vk::Structure* vk_struct;
   vk::render::onscreen::Canvas* vk_subpass;
