@@ -31,8 +31,7 @@ void Graphical::draw_frame(){
 void Graphical::record_renderpass(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore& semaphore){
   //---------------------------
 
-  for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
-    vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
+  for(auto& renderpass : vk_struct->render.vec_renderpass){
     sys::timer::Timepoint ts = utl_chrono->start_t();
 
     //Run renderpass

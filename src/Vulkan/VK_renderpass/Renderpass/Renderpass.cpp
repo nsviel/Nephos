@@ -29,10 +29,8 @@ void Renderpass::init(){
   }
 
   //Create renderpass according to the vec of renderpass demande
-  for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
-    vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
+  for(auto& renderpass : vk_struct->render.vec_renderpass){
     this->init_renderpass(renderpass);
-
   }
 
   //---------------------------
@@ -40,8 +38,7 @@ void Renderpass::init(){
 void Renderpass::clean(){
   //---------------------------
 
-  for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
-    vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
+  for(auto& renderpass : vk_struct->render.vec_renderpass){
     this->clean_renderpass(renderpass);
   }
 
@@ -82,7 +79,7 @@ void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
     for(int j=0; j<subpass->vec_color_resolve.size(); j++){
       vec_attachment.push_back(subpass->vec_color_resolve[j].description);
     }
-    
+
     // Add depth attachment
     vec_attachment.push_back(subpass->depth.description);
   }

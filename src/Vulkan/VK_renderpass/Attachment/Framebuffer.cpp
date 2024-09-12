@@ -22,8 +22,7 @@ Framebuffer::~Framebuffer(){}
 void Framebuffer::create_framebuffers(){
   //---------------------------
 
-  for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
-    vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
+  for(auto& renderpass : vk_struct->render.vec_renderpass){
     this->create_framebuffer(renderpass);
   }
 
@@ -50,8 +49,7 @@ void Framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
 void Framebuffer::clean_framebuffers(){
   //---------------------------
 
-  for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
-    vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
+  for(auto& renderpass : vk_struct->render.vec_renderpass){
     this->clean_framebuffer(renderpass);
   }
 
