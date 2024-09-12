@@ -5,6 +5,7 @@ namespace vk::render::pipeline{class Canvas;}
 namespace vk::render::pipeline{class Line;}
 namespace vk::render::pipeline{class Point;}
 namespace vk::render::pipeline{class Triangle;}
+namespace vk::render::pipeline{class EDL;}
 namespace vk::structure{class Subpass;}
 
 
@@ -30,6 +31,7 @@ private:
   vk::render::pipeline::Line* pipe_line;
   vk::render::pipeline::Point* pipe_point;
   vk::render::pipeline::Triangle* pipe_triangle;
+  vk::render::pipeline::EDL* pipe_edl;
 };
 
 }
