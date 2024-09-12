@@ -16,7 +16,7 @@ Canvas::Canvas(vk::Structure* vk_struct){
 Canvas::~Canvas(){}
 
 //Main function
-void Canvas::add_pipeline_triangle(vk::structure::Subpass* subpass){
+void Canvas::add_pipeline_triangle(vk::structure::Subpass& subpass){
   //---------------------------
 
   //Shader
@@ -34,7 +34,7 @@ void Canvas::add_pipeline_triangle(vk::structure::Subpass* subpass){
   pipeline->info.shader = shader_info;
 
   //---------------------------
-  subpass->vec_pipeline.push_back(pipeline);
+  subpass.vec_pipeline.push_back(pipeline);
 }
 
 }

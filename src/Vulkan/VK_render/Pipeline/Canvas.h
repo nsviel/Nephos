@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  void add_pipeline_triangle(vk::structure::Subpass* subpass);
+  void add_pipeline_triangle(vk::structure::Subpass& subpass);
 
 private:
   vk::Structure* vk_struct;

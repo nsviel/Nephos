@@ -17,7 +17,7 @@ Topology::Topology(vk::Structure* vk_struct){
 Topology::~Topology(){}
 
 //Main function
-void Topology::add_pipeline_line(vk::structure::Subpass* subpass){
+void Topology::add_pipeline_line(vk::structure::Subpass& subpass){
   //---------------------------
 
   //Add shader info - Line
@@ -44,9 +44,9 @@ void Topology::add_pipeline_line(vk::structure::Subpass* subpass){
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
   //---------------------------
-  subpass->vec_pipeline.push_back(pipeline);
+  subpass.vec_pipeline.push_back(pipeline);
 }
-void Topology::add_pipeline_point(vk::structure::Subpass* subpass){
+void Topology::add_pipeline_point(vk::structure::Subpass& subpass){
   //---------------------------
 
   //Add shader info - Point
@@ -75,9 +75,9 @@ void Topology::add_pipeline_point(vk::structure::Subpass* subpass){
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
   //---------------------------
-  subpass->vec_pipeline.push_back(pipeline);
+  subpass.vec_pipeline.push_back(pipeline);
 }
-void Topology::add_pipeline_triangle(vk::structure::Subpass* subpass){
+void Topology::add_pipeline_triangle(vk::structure::Subpass& subpass){
   //---------------------------
 
   //Add shader info - Triangle
@@ -104,7 +104,7 @@ void Topology::add_pipeline_triangle(vk::structure::Subpass* subpass){
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
   //---------------------------
-  subpass->vec_pipeline.push_back(pipeline);
+  subpass.vec_pipeline.push_back(pipeline);
 }
 
 }
