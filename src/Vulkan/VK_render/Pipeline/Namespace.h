@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Vulkan/VK_render/Pipeline/Canvas.h>
-#include <Vulkan/VK_render/Pipeline/Line.h>
-#include <Vulkan/VK_render/Pipeline/Point.h>
-#include <Vulkan/VK_render/Pipeline/Triangle.h>
+#include <Vulkan/VK_render/Pipeline/Specific/Namespace.h>
+#include <Vulkan/VK_render/Pipeline/Topology/Namespace.h>
+#include <Vulkan/VK_render/Pipeline/Factory.h>
