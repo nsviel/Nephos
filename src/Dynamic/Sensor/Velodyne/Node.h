@@ -9,7 +9,6 @@ namespace io{class Node;}
 namespace vld{class Structure;}
 namespace vld::main{class Capture;}
 namespace vld::main{class Playback;}
-namespace vld::gui{class Panel;}
 
 
 namespace vld{
@@ -25,7 +24,6 @@ public:
   //Main function
   void config();
   void init();
-  void gui();
   void clean();
 
   inline dat::Node* get_node_data(){return node_data;}
@@ -36,10 +34,9 @@ private:
   dat::Node* node_data;
   io::Node* node_io;
 
+  vld::Structure* vld_struct;
   vld::main::Capture* vld_capture;
   vld::main::Playback* vld_playback;
-  vld::Structure* vld_struct;
-  vld::gui::Panel* gui_panel;
 };
 
 }

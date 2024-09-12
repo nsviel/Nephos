@@ -23,7 +23,7 @@ void Renderpass::init(){
   //---------------------------
 
   vk_scene->create_subpass(renderpass);
-  vk_edl->create_subpass(renderpass);
+  //vk_edl->create_subpass(renderpass);
 
   //---------------------------
   vk_struct->renderpass.vector.push_back(&renderpass);

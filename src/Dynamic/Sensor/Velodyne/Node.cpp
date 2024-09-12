@@ -11,7 +11,6 @@ namespace vld{
 
 //Constructor / Destructor
 Node::Node(dyn::sen::Node* node_sensor){
-  utl::gui::Panel* panel = add_panel("Velodyne", ICON_FA_PLAY, false);
   //---------------------------
 
   core::Node* node_core = node_sensor->get_node_core();
@@ -21,7 +20,6 @@ Node::Node(dyn::sen::Node* node_sensor){
   this->vld_struct = new vld::Structure();
   this->vld_capture = new vld::main::Capture(this);
   this->vld_playback = new vld::main::Playback(this);
-  this->gui_panel = new vld::gui::Panel(this, &panel->is_open);
 
   //---------------------------
 }
@@ -41,13 +39,6 @@ void Node::init(){
   //---------------------------
 
   vld_capture->init();
-
-  //---------------------------
-}
-void Node::gui(){
-  //---------------------------
-
-  gui_panel->run_panel();
 
   //---------------------------
 }
