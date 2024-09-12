@@ -30,12 +30,12 @@ public:
 
 public:
   //Main function
-  void create_subpass(vk::structure::Renderpass* renderpass);
-  void draw_edl(vk::structure::Subpass* subpass);
+  void create_subpass(vk::structure::Renderpass& renderpass);
+  void draw_edl(vk::structure::Subpass& subpass);
 
   //Subfunction
-  void update_binding(vk::structure::Subpass* subpass);
-  void draw_canvas(vk::structure::Subpass* subpass);
+  void update_binding(vk::structure::Subpass& subpass);
+  void draw_canvas(vk::structure::Subpass& subpass);
 
 private:
   vk::Structure* vk_struct;

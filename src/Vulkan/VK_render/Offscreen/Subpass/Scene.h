@@ -23,13 +23,13 @@ public:
 
 public:
   //Main function
-  void create_subpass(vk::structure::Renderpass* renderpass);
-  void draw_scene(vk::structure::Subpass* subpass);
+  void create_subpass(vk::structure::Renderpass& renderpass);
+  void draw_scene(vk::structure::Subpass& subpass);
 
   //Subfunction
-  void cmd_draw_point(vk::structure::Subpass* subpass);
-  void cmd_draw_line(vk::structure::Subpass* subpass);
-  void cmd_draw_triangle(vk::structure::Subpass* subpass);
+  void cmd_draw_point(vk::structure::Subpass& subpass);
+  void cmd_draw_line(vk::structure::Subpass& subpass);
+  void cmd_draw_triangle(vk::structure::Subpass& subpass);
   bool check_data(utl::base::Data& data, int typology);
 
 private:
