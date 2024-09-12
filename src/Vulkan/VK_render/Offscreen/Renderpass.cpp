@@ -3,16 +3,16 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::render::scene{
+namespace vk::render::offscreen{
 
 //Constructor / Destructor
-Renderpass::Renderpass(vk::Structure* vk_struct, vk::render::scene::Shader* vk_shader){
+Renderpass::Renderpass(vk::Structure* vk_struct, vk::render::offscreen::Shader* vk_shader){
   //---------------------------
 
   this->vk_struct = vk_struct;
   this->vk_shader = vk_shader;
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
-  this->vk_drawer = new vk::render::scene::Drawer(vk_struct);
+  this->vk_drawer = new vk::render::offscreen::Drawer(vk_struct);
 
   //---------------------------
 }

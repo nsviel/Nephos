@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::render::scene{
+namespace vk::render::offscreen{
 
 Shader::Shader(vk::Structure* vk_struct){
   //---------------------------

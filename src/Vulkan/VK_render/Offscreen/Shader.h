@@ -5,7 +5,7 @@
 namespace vk{class Structure;}
 
 
-namespace vk::render::scene{
+namespace vk::render::offscreen{
 
 class Shader : public utl::shader::Base
 {

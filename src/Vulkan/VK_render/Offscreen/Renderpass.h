@@ -4,17 +4,17 @@ namespace vk{class Structure;}
 namespace vk::binding{class Uniform;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
-namespace vk::render::scene{class Shader;}
-namespace vk::render::scene{class Drawer;}
+namespace vk::render::offscreen{class Shader;}
+namespace vk::render::offscreen{class Drawer;}
 
 
-namespace vk::render::scene{
+namespace vk::render::offscreen{
 
 class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(vk::Structure* vk_struct, vk::render::scene::Shader* vk_shader);
+  Renderpass(vk::Structure* vk_struct, vk::render::offscreen::Shader* vk_shader);
   ~Renderpass();
 
 public:
@@ -31,8 +31,8 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::binding::Uniform* vk_uniform;
-  vk::render::scene::Shader* vk_shader;
-  vk::render::scene::Drawer* vk_drawer;
+  vk::render::offscreen::Shader* vk_shader;
+  vk::render::offscreen::Drawer* vk_drawer;
 };
 
 }

@@ -10,7 +10,7 @@ namespace vk::structure{class Subpass;}
 namespace utl::base{class Data;}
 
 
-namespace vk::render::scene{
+namespace vk::render::offscreen{
 
 class Drawer
 {
