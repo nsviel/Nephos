@@ -28,6 +28,7 @@ void Scene::create_subpass(vk::structure::Renderpass& renderpass){
   //Set subpass object
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->index = 0;
+  subpass->source = VK_SUBPASS_EXTERNAL;
   subpass->target = vk::renderpass::SHADER;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
 

@@ -38,7 +38,8 @@ struct Subpass{
   VkSubpassDependency dependency = {};
   vk::structure::Command_buffer* command_buffer;
   vk::renderpass::Target target = vk::renderpass::SHADER;
-  int index = 0;
+  int source = -1;
+  int index = -1;
 
   //Attachment
   vk::structure::Attachment depth;

@@ -30,6 +30,7 @@ void EDL::create_subpass(vk::structure::Renderpass& renderpass){
   //Set subpass object
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->index = 1;
+  subpass->source = 0;
   subpass->target = vk::renderpass::SHADER;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
 
