@@ -6,11 +6,10 @@
 namespace vk::render::pipeline{
 
 //Constructor / Destructor
-Topology::Topology(vk::Structure* vk_struct, vk::render::offscreen::Shader* vk_shader){
+Topology::Topology(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_shader = vk_shader;
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
 
   //---------------------------

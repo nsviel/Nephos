@@ -6,7 +6,7 @@
 namespace vk::render::offscreen{
 
 //Constructor / Destructor
-Scene::Scene(vk::Structure* vk_struct, vk::render::offscreen::Shader* vk_shader){
+Scene::Scene(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -15,7 +15,7 @@ Scene::Scene(vk::Structure* vk_struct, vk::render::offscreen::Shader* vk_shader)
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
   this->vk_drawer = new vk::draw::Drawer(vk_struct);
-  this->vk_topology = new vk::render::pipeline::Topology(vk_struct, vk_shader);
+  this->vk_topology = new vk::render::pipeline::Topology(vk_struct);
 
   //---------------------------
 }

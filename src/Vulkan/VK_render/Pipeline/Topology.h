@@ -4,7 +4,6 @@ namespace vk{class Structure;}
 namespace vk::binding{class Uniform;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
-namespace vk::render::offscreen{class Shader;}
 
 
 namespace vk::render::pipeline{
@@ -13,7 +12,7 @@ class Topology
 {
 public:
   //Constructor / Destructor
-  Topology(vk::Structure* vk_struct, vk::render::offscreen::Shader* vk_shader);
+  Topology(vk::Structure* vk_struct);
   ~Topology();
 
 public:
@@ -25,7 +24,6 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::binding::Uniform* vk_uniform;
-  vk::render::offscreen::Shader* vk_shader;
 };
 
 }

@@ -1,10 +1,7 @@
 #pragma once
 
-#include <Vulkan/VK_render/Offscreen/Shader.h>
-
 namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
-namespace vk::render::offscreen{class Shader;}
 namespace vk::render::pipeline{class Topology;}
 namespace vk::pipeline{class Pipeline;}
 namespace vk::draw{class Viewport;}
@@ -21,7 +18,7 @@ class Scene
 {
 public:
   //Constructor / Destructor
-  Scene(vk::Structure* vk_struct, vk::render::offscreen::Shader* vk_shader);
+  Scene(vk::Structure* vk_struct);
   ~Scene();
 
 public:
