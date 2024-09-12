@@ -24,11 +24,11 @@ public:
   void draw_scene(vk::structure::Subpass* subpass);
 
   //Subfunction
-  bool check_data(utl::base::Data& data, int typology);
   void cmd_draw_point(vk::structure::Subpass* subpass);
   void cmd_draw_line(vk::structure::Subpass* subpass);
   void cmd_draw_triangle(vk::structure::Subpass* subpass);
-
+  bool check_data(utl::base::Data& data, int typology);
+  
 private:
   vk::Structure* vk_struct;
   vk::binding::Descriptor* vk_descriptor;

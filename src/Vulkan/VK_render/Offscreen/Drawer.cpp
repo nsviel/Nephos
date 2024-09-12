@@ -33,18 +33,6 @@ void Drawer::draw_scene(vk::structure::Subpass* subpass){
 }
 
 //Subfunction
-bool Drawer::check_data(utl::base::Data& data, int typology){
-  //---------------------------
-
-  if(data.topology.type != typology) return false;
-  if(data.is_visible == false) return false;
-  if(data.xyz.size() == 0) return false;
-  if(data.rgba.size() == 0) return false;
-  if(data.rgba.size() != data.xyz.size()) return false;
-
-  //---------------------------
-  return true;
-}
 void Drawer::cmd_draw_point(vk::structure::Subpass* subpass){
   //---------------------------
 
@@ -106,6 +94,18 @@ void Drawer::cmd_draw_triangle(vk::structure::Subpass* subpass){
   }
 
   //---------------------------
+}
+bool Drawer::check_data(utl::base::Data& data, int typology){
+  //---------------------------
+
+  if(data.topology.type != typology) return false;
+  if(data.is_visible == false) return false;
+  if(data.xyz.size() == 0) return false;
+  if(data.rgba.size() == 0) return false;
+  if(data.rgba.size() != data.xyz.size()) return false;
+
+  //---------------------------
+  return true;
 }
 
 }
