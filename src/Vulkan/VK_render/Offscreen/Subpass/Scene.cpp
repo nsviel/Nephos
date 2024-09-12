@@ -26,8 +26,9 @@ void Scene::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
+  subpass->index = 0;
   subpass->target = vk::renderpass::SHADER;
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_scene(*subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
 
   vk_factory->add_pipeline_line(*subpass);
   vk_factory->add_pipeline_point(*subpass);

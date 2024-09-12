@@ -63,9 +63,7 @@ void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
   std::vector<VkSubpassDescription> vec_description;
   std::vector<VkSubpassDependency> vec_dependency;
   std::vector<VkAttachmentDescription> vec_attachment;
-  for(int i=0; i<renderpass->vec_subpass.size(); i++){
-    vk::structure::Subpass* subpass = renderpass->vec_subpass[i];
-
+  for(auto& subpass : renderpass->vec_subpass){
     // Add subpass description & dependency
     vec_description.push_back(subpass->description);
     vec_dependency.push_back(subpass->dependency);

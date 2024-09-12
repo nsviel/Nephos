@@ -24,7 +24,7 @@ public:
 public:
   //Main function
   void create_subpass(vk::structure::Renderpass& renderpass);
-  void draw_scene(vk::structure::Subpass& subpass);
+  void draw_subpass(vk::structure::Subpass& subpass);
 
   //Subfunction
   void cmd_draw_point(vk::structure::Subpass& subpass);

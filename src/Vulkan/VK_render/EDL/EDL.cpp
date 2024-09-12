@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::render::offscreen{
+namespace vk::render::edl{
 
 //Constructor / Destructor
 EDL::EDL(vk::Structure* vk_struct){
@@ -28,16 +28,15 @@ void EDL::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
-  subpass->index = 1;
   subpass->target = vk::renderpass::SHADER;
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_edl(*subpass);};
 
   vk_factory->add_pipeline_edl(*subpass);
 
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
 }
-void EDL::draw_subpass(vk::structure::Subpass& subpass){
+void EDL::draw_edl(vk::structure::Subpass& subpass){
   //---------------------------
 
   this->update_binding(subpass);

@@ -19,7 +19,7 @@ namespace vk::render::edl{class Shader;}
 namespace vk::structure{class Subpass;}
 
 
-namespace vk::render::offscreen{
+namespace vk::render::edl{
 
 class EDL
 {
@@ -31,7 +31,7 @@ public:
 public:
   //Main function
   void create_subpass(vk::structure::Renderpass& renderpass);
-  void draw_subpass(vk::structure::Subpass& subpass);
+  void draw_edl(vk::structure::Subpass& subpass);
 
   //Subfunction
   void update_binding(vk::structure::Subpass& subpass);
