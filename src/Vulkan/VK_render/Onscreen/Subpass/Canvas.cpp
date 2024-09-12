@@ -22,10 +22,12 @@ Canvas::~Canvas(){}
 void Canvas::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
+  //Set subpass object
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = vk::renderpass::PRESENTATION;
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){Canvas::draw(*subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){Canvas::draw_subpass(*subpass);};
 
+  //Set pipeline
   vk_factory->add_pipeline_triangle(*subpass);
 
   //---------------------------

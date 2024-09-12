@@ -25,11 +25,13 @@ Scene::~Scene(){}
 void Scene::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
+  //Set subpass object
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->index = 0;
   subpass->target = vk::renderpass::SHADER;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
 
+  //Set pipeline
   vk_factory->add_pipeline_line(*subpass);
   vk_factory->add_pipeline_point(*subpass);
   vk_factory->add_pipeline_triangle(*subpass);
@@ -37,7 +39,7 @@ void Scene::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
 }
-void Scene::draw_scene(vk::structure::Subpass& subpass){
+void Scene::draw_subpass(vk::structure::Subpass& subpass){
   //---------------------------
 
   vk_viewport->cmd_viewport(subpass.command_buffer->handle);
