@@ -62,12 +62,12 @@ void Swapchain::recreate_swapchain(){
   //Clean old swapchain
   vk_window->update_window_dim();
   vk_synchro->wait_idle_and_pause();
-  vk_framebuffer->clean_framebuffers();
+  vk_framebuffer->clean();
   this->clean();
 
   //Create new swapchain
   this->init();
-  vk_framebuffer->create_framebuffers();
+  vk_framebuffer->init();
   vk_synchro->end_idle();
   vk_imgui->resize_event();
   vk_semaphore->reset_pool();  this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);

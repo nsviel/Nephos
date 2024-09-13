@@ -18,8 +18,8 @@ Framebuffer::Framebuffer(vk::Structure* vk_struct){
 }
 Framebuffer::~Framebuffer(){}
 
-//FBO creation
-void Framebuffer::create_framebuffers(){
+//Main function
+void Framebuffer::init(){
   //---------------------------
 
   for(auto& renderpass : vk_struct->renderpass.vector){
@@ -28,6 +28,17 @@ void Framebuffer::create_framebuffers(){
 
   //---------------------------
 }
+void Framebuffer::clean(){
+  //---------------------------
+
+  for(auto& renderpass : vk_struct->renderpass.vector){
+    this->clean_framebuffer(*renderpass);
+  }
+
+  //---------------------------
+}
+
+//Creation function
 void Framebuffer::create_framebuffer(vk::structure::Renderpass& renderpass){
   //---------------------------
 
@@ -39,15 +50,6 @@ void Framebuffer::create_framebuffer(vk::structure::Renderpass& renderpass){
 
   this->create_framebuffer_image(framebuffer);
   this->create_framebuffer_handle(renderpass, framebuffer);
-
-  //---------------------------
-}
-void Framebuffer::clean_framebuffers(){
-  //---------------------------
-
-  for(auto& renderpass : vk_struct->renderpass.vector){
-    this->clean_framebuffer(*renderpass);
-  }
 
   //---------------------------
 }

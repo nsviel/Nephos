@@ -22,9 +22,11 @@ public:
 
 public:
   //Main function
-  void create_framebuffers();
+  void init();
+  void clean();
+
+  //Creation function
   void create_framebuffer(vk::structure::Renderpass& renderpass);
-  void clean_framebuffers();
   void clean_framebuffer(vk::structure::Renderpass& renderpass);
 
   //Subfunction
