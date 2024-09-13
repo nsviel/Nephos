@@ -51,8 +51,7 @@ void Image::clean_image_view(vk::structure::Image& image){
 //Image vulkan creation
 void Image::create_image_handle(vk::structure::Image& image){
   //---------------------------
-say(image.name);
-say(image.width);
+
   VkImageCreateInfo image_info{};
   image_info.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
   image_info.imageType = VK_IMAGE_TYPE_2D;

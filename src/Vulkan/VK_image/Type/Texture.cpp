@@ -44,7 +44,7 @@ void Texture::clean(){
 
 //Texture function
 void Texture::insert_texture(std::shared_ptr<utl::media::Image> utl_image){
-  if(!utl_image) return;
+  if(!utl_image || utl_image->size == 0) return;
   //---------------------------
 
   //Input image checks
@@ -100,25 +100,25 @@ void Texture::update_texture(std::shared_ptr<vk::structure::Texture> texture){
   //---------------------------
 }
 void Texture::create_texture(std::shared_ptr<vk::structure::Texture> texture){
+  utl::media::Image& utl_image = *texture->utl_image;
   //---------------------------
-say("---");
+
   //Create texture container
   texture->UID = vk_uid->query_free_UID();
-  texture->utl_image->texture_ID = texture->UID;
+  utl_image.texture_ID = texture->UID;
   VkFormat format = find_texture_format(texture->utl_image);
   if(format == VK_FORMAT_UNDEFINED) return;
 
   //Create associated vk_image
-  vk::structure::Image& image = texture->vk_image;
-  image.width = texture->utl_image->width;
-  image.height = texture->utl_image->height;
-  image.format = format;
-  image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  image.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
-  vk_image->create_image(image);
+  texture->vk_image.width = utl_image.width;
+  texture->vk_image.height = utl_image.height;
+  texture->vk_image.format = format;
+  texture->vk_image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  texture->vk_image.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
+  vk_image->create_image(texture->vk_image);
 
   //Make associated operation
-  vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, texture->utl_image->size);
+  vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, utl_image.size);
   vk_mem_transfer->copy_texture_to_gpu(*texture);
   vk_struct->data.list_vk_texture.push_back(texture);
 

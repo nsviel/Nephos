@@ -116,16 +116,10 @@ void Loader::load_object_textured(utl::base::Path path, utl::base::Path path_tex
   auto object = std::dynamic_pointer_cast<dat::base::Object>(element);
   if(!object) return;
 
-  /*
-sayHello();
   //Texture
   utl::media::Image& texture = object->data->texture;
   dat::img::load_image_data(texture, path_texture.build());
   texture.name = "texture";
-
-  say(texture.width);
-sayHello();*/
-
 
   //Insert it
   io_operation->insert_object(object);
