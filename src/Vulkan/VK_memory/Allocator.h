@@ -18,7 +18,7 @@ public:
 
 public:
   //Image memory
-  void allocate_image_memory(vk::structure::Image* image);
+  void allocate_image_memory(vk::structure::Image& image);
 
   //Buffer memory
   void allocate_empty_stagger_buffer(vk::data::structure::Buffer& buffer, VkDeviceSize size);

@@ -4,6 +4,7 @@
 #include <Utility/Base/Data/Element.h>
 #include <Utility/Base/Data/Topology.h>
 #include <Utility/Base/Data/Path.h>
+#include <Utility/Base/Media/Image.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
@@ -32,6 +33,7 @@ struct Data : public utl::base::Element{
   //Infos
   utl::base::Topology topology;
   utl::base::Path path;
+  utl::media::Image texture;
   glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
   glm::vec3 centroid = glm::vec3(0.0f, 0.0f, 0.0f);
 

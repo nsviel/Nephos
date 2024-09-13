@@ -32,7 +32,7 @@ void Frame::create_frame(){
     frame->color.format = vk_color->find_color_format();
     frame->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
     frame->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
-    vk_image->create_image_view(&frame->color);
+    vk_image->create_image_view(frame->color);
 
     vk_struct->swapchain.vec_frame.push_back(frame);
   }
@@ -46,7 +46,7 @@ void Frame::clean_frame(){
   //Vec images
   for(int i=0; i<vec_frame.size(); i++){
     vk::structure::Frame* frame = vec_frame[i];
-    vk_image->clean_image_view(&frame->color);
+    vk_image->clean_image_view(frame->color);
     delete frame;
   }
   vec_frame.clear();

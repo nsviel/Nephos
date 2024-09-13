@@ -16,22 +16,22 @@ Allocator::Allocator(vk::Structure* vk_struct){
 Allocator::~Allocator(){}
 
 //Image GPU function
-void Allocator::allocate_image_memory(vk::structure::Image* image){
+void Allocator::allocate_image_memory(vk::structure::Image& image){
   //---------------------------
 
   VkMemoryRequirements memRequirements;
-  vkGetImageMemoryRequirements(vk_struct->device.handle, image->handle, &memRequirements);
+  vkGetImageMemoryRequirements(vk_struct->device.handle, image.handle, &memRequirements);
 
   VkMemoryAllocateInfo allocInfo{};
   allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
   allocInfo.allocationSize = memRequirements.size;
   allocInfo.memoryTypeIndex = find_memory_type(memRequirements.memoryTypeBits, TYP_MEMORY_GPU);
-  VkResult result = vkAllocateMemory(vk_struct->device.handle, &allocInfo, nullptr, &image->mem);
+  VkResult result = vkAllocateMemory(vk_struct->device.handle, &allocInfo, nullptr, &image.mem);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate image memory!");
   }
 
-  vkBindImageMemory(vk_struct->device.handle, image->handle, image->mem, 0);
+  vkBindImageMemory(vk_struct->device.handle, image.handle, image.mem, 0);
 
   //---------------------------
 }

@@ -31,7 +31,7 @@ void Texture::clean(){
     std::shared_ptr<vk::structure::Texture> texture = *it;
 
     //Remove texture elements
-    vk_image->clean_image(&texture->vk_image);
+    vk_image->clean_image(texture->vk_image);
     vk_buffer->clean_buffer(&texture->stagger);
 
     //Remove texture from list
@@ -78,7 +78,7 @@ void Texture::export_texture(std::shared_ptr<utl::media::Image> utl_image){
 void Texture::clean_texture(std::shared_ptr<vk::structure::Texture> texture){
   //---------------------------
 
-  vk_image->clean_image(&texture->vk_image);
+  vk_image->clean_image(texture->vk_image);
   vk_buffer->clean_buffer(&texture->stagger);
   texture->utl_image->texture_ID = -1;
 
@@ -109,12 +109,12 @@ void Texture::create_texture(std::shared_ptr<vk::structure::Texture> texture){
   if(format == VK_FORMAT_UNDEFINED) return;
 
   //Create associated vk_image
-  vk::structure::Image* image = &texture->vk_image;
-  image->width = texture->utl_image->width;
-  image->height = texture->utl_image->height;
-  image->format = format;
-  image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  image->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
+  vk::structure::Image& image = texture->vk_image;
+  image.width = texture->utl_image->width;
+  image.height = texture->utl_image->height;
+  image.format = format;
+  image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  image.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
   vk_image->create_image(image);
 
   //Make associated operation

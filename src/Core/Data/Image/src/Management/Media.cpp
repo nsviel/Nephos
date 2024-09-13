@@ -9,19 +9,18 @@
 
 namespace dat::img{
 
-utl::media::Image load_image(std::string path){
+void load_image_data(utl::media::Image& image, std::string path){
   //---------------------------
 
-  utl::media::Image image;
   uint8_t* data = stbi_load(path.c_str(), &image.width, &image.height, &image.channel_nb, STBI_rgb_alpha);
   size_t size = static_cast<size_t>(image.width) * static_cast<size_t>(image.height) * static_cast<size_t>(image.channel_nb);
   image.data = std::vector<uint8_t>(data, data + size);
+  image.size = image.data.size();
   if(image.data.empty()){
     std::cout<<"[error] failed to load texture image"<<std::endl;
   }
 
   //---------------------------
-  return image;
 }
 bool is_device_connected(const std::string& devicePath){
   //---------------------------

@@ -27,7 +27,7 @@ void Color::create_color_image(vk::structure::Image* color){
   color->height = vk_struct->window.extent.height;
   color->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
 
-  vk_image->create_image(color);
+  vk_image->create_image(*color);
 
   //---------------------------
 }

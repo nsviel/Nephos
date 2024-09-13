@@ -99,9 +99,9 @@ void Framebuffer::create_framebuffer_handle(vk::structure::Renderpass& renderpas
 void Framebuffer::clean_framebuffer_image(vk::structure::Framebuffer& framebuffer){
   //---------------------------
 
-  vk_image->clean_image(&framebuffer.color);
-  vk_image->clean_image(&framebuffer.color_resolve);
-  vk_image->clean_image(&framebuffer.depth);
+  vk_image->clean_image(framebuffer.color);
+  vk_image->clean_image(framebuffer.color_resolve);
+  vk_image->clean_image(framebuffer.depth);
 
   framebuffer.vec_attachment.clear();
   

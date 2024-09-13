@@ -24,7 +24,7 @@ struct Image : public utl::base::Element{
 
   //Data
   std::vector<uint8_t> data;
-  std::string format = "";
+  std::string format = "R8G8B8A8_SRGB";
   std::string name = "";
 
   //---------------------------

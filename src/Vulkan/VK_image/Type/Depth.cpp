@@ -27,7 +27,7 @@ void Depth::create_depth_image(vk::structure::Image* depth){
   depth->height = vk_struct->window.extent.height;
   depth->aspect = VK_IMAGE_ASPECT_DEPTH_BIT;
 
-  vk_image->create_image(depth);
+  vk_image->create_image(*depth);
 
   //---------------------------
 }

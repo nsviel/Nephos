@@ -98,6 +98,7 @@ void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_p
   //Data
   this->check_data(*vk_object);
   vk_buffer->create_buffer(*vk_object);
+  vk_texture->insert_texture(std::make_shared<utl::media::Image>(data->texture));
 
   //Descriptor
   vk_descriptor->make_required_descriptor(*data, &vk_object->binding);
