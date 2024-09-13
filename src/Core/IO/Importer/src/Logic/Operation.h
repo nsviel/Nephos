@@ -40,6 +40,7 @@ public:
   void ope_color(std::shared_ptr<dat::base::Object> object);
   void ope_transformation(std::shared_ptr<dat::base::Object> object);
   void ope_insertion(std::shared_ptr<dat::base::Object> object);
+  void ope_validation(std::shared_ptr<dat::base::Object> object);
 
 private:
   io::imp::Structure* io_struct;

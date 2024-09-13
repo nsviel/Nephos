@@ -56,7 +56,7 @@ void Init::load_entity(){
   utl::base::Path cath("/home/aether/Desktop/Point_cloud/ply/Cathedral/pts_regis_01.ply");
   utl::base::Path pts("/home/aether/Desktop/Point_cloud/pts/cloud.pts");
   utl::base::Path bag("/home/aether/Desktop/intel.bag");
-
+  utl::base::Path texture("/home/aether/Desktop/Point_cloud/obj/viking/viking_room.obj");
 
 
   //Create playback list
@@ -70,8 +70,8 @@ void Init::load_entity(){
   //io_loader->load_object(mire);
   //io_loader->load_object(cath);
   //io_loader->load_object(dragon);
-
-  io_loader->load_object(bag);
+  //io_loader->load_object(bag);
+  //io_loader->load_object(texture);
 
   /*
   io_loader->load_object(dragon);
