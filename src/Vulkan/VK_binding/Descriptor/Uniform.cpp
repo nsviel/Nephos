@@ -21,20 +21,17 @@ Uniform::~Uniform(){}
 void Uniform::create_uniform(vk::binding::structure::Binding& binding, vk::binding::structure::Descriptor& descriptor){
   //---------------------------
 
+  vk::binding::structure::Uniform* uniform = new vk::binding::structure::Uniform();
+  uniform->name = descriptor.name;
+  uniform->binding = descriptor.binding;
+  uniform->size = descriptor.size;
 
-    if(descriptor.type == VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER){
-      vk::binding::structure::Uniform* uniform = new vk::binding::structure::Uniform();
-      uniform->name = descriptor.name;
-      uniform->binding = descriptor.binding;
-      uniform->size = descriptor.size;
+  vk_mem_allocator->create_gpu_buffer(uniform->size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
+  vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
+  vkMapMemory(vk_struct->device.handle, uniform->mem, 0, uniform->size, 0, &uniform->mapped);
 
-      vk_mem_allocator->create_gpu_buffer(uniform->size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
-      vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
-      vkMapMemory(vk_struct->device.handle, uniform->mem, 0, uniform->size, 0, &uniform->mapped);
-
-      binding.map_uniform[descriptor.name] = uniform;
-    }
-
+  binding.map_uniform[descriptor.name] = uniform;
+  
   //---------------------------
 }
 void Uniform::clean_uniform(vk::binding::structure::Binding& binding){

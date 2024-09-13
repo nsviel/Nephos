@@ -46,6 +46,7 @@ void Binding::create_descriptor(vk::binding::structure::Binding& binding){
   for(auto& descriptor : binding.vec_required_binding){
 
     switch(descriptor.type){
+      case TYP_IMAGE_SAMPLER:
       case VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER:{
         vk_sampler->create_sampler(binding, descriptor);
         break;
@@ -56,17 +57,6 @@ void Binding::create_descriptor(vk::binding::structure::Binding& binding){
       }
     }
 
-  }
-
-  //---------------------------
-}
-void Binding::make_object_descriptor(utl::base::Data& data, vk::binding::structure::Binding& binding){
-  //---------------------------
-
-  binding.vec_required_binding.push_back(vk::binding::uniform_mvp());
-
-  if(data.topology.type == utl::topology::POINT){
-    binding.vec_required_binding.push_back(vk::binding::uniform_point_size());
   }
 
   //---------------------------

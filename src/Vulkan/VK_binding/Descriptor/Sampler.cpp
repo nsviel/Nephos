@@ -20,16 +20,12 @@ Sampler::~Sampler(){}
 void Sampler::create_sampler(vk::binding::structure::Binding& binding, vk::binding::structure::Descriptor& descriptor){
   //---------------------------
 
+  vk::binding::structure::Sampler* sampler = new vk::binding::structure::Sampler();
+  sampler->name = descriptor.name;
+  sampler->binding = descriptor.binding;
+  sampler->type = descriptor.type;
 
-    if(descriptor.type == TYP_IMAGE_SAMPLER || descriptor.type == VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE){
-      vk::binding::structure::Sampler* sampler = new vk::binding::structure::Sampler();
-      sampler->name = descriptor.name;
-      sampler->binding = descriptor.binding;
-      sampler->type = descriptor.type;
-
-      binding.map_sampler[descriptor.name] = sampler;
-    }
-
+  binding.map_sampler[descriptor.name] = sampler;
 
   //---------------------------
 }
