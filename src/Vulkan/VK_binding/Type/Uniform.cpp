@@ -18,6 +18,17 @@ Uniform::Uniform(vk::Structure* vk_struct){
 Uniform::~Uniform(){}
 
 //Uniform creation
+void Uniform::add_uniform(){
+  //---------------------------
+
+
+
+
+
+  //---------------------------
+}
+
+
 void Uniform::create_uniform_buffers(vk::binding::structure::Binding* binding){
   binding->vec_uniform.clear();
   //---------------------------

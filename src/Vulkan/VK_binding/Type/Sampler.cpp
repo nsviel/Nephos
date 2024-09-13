@@ -18,11 +18,9 @@ Sampler::~Sampler(){}
 
 //Main function
 void Sampler::create_sampler(vk::binding::structure::Binding* binding){
-  binding->vec_sampler.clear();
   //---------------------------
 
   std::vector<vk::binding::structure::Required>& vec_required = binding->vec_required_binding;
-  std::vector<vk::binding::structure::Sampler*>& vec_sampler = binding->vec_sampler;
 
   for(int i=0; i<vec_required.size(); i++){
     vk::binding::structure::Required& descriptor = vec_required[i];
@@ -33,7 +31,7 @@ void Sampler::create_sampler(vk::binding::structure::Binding* binding){
       sampler->binding = descriptor.binding;
       sampler->type = descriptor.type;
 
-      vec_sampler.push_back(sampler);
+      binding->map_sampler[descriptor.name] = sampler;
     }
   }
 
@@ -42,20 +40,14 @@ void Sampler::create_sampler(vk::binding::structure::Binding* binding){
 void Sampler::update_sampler(vk::binding::structure::Binding* binding, vk::structure::Image* image){
   //---------------------------
 
-  vk::binding::structure::Sampler* sampler = nullptr;
-  for(int i=0; i<binding->vec_sampler.size(); i++){
-    if(image->name == binding->vec_sampler[i]->name){
-      sampler = binding->vec_sampler[i];
-    }
-  }
+  vk::binding::structure::Sampler* sampler = binding->map_sampler[image->name];
   if(sampler == nullptr){
     std::cout<<"------------------------"<<std::endl;
     std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<image->name<<"\033[0m"<<std::endl;
     std::cout<<"Existing uniform names: "<<std::endl;
 
-    for(int i=0; i<binding->vec_sampler.size(); i++){
-      vk::binding::structure::Sampler* sampler = binding->vec_sampler[i];
-      std::cout<<"\033[1;32m"<<sampler->name<<"\033[0m"<<std::endl;
+    for(auto& [name, sampler] : binding->map_sampler){
+      std::cout<<"\033[1;32m"<<name<<"\033[0m"<<std::endl;
     }
 
     std::cout<<"------------------------"<<std::endl;
