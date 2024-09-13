@@ -21,7 +21,6 @@ struct Binding{
 
   //Binding elements
   std::vector<vk::binding::structure::Pushconst*> vec_pushcst;
-  std::vector<vk::binding::structure::Uniform*> vec_uniform;
 
 
 
