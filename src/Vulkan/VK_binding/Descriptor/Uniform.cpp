@@ -18,13 +18,9 @@ Uniform::Uniform(vk::Structure* vk_struct){
 Uniform::~Uniform(){}
 
 //Uniform creation
-void Uniform::create_uniform_buffers(vk::binding::structure::Binding& binding){
+void Uniform::create_uniform(vk::binding::structure::Binding& binding, vk::binding::structure::Descriptor& descriptor){
   //---------------------------
 
-  std::vector<vk::binding::structure::Descriptor>& vec_required = binding.vec_required_binding;
-
-  for(int i=0; i<vec_required.size(); i++){
-    vk::binding::structure::Descriptor& descriptor = vec_required[i];
 
     if(descriptor.type == VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER){
       vk::binding::structure::Uniform* uniform = new vk::binding::structure::Uniform();
@@ -38,7 +34,6 @@ void Uniform::create_uniform_buffers(vk::binding::structure::Binding& binding){
 
       binding.map_uniform[descriptor.name] = uniform;
     }
-  }
 
   //---------------------------
 }

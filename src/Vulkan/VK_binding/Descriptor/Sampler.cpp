@@ -17,13 +17,9 @@ Sampler::Sampler(vk::Structure* vk_struct){
 Sampler::~Sampler(){}
 
 //Main function
-void Sampler::create_sampler(vk::binding::structure::Binding& binding){
+void Sampler::create_sampler(vk::binding::structure::Binding& binding, vk::binding::structure::Descriptor& descriptor){
   //---------------------------
 
-  std::vector<vk::binding::structure::Descriptor>& vec_required = binding.vec_required_binding;
-
-  for(int i=0; i<vec_required.size(); i++){
-    vk::binding::structure::Descriptor& descriptor = vec_required[i];
 
     if(descriptor.type == TYP_IMAGE_SAMPLER || descriptor.type == VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE){
       vk::binding::structure::Sampler* sampler = new vk::binding::structure::Sampler();
@@ -33,14 +29,14 @@ void Sampler::create_sampler(vk::binding::structure::Binding& binding){
 
       binding.map_sampler[descriptor.name] = sampler;
     }
-  }
+
 
   //---------------------------
 }
 void Sampler::update_sampler(vk::binding::structure::Binding& binding, vk::structure::Image* image){
   //---------------------------
 
-  vk::binding::structure::Sampler* sampler = query_sampler(image->name);
+  vk::binding::structure::Sampler* sampler = query_sampler(binding, image->name);
   if(!sampler) return;
 
   VkDescriptorImageInfo image_info = {};
@@ -63,13 +59,13 @@ void Sampler::update_sampler(vk::binding::structure::Binding& binding, vk::struc
 }
 
 //Subfunction
-vk::binding::structure::Sampler* Sampler::query_sampler(std::string& name){
+vk::binding::structure::Sampler* Sampler::query_sampler(vk::binding::structure::Binding& binding, std::string& name){
   //---------------------------
 
   auto it = binding.map_sampler.find(name);
   if (it == binding.map_sampler.end()) {
     std::cout<<"------------------------"<<std::endl;
-    std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<image->name<<"\033[0m"<<std::endl;
+    std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<name<<"\033[0m"<<std::endl;
     std::cout<<"Existing uniform names: "<<std::endl;
 
     for(auto& [name, sampler] : binding.map_sampler){

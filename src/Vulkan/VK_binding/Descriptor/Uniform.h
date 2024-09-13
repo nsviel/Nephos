@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-  void create_uniform_buffers(vk::binding::structure::Binding& binding);
+  void create_uniform(vk::binding::structure::Binding& binding, vk::binding::structure::Descriptor& descriptor);
   void clean_uniform(vk::binding::structure::Binding& binding);
   void update_uniform(vk::binding::structure::Binding& binding);
 

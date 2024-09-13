@@ -29,6 +29,7 @@ public:
   void clean_binding(vk::binding::structure::Binding& binding);
 
   //Subfunction
+  void create_descriptor(vk::binding::structure::Binding& binding);
   void make_object_descriptor(utl::base::Data& data, vk::binding::structure::Binding& binding);
 
 private:

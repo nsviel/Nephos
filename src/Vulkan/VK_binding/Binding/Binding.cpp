@@ -24,8 +24,7 @@ void Binding::create_binding(vk::binding::structure::Binding& binding){
   //---------------------------
 
   vk_layout->create_layout(binding);
-  vk_uniform->create_uniform_buffers(binding);
-  vk_sampler->create_sampler(binding);
+  this->create_descriptor(binding);
   vk_descriptor_set->allocate(binding);
   vk_uniform->update_uniform(binding);
 
@@ -41,6 +40,26 @@ void Binding::clean_binding(vk::binding::structure::Binding& binding){
 }
 
 //Subfunction
+void Binding::create_descriptor(vk::binding::structure::Binding& binding){
+  //---------------------------
+
+  for(auto& descriptor : binding.vec_required_binding){
+
+    switch(descriptor.type){
+      case VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER:{
+        vk_sampler->create_sampler(binding, descriptor);
+        break;
+      }
+      case VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER:{
+        vk_uniform->create_uniform(binding, descriptor);
+        break;
+      }
+    }
+
+  }
+
+  //---------------------------
+}
 void Binding::make_object_descriptor(utl::base::Data& data, vk::binding::structure::Binding& binding){
   //---------------------------
 
@@ -51,7 +70,6 @@ void Binding::make_object_descriptor(utl::base::Data& data, vk::binding::structu
   }
 
   //---------------------------
-
 }
 
 }
