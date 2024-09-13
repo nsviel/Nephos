@@ -46,8 +46,8 @@ void Line::set_shader(vk::structure::Pipeline& pipeline){
   shader_info->name = "Line";
   shader_info->path_glsl_vs = "../media/shader/Scene/glsl/shader_line_vs.vert";
   shader_info->path_glsl_fs = "../media/shader/Scene/glsl/shader_line_fs.frag";
-  shader_info->path_spir_vs = "../media/shader/Scene/spir/shader_line_vs.spv";
-  shader_info->path_spir_fs = "../media/shader/Scene/spir/shader_line_fs.spv";
+  shader_info->path_spir_vs = "../media/shader/Topology/spir/shader_line_vs.spv";
+  shader_info->path_spir_fs = "../media/shader/Topology/spir/shader_line_fs.spv";
   shader_info->with_recompilation = false;
   shader_info->with_depth_test = true;
 
