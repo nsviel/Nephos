@@ -151,7 +151,7 @@ void Imgui::update_render_descriptor(){
   //---------------------------
 
   vk::structure::Renderpass& renderpass = vk_struct->renderpass.edl;
-  vk::structure::Image* image = &renderpass.framebuffer->color;
+  vk::structure::Image* image = &renderpass.framebuffer.color;
 
   vk_struct->gui.descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 

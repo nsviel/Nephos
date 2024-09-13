@@ -19,7 +19,7 @@ struct Renderpass{
   //Renderpass stuff
   VkRenderPass handle = VK_NULL_HANDLE;
   VkPipelineStageFlags pipeline_flag = 0;
-  vk::structure::Framebuffer* framebuffer = nullptr;
+  vk::structure::Framebuffer framebuffer;
   vk::structure::Command_buffer* command_buffer = nullptr;
 
   //Subpass description
