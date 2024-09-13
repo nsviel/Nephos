@@ -73,30 +73,4 @@ void Sampler::update_sampler(vk::binding::structure::Binding& binding, vk::struc
   //---------------------------
 }
 
-//Subfunction
-vk::binding::structure::Descriptor Sampler::sampler_color(){
-  //---------------------------
-
-  vk::binding::structure::Descriptor descriptor;
-  descriptor.name = "tex_color";
-  descriptor.binding = 1;
-  descriptor.type = TYP_IMAGE_SAMPLER;
-  descriptor.stage = TYP_SHADER_FS;
-
-  //---------------------------
-  return descriptor;
-}
-vk::binding::structure::Descriptor Sampler::sampler_depth(){
-  //---------------------------
-
-  vk::binding::structure::Descriptor descriptor;
-  descriptor.name = "tex_depth";
-  descriptor.binding = 4;
-  descriptor.type = TYP_IMAGE_SAMPLER;
-  descriptor.stage = TYP_SHADER_FS;
-
-  //---------------------------
-  return descriptor;
-}
-
 }

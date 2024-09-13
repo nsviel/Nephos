@@ -44,12 +44,10 @@ void Binding::clean_binding(vk::binding::structure::Binding& binding){
 void Binding::make_object_descriptor(utl::base::Data& data, vk::binding::structure::Binding& binding){
   //---------------------------
 
-  vk::binding::structure::Descriptor descriptor = vk_uniform->uniform_mvp();
-  binding.vec_required_binding.push_back(vk_uniform->uniform_mvp());
+  binding.vec_required_binding.push_back(vk::binding::uniform_mvp());
 
   if(data.topology.type == utl::topology::POINT){
-    vk::binding::structure::Descriptor descriptor = vk_uniform->uniform_point_size();
-    binding.vec_required_binding.push_back(vk_uniform->uniform_point_size());
+    binding.vec_required_binding.push_back(vk::binding::uniform_point_size());
   }
 
   //---------------------------

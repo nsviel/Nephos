@@ -18,34 +18,6 @@ Uniform::Uniform(vk::Structure* vk_struct){
 Uniform::~Uniform(){}
 
 //Uniform creation
-void Uniform::add_uniform(vk::binding::structure::Descriptor& descriptor){
-  //---------------------------
-
-/*
-  std::string name = "";
-  std::size_t size = 0;
-  int binding = 0;
-
-  VkDescriptorType type;
-  VkShaderStageFlagBits stage;
-
-
-  vk::binding::structure::Uniform* uniform = new vk::binding::structure::Uniform();
-  uniform->name = descriptor.name;
-  uniform->binding = descriptor.binding;
-  uniform->size = descriptor.size;
-
-  vk_mem_allocator->create_gpu_buffer(uniform->size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
-  vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
-  vkMapMemory(vk_struct->device.handle, uniform->mem, 0, uniform->size, 0, &uniform->mapped);
-
-  binding.map_uniform[descriptor.name] = uniform;
-*/
-
-  //---------------------------
-}
-
-
 void Uniform::create_uniform_buffers(vk::binding::structure::Binding& binding){
   //---------------------------
 
@@ -114,7 +86,7 @@ void Uniform::update_uniform(vk::binding::structure::Binding& binding){
   //---------------------------
 }
 
-//Uniform update
+//Subfunction
 template <typename T> void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding& binding, T value){
   bool has_been_found = false;
   //---------------------------
@@ -146,46 +118,5 @@ template <typename T> void Uniform::update_uniform(std::string uniform_name, vk:
 template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding& binding, glm::mat4 value);
 template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding& binding, int value);
 template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding& binding, vk::render::structure::EDL value);
-
-//Subfunction
-vk::binding::structure::Descriptor Uniform::uniform_point_size(){
-  //---------------------------
-
-  vk::binding::structure::Descriptor descriptor;
-  descriptor.name = "point_size";
-  descriptor.size = sizeof(int);
-  descriptor.binding = 1;
-  descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-  descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
-
-  //---------------------------
-  return descriptor;
-}
-vk::binding::structure::Descriptor Uniform::uniform_mvp(){
-  //---------------------------
-
-  vk::binding::structure::Descriptor descriptor;
-  descriptor.name = "mvp";
-  descriptor.size = sizeof(glm::mat4);
-  descriptor.binding = 0;
-  descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-  descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
-
-  //---------------------------
-  return descriptor;
-}
-vk::binding::structure::Descriptor Uniform::uniform_edl(){
-  //---------------------------
-
-  vk::binding::structure::Descriptor descriptor;
-  descriptor.name = "EDL_param";
-  descriptor.size = sizeof(vk::render::structure::EDL);
-  descriptor.binding = 5;
-  descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-  descriptor.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-
-  //---------------------------
-  return descriptor;
-}
 
 }

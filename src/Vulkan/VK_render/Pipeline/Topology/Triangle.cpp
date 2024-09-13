@@ -58,9 +58,7 @@ void Triangle::set_shader(vk::structure::Pipeline& pipeline){
 void Triangle::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk::binding::structure::Descriptor descriptor = vk_uniform->uniform_mvp();
-  
-  pipeline.binding.vec_required_binding.push_back(descriptor);
+  pipeline.binding.vec_required_binding.push_back(vk::binding::uniform_mvp());
 
   //---------------------------
 }
