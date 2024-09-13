@@ -10,9 +10,6 @@ Descriptor_set::Descriptor_set(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_uniform = new vk::binding::Uniform(vk_struct);
-  this->vk_sampler = new vk::binding::Sampler(vk_struct);
-  this->vk_layout = new vk::binding::Layout(vk_struct);
 
   //---------------------------
 }

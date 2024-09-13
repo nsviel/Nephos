@@ -79,7 +79,6 @@ vk::binding::structure::Descriptor Sampler::sampler_color(){
 
   vk::binding::structure::Descriptor descriptor;
   descriptor.name = "tex_color";
-  descriptor.size = 0;
   descriptor.binding = 1;
   descriptor.type = TYP_IMAGE_SAMPLER;
   descriptor.stage = TYP_SHADER_FS;
@@ -92,7 +91,6 @@ vk::binding::structure::Descriptor Sampler::sampler_depth(){
 
   vk::binding::structure::Descriptor descriptor;
   descriptor.name = "tex_depth";
-  descriptor.size = 0;
   descriptor.binding = 4;
   descriptor.type = TYP_IMAGE_SAMPLER;
   descriptor.stage = TYP_SHADER_FS;

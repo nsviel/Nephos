@@ -3,14 +3,9 @@
 #include <vulkan/vulkan.h>
 #include <vector>
 
-namespace vk::binding{class Uniform;}
-namespace vk::binding{class Sampler;}
-namespace vk::binding{class Layout;}
 namespace vk{class Structure;}
 namespace vk::binding::structure{class Binding;}
-namespace vk::structure{class Image;}
 namespace vk::structure{class Pipeline;}
-namespace utl::base{class Data;}
 
 
 namespace vk::binding{
@@ -30,9 +25,6 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::binding::Uniform* vk_uniform;
-  vk::binding::Sampler* vk_sampler;
-  vk::binding::Layout* vk_layout;
 };
 
 }
