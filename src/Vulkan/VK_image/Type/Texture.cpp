@@ -101,7 +101,7 @@ void Texture::update_texture(std::shared_ptr<vk::structure::Texture> texture){
 }
 void Texture::create_texture(std::shared_ptr<vk::structure::Texture> texture){
   //---------------------------
-
+say("---");
   //Create texture container
   texture->UID = vk_uid->query_free_UID();
   texture->utl_image->texture_ID = texture->UID;
