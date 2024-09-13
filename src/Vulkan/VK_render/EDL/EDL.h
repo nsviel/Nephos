@@ -11,7 +11,7 @@ namespace vk::draw{class Drawer;}
 namespace vk::render::pipeline{class Factory;}
 namespace vk::pipeline{class Pipeline;}
 namespace vk::draw{class Viewport;}
-namespace vk::binding{class Descriptor;}
+namespace vk::binding{class Descriptor_set;}
 namespace vk::binding{class Uniform;}
 namespace vk::binding{class Sampler;}
 namespace vk::draw{class Drawer;}
@@ -45,7 +45,7 @@ private:
   vk::render::pipeline::Factory* vk_factory;
   vk::pipeline::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
-  vk::binding::Descriptor* vk_descriptor;
+  vk::binding::Descriptor_set* vk_descriptor_set;
 };
 
 }

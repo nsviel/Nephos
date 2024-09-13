@@ -10,7 +10,7 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
+  this->vk_binding = new vk::binding::Binding(vk_struct);
   this->vk_shader = new vk::pipeline::Shader(vk_struct);
   this->vk_vertex = new vk::pipeline::Vertex(vk_struct);
   this->vk_object = new vk::pipeline::Object(vk_struct);
@@ -49,7 +49,7 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk:
   //---------------------------
 
   //Pipeline layout & binding
-  vk_descriptor->create_binding(&pipeline->binding);
+  vk_binding->create_binding(&pipeline->binding);
   vk_shader->create_pipeline_shader(pipeline);
   vk_vertex->pipeline_vertex_description(pipeline);
   vk_layout->create_pipeline_layout(pipeline);
@@ -65,7 +65,7 @@ void Pipeline::clean_pipeline_struct(vk::structure::Pipeline* pipeline){
 
   vk_object->clean_pipeline_handle(pipeline);
   vk_layout->clean_pipeline_layout(pipeline);
-  vk_descriptor->clean_binding(&pipeline->binding);
+  vk_binding->clean_binding(&pipeline->binding);
 
   //---------------------------
 }

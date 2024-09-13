@@ -2,13 +2,13 @@
 
 #include <vulkan/vulkan.h>
 
-namespace vk::binding{class Descriptor;}
+namespace vk{class Structure;}
+namespace vk::binding{class Binding;}
 namespace vk::draw{class Viewport;}
 namespace vk::pipeline{class Shader;}
 namespace vk::pipeline{class Vertex;}
 namespace vk::pipeline{class Object;}
 namespace vk::pipeline{class Layout;}
-namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
 
@@ -34,7 +34,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::binding::Descriptor* vk_descriptor;
+  vk::binding::Binding* vk_binding;
   vk::pipeline::Shader* vk_shader;
   vk::pipeline::Vertex* vk_vertex;
   vk::pipeline::Object* vk_object;

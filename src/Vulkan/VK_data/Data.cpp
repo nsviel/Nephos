@@ -14,7 +14,7 @@ Data::Data(vk::Structure* vk_struct){
   this->vk_buffer = new vk::data::Buffer(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
-  this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
+  this->vk_binding = new vk::binding::Binding(vk_struct);
   this->vk_uid = new vk::instance::UID(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
@@ -101,8 +101,8 @@ void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_p
   vk_texture->insert_texture(std::make_shared<utl::media::Image>(data->texture));
 
   //Descriptor
-  vk_descriptor->make_required_descriptor(*data, &vk_object->binding);
-  vk_descriptor->create_binding(&vk_object->binding);
+  vk_binding->make_required_descriptor(*data, &vk_object->binding);
+  vk_binding->create_binding(&vk_object->binding);
 
   //Insert data struct into set
   vk_struct->data.list_vk_object.push_back(vk_object);
@@ -114,7 +114,7 @@ void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
 
   vk_buffer->clean_buffers(*vk_object);
   vk_texture->clean_texture(*vk_object);
-  vk_descriptor->clean_binding(&vk_object->binding);
+  vk_binding->clean_binding(&vk_object->binding);
   vk_struct->data.list_vk_object.remove(vk_object);
 
   //---------------------------

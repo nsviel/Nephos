@@ -16,7 +16,7 @@ EDL::EDL(vk::Structure* vk_struct){
   this->vk_factory = new vk::render::pipeline::Factory(vk_struct);
   this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
-  this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
+  this->vk_descriptor_set = new vk::binding::Descriptor_set(vk_struct);
   this->vk_drawer = new vk::draw::Drawer(vk_struct);
 
   //---------------------------
@@ -68,7 +68,7 @@ void EDL::update_binding(vk::structure::Subpass& subpass){
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, edl_struct);
 
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
-  vk_descriptor->cmd_bind_descriptor(subpass.command_buffer->handle, pipeline, pipeline->binding.descriptor_set.handle);
+  vk_descriptor_set->bind(subpass.command_buffer->handle, pipeline, pipeline->binding.descriptor_set.handle);
 
   //---------------------------
 }

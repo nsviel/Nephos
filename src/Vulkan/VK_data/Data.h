@@ -5,7 +5,7 @@
 namespace vk::data{class Buffer;}
 namespace vk::image{class Texture;}
 namespace vk::command{class Command_buffer;}
-namespace vk::binding{class Descriptor;}
+namespace vk::binding{class Binding;}
 namespace vk{class Structure;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Pipeline;}
@@ -42,7 +42,7 @@ private:
   vk::data::Buffer* vk_buffer;
   vk::image::Texture* vk_texture;
   vk::command::Command_buffer* vk_command_buffer;
-  vk::binding::Descriptor* vk_descriptor;
+  vk::binding::Binding* vk_binding;
   vk::instance::UID* vk_uid;
   vk::synchro::Synchro* vk_synchro;
   vk::binding::Uniform* vk_uniform;

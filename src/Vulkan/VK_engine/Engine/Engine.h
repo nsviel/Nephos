@@ -10,7 +10,7 @@ namespace vk::instance{class Instance;}
 namespace vk::instance{class Extension;}
 namespace vk::instance{class Pool;}
 namespace vk::device{class Logical;}
-namespace vk::binding{class Descriptor;}
+namespace vk::binding{class Descriptor_set;}
 namespace vk::image{class Texture;}
 namespace vk::gui{class Imgui;}
 namespace vk::data{class Data;}
@@ -55,7 +55,7 @@ protected:
   vk::presentation::Swapchain* vk_swapchain;
   vk::renderpass::Renderpass* vk_renderpass;
   vk::command::Command_buffer* vk_command_buffer;
-  vk::binding::Descriptor* vk_descriptor;
+  vk::binding::Descriptor_set* vk_descriptor_set;
   vk::image::Texture* vk_texture;
   vk::instance::Pool* vk_pool;
   vk::data::Data* vk_data;

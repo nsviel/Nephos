@@ -18,7 +18,7 @@ Engine::Engine(vk::Structure* vk_struct){
   this->vk_surface = new vk::presentation::Surface(vk_struct);
   this->vk_device = new vk::device::Logical(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
-  this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
+  this->vk_descriptor_set = new vk::binding::Descriptor_set(vk_struct);
   this->vk_data = new vk::data::Data(vk_struct);
   this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
   this->vk_renderpass = new vk::renderpass::Renderpass(vk_struct);
