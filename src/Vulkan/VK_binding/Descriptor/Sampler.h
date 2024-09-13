@@ -23,7 +23,10 @@ public:
   //Main function
   void create_sampler(vk::binding::structure::Binding& binding);
   void update_sampler(vk::binding::structure::Binding& binding, vk::structure::Image* image);
-  
+
+  //Subfunction
+  vk::binding::structure::Sampler* query_sampler(std::string& name);
+
 private:
   vk::Structure* vk_struct;
 };

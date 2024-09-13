@@ -40,19 +40,8 @@ void Sampler::create_sampler(vk::binding::structure::Binding& binding){
 void Sampler::update_sampler(vk::binding::structure::Binding& binding, vk::structure::Image* image){
   //---------------------------
 
-  vk::binding::structure::Sampler* sampler = binding.map_sampler[image->name];
-  if(sampler == nullptr){
-    std::cout<<"------------------------"<<std::endl;
-    std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<image->name<<"\033[0m"<<std::endl;
-    std::cout<<"Existing uniform names: "<<std::endl;
-
-    for(auto& [name, sampler] : binding.map_sampler){
-      std::cout<<"\033[1;32m"<<name<<"\033[0m"<<std::endl;
-    }
-
-    std::cout<<"------------------------"<<std::endl;
-    exit(0);
-  }
+  vk::binding::structure::Sampler* sampler = query_sampler(image->name);
+  if(!sampler) return;
 
   VkDescriptorImageInfo image_info = {};
   image_info.imageLayout = image->layout;
@@ -71,6 +60,28 @@ void Sampler::update_sampler(vk::binding::structure::Binding& binding, vk::struc
   vkUpdateDescriptorSets(vk_struct->device.handle, 1, &write_sampler, 0, nullptr);
 
   //---------------------------
+}
+
+//Subfunction
+vk::binding::structure::Sampler* Sampler::query_sampler(std::string& name){
+  //---------------------------
+
+  auto it = binding.map_sampler.find(name);
+  if (it == binding.map_sampler.end()) {
+    std::cout<<"------------------------"<<std::endl;
+    std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<image->name<<"\033[0m"<<std::endl;
+    std::cout<<"Existing uniform names: "<<std::endl;
+
+    for(auto& [name, sampler] : binding.map_sampler){
+      std::cout<<"\033[1;32m"<<name<<"\033[0m"<<std::endl;
+    }
+
+    std::cout<<"------------------------"<<std::endl;
+    return nullptr;
+  }
+
+  //---------------------------
+  return it->second;
 }
 
 }
