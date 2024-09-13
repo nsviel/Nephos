@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Vulkan/VK_renderpass/Structure/Enum.h>
 #include <Vulkan/VK_renderpass/Renderpass/Subpass.h>
 #include <Vulkan/VK_pipeline/Structure/Pipeline.h>
 #include <Vulkan/VK_renderpass/Structure/Attachment.h>
