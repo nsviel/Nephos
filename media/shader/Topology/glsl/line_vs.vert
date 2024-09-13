@@ -1,9 +1,13 @@
 #version 450
 
+//Input
 layout(location = 0) in vec3 in_position;
 layout(location = 1) in vec3 in_color;
+
+//Ouput
 layout(location = 0) out vec3 frag_color;
 
+//Uniform
 layout(binding = 0) uniform MVP{
     mat4 mvp;
 }ubo;
