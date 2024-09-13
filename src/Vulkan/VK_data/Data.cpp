@@ -101,8 +101,8 @@ void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_p
   vk_texture->insert_texture(std::make_shared<utl::media::Image>(data->texture));
 
   //Descriptor
-  vk_binding->make_required_descriptor(*data, &vk_object->binding);
-  vk_binding->create_binding(&vk_object->binding);
+  vk_binding->make_object_descriptor(*data, vk_object->binding);
+  vk_binding->create_binding(vk_object->binding);
 
   //Insert data struct into set
   vk_struct->data.list_vk_object.push_back(vk_object);
@@ -114,7 +114,7 @@ void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
 
   vk_buffer->clean_buffers(*vk_object);
   vk_texture->clean_texture(*vk_object);
-  vk_binding->clean_binding(&vk_object->binding);
+  vk_binding->clean_binding(vk_object->binding);
   vk_struct->data.list_vk_object.remove(vk_object);
 
   //---------------------------

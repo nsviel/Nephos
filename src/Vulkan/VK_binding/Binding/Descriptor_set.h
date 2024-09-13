@@ -24,9 +24,9 @@ public:
 
 public:
   //Main function
-  void allocate(vk::binding::structure::Binding* binding);
+  void allocate(vk::binding::structure::Binding& binding);
   void bind(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set);
-  void clean(vk::binding::structure::Binding* binding);
+  void clean(vk::binding::structure::Binding& binding);
 
 private:
   vk::Structure* vk_struct;

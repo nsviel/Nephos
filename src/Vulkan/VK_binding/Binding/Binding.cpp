@@ -20,7 +20,7 @@ Binding::Binding(vk::Structure* vk_struct){
 Binding::~Binding(){}
 
 //Main function
-void Binding::create_binding(vk::binding::structure::Binding* binding){
+void Binding::create_binding(vk::binding::structure::Binding& binding){
   //---------------------------
 
   vk_layout->create_layout(binding);
@@ -31,7 +31,7 @@ void Binding::create_binding(vk::binding::structure::Binding* binding){
 
   //---------------------------
 }
-void Binding::clean_binding(vk::binding::structure::Binding* binding){
+void Binding::clean_binding(vk::binding::structure::Binding& binding){
   //---------------------------
 
   vk_descriptor_set->clean(binding);
@@ -41,15 +41,15 @@ void Binding::clean_binding(vk::binding::structure::Binding* binding){
 }
 
 //Subfunction
-void Binding::make_required_descriptor(utl::base::Data& data, vk::binding::structure::Binding* binding){
+void Binding::make_object_descriptor(utl::base::Data& data, vk::binding::structure::Binding& binding){
   //---------------------------
 
   vk::binding::structure::Descriptor descriptor = vk_uniform->uniform_mvp();
-  binding->vec_required_binding.push_back(vk_uniform->uniform_mvp());
+  binding.vec_required_binding.push_back(vk_uniform->uniform_mvp());
 
   if(data.topology.type == utl::topology::POINT){
     vk::binding::structure::Descriptor descriptor = vk_uniform->uniform_point_size();
-    binding->vec_required_binding.push_back(vk_uniform->uniform_point_size());
+    binding.vec_required_binding.push_back(vk_uniform->uniform_point_size());
   }
 
   //---------------------------

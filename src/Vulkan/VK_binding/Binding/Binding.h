@@ -25,11 +25,11 @@ public:
 
 public:
   //Main function
-  void create_binding(vk::binding::structure::Binding* binding);
-  void clean_binding(vk::binding::structure::Binding* binding);
+  void create_binding(vk::binding::structure::Binding& binding);
+  void clean_binding(vk::binding::structure::Binding& binding);
 
   //Subfunction
-  void make_required_descriptor(utl::base::Data& data, vk::binding::structure::Binding* binding);
+  void make_object_descriptor(utl::base::Data& data, vk::binding::structure::Binding& binding);
 
 private:
   vk::Structure* vk_struct;

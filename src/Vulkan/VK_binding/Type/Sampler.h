@@ -21,8 +21,8 @@ public:
 
 public:
   //Main function
-  void create_sampler(vk::binding::structure::Binding* binding);
-  void update_sampler(vk::binding::structure::Binding* binding, vk::structure::Image* image);
+  void create_sampler(vk::binding::structure::Binding& binding);
+  void update_sampler(vk::binding::structure::Binding& binding, vk::structure::Image* image);
 
   //Subfunction
   vk::binding::structure::Descriptor sampler_color();

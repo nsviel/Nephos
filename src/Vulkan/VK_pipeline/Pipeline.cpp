@@ -49,7 +49,7 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk:
   //---------------------------
 
   //Pipeline layout & binding
-  vk_binding->create_binding(&pipeline->binding);
+  vk_binding->create_binding(pipeline->binding);
   vk_shader->create_pipeline_shader(pipeline);
   vk_vertex->pipeline_vertex_description(pipeline);
   vk_layout->create_pipeline_layout(pipeline);
@@ -65,7 +65,7 @@ void Pipeline::clean_pipeline_struct(vk::structure::Pipeline* pipeline){
 
   vk_object->clean_pipeline_handle(pipeline);
   vk_layout->clean_pipeline_layout(pipeline);
-  vk_binding->clean_binding(&pipeline->binding);
+  vk_binding->clean_binding(pipeline->binding);
 
   //---------------------------
 }

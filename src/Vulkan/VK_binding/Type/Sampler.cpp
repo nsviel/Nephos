@@ -17,10 +17,10 @@ Sampler::Sampler(vk::Structure* vk_struct){
 Sampler::~Sampler(){}
 
 //Main function
-void Sampler::create_sampler(vk::binding::structure::Binding* binding){
+void Sampler::create_sampler(vk::binding::structure::Binding& binding){
   //---------------------------
 
-  std::vector<vk::binding::structure::Descriptor>& vec_required = binding->vec_required_binding;
+  std::vector<vk::binding::structure::Descriptor>& vec_required = binding.vec_required_binding;
 
   for(int i=0; i<vec_required.size(); i++){
     vk::binding::structure::Descriptor& descriptor = vec_required[i];
@@ -31,22 +31,22 @@ void Sampler::create_sampler(vk::binding::structure::Binding* binding){
       sampler->binding = descriptor.binding;
       sampler->type = descriptor.type;
 
-      binding->map_sampler[descriptor.name] = sampler;
+      binding.map_sampler[descriptor.name] = sampler;
     }
   }
 
   //---------------------------
 }
-void Sampler::update_sampler(vk::binding::structure::Binding* binding, vk::structure::Image* image){
+void Sampler::update_sampler(vk::binding::structure::Binding& binding, vk::structure::Image* image){
   //---------------------------
 
-  vk::binding::structure::Sampler* sampler = binding->map_sampler[image->name];
+  vk::binding::structure::Sampler* sampler = binding.map_sampler[image->name];
   if(sampler == nullptr){
     std::cout<<"------------------------"<<std::endl;
     std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<image->name<<"\033[0m"<<std::endl;
     std::cout<<"Existing uniform names: "<<std::endl;
 
-    for(auto& [name, sampler] : binding->map_sampler){
+    for(auto& [name, sampler] : binding.map_sampler){
       std::cout<<"\033[1;32m"<<name<<"\033[0m"<<std::endl;
     }
 
@@ -61,7 +61,7 @@ void Sampler::update_sampler(vk::binding::structure::Binding* binding, vk::struc
 
   VkWriteDescriptorSet write_sampler = {};
   write_sampler.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-  write_sampler.dstSet = binding->descriptor_set.handle;
+  write_sampler.dstSet = binding.descriptor_set.handle;
   write_sampler.dstBinding = sampler->binding;
   write_sampler.dstArrayElement = 0;
   write_sampler.descriptorType = sampler->type;
