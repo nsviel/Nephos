@@ -28,7 +28,7 @@ void Uniform::create_uniform_buffers(vk::binding::structure::Binding* binding){
   for(int i=0; i<vec_required.size(); i++){
     vk::binding::structure::Required& descriptor = vec_required[i];
 
-    if(descriptor.type == TYP_UNIFORM){
+    if(descriptor.type == VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER){
       vk::binding::structure::Uniform* uniform = new vk::binding::structure::Uniform();
       uniform->name = descriptor.name;
       uniform->binding = descriptor.binding;
@@ -78,7 +78,7 @@ void Uniform::update_uniform(vk::binding::structure::Binding* binding){
     write_uniform.dstSet = binding->descriptor.set;
     write_uniform.dstBinding = uniform->binding;
     write_uniform.dstArrayElement = 0;
-    write_uniform.descriptorType = TYP_UNIFORM;
+    write_uniform.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
     write_uniform.descriptorCount = 1;
     write_uniform.pBufferInfo = &vec_descriptor_buffer_info[i];
     vec_descriptor_write.push_back(write_uniform);
@@ -135,8 +135,8 @@ vk::binding::structure::Required Uniform::uniform_point_size(){
   descriptor.name = "point_size";
   descriptor.size = sizeof(int);
   descriptor.binding = 1;
-  descriptor.type = TYP_UNIFORM;
-  descriptor.stage = TYP_SHADER_VS;
+  descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+  descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
 
   //---------------------------
   return descriptor;
@@ -148,8 +148,8 @@ vk::binding::structure::Required Uniform::uniform_mvp(){
   descriptor.name = "mvp";
   descriptor.size = sizeof(glm::mat4);
   descriptor.binding = 0;
-  descriptor.type = TYP_UNIFORM;
-  descriptor.stage = TYP_SHADER_VS;
+  descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+  descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
 
   //---------------------------
   return descriptor;
@@ -161,8 +161,8 @@ vk::binding::structure::Required Uniform::uniform_edl(){
   descriptor.name = "EDL_param";
   descriptor.size = sizeof(vk::render::structure::EDL);
   descriptor.binding = 5;
-  descriptor.type = TYP_UNIFORM;
-  descriptor.stage = TYP_SHADER_FS;
+  descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+  descriptor.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
 
   //---------------------------
   return descriptor;

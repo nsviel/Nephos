@@ -6,7 +6,6 @@
 
 namespace vk::binding::structure{
 
-//Structures
 struct Uniform{
   //---------------------------
 

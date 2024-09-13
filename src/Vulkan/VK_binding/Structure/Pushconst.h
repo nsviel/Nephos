@@ -6,7 +6,7 @@
 
 namespace vk::binding::structure{
 
-struct Push_constant{
+struct Pushconst{
   //---------------------------
 
   std::string name = "";
