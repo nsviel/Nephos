@@ -78,7 +78,7 @@ void Data::update_vk_object(std::shared_ptr<utl::base::Data> data, vk::structure
   this->check_data(vk_object);
 
   //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
-  if(vk_object.buffer.xyz.mem == 0){
+  if(vk_object.buffer.xyz.data.mem == 0){
     vk_buffer->create_buffer(vk_object);
   }else{
     vk_buffer->update_buffer(vk_object);

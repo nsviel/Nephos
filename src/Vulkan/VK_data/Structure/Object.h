@@ -11,15 +11,21 @@
 
 namespace vk::structure{
 
-struct Buffers{
+struct Buffering{
   //---------------------------
 
-  vk::data::structure::Buffer xyz;
-  vk::data::structure::Buffer xyz_stagger;
-  vk::data::structure::Buffer rgba;
-  vk::data::structure::Buffer rgba_stagger;
-  vk::data::structure::Buffer uv;
-  vk::data::structure::Buffer uv_stagger;
+  vk::data::structure::Buffer data;
+  vk::data::structure::Buffer stagger;
+
+  //---------------------------
+};
+
+struct Buffer_set{
+  //---------------------------
+
+  vk::structure::Buffering xyz;
+  vk::structure::Buffering rgba;
+  vk::structure::Buffering uv;
 
   //---------------------------
 };
@@ -34,14 +40,12 @@ struct Object{
   bool has_uv = false;
   std::shared_ptr<utl::base::Data> data = std::make_shared<utl::base::Data>();
   std::shared_ptr<utl::base::Pose> pose = std::make_shared<utl::base::Pose>();
-
-  //Buffer
-  vk::structure::Buffers buffer;
-
+  
   //Binding
   std::list< std::shared_ptr<vk::structure::Texture> > list_vk_texture;
   VkCommandBuffer command_buffer_secondary = VK_NULL_HANDLE;
   vk::binding::structure::Binding binding;
+  vk::structure::Buffer_set buffer;
 
   //---------------------------
 };
