@@ -103,6 +103,8 @@ void Framebuffer::clean_framebuffer_image(vk::structure::Framebuffer& framebuffe
   vk_image->clean_image(&framebuffer.color_resolve);
   vk_image->clean_image(&framebuffer.depth);
 
+  framebuffer.vec_attachment.clear();
+  
   //---------------------------
 }
 void Framebuffer::clean_framebuffer_handle(VkFramebuffer& fbo){

@@ -6,12 +6,6 @@ namespace vk::structure{class Pipeline;}
 
 namespace vk::pipeline{
 
-enum Attribut{
-  XYZ = 0,
-  RGBA = 1,
-  UV = 2,
-};
-
 class Vertex
 {
 public:
