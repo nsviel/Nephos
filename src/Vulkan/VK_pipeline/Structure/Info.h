@@ -6,19 +6,16 @@
 #include <Utility/Base/Shader/Info.h>
 #include <Utility/Base/Data/Topology.h>
 #include <vector>
-#include <string>
 
 
 namespace vk::pipeline::structure{
 
 struct Info{
-  //Information which must be defined beforhand
   //---------------------------
 
   std::vector<vk::pipeline::Attribut> vec_attribut;
   utl::topology::Type topology = utl::topology::POINT;
   utl::shader::Info* shader;
-  std::string name = "";
 
   //---------------------------
 };

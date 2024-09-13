@@ -54,10 +54,9 @@ void EDL::update_binding(vk::structure::Subpass& subpass){
   vk::render::structure::EDL& edl_struct = vk_struct->render.edl;
   vk::structure::Renderpass* renderpass_scene = vk_struct->renderpass.vector[0];
   vk::structure::Framebuffer& frame_scene = renderpass_scene->framebuffer;
-  vk::structure::Pipeline* pipeline = subpass.get_pipeline();
+  vk::structure::Pipeline* pipeline = subpass.map_pipeline["edl"];
 
-  for(int i=0; i<subpass.vec_pipeline.size(); i++){
-    vk::structure::Pipeline* pipeline = subpass.vec_pipeline[i];
+  for(auto& [name, pipeline] : subpass.map_pipeline){
     vk_sampler->update_sampler(&pipeline->binding, &frame_scene.color);
     vk_sampler->update_sampler(&pipeline->binding, &frame_scene.depth);
   }

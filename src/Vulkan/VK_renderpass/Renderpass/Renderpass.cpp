@@ -57,27 +57,6 @@ void Renderpass::init_renderpass(vk::structure::Renderpass& renderpass){
 
   //---------------------------
 }
-void Renderpass::create_renderpass(vk::structure::Renderpass& renderpass){
-  //---------------------------
-
-  //Create renderpass
-  VkRenderPassCreateInfo renderpass_info{};
-  renderpass_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
-  renderpass_info.attachmentCount = renderpass.vec_attachment.size();
-  renderpass_info.pAttachments = renderpass.vec_attachment.data();
-  renderpass_info.subpassCount = renderpass.vec_description.size();
-  renderpass_info.pSubpasses = renderpass.vec_description.data();
-  renderpass_info.dependencyCount = renderpass.vec_dependency.size();
-  renderpass_info.pDependencies = renderpass.vec_dependency.data();
-
-  //Render pass creation
-  VkResult result = vkCreateRenderPass(vk_struct->device.handle, &renderpass_info, nullptr, &renderpass.handle);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create render pass!");
-  }
-
-  //---------------------------
-}
 void Renderpass::subpass_description(vk::structure::Renderpass& renderpass){
   //---------------------------
 
@@ -99,6 +78,27 @@ void Renderpass::subpass_description(vk::structure::Renderpass& renderpass){
 
     // Add depth attachment
     renderpass.vec_attachment.push_back(subpass->depth.description);
+  }
+
+  //---------------------------
+}
+void Renderpass::create_renderpass(vk::structure::Renderpass& renderpass){
+  //---------------------------
+
+  //Create renderpass
+  VkRenderPassCreateInfo renderpass_info{};
+  renderpass_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+  renderpass_info.attachmentCount = renderpass.vec_attachment.size();
+  renderpass_info.pAttachments = renderpass.vec_attachment.data();
+  renderpass_info.subpassCount = renderpass.vec_description.size();
+  renderpass_info.pSubpasses = renderpass.vec_description.data();
+  renderpass_info.dependencyCount = renderpass.vec_dependency.size();
+  renderpass_info.pDependencies = renderpass.vec_dependency.data();
+
+  //Render pass creation
+  VkResult result = vkCreateRenderPass(vk_struct->device.handle, &renderpass_info, nullptr, &renderpass.handle);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to create render pass!");
   }
 
   //---------------------------

@@ -26,14 +26,13 @@ void Triangle::add_pipeline(vk::structure::Subpass& subpass){
   this->set_binding(*pipeline);
 
   //---------------------------
-  subpass.vec_pipeline.push_back(pipeline);
+  subpass.map_pipeline["triangle"] = pipeline;
 }
 
 //Subfunction
 void Triangle::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.info.name = "triangle";
   pipeline.info.topology = utl::topology::TRIANGLE;
   pipeline.info.vec_attribut.push_back(vk::pipeline::XYZ);
   pipeline.info.vec_attribut.push_back(vk::pipeline::RGBA);

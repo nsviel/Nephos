@@ -26,14 +26,13 @@ void Point::add_pipeline(vk::structure::Subpass& subpass){
   this->set_binding(*pipeline);
 
   //---------------------------
-  subpass.vec_pipeline.push_back(pipeline);
+  subpass.map_pipeline["point"] = pipeline;
 }
 
 //Subfunction
 void Point::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.info.name = "point";
   pipeline.info.topology = utl::topology::POINT;
   pipeline.info.vec_attribut.push_back(vk::pipeline::XYZ);
   pipeline.info.vec_attribut.push_back(vk::pipeline::RGBA);

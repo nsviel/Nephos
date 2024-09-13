@@ -25,7 +25,7 @@ void Pipeline::create_pipeline(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   for(auto& subpass : renderpass.vec_subpass){
-    for(auto& pipeline : subpass->vec_pipeline){
+    for(auto& [name, pipeline] : subpass->map_pipeline){
       this->create_pipeline_struct(renderpass, pipeline);
     }
   }
@@ -36,7 +36,7 @@ void Pipeline::clean_pipeline(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   for(auto& subpass : renderpass.vec_subpass){
-    for(auto& pipeline : subpass->vec_pipeline){
+    for(auto& [name, pipeline] : subpass->map_pipeline){
       this->clean_pipeline_struct(pipeline);
     }
   }

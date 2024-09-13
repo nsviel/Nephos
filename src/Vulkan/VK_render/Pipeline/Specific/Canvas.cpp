@@ -25,14 +25,13 @@ void Canvas::add_pipeline(vk::structure::Subpass& subpass){
   this->set_binding(*pipeline);
 
   //---------------------------
-  subpass.vec_pipeline.push_back(pipeline);
+  subpass.map_pipeline["triangle"] = pipeline;
 }
 
 //Subfunction
 void Canvas::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.info.name = "triangle";
   pipeline.info.topology = utl::topology::TRIANGLE;
 
   //---------------------------
