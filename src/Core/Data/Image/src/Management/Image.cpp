@@ -1,14 +1,17 @@
 #include "Image.h"
 
+#include <Data/Image/Namespace.h>
 #include <Data/Element/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace dat::elm{
+namespace dat::img{
 
 //Constructor / Destructor
-Image::Image(dat::elm::Node* node_element){
+Image::Image(dat::img::Node* node_image){
   //---------------------------
+
+  dat::elm::Node* node_element = node_image->get_node_element();
 
   this->dat_uid = node_element->get_dat_uid();
 

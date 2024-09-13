@@ -6,7 +6,7 @@ namespace rad::cor::image{class Detection;}
 namespace rad::cor::cloud{class Detection;}
 namespace rad::cor{class Glyph;}
 namespace dat::gph{class Selection;}
-namespace dat::elm{class Image;}
+namespace dat::img{class Image;}
 namespace dat::base{class Sensor;}
 
 
@@ -34,7 +34,7 @@ private:
   rad::cor::cloud::Detection* rad_cloud_detection;
   rad::cor::Glyph* rad_glyph;
   dat::gph::Selection* gph_selection;
-  dat::elm::Image* dat_image;
+  dat::img::Image* dat_image;
 };
 
 }

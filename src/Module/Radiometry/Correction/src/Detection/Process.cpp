@@ -13,14 +13,14 @@ Process::Process(rad::cor::Node* node_correction){
 
   dat::Node* node_data = node_correction->get_node_data();
   dat::gph::Node* node_graph = node_data->get_node_graph();
-  dat::elm::Node* node_element = node_data->get_node_element();
+  dat::img::Node* node_image = node_data->get_node_image();
 
   this->rad_struct = node_correction->get_rad_struct();
   this->rad_glyph = new rad::cor::Glyph(node_correction);
   this->rad_image_detection = new rad::cor::image::Detection(node_correction);
   this->rad_cloud_detection = new rad::cor::cloud::Detection(node_correction);
   this->gph_selection = node_graph->get_gph_selection();
-  this->dat_image = node_element->get_dat_image();
+  this->dat_image = node_image->get_dat_image();
 
   //---------------------------
 }

@@ -43,7 +43,7 @@ void Texture::clean(){
 }
 
 //Texture function
-void Texture::import_texture(std::shared_ptr<utl::media::Image> utl_image){
+void Texture::insert_texture(std::shared_ptr<utl::media::Image> utl_image){
   if(!utl_image) return;
   //---------------------------
 

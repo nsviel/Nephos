@@ -36,9 +36,6 @@ struct Object : public dat::base::Entity{
     //---------------------------
   }
   virtual ~Object(){}
-
-
-
 };
 
 }

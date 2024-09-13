@@ -7,6 +7,7 @@ namespace dat{class Node;}
 namespace dat::elm{class Node;}
 namespace dat::gph{class Node;}
 
+namespace dat::img{class Image;}
 namespace dat::img::gui{class Panel;}
 
 
@@ -27,11 +28,14 @@ public:
   inline dat::gph::Node* get_node_graph(){return node_graph;}
   inline dat::elm::Node* get_node_element(){return node_element;}
 
+  inline dat::img::Image* get_dat_image(){return dat_image;}
+
 private:
   vk::Node* node_vulkan;
   dat::gph::Node* node_graph;
   dat::elm::Node* node_element;
 
+  dat::img::Image* dat_image;
   dat::img::gui::Panel* gui_stream;
 };
 

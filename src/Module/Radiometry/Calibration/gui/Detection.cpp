@@ -12,14 +12,13 @@ Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
   dat::Node* node_data = node_radio->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
   dat::img::Node* node_image = node_data->get_node_image();
   rad::cal::Node* node_calibration = node_radio->get_node_calibration();
 
   this->rad_struct = node_calibration->get_rad_struct();
   this->rad_process = node_calibration->get_rad_process();
   this->stream = new dat::img::gui::Stream(node_image);
-  this->dat_image = node_element->get_dat_image();
+  this->dat_image = node_image->get_dat_image();
 
   //---------------------------
 }

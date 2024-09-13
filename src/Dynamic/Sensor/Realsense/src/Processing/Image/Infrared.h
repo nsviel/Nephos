@@ -5,7 +5,7 @@
 namespace rlx{class Node;}
 namespace rlx{class Structure;}
 namespace dat::base{class Sensor;}
-namespace dat::elm{class Image;}
+namespace dat::img{class Image;}
 namespace utl::media{class Image;}
 
 
@@ -29,7 +29,7 @@ public:
 
 private:
   rlx::Structure* rlx_struct;
-  dat::elm::Image* dat_image;
+  dat::img::Image* dat_image;
 };
 
 }

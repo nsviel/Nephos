@@ -7,7 +7,7 @@
 
 namespace dyn::prc{class Node;}
 namespace dyn::prc{class Structure;}
-namespace dat::elm{class Image;}
+namespace dat::img{class Image;}
 namespace dat::elm{class Glyph;}
 namespace utl::base{class Data;}
 namespace dat::base{class Sensor;}
@@ -38,7 +38,7 @@ public:
 
 private:
   dyn::prc::Structure* dyn_struct;
-  dat::elm::Image* dat_image;
+  dat::img::Image* dat_image;
   dat::elm::Glyph* dat_glyph;
   dat::atr::normal::Structured* atr_normal;
   dat::img::Converter* img_converter;

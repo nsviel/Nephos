@@ -12,7 +12,6 @@ Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
   dat::Node* node_data = node_radio->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
   dat::img::Node* node_image = node_data->get_node_image();
   rad::cor::Node* node_correction = node_radio->get_node_correction();
 
@@ -20,7 +19,7 @@ Detection::Detection(rad::Node* node_radio){
   this->rad_process = node_correction->get_rad_process();
   this->rad_hough = new rad::cor::image::Hough(node_correction);
   this->stream = new dat::img::gui::Stream(node_image);
-  this->dat_image = node_element->get_dat_image();
+  this->dat_image = node_image->get_dat_image();
 
   //---------------------------
 }

@@ -6,7 +6,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
-namespace dat::elm{class Image;}
+namespace dat::img{class Image;}
 
 
 namespace k4n::processing::image{
@@ -34,7 +34,7 @@ public:
   void retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data);
 
 private:
-  dat::elm::Image* dat_image;
+  dat::img::Image* dat_image;
 };
 
 }

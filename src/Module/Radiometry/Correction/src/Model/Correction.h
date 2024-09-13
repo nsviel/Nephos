@@ -10,7 +10,7 @@ namespace rad::cor{class Node;}
 namespace rad::cor{class Model;}
 namespace rad::cor::io{class Model;}
 namespace dat::base{class Sensor;}
-namespace dat::elm{class Image;}
+namespace dat::img{class Image;}
 namespace dat::gph{class Selection;}
 namespace utl::media{class Image;}
 namespace dat::atr{class Field;}
@@ -35,7 +35,7 @@ public:
   float apply_correction(float I_raw, float R, float It);
 
 private:
-  dat::elm::Image* dat_image;
+  dat::img::Image* dat_image;
   dat::gph::Selection* gph_selection;
   rad::cor::Structure* rad_struct;
   rad::cor::Model* rad_model;

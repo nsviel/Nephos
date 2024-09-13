@@ -56,12 +56,12 @@ void Stream::convert_data_into_texture(std::shared_ptr<utl::media::Image> utl_im
 
   //Load texture into vulkan
   if(load){
-    vk_texture->import_texture(utl_image);
+    vk_texture->insert_texture(utl_image);
     vk_imgui->load_texture(utl_image);
     current_UID = utl_image->UID;
   //update texture data
   }else if(update){
-    vk_texture->import_texture(utl_image);
+    vk_texture->insert_texture(utl_image);
     current_timestamp = utl_image->timestamp;
   }
 

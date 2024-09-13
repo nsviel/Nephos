@@ -29,7 +29,7 @@ public:
   void clean();
 
   //Texture function
-  void import_texture(std::shared_ptr<utl::media::Image> utl_image);
+  void insert_texture(std::shared_ptr<utl::media::Image> utl_image);
   void export_texture(std::shared_ptr<utl::media::Image> utl_image);
   void clean_texture(std::shared_ptr<vk::structure::Texture> texture);
 

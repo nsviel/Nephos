@@ -104,6 +104,23 @@ void Loader::load_object(utl::base::Path path, utl::base::Path path_transfo){
 
   //---------------------------
 }
+void Loader::load_object_textured(utl::base::Path path, utl::base::Path path_texture){
+  if(!check_path(path)) return;
+  //---------------------------
+
+  //Get element
+  auto element = import_from_path(path);
+  if(!element || element->type != "entity") return;
+
+  //Convert into object
+  auto object = std::dynamic_pointer_cast<dat::base::Object>(element);
+  if(!object) return;
+
+  //Insert it
+  io_operation->insert_object(object);
+
+  //---------------------------
+}
 
 //Subfunction
 bool Loader::check_path(utl::base::Path utl_path){

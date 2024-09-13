@@ -8,7 +8,7 @@ namespace rad::cor{class Structure;}
 namespace rad::cor{class Process;}
 namespace rad::cor::image{class Hough;}
 namespace dat::img::gui{class Stream;}
-namespace dat::elm{class Image;}
+namespace dat::img{class Image;}
 
 
 namespace rad::cor::gui{
@@ -40,7 +40,7 @@ private:
   rad::cor::Process* rad_process;
   rad::cor::image::Hough* rad_hough;
   dat::img::gui::Stream* stream;
-  dat::elm::Image* dat_image;
+  dat::img::Image* dat_image;
 };
 
 }

@@ -28,6 +28,7 @@ public:
   void load_directory(utl::base::Path path);
   void load_object(utl::base::Path file_path);
   void load_object(utl::base::Path file_path, utl::base::Path path_transfo);
+  void load_object_textured(utl::base::Path path, utl::base::Path path_texture);
 
   //Subfunction
   bool check_path(utl::base::Path path);

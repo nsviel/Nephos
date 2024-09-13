@@ -14,14 +14,14 @@ Detection::Detection(rad::cor::Node* node_correction){
 
   core::Node* node_core = node_correction->get_node_core();
   dat::Node* node_data = node_correction->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
+  dat::img::Node* node_image = node_data->get_node_image();
 
   this->rad_struct = node_correction->get_rad_struct();
   this->rad_image = new rad::cor::image::Image(node_correction);
   this->rad_glyph = new rad::cor::Glyph(node_correction);
   this->rad_hough = new rad::cor::image::Hough(node_correction);
   this->thread_pool = node_core->get_thread_pool();
-  this->dat_image = node_element->get_dat_image();
+  this->dat_image = node_image->get_dat_image();
 
   //---------------------------
 }

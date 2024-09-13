@@ -6,7 +6,7 @@ namespace rad{class Node;}
 namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
 namespace dat::img::gui{class Stream;}
-namespace dat::elm{class Image;}
+namespace dat::img{class Image;}
 namespace dat::base{class Sensor;}
 
 
@@ -30,7 +30,7 @@ private:
   rad::cor::Structure* rad_struct;
   dat::img::gui::Stream* stream_1;
   dat::img::gui::Stream* stream_2;
-  dat::elm::Image* dat_image;
+  dat::img::Image* dat_image;
 };
 
 }

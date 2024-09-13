@@ -4,19 +4,19 @@
 #include <memory>
 #include <string>
 
-namespace dat::elm{class Node;}
+namespace dat::img{class Node;}
 namespace dat::elm{class UID;}
 namespace dat::base{class Entity;}
 namespace utl::media{class Image;}
 
 
-namespace dat::elm{
+namespace dat::img{
 
 class Image
 {
 public:
   //Constructor / Destructor
-  Image(dat::elm::Node* node_element);
+  Image(dat::img::Node* node_image);
   ~Image();
 
 public:

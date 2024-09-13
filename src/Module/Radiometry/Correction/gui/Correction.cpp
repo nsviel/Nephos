@@ -13,11 +13,10 @@ Correction::Correction(rad::Node* node_radio){
   //---------------------------
 
   dat::Node* node_data = node_radio->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
   dat::img::Node* node_image = node_data->get_node_image();
   rad::cor::Node* node_correction = node_radio->get_node_correction();
 
-  this->dat_image = node_element->get_dat_image();
+  this->dat_image = node_image->get_dat_image();
   this->rad_struct = node_correction->get_rad_struct();
   this->stream_1 = new dat::img::gui::Stream(node_image);
   this->stream_2 = new dat::img::gui::Stream(node_image);

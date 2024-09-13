@@ -11,7 +11,7 @@ namespace utl::media{class Image;}
 namespace rad::cor{class Glyph;}
 namespace rad::cor::image{class Hough;}
 namespace rad::cor::image{class Image;}
-namespace dat::elm{class Image;}
+namespace dat::img{class Image;}
 
 
 namespace rad::cor::image{
@@ -38,7 +38,7 @@ private:
   rad::cor::Glyph* rad_glyph;
   rad::cor::image::Hough* rad_hough;
   rad::cor::image::Image* rad_image;
-  dat::elm::Image* dat_image;
+  dat::img::Image* dat_image;
 
   std::thread thread;
   bool thread_idle = true;

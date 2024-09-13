@@ -4,10 +4,10 @@
 #include <image/stb_image.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <iostream> 
+#include <iostream>
 
 
-namespace utl::media{
+namespace dat::img{
 
 utl::media::Image load_image(std::string path){
   //---------------------------

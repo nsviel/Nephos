@@ -11,9 +11,9 @@ Color::Color(k4n::Node* node_k4n){
   //---------------------------
 
   dat::Node* node_data = node_k4n->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
+  dat::img::Node* node_image = node_data->get_node_image();
 
-  this->dat_image = node_element->get_dat_image();
+  this->dat_image = node_image->get_dat_image();
 
   //---------------------------
 }

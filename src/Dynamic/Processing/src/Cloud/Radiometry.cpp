@@ -14,11 +14,11 @@ Radiometry::Radiometry(dyn::prc::Node* node_processing){
   //---------------------------
 
   dat::Node* node_data = node_processing->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
+  dat::img::Node* node_image = node_data->get_node_image();
   rad::Node* node_radio = node_processing->get_node_radio();
   rad::cor::Node* node_correction = node_radio->get_node_correction();
 
-  this->dat_image = node_element->get_dat_image();
+  this->dat_image = node_image->get_dat_image();
   this->rad_correction = node_correction->get_rad_correction();
 
   //---------------------------

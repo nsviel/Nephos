@@ -13,9 +13,6 @@ namespace dat::atr::gui{
 Operation::Operation(dat::atr::Node* node_attribut){
   //---------------------------
 
-  dat::elm::Node* node_element = node_attribut->get_node_element();
-
-  this->dat_image = node_element->get_dat_image();
   this->img_image = new dat::img::Converter();
   this->dat_element = new dat::elm::Element();
   this->gui_normal = new dat::atr::gui::Normal(node_attribut);
@@ -42,9 +39,9 @@ void Operation::draw_img_image(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   if(ImGui::Button("intensity to image")){
-    std::shared_ptr<dat::base::Entity> entity = dat_element->get_active_entity(element);
-    std::shared_ptr<utl::media::Image> image = dat_image->get_or_create_image(*entity, "Intensity");
-    img_image->convert_spherical_pc_to_image(*entity->data, image);
+    //std::shared_ptr<dat::base::Entity> entity = dat_element->get_active_entity(element);
+    //std::shared_ptr<utl::media::Image> image = dat_image->get_or_create_image(*entity, "Intensity");
+    //img_image->convert_spherical_pc_to_image(*entity->data, image);
   }
 
 

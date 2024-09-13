@@ -146,6 +146,7 @@ void Operation::ope_validation(std::shared_ptr<dat::base::Object> object){
   //---------------------------
 
   utl::base::Data& data = *object->data;
+
   if(data.uv.empty()) data.uv.resize(data.xyz.size(), glm::vec2(0.0f, 0.0f));
 
   //---------------------------

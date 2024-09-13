@@ -19,10 +19,11 @@ Normal::Normal(dyn::prc::Node* node_processing){
   core::Node* node_core = node_processing->get_node_core();
   dat::Node* node_data = node_processing->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
+  dat::img::Node* node_image = node_data->get_node_image();
 
   this->thread_pool = node_core->get_thread_pool();
   this->dyn_struct = node_processing->get_dyn_struct();
-  this->dat_image = node_element->get_dat_image();
+  this->dat_image = node_image->get_dat_image();
   this->dat_glyph = node_element->get_dat_glyph();
   this->img_converter = new dat::img::Converter();
   this->atr_normal = new dat::atr::normal::Structured();

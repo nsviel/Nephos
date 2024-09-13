@@ -14,9 +14,9 @@ Color::Color(rlx::Node* node_realsense){
   //---------------------------
 
   dat::Node* node_data = node_realsense->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
+  dat::img::Node* node_image = node_data->get_node_image();
 
-  this->dat_image = node_element->get_dat_image();
+  this->dat_image = node_image->get_dat_image();
   this->rlx_struct = node_realsense->get_rlx_struct();
 
   //---------------------------

@@ -16,13 +16,13 @@ Detection::Detection(rad::cal::Node* node_detection){
 
   core::Node* node_core = node_detection->get_node_core();
   dat::Node* node_data = node_detection->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
+  dat::img::Node* node_image = node_data->get_node_image();
 
   this->rad_struct = node_detection->get_rad_struct();
   this->rad_image = new rad::cal::Image(node_detection);
   this->rad_rectangle = new rad::cal::Rectangle(node_detection);
   this->thread_pool = node_core->get_thread_pool();
-  this->dat_image = node_element->get_dat_image();
+  this->dat_image = node_image->get_dat_image();
 
   //---------------------------
 }

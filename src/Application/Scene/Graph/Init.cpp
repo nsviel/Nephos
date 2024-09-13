@@ -71,7 +71,7 @@ void Init::load_entity(){
   //io_loader->load_object(cath);
   //io_loader->load_object(dragon);
   //io_loader->load_object(bag);
-  //io_loader->load_object(texture);
+  io_loader->load_object(texture);
 
   /*
   io_loader->load_object(dragon);

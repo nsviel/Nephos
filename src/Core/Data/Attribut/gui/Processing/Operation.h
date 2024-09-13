@@ -5,7 +5,7 @@
 namespace dat::atr{class Node;}
 namespace dat::img{class Converter;}
 namespace dat::elm{class Element;}
-namespace dat::elm{class Image;}
+namespace dat::img{class Image;}
 namespace dat::atr::gui{class Normal;}
 namespace utl::base{class Element;}
 
@@ -30,7 +30,7 @@ public:
 private:
   dat::img::Converter* img_image;
   dat::elm::Element* dat_element;
-  dat::elm::Image* dat_image;
+  dat::img::Image* dat_image;
   dat::atr::gui::Normal* gui_normal;
 };
 

@@ -9,7 +9,7 @@ namespace rad::cal{class Rectangle;}
 namespace dat::base{class Sensor;}
 namespace thr::task{class Pool;}
 namespace utl::media{class Image;}
-namespace dat::elm{class Image;}
+namespace dat::img{class Image;}
 
 
 namespace rad::cal{
@@ -35,7 +35,7 @@ private:
   rad::cal::Structure* rad_struct;
   rad::cal::Image* rad_image;
   rad::cal::Rectangle* rad_rectangle;
-  dat::elm::Image* dat_image;
+  dat::img::Image* dat_image;
 
   bool thread_idle = true;
 };

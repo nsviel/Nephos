@@ -5,7 +5,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
-namespace dat::elm{class Image;}
+namespace dat::img{class Image;}
 namespace dyn::prc{class Structure;}
 
 
@@ -32,7 +32,7 @@ public:
   void find_ir_level(k4n::base::Sensor& sensor);
 
 private:
-  dat::elm::Image* dat_image;
+  dat::img::Image* dat_image;
   dyn::prc::Structure* dyn_struct;
 };
 
