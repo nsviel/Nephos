@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  void create_pipeline_object(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline);
+  void create_pipeline_object(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline);
 
   //Subfunction
   void info_pipeline_vertex(vk::structure::Pipeline* pipeline);
@@ -32,7 +32,7 @@ public:
   void info_pipeline_depth(vk::structure::Pipeline* pipeline);
 
   //Creation function
-  void create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline);
+  void create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline);
   void clean_pipeline_handle(vk::structure::Pipeline* pipeline);
 
 private:

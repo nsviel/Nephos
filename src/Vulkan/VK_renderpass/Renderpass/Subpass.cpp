@@ -29,10 +29,10 @@ Subpass::Subpass(vk::Structure* vk_struct){
 Subpass::~Subpass(){}
 
 //Main function
-void Subpass::create_subpass(vk::structure::Renderpass* renderpass){
+void Subpass::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
-  for(auto& subpass : renderpass->vec_subpass){
+  for(auto& subpass : renderpass.vec_subpass){
     switch(subpass->target){
       case vk::renderpass::SHADER:{
         this->create_subpass_shader(*subpass);

@@ -23,6 +23,11 @@ struct Renderpass{
   vk::structure::Framebuffer* framebuffer = nullptr;
   vk::structure::Command_buffer* command_buffer = nullptr;
 
+  //Subpass description
+  std::vector<VkSubpassDescription> vec_description;
+  std::vector<VkSubpassDependency> vec_dependency;
+  std::vector<VkAttachmentDescription> vec_attachment;
+
   //---------------------------
 };
 

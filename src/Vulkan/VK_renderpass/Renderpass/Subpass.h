@@ -23,7 +23,7 @@ public:
 
 public:
   //Main function
-  void create_subpass(vk::structure::Renderpass* renderpass);
+  void create_subpass(vk::structure::Renderpass& renderpass);
 
   //Subfunction
   void create_subpass_shader(vk::structure::Subpass& subpass);

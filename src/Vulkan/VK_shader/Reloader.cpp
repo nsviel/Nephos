@@ -26,7 +26,7 @@ void Reloader::hot_shader_reload(std::string shader_1, std::string shader_2){
     if(renderpass == nullptr) return;
     vk::structure::Subpass* subpass = renderpass->vec_subpass[0];
     vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("point");
-    this->recreate_pipeline(renderpass, pipeline);
+    this->recreate_pipeline(renderpass, pipelinor(auto& subpass : renderpass.vec_subpe);
   }
   if(shader_1 == "EDL"){
     //vk::structure::Renderpass* renderpass = vk_struct->renderpass.get_renderpass_byName("edl");
@@ -43,7 +43,7 @@ void Reloader::recreate_pipeline(vk::structure::Renderpass* renderpass, vk::stru
 
   vk_synchro->wait_idle_and_pause();
   vk_pipeline->clean_pipeline_struct(pipeline);
-  vk_pipeline->create_pipeline_struct(renderpass, pipeline);
+  vk_pipeline->create_pipeline_struct(*renderpass, pipeline);
   vk_synchro->end_idle();
 
   //---------------------------

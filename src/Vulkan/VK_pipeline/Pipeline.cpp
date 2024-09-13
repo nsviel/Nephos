@@ -21,24 +21,22 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
 Pipeline::~Pipeline(){}
 
 //Main function
-void Pipeline::create_pipeline(vk::structure::Renderpass* renderpass){
+void Pipeline::create_pipeline(vk::structure::Renderpass& renderpass){
   //---------------------------
 
-  for(auto& subpass : renderpass->vec_subpass){
-    for(int j=0; j<subpass->vec_pipeline.size(); j++){
-      vk::structure::Pipeline* pipeline = subpass->vec_pipeline[j];
+  for(auto& subpass : renderpass.vec_subpass){
+    for(auto& pipeline : subpass->vec_pipeline){
       this->create_pipeline_struct(renderpass, pipeline);
     }
   }
 
   //---------------------------
 }
-void Pipeline::clean_pipeline(vk::structure::Renderpass* renderpass){
+void Pipeline::clean_pipeline(vk::structure::Renderpass& renderpass){
   //---------------------------
 
-  for(auto& subpass : renderpass->vec_subpass){
-    for(int j=0; j<subpass->vec_pipeline.size(); j++){
-      vk::structure::Pipeline* pipeline = subpass->vec_pipeline[j];
+  for(auto& subpass : renderpass.vec_subpass){
+    for(auto& pipeline : subpass->vec_pipeline){
       this->clean_pipeline_struct(pipeline);
     }
   }
@@ -47,7 +45,7 @@ void Pipeline::clean_pipeline(vk::structure::Renderpass* renderpass){
 }
 
 //Pipeline creation / cleaning
-void Pipeline::create_pipeline_struct(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
+void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
   //Pipeline layout & binding

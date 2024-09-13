@@ -24,11 +24,11 @@ public:
 
 public:
   //Main function
-  void create_pipeline(vk::structure::Renderpass* renderpass);
-  void clean_pipeline(vk::structure::Renderpass* renderpass);
+  void create_pipeline(vk::structure::Renderpass& renderpass);
+  void clean_pipeline(vk::structure::Renderpass& renderpass);
 
   //Pipeline creation
-  void create_pipeline_struct(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline);
+  void create_pipeline_struct(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline);
   void clean_pipeline_struct(vk::structure::Pipeline* pipeline);
   void cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline);
 

@@ -16,7 +16,7 @@ Object::Object(vk::Structure* vk_struct){
 Object::~Object(){}
 
 //Main function
-void Object::create_pipeline_object(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
+void Object::create_pipeline_object(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
   this->info_pipeline_vertex(pipeline);
@@ -182,7 +182,7 @@ void Object::info_pipeline_depth(vk::structure::Pipeline* pipeline){
 }
 
 //Creation function
-void Object::create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
+void Object::create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkGraphicsPipelineCreateInfo pipeline_info{};
@@ -198,7 +198,7 @@ void Object::create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::s
   pipeline_info.pColorBlendState = &info_blend;
   pipeline_info.pDynamicState = &info_dynamic;
   pipeline_info.layout = pipeline->layout;
-  pipeline_info.renderPass = renderpass->handle;
+  pipeline_info.renderPass = renderpass.handle;
   pipeline_info.subpass = 0;
   pipeline_info.basePipelineHandle = VK_NULL_HANDLE; // Optional
   pipeline_info.basePipelineIndex = -1; // Optional

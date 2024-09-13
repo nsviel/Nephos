@@ -23,12 +23,12 @@ void Framebuffer::create_framebuffers(){
   //---------------------------
 
   for(auto& renderpass : vk_struct->renderpass.vector){
-    this->create_framebuffer(renderpass);
+    this->create_framebuffer(*renderpass);
   }
 
   //---------------------------
 }
-void Framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
+void Framebuffer::create_framebuffer(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   vk::structure::Framebuffer* framebuffer = new vk::structure::Framebuffer();
@@ -42,7 +42,7 @@ void Framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
   vk_color->create_color_image(&framebuffer->color_resolve);
   this->create_framebuffer_handle(renderpass, framebuffer);
 
-  renderpass->framebuffer = framebuffer;
+  renderpass.framebuffer = framebuffer;
 
   //---------------------------
 }
@@ -50,13 +50,13 @@ void Framebuffer::clean_framebuffers(){
   //---------------------------
 
   for(auto& renderpass : vk_struct->renderpass.vector){
-    this->clean_framebuffer(renderpass);
+    this->clean_framebuffer(*renderpass);
   }
 
   //---------------------------
 }
-void Framebuffer::clean_framebuffer(vk::structure::Renderpass* renderpass){
-  vk::structure::Framebuffer* framebuffer = renderpass->framebuffer;
+void Framebuffer::clean_framebuffer(vk::structure::Renderpass& renderpass){
+  vk::structure::Framebuffer* framebuffer = renderpass.framebuffer;
   //---------------------------
 
   vk_image->clean_image(&framebuffer->color);
@@ -69,7 +69,7 @@ void Framebuffer::clean_framebuffer(vk::structure::Renderpass* renderpass){
 }
 
 //Subfunction
-void Framebuffer::create_framebuffer_handle(vk::structure::Renderpass* renderpass, vk::structure::Framebuffer* framebuffer){
+void Framebuffer::create_framebuffer_handle(vk::structure::Renderpass& renderpass, vk::structure::Framebuffer* framebuffer){
   //---------------------------
 
   //Create frambuffer
@@ -81,7 +81,7 @@ void Framebuffer::create_framebuffer_handle(vk::structure::Renderpass* renderpas
 
   VkFramebufferCreateInfo framebufferInfo{};
   framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
-  framebufferInfo.renderPass = renderpass->handle;
+  framebufferInfo.renderPass = renderpass.handle;
   framebufferInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
   framebufferInfo.pAttachments = attachments.data();
   framebufferInfo.width = vk_struct->window.extent.width;
