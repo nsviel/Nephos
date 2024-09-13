@@ -18,6 +18,7 @@ struct Framebuffer{
   vk::structure::Image depth;
   vk::structure::Image location;
   vk::structure::Image normal;
+  std::vector<VkImageView> vec_attachment;
 
   //---------------------------
 };

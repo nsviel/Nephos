@@ -28,7 +28,9 @@ public:
   void clean_framebuffer(vk::structure::Renderpass& renderpass);
 
   //Subfunction
+  void create_framebuffer_image(vk::structure::Framebuffer* framebuffer);
   void create_framebuffer_handle(vk::structure::Renderpass& renderpass, vk::structure::Framebuffer* framebuffer);
+  void clean_framebuffer_image(vk::structure::Framebuffer* framebuffer);
   void clean_framebuffer_handle(VkFramebuffer& fbo);
 
 private:
