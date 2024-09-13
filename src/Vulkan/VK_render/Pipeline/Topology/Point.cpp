@@ -57,11 +57,11 @@ void Point::set_shader(vk::structure::Pipeline& pipeline){
 void Point::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk::binding::structure::Required descriptor;
-  descriptor = vk_uniform->uniform_mvp();
-  pipeline.binding.vec_required_binding.push_back(descriptor);
-  descriptor = vk_uniform->uniform_point_size();
-  pipeline.binding.vec_required_binding.push_back(descriptor);
+  vk::binding::structure::Required descriptor_mvp = vk_uniform->uniform_mvp();
+  vk::binding::structure::Required descriptor_pt_size = vk_uniform->uniform_point_size();
+
+  pipeline.binding.vec_required_binding.push_back(descriptor_mvp);
+  pipeline.binding.vec_required_binding.push_back(descriptor_pt_size);
 
   //---------------------------
 }
