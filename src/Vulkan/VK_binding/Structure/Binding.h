@@ -17,13 +17,9 @@ struct Binding{
   //Binding description
   std::vector<vk::binding::structure::Required> vec_required_binding;
   std::vector<VkDescriptorSetLayoutBinding> vec_layout;
-  vk::binding::structure::Descriptor descriptor;
+  vk::binding::structure::Descriptor_set descriptor_set;
 
   //Binding elements
-  std::vector<vk::binding::structure::Pushconst*> vec_pushcst;
-
-
-
   std::unordered_map<std::string, vk::binding::structure::Pushconst*> map_pushcst;
   std::unordered_map<std::string, vk::binding::structure::Uniform*> map_uniform;
   std::unordered_map<std::string, vk::binding::structure::Sampler*> map_sampler;

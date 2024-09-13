@@ -6,7 +6,7 @@
 
 namespace vk::binding::structure{
 
-struct Descriptor{
+struct Descriptor_set{
   //---------------------------
 
   VkDescriptorSetLayout layout = VK_NULL_HANDLE;

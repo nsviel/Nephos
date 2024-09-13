@@ -80,7 +80,7 @@ void Uniform::update_uniform(vk::binding::structure::Binding* binding){
     //Blabla
     VkWriteDescriptorSet write_uniform = {};
     write_uniform.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-    write_uniform.dstSet = binding->descriptor.set;
+    write_uniform.dstSet = binding->descriptor_set.set;
     write_uniform.dstBinding = uniform->binding;
     write_uniform.dstArrayElement = 0;
     write_uniform.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;

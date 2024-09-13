@@ -61,7 +61,7 @@ void Sampler::update_sampler(vk::binding::structure::Binding* binding, vk::struc
 
   VkWriteDescriptorSet write_sampler = {};
   write_sampler.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-  write_sampler.dstSet = binding->descriptor.set;
+  write_sampler.dstSet = binding->descriptor_set.set;
   write_sampler.dstBinding = sampler->binding;
   write_sampler.dstArrayElement = 0;
   write_sampler.descriptorType = sampler->type;

@@ -66,7 +66,7 @@ void Scene::cmd_draw_point(vk::structure::Subpass& subpass){
     if(check_data(data, utl::topology::POINT)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose.mvp);
       vk_uniform->update_uniform("point_size", &vk_object->binding, data.topology.width);
-      vk_descriptor->cmd_bind_descriptor(subpass.command_buffer->handle, pipeline, vk_object->binding.descriptor.set);
+      vk_descriptor->cmd_bind_descriptor(subpass.command_buffer->handle, pipeline, vk_object->binding.descriptor_set.set);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }
   }
@@ -86,7 +86,7 @@ void Scene::cmd_draw_line(vk::structure::Subpass& subpass){
 
     if(check_data(data, utl::topology::LINE)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose.mvp);
-      vk_descriptor->cmd_bind_descriptor(subpass.command_buffer->handle, pipeline, vk_object->binding.descriptor.set);
+      vk_descriptor->cmd_bind_descriptor(subpass.command_buffer->handle, pipeline, vk_object->binding.descriptor_set.set);
       vk_drawer->cmd_line_with(subpass.command_buffer->handle, *vk_object);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }
@@ -107,7 +107,7 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass& subpass){
 
     if(check_data(data, utl::topology::TRIANGLE)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose.mvp);
-      vk_descriptor->cmd_bind_descriptor(subpass.command_buffer->handle, pipeline, vk_object->binding.descriptor.set);
+      vk_descriptor->cmd_bind_descriptor(subpass.command_buffer->handle, pipeline, vk_object->binding.descriptor_set.set);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }
   }
