@@ -59,9 +59,9 @@ void EDL::set_shader(vk::structure::Pipeline& pipeline){
 void EDL::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk::binding::structure::Required sampler_color = vk_sampler->sampler_color();
-  vk::binding::structure::Required sampler_depth = vk_sampler->sampler_depth();
-  vk::binding::structure::Required uniform_edl = vk_uniform->uniform_edl();
+  vk::binding::structure::Descriptor sampler_color = vk_sampler->sampler_color();
+  vk::binding::structure::Descriptor sampler_depth = vk_sampler->sampler_depth();
+  vk::binding::structure::Descriptor uniform_edl = vk_uniform->uniform_edl();
 
   pipeline.binding.vec_required_binding.push_back(sampler_color);
   pipeline.binding.vec_required_binding.push_back(sampler_depth);

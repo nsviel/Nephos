@@ -20,10 +20,10 @@ Sampler::~Sampler(){}
 void Sampler::create_sampler(vk::binding::structure::Binding* binding){
   //---------------------------
 
-  std::vector<vk::binding::structure::Required>& vec_required = binding->vec_required_binding;
+  std::vector<vk::binding::structure::Descriptor>& vec_required = binding->vec_required_binding;
 
   for(int i=0; i<vec_required.size(); i++){
-    vk::binding::structure::Required& descriptor = vec_required[i];
+    vk::binding::structure::Descriptor& descriptor = vec_required[i];
 
     if(descriptor.type == TYP_IMAGE_SAMPLER || descriptor.type == VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE){
       vk::binding::structure::Sampler* sampler = new vk::binding::structure::Sampler();
@@ -74,10 +74,10 @@ void Sampler::update_sampler(vk::binding::structure::Binding* binding, vk::struc
 }
 
 //Subfunction
-vk::binding::structure::Required Sampler::sampler_color(){
+vk::binding::structure::Descriptor Sampler::sampler_color(){
   //---------------------------
 
-  vk::binding::structure::Required descriptor;
+  vk::binding::structure::Descriptor descriptor;
   descriptor.name = "tex_color";
   descriptor.size = 0;
   descriptor.binding = 1;
@@ -87,10 +87,10 @@ vk::binding::structure::Required Sampler::sampler_color(){
   //---------------------------
   return descriptor;
 }
-vk::binding::structure::Required Sampler::sampler_depth(){
+vk::binding::structure::Descriptor Sampler::sampler_depth(){
   //---------------------------
 
-  vk::binding::structure::Required descriptor;
+  vk::binding::structure::Descriptor descriptor;
   descriptor.name = "tex_depth";
   descriptor.size = 0;
   descriptor.binding = 4;

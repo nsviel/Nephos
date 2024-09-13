@@ -4,7 +4,7 @@
 
 namespace vk::memory{class Allocator;}
 namespace vk{class Structure;}
-namespace vk::binding::structure{class Required;}
+namespace vk::binding::structure{class Descriptor;}
 namespace vk::binding::structure{class Binding;}
 namespace vk::binding::structure{class Uniform;}
 
@@ -31,9 +31,9 @@ public:
   template <typename T> void update_uniform(std::string uniform_name, vk::binding::structure::Binding* binding, T value);
 
   //Subfunction
-  vk::binding::structure::Required uniform_point_size();
-  vk::binding::structure::Required uniform_mvp();
-  vk::binding::structure::Required uniform_edl();
+  vk::binding::structure::Descriptor uniform_point_size();
+  vk::binding::structure::Descriptor uniform_mvp();
+  vk::binding::structure::Descriptor uniform_edl();
 
 private:
   vk::Structure* vk_struct;

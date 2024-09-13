@@ -6,7 +6,7 @@
 
 namespace vk::binding::structure{
 
-struct Required{
+struct Descriptor{
   //---------------------------
 
   //Consistent attribut binding:

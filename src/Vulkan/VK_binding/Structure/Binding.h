@@ -16,7 +16,7 @@ struct Binding{
   //---------------------------
 
   //Binding description
-  std::vector<vk::binding::structure::Required> vec_required_binding;
+  std::vector<vk::binding::structure::Descriptor> vec_required_binding;
   std::vector<VkDescriptorSetLayoutBinding> vec_layout;
   vk::binding::structure::Descriptor_set descriptor_set;
 
