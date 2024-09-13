@@ -8,12 +8,6 @@ namespace vk::structure{class Subpass;}
 
 namespace vk::renderpass{
 
-enum Target{
-  SHADER = 0,
-  TRANSFER = 1,
-  PRESENTATION = 2,
-};
-
 class Subpass
 {
 public:

@@ -2,18 +2,6 @@
 
 #include <Vulkan/Namespace.h>
 
-/*
-  Attachment index is defined as follow:
-    - 0 color
-    - 1 depth
-    - 2 texture
-
-    - 0 color
-    - 1 color
-    - 2 color resolve
-    - 3 depth
-    - 4 texture
-*/
 
 namespace vk::renderpass{
 
@@ -64,7 +52,7 @@ void Subpass::create_subpass_shader(vk::structure::Subpass& subpass){
 
   // Color
   vk::structure::Attachment color;
-  color.index = 0;
+  color.index = vk::renderpass::ID_COLOR;
   color.layout_final = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
   vk_attachment->color_description(color);
   vk_attachment->color_reference(color);
@@ -72,7 +60,7 @@ void Subpass::create_subpass_shader(vk::structure::Subpass& subpass){
 
   // Depth
   vk::structure::Attachment depth;
-  depth.index = 1;
+  depth.index = vk::renderpass::ID_DEPTH;
   depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
   vk_attachment->depth_description(depth);
   vk_attachment->depth_reference(depth);
@@ -80,7 +68,7 @@ void Subpass::create_subpass_shader(vk::structure::Subpass& subpass){
 
   // Color resolver
   vk::structure::Attachment color_resolve;
-  color_resolve.index = 1;
+  color_resolve.index = vk::renderpass::ID_COLOR;
   color_resolve.layout_final = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
   vk_attachment->color_resolve_description(color_resolve);
   vk_attachment->color_resolve_reference(color_resolve);
@@ -93,7 +81,7 @@ void Subpass::create_subpass_transfert(vk::structure::Subpass& subpass){
 
   // Color
   vk::structure::Attachment color;
-  color.index = 0;
+  color.index = vk::renderpass::ID_COLOR;
   color.layout_final = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
   vk_attachment->color_description(color);
   vk_attachment->color_reference(color);
@@ -101,7 +89,7 @@ void Subpass::create_subpass_transfert(vk::structure::Subpass& subpass){
 
   // Depth
   vk::structure::Attachment depth;
-  depth.index = 1;
+  depth.index = vk::renderpass::ID_DEPTH;
   depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
   vk_attachment->depth_description(depth);
   vk_attachment->depth_reference(depth);
@@ -114,7 +102,7 @@ void Subpass::create_subpass_presentation(vk::structure::Subpass& subpass){
 
   // Color
   vk::structure::Attachment color;
-  color.index = 0;
+  color.index = vk::renderpass::ID_COLOR;
   color.layout_final = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
   vk_attachment->color_description(color);
   vk_attachment->color_reference(color);
@@ -122,7 +110,7 @@ void Subpass::create_subpass_presentation(vk::structure::Subpass& subpass){
 
   // Depth
   vk::structure::Attachment depth;
-  depth.index = 1;
+  depth.index = vk::renderpass::ID_DEPTH;
   depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
   vk_attachment->depth_description(depth);
   vk_attachment->depth_reference(depth);
