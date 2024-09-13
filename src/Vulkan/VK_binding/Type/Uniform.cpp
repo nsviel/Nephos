@@ -18,12 +18,29 @@ Uniform::Uniform(vk::Structure* vk_struct){
 Uniform::~Uniform(){}
 
 //Uniform creation
-void Uniform::add_uniform(){
+void Uniform::add_uniform(vk::binding::structure::Descriptor& descriptor){
   //---------------------------
 
+/*
+  std::string name = "";
+  std::size_t size = 0;
+  int binding = 0;
+
+  VkDescriptorType type;
+  VkShaderStageFlagBits stage;
 
 
+  vk::binding::structure::Uniform* uniform = new vk::binding::structure::Uniform();
+  uniform->name = descriptor.name;
+  uniform->binding = descriptor.binding;
+  uniform->size = descriptor.size;
 
+  vk_mem_allocator->create_gpu_buffer(uniform->size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
+  vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
+  vkMapMemory(vk_struct->device.handle, uniform->mem, 0, uniform->size, 0, &uniform->mapped);
+
+  binding->map_uniform[descriptor.name] = uniform;
+*/
 
   //---------------------------
 }
@@ -80,7 +97,7 @@ void Uniform::update_uniform(vk::binding::structure::Binding* binding){
     //Blabla
     VkWriteDescriptorSet write_uniform = {};
     write_uniform.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-    write_uniform.dstSet = binding->descriptor_set.set;
+    write_uniform.dstSet = binding->descriptor_set.handle;
     write_uniform.dstBinding = uniform->binding;
     write_uniform.dstArrayElement = 0;
     write_uniform.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;

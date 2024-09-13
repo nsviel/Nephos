@@ -68,7 +68,7 @@ void EDL::update_binding(vk::structure::Subpass& subpass){
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, edl_struct);
 
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
-  vk_descriptor->cmd_bind_descriptor(subpass.command_buffer->handle, pipeline, pipeline->binding.descriptor_set.set);
+  vk_descriptor->cmd_bind_descriptor(subpass.command_buffer->handle, pipeline, pipeline->binding.descriptor_set.handle);
 
   //---------------------------
 }

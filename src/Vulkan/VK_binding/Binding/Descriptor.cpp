@@ -56,7 +56,7 @@ void Descriptor::allocate_descriptor_set(vk::binding::structure::Binding* bindin
   allocation_info.descriptorSetCount = 1;
   allocation_info.pSetLayouts = &binding->descriptor_set.layout;
 
-  VkResult result = vkAllocateDescriptorSets(vk_struct->device.handle, &allocation_info, &binding->descriptor_set.set);
+  VkResult result = vkAllocateDescriptorSets(vk_struct->device.handle, &allocation_info, &binding->descriptor_set.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate descriptor sets!");
   }

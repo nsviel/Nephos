@@ -20,9 +20,9 @@ public:
 
 public:
   //Main function
-  void add_uniform();
+  void add_uniform(vk::binding::structure::Descriptor& descriptor);
 
-  
+
   void create_uniform_buffers(vk::binding::structure::Binding* binding);
   void clean_uniform(vk::binding::structure::Binding* binding);
   void update_uniform(vk::binding::structure::Binding* binding);
