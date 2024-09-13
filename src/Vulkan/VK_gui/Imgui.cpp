@@ -153,7 +153,7 @@ void Imgui::update_render_descriptor(){
   vk::structure::Renderpass& renderpass = vk_struct->renderpass.edl;
   vk::structure::Image* image = &renderpass.framebuffer->color;
 
-  vk_struct->render.descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vk_struct->gui.descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //---------------------------
 }
@@ -171,10 +171,10 @@ ImTextureID Imgui::create_imgui_texture(int UID){
   return imgui_texture;
 }
 ImTextureID Imgui::query_engine_texture(){
-  if(vk_struct->render.descriptor == VK_NULL_HANDLE) return 0;
+  if(vk_struct->gui.descriptor == VK_NULL_HANDLE) return 0;
   //---------------------------
 
-  ImTextureID texture = reinterpret_cast<ImTextureID>(vk_struct->render.descriptor);
+  ImTextureID texture = reinterpret_cast<ImTextureID>(vk_struct->gui.descriptor);
 
   //---------------------------
   return texture;

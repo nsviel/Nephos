@@ -13,6 +13,8 @@
 #include <Vulkan/VK_pool/Structure/Pool.h>
 #include <Vulkan/VK_engine/Structure/Parameter.h>
 #include <Vulkan/VK_engine/Structure/Profiler.h>
+#include <Vulkan/VK_gui/Structure.h>
+#include <Vulkan/VK_presentation/Structure/Viewport.h>
 
 
 namespace vk{
@@ -29,6 +31,7 @@ struct Structure{
   vk::structure::Window window;
   vk::structure::Panel panel;
   vk::structure::Instance instance;
+  vk::structure::Viewport viewport;
   vk::device::structure::Logical device;
   vk::structure::Swapchain swapchain;
   vk::data::structure::Data data;
@@ -39,6 +42,7 @@ struct Structure{
   vk::queue::structure::Class queue;
   vk::render::structure::Render render;
   vk::render::structure::Renderpass renderpass;
+  vk::gui::Structure gui;
 
   //---------------------------
 };

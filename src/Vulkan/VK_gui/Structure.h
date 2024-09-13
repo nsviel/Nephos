@@ -7,12 +7,12 @@
 #include <vector>
 
 
-namespace vk::render::structure{
+namespace vk::gui{
 
-struct Render{
+struct Structure{
   //---------------------------
 
-  vk::render::structure::EDL edl;
+  VkDescriptorSet descriptor = VK_NULL_HANDLE;
 
   //---------------------------
 };

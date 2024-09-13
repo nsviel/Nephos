@@ -94,9 +94,9 @@ void Object::info_pipeline_viewport(vk::structure::Pipeline* pipeline){
   info_viewport = {};
   info_viewport.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
   info_viewport.viewportCount = 1;
-  info_viewport.pViewports = &vk_struct->render.viewport;
+  info_viewport.pViewports = &vk_struct->viewport.handle;
   info_viewport.scissorCount = 1;
-  info_viewport.pScissors = &vk_struct->render.scissor;
+  info_viewport.pScissors = &vk_struct->viewport.scissor;
 
   //---------------------------
 }

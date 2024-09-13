@@ -38,7 +38,7 @@ VkSurfaceFormatKHR Color::retrieve_surface_format(const std::vector<VkSurfaceFor
 
   //Check if standar RGB is available
   for(const auto& format : dev_format){
-    if(format.format == vk_struct->render.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
+    if(format.format == vk_struct->swapchain.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
       return format;
     }
   }

@@ -9,7 +9,7 @@ namespace vk::structure{
 struct Viewport{
   //---------------------------
 
-  VkViewport viewport = {};
+  VkViewport handle = {};
   VkRect2D scissor = {};
 
   //---------------------------
