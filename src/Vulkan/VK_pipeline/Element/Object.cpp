@@ -40,9 +40,9 @@ void Object::info_pipeline_vertex(vk::structure::Pipeline* pipeline){
   info_vertex = {};
   info_vertex.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
   info_vertex.vertexBindingDescriptionCount = static_cast<uint32_t>(pipeline->element.vec_vertex_binding.size());
-  info_vertex.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline->element.vec_vertex_attribut.size());
+  info_vertex.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline->element.vec_attribut_info.size());
   info_vertex.pVertexBindingDescriptions = pipeline->element.vec_vertex_binding.data();
-  info_vertex.pVertexAttributeDescriptions = pipeline->element.vec_vertex_attribut.data();
+  info_vertex.pVertexAttributeDescriptions = pipeline->element.vec_attribut_info.data();
 
   //---------------------------
 }

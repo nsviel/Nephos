@@ -28,33 +28,32 @@ void Vertex::pipeline_vertex_description(vk::structure::Pipeline* pipeline){
 
 //Subfunction
 void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
-  std::vector<VkVertexInputAttributeDescription> vec_vertex_attribut;
+  pipeline->element.vec_attribut_info.clear();
   //---------------------------
 
-  std::vector<vk::attribut::Name>& vec_attribut = pipeline->info.vec_attribut;
-  for(int i=0; i<vec_attribut.size(); i++){
-    VkVertexInputAttributeDescription attribut{};
+  for(auto& attribut : pipeline->info.vec_attribut){
+    VkVertexInputAttributeDescription attribut_info{};
 
-    switch(vec_attribut[i]){
+    switch(attribut){
       case vk::attribut::XYZ:{
-        attribut.binding = 0;
-        attribut.location = 0;
-        attribut.format = VK_FORMAT_R32G32B32_SFLOAT;
-        attribut.offset = 0;
+        attribut_info.binding = 0;
+        attribut_info.location = vk::attribut::location::XYZ;
+        attribut_info.format = VK_FORMAT_R32G32B32_SFLOAT;
+        attribut_info.offset = 0;
         break;
       }
       case vk::attribut::RGBA:{
-        attribut.binding = 1;
-        attribut.location = 1;
-        attribut.format = VK_FORMAT_R32G32B32A32_SFLOAT;
-        attribut.offset = 0;
+        attribut_info.binding = 1;
+        attribut_info.location = 1;
+        attribut_info.format = VK_FORMAT_R32G32B32A32_SFLOAT;
+        attribut_info.offset = 0;
         break;
       }
       case vk::attribut::UV:{
-        attribut.binding = 2;
-        attribut.location = 4;
-        attribut.format = VK_FORMAT_R32G32_SFLOAT;
-        attribut.offset = 0;
+        attribut_info.binding = 2;
+        attribut_info.location = 4;
+        attribut_info.format = VK_FORMAT_R32G32_SFLOAT;
+        attribut_info.offset = 0;
         break;
       }
       default:{
@@ -63,17 +62,16 @@ void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
       }
     }
 
-    vec_vertex_attribut.push_back(attribut);
+    pipeline->element.vec_attribut_info.push_back(attribut_info);
   }
 
   //---------------------------
-  pipeline->element.vec_vertex_attribut = vec_vertex_attribut;
 }
 void Vertex::flow_vertex_binding(vk::structure::Pipeline* pipeline){
   std::vector<VkVertexInputBindingDescription> vec_vertex_binding;
   //---------------------------
 
-  std::vector<vk::attribut::Name>& vec_attribut = pipeline->info.vec_attribut;
+  std::vector<vk::attribut::ID>& vec_attribut = pipeline->info.vec_attribut;
   for(int i=0; i<vec_attribut.size(); i++){
     VkVertexInputBindingDescription description{};
 

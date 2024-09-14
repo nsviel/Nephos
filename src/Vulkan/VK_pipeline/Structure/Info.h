@@ -11,7 +11,7 @@ namespace vk::pipeline::structure{
 struct Info{
   //---------------------------
 
-  std::vector<vk::attribut::Name> vec_attribut;
+  std::vector<vk::attribut::ID> vec_attribut;
   utl::topology::Type topology = utl::topology::POINT;
   utl::shader::Info* shader;
 

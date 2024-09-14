@@ -4,7 +4,7 @@
 //Data attribut name
 namespace vk::attribut{
 
-enum Name{
+enum ID{
   XYZ = 0,
   RGBA = 1,
   UV = 2,
@@ -13,9 +13,9 @@ enum Name{
 }
 
 //Data attribut binding
-namespace vk::attribut{
+namespace vk::attribut::location{
 
-enum Binding{
+enum ID{
   XYZ = 0,
   RGB = 1,
   UV = 2,
