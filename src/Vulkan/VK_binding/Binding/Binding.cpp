@@ -26,7 +26,7 @@ void Binding::create_binding(vk::binding::structure::Binding& binding){
   vk_layout->create_layout(binding);
   this->create_descriptor(binding);
   vk_descriptor_set->allocate(binding);
-  vk_uniform->update_uniform(binding);
+  vk_descriptor_set->update(binding);
 
   //---------------------------
 }

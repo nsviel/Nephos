@@ -39,6 +39,39 @@ void Descriptor_set::bind(VkCommandBuffer& command_buffer, vk::structure::Pipeli
 
   //---------------------------
 }
+void Descriptor_set::update(vk::binding::structure::Binding& binding){
+  //---------------------------
+
+  //Make list of writeable uniform
+  std::vector<VkWriteDescriptorSet> vec_descriptor_write;
+  std::vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
+  for(auto& [name, uniform] : binding.map_uniform){
+    //Blabla
+    VkDescriptorBufferInfo descriptor_info = {};
+    descriptor_info.buffer = uniform->buffer;
+    descriptor_info.offset = 0;
+    descriptor_info.range = uniform->size;
+    vec_descriptor_buffer_info.push_back(descriptor_info);
+
+    //Blabla
+    VkWriteDescriptorSet write_uniform = {};
+    write_uniform.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+    write_uniform.dstSet = binding.descriptor_set.handle;
+    write_uniform.dstBinding = uniform->binding;
+    write_uniform.dstArrayElement = 0;
+    write_uniform.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+    write_uniform.descriptorCount = 1;
+    write_uniform.pBufferInfo = &descriptor_info;
+    vec_descriptor_write.push_back(write_uniform);
+  }
+
+  //Update descriptor
+  if(vec_descriptor_write.size() != 0){
+    vkUpdateDescriptorSets(vk_struct->device.handle, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
+  }
+
+  //---------------------------
+}
 void Descriptor_set::clean(vk::binding::structure::Binding& binding){
   //---------------------------
 

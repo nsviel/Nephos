@@ -1,5 +1,8 @@
 #pragma once
 
+#include <Vulkan/VK_binding/Structure/Binding.h>
+#include <iostream>
+#include <cstring> 
 #include <string>
 
 namespace vk::memory{class Allocator;}
@@ -22,10 +25,32 @@ public:
   //Main function
   void create_uniform(vk::binding::structure::Binding& binding, vk::binding::structure::Descriptor& descriptor);
   void clean_uniform(vk::binding::structure::Binding& binding);
-  void update_uniform(vk::binding::structure::Binding& binding);
 
   //Subfunction
-  template <typename T> void update_uniform(std::string uniform_name, vk::binding::structure::Binding& binding, T value);
+  template <typename T>
+  void update_uniform(std::string name, vk::binding::structure::Binding& binding, T value){
+    //---------------------------
+
+    auto it = binding.map_uniform.find(name);
+    if(it != binding.map_uniform.end()){
+      vk::binding::structure::Uniform* uniform = it->second;
+      std::memcpy(uniform->mapped, &value, sizeof(value));
+    }
+    else{
+      std::cout << "------------------------" << std::endl;
+      std::cout << "[error] Update uniform -> name not recognized \033[1;31m" << name << "\033[0m" << std::endl;
+      std::cout << "Existing uniform names: " << std::endl;
+
+      for(auto& [name, uniform] : binding.map_uniform){
+        std::cout << "\033[1;32m" << name << "\033[0m" << std::endl;
+      }
+
+      std::cout << "------------------------" << std::endl;
+      exit(0);
+    }
+
+    //---------------------------
+  }
 
 private:
   vk::Structure* vk_struct;
