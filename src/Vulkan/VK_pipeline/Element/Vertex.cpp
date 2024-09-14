@@ -31,7 +31,7 @@ void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
   std::vector<VkVertexInputAttributeDescription> vec_vertex_attribut;
   //---------------------------
 
-  std::vector<vk::pipeline::Attribut>& vec_attribut = pipeline->info.vec_attribut;
+  std::vector<vk::attribut::Name>& vec_attribut = pipeline->info.vec_attribut;
   for(int i=0; i<vec_attribut.size(); i++){
     VkVertexInputAttributeDescription attribut{};
 
@@ -73,7 +73,7 @@ void Vertex::flow_vertex_binding(vk::structure::Pipeline* pipeline){
   std::vector<VkVertexInputBindingDescription> vec_vertex_binding;
   //---------------------------
 
-  std::vector<vk::pipeline::Attribut>& vec_attribut = pipeline->info.vec_attribut;
+  std::vector<vk::attribut::Name>& vec_attribut = pipeline->info.vec_attribut;
   for(int i=0; i<vec_attribut.size(); i++){
     VkVertexInputBindingDescription description{};
 
