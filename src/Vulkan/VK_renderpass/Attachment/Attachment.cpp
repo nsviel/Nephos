@@ -2,18 +2,6 @@
 
 #include <Vulkan/Namespace.h>
 
-/*
-  Attachment index is defined as follow:
-    - 0 color
-    - 1 depth
-    - 2 texture
-
-    - 0 color
-    - 1 color
-    - 2 color resolve
-    - 3 depth
-    - 4 texture
-*/
 
 namespace vk::renderpass{
 
@@ -36,7 +24,7 @@ void Attachment::color_description(vk::structure::Attachment& color){
   VkAttachmentDescription description{};
   description.format = vk_color->find_color_format();
   description.samples = vk_struct->device.physical_device.max_sample_count;
-  description.loadOp = TYP_ATTACHMENT_LOADOP_CLEAR;
+  description.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
   description.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
   description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
   description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
@@ -90,7 +78,7 @@ void Attachment::depth_description(vk::structure::Attachment& depth){
   VkAttachmentDescription description{};
   description.format = vk_depth->find_depth_format();
   description.samples = vk_struct->device.physical_device.max_sample_count;
-  description.loadOp = TYP_ATTACHMENT_LOADOP_CLEAR;
+  description.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
   description.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
   description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
   description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;

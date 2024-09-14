@@ -7,8 +7,6 @@ layout(location = 4) in vec2 frag_tex_coord;
 layout(location = 0) out vec4 out_color;
 
 //Uniform
-layout(binding = 10) uniform sampler2D tex_color;
-layout(binding = 4) uniform sampler2D tex_depth;
 layout(binding = 5) uniform param{
   bool activated;
   float z_near;
@@ -18,6 +16,10 @@ layout(binding = 5) uniform param{
   int tex_width;
   int tex_height;
 };
+
+//Sampler
+layout(binding = 10) uniform sampler2D tex_color;
+layout(binding = 11) uniform sampler2D tex_depth;
 
 vec2 table_index[8] = vec2[](\
   vec2(1.0, 0.0),\

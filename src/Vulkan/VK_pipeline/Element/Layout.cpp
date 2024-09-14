@@ -54,7 +54,7 @@ void Layout::create_pushconstant_layout(vk::structure::Pipeline* pipeline){
 
   //Push constant for MVP matrix
   //VkPushConstantRange pushconstant_range = {};
-  //pushconstant_range.stageFlags = TYP_SHADER_VS;
+  //pushconstant_range.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
   //pushconstant_range.offset = 0;
   //pushconstant_range.size = sizeof(glm::mat4);
 

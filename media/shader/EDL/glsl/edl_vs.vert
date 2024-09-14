@@ -1,9 +1,13 @@
 #version 450
 //#extension GL_EXT_debug_printf : enable
 
+//Input
 layout(location = 0) in vec3 in_position;
 layout(location = 4) in vec2 in_tex_coord;
+
+//Ouput
 layout(location = 4) out vec2 frag_tex_coord;
+
 
 void main(){
   //---------------------------
