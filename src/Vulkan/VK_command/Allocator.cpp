@@ -63,22 +63,18 @@ void Allocator::create_command_buffer_pool(vk::queue::structure::Queue* queue){
   //---------------------------
 }
 void Allocator::reset_command_buffer_pool(vk::queue::structure::Queue* queue){
-  std::vector<vk::pool::structure::Command_buffer*>& vec_pool = queue->vec_pool;
   //---------------------------
 
-  for(int i=0; i<vec_pool.size(); i++){
-    vk::pool::structure::Command_buffer* pool = vec_pool[i];
+  for(auto& pool : queue->vec_pool){
     vk_command_buffer->reset_pool(pool);
   }
 
   //---------------------------
 }
 void Allocator::clean_command_buffer_pool(vk::queue::structure::Queue* queue){
-  std::vector<vk::pool::structure::Command_buffer*>& vec_pool = queue->vec_pool;
   //---------------------------
 
-  for(int i=0; i<vec_pool.size(); i++){
-    vk::pool::structure::Command_buffer* pool = vec_pool[i];
+  for(auto& pool : queue->vec_pool){
     vk_command_buffer->clean_pool(pool);
     vk_pool->clean_command_pool(pool);
   }
@@ -88,23 +84,18 @@ void Allocator::clean_command_buffer_pool(vk::queue::structure::Queue* queue){
 
 //Command buffer pool use
 vk::pool::structure::Command_buffer* Allocator::query_free_pool(vk::queue::structure::Queue* queue){
-  std::vector<vk::pool::structure::Command_buffer*>& vec_pool = queue->vec_pool;
   std::thread::id this_thread_ID = thr::get_ID();
   //---------------------------
 
   //Return pool associated with thread ID
-  for(int i=0; i<vec_pool.size(); i++){
-    vk::pool::structure::Command_buffer* pool = vec_pool[i];
-
+  for(auto& pool : queue->vec_pool){
     if(pool->is_available == false && pool->thread_ID == this_thread_ID){
       return pool;
     }
   }
 
   //Else give it a specific pool
-  for(int i=0; i<vec_pool.size(); i++){
-    vk::pool::structure::Command_buffer* pool = vec_pool[i];
-
+  for(auto& pool : queue->vec_pool){
     std::lock_guard<std::mutex> lock(pool->mutex);
     if(pool->is_available){
       pool->is_available = false;

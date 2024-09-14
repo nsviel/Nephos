@@ -24,9 +24,9 @@ void Headless::draw_frame(){
 
   //Renderpass
   std::vector< std::unique_ptr<vk::structure::Command> > vec_command;
-  for(int i=0; i<vk_struct->renderpass.vector.size(); i++){
-    vk::structure::Renderpass* renderpass = vk_struct->renderpass.vector[i];
 
+  int i=0;
+  for(auto& renderpass : vk_struct->renderpass.vector){
     //Run renderpass
     vk_render->run_renderpass(renderpass);
 
@@ -38,6 +38,8 @@ void Headless::draw_frame(){
     semaphore = vk_semaphore->query_free_semaphore();
     if(i < vk_struct->renderpass.vector.size() - 1) command->semaphore_done = semaphore->handle;
     vec_command.push_back(std::move(command));
+
+    i++;
   }
 
   //Submission

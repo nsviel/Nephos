@@ -30,9 +30,7 @@ void Shader::create_pipeline_shader(vk::structure::Pipeline* pipeline){
 void Shader::clean_pipeline_shader(){
   //---------------------------
 
-  for(int i=0; i<vec_shader.size(); i++){
-    vk::pipeline::structure::Shader& shader = vec_shader[i];
-
+  for(auto& shader : vec_shader){
     vkDestroyShaderModule(vk_struct->device.handle, shader.vs, nullptr);
     vkDestroyShaderModule(vk_struct->device.handle, shader.fs, nullptr);
   }
@@ -64,9 +62,7 @@ void Shader::create_shader_module(vk::structure::Pipeline* pipeline){
 void Shader::create_shader_info(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  for(int i=0; i<vec_shader.size(); i++){
-    vk::pipeline::structure::Shader& shader = vec_shader[i];
-
+  for(auto& shader : vec_shader){
     //Vertex shader link in pipeline
     VkPipelineShaderStageCreateInfo info_vert{};
     info_vert.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;

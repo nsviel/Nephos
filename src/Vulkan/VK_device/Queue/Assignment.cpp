@@ -30,58 +30,58 @@ void Assignment::assign_queue(){
 
 //Subfunction
 void Assignment::assign_graphics_queue(){
-  std::vector<vk::queue::structure::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   vk::queue::structure::Set& set = vk_struct->device.queue;
   //---------------------------
 
-  for(int i=0; i<vec_queue_family.size(); i++){
-    vk::queue::structure::Family& family = vec_queue_family[i];
-
+  int index = 0;
+  for(auto& family : vk_struct->device.physical_device.vec_queue_family){
     if(family.capable_graphics && set.graphics.family_ID == -1){
-      set.graphics.family_ID = i;
+      set.graphics.family_ID = index;
       set.graphics.family_index = family.current_index++;
       family.vec_queue.push_back(&set.graphics);
       family.vec_priority.push_back(1.0);
       break;
     }
+
+    index++;
   }
 
   //---------------------------
 }
 void Assignment::assign_presentation_queue(){
-  std::vector<vk::queue::structure::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   vk::queue::structure::Set& set = vk_struct->device.queue;
   //---------------------------
 
-  for(int i=0; i<vec_queue_family.size(); i++){
-    vk::queue::structure::Family& family = vec_queue_family[i];
-
+  int index = 0;
+  for(auto& family : vk_struct->device.physical_device.vec_queue_family){
     if(family.capable_presentation && set.presentation.family_ID == -1){
-      set.presentation.family_ID = i;
+      set.presentation.family_ID = index;
       set.presentation.family_index = family.current_index++;
       family.vec_queue.push_back(&set.presentation);
       family.vec_priority.push_back(1.0);
       break;
     }
+
+    index++;
   }
 
   //---------------------------
 }
 void Assignment::assign_transfer_queue(){
-  std::vector<vk::queue::structure::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   vk::queue::structure::Set& set = vk_struct->device.queue;
   //---------------------------
 
-  for(int i=0; i<vec_queue_family.size(); i++){
-    vk::queue::structure::Family& family = vec_queue_family[i];
-
+  int index = 0;
+  for(auto& family : vk_struct->device.physical_device.vec_queue_family){
     if(family.capable_transfer && set.transfer.family_ID == -1){
-      set.transfer.family_ID = i;
+      set.transfer.family_ID = index;
       set.transfer.family_index = family.current_index++;
       family.vec_queue.push_back(&set.transfer);
       family.vec_priority.push_back(1.0);
       break;
     }
+
+    index++;
   }
 
   //---------------------------

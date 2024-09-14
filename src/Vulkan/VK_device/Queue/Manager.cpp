@@ -28,13 +28,11 @@ void Manager::create_queue(vk::queue::structure::Queue& queue){
   //---------------------------
 }
 void Manager::create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_info){
-  std::vector<vk::queue::structure::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   //---------------------------
 
   vk_assigment->assign_queue();
 
-  for(int i=0; i<vec_queue_family.size(); i++){
-    vk::queue::structure::Family& family = vec_queue_family[i];
+  for(auto& family : vk_struct->device.physical_device.vec_queue_family){
     if(family.vec_queue.size() == 0) continue;
 
     //Create queue info accordingly
@@ -95,9 +93,7 @@ bool Manager::suitability_for_presentation(vk::device::structure::Physical& phys
   bool is_graphics_able = false;
   bool is_transfer_able = false;
 
-  for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-    vk::queue::structure::Family& queue_family = physical_device.vec_queue_family[i];
-
+  for(auto& queue_family : physical_device.vec_queue_family){
     //Querying for graphics family
     if(queue_family.capable_graphics && queue_family.capable_presentation){
       is_graphics_able = true;
@@ -123,9 +119,7 @@ bool Manager::suitability_for_graphics(vk::device::structure::Physical& physical
   bool is_graphics_able = false;
   bool is_transfer_able = false;
 
-  for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-    vk::queue::structure::Family& queue_family = physical_device.vec_queue_family[i];
-
+  for(auto& queue_family : physical_device.vec_queue_family){
     //Querying for graphics family
     if(queue_family.capable_graphics){
       is_graphics_able = true;
