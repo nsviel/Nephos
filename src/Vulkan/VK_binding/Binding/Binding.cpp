@@ -43,7 +43,7 @@ void Binding::clean_binding(vk::binding::structure::Binding& binding){
 void Binding::create_descriptor(vk::binding::structure::Binding& binding){
   //---------------------------
 
-  for(auto& descriptor : binding.vec_required_binding){
+  for(auto& descriptor : binding.vec_descriptor){
 
     switch(descriptor.type){
       case VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER:{

@@ -37,7 +37,7 @@ void Layout::clean_layout(vk::binding::structure::Binding& binding){
 void Layout::make_required_binding(vk::binding::structure::Binding& binding, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
   //---------------------------
 
-  for(auto& descriptor : binding.vec_required_binding){
+  for(auto& descriptor : binding.vec_descriptor){
     //Convert it into descriptor binding
     VkDescriptorSetLayoutBinding layout_binding{};
     layout_binding.binding = descriptor.binding;
@@ -45,7 +45,7 @@ void Layout::make_required_binding(vk::binding::structure::Binding& binding, std
     layout_binding.descriptorType = descriptor.type;
     layout_binding.stageFlags = descriptor.stage;
     layout_binding.pImmutableSamplers = nullptr; // Optional
-    
+
     vec_binding.push_back(layout_binding);
   }
 

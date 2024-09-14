@@ -53,7 +53,7 @@ vk::binding::structure::Descriptor sampler_color(){
 
   vk::binding::structure::Descriptor descriptor;
   descriptor.name = "tex_color";
-  descriptor.binding = 1;
+  descriptor.binding = vk::sampler::COLOR;
   descriptor.type = TYP_IMAGE_SAMPLER;
   descriptor.stage = TYP_SHADER_FS;
 
