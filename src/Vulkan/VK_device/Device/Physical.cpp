@@ -88,8 +88,7 @@ void Physical::find_best_physical_device(){
 
   // Use an ordered map to automatically sort candidates by increasing score
   std::multimap<int, vk::device::structure::Physical> candidates;
-  for(int i=0; i<vk_struct->instance.vec_physical_device.size(); i++){
-    vk::device::structure::Physical& physical_device = vk_struct->instance.vec_physical_device[i];
+  for(auto& physical_device : vk_struct->instance.vec_physical_device){
     this->rate_device_suitability(physical_device);
     candidates.insert(std::make_pair(physical_device.selection_score, physical_device));
   }

@@ -40,16 +40,16 @@ void Frame::create_frame(){
   //---------------------------
 }
 void Frame::clean_frame(){
-  std::vector<vk::structure::Frame*>& vec_frame = vk_struct->swapchain.vec_frame;
   //---------------------------
 
-  //Vec images
-  for(int i=0; i<vec_frame.size(); i++){
-    vk::structure::Frame* frame = vec_frame[i];
+  //Clear image view
+  for(auto& frame : vk_struct->swapchain.vec_frame){
     vk_image->clean_image_view(frame->color);
     delete frame;
   }
-  vec_frame.clear();
+
+  //Clear vector
+  vk_struct->swapchain.vec_frame.clear();
 
   //---------------------------
 }

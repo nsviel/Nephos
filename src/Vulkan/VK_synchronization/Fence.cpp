@@ -38,13 +38,10 @@ void Fence::init_pool(){
   //---------------------------
 }
 void Fence::clean_pool(){
-  std::vector<vk::synchro::structure::Fence>& pool = vk_struct->pools.fence.tank;
   //---------------------------
 
-  for(int i=0; i<vk_struct->pools.fence.size; i++){
-    vk::synchro::structure::Fence* vk_fence = &pool[i];
-
-    this->clean_fence(vk_fence);
+  for(auto& vk_fence : vk_struct->pools.fence.tank){
+    this->clean_fence(&vk_fence);
   }
 
   //---------------------------
