@@ -1,15 +1,21 @@
 #pragma once
 
 
-namespace vk::binding::id{
+//Uniform
+namespace vk::uniform{
 
-enum Uniform{
+enum ID{
   MVP = 0,
   WIDTH = 1,
   EDL = 5,
 };
 
-enum Sampler{
+}
+
+//Sampler
+namespace vk::sampler{
+
+enum ID{
   COLOR = 10,
   DEPTH = 11,
 };
