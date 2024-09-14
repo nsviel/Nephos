@@ -36,21 +36,21 @@ void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
     VkVertexInputAttributeDescription attribut{};
 
     switch(vec_attribut[i]){
-      case vk::pipeline::XYZ:{
+      case vk::attribut::XYZ:{
         attribut.binding = 0;
         attribut.location = 0;
         attribut.format = VK_FORMAT_R32G32B32_SFLOAT;
         attribut.offset = 0;
         break;
       }
-      case vk::pipeline::RGBA:{
+      case vk::attribut::RGBA:{
         attribut.binding = 1;
         attribut.location = 1;
         attribut.format = VK_FORMAT_R32G32B32A32_SFLOAT;
         attribut.offset = 0;
         break;
       }
-      case vk::pipeline::UV:{
+      case vk::attribut::UV:{
         attribut.binding = 2;
         attribut.location = 4;
         attribut.format = VK_FORMAT_R32G32_SFLOAT;
@@ -78,19 +78,19 @@ void Vertex::flow_vertex_binding(vk::structure::Pipeline* pipeline){
     VkVertexInputBindingDescription description{};
 
     switch(vec_attribut[i]){
-      case vk::pipeline::XYZ:{
+      case vk::attribut::XYZ:{
         description.binding = 0;
         description.stride = sizeof(glm::vec3);
         description.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
         break;
       }
-      case vk::pipeline::RGBA:{
+      case vk::attribut::RGBA:{
         description.binding = 1;
         description.stride = sizeof(glm::vec4);
         description.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
         break;
       }
-      case vk::pipeline::UV:{
+      case vk::attribut::UV:{
         description.binding = 2;
         description.stride = sizeof(glm::vec2);
         description.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;

@@ -1,9 +1,9 @@
 #pragma once
 
 
-namespace vk::pipeline{
+namespace vk::attribut{
 
-enum Attribut{
+enum ID{
   XYZ = 0,
   RGBA = 1,
   UV = 2,

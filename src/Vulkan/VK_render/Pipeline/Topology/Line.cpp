@@ -34,8 +34,8 @@ void Line::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   pipeline.info.topology = utl::topology::LINE;
-  pipeline.info.vec_attribut.push_back(vk::pipeline::XYZ);
-  pipeline.info.vec_attribut.push_back(vk::pipeline::RGBA);
+  pipeline.info.vec_attribut.push_back(vk::attribut::XYZ);
+  pipeline.info.vec_attribut.push_back(vk::attribut::RGBA);
 
   //---------------------------
 }

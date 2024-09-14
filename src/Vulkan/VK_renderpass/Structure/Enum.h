@@ -9,24 +9,15 @@ enum Target{
   PRESENTATION = 2,
 };
 
-enum Attachment_id{
-  ID_COLOR = 0,
-  ID_DEPTH = 1,
-  ID_TEXTURE = 2,
+}
+
+//Renderpass attachment index
+namespace vk::attachment{
+
+enum ID{
+  COLOR = 0,
+  DEPTH = 1,
+  TEXTURE = 2,
 };
-
-
-/*
-  Attachment index is defined as follow:
-    - 0 color
-    - 1 depth
-    - 2 texture
-
-    - 0 color
-    - 1 color
-    - 2 color resolve
-    - 3 depth
-    - 4 texture
-*/
 
 }
