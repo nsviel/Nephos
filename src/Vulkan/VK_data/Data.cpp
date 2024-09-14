@@ -24,18 +24,6 @@ Data::Data(vk::Structure* vk_struct){
 Data::~Data(){}
 
 //Main function
-void Data::clean(){
-  std::list<std::shared_ptr<vk::structure::Object>>& list_vk_object = vk_struct->data.list_vk_object;
-  //---------------------------
-
-  auto it = list_vk_object.begin();
-  while(it != list_vk_object.end()){
-    this->clean_vk_object(*it);
-    it = list_vk_object.begin();
-  }
-
-  //---------------------------
-}
 void Data::insert(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose){
   //---------------------------
 
@@ -69,13 +57,22 @@ void Data::remove(utl::base::Data& data){
 
   //---------------------------
 }
+void Data::clean(){
+  std::list<std::shared_ptr<vk::structure::Object>>& list_vk_object = vk_struct->data.list_vk_object;
+  //---------------------------
+
+  auto it = list_vk_object.begin();
+  while(it != list_vk_object.end()){
+    this->clean_vk_object(*it);
+    it = list_vk_object.begin();
+  }
+
+  //---------------------------
+}
 
 //Subfunction
 void Data::update_vk_object(std::shared_ptr<utl::base::Data> data, vk::structure::Object& vk_object){
   //---------------------------
-
-  vk_object.data = data;
-  this->check_data(vk_object);
 
   //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
   if(vk_object.buffer.xyz.data.mem == 0){
@@ -96,13 +93,11 @@ void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_p
   vk_object->UID = vk_uid->query_free_UID();
 
   //Data
-  this->check_data(*vk_object);
   vk_buffer->create_buffer(*vk_object);
   vk_texture->insert_texture(std::make_shared<utl::media::Image>(data->texture));
 
   //Descriptor
   this->descriptor_vk_object(*data, vk_object->binding);
-  vk_binding->create_binding(vk_object->binding);
 
   //Insert data struct into set
   vk_struct->data.list_vk_object.push_back(vk_object);
@@ -128,15 +123,7 @@ void Data::descriptor_vk_object(utl::base::Data& data, vk::binding::structure::B
     binding.vec_required_binding.push_back(vk::binding::uniform_point_size());
   }
 
-  //---------------------------
-}
-void Data::check_data(vk::structure::Object& vk_object){
-  utl::base::Data& data = *vk_object.data;
-  //---------------------------
-
-  vk_object.has_xyz = (data.xyz.size() == 0) ? false : true;
-  vk_object.has_rgba = (data.rgba.size() == 0) ? false : true;
-  vk_object.has_uv =  (data.uv.size()  == 0) ? false : true;
+  vk_binding->create_binding(binding);
 
   //---------------------------
 }

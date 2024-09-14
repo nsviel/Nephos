@@ -46,7 +46,6 @@ void Binding::create_descriptor(vk::binding::structure::Binding& binding){
   for(auto& descriptor : binding.vec_required_binding){
 
     switch(descriptor.type){
-      case TYP_IMAGE_SAMPLER:
       case VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER:{
         vk_sampler->create_sampler(binding, descriptor);
         break;

@@ -17,8 +17,8 @@ namespace utl::base{
 struct Topology{
   //---------------------------
 
-  int type = utl::topology::POINT;
-  int width = 5;
+  utl::topology::Type type = utl::topology::POINT;
+  float width = 5.0f;
 
   //---------------------------
 };

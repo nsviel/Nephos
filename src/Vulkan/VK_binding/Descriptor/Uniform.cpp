@@ -31,7 +31,7 @@ void Uniform::create_uniform(vk::binding::structure::Binding& binding, vk::bindi
   vkMapMemory(vk_struct->device.handle, uniform->mem, 0, uniform->size, 0, &uniform->mapped);
 
   binding.map_uniform[descriptor.name] = uniform;
-  
+
   //---------------------------
 }
 void Uniform::clean_uniform(vk::binding::structure::Binding& binding){
@@ -109,6 +109,7 @@ template <typename T> void Uniform::update_uniform(std::string uniform_name, vk:
 }
 template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding& binding, glm::mat4 value);
 template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding& binding, int value);
+template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding& binding, float value);
 template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding& binding, vk::render::structure::EDL value);
 
 }

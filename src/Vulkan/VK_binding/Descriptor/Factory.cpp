@@ -38,7 +38,7 @@ vk::binding::structure::Descriptor uniform_point_size(){
 
   vk::binding::structure::Descriptor descriptor;
   descriptor.name = "point_size";
-  descriptor.size = sizeof(int);
+  descriptor.size = sizeof(float);
   descriptor.binding = 1;
   descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
   descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;

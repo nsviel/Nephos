@@ -35,12 +35,9 @@ struct Object{
 
   //Data
   int UID = 0;
-  bool has_xyz = false;
-  bool has_rgba = false;
-  bool has_uv = false;
   std::shared_ptr<utl::base::Data> data = std::make_shared<utl::base::Data>();
   std::shared_ptr<utl::base::Pose> pose = std::make_shared<utl::base::Pose>();
-  
+
   //Binding
   std::list< std::shared_ptr<vk::structure::Texture> > list_vk_texture;
   VkCommandBuffer command_buffer_secondary = VK_NULL_HANDLE;

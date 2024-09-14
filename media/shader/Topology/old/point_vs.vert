@@ -10,16 +10,22 @@ layout(location = 0) out vec3 frag_position;
 layout(location = 1) out vec3 frag_color;
 
 //Uniform
-layout(binding = 0) uniform MVP{mat4 value;} uniform_mvp;
-layout(binding = 1) uniform SIZE{float value;} uniform_size;
+layout(binding = 0) uniform mat4 mvp;
+layout(binding = 1) uniform float point_size;
 
 
 void main(){
   //---------------------------
 
-  gl_Position = uniform_mvp.value * vec4(in_position, 1.0);
-  gl_PointSize = uniform_size.value;
+  // Apply MVP transformation to the vertex position
+  gl_Position = mvp * vec4(in_position, 1.0);
+
+  // Set point size for rendering points
+  gl_PointSize = point_size;
+
+  // Pass color and position to fragment shader
   frag_color = in_color;
+  //frag_position = in_position;
 
   //---------------------------
 }

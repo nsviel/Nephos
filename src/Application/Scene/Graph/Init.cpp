@@ -45,6 +45,7 @@ void Init::load_entity(){
   utl::base::Path cerfav("/home/aether/Desktop/cerfav_3_1.mkv");
 
   utl::base::Path dragon("/home/aether/Desktop/Nephos/media/point_cloud/dragon.ply");
+  utl::base::Path bunny("/home/aether/Desktop/Nephos/media/point_cloud/bunny.ply");
 
   utl::base::Path sphere("/home/aether/Desktop/Sphere_good.mkv");
 
@@ -73,8 +74,8 @@ void Init::load_entity(){
   //io_loader->load_object(mire);
   //io_loader->load_object(cath);
   //io_loader->load_object(dragon);
-  //io_loader->load_object(bag);
-  io_loader->load_object_textured(viking, viking_tex);
+  io_loader->load_object(bunny);
+  //io_loader->load_object_textured(viking, viking_tex);
 
   /*
   io_loader->load_object(dragon);
