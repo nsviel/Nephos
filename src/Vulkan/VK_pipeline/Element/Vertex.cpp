@@ -68,14 +68,13 @@ void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
   //---------------------------
 }
 void Vertex::flow_vertex_binding(vk::structure::Pipeline* pipeline){
-  std::vector<VkVertexInputBindingDescription> vec_vertex_binding;
+  pipeline->element.vec_vertex_binding.clear();
   //---------------------------
 
-  std::vector<vk::attribut::ID>& vec_attribut = pipeline->info.vec_attribut;
-  for(int i=0; i<vec_attribut.size(); i++){
+  for(auto& attribut : pipeline->info.vec_attribut){
     VkVertexInputBindingDescription description{};
 
-    switch(vec_attribut[i]){
+    switch(attribut){
       case vk::attribut::XYZ:{
         description.binding = 0;
         description.stride = sizeof(glm::vec3);
@@ -100,11 +99,10 @@ void Vertex::flow_vertex_binding(vk::structure::Pipeline* pipeline){
       }
     }
 
-    vec_vertex_binding.push_back(description);
+    pipeline->element.vec_vertex_binding.push_back(description);
   }
 
   //---------------------------
-  pipeline->element.vec_vertex_binding = vec_vertex_binding;
 }
 
 }
