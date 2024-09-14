@@ -1,19 +1,17 @@
 #pragma once
 
 
-namespace vk::binding{
+namespace vk::binding::id{
 
-enum Descriptor{
-  LOCATION = 0,
-  COLOR = 1,
-  UV = 2,
-  NORMAL = 2,
-  DEPTH = 2,
-};
-
-enum Location{
+enum Uniform{
   MVP = 0,
   WIDTH = 1,
+  EDL = 5,
+};
+
+enum Sampler{
+  COLOR = 10,
+  DEPTH = 11,
 };
 
 }

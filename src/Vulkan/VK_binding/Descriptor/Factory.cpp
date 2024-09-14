@@ -33,26 +33,26 @@ vk::binding::structure::Descriptor sampler_depth(){
 }
 
 //Uniform
-vk::binding::structure::Descriptor uniform_point_size(){
-  //---------------------------
-
-  vk::binding::structure::Descriptor descriptor;
-  descriptor.name = "point_size";
-  descriptor.size = sizeof(float);
-  descriptor.binding = 1;
-  descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-  descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
-
-  //---------------------------
-  return descriptor;
-}
 vk::binding::structure::Descriptor uniform_mvp(){
   //---------------------------
 
   vk::binding::structure::Descriptor descriptor;
   descriptor.name = "mvp";
   descriptor.size = sizeof(glm::mat4);
-  descriptor.binding = 0;
+  descriptor.binding = vk::binding::id::MVP;
+  descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+  descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
+
+  //---------------------------
+  return descriptor;
+}
+vk::binding::structure::Descriptor uniform_point_size(){
+  //---------------------------
+
+  vk::binding::structure::Descriptor descriptor;
+  descriptor.name = "point_size";
+  descriptor.size = sizeof(float);
+  descriptor.binding = vk::binding::id::WIDTH;
   descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
   descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
 
@@ -65,7 +65,7 @@ vk::binding::structure::Descriptor uniform_edl(){
   vk::binding::structure::Descriptor descriptor;
   descriptor.name = "EDL_param";
   descriptor.size = sizeof(vk::render::structure::EDL);
-  descriptor.binding = 5;
+  descriptor.binding = vk::binding::id::EDL;
   descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
   descriptor.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
 
