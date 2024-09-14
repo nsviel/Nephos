@@ -1,8 +1,12 @@
 #version 450
 
+//Input
 layout(location = 4) in vec2 frag_tex_coord;
+
+//Ouput
 layout(location = 0) out vec4 out_color;
 
+//Uniform
 layout(binding = 1) uniform sampler2D tex_color;
 layout(binding = 4) uniform sampler2D tex_depth;
 layout(binding = 5) uniform param{

@@ -18,7 +18,7 @@ void main(){
   //---------------------------
 
   gl_Position = uniform_mvp.value * vec4(in_position, 1.0);
-  gl_PointSize = uniform_size.value;
+  gl_PointSize = 5;//uniform_size.value;
   frag_color = in_color;
 
   //---------------------------

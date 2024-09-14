@@ -6,32 +6,6 @@
 
 namespace vk::binding{
 
-//Sampler
-vk::binding::structure::Descriptor sampler_color(){
-  //---------------------------
-
-  vk::binding::structure::Descriptor descriptor;
-  descriptor.name = "tex_color";
-  descriptor.binding = 1;
-  descriptor.type = TYP_IMAGE_SAMPLER;
-  descriptor.stage = TYP_SHADER_FS;
-
-  //---------------------------
-  return descriptor;
-}
-vk::binding::structure::Descriptor sampler_depth(){
-  //---------------------------
-
-  vk::binding::structure::Descriptor descriptor;
-  descriptor.name = "tex_depth";
-  descriptor.binding = 4;
-  descriptor.type = TYP_IMAGE_SAMPLER;
-  descriptor.stage = TYP_SHADER_FS;
-
-  //---------------------------
-  return descriptor;
-}
-
 //Uniform
 vk::binding::structure::Descriptor uniform_mvp(){
   //---------------------------
@@ -68,6 +42,32 @@ vk::binding::structure::Descriptor uniform_edl(){
   descriptor.binding = vk::binding::id::EDL;
   descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
   descriptor.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+
+  //---------------------------
+  return descriptor;
+}
+
+//Sampler
+vk::binding::structure::Descriptor sampler_color(){
+  //---------------------------
+
+  vk::binding::structure::Descriptor descriptor;
+  descriptor.name = "tex_color";
+  descriptor.binding = 1;
+  descriptor.type = TYP_IMAGE_SAMPLER;
+  descriptor.stage = TYP_SHADER_FS;
+
+  //---------------------------
+  return descriptor;
+}
+vk::binding::structure::Descriptor sampler_depth(){
+  //---------------------------
+
+  vk::binding::structure::Descriptor descriptor;
+  descriptor.name = "tex_depth";
+  descriptor.binding = 4;
+  descriptor.type = TYP_IMAGE_SAMPLER;
+  descriptor.stage = TYP_SHADER_FS;
 
   //---------------------------
   return descriptor;
