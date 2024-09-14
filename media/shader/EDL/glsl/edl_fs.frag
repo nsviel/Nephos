@@ -1,10 +1,10 @@
 #version 450
 
 //Input
-layout(location = 4) in vec2 frag_tex_coord;
+layout(location = 4) in vec2 frag_uv;
 
 //Ouput
-layout(location = 0) out vec4 out_color;
+layout(location = 0) out vec4 out_rgb;
 
 //Uniform
 layout(binding = 5) uniform param{
@@ -57,7 +57,7 @@ float compute_shading(float depth_norm){
   float sum = 0.0;
   for(int i=0; i<8; i++){
     vec2 offset = texel_size * table_index[i];
-    vec2 NN_coord = frag_tex_coord + offset;
+    vec2 NN_coord = frag_uv + offset;
 
     //If to avoid border effect
     if(NN_coord.y < 1 && NN_coord.y > 0){
@@ -79,8 +79,8 @@ float compute_shading(float depth_norm){
 //MAIN FUNCTION
 void main(){
   //---------------------------
-  vec4 color_rgba = texture(tex_color, frag_tex_coord);
-  vec4 depth_rgba = texture(tex_depth, frag_tex_coord);
+  vec4 color_rgba = texture(tex_color, frag_uv);
+  vec4 depth_rgba = texture(tex_depth, frag_uv);
   float depth_norm = compute_depth_normalized(depth_rgba.r);
 
   if(depth_norm < 1 && activated){
@@ -89,5 +89,5 @@ void main(){
   }
 
   //---------------------------
-  out_color = vec4(color_rgba.rgb, 1.0);
+  out_rgb = vec4(color_rgba.rgb, 1.0);
 }

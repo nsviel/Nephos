@@ -1,16 +1,16 @@
 #version 450
 
 //Input
-layout(location = 0) in vec3 frag_color;
+layout(location = 0) in vec3 frag_rgb;
 
 //Ouput
-layout(location = 0) out vec4 out_color;
+layout(location = 0) out vec4 out_rgb;
 
 
 void main(){
   //---------------------------
 
-  out_color = vec4(frag_color, 1);
+  out_rgb = vec4(frag_rgb, 1);
 
   //---------------------------
 }
