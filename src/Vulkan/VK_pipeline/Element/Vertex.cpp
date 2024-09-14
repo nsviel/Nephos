@@ -36,21 +36,21 @@ void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
 
     switch(attribut){
       case vk::attribut::XYZ:{
-        attribut_info.binding = 0;
+        attribut_info.binding = vk::attribut::binding::XYZ;
         attribut_info.location = vk::attribut::location::XYZ;
         attribut_info.format = VK_FORMAT_R32G32B32_SFLOAT;
         attribut_info.offset = 0;
         break;
       }
       case vk::attribut::RGBA:{
-        attribut_info.binding = 1;
+        attribut_info.binding = vk::attribut::binding::RGBA;
         attribut_info.location = vk::attribut::location::RGBA;
         attribut_info.format = VK_FORMAT_R32G32B32A32_SFLOAT;
         attribut_info.offset = 0;
         break;
       }
       case vk::attribut::UV:{
-        attribut_info.binding = 2;
+        attribut_info.binding = vk::attribut::binding::UV;
         attribut_info.location = vk::attribut::location::UV;
         attribut_info.format = VK_FORMAT_R32G32_SFLOAT;
         attribut_info.offset = 0;
