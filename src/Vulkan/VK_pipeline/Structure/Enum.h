@@ -17,7 +17,7 @@ namespace vk::attribut::location{
 
 enum ID{
   XYZ = 0,
-  RGB = 1,
+  RGBA = 1,
   UV = 2,
 };
 

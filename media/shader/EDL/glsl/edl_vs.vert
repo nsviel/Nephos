@@ -3,7 +3,7 @@
 
 //Input
 layout(location = 0) in vec3 in_xyz;
-layout(location = 4) in vec2 in_uv;
+layout(location = 2) in vec2 in_uv;
 
 //Ouput
 layout(location = 4) out vec2 frag_uv;

@@ -44,14 +44,14 @@ void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
       }
       case vk::attribut::RGBA:{
         attribut_info.binding = 1;
-        attribut_info.location = 1;
+        attribut_info.location = vk::attribut::location::RGBA;
         attribut_info.format = VK_FORMAT_R32G32B32A32_SFLOAT;
         attribut_info.offset = 0;
         break;
       }
       case vk::attribut::UV:{
         attribut_info.binding = 2;
-        attribut_info.location = 4;
+        attribut_info.location = vk::attribut::location::UV;
         attribut_info.format = VK_FORMAT_R32G32_SFLOAT;
         attribut_info.offset = 0;
         break;
