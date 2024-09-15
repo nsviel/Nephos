@@ -2,6 +2,7 @@
 
 #include <Vulkan/VK_queue/Structure/Thread.h>
 #include <vulkan/vulkan.h>
+#include <memory>
 #include <vector>
 #include <queue>
 
@@ -25,13 +26,13 @@ public:
   void thread_loop();
 
   //Subfunction
-  void add_command(vk::structure::Command_buffer* command);
+  void add_command(std::shared_ptr<vk::structure::Command_buffer> command);
 
 private:
   vk::Structure* vk_struct;
   vk::queue::transfer::Submission* vk_submission;
 
-  std::queue<vk::structure::Command_buffer*> queue;
+  std::queue<std::shared_ptr<vk::structure::Command_buffer>> queue;
 };
 
 }

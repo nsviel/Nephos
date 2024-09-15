@@ -84,7 +84,7 @@ void Imgui::create_context(){
 
   //---------------------------
 }
-void Imgui::draw_frame(vk::structure::Command_buffer* command_buffer){
+void Imgui::draw_frame(vk::structure::Command_buffer& command_buffer){
   if(vk_struct->param.headless) return;
   //---------------------------
 
@@ -96,7 +96,7 @@ void Imgui::draw_frame(vk::structure::Command_buffer* command_buffer){
   ImGui::Render();
   ImDrawData* draw = ImGui::GetDrawData();
   if(draw == nullptr) return;
-  ImGui_ImplVulkan_RenderDrawData(draw, command_buffer->handle);
+  ImGui_ImplVulkan_RenderDrawData(draw, command_buffer.handle);
 
   //---------------------------
 }

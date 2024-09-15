@@ -38,7 +38,7 @@ void Canvas::create_subpass(vk::structure::Renderpass& renderpass){
 void Canvas::draw_subpass(vk::structure::Subpass& subpass){
   //---------------------------
 
-  vk_imgui->draw_frame(subpass.command_buffer);
+  vk_imgui->draw_frame(*subpass.command_buffer);
 
   //---------------------------
 }

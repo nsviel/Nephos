@@ -20,25 +20,25 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::process_command(vk::structure::Command_buffer* command){
+void Submission::process_command(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
   std::vector<VkSubmitInfo> vec_info;
-  this->build_submission(command, vec_info);
+  this->build_submission(command_buffer, vec_info);
   this->make_submission(vec_info);
-  this->post_submission(command);
+  this->post_submission(command_buffer);
 
   //---------------------------
 }
 
 //Submission
-void Submission::build_submission(vk::structure::Command_buffer* command, std::vector<VkSubmitInfo>& vec_info){
+void Submission::build_submission(vk::structure::Command_buffer& command_buffer, std::vector<VkSubmitInfo>& vec_info){
   //---------------------------
 
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
   submit_info.commandBufferCount = 1;
-  submit_info.pCommandBuffers = &command->handle;
+  submit_info.pCommandBuffers = &command_buffer.handle;
 
   vec_info.push_back(submit_info);
 
@@ -64,14 +64,14 @@ void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Submission::post_submission(vk::structure::Command_buffer* command){
+void Submission::post_submission(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
-  std::lock_guard<std::mutex> lock(command->mutex);
-  if(command->is_resetable){
-    command->is_recorded = false;
-    command->query.is_available = true;
-    command->is_available = true;
+  std::lock_guard<std::mutex> lock(command_buffer.mutex);
+  if(command_buffer.is_resetable){
+    command_buffer.is_recorded = false;
+    command_buffer.query.is_available = true;
+    command_buffer.is_available = true;
   }
 
   //---------------------------

@@ -91,7 +91,7 @@ void Submission::post_submission(vk::command::structure::Set* set){
   //Reset all command
   for(auto& command : set->vec_command){
     // Command buffer timestamp
-    vk_query->find_query_timestamp(command->command_buffer);
+    vk_query->find_query_timestamp(*command->command_buffer);
 
     // Command buffer reset
     if(command->command_buffer->is_resetable){

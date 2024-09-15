@@ -23,7 +23,7 @@ void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->device.queue.graphics);
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   renderpass->command_buffer = command_buffer;
   command_buffer->name = renderpass->name;
 
@@ -31,7 +31,7 @@ void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
   this->draw_subpass(renderpass);
   this->stop_renderpass(renderpass);
 
-  vk_command_buffer->end_command_buffer(command_buffer);
+  vk_command_buffer->end_command_buffer(*command_buffer);
 
   //---------------------------
 }
@@ -42,7 +42,7 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
 
   VkFramebuffer framebuffer = renderpass->framebuffer.handle;
 
-  vk_command_buffer->start_command_buffer_primary(renderpass->command_buffer);
+  vk_command_buffer->start_command_buffer_primary(*renderpass->command_buffer);
 
   std::array<VkClearValue, 2> clear_value{};
   clear_value[0].color = {{
@@ -83,10 +83,11 @@ void Renderer::stop_renderpass(vk::structure::Renderpass* renderpass){
 void Renderer::draw_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
-  for(int j=0; j<renderpass->vec_subpass.size(); j++){
-    vk::structure::Subpass* subpass = renderpass->vec_subpass[j];
+  for(auto& subpass : renderpass->vec_subpass){
     subpass->command_buffer = renderpass->command_buffer;
     subpass->draw_task(subpass);
+
+    //vkCmdNextSubpass(*renderpass->command_buffer, VK_SUBPASS_CONTENTS_INLINE);
   }
 
   //---------------------------

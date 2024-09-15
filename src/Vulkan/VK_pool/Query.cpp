@@ -42,38 +42,38 @@ void Query::clean_query_pool(vk::pool::structure::Query* query_pool){
 }
 
 //Subfunction
-void Query::begin_query_pass(vk::structure::Command_buffer* command_buffer){
+void Query::begin_query_pass(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
   // Begin the query pass
-  command_buffer->query.is_available = false;
-  vkCmdResetQueryPool(command_buffer->handle, command_buffer->query.pool, 0, command_buffer->query.nb_query);
+  command_buffer.query.is_available = false;
+  vkCmdResetQueryPool(command_buffer.handle, command_buffer.query.pool, 0, command_buffer.query.nb_query);
 
   // Insert vkCmdWriteTimestamp commands where needed
-  vkCmdWriteTimestamp(command_buffer->handle, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, command_buffer->query.pool, 0);
+  vkCmdWriteTimestamp(command_buffer.handle, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, command_buffer.query.pool, 0);
 
   //---------------------------
 }
-void Query::end_query_pass(vk::structure::Command_buffer* command_buffer){
+void Query::end_query_pass(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
-  vkCmdWriteTimestamp(command_buffer->handle, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, command_buffer->query.pool, 1);
+  vkCmdWriteTimestamp(command_buffer.handle, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, command_buffer.query.pool, 1);
 
   //---------------------------
 }
-void Query::find_query_timestamp(vk::structure::Command_buffer* command_buffer){
-  vk::pool::structure::Query* query = &command_buffer->query;
+void Query::find_query_timestamp(vk::structure::Command_buffer& command_buffer){
+  vk::pool::structure::Query* query = &command_buffer.query;
   //---------------------------
 
   uint64_t timestamps[query->nb_query];
   vkGetQueryPoolResults(vk_struct->device.handle, query->pool, 0, query->nb_query, sizeof(uint64_t) * query->nb_query, timestamps, sizeof(uint64_t), VK_QUERY_RESULT_64_BIT);
 
   float delta = float(timestamps[1] - timestamps[0]) * vk_struct->device.physical_device.timestamp_period / 1000000000.0f;
-  command_buffer->duration = delta;
+  command_buffer.duration = delta;
 
   vk::profiler::Command_buffer prf_command;
-  prf_command.name = command_buffer->name;
-  prf_command.duration = command_buffer->duration;
+  prf_command.name = command_buffer.name;
+  prf_command.duration = command_buffer.duration;
   vk_struct->profiler.vec_command_buffer.push_back(prf_command);
 
   //---------------------------

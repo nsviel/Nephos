@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace vk{class Structure;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::pool::structure{class Command_buffer;}
@@ -28,14 +30,14 @@ public:
   void clean_pool(vk::pool::structure::Command_buffer* pool);
 
   //Command buffer function
-  void create_command_buffer_primary(vk::pool::structure::Command_buffer* pool, vk::structure::Command_buffer* command_buffer);
+  void create_command_buffer_primary(vk::pool::structure::Command_buffer* pool, vk::structure::Command_buffer& command_buffer);
   void create_command_buffer_secondary(vk::structure::Object* data);
 
   //Command buffer lifetime
-  vk::structure::Command_buffer* query_free_command_buffer(vk::pool::structure::Command_buffer* pool);
-  void start_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
+  std::shared_ptr<vk::structure::Command_buffer> query_free_command_buffer(vk::pool::structure::Command_buffer* pool);
+  void start_command_buffer_primary(vk::structure::Command_buffer& command_buffer);
   void start_command_buffer_secondary(vk::structure::Renderpass* renderpass);
-  void end_command_buffer(vk::structure::Command_buffer* command_buffer);
+  void end_command_buffer(vk::structure::Command_buffer& command_buffer);
   int find_num_available_command(vk::pool::structure::Command_buffer* pool);
 
 private:

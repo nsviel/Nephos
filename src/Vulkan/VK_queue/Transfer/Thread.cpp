@@ -37,19 +37,19 @@ void Thread::thread_loop(){
   if(!thread_running) return;
 
   //Submit command
-  vk_submission->process_command(queue.front());
+  vk_submission->process_command(*queue.front());
   queue.pop();
 
   //---------------------------
 }
 
 //Subfunction
-void Thread::add_command(vk::structure::Command_buffer* command){
+void Thread::add_command(std::shared_ptr<vk::structure::Command_buffer> command_buffer){
   mutex.lock();
   //---------------------------
 
-  if(command->is_recorded){
-    queue.push(command);
+  if(command_buffer->is_recorded){
+    queue.push(command_buffer);
     cv.notify_one();
   }
 

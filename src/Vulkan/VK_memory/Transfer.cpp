@@ -39,8 +39,8 @@ void Transfer::copy_buffer_to_image(vk::structure::Image& image, VkBuffer buffer
 
   //Image transition from undefined layout to read only layout
   vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
-  vk_command_buffer->start_command_buffer_primary(command_buffer);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command_buffer->query_free_command_buffer(pool);
+  vk_command_buffer->start_command_buffer_primary(*command_buffer);
 
   //Transition + copy
   vk_transition->image_layout_transition(command_buffer->handle, image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
@@ -58,7 +58,7 @@ void Transfer::copy_buffer_to_image(vk::structure::Image& image, VkBuffer buffer
   vk_transition->image_layout_transition(command_buffer->handle, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //End and submit command
-  vk_command_buffer->end_command_buffer(command_buffer);
+  vk_command_buffer->end_command_buffer(*command_buffer);
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->command_buffer = command_buffer;
   vk_struct->queue.graphics->add_command(std::move(command));
@@ -70,8 +70,8 @@ void Transfer::copy_image_to_buffer(vk::structure::Image& image, VkBuffer buffer
 
   //Image transition from undefined layout to read only layout
   vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
-  vk_command_buffer->start_command_buffer_primary(command_buffer);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command_buffer->query_free_command_buffer(pool);
+  vk_command_buffer->start_command_buffer_primary(*command_buffer);
 
   // Image transition + copy
   vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
@@ -86,7 +86,7 @@ void Transfer::copy_image_to_buffer(vk::structure::Image& image, VkBuffer buffer
   vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //End and submit command buffer
-  vk_command_buffer->end_command_buffer(command_buffer);
+  vk_command_buffer->end_command_buffer(*command_buffer);
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->command_buffer = command_buffer;
   vk_struct->queue.graphics->add_command(std::move(command));
@@ -98,8 +98,8 @@ void Transfer::copy_image_to_image_standalone(vk::structure::Image& image_src, v
 
   // Image transition from undefined layout to transfer source layout
   vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
-  vk_command_buffer->start_command_buffer_primary(command_buffer);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command_buffer->query_free_command_buffer(pool);
+  vk_command_buffer->start_command_buffer_primary(*command_buffer);
 
   // Image transition
   vk_transition->image_layout_transition(command_buffer->handle, image_src, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
@@ -120,7 +120,7 @@ void Transfer::copy_image_to_image_standalone(vk::structure::Image& image_src, v
   // vk_transition->imageLayoutTransition(commandBuffer.get(), dstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //End and submit command buffer
-  vk_command_buffer->end_command_buffer(command_buffer);
+  vk_command_buffer->end_command_buffer(*command_buffer);
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->command_buffer = command_buffer;
   vk_struct->queue.graphics->add_command(std::move(command));
@@ -132,8 +132,8 @@ void Transfer::blit_image_to_image(vk::structure::Image& image_src, vk::structur
 
   // Image transition from undefined layout to transfer source layout
   vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
-  vk_command_buffer->start_command_buffer_primary(command_buffer);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command_buffer->query_free_command_buffer(pool);
+  vk_command_buffer->start_command_buffer_primary(*command_buffer);
 
   // Image transition
   vk_transition->image_layout_transition(command_buffer->handle, image_src, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
@@ -157,20 +157,20 @@ void Transfer::blit_image_to_image(vk::structure::Image& image_src, vk::structur
   // vk_transition->imageLayoutTransition(commandBuffer.get(), dstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //End and submit command buffer
-  vk_command_buffer->end_command_buffer(command_buffer);
+  vk_command_buffer->end_command_buffer(*command_buffer);
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->command_buffer = command_buffer;
   vk_struct->queue.graphics->add_command(std::move(command));
 
   //---------------------------
 }
-vk::structure::Command_buffer* Transfer::copy_image_to_image(vk::structure::Image& image_src, vk::structure::Image& image_dst){
+std::shared_ptr<vk::structure::Command_buffer> Transfer::copy_image_to_image(vk::structure::Image& image_src, vk::structure::Image& image_dst){
   //---------------------------
 
   // Image transition from undefined layout to transfer source layout
   vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
-  vk_command_buffer->start_command_buffer_primary(command_buffer);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command_buffer->query_free_command_buffer(pool);
+  vk_command_buffer->start_command_buffer_primary(*command_buffer);
 
   // Image transition
   vk_transition->image_layout_transition(command_buffer->handle, image_src, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
@@ -191,7 +191,7 @@ vk::structure::Command_buffer* Transfer::copy_image_to_image(vk::structure::Imag
   vk_transition->image_layout_transition(command_buffer->handle, image_dst.handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_PRESENT_SRC_KHR);
 
   //End and submit command buffer
-  vk_command_buffer->end_command_buffer(command_buffer);
+  vk_command_buffer->end_command_buffer(*command_buffer);
 
   //---------------------------
   return command_buffer;
@@ -228,17 +228,17 @@ void Transfer::copy_data_to_gpu(vk::data::structure::Buffer& buffer, vk::data::s
 
   // Create command buffer to cpy on gpu
   vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.transfer);
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "transfer::data";
   if(command_buffer == nullptr) return;
 
-  vk_command_buffer->start_command_buffer_primary(command_buffer);
+  vk_command_buffer->start_command_buffer_primary(*command_buffer);
 
   VkBufferCopy region = {};
   region.size = data_size;
   vkCmdCopyBuffer(command_buffer->handle, stagger.vbo, buffer.vbo, 1, &region);
 
-  vk_command_buffer->end_command_buffer(command_buffer);
+  vk_command_buffer->end_command_buffer(*command_buffer);
   vk_struct->queue.transfer->add_command(command_buffer);
 
   //---------------------------

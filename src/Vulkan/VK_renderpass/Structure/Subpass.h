@@ -7,6 +7,7 @@
 #include <vulkan/vulkan.h>
 #include <unordered_map>
 #include <functional>
+#include <memory>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -20,7 +21,7 @@ struct Subpass{
   //Subpass info
   VkSubpassDescription description = {};
   VkSubpassDependency dependency = {};
-  vk::structure::Command_buffer* command_buffer;
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer;
   vk::renderpass::Target target = vk::renderpass::SHADER;
   int source = -1;
   int index = -1;

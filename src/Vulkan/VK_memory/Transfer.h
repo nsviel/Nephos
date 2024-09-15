@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vulkan/vulkan.h>
+#include <memory>
 
 namespace vk::command{class Command_buffer;}
 namespace vk::command{class Allocator;}
@@ -28,7 +29,7 @@ public:
   void copy_image_to_buffer(vk::structure::Image& image, VkBuffer buffer);
   void copy_image_to_image_standalone(vk::structure::Image& image_src, vk::structure::Image& image_dst);
   void blit_image_to_image(vk::structure::Image& image_src, vk::structure::Image& image_dst);
-  vk::structure::Command_buffer* copy_image_to_image(vk::structure::Image& image_src, vk::structure::Image& image_dst);
+  std::shared_ptr<vk::structure::Command_buffer> copy_image_to_image(vk::structure::Image& image_src, vk::structure::Image& image_dst);
 
   //Data copy function
   void copy_data_to_gpu(vk::data::structure::Buffer& buffer, const void* data, VkDeviceSize dataSize);

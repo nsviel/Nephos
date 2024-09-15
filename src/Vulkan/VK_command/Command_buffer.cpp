@@ -30,13 +30,15 @@ void Command_buffer::init_pool(vk::pool::structure::Command_buffer* pool){
 
   //Create a pool of command buffer number
   for(int i=0; i<number; i++){
-    vk::structure::Command_buffer* command_buffer = new vk::structure::Command_buffer();
+    //Create command buffer struct pointer
+    std::shared_ptr<vk::structure::Command_buffer> command_buffer = std::make_shared<vk::structure::Command_buffer>();
     command_buffer->is_available = true;
     command_buffer->is_recorded = false;
     command_buffer->UID = vk_uid->query_free_UID();
     command_buffer->query = vk_query->create_query_pool();
 
-    this->create_command_buffer_primary(pool, command_buffer);
+    //Instanciate it and insert in tank
+    this->create_command_buffer_primary(pool, *command_buffer);
     pool->tank.push_back(command_buffer);
   }
 
@@ -46,9 +48,7 @@ void Command_buffer::reset_pool(vk::pool::structure::Command_buffer* pool){
   //---------------------------
 
   //Clear all old command buffer
-  for(int i=0; i<pool->size; i++){
-    vk::structure::Command_buffer* command_buffer = pool->tank[i];
-
+  for(auto& command_buffer : pool->tank){
     if(command_buffer->is_resetable){
       command_buffer->is_available = true;
       command_buffer->is_recorded = false;
@@ -61,9 +61,7 @@ void Command_buffer::clean_pool(vk::pool::structure::Command_buffer* pool){
   //---------------------------
 
   //Clear all old command buffer
-  for(int i=0; i<pool->size; i++){
-    vk::structure::Command_buffer* command_buffer = pool->tank[i];
-
+  for(auto& command_buffer : pool->tank){
     vk_query->clean_query_pool(&command_buffer->query);
     vkFreeCommandBuffers(vk_struct->device.handle, pool->allocator, 1, &command_buffer->handle);
   }
@@ -72,7 +70,7 @@ void Command_buffer::clean_pool(vk::pool::structure::Command_buffer* pool){
 }
 
 //Command buffer function
-void Command_buffer::create_command_buffer_primary(vk::pool::structure::Command_buffer* pool, vk::structure::Command_buffer* command_buffer){
+void Command_buffer::create_command_buffer_primary(vk::pool::structure::Command_buffer* pool, vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
   //Command buffer allocation
@@ -82,7 +80,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::structure::Command_
   alloc_info.commandPool = pool->allocator;
   alloc_info.commandBufferCount = 1;
 
-  VkResult result = vkAllocateCommandBuffers(vk_struct->device.handle, &alloc_info, &command_buffer->handle);
+  VkResult result = vkAllocateCommandBuffers(vk_struct->device.handle, &alloc_info, &command_buffer.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
   }
@@ -109,7 +107,7 @@ void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data
 }
 
 //Command buffer lifetime
-vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::pool::structure::Command_buffer* pool){
+std::shared_ptr<vk::structure::Command_buffer> Command_buffer::query_free_command_buffer(vk::pool::structure::Command_buffer* pool){
   if(pool == nullptr) return nullptr;
   //---------------------------
 
@@ -120,7 +118,7 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::poo
 
   // Find a random available and unrecorded command buffer
   int index;
-  vk::structure::Command_buffer* command_buffer;
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer;
   do{
     index = distr(gen);
     command_buffer = pool->tank[index];
@@ -141,13 +139,13 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::poo
   //---------------------------
   return nullptr;
 }
-void Command_buffer::start_command_buffer_primary(vk::structure::Command_buffer* command_buffer){
+void Command_buffer::start_command_buffer_primary(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
   VkCommandBufferBeginInfo begin_info{};
   begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
   begin_info.flags = 0;
-  VkResult result = vkBeginCommandBuffer(command_buffer->handle, &begin_info);
+  VkResult result = vkBeginCommandBuffer(command_buffer.handle, &begin_info);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to begin recording command buffer!");
   }
@@ -185,17 +183,17 @@ void Command_buffer::start_command_buffer_secondary(vk::structure::Renderpass* r
 */
   //---------------------------
 }
-void Command_buffer::end_command_buffer(vk::structure::Command_buffer* command_buffer){
+void Command_buffer::end_command_buffer(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
   vk_query->end_query_pass(command_buffer);
 
-  VkResult result = vkEndCommandBuffer(command_buffer->handle);
+  VkResult result = vkEndCommandBuffer(command_buffer.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to record command buffer!");
   }
 
-  command_buffer->is_recorded = true;
+  command_buffer.is_recorded = true;
 
   //---------------------------
 }
@@ -203,9 +201,7 @@ int Command_buffer::find_num_available_command(vk::pool::structure::Command_buff
   int num = 0;
   //---------------------------
 
-  for(int i=0; i<pool->tank.size(); i++){
-    vk::structure::Command_buffer* command_buffer = pool->tank[i];
-
+  for(auto& command_buffer : pool->tank){
     if(command_buffer->is_available){
       num++;
     }

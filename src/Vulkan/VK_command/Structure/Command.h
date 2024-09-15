@@ -2,6 +2,7 @@
 
 #include <Vulkan/VK_command/Structure/Command_buffer.h>
 #include <vulkan/vulkan.h>
+#include <memory>
 
 
 namespace vk::structure{
@@ -10,7 +11,7 @@ struct Command{
   //---------------------------
 
   //Command
-  vk::structure::Command_buffer* command_buffer = nullptr;
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = std::make_shared<vk::structure::Command_buffer>();
   VkPipelineStageFlags wait_stage = 0;
 
   //Synchronization
