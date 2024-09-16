@@ -19,7 +19,7 @@ Renderpass::~Renderpass(){}
 //Main function
 void Renderpass::init(){
   vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.onscreen;
-  if(vk_struct->render.param.headless) return;
+  if(vk_struct->param.headless) return;
   //---------------------------
 
   vk_subpass->create_subpass(renderpass);

@@ -46,10 +46,10 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
 
   std::array<VkClearValue, 2> clear_value{};
   clear_value[0].color = {{
-    vk_struct->render.param.background_color.x,
-    vk_struct->render.param.background_color.y,
-    vk_struct->render.param.background_color.z,
-    vk_struct->render.param.background_color.w}};
+    vk_struct->param.background_color.x,
+    vk_struct->param.background_color.y,
+    vk_struct->param.background_color.z,
+    vk_struct->param.background_color.w}};
   clear_value[1].depthStencil = {1.0f, 0};
 
   VkRenderPassBeginInfo renderpass_info{};

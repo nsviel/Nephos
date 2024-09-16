@@ -17,7 +17,7 @@ Window::~Window(){}
 
 //Main function
 void Window::create_window(){
-  if(vk_struct->render.param.headless) return;
+  if(vk_struct->param.headless) return;
   //---------------------------
 
   int width  = vk_struct->window.window.dimension.x;

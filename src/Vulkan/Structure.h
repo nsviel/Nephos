@@ -3,6 +3,7 @@
 #include <Vulkan/Core/Structure.h>
 #include <Vulkan/Render/Structure.h>
 #include <Vulkan/Window/Structure.h>
+#include <Vulkan/Interface/Parameter.h>
 
 
 namespace vk{
@@ -19,7 +20,8 @@ struct Structure{
   vk::core::Structure core;
   vk::render::Structure render;
   vk::window::Structure window;
-
+  vk::structure::Parameter param;
+  
   //---------------------------
 };
 

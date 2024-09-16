@@ -31,9 +31,9 @@ void Physical::find_physical_device(){
 void Physical::compute_extent(){
   //---------------------------
 
-  if(vk_struct->render.param.headless){
-    vk_struct->window.window.extent.width = vk_struct->render.param.headless_dim.x;
-    vk_struct->window.window.extent.height = vk_struct->render.param.headless_dim.y;
+  if(vk_struct->param.headless){
+    vk_struct->window.window.extent.width = vk_struct->param.headless_dim.x;
+    vk_struct->window.window.extent.height = vk_struct->param.headless_dim.y;
   }
   else{
     this->find_surface_capability(vk_struct->core.device.physical_device);
@@ -126,7 +126,7 @@ void Physical::rate_device_suitability(vk::device::structure::Physical& physical
 
   // Check if physical device is suitable
   bool device_suitable;
-  if(vk_struct->render.param.headless){
+  if(vk_struct->param.headless){
     device_suitable = device_suitability_offscreen(physical_device);
   }else{
     device_suitable = device_suitability_onscreen(physical_device);
@@ -139,7 +139,7 @@ void Physical::rate_device_suitability(vk::device::structure::Physical& physical
   // Check if integrated GPU
   if(physical_device.type == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
     physical_device.discrete_gpu = true;
-    if(vk_struct->render.param.dedicated_gpu){
+    if(vk_struct->param.dedicated_gpu){
       score += 100000;
     }
     else{

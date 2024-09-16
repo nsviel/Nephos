@@ -64,7 +64,7 @@ void Imgui::create_context(){
   ImGui::StyleColorsDark();
 
   // Setup Platform/Renderer bindings
-  if(!vk_struct->render.param.headless){
+  if(!vk_struct->param.headless){
     vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.onscreen;
     ImGui_ImplGlfw_InitForVulkan(vk_struct->window.window.handle, true);
     ImGui_ImplVulkan_InitInfo init_info = {};
@@ -85,7 +85,7 @@ void Imgui::create_context(){
   //---------------------------
 }
 void Imgui::draw_frame(vk::structure::Command_buffer& command_buffer){
-  if(vk_struct->render.param.headless) return;
+  if(vk_struct->param.headless) return;
   //---------------------------
 
   //Check resizing
@@ -119,7 +119,7 @@ void Imgui::resize_event(){
   //---------------------------
 }
 void Imgui::glfw_clean(){
-  if(vk_struct->render.param.headless) return;
+  if(vk_struct->param.headless) return;
   //---------------------------
 
   ImGui_ImplVulkan_DestroyFontUploadObjects();
@@ -129,7 +129,7 @@ void Imgui::glfw_clean(){
   //---------------------------
 }
 void Imgui::glfw_new_frame(){
-  if(vk_struct->render.param.headless) return;
+  if(vk_struct->param.headless) return;
   //---------------------------
 
   ImGui_ImplVulkan_NewFrame();

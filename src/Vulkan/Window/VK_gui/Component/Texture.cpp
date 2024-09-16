@@ -30,7 +30,7 @@ void Texture::insert_texture(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
 }
 void Texture::update_render_texture(){
-  if(vk_struct->render.param.headless) return;
+  if(vk_struct->param.headless) return;
   //---------------------------
 
   vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.edl;

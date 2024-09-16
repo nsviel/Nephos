@@ -75,7 +75,7 @@ void Manager::find_queue_family_composition(vk::device::structure::Physical& phy
     queue_family.capable_sparseBinding = (queue_family.property.queueFlags & VK_QUEUE_SPARSE_BINDING_BIT) ? true : false;
 
     //Presentation property
-    if(!vk_struct->render.param.headless){
+    if(!vk_struct->param.headless){
       VkBool32 presentation_supported = false;
       vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, vk_struct->window.window.surface, &presentation_supported);
       queue_family.capable_presentation = presentation_supported;
