@@ -13,7 +13,7 @@ struct Structure{
 
   vk::structure::Parameter param;
   vk::profiler::Structure profiler;
-  vk::render::pipeline::Structure render;
+  vk::render::pipeline::Structure pipeline;
   vk::render::structure::Renderpass renderpass;
 
   //---------------------------

@@ -51,7 +51,7 @@ void EDL::draw_edl(vk::structure::Subpass& subpass){
 void EDL::update_binding(vk::structure::Subpass& subpass){
   //---------------------------
 
-  vk::pipeline::edl::Structure& edl_struct = vk_struct->render.render.edl;
+  vk::pipeline::edl::Structure& edl_struct = vk_struct->render.pipeline.edl;
   vk::structure::Renderpass* renderpass_scene = vk_struct->render.renderpass.vector[0];
   vk::structure::Framebuffer& frame_scene = renderpass_scene->framebuffer;
   vk::structure::Pipeline* pipeline = subpass.map_pipeline["edl"];
