@@ -14,7 +14,7 @@ Data::Data(vk::Structure* vk_struct){
   this->vk_buffer = new vk::data::Buffer(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
-  this->vk_binding = new vk::descriptor::Binding(vk_struct);
+  this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uid = new vk::instance::UID(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
@@ -97,7 +97,7 @@ void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_p
   vk_texture->insert_texture(std::make_shared<utl::media::Image>(data->texture));
 
   //Descriptor
-  this->descriptor_vk_object(*data, vk_object->binding);
+  this->descriptor_vk_object(*vk_object);
 
   //Insert data struct into set
   vk_struct->core.data.list_vk_object.push_back(vk_object);
@@ -109,14 +109,19 @@ void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
 
   vk_buffer->clean_buffers(*vk_object);
   vk_texture->clean_texture(*vk_object);
-  vk_binding->clean_binding(vk_object->binding);
+  //vk_binding->clean_binding(vk_object->binding);
   vk_struct->core.data.list_vk_object.remove(vk_object);
 
   //---------------------------
 }
-void Data::descriptor_vk_object(utl::base::Data& data, vk::descriptor::structure::Binding& binding){
+void Data::descriptor_vk_object(vk::structure::Object& vk_object){
   //---------------------------
 
+  vk::structure::Pipeline* pipeline = vk_struct->core.pipeline.map[vk_object.data->topology.type];
+  vk_descriptor_set->allocate(vk_object.descriptor_set, pipeline->descriptor.layout);
+
+
+/*
   binding.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_mvp());
 
   if(data.topology.type == utl::topology::POINT){
@@ -124,7 +129,7 @@ void Data::descriptor_vk_object(utl::base::Data& data, vk::descriptor::structure
   }
 
   vk_binding->create_binding(binding);
-
+*/
   //---------------------------
 }
 

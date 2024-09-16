@@ -29,7 +29,7 @@ void EDL::add_pipeline(vk::structure::Subpass& subpass){
   this->set_binding(*pipeline);
 
   //---------------------------
-  vk_pipeline->add_pipeline(subpass, *pipeline);
+  subpass.map_pipeline["edl"] = pipeline;
 }
 
 //Subfunction

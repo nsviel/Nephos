@@ -43,10 +43,6 @@ struct Object{
   VkCommandBuffer command_buffer_secondary = VK_NULL_HANDLE;
   vk::structure::Buffer_set buffer;
 
-
-
-
-  vk::descriptor::structure::Binding binding;
   vk::descriptor::structure::Descriptor_set descriptor_set;
 
   //---------------------------

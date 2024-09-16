@@ -27,7 +27,7 @@ void Point::add_pipeline(vk::structure::Subpass& subpass){
   this->set_binding(*pipeline);
 
   //---------------------------
-  vk_pipeline->add_pipeline(subpass, *pipeline);
+  vk_pipeline->add_pipeline_topology(subpass, *pipeline);
 }
 
 //Subfunction
