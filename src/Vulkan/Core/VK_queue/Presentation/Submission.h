@@ -9,7 +9,7 @@ namespace vk::presentation{class Surface;}
 namespace vk{class Structure;}
 namespace vk::synchro::structure{class Fence;}
 namespace vk::synchro::structure{class Semaphore;}
-namespace vk::window{class GLFW;}
+namespace vk::window{class Window;}
 namespace vk::structure{class Command;}
 namespace vk::command::structure{class Set;}
 namespace vk::draw{class Graphical;}
@@ -39,7 +39,7 @@ private:
   vk::Structure* vk_struct;
   vk::presentation::Surface* vk_surface;
   vk::presentation::Swapchain* vk_swapchain;
-  vk::window::GLFW* vk_window;
+  vk::window::Window* vk_window;
   vk::draw::Graphical* vk_drawer;
   vk::synchro::Semaphore* vk_semaphore;
   vk::gui::Imgui* vk_imgui;

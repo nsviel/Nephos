@@ -4,7 +4,7 @@
 
 namespace vk{class Structure;}
 namespace vk::draw{class Graphical;}
-namespace vk::window{class GLFW;}
+namespace vk::window{class Window;}
 
 
 namespace vk::main{
@@ -24,7 +24,7 @@ public:
 
 private:
   vk::draw::Graphical* vk_drawer;
-  vk::window::GLFW* vk_window;
+  vk::window::Window* vk_window;
 };
 
 }

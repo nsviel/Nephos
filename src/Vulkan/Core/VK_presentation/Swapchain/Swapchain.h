@@ -2,15 +2,16 @@
 
 #include <vulkan/vulkan.h>
 
+namespace vk{class Structure;}
 namespace vk::device{class Physical;}
 namespace vk::draw{class Viewport;}
 namespace vk::presentation{class Frame;}
 namespace vk::renderpass{class Framebuffer;}
 namespace vk::presentation{class Surface;}
 namespace vk::synchro::structure{class Semaphore;}
-namespace vk{class Structure;}
 namespace vk::synchro{class Synchro;}
-namespace vk::window{class GLFW;}
+namespace vk::window{class Window;}
+namespace vk::window{class Event;}
 namespace vk::gui{class Imgui;}
 namespace vk::synchro{class Semaphore;}
 
@@ -46,7 +47,8 @@ private:
   vk::renderpass::Framebuffer* vk_framebuffer;
   vk::presentation::Surface* vk_surface;
   vk::synchro::Synchro* vk_synchro;
-  vk::window::GLFW* vk_window;
+  vk::window::Window* vk_window;
+  vk::window::Event* vk_event;
   vk::gui::Imgui* vk_imgui;
   vk::synchro::Semaphore* vk_semaphore;
 };

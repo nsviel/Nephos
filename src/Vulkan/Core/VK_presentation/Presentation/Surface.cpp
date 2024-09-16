@@ -10,7 +10,7 @@ Surface::Surface(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_window = new vk::window::GLFW(vk_struct);
+  this->vk_window = new vk::window::Window(vk_struct);
 
   //---------------------------
 }

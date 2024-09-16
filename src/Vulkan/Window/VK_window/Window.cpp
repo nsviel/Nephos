@@ -1,4 +1,4 @@
-#include "GLFW.h"
+#include "Window.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,41 +6,17 @@
 namespace vk::window{
 
 //Constructor / Destructor
-GLFW::GLFW(vk::Structure* vk_struct){
+Window::Window(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
 
   //---------------------------
 }
-GLFW::~GLFW(){}
+Window::~Window(){}
 
 //Main function
-void GLFW::init(){
-  //---------------------------
-
-  this->create_window();
-
-  //---------------------------
-}
-void GLFW::loop(){
-  //---------------------------
-
-  this->window_poll_event();
-  this->window_close_event();
-
-  //---------------------------
-}
-void GLFW::clean(){
-  //---------------------------
-
-  this->destroy_window();
-
-  //---------------------------
-}
-
-//Window function
-void GLFW::create_window(){
+void Window::create_window(){
   if(vk_struct->render.param.headless) return;
   //---------------------------
 
@@ -62,7 +38,7 @@ void GLFW::create_window(){
 
   //---------------------------
 }
-void GLFW::destroy_window(){
+void Window::destroy_window(){
   if(vk_struct->window.window.handle == nullptr) return;
   //---------------------------
 
@@ -71,7 +47,7 @@ void GLFW::destroy_window(){
 
   //---------------------------
 }
-void GLFW::create_surface(){
+void Window::create_surface(){
   if(vk_struct->window.window.handle == nullptr) return;
   //---------------------------
 
@@ -84,8 +60,8 @@ void GLFW::create_surface(){
   //---------------------------
 }
 
-//Sizing function
-void GLFW::update_window_dim(){
+//Subfunction
+void Window::update_window_dim(){
   if(vk_struct->window.window.handle == nullptr) return;
   //---------------------------
 
@@ -97,7 +73,7 @@ void GLFW::update_window_dim(){
 
   //---------------------------
 }
-bool GLFW::is_window_resized(){
+bool Window::is_window_resized(){
   //---------------------------
 
   int width, height;
@@ -110,7 +86,7 @@ bool GLFW::is_window_resized(){
   //---------------------------
   return false;
 }
-void GLFW::set_window_constraint_min(glm::vec2 constraint){
+void Window::set_window_constraint_min(glm::vec2 constraint){
   if(vk_struct->window.window.handle == nullptr) return;
   //---------------------------
 
@@ -118,7 +94,7 @@ void GLFW::set_window_constraint_min(glm::vec2 constraint){
 
   //---------------------------
 }
-void GLFW::set_window_constraint_max(glm::vec2 constraint){
+void Window::set_window_constraint_max(glm::vec2 constraint){
   if(vk_struct->window.window.handle == nullptr) return;
   //---------------------------
 
@@ -126,34 +102,7 @@ void GLFW::set_window_constraint_max(glm::vec2 constraint){
 
   //---------------------------
 }
-
-//Input function
-void GLFW::wait_event(){
-  if(vk_struct->window.window.handle == nullptr) return;
-  //---------------------------
-
-  glfwWaitEvents();
-
-  //---------------------------
-}
-void GLFW::window_close_event(){
-  if(vk_struct->window.window.handle == nullptr) return;
-  //---------------------------
-
-  bool window_closing = glfwWindowShouldClose(vk_struct->window.window.handle);
-  if(window_closing) *vk_struct->window.window.running = false;
-
-  //---------------------------
-}
-void GLFW::window_poll_event(){
-  if(vk_struct->window.window.handle == nullptr) return;
-  //---------------------------
-
-  glfwPollEvents();
-
-  //---------------------------
-}
-void GLFW::set_mouse_pose(glm::vec2 pose){
+void Window::set_mouse_pose(glm::vec2 pose){
   if(vk_struct->window.window.handle == nullptr) return;
   //---------------------------
 
@@ -161,7 +110,7 @@ void GLFW::set_mouse_pose(glm::vec2 pose){
 
   //---------------------------
 }
-glm::vec2 GLFW::get_mouse_pose(){
+glm::vec2 Window::get_mouse_pose(){
   if(vk_struct->window.window.handle == nullptr) return glm::vec2(0, 0);
   //---------------------------
 
@@ -172,7 +121,7 @@ glm::vec2 GLFW::get_mouse_pose(){
   //---------------------------
   return pos;
 }
-glm::vec2 GLFW::get_dimension(){
+glm::vec2 Window::get_dimension(){
   return vk_struct->window.window.dimension;
 }
 

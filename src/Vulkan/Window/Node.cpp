@@ -11,7 +11,8 @@ Node::Node(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_window = new vk::window::GLFW(vk_struct);
+  this->vk_window = new vk::window::Window(vk_struct);
+  this->vk_event = new vk::window::Event(vk_struct);
 
   //---------------------------
 }
@@ -21,21 +22,22 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  vk_window->init();
+  vk_window->create_window();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  vk_window->loop();
+  vk_event->window_poll_event();
+  vk_event->window_close_event();
 
   //---------------------------
 }
 void Node::clean(){
   //---------------------------
 
-  vk_window->clean();
+  vk_window->destroy_window();
 
   //---------------------------
 }

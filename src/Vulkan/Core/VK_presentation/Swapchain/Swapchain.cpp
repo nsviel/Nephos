@@ -17,7 +17,8 @@ Swapchain::Swapchain(vk::Structure* vk_struct){
   this->vk_framebuffer = new vk::renderpass::Framebuffer(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
-  this->vk_window = new vk::window::GLFW(vk_struct);
+  this->vk_window = new vk::window::Window(vk_struct);
+  this->vk_event = new vk::window::Event(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
 
@@ -56,7 +57,7 @@ void Swapchain::recreate_swapchain(){
   //Pause if window is minimized
   glm::vec2 dim = vk_struct->window.window.dimension;
   while(dim == glm::vec2(0, 0)){
-    vk_window->wait_event();
+    vk_event->wait_event();
   }
 
   //Clean old swapchain

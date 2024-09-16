@@ -8,7 +8,7 @@ namespace vk{class Structure;}
 namespace vk::gui{class Imgui;}
 namespace vk::image{class Texture;}
 namespace vk::image{class Screenshot;}
-namespace vk::window{class GLFW;}
+namespace vk::window{class Window;}
 namespace vk::data{class Data;}
 namespace utl::media{class Image;}
 namespace utl::base{class Data;}
@@ -42,7 +42,7 @@ private:
   vk::gui::Imgui* vk_imgui;
   vk::image::Texture* vk_texture;
   vk::image::Screenshot* vk_screenshot;
-  vk::window::GLFW* vk_window;
+  vk::window::Window* vk_window;
   vk::data::Data* vk_data;
 };
 

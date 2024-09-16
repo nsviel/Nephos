@@ -17,7 +17,7 @@ Imgui::Imgui(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_pool = new vk::instance::Pool(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
-  this->vk_window = new vk::window::GLFW(vk_struct);
+  this->vk_window = new vk::window::Window(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
   this->vk_font = new vk::gui::Font(vk_struct);
   this->vk_docking = new vk::gui::Docking();

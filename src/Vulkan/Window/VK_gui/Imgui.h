@@ -9,7 +9,7 @@ namespace vk{class Structure;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::image{class Texture;}
 namespace vk::gui{class Font;}
-namespace vk::window{class GLFW;}
+namespace vk::window{class Window;}
 namespace vk::gui{class Docking;}
 namespace utl::media{class Image;}
 
@@ -49,7 +49,7 @@ private:
   vk::instance::Pool* vk_pool;
   vk::presentation::Surface* vk_surface;
   vk::image::Texture* vk_texture;
-  vk::window::GLFW* vk_window;
+  vk::window::Window* vk_window;
   vk::gui::Font* vk_font;
   vk::gui::Docking* vk_docking;
 };

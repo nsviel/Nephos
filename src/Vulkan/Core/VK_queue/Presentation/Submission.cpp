@@ -13,7 +13,7 @@ Submission::Submission(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
-  this->vk_window = new vk::window::GLFW(vk_struct);
+  this->vk_window = new vk::window::Window(vk_struct);
   this->vk_drawer = new vk::draw::Graphical(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
