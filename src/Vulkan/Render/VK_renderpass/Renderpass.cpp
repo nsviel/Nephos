@@ -1,4 +1,4 @@
-#include "Render.h"
+#include "Renderpass.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::render{
 
 //Constructor / Destructor
-Render::Render(vk::Structure* vk_struct){
+Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -16,10 +16,10 @@ Render::Render(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Render::~Render(){}
+Renderpass::~Renderpass(){}
 
 //Main function
-void Render::init(){
+void Renderpass::init(){
   //---------------------------
 
   rp_scene->init();

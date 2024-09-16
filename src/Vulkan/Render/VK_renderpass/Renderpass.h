@@ -8,12 +8,12 @@ namespace vk::render::onscreen{class Renderpass;}
 
 namespace vk::render{
 
-class Render
+class Renderpass
 {
 public:
   //Constructor / Destructor
-  Render(vk::Structure* vk_struct);
-  ~Render();
+  Renderpass(vk::Structure* vk_struct);
+  ~Renderpass();
 
 public:
   //Main function
