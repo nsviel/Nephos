@@ -117,10 +117,10 @@ void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
 void Data::descriptor_vk_object(utl::base::Data& data, vk::binding::structure::Binding& binding){
   //---------------------------
 
-  binding.vec_descriptor.push_back(vk::binding::uniform_mvp());
+  binding.vec_descriptor.push_back(vk::pipeline::topology::uniform_mvp());
 
   if(data.topology.type == utl::topology::POINT){
-    binding.vec_descriptor.push_back(vk::binding::uniform_point_size());
+    binding.vec_descriptor.push_back(vk::pipeline::topology::uniform_point_size());
   }
 
   vk_binding->create_binding(binding);

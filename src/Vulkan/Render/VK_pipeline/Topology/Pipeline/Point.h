@@ -6,14 +6,14 @@ namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 
 
-namespace vk::render::pipeline{
+namespace vk::pipeline::topology{
 
-class Triangle
+class Point
 {
 public:
   //Constructor / Destructor
-  Triangle(vk::Structure* vk_struct);
-  ~Triangle();
+  Point(vk::Structure* vk_struct);
+  ~Point();
 
 public:
   //Main function

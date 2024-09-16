@@ -6,7 +6,7 @@ namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 
 
-namespace vk::render::pipeline{
+namespace vk::pipeline::topology{
 
 class Line
 {

@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::render::pipeline{
+namespace vk::pipeline::edl{
 
 //Constructor / Destructor
 EDL::EDL(vk::Structure* vk_struct){
@@ -59,9 +59,9 @@ void EDL::set_shader(vk::structure::Pipeline& pipeline){
 void EDL::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.binding.vec_descriptor.push_back(vk::binding::sampler_color());
-  pipeline.binding.vec_descriptor.push_back(vk::binding::sampler_depth());
-  pipeline.binding.vec_descriptor.push_back(vk::binding::uniform_edl());
+  pipeline.binding.vec_descriptor.push_back(vk::pipeline::edl::sampler_color());
+  pipeline.binding.vec_descriptor.push_back(vk::pipeline::edl::sampler_depth());
+  pipeline.binding.vec_descriptor.push_back(vk::pipeline::edl::uniform_edl());
 
   //---------------------------
 }

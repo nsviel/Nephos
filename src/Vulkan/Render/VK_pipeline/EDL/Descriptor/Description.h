@@ -6,7 +6,7 @@
 namespace vk::binding::structure{class Descriptor;}
 
 
-namespace vk::binding{
+namespace vk::pipeline::edl{
 
 //Uniform
 vk::binding::structure::Descriptor uniform_mvp();

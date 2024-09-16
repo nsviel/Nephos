@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::binding{
+namespace vk::pipeline::edl{
 
 //Uniform
 vk::binding::structure::Descriptor uniform_mvp(){

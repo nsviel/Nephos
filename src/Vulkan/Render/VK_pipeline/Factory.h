@@ -1,11 +1,10 @@
 #pragma once
 
 namespace vk{class Structure;}
-namespace vk::render::pipeline{class Canvas;}
-namespace vk::render::pipeline{class Line;}
-namespace vk::render::pipeline{class Point;}
-namespace vk::render::pipeline{class Triangle;}
-namespace vk::render::pipeline{class EDL;}
+namespace vk::pipeline::topology{class Line;}
+namespace vk::pipeline::topology{class Point;}
+namespace vk::pipeline::topology{class Triangle;}
+namespace vk::pipeline::edl{class EDL;}
 namespace vk::structure{class Subpass;}
 
 
@@ -26,10 +25,10 @@ public:
   void add_pipeline_edl(vk::structure::Subpass& subpass);
 
 private:
-  vk::render::pipeline::Line* pipe_line;
-  vk::render::pipeline::Point* pipe_point;
-  vk::render::pipeline::Triangle* pipe_triangle;
-  vk::render::pipeline::EDL* pipe_edl;
+  vk::pipeline::topology::Line* pipe_line;
+  vk::pipeline::topology::Point* pipe_point;
+  vk::pipeline::topology::Triangle* pipe_triangle;
+  vk::pipeline::edl::EDL* pipe_edl;
 };
 
 }
