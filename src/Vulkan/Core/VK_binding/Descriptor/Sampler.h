@@ -6,6 +6,7 @@
 namespace vk{class Structure;}
 namespace vk::binding::structure{class Descriptor;}
 namespace vk::binding::structure{class Binding;}
+namespace vk::binding::structure{class Layout;}
 namespace vk::binding::structure{class Sampler;}
 namespace vk::structure{class Image;}
 
@@ -21,7 +22,7 @@ public:
 
 public:
   //Main function
-  void create_sampler(vk::binding::structure::Binding& binding, vk::binding::structure::Descriptor& descriptor);
+  void create_sampler(vk::binding::structure::Layout& layout, vk::binding::structure::Descriptor& descriptor);
   void update_sampler(vk::binding::structure::Binding& binding, vk::structure::Image* image);
 
   //Subfunction

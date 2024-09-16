@@ -30,6 +30,8 @@ void Descriptor_set::allocate(vk::binding::structure::Binding& binding){
     throw std::runtime_error("failed to allocate descriptor sets!");
   }
 
+  this->update(binding);
+
   //---------------------------
 }
 void Descriptor_set::bind(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set){

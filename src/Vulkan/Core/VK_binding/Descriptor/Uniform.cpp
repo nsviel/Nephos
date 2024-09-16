@@ -18,7 +18,7 @@ Uniform::Uniform(vk::Structure* vk_struct){
 Uniform::~Uniform(){}
 
 //Uniform creation
-void Uniform::create_uniform(vk::binding::structure::Binding& binding, vk::binding::structure::Descriptor& descriptor){
+void Uniform::create_uniform(vk::binding::structure::Layout& layout, vk::binding::structure::Descriptor& descriptor){
   //---------------------------
 
   vk::binding::structure::Uniform* uniform = new vk::binding::structure::Uniform();
@@ -30,14 +30,14 @@ void Uniform::create_uniform(vk::binding::structure::Binding& binding, vk::bindi
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
   vkMapMemory(vk_struct->core.device.handle, uniform->mem, 0, uniform->size, 0, &uniform->mapped);
 
-  binding.layout.map_uniform[descriptor.name] = uniform;
+  layout.map_uniform[descriptor.name] = uniform;
 
   //---------------------------
 }
-void Uniform::clean_uniform(vk::binding::structure::Binding& binding){
+void Uniform::clean_uniform(vk::binding::structure::Layout& layout){
   //---------------------------
 
-  for(auto& [name, uniform] : binding.layout.map_uniform){
+  for(auto& [name, uniform] : layout.map_uniform){
     vkDestroyBuffer(vk_struct->core.device.handle, uniform->buffer, nullptr);
     vkFreeMemory(vk_struct->core.device.handle, uniform->mem, nullptr);
   }

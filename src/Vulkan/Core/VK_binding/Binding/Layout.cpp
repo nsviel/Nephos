@@ -10,7 +10,9 @@ Layout::Layout(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-
+  this->vk_uniform = new vk::binding::Uniform(vk_struct);
+  this->vk_sampler = new vk::binding::Sampler(vk_struct);
+  
   //---------------------------
 }
 Layout::~Layout(){}
@@ -22,6 +24,7 @@ void Layout::create_layout(vk::binding::structure::Layout& layout){
   std::vector<VkDescriptorSetLayoutBinding> vec_binding;
   this->make_required_binding(layout, vec_binding);
   this->create_layout_object(layout, vec_binding);
+  this->create_descriptor(layout);
 
   //---------------------------
 }
@@ -68,6 +71,26 @@ void Layout::create_layout_object(vk::binding::structure::Layout& layout, std::v
   }
 
   layout.handle = descriptor_layout;
+
+  //---------------------------
+}
+void Layout::create_descriptor(vk::binding::structure::Layout& layout){
+  //---------------------------
+
+  for(auto& descriptor : layout.vec_descriptor){
+
+    switch(descriptor.type){
+      case VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER:{
+        vk_sampler->create_sampler(layout, descriptor);
+        break;
+      }
+      case VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER:{
+        vk_uniform->create_uniform(layout, descriptor);
+        break;
+      }
+    }
+
+  }
 
   //---------------------------
 }

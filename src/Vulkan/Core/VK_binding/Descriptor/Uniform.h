@@ -2,13 +2,13 @@
 
 #include <Vulkan/Core/VK_binding/Structure/Binding.h>
 #include <iostream>
-#include <cstring> 
+#include <cstring>
 #include <string>
 
 namespace vk::memory{class Allocator;}
 namespace vk{class Structure;}
 namespace vk::binding::structure{class Descriptor;}
-namespace vk::binding::structure{class Binding;}
+namespace vk::binding::structure{class Layout;}
 namespace vk::binding::structure{class Uniform;}
 
 
@@ -23,16 +23,16 @@ public:
 
 public:
   //Main function
-  void create_uniform(vk::binding::structure::Binding& binding, vk::binding::structure::Descriptor& descriptor);
-  void clean_uniform(vk::binding::structure::Binding& binding);
+  void create_uniform(vk::binding::structure::Layout& layout, vk::binding::structure::Descriptor& descriptor);
+  void clean_uniform(vk::binding::structure::Layout& layout);
 
   //Subfunction
   template <typename T>
-  void update_uniform(std::string name, vk::binding::structure::Binding& binding, T value){
+  void update_uniform(std::string name, vk::binding::structure::Layout& layout, T value){
     //---------------------------
 
-    auto it = binding.layout.map_uniform.find(name);
-    if(it != binding.layout.map_uniform.end()){
+    auto it = layout.map_uniform.find(name);
+    if(it != layout.map_uniform.end()){
       vk::binding::structure::Uniform* uniform = it->second;
       std::memcpy(uniform->mapped, &value, sizeof(value));
     }
@@ -41,7 +41,7 @@ public:
       std::cout << "[error] Update uniform -> name not recognized \033[1;31m" << name << "\033[0m" << std::endl;
       std::cout << "Existing uniform names: " << std::endl;
 
-      for(auto& [name, uniform] : binding.layout.map_uniform){
+      for(auto& [name, uniform] : layout.map_uniform){
         std::cout << "\033[1;32m" << name << "\033[0m" << std::endl;
       }
 

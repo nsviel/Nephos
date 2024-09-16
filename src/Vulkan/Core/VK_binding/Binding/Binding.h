@@ -29,8 +29,6 @@ public:
   void create_binding(vk::binding::structure::Binding& binding);
   void clean_binding(vk::binding::structure::Binding& binding);
 
-  //Subfunction
-  void create_descriptor(vk::binding::structure::Binding& binding);
 
 private:
   vk::Structure* vk_struct;

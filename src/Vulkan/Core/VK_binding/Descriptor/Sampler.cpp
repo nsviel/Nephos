@@ -17,7 +17,7 @@ Sampler::Sampler(vk::Structure* vk_struct){
 Sampler::~Sampler(){}
 
 //Main function
-void Sampler::create_sampler(vk::binding::structure::Binding& binding, vk::binding::structure::Descriptor& descriptor){
+void Sampler::create_sampler(vk::binding::structure::Layout& layout, vk::binding::structure::Descriptor& descriptor){
   //---------------------------
 
   vk::binding::structure::Sampler* sampler = new vk::binding::structure::Sampler();
@@ -25,7 +25,7 @@ void Sampler::create_sampler(vk::binding::structure::Binding& binding, vk::bindi
   sampler->binding = descriptor.binding;
   sampler->type = descriptor.type;
 
-  binding.layout.map_sampler[descriptor.name] = sampler;
+  layout.map_sampler[descriptor.name] = sampler;
 
   //---------------------------
 }

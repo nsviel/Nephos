@@ -65,7 +65,7 @@ void EDL::update_binding(vk::structure::Subpass& subpass){
   edl_struct.tex_width = vk_struct->window.window.dimension.x;
   edl_struct.tex_height = vk_struct->window.window.dimension.y;
 
-  vk_uniform->update_uniform("EDL_param", pipeline->binding, edl_struct);
+  vk_uniform->update_uniform("EDL_param", pipeline->binding.layout, edl_struct);
 
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
   vk_descriptor_set->bind(subpass.command_buffer->handle, pipeline, pipeline->binding.descriptor_set.handle);

@@ -29,9 +29,12 @@ public:
   //Subfunction
   void make_required_binding(vk::binding::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
   void create_layout_object(vk::binding::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
+  void create_descriptor(vk::binding::structure::Layout& layout);
 
 private:
   vk::Structure* vk_struct;
+  vk::binding::Uniform* vk_uniform;
+  vk::binding::Sampler* vk_sampler;
 };
 
 }
