@@ -1,32 +1,25 @@
 #pragma once
 
 namespace vk{class Structure;}
-namespace vk::renderpass{class Renderpass;}
-namespace vk::binding{class Uniform;}
-namespace vk::binding{class Sampler;}
-namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
-namespace vk::render::edl{class Shader;}
-namespace vk::draw{class Drawer;}
 namespace vk::render::pipeline{class Factory;}
 namespace vk::pipeline{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor_set;}
 namespace vk::binding{class Uniform;}
-namespace vk::binding{class Sampler;}
 namespace vk::draw{class Drawer;}
-namespace vk::render::edl{class Shader;}
 namespace vk::structure{class Subpass;}
+namespace utl::base{class Data;}
 
 
-namespace vk::render::offscreen{
+namespace vk::render::geometry{
 
-class EDL
+class Scene
 {
 public:
   //Constructor / Destructor
-  EDL(vk::Structure* vk_struct);
-  ~EDL();
+  Scene(vk::Structure* vk_struct);
+  ~Scene();
 
 public:
   //Main function
@@ -34,18 +27,19 @@ public:
   void draw_subpass(vk::structure::Subpass& subpass);
 
   //Subfunction
-  void update_binding(vk::structure::Subpass& subpass);
-  void draw_canvas(vk::structure::Subpass& subpass);
+  void cmd_draw_point(vk::structure::Subpass& subpass);
+  void cmd_draw_line(vk::structure::Subpass& subpass);
+  void cmd_draw_triangle(vk::structure::Subpass& subpass);
+  bool check_data(utl::base::Data& data, int typology);
 
 private:
   vk::Structure* vk_struct;
-  vk::binding::Uniform* vk_uniform;
-  vk::binding::Sampler* vk_sampler;
-  vk::draw::Drawer* vk_drawer;
   vk::render::pipeline::Factory* vk_factory;
+  vk::binding::Descriptor_set* vk_descriptor_set;
+  vk::binding::Uniform* vk_uniform;
+  vk::draw::Drawer* vk_drawer;
   vk::pipeline::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
-  vk::binding::Descriptor_set* vk_descriptor_set;
 };
 
 }

@@ -2,11 +2,10 @@
 
 namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
-namespace vk::render::offscreen{class Scene;}
-namespace vk::render::offscreen{class EDL;}
+namespace vk::render::geometry{class Scene;}
 
 
-namespace vk::render::offscreen{
+namespace vk::render::geometry{
 
 class Renderpass
 {
@@ -21,8 +20,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::render::offscreen::Scene* vk_scene;
-  vk::render::offscreen::EDL* vk_edl;
+  vk::render::geometry::Scene* vk_scene;
 };
 
 }

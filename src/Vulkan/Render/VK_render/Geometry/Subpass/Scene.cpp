@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::render::offscreen{
+namespace vk::render::geometry{
 
 //Constructor / Destructor
 Scene::Scene(vk::Structure* vk_struct){
