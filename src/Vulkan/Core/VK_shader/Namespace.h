@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Vulkan/VK_shader/File.h>
-#include <Vulkan/VK_shader/Reloader.h>
+#include <Vulkan/Core/VK_shader/File.h>
+#include <Vulkan/Core/VK_shader/Reloader.h>

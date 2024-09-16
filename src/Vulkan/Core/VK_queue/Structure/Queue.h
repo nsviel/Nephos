@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Vulkan/VK_pool/Structure/Command_buffer.h>
-#include <Vulkan/VK_queue/Manager.h>
+#include <Vulkan/Core/VK_pool/Structure/Command_buffer.h>
+#include <Vulkan/Core/VK_queue/Manager.h>
 #include <vulkan/vulkan.h>
 #include <vector>
 #include <string>

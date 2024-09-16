@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Vulkan/VK_pool/Structure/Fence.h>
-#include <Vulkan/VK_pool/Structure/Semaphore.h>
-#include <Vulkan/VK_pool/Structure/Descriptor.h>
+#include <Vulkan/Core/VK_pool/Structure/Fence.h>
+#include <Vulkan/Core/VK_pool/Structure/Semaphore.h>
+#include <Vulkan/Core/VK_pool/Structure/Descriptor.h>
 
 
 namespace vk::pool::structure{

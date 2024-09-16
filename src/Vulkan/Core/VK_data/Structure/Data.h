@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Vulkan/VK_image/Structure/Texture.h>
-#include <Vulkan/VK_data/Structure/Object.h>
+#include <Vulkan/Core/VK_image/Structure/Texture.h>
+#include <Vulkan/Core/VK_data/Structure/Object.h>
 #include <memory>
 #include <list>
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Vulkan/VK_pool/Structure/Query.h>
-#include <Vulkan/VK_synchronization/Structure/Fence.h>
+#include <Vulkan/Core/VK_pool/Structure/Query.h>
+#include <Vulkan/Core/VK_synchronization/Structure/Fence.h>
 #include <vulkan/vulkan.h>
 #include <string>
 #include <mutex>

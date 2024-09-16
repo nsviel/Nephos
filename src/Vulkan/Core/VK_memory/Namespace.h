@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Vulkan/VK_memory/Allocator.h>
-#include <Vulkan/VK_memory/Transfer.h>
+#include <Vulkan/Core/VK_memory/Allocator.h>
+#include <Vulkan/Core/VK_memory/Transfer.h>

@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Vulkan/VK_binding/Descriptor/Factory.h>
-#include <Vulkan/VK_binding/Descriptor/Sampler.h>
-#include <Vulkan/VK_binding/Descriptor/Uniform.h>
+#include <Vulkan/Core/VK_binding/Descriptor/Factory.h>
+#include <Vulkan/Core/VK_binding/Descriptor/Sampler.h>
+#include <Vulkan/Core/VK_binding/Descriptor/Uniform.h>

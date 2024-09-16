@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Vulkan/VK_renderpass/Structure/Enum.h>
-#include <Vulkan/VK_renderpass/Renderpass/Subpass.h>
-#include <Vulkan/VK_pipeline/Structure/Pipeline.h>
-#include <Vulkan/VK_renderpass/Structure/Attachment.h>
+#include <Vulkan/Core/VK_renderpass/Structure/Enum.h>
+#include <Vulkan/Core/VK_renderpass/Renderpass/Subpass.h>
+#include <Vulkan/Core/VK_pipeline/Structure/Pipeline.h>
+#include <Vulkan/Core/VK_renderpass/Structure/Attachment.h>
 #include <vulkan/vulkan.h>
 #include <unordered_map>
 #include <functional>

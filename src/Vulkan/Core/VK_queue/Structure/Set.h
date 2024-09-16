@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_queue/Structure/Queue.h>
+#include <Vulkan/Core/VK_queue/Structure/Queue.h>
 #include <vulkan/vulkan.h>
 
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_device/Structure/Physical.h>
+#include <Vulkan/Core/VK_device/Structure/Physical.h>
 #include <vulkan/vulkan.h>
 #include <vector>
 

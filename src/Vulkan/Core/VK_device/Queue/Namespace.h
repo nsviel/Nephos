@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Vulkan/VK_device/Queue/Manager.h>
-#include <Vulkan/VK_device/Queue/Assignment.h>
+#include <Vulkan/Core/VK_device/Queue/Manager.h>
+#include <Vulkan/Core/VK_device/Queue/Assignment.h>

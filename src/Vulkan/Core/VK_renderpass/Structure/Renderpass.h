@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Vulkan/VK_renderpass/Structure/Subpass.h>
-#include <Vulkan/VK_renderpass/Structure/Framebuffer.h>
+#include <Vulkan/Core/VK_renderpass/Structure/Subpass.h>
+#include <Vulkan/Core/VK_renderpass/Structure/Framebuffer.h>
 #include <vulkan/vulkan.h>
 #include <vector>
 #include <string>

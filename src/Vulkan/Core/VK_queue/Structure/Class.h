@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Vulkan/VK_queue/Transfer/Thread.h>
-#include <Vulkan/VK_queue/Graphics/Thread.h>
-#include <Vulkan/VK_queue/Presentation/Thread.h>
+#include <Vulkan/Core/VK_queue/Transfer/Thread.h>
+#include <Vulkan/Core/VK_queue/Graphics/Thread.h>
+#include <Vulkan/Core/VK_queue/Presentation/Thread.h>
 
 
 namespace vk::queue::structure{

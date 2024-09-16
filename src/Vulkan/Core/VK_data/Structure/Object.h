@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Vulkan/VK_data/Structure/Buffer.h>
-#include <Vulkan/VK_image/Structure/Texture.h>
-#include <Vulkan/VK_binding/Structure/Binding.h>
+#include <Vulkan/Core/VK_data/Structure/Buffer.h>
+#include <Vulkan/Core/VK_image/Structure/Texture.h>
+#include <Vulkan/Core/VK_binding/Structure/Binding.h>
 #include <Utility/Base/Data/Data.h>
 #include <Utility/Base/Data/Pose.h>
 #include <memory>
