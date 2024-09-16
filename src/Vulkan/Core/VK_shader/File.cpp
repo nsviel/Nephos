@@ -40,13 +40,13 @@ std::vector<char> File::read_file(const std::string& path){
   //---------------------------
   return buffer;
 }
-void File::recompile_shader(utl::shader::Info* shader_info){
+void File::recompile_shader(utl::shader::Info& shader_info){
   //---------------------------
 
   //Compile shader from GLSL to SPIR-V
-  if(shader_info->with_recompilation){
-    this->run_recompilation(shader_info->path_glsl_vs, shader_info->path_spir_vs);
-    this->run_recompilation(shader_info->path_glsl_fs, shader_info->path_spir_fs);
+  if(shader_info.with_recompilation){
+    this->run_recompilation(shader_info.path_glsl_vs, shader_info.path_spir_vs);
+    this->run_recompilation(shader_info.path_glsl_fs, shader_info.path_spir_fs);
   }
 
   //---------------------------

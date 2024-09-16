@@ -39,7 +39,12 @@ public:
   void set_mouse_pose(glm::vec2 pos);
   void make_screenshot();
 
+  //Camera
+  void set_mat_view(glm::mat4 mat);
+  void set_mat_projection(glm::mat4 mat);
+
 private:
+  vk::Structure* vk_struct;
   vk::gui::Imgui* vk_imgui;
   vk::image::Texture* vk_texture;
   vk::image::Screenshot* vk_screenshot;

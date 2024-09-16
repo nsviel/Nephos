@@ -10,6 +10,7 @@ namespace vk{
 Interface::Interface(vk::Structure* vk_struct){
   //---------------------------
 
+  this->vk_struct = vk_struct;
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_window = new vk::window::Window(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
@@ -50,6 +51,14 @@ void Interface::set_mouse_pose(glm::vec2 pose){
 }
 void Interface::make_screenshot(){
   vk_screenshot->make_screenshot();
+}
+
+//Camera
+void Interface::set_mat_view(glm::mat4 mat){
+  vk_struct->core.presentation.view = mat;
+}
+void Interface::set_mat_projection(glm::mat4 mat){
+  vk_struct->core.presentation.projection = mat;
 }
 
 }

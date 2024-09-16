@@ -15,7 +15,7 @@ struct Info{
   std::string name = "";
   std::vector<vk::attribut::ID> vec_attribut;
   utl::topology::Type topology = utl::topology::POINT;
-  utl::shader::Info* shader;
+  utl::shader::Info shader;
 
   //---------------------------
 };

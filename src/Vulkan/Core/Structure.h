@@ -9,6 +9,7 @@
 #include <Vulkan/Core/VK_presentation/Structure/Viewport.h>
 #include <Vulkan/Core/VK_command/Structure/Profiler.h>
 #include <Vulkan/Core/VK_pipeline/Structure/Structure.h>
+#include <Vulkan/Core/VK_presentation/Structure/Structure.h>
 
 
 namespace vk::core{
@@ -25,6 +26,7 @@ struct Structure{
   vk::queue::structure::Class queue;
   vk::profiler::Structure profiler;
   vk::pipeline::Structure pipeline;
+  vk::presentation::Structure presentation;
 
   //---------------------------
 };

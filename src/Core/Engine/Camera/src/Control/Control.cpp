@@ -2,6 +2,7 @@
 
 #include <Engine/Camera/Namespace.h>
 #include <Data/Element/Namespace.h>
+#include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -11,6 +12,9 @@ namespace cam{
 Control::Control(cam::Node* node_camera){
   //---------------------------
 
+  vk::Node* node_vulkan = node_camera->get_node_vulkan();
+
+  this->vk_interface = node_vulkan->get_vk_interface();
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_perspective = new cam::projection::Perspective(node_camera);
 
@@ -118,6 +122,9 @@ void Control::update_pose(std::shared_ptr<dat::base::Set> set){
 void Control::update_pose(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Pose& pose = *entity->pose;
   //----------------------------
+
+  vk_interface->set_mat_view(compute_camera_view());
+  vk_interface->set_mat_projection(compute_camera_proj());
 
   //Update own pose
   this->compute_camera_mvp(pose);
