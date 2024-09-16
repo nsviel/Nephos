@@ -56,7 +56,7 @@ void Renderer::engine_texture(){
   //---------------------------
 
   //Retrieve rendering texture
-  ImTextureID texture = vk_interface->query_engine_texture();
+  ImTextureID texture = vk_interface->query_render_texture();
   if(texture == 0) return;
 
   //Display at window dimension

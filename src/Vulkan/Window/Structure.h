@@ -10,7 +10,6 @@ struct Structure{
   //---------------------------
 
   vk::structure::Window window;
-  vk::structure::Panel panel;
   vk::gui::Structure gui;
 
   //---------------------------

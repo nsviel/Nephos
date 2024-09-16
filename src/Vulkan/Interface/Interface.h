@@ -6,6 +6,7 @@
 
 namespace vk{class Structure;}
 namespace vk::gui{class Imgui;}
+namespace vk::gui{class Texture;}
 namespace vk::image{class Texture;}
 namespace vk::image{class Screenshot;}
 namespace vk::window{class Window;}
@@ -26,11 +27,11 @@ public:
 
 public:
   //Data function
-  ImTextureID query_engine_texture();
+  ImTextureID query_render_texture();
   void insert_data(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose);
   void remove_data(utl::base::Data& data);
   void insert_texture(std::shared_ptr<utl::media::Image> utl_image);
-  void load_texture(std::shared_ptr<utl::media::Image> utl_image);
+  void insert_gui_texture(std::shared_ptr<utl::media::Image> utl_image);
 
   //Window function
   glm::vec2 get_mouse_pose();
@@ -44,6 +45,7 @@ private:
   vk::image::Screenshot* vk_screenshot;
   vk::window::Window* vk_window;
   vk::data::Data* vk_data;
+  vk::gui::Texture* vk_texgui;
 };
 
 }
