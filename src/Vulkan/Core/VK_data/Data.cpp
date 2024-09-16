@@ -120,7 +120,7 @@ void Data::descriptor_vk_object(utl::base::Data& data, vk::binding::structure::B
   binding.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_mvp());
 
   if(data.topology.type == utl::topology::POINT){
-    binding.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_point_size());
+    //binding.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_point_size());
   }
 
   vk_binding->create_binding(binding);
