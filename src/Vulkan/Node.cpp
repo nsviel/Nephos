@@ -12,7 +12,7 @@ Node::Node(bool* running){
 
   this->vk_struct = new vk::Structure(running);
   this->vk_core = new vk::core::Node(vk_struct);
-  this->vk_render = new vk::render::Render(vk_struct);
+  this->vk_render = new vk::render::Node(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
@@ -37,7 +37,7 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  vk_core->loop();
+  vk_render->loop();
   vk_window->loop();
 
   //---------------------------

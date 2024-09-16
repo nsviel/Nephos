@@ -9,7 +9,7 @@ namespace vk::gui{class Imgui;}
 namespace vk::image{class Texture;}
 namespace vk::synchro{class Synchro;}
 namespace vk::image{class Screenshot;}
-namespace vk::render{class Render;}
+namespace vk::render{class Node;}
 namespace vk::window{class GLFW;}
 namespace vk::data{class Data;}
 
@@ -32,14 +32,14 @@ public:
   inline vk::Structure* get_vk_struct(){return vk_struct;}
   inline vk::gui::Imgui* get_vk_imgui(){return vk_imgui;}
   inline vk::image::Texture* get_vk_texture(){return vk_texture;}
-  inline vk::render::Render* get_vk_render(){return vk_render;}
+
   inline vk::image::Screenshot* get_vk_screenshot(){return vk_screenshot;}
   inline vk::window::GLFW* get_vk_window(){return vk_window;}
   inline vk::data::Data* get_vk_data(){return vk_data;}
 
 private:
   vk::Structure* vk_struct;
-  vk::render::Render* vk_render;
+  vk::render::Node* vk_render;
   vk::core::Node* vk_core;
   vk::gui::Imgui* vk_imgui;
   vk::image::Texture* vk_texture;

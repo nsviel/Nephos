@@ -31,9 +31,7 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->vk_allocator = new vk::command::Allocator(vk_struct);
   this->vk_queue = new vk::queue::Manager(vk_struct);
-  this->vk_profiler = new vk::main::Profiler(vk_struct);
-  this->vk_drawer = new vk::draw::Graphical(vk_struct);
-  
+
   //---------------------------
 }
 Node::~Node(){}
@@ -59,14 +57,6 @@ void Node::init(){
   vk_renderpass->init();
   vk_imgui->init();
   vk_semaphore->init_pool();
-
-  //---------------------------
-}
-void Node::loop(){
-  //---------------------------
-
-  vk_profiler->clear();
-  vk_drawer->draw_frame();
 
   //---------------------------
 }
