@@ -41,8 +41,13 @@ struct Object{
   //Binding
   std::list< std::shared_ptr<vk::structure::Texture> > list_vk_texture;
   VkCommandBuffer command_buffer_secondary = VK_NULL_HANDLE;
-  vk::binding::structure::Binding binding;
   vk::structure::Buffer_set buffer;
+
+
+
+
+  vk::binding::structure::Binding binding;
+  vk::binding::structure::Descriptor_set descriptor_set;
 
   //---------------------------
 };

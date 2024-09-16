@@ -11,7 +11,7 @@ Node::Node(bool* running){
   //---------------------------
 
   this->vk_struct = new vk::Structure(running);
-  this->vk_engine = vk_struct->render.param.headless ? static_cast<vk::main::Engine*>(new vk::main::Headless(vk_struct)) : static_cast<vk::main::Engine*>(new vk::main::Graphical(vk_struct));
+  this->vk_core = new vk::core::Node(vk_struct);
   this->vk_render = new vk::render::Render(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
@@ -30,14 +30,14 @@ void Node::init(){
 
   vk_window->init();
   vk_render->init();
-  vk_engine->init();
+  vk_core->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  vk_engine->loop();
+  vk_core->loop();
   vk_window->loop();
 
   //---------------------------
@@ -46,7 +46,7 @@ void Node::clean(){
   //---------------------------
 
   vk_synchro->wait_idle_and_pause();
-  vk_engine->clean();
+  vk_core->clean();
   vk_window->clean();
 
   //---------------------------

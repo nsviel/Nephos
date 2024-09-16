@@ -4,7 +4,7 @@
 
 namespace utl{class Node;}
 namespace vk{class Structure;}
-namespace vk::main{class Engine;}
+namespace vk::core{class Node;}
 namespace vk::gui{class Imgui;}
 namespace vk::image{class Texture;}
 namespace vk::synchro{class Synchro;}
@@ -40,7 +40,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::render::Render* vk_render;
-  vk::main::Engine* vk_engine;
+  vk::core::Node* vk_core;
   vk::gui::Imgui* vk_imgui;
   vk::image::Texture* vk_texture;
   vk::synchro::Synchro* vk_synchro;
