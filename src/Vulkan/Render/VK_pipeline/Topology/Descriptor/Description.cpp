@@ -7,10 +7,10 @@
 namespace vk::pipeline::topology{
 
 //Uniform
-vk::binding::structure::Descriptor uniform_mvp(){
+vk::descriptor::structure::Descriptor uniform_mvp(){
   //---------------------------
 
-  vk::binding::structure::Descriptor descriptor;
+  vk::descriptor::structure::Descriptor descriptor;
   descriptor.name = "mvp";
   descriptor.size = sizeof(glm::mat4);
   descriptor.binding = vk::uniform::MVP;
@@ -20,10 +20,10 @@ vk::binding::structure::Descriptor uniform_mvp(){
   //---------------------------
   return descriptor;
 }
-vk::binding::structure::Descriptor uniform_mvp_str(){
+vk::descriptor::structure::Descriptor uniform_mvp_str(){
   //---------------------------
 
-  vk::binding::structure::Descriptor descriptor;
+  vk::descriptor::structure::Descriptor descriptor;
   descriptor.name = "mvp_str";
   descriptor.size = sizeof(vk::pipeline::topology::Structure);
   descriptor.binding = vk::uniform::MVP_STR;
@@ -33,10 +33,10 @@ vk::binding::structure::Descriptor uniform_mvp_str(){
   //---------------------------
   return descriptor;
 }
-vk::binding::structure::Descriptor uniform_point_size(){
+vk::descriptor::structure::Descriptor uniform_point_size(){
   //---------------------------
 
-  vk::binding::structure::Descriptor descriptor;
+  vk::descriptor::structure::Descriptor descriptor;
   descriptor.name = "point_size";
   descriptor.size = sizeof(float);
   descriptor.binding = vk::uniform::WIDTH;

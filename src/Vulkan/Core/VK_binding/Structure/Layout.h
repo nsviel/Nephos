@@ -9,7 +9,7 @@
 #include <vector>
 
 
-namespace vk::binding::structure{
+namespace vk::descriptor::structure{
 
 struct Layout{
   //---------------------------
@@ -18,10 +18,10 @@ struct Layout{
   VkDescriptorSetLayout handle = VK_NULL_HANDLE;
 
   //Binding elements
-  std::vector<vk::binding::structure::Descriptor> vec_descriptor;
-  std::unordered_map<std::string, vk::binding::structure::Pushconst*> map_pushcst;
-  std::unordered_map<std::string, vk::binding::structure::Uniform*> map_uniform;
-  std::unordered_map<std::string, vk::binding::structure::Sampler*> map_sampler;
+  std::vector<vk::descriptor::structure::Descriptor> vec_descriptor;
+  std::unordered_map<std::string, vk::descriptor::structure::Pushconst*> map_pushcst;
+  std::unordered_map<std::string, vk::descriptor::structure::Uniform*> map_uniform;
+  std::unordered_map<std::string, vk::descriptor::structure::Sampler*> map_sampler;
 
   //---------------------------
 };

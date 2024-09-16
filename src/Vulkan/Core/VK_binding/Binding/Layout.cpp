@@ -3,22 +3,22 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::binding{
+namespace vk::descriptor{
 
 //Constructor / Destructor
 Layout::Layout(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_uniform = new vk::binding::Uniform(vk_struct);
-  this->vk_sampler = new vk::binding::Sampler(vk_struct);
+  this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
+  this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
   
   //---------------------------
 }
 Layout::~Layout(){}
 
 //Main function
-void Layout::create_layout(vk::binding::structure::Layout& layout){
+void Layout::create_layout(vk::descriptor::structure::Layout& layout){
   //---------------------------
 
   std::vector<VkDescriptorSetLayoutBinding> vec_binding;
@@ -28,7 +28,7 @@ void Layout::create_layout(vk::binding::structure::Layout& layout){
 
   //---------------------------
 }
-void Layout::clean_layout(vk::binding::structure::Layout& layout){
+void Layout::clean_layout(vk::descriptor::structure::Layout& layout){
   //---------------------------
 
   vkDestroyDescriptorSetLayout(vk_struct->core.device.handle, layout.handle, nullptr);
@@ -37,7 +37,7 @@ void Layout::clean_layout(vk::binding::structure::Layout& layout){
 }
 
 //Subfunction
-void Layout::make_required_binding(vk::binding::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
+void Layout::make_required_binding(vk::descriptor::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
   //---------------------------
 
   for(auto& descriptor : layout.vec_descriptor){
@@ -54,7 +54,7 @@ void Layout::make_required_binding(vk::binding::structure::Layout& layout, std::
 
   //---------------------------
 }
-void Layout::create_layout_object(vk::binding::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
+void Layout::create_layout_object(vk::descriptor::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
   //---------------------------
 
   //Combination and info
@@ -74,7 +74,7 @@ void Layout::create_layout_object(vk::binding::structure::Layout& layout, std::v
 
   //---------------------------
 }
-void Layout::create_descriptor(vk::binding::structure::Layout& layout){
+void Layout::create_descriptor(vk::descriptor::structure::Layout& layout){
   //---------------------------
 
   for(auto& descriptor : layout.vec_descriptor){

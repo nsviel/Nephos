@@ -3,14 +3,14 @@
 #include <vulkan/vulkan.h>
 #include <string>
 
-namespace vk::binding::structure{class Descriptor;}
+namespace vk::descriptor::structure{class Descriptor;}
 
 
 namespace vk::pipeline::topology{
 
 //Uniform
-vk::binding::structure::Descriptor uniform_mvp();
-vk::binding::structure::Descriptor uniform_mvp_str();
-vk::binding::structure::Descriptor uniform_point_size();
+vk::descriptor::structure::Descriptor uniform_mvp();
+vk::descriptor::structure::Descriptor uniform_mvp_str();
+vk::descriptor::structure::Descriptor uniform_point_size();
 
 }

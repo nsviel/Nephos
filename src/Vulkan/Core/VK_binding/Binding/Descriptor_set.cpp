@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::binding{
+namespace vk::descriptor{
 
 //Constructor / Destructor
 Descriptor_set::Descriptor_set(vk::Structure* vk_struct){
@@ -16,7 +16,7 @@ Descriptor_set::Descriptor_set(vk::Structure* vk_struct){
 Descriptor_set::~Descriptor_set(){}
 
 //Main function
-void Descriptor_set::allocate(vk::binding::structure::Binding& binding){
+void Descriptor_set::allocate(vk::descriptor::structure::Binding& binding){
   //---------------------------
 
   VkDescriptorSetAllocateInfo allocation_info{};
@@ -41,7 +41,7 @@ void Descriptor_set::bind(VkCommandBuffer& command_buffer, vk::structure::Pipeli
 
   //---------------------------
 }
-void Descriptor_set::update(vk::binding::structure::Binding& binding){
+void Descriptor_set::update(vk::descriptor::structure::Binding& binding){
   //---------------------------
 
   //Make list of writeable uniform
@@ -74,7 +74,7 @@ void Descriptor_set::update(vk::binding::structure::Binding& binding){
 
   //---------------------------
 }
-void Descriptor_set::clean(vk::binding::structure::Binding& binding){
+void Descriptor_set::clean(vk::descriptor::structure::Binding& binding){
   //---------------------------
 
   vkDestroyDescriptorSetLayout(vk_struct->core.device.handle, binding.layout.handle, nullptr);

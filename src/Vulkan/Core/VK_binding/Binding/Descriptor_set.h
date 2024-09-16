@@ -4,11 +4,11 @@
 #include <vector>
 
 namespace vk{class Structure;}
-namespace vk::binding::structure{class Binding;}
+namespace vk::descriptor::structure{class Binding;}
 namespace vk::structure{class Pipeline;}
 
 
-namespace vk::binding{
+namespace vk::descriptor{
 
 class Descriptor_set
 {
@@ -19,10 +19,10 @@ public:
 
 public:
   //Main function
-  void allocate(vk::binding::structure::Binding& binding);
+  void allocate(vk::descriptor::structure::Binding& binding);
   void bind(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set);
-  void update(vk::binding::structure::Binding& binding);
-  void clean(vk::binding::structure::Binding& binding);
+  void update(vk::descriptor::structure::Binding& binding);
+  void clean(vk::descriptor::structure::Binding& binding);
 
 private:
   vk::Structure* vk_struct;

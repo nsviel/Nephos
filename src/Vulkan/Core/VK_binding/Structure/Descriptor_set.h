@@ -3,7 +3,7 @@
 #include <vulkan/vulkan.h>
 
 
-namespace vk::binding::structure{
+namespace vk::descriptor::structure{
 
 struct Descriptor_set{
   //---------------------------

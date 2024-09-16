@@ -7,10 +7,10 @@
 namespace vk::pipeline::cfd{
 
 //Uniform
-vk::binding::structure::Descriptor uniform_mvp(){
+vk::descriptor::structure::Descriptor uniform_mvp(){
   //---------------------------
 
-  vk::binding::structure::Descriptor descriptor;
+  vk::descriptor::structure::Descriptor descriptor;
   descriptor.name = "mvp";
   descriptor.size = sizeof(glm::mat4);
   descriptor.binding = vk::uniform::MVP;
@@ -20,10 +20,10 @@ vk::binding::structure::Descriptor uniform_mvp(){
   //---------------------------
   return descriptor;
 }
-vk::binding::structure::Descriptor uniform_point_size(){
+vk::descriptor::structure::Descriptor uniform_point_size(){
   //---------------------------
 
-  vk::binding::structure::Descriptor descriptor;
+  vk::descriptor::structure::Descriptor descriptor;
   descriptor.name = "point_size";
   descriptor.size = sizeof(float);
   descriptor.binding = vk::uniform::WIDTH;
@@ -33,10 +33,10 @@ vk::binding::structure::Descriptor uniform_point_size(){
   //---------------------------
   return descriptor;
 }
-vk::binding::structure::Descriptor uniform_cfd(){
+vk::descriptor::structure::Descriptor uniform_cfd(){
   //---------------------------
 
-  vk::binding::structure::Descriptor descriptor;
+  vk::descriptor::structure::Descriptor descriptor;
   descriptor.name = "EDL_param";
   descriptor.size = sizeof(vk::pipeline::cfd::Structure);
   descriptor.binding = vk::uniform::EDL;
@@ -48,10 +48,10 @@ vk::binding::structure::Descriptor uniform_cfd(){
 }
 
 //Sampler
-vk::binding::structure::Descriptor sampler_color(){
+vk::descriptor::structure::Descriptor sampler_color(){
   //---------------------------
 
-  vk::binding::structure::Descriptor descriptor;
+  vk::descriptor::structure::Descriptor descriptor;
   descriptor.name = "tex_color";
   descriptor.binding = vk::sampler::COLOR;
   descriptor.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
@@ -60,10 +60,10 @@ vk::binding::structure::Descriptor sampler_color(){
   //---------------------------
   return descriptor;
 }
-vk::binding::structure::Descriptor sampler_depth(){
+vk::descriptor::structure::Descriptor sampler_depth(){
   //---------------------------
 
-  vk::binding::structure::Descriptor descriptor;
+  vk::descriptor::structure::Descriptor descriptor;
   descriptor.name = "tex_depth";
   descriptor.binding = vk::sampler::DEPTH;
   descriptor.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;

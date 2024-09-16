@@ -11,8 +11,8 @@ CFD::CFD(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_uniform = new vk::binding::Uniform(vk_struct);
-  this->vk_sampler = new vk::binding::Sampler(vk_struct);
+  this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
+  this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
 
   //---------------------------
 }

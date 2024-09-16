@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::binding{
+namespace vk::descriptor{
 
 //Constructor / Destructor
 Uniform::Uniform(vk::Structure* vk_struct){
@@ -18,10 +18,10 @@ Uniform::Uniform(vk::Structure* vk_struct){
 Uniform::~Uniform(){}
 
 //Uniform creation
-void Uniform::create_uniform(vk::binding::structure::Layout& layout, vk::binding::structure::Descriptor& descriptor){
+void Uniform::create_uniform(vk::descriptor::structure::Layout& layout, vk::descriptor::structure::Descriptor& descriptor){
   //---------------------------
 
-  vk::binding::structure::Uniform* uniform = new vk::binding::structure::Uniform();
+  vk::descriptor::structure::Uniform* uniform = new vk::descriptor::structure::Uniform();
   uniform->name = descriptor.name;
   uniform->binding = descriptor.binding;
   uniform->size = descriptor.size;
@@ -34,7 +34,7 @@ void Uniform::create_uniform(vk::binding::structure::Layout& layout, vk::binding
 
   //---------------------------
 }
-void Uniform::clean_uniform(vk::binding::structure::Layout& layout){
+void Uniform::clean_uniform(vk::descriptor::structure::Layout& layout){
   //---------------------------
 
   for(auto& [name, uniform] : layout.map_uniform){

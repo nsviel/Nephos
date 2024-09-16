@@ -12,8 +12,8 @@ Scene::Scene(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
-  this->vk_descriptor_set = new vk::binding::Descriptor_set(vk_struct);
-  this->vk_uniform = new vk::binding::Uniform(vk_struct);
+  this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
+  this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_drawer = new vk::draw::Drawer(vk_struct);
   this->vk_factory = new vk::render::pipeline::Factory(vk_struct);
 

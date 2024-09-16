@@ -7,12 +7,12 @@
 
 namespace vk::memory{class Allocator;}
 namespace vk{class Structure;}
-namespace vk::binding::structure{class Descriptor;}
-namespace vk::binding::structure{class Layout;}
-namespace vk::binding::structure{class Uniform;}
+namespace vk::descriptor::structure{class Descriptor;}
+namespace vk::descriptor::structure{class Layout;}
+namespace vk::descriptor::structure{class Uniform;}
 
 
-namespace vk::binding{
+namespace vk::descriptor{
 
 class Uniform
 {
@@ -23,17 +23,17 @@ public:
 
 public:
   //Main function
-  void create_uniform(vk::binding::structure::Layout& layout, vk::binding::structure::Descriptor& descriptor);
-  void clean_uniform(vk::binding::structure::Layout& layout);
+  void create_uniform(vk::descriptor::structure::Layout& layout, vk::descriptor::structure::Descriptor& descriptor);
+  void clean_uniform(vk::descriptor::structure::Layout& layout);
 
   //Subfunction
   template <typename T>
-  void update_uniform(std::string name, vk::binding::structure::Layout& layout, T value){
+  void update_uniform(std::string name, vk::descriptor::structure::Layout& layout, T value){
     //---------------------------
 
     auto it = layout.map_uniform.find(name);
     if(it != layout.map_uniform.end()){
-      vk::binding::structure::Uniform* uniform = it->second;
+      vk::descriptor::structure::Uniform* uniform = it->second;
       std::memcpy(uniform->mapped, &value, sizeof(value));
     }
     else{

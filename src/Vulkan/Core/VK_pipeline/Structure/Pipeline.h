@@ -16,7 +16,7 @@ struct Pipeline{
 
   vk::pipeline::structure::Info info;
   vk::pipeline::structure::Element element;
-  vk::binding::structure::Binding binding;
+  vk::descriptor::structure::Binding binding;
 
   //---------------------------
 };

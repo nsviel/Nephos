@@ -2,8 +2,8 @@
 
 namespace vk{class Structure;}
 namespace vk::renderpass{class Renderpass;}
-namespace vk::binding{class Uniform;}
-namespace vk::binding{class Sampler;}
+namespace vk::descriptor{class Uniform;}
+namespace vk::descriptor{class Sampler;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 namespace vk::render::edl{class Shader;}
@@ -11,9 +11,9 @@ namespace vk::draw{class Drawer;}
 namespace vk::render::pipeline{class Factory;}
 namespace vk::pipeline{class Pipeline;}
 namespace vk::draw{class Viewport;}
-namespace vk::binding{class Descriptor_set;}
-namespace vk::binding{class Uniform;}
-namespace vk::binding{class Sampler;}
+namespace vk::descriptor{class Descriptor_set;}
+namespace vk::descriptor{class Uniform;}
+namespace vk::descriptor{class Sampler;}
 namespace vk::draw{class Drawer;}
 namespace vk::render::edl{class Shader;}
 namespace vk::structure{class Subpass;}
@@ -39,13 +39,13 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::binding::Uniform* vk_uniform;
-  vk::binding::Sampler* vk_sampler;
+  vk::descriptor::Uniform* vk_uniform;
+  vk::descriptor::Sampler* vk_sampler;
   vk::draw::Drawer* vk_drawer;
   vk::render::pipeline::Factory* vk_factory;
   vk::pipeline::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
-  vk::binding::Descriptor_set* vk_descriptor_set;
+  vk::descriptor::Descriptor_set* vk_descriptor_set;
 };
 
 }

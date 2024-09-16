@@ -14,10 +14,10 @@ Data::Data(vk::Structure* vk_struct){
   this->vk_buffer = new vk::data::Buffer(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
-  this->vk_binding = new vk::binding::Binding(vk_struct);
+  this->vk_binding = new vk::descriptor::Binding(vk_struct);
   this->vk_uid = new vk::instance::UID(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
-  this->vk_uniform = new vk::binding::Uniform(vk_struct);
+  this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
 
   //---------------------------
 }
@@ -114,7 +114,7 @@ void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
 
   //---------------------------
 }
-void Data::descriptor_vk_object(utl::base::Data& data, vk::binding::structure::Binding& binding){
+void Data::descriptor_vk_object(utl::base::Data& data, vk::descriptor::structure::Binding& binding){
   //---------------------------
 
   binding.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_mvp());

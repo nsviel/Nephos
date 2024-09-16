@@ -4,14 +4,14 @@
 #include <string>
 
 namespace vk{class Structure;}
-namespace vk::binding::structure{class Descriptor;}
-namespace vk::binding::structure{class Binding;}
-namespace vk::binding::structure{class Layout;}
-namespace vk::binding::structure{class Sampler;}
+namespace vk::descriptor::structure{class Descriptor;}
+namespace vk::descriptor::structure{class Binding;}
+namespace vk::descriptor::structure{class Layout;}
+namespace vk::descriptor::structure{class Sampler;}
 namespace vk::structure{class Image;}
 
 
-namespace vk::binding{
+namespace vk::descriptor{
 
 class Sampler
 {
@@ -22,11 +22,11 @@ public:
 
 public:
   //Main function
-  void create_sampler(vk::binding::structure::Layout& layout, vk::binding::structure::Descriptor& descriptor);
-  void update_sampler(vk::binding::structure::Binding& binding, vk::structure::Image* image);
+  void create_sampler(vk::descriptor::structure::Layout& layout, vk::descriptor::structure::Descriptor& descriptor);
+  void update_sampler(vk::descriptor::structure::Binding& binding, vk::structure::Image* image);
 
   //Subfunction
-  vk::binding::structure::Sampler* query_sampler(vk::binding::structure::Binding& binding, std::string& name);
+  vk::descriptor::structure::Sampler* query_sampler(vk::descriptor::structure::Binding& binding, std::string& name);
 
 private:
   vk::Structure* vk_struct;

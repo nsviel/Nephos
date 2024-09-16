@@ -46,8 +46,8 @@ struct Object{
 
 
 
-  vk::binding::structure::Binding binding;
-  vk::binding::structure::Descriptor_set descriptor_set;
+  vk::descriptor::structure::Binding binding;
+  vk::descriptor::structure::Descriptor_set descriptor_set;
 
   //---------------------------
 };

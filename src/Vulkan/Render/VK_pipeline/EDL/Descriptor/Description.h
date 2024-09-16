@@ -3,18 +3,18 @@
 #include <vulkan/vulkan.h>
 #include <string>
 
-namespace vk::binding::structure{class Descriptor;}
+namespace vk::descriptor::structure{class Descriptor;}
 
 
 namespace vk::pipeline::edl{
 
 //Uniform
-vk::binding::structure::Descriptor uniform_mvp();
-vk::binding::structure::Descriptor uniform_point_size();
-vk::binding::structure::Descriptor uniform_edl();
+vk::descriptor::structure::Descriptor uniform_mvp();
+vk::descriptor::structure::Descriptor uniform_point_size();
+vk::descriptor::structure::Descriptor uniform_edl();
 
 //Sampler
-vk::binding::structure::Descriptor sampler_color();
-vk::binding::structure::Descriptor sampler_depth();
+vk::descriptor::structure::Descriptor sampler_color();
+vk::descriptor::structure::Descriptor sampler_depth();
 
 }

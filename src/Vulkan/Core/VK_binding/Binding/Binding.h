@@ -4,18 +4,18 @@
 #include <vector>
 
 namespace vk{class Structure;}
-namespace vk::binding{class Uniform;}
-namespace vk::binding{class Sampler;}
-namespace vk::binding{class Layout;}
-namespace vk::binding{class Descriptor_set;}
+namespace vk::descriptor{class Uniform;}
+namespace vk::descriptor{class Sampler;}
+namespace vk::descriptor{class Layout;}
+namespace vk::descriptor{class Descriptor_set;}
 namespace vk::structure{class Image;}
 namespace vk::structure{class Pipeline;}
-namespace vk::binding::structure{class Binding;}
-namespace vk::binding::structure{class Layout;}
+namespace vk::descriptor::structure{class Binding;}
+namespace vk::descriptor::structure{class Layout;}
 namespace utl::base{class Data;}
 
 
-namespace vk::binding{
+namespace vk::descriptor{
 
 class Binding
 {
@@ -26,16 +26,16 @@ public:
 
 public:
   //Main function
-  void create_binding(vk::binding::structure::Binding& binding);
-  void clean_binding(vk::binding::structure::Binding& binding);
+  void create_binding(vk::descriptor::structure::Binding& binding);
+  void clean_binding(vk::descriptor::structure::Binding& binding);
 
 
 private:
   vk::Structure* vk_struct;
-  vk::binding::Uniform* vk_uniform;
-  vk::binding::Sampler* vk_sampler;
-  vk::binding::Layout* vk_layout;
-  vk::binding::Descriptor_set* vk_descriptor_set;
+  vk::descriptor::Uniform* vk_uniform;
+  vk::descriptor::Sampler* vk_sampler;
+  vk::descriptor::Layout* vk_layout;
+  vk::descriptor::Descriptor_set* vk_descriptor_set;
 };
 
 }

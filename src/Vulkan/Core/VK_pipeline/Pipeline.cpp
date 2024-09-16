@@ -10,7 +10,7 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_binding = new vk::binding::Binding(vk_struct);
+  this->vk_binding = new vk::descriptor::Binding(vk_struct);
   this->vk_shader = new vk::pipeline::Shader(vk_struct);
   this->vk_vertex = new vk::pipeline::Vertex(vk_struct);
   this->vk_object = new vk::pipeline::Object(vk_struct);

@@ -4,13 +4,13 @@
 #include <Vulkan/Core/VK_binding/Structure/Layout.h>
 
 
-namespace vk::binding::structure{
+namespace vk::descriptor::structure{
 
 struct Binding{
   //---------------------------
 
-  vk::binding::structure::Descriptor_set descriptor_set;
-  vk::binding::structure::Layout layout;
+  vk::descriptor::structure::Descriptor_set descriptor_set;
+  vk::descriptor::structure::Layout layout;
 
   //---------------------------
 };

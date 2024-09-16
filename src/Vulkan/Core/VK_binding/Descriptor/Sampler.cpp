@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::binding{
+namespace vk::descriptor{
 
 //Constructor / Destructor
 Sampler::Sampler(vk::Structure* vk_struct){
@@ -17,10 +17,10 @@ Sampler::Sampler(vk::Structure* vk_struct){
 Sampler::~Sampler(){}
 
 //Main function
-void Sampler::create_sampler(vk::binding::structure::Layout& layout, vk::binding::structure::Descriptor& descriptor){
+void Sampler::create_sampler(vk::descriptor::structure::Layout& layout, vk::descriptor::structure::Descriptor& descriptor){
   //---------------------------
 
-  vk::binding::structure::Sampler* sampler = new vk::binding::structure::Sampler();
+  vk::descriptor::structure::Sampler* sampler = new vk::descriptor::structure::Sampler();
   sampler->name = descriptor.name;
   sampler->binding = descriptor.binding;
   sampler->type = descriptor.type;
@@ -29,10 +29,10 @@ void Sampler::create_sampler(vk::binding::structure::Layout& layout, vk::binding
 
   //---------------------------
 }
-void Sampler::update_sampler(vk::binding::structure::Binding& binding, vk::structure::Image* image){
+void Sampler::update_sampler(vk::descriptor::structure::Binding& binding, vk::structure::Image* image){
   //---------------------------
 
-  vk::binding::structure::Sampler* sampler = query_sampler(binding, image->name);
+  vk::descriptor::structure::Sampler* sampler = query_sampler(binding, image->name);
   if(!sampler) return;
 
   VkDescriptorImageInfo image_info = {};
@@ -55,7 +55,7 @@ void Sampler::update_sampler(vk::binding::structure::Binding& binding, vk::struc
 }
 
 //Subfunction
-vk::binding::structure::Sampler* Sampler::query_sampler(vk::binding::structure::Binding& binding, std::string& name){
+vk::descriptor::structure::Sampler* Sampler::query_sampler(vk::descriptor::structure::Binding& binding, std::string& name){
   //---------------------------
 
   auto it = binding.layout.map_sampler.find(name);

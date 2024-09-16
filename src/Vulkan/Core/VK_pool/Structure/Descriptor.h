@@ -16,7 +16,7 @@ struct Descriptor{
 
   std::mutex mutex;
   VkDescriptorPool allocator = VK_NULL_HANDLE;
-  std::vector<vk::binding::structure::Descriptor_set> tank;
+  std::vector<vk::descriptor::structure::Descriptor_set> tank;
   uint32_t size = 100;
 
   //---------------------------

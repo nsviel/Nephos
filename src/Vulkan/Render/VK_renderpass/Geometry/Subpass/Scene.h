@@ -5,8 +5,8 @@ namespace vk::structure{class Renderpass;}
 namespace vk::render::pipeline{class Factory;}
 namespace vk::pipeline{class Pipeline;}
 namespace vk::draw{class Viewport;}
-namespace vk::binding{class Descriptor_set;}
-namespace vk::binding{class Uniform;}
+namespace vk::descriptor{class Descriptor_set;}
+namespace vk::descriptor{class Uniform;}
 namespace vk::draw{class Drawer;}
 namespace vk::structure{class Subpass;}
 namespace utl::base{class Data;}
@@ -35,8 +35,8 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::render::pipeline::Factory* vk_factory;
-  vk::binding::Descriptor_set* vk_descriptor_set;
-  vk::binding::Uniform* vk_uniform;
+  vk::descriptor::Descriptor_set* vk_descriptor_set;
+  vk::descriptor::Uniform* vk_uniform;
   vk::draw::Drawer* vk_drawer;
   vk::pipeline::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
