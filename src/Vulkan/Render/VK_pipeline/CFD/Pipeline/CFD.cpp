@@ -28,7 +28,7 @@ void CFD::add_pipeline(vk::structure::Subpass& subpass){
   this->set_binding(*pipeline);
 
   //---------------------------
-  subpass.map_pipeline["edl"] = pipeline;
+  subpass.map_pipeline["cfd"] = pipeline;
 }
 
 //Subfunction
@@ -46,10 +46,10 @@ void CFD::set_shader(vk::structure::Pipeline& pipeline){
 
   utl::shader::Info* shader_info = new utl::shader::Info();
   shader_info->name = "CFD";
-  shader_info->path_glsl_vs = "../media/shader/CFD/glsl/edl_vs.vert";
-  shader_info->path_glsl_fs = "../media/shader/CFD/glsl/edl_fs.frag";
-  shader_info->path_spir_vs = "../media/shader/CFD/spir/edl_vs.spv";
-  shader_info->path_spir_fs = "../media/shader/CFD/spir/edl_fs.spv";
+  shader_info->path_glsl_vs = "../media/shader/CFD/glsl/cfd_vs.vert";
+  shader_info->path_glsl_fs = "../media/shader/CFD/glsl/cfd_fs.frag";
+  shader_info->path_spir_vs = "../media/shader/CFD/spir/cfd_vs.spv";
+  shader_info->path_spir_fs = "../media/shader/CFD/spir/cfd_fs.spv";
   shader_info->with_recompilation = true;
   shader_info->with_depth_test = true;
 
@@ -59,9 +59,9 @@ void CFD::set_shader(vk::structure::Pipeline& pipeline){
 void CFD::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.binding.vec_descriptor.push_back(vk::pipeline::edl::sampler_color());
-  pipeline.binding.vec_descriptor.push_back(vk::pipeline::edl::sampler_depth());
-  pipeline.binding.vec_descriptor.push_back(vk::pipeline::edl::uniform_edl());
+  pipeline.binding.vec_descriptor.push_back(vk::pipeline::cfd::sampler_color());
+  pipeline.binding.vec_descriptor.push_back(vk::pipeline::cfd::sampler_depth());
+  pipeline.binding.vec_descriptor.push_back(vk::pipeline::cfd::uniform_cfd());
 
   //---------------------------
 }

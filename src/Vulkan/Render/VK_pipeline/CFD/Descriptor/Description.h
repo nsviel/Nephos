@@ -11,7 +11,7 @@ namespace vk::pipeline::cfd{
 //Uniform
 vk::binding::structure::Descriptor uniform_mvp();
 vk::binding::structure::Descriptor uniform_point_size();
-vk::binding::structure::Descriptor uniform_edl();
+vk::binding::structure::Descriptor uniform_cfd();
 
 //Sampler
 vk::binding::structure::Descriptor sampler_color();
