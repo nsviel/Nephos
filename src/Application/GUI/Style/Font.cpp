@@ -79,8 +79,7 @@ void Font::combo_font_gui(){
   //---------------------------
 
   if(ImGui::BeginCombo("GUI##Font", font_gui->GetDebugName())){
-    for(int i=0; i<vec_font_gui.size(); i++){
-      ImFont* font = vec_font_gui[i];
+    for(auto& font : vec_font_gui){
       ImGui::PushID((void*)font);
       if(ImGui::Selectable(font->GetDebugName(), font == font_gui)){
         ImGui::GetIO().FontDefault = font;
@@ -98,8 +97,7 @@ void Font::combo_font_editor(){
   //---------------------------
 
   if(ImGui::BeginCombo("Editor##Font", font_editor->GetDebugName())){
-    for(int i=0; i<vec_font_editor.size(); i++){
-      ImFont* font = vec_font_editor[i];
+    for(auto& font : vec_font_editor){
       ImGui::PushID((void*)font);
       if(ImGui::Selectable(font->GetDebugName(), font == font_editor)){
         this->font_editor = font;

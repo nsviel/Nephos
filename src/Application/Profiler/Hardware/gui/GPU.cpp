@@ -91,9 +91,7 @@ void GPU::draw_gpu_queue(){
   ImGui::TableSetupColumn("Thread");
   ImGui::TableHeadersRow();
 
-  for(int i=0; i<prf_struct->gpu.vec_queue.size(); i++){
-    prf::hardware::structure::Queue& queue = prf_struct->gpu.vec_queue[i];
-
+  for(auto& queue : prf_struct->gpu.vec_queue){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     switch(queue.type){
       case prf::hardware::structure::queue::GRAPHICS:{

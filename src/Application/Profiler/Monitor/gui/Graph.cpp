@@ -93,8 +93,7 @@ void Graph::draw_tasker_all(prf::monitor::Profiler* profiler){
     //Graph plots
     dim = ImGui::GetContentRegionAvail();
     ImVec2 dimension = ImVec2(dim.x, dim.y / list_tasker.size());
-    for(int i=0; i<list_tasker.size(); i++){
-      prf::monitor::Tasker* tasker = *next(list_tasker.begin(), i);
+    for(auto& tasker : list_tasker){
       this->draw_tasker_graph(tasker, dimension, profiler->pause);
     }
 

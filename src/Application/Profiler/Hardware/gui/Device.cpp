@@ -22,9 +22,7 @@ void Device::draw_tab(){
   //---------------------------
 
   if(ImGui::BeginTabBar("vulkan_device##tab_bar")){
-    for(int i=0; i<prf_struct->vec_device.size(); i++){
-      prf::hardware::structure::Device& device = prf_struct->vec_device[i];
-
+    for(auto& device : prf_struct->vec_device){
       if(ImGui::BeginTabItem(device.name.c_str(), NULL)){
         this->draw_device_info(device);
         this->draw_device_queue_families(device);
@@ -102,49 +100,49 @@ void Device::draw_device_queue_families(prf::hardware::structure::Device& device
   //Queue count
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Queue");
-  for(int i=0; i<device.vec_queue_family.size(); i++){
+  for(auto& queue_family : device.vec_queue_family){
     ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue);
+    ImGui::TextColored(color, "%d", queue_family.nb_queue);
   }
 
   //Graphics queue
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Graphics");
-  for(int i=0; i<device.vec_queue_family.size(); i++){
+  for(auto& queue_family : device.vec_queue_family){
     ImGui::TableNextColumn();
-    if(device.vec_queue_family[i].graphics) ImGui::TextColored(color, "X");
+    if(queue_family.graphics) ImGui::TextColored(color, "X");
   }
 
   //Compute queue
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Compute");
-  for(int i=0; i<device.vec_queue_family.size(); i++){
+  for(auto& queue_family : device.vec_queue_family){
     ImGui::TableNextColumn();
-    if(device.vec_queue_family[i].compute) ImGui::TextColored(color, "X");
+    if(queue_family.compute) ImGui::TextColored(color, "X");
   }
 
   //Transfer queue
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Transfer");
-  for(int i=0; i<device.vec_queue_family.size(); i++){
+  for(auto& queue_family : device.vec_queue_family){
     ImGui::TableNextColumn();
-    if(device.vec_queue_family[i].transfer) ImGui::TextColored(color, "X");
+    if(queue_family.transfer) ImGui::TextColored(color, "X");
   }
 
   //Sparse binding queue
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Sparse binding");
-  for(int i=0; i<device.vec_queue_family.size(); i++){
+  for(auto& queue_family : device.vec_queue_family){
     ImGui::TableNextColumn();
-    if(device.vec_queue_family[i].sparseBinding) ImGui::TextColored(color, "X");
+    if(queue_family.sparseBinding) ImGui::TextColored(color, "X");
   }
 
   //Presentation queue
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Presentation");
-  for(int i=0; i<device.vec_queue_family.size(); i++){
+  for(auto& queue_family : device.vec_queue_family){
     ImGui::TableNextColumn();
-    if(device.vec_queue_family[i].presentation) ImGui::TextColored(color, "X");
+    if(queue_family.presentation) ImGui::TextColored(color, "X");
   }
 
   ImGui::TableNextColumn();

@@ -67,9 +67,9 @@ void Center::menu_shortcut(std::string name){
   std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel();
   //---------------------------
 
-  for(int i=0; i<vec_panel.size(); i++){
-    if(vec_panel[i]->name == name){
-      vec_panel[i]->is_open = !vec_panel[i]->is_open;
+  for(auto& panel : vec_panel){
+    if(panel->name == name){
+      panel->is_open = !panel->is_open;
     }
   }
 

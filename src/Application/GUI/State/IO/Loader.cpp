@@ -40,9 +40,7 @@ void Loader::read_panel(std::string& path){
   std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel();
   //---------------------------
 
-  for(int i=0; i<vec_panel.size(); i++){
-    utl::gui::Panel* panel = vec_panel[i];
-
+  for(auto& panel : vec_panel){
     std::string key = "panel." + panel->name;
     utl::json::read_value(path, key, panel->is_open);
   }
