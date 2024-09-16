@@ -15,7 +15,7 @@ Navigation::Navigation(ctr::Node* node_control){
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
   this->ctr_struct = node_control->get_ctr_struct();
-  this->vk_window = node_vulkan->get_vk_window();
+  this->vk_interface = node_vulkan->get_vk_interface();
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_manager = node_camera->get_cam_manager();
   this->cam_control = node_camera->get_cam_control();
@@ -87,10 +87,10 @@ void Navigation::enable_camera_view(){
   int center_y = panel_pose.y + panel_size.y * 0.5f;
   glm::vec2 center = glm::vec2(center_x, center_y);
 
-  ctr_struct->cursor_pose = vk_window->get_mouse_pose();
+  ctr_struct->cursor_pose = vk_interface->get_mouse_pose();
 
   ImGui::GetIO().MouseDrawCursor = false;
-  vk_window->set_mouse_pose(center);
+  vk_interface->set_mouse_pose(center);
   camera->cam_move = true;
   camera->panel_center = center;
 
@@ -101,7 +101,7 @@ void Navigation::disable_camera_view(){
   //----------------------------
 
   if(camera->cam_move){
-    vk_window->set_mouse_pose(ctr_struct->cursor_pose);
+    vk_interface->set_mouse_pose(ctr_struct->cursor_pose);
     camera->cam_move = false;
   }
 

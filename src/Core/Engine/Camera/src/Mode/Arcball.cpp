@@ -13,7 +13,7 @@ Arcball::Arcball(cam::Node* node_camera){
 
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
-  this->vk_window = node_vulkan->get_vk_window();
+  this->vk_interface = node_vulkan->get_vk_interface();
 
   this->origin = glm::vec3(0, 0, 0);
 
@@ -67,8 +67,8 @@ void Arcball::camera_down(std::shared_ptr<cam::Entity> camera, float speed){
 void Arcball::camera_mouse(std::shared_ptr<cam::Entity> camera){
   //---------------------------
 
-  glm::vec2 mouse_pose = vk_window->get_mouse_pose();
-  glm::vec2 window_dim = vk_window->get_dimension();
+  glm::vec2 mouse_pose = vk_interface->get_mouse_pose();
+  glm::vec2 window_dim = vk_interface->get_dimension();
   glm::vec2 window_center = camera->panel_center;
 
   // step 1 : Calculate the amount of rotation given the mouse movement.
@@ -79,7 +79,7 @@ void Arcball::camera_mouse(std::shared_ptr<cam::Entity> camera){
   glm::vec2 angle = glm::vec2(xAngle, yAngle);
 
   //Apply movement
-  vk_window->set_mouse_pose(window_center);
+  vk_interface->set_mouse_pose(window_center);
   this->rotate_by_angle(camera, angle);
 
   //---------------------------

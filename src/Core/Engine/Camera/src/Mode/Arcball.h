@@ -6,7 +6,7 @@
 
 namespace cam{class Node;}
 namespace cam{class Entity;}
-namespace vk::window{class GLFW;}
+namespace vk{class Interface;}
 
 
 namespace cam::mode{
@@ -35,7 +35,7 @@ public:
   void displace_camera_COM(std::shared_ptr<cam::Entity> camera, const glm::vec3& displacement);
 
 private:
-  vk::window::GLFW* vk_window;
+  vk::Interface* vk_interface;
 
   glm::vec3 origin;
 };

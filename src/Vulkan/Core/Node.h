@@ -29,6 +29,7 @@ namespace vk::queue{class Manager;}
 namespace utl::base{class Data;}
 namespace utl::base{class Pose;}
 namespace vk::draw{class Graphical;}
+namespace vk::synchro{class Synchro;}
 
 
 namespace vk::core{
@@ -61,6 +62,7 @@ private:
   vk::draw::Viewport* vk_viewport;
   vk::shader::Reloader* vk_reload;
   vk::presentation::Frame* vk_frame;
+  vk::synchro::Synchro* vk_synchro;
   vk::data::Canvas* vk_canvas;
   vk::gui::Imgui* vk_imgui;
   vk::synchro::Fence* vk_fence;

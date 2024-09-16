@@ -13,7 +13,7 @@ Player::Player(cam::Node* node_camera){
 
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
-  this->vk_window = node_vulkan->get_vk_window();
+  this->vk_interface = node_vulkan->get_vk_interface();
 
   this->mouse_pose_old = glm::vec2(0.0f);
 
@@ -71,11 +71,11 @@ void Player::camera_mouse(std::shared_ptr<cam::Entity> camera){
   float& elevation = camera->angle_elevation;
 
   //Cursor movement
-  glm::vec2 mouse_pose = vk_window->get_mouse_pose();
+  glm::vec2 mouse_pose = vk_interface->get_mouse_pose();
   glm::vec2 window_center = camera->panel_center;
 
   if(mouse_pose != mouse_pose_old){
-    vk_window->set_mouse_pose(window_center);
+    vk_interface->set_mouse_pose(window_center);
 
     // Compute new orientation
     azimuth += camera->player_mouse_sensibility.x * float(window_center.x - mouse_pose.x);
