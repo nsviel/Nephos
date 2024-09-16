@@ -7,6 +7,7 @@
 #include <Vulkan/Core/VK_presentation/Structure/Swapchain.h>
 #include <Vulkan/Core/VK_pool/Structure/Pool.h>
 #include <Vulkan/Core/VK_presentation/Structure/Viewport.h>
+#include <Vulkan/Core/VK_command/Structure/Profiler.h>
 
 
 namespace vk::core{
@@ -21,6 +22,7 @@ struct Structure{
   vk::data::structure::Data data;
   vk::pool::structure::Pool pools;
   vk::queue::structure::Class queue;
+  vk::profiler::Structure profiler;
 
   //---------------------------
 };

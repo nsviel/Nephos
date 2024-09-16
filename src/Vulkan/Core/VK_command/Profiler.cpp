@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::main{
+namespace vk::command{
 
 //Constructor / Destructor
 Profiler::Profiler(vk::Structure* vk_struct){
@@ -19,7 +19,7 @@ Profiler::~Profiler(){}
 void Profiler::clear(){
   //---------------------------
 
-  vk_struct->render.profiler.vec_command_buffer.clear();
+  vk_struct->core.profiler.vec_command_buffer.clear();
 
   //---------------------------
 }

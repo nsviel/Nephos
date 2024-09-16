@@ -3,7 +3,7 @@
 namespace vk{class Structure;}
 
 
-namespace vk::main{
+namespace vk::command{
 
 class Profiler
 {

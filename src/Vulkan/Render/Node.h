@@ -4,7 +4,6 @@
 
 namespace vk{class Structure;}
 namespace vk::draw{class Graphical;}
-namespace vk::main{class Profiler;}
 namespace vk::render{class Renderpass;}
 
 
@@ -24,7 +23,6 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::main::Profiler* vk_profiler;
   vk::draw::Graphical* vk_drawer;
   vk::render::Renderpass* vk_renderpass;
 };

@@ -25,7 +25,6 @@ namespace vk::renderpass{class Renderpass;}
 namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
-namespace vk::main{class Profiler;}
 namespace vk::queue{class Manager;}
 namespace utl::base{class Data;}
 namespace utl::base{class Pose;}
@@ -68,7 +67,6 @@ protected:
   vk::synchro::Semaphore* vk_semaphore;
   vk::command::Allocator* vk_allocator;
   vk::queue::Manager* vk_queue;
-  vk::main::Profiler* vk_profiler;
 };
 
 }

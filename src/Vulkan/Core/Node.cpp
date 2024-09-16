@@ -32,6 +32,7 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_allocator = new vk::command::Allocator(vk_struct);
   this->vk_queue = new vk::queue::Manager(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
+  this->vk_profiler = new vk::command::Profiler(vk_struct);
 
   //---------------------------
 }
@@ -61,11 +62,18 @@ void Node::init(){
 
   //---------------------------
 }
+void Node::loop(){
+  //---------------------------
+
+  vk_profiler->clear();
+
+  //---------------------------
+}
 void Node::clean(){
   //---------------------------
 
   vk_synchro->wait_idle_and_pause();
-  
+
   vk_imgui->clean();
   vk_queue->clean();
   vk_texture->clean();

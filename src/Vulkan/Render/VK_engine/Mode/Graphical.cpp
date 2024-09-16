@@ -44,7 +44,7 @@ void Graphical::init(){
 void Graphical::loop(){
   //---------------------------
 
-  vk_profiler->clear();
+
   vk_drawer->draw_frame();
 
   //---------------------------
