@@ -9,12 +9,12 @@ namespace vk::structure{class Pipeline;}
 
 namespace vk::pipeline::cfd{
 
-class EDL
+class CFD
 {
 public:
   //Constructor / Destructor
-  EDL(vk::Structure* vk_struct);
-  ~EDL();
+  CFD(vk::Structure* vk_struct);
+  ~CFD();
 
 public:
   //Main function
