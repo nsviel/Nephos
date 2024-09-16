@@ -38,7 +38,7 @@ vk::binding::structure::Descriptor uniform_edl(){
 
   vk::binding::structure::Descriptor descriptor;
   descriptor.name = "EDL_param";
-  descriptor.size = sizeof(vk::render::structure::EDL);
+  descriptor.size = sizeof(vk::pipeline::edl::Structure);
   descriptor.binding = vk::uniform::EDL;
   descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
   descriptor.stage = VK_SHADER_STAGE_FRAGMENT_BIT;

@@ -10,7 +10,7 @@
 #include <Vulkan/Core/VK_presentation/Structure/Viewport.h>
 
 #include <Vulkan/Render/VK_engine/Structure/Profiler.h>
-#include <Vulkan/Render/VK_pipeline/Structure/Render.h>
+#include <Vulkan/Render/VK_pipeline/Structure.h>
 #include <Vulkan/Render/VK_renderpass/Structure/Renderpass.h>
 #include <Vulkan/Render/VK_engine/Structure/Parameter.h>
 #include <Vulkan/Render/VK_engine/Structure/Profiler.h>
@@ -42,7 +42,7 @@ struct Structure{
   vk::structure::Command command;
   vk::profiler::Structure profiler;
   vk::queue::structure::Class queue;
-  vk::render::structure::Render render;
+  vk::render::pipeline::Structure render;
   vk::render::structure::Renderpass renderpass;
   vk::gui::Structure gui;
 

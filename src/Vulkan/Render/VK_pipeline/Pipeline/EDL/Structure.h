@@ -1,9 +1,9 @@
 #pragma once
 
 
-namespace vk::render::structure{
+namespace vk::pipeline::edl{
 
-struct EDL{
+struct Structure{
   //---------------------------
 
   bool activated = true;
