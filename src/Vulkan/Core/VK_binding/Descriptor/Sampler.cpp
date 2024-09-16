@@ -25,7 +25,7 @@ void Sampler::create_sampler(vk::binding::structure::Binding& binding, vk::bindi
   sampler->binding = descriptor.binding;
   sampler->type = descriptor.type;
 
-  binding.map_sampler[descriptor.name] = sampler;
+  binding.layout.map_sampler[descriptor.name] = sampler;
 
   //---------------------------
 }
@@ -58,13 +58,13 @@ void Sampler::update_sampler(vk::binding::structure::Binding& binding, vk::struc
 vk::binding::structure::Sampler* Sampler::query_sampler(vk::binding::structure::Binding& binding, std::string& name){
   //---------------------------
 
-  auto it = binding.map_sampler.find(name);
-  if (it == binding.map_sampler.end()) {
+  auto it = binding.layout.map_sampler.find(name);
+  if (it == binding.layout.map_sampler.end()) {
     std::cout<<"------------------------"<<std::endl;
     std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<name<<"\033[0m"<<std::endl;
     std::cout<<"Existing uniform names: "<<std::endl;
 
-    for(auto& [name, sampler] : binding.map_sampler){
+    for(auto& [name, sampler] : binding.layout.map_sampler){
       std::cout<<"\033[1;32m"<<name<<"\033[0m"<<std::endl;
     }
 

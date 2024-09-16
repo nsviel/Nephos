@@ -31,6 +31,14 @@ void Binding::create_binding(vk::binding::structure::Binding& binding){
 
   //---------------------------
 }
+void Binding::create_layout(vk::binding::structure::Layout& layout){
+  //---------------------------
+
+//  vk_layout->create_layout(binding);
+//  this->create_descriptor(binding);
+
+  //---------------------------
+}
 void Binding::clean_binding(vk::binding::structure::Binding& binding){
   //---------------------------
 
@@ -44,7 +52,7 @@ void Binding::clean_binding(vk::binding::structure::Binding& binding){
 void Binding::create_descriptor(vk::binding::structure::Binding& binding){
   //---------------------------
 
-  for(auto& descriptor : binding.vec_descriptor){
+  for(auto& descriptor : binding.layout.vec_descriptor){
 
     switch(descriptor.type){
       case VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER:{
