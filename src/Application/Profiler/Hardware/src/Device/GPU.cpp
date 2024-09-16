@@ -53,9 +53,7 @@ void GPU::collect_vulkan_info(){
 void GPU::collect_vulkan_device(){
   //---------------------------
 
-  for(int i=0; i<vk_struct->core.instance.vec_physical_device.size(); i++){
-    vk::device::structure::Physical& physical_device = vk_struct->core.instance.vec_physical_device[i];
-
+  for(auto& physical_device : vk_struct->core.instance.vec_physical_device){
     //Device info
     prf::hardware::structure::Device device_info;
     device_info.name = physical_device.name;
@@ -65,16 +63,16 @@ void GPU::collect_vulkan_device(){
     device_info.vendor_ID = physical_device.vendor_ID;
 
     //Gather device queue info
-    for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-      prf::hardware::structure::queue::Family queue_family;
-      queue_family.nb_queue = physical_device.vec_queue_family[i].nb_queue;
-      queue_family.graphics = physical_device.vec_queue_family[i].capable_graphics;
-      queue_family.compute = physical_device.vec_queue_family[i].capable_compute;
-      queue_family.transfer = physical_device.vec_queue_family[i].capable_transfer;
-      queue_family.sparseBinding = physical_device.vec_queue_family[i].capable_sparseBinding;
-      queue_family.presentation = physical_device.vec_queue_family[i].capable_presentation;
+    for(auto& queue_family : physical_device.vec_queue_family){
+      prf::hardware::structure::queue::Family prf_family;
+      prf_family.nb_queue = queue_family.nb_queue;
+      prf_family.graphics = queue_family.capable_graphics;
+      prf_family.compute = queue_family.capable_compute;
+      prf_family.transfer = queue_family.capable_transfer;
+      prf_family.sparseBinding = queue_family.capable_sparseBinding;
+      prf_family.presentation = queue_family.capable_presentation;
 
-      device_info.vec_queue_family.push_back(queue_family);
+      device_info.vec_queue_family.push_back(prf_family);
     }
 
     //Check if it is the selected one

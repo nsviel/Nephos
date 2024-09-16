@@ -56,8 +56,7 @@ void Center::menu_panel(){
   //---------------------------
 
   //Node panels
-  for(int i=0; i<vec_panel.size(); i++){
-    utl::gui::Panel* panel = vec_panel[i];
+  for(auto& panel : vec_panel){
     std::string title = panel->icon + " " + panel->name;
     ImGui::Checkbox(title.c_str(), &panel->is_open);
   }
