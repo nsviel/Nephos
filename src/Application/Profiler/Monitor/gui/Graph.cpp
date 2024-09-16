@@ -112,9 +112,7 @@ void Graph::draw_tasker_separated(prf::monitor::Profiler* profiler){
   //---------------------------
 
   std::list<prf::monitor::Tasker*> list_tasker = profiler->get_list_tasker();
-  for(int i=0; i<list_tasker.size(); i++){
-    prf::monitor::Tasker* tasker = *next(list_tasker.begin(), i);
-
+  for(auto& tasker : list_tasker){
     //Tasker tab
     std::string title = tasker->name + "##tasker_unique_plot";
     int width = ImGui::GetContentRegionAvail().x / (list_tasker.size() + 1);

@@ -48,9 +48,7 @@ void Bookmark::save_file_bookmark(){
 
   //Make vector of temporary bookmarks
   std::vector<std::string> vec_path;
-  for(int i=0; i<list_item.size(); i++){
-    io::imp::bookmark::Item& item = *next(list_item.begin(), i);
-
+  for(auto& item : list_item){
     if(item.is_supressible){
       vec_path.push_back(item.path.build());
     }
@@ -111,9 +109,7 @@ void Bookmark::add_relative_path(std::string path){
 bool Bookmark::is_path_bookmarked(std::string path){
   //---------------------------
 
-  for(int i=0; i<list_item.size(); i++){
-    io::imp::bookmark::Item& item = *next(list_item.begin(), i);
-
+  for(auto& item : list_item){
     if(path == item.path.build()){
       return true;
     }

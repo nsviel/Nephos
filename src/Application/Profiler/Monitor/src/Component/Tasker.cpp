@@ -69,8 +69,7 @@ void Tasker::update(){
   this->plot.reset();
 
   //Assign tasks
-  for(int i=0; i<vec_task.size(); i++){
-    prf::monitor::Task& task = vec_task[i];
+  for(auto& task : vec_task){
     this->plot.add_task(task.ts_begin, task.ts_end, task.name, task.color);
   }
 
@@ -160,11 +159,9 @@ prf::monitor::Task* Tasker::find_task(const std::string& name){
   //---------------------------
 
   //Search for corresponding task
-  for(int i=0; i<vec_task_buffer.size(); i++){
-    prf::monitor::Task* task = &vec_task_buffer[i];
-
-    if(task->name == name){
-      return task;
+  for(auto& task : vec_task_buffer){
+    if(task.name == name){
+      return &task;
     }
   }
 

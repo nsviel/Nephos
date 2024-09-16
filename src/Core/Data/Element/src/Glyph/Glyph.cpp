@@ -64,8 +64,7 @@ void Glyph::update_glyph(std::shared_ptr<dat::base::Object> object, int type){
   //----------------------------
 /*
   //Update own glyph data
-  for(int i=0; i<object->list_glyph.size(); i++){
-    std::shared_ptr<dat::base::Glyph> glyph = *next(object->list_glyph.begin(), i);
+  for(auto& glyph : object->list_glyph){
     if(glyph->type == type){
       glyph->update_glyph(object);
       dat_entity->update_data(glyph);

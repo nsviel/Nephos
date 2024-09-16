@@ -42,9 +42,7 @@ void Tab::draw_dynamic_tabbar(){
   ImGui::PushStyleColor(ImGuiCol_TabHovered, utl::colormap::H3_TAB_HOVERED);
   ImGui::PushStyleColor(ImGuiCol_TabActive, utl::colormap::H3_TAB_ACTIVE);
   if(ImGui::BeginTabBar("profiler_panel##graph")){
-    for(int i=0; i<list_profiler.size(); i++){
-      prf::monitor::Profiler* profiler = *next(list_profiler.begin(), i);
-
+    for(auto& profiler : list_profiler){
       ImGui::SetNextItemWidth(width);
       if(ImGui::BeginTabItem(profiler->name.c_str())){
         gui_graph->draw_profiler(profiler);
@@ -55,7 +53,7 @@ void Tab::draw_dynamic_tabbar(){
     ImGui::EndTabBar();
   }
   ImGui::PopStyleColor(3);
-  
+
   //---------------------------
 }
 

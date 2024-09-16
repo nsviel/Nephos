@@ -18,8 +18,7 @@ Profiler::~Profiler(){}
 void Profiler::reset(){
   //---------------------------
 
-  for(int i=0; i<list_tasker.size(); i++){
-    prf::monitor::Tasker* tasker = *next(list_tasker.begin(), i);
+  for(auto& tasker : list_tasker){
     tasker->reset();
   }
 
@@ -28,7 +27,7 @@ void Profiler::reset(){
 void Profiler::clean(){
   //---------------------------
 
-  for(auto tasker : list_tasker){
+  for(auto& tasker : list_tasker){
     delete tasker;
   }
   list_tasker.clear();
@@ -41,8 +40,7 @@ prf::monitor::Tasker* Profiler::fetch_tasker(std::string name){
   //---------------------------
 
   //Check if tasker name already exists
-  for(int i=0; i<list_tasker.size(); i++){
-    prf::monitor::Tasker* tasker = *next(list_tasker.begin(), i);
+  for(auto& tasker : list_tasker){
     if(tasker->name == name){
       return tasker;
     }

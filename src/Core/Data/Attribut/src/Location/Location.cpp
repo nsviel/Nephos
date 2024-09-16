@@ -21,21 +21,19 @@ void Location::compute_centroid(dat::base::Entity& entity){
   utl::base::Data& data = *entity.data;
   //---------------------------
 
-  std::vector<glm::vec3>& xyz = data.xyz;
-  glm::vec3& centroid = data.centroid;
-
   //Compute raw centroid
+  glm::vec3& centroid = data.centroid;
   glm::vec3 temp_centroid(0.0f, 0.0f, 0.0f);
 
   // Parallel sum of xyz vectors
   #pragma omp parallel for reduction(+:temp_centroid)
-  for(int i=0; i<xyz.size(); i++){
-    temp_centroid += xyz[i];
+  for(auto& xyz : data.xyz){
+    temp_centroid += xyz;
   }
 
   // Compute average
   std::unique_lock<std::mutex> lock(data.mutex);
-  centroid = temp_centroid / static_cast<float>(xyz.size());
+  centroid = temp_centroid / static_cast<float>(data.xyz.size());
 
   //---------------------------
 }
