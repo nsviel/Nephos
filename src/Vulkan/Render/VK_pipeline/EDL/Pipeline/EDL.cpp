@@ -21,21 +21,22 @@ EDL::~EDL(){}
 
 //Main function
 void EDL::add_pipeline(vk::structure::Subpass& subpass){
+  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   //---------------------------
 
-  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   this->set_pipeline(*pipeline);
   this->set_shader(*pipeline);
   this->set_binding(*pipeline);
 
   //---------------------------
-  subpass.map_pipeline["edl"] = pipeline;
+  vk_pipeline->add_pipeline(subpass, *pipeline);
 }
 
 //Subfunction
 void EDL::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
+  pipeline.info.name = "edl";
   pipeline.info.topology = utl::topology::TRIANGLE;
   pipeline.info.vec_attribut.push_back(vk::attribut::XYZ);
   pipeline.info.vec_attribut.push_back(vk::attribut::UV);

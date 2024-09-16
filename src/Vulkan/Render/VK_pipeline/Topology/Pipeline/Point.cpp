@@ -19,21 +19,22 @@ Point::~Point(){}
 
 //Main function
 void Point::add_pipeline(vk::structure::Subpass& subpass){
+  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   //---------------------------
 
-  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   this->set_pipeline(*pipeline);
   this->set_shader(*pipeline);
   this->set_binding(*pipeline);
 
   //---------------------------
-  subpass.map_pipeline["point"] = pipeline;
+  vk_pipeline->add_pipeline(subpass, *pipeline);
 }
 
 //Subfunction
 void Point::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
+  pipeline.info.name = "point";
   pipeline.info.topology = utl::topology::POINT;
   pipeline.info.vec_attribut.push_back(vk::attribut::XYZ);
   pipeline.info.vec_attribut.push_back(vk::attribut::RGBA);

@@ -19,21 +19,22 @@ Triangle::~Triangle(){}
 
 //Main function
 void Triangle::add_pipeline(vk::structure::Subpass& subpass){
+  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   //---------------------------
 
-  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   this->set_pipeline(*pipeline);
   this->set_shader(*pipeline);
   this->set_binding(*pipeline);
 
   //---------------------------
-  subpass.map_pipeline["triangle"] = pipeline;
+  vk_pipeline->add_pipeline(subpass, *pipeline);
 }
 
 //Subfunction
 void Triangle::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
+  pipeline.info.name = "triangle";
   pipeline.info.topology = utl::topology::TRIANGLE;
   pipeline.info.vec_attribut.push_back(vk::attribut::XYZ);
   pipeline.info.vec_attribut.push_back(vk::attribut::RGBA);
