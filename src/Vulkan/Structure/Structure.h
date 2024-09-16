@@ -10,7 +10,7 @@
 #include <Vulkan/Core/VK_presentation/Structure/Viewport.h>
 
 #include <Vulkan/Render/VK_engine/Structure/Profiler.h>
-#include <Vulkan/Render/VK_pipeline/Structure.h>
+#include <Vulkan/Render/VK_pipeline/Structure/Structure.h>
 #include <Vulkan/Render/VK_renderpass/Structure/Renderpass.h>
 #include <Vulkan/Render/VK_engine/Structure/Parameter.h>
 #include <Vulkan/Render/VK_engine/Structure/Profiler.h>
