@@ -59,9 +59,9 @@ void CFD::set_shader(vk::structure::Pipeline& pipeline){
 void CFD::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.binding.layout.vec_descriptor.push_back(vk::pipeline::cfd::sampler_color());
-  pipeline.binding.layout.vec_descriptor.push_back(vk::pipeline::cfd::sampler_depth());
-  pipeline.binding.layout.vec_descriptor.push_back(vk::pipeline::cfd::uniform_cfd());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::cfd::sampler_color());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::cfd::sampler_depth());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::cfd::uniform_cfd());
 
   //---------------------------
 }

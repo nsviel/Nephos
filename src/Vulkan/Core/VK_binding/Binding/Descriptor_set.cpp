@@ -16,21 +16,21 @@ Descriptor_set::Descriptor_set(vk::Structure* vk_struct){
 Descriptor_set::~Descriptor_set(){}
 
 //Main function
-void Descriptor_set::allocate(vk::descriptor::structure::Binding& binding){
+void Descriptor_set::allocate(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
   //---------------------------
 
   VkDescriptorSetAllocateInfo allocation_info{};
   allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
   allocation_info.descriptorPool = vk_struct->core.pools.descriptor.allocator;
   allocation_info.descriptorSetCount = 1;
-  allocation_info.pSetLayouts = &binding.layout.handle;
+  allocation_info.pSetLayouts = &layout.handle;
 
-  VkResult result = vkAllocateDescriptorSets(vk_struct->core.device.handle, &allocation_info, &binding.descriptor_set.handle);
+  VkResult result = vkAllocateDescriptorSets(vk_struct->core.device.handle, &allocation_info, &descriptor_set.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate descriptor sets!");
   }
 
-  this->update(binding);
+  this->update(descriptor_set, layout);
 
   //---------------------------
 }
@@ -41,13 +41,13 @@ void Descriptor_set::bind(VkCommandBuffer& command_buffer, vk::structure::Pipeli
 
   //---------------------------
 }
-void Descriptor_set::update(vk::descriptor::structure::Binding& binding){
+void Descriptor_set::update(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
   //---------------------------
 
   //Make list of writeable uniform
   std::vector<VkWriteDescriptorSet> vec_descriptor_write;
   std::vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
-  for(auto& [name, uniform] : binding.layout.map_uniform){
+  for(auto& [name, uniform] : layout.map_uniform){
     //Blabla
     VkDescriptorBufferInfo descriptor_info = {};
     descriptor_info.buffer = uniform->buffer;
@@ -58,7 +58,7 @@ void Descriptor_set::update(vk::descriptor::structure::Binding& binding){
     //Blabla
     VkWriteDescriptorSet write_uniform = {};
     write_uniform.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-    write_uniform.dstSet = binding.descriptor_set.handle;
+    write_uniform.dstSet = descriptor_set.handle;
     write_uniform.dstBinding = uniform->binding;
     write_uniform.dstArrayElement = 0;
     write_uniform.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
@@ -77,7 +77,7 @@ void Descriptor_set::update(vk::descriptor::structure::Binding& binding){
 void Descriptor_set::clean(vk::descriptor::structure::Binding& binding){
   //---------------------------
 
-  vkDestroyDescriptorSetLayout(vk_struct->core.device.handle, binding.layout.handle, nullptr);
+  //vkDestroyDescriptorSetLayout(vk_struct->core.device.handle, binding.layout.handle, nullptr);
 
   //---------------------------
 }

@@ -2,7 +2,7 @@
 
 #include <Vulkan/Core/VK_pipeline/Structure/Info.h>
 #include <Vulkan/Core/VK_pipeline/Structure/Element.h>
-#include <Vulkan/Core/VK_binding/Structure/Binding.h>
+#include <Vulkan/Core/VK_pipeline/Structure/Descriptor.h>
 #include <vulkan/vulkan.h>
 
 
@@ -16,7 +16,7 @@ struct Pipeline{
 
   vk::pipeline::structure::Info info;
   vk::pipeline::structure::Element element;
-  vk::descriptor::structure::Binding binding;
+  vk::pipeline::structure::Descriptor descriptor;
 
   //---------------------------
 };

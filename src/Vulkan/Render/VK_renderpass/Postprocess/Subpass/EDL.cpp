@@ -57,18 +57,18 @@ void EDL::update_binding(vk::structure::Subpass& subpass){
   vk::structure::Pipeline* pipeline = subpass.map_pipeline["edl"];
 
   for(auto& [name, pipeline] : subpass.map_pipeline){
-    vk_sampler->update_sampler(pipeline->binding, &frame_scene.color);
-    vk_sampler->update_sampler(pipeline->binding, &frame_scene.depth);
+    vk_sampler->update_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.color);
+    vk_sampler->update_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.depth);
   }
 
   //vk_shader->update_shader();
   edl_struct.tex_width = vk_struct->window.window.dimension.x;
   edl_struct.tex_height = vk_struct->window.window.dimension.y;
 
-  vk_uniform->update_uniform("EDL_param", pipeline->binding.layout, edl_struct);
+  vk_uniform->update_uniform("EDL_param", pipeline->descriptor.layout, edl_struct);
 
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
-  vk_descriptor_set->bind(subpass.command_buffer->handle, pipeline, pipeline->binding.descriptor_set.handle);
+  vk_descriptor_set->bind(subpass.command_buffer->handle, pipeline, pipeline->descriptor.descriptor_set.handle);
 
   //---------------------------
 }

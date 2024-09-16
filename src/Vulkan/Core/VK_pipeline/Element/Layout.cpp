@@ -39,7 +39,7 @@ void Layout::create_simple_layout(vk::structure::Pipeline* pipeline){
   VkPipelineLayoutCreateInfo pipeline_layout_info{};
   pipeline_layout_info.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
   pipeline_layout_info.setLayoutCount = 1;
-  pipeline_layout_info.pSetLayouts = &pipeline->binding.layout.handle;
+  pipeline_layout_info.pSetLayouts = &pipeline->descriptor.layout.handle;
 
   //Pipeline layout creation
   VkResult result = vkCreatePipelineLayout(vk_struct->core.device.handle, &pipeline_layout_info, nullptr, &pipeline->layout);
@@ -62,7 +62,7 @@ void Layout::create_pushconstant_layout(vk::structure::Pipeline* pipeline){
   VkPipelineLayoutCreateInfo pipeline_layout_info{};
   pipeline_layout_info.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
   pipeline_layout_info.setLayoutCount = 1;
-  pipeline_layout_info.pSetLayouts = &pipeline->binding.layout.handle;
+  pipeline_layout_info.pSetLayouts = &pipeline->descriptor.layout.handle;
   //pipeline_layout_info.pushConstantRangeCount = 1;
   //pipeline_layout_info.pPushConstantRanges = &pushconstant_range;
 

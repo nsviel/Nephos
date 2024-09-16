@@ -29,10 +29,10 @@ void Sampler::create_sampler(vk::descriptor::structure::Layout& layout, vk::desc
 
   //---------------------------
 }
-void Sampler::update_sampler(vk::descriptor::structure::Binding& binding, vk::structure::Image* image){
+void Sampler::update_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout, vk::structure::Image* image){
   //---------------------------
 
-  vk::descriptor::structure::Sampler* sampler = query_sampler(binding, image->name);
+  vk::descriptor::structure::Sampler* sampler = query_sampler(layout, image->name);
   if(!sampler) return;
 
   VkDescriptorImageInfo image_info = {};
@@ -42,7 +42,7 @@ void Sampler::update_sampler(vk::descriptor::structure::Binding& binding, vk::st
 
   VkWriteDescriptorSet write_sampler = {};
   write_sampler.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-  write_sampler.dstSet = binding.descriptor_set.handle;
+  write_sampler.dstSet = descriptor_set.handle;
   write_sampler.dstBinding = sampler->binding;
   write_sampler.dstArrayElement = 0;
   write_sampler.descriptorType = sampler->type;
@@ -55,16 +55,16 @@ void Sampler::update_sampler(vk::descriptor::structure::Binding& binding, vk::st
 }
 
 //Subfunction
-vk::descriptor::structure::Sampler* Sampler::query_sampler(vk::descriptor::structure::Binding& binding, std::string& name){
+vk::descriptor::structure::Sampler* Sampler::query_sampler(vk::descriptor::structure::Layout& layout, std::string& name){
   //---------------------------
 
-  auto it = binding.layout.map_sampler.find(name);
-  if (it == binding.layout.map_sampler.end()) {
+  auto it = layout.map_sampler.find(name);
+  if (it == layout.map_sampler.end()) {
     std::cout<<"------------------------"<<std::endl;
     std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<name<<"\033[0m"<<std::endl;
     std::cout<<"Existing uniform names: "<<std::endl;
 
-    for(auto& [name, sampler] : binding.layout.map_sampler){
+    for(auto& [name, sampler] : layout.map_sampler){
       std::cout<<"\033[1;32m"<<name<<"\033[0m"<<std::endl;
     }
 

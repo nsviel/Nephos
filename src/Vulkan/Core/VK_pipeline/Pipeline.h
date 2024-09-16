@@ -3,7 +3,7 @@
 #include <vulkan/vulkan.h>
 
 namespace vk{class Structure;}
-namespace vk::descriptor{class Binding;}
+namespace vk::pipeline{class Descriptor;}
 namespace vk::draw{class Viewport;}
 namespace vk::pipeline{class Shader;}
 namespace vk::pipeline{class Vertex;}
@@ -34,7 +34,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::descriptor::Binding* vk_binding;
+  vk::pipeline::Descriptor* vk_descriptor;
   vk::pipeline::Shader* vk_shader;
   vk::pipeline::Vertex* vk_vertex;
   vk::pipeline::Object* vk_object;

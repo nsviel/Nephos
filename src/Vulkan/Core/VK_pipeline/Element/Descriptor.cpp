@@ -1,16 +1,15 @@
-#include "Binding.h"
+#include "Descriptor.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace vk::descriptor{
+namespace vk::pipeline{
 
 //Constructor / Destructor
-Binding::Binding(vk::Structure* vk_struct){
+Descriptor::Descriptor(vk::Structure* vk_struct){
   //---------------------------
 
-  this->vk_struct = vk_struct;
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
   this->vk_layout = new vk::descriptor::Layout(vk_struct);
@@ -18,22 +17,22 @@ Binding::Binding(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Binding::~Binding(){}
+Descriptor::~Descriptor(){}
 
 //Main function
-void Binding::create_binding(vk::descriptor::structure::Binding& binding){
+void Descriptor::create_pipeline_descriptor(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  vk_layout->create_layout(binding.layout);
-  vk_descriptor_set->allocate(binding.descriptor_set, binding.layout);
+  vk_layout->create_layout(pipeline->descriptor.layout);
+  vk_descriptor_set->allocate(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout);
 
   //---------------------------
 }
-void Binding::clean_binding(vk::descriptor::structure::Binding& binding){
+void Descriptor::clean_pipeline_descriptor(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  vk_layout->clean_layout(binding.layout);
-  vk_uniform->clean_uniform(binding.layout);
+  vk_layout->clean_layout(pipeline->descriptor.layout);
+  vk_uniform->clean_uniform(pipeline->descriptor.layout);
 
   //---------------------------
 }
