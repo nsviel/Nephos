@@ -53,8 +53,8 @@ void GPU::collect_vulkan_info(){
 void GPU::collect_vulkan_device(){
   //---------------------------
 
-  for(int i=0; i<vk_struct->instance.vec_physical_device.size(); i++){
-    vk::device::structure::Physical& physical_device = vk_struct->instance.vec_physical_device[i];
+  for(int i=0; i<vk_struct->core.instance.vec_physical_device.size(); i++){
+    vk::device::structure::Physical& physical_device = vk_struct->core.instance.vec_physical_device[i];
 
     //Device info
     prf::hardware::structure::Device device_info;
@@ -78,7 +78,7 @@ void GPU::collect_vulkan_device(){
     }
 
     //Check if it is the selected one
-    if(physical_device.name == vk_struct->device.physical_device.name){
+    if(physical_device.name == vk_struct->core.device.physical_device.name){
       prf_struct->gpu.name = physical_device.name;
     }
 
@@ -90,9 +90,9 @@ void GPU::collect_vulkan_device(){
 void GPU::collect_vulkan_queue(){
   //---------------------------
 
-  this->add_queue(vk_struct->device.queue.graphics, prf::hardware::structure::queue::GRAPHICS);
-  this->add_queue(vk_struct->device.queue.presentation, prf::hardware::structure::queue::PRESENTATION);
-  this->add_queue(vk_struct->device.queue.transfer, prf::hardware::structure::queue::TRANSFER);
+  this->add_queue(vk_struct->core.device.queue.graphics, prf::hardware::structure::queue::GRAPHICS);
+  this->add_queue(vk_struct->core.device.queue.presentation, prf::hardware::structure::queue::PRESENTATION);
+  this->add_queue(vk_struct->core.device.queue.transfer, prf::hardware::structure::queue::TRANSFER);
 
   //---------------------------
 }

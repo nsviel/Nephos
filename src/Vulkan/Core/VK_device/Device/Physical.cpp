@@ -36,8 +36,8 @@ void Physical::compute_extent(){
     vk_struct->window.extent.height = vk_struct->param.headless_dim.y;
   }
   else{
-    this->find_surface_capability(vk_struct->device.physical_device);
-    VkSurfaceCapabilitiesKHR capabilities = vk_struct->device.physical_device.capabilities;
+    this->find_surface_capability(vk_struct->core.device.physical_device);
+    VkSurfaceCapabilitiesKHR capabilities = vk_struct->core.device.physical_device.capabilities;
 
     if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){
       vk_struct->window.extent = capabilities.currentExtent;
@@ -63,14 +63,14 @@ void Physical::find_all_physical_device(){
 
   //Find how many GPU are available
   uint32_t nb_device = 0;
-  vkEnumeratePhysicalDevices(vk_struct->instance.handle, &nb_device, nullptr);
+  vkEnumeratePhysicalDevices(vk_struct->core.instance.handle, &nb_device, nullptr);
   if(nb_device == 0){
     throw std::runtime_error("[error] failed to find GPUs with Vulkan support!");
   }
 
   //List all available GPU and take suitable one
   std::vector<VkPhysicalDevice> vec_physical_device(nb_device);
-  vkEnumeratePhysicalDevices(vk_struct->instance.handle, &nb_device, vec_physical_device.data());
+  vkEnumeratePhysicalDevices(vk_struct->core.instance.handle, &nb_device, vec_physical_device.data());
 
   //Store physical device properties
   for(VkPhysicalDevice device : vec_physical_device){
@@ -78,7 +78,7 @@ void Physical::find_all_physical_device(){
     physical_device.handle = device;
     this->find_physical_device_properties(physical_device);
     this->find_physical_device_limits(physical_device);
-    vk_struct->instance.vec_physical_device.push_back(physical_device);
+    vk_struct->core.instance.vec_physical_device.push_back(physical_device);
   }
 
   //---------------------------
@@ -88,15 +88,15 @@ void Physical::find_best_physical_device(){
 
   // Use an ordered map to automatically sort candidates by increasing score
   std::multimap<int, vk::device::structure::Physical> candidates;
-  for(auto& physical_device : vk_struct->instance.vec_physical_device){
+  for(auto& physical_device : vk_struct->core.instance.vec_physical_device){
     this->rate_device_suitability(physical_device);
     candidates.insert(std::make_pair(physical_device.selection_score, physical_device));
   }
 
   //Select adequat GPU physical device
-  vk_struct->device.physical_device.handle = VK_NULL_HANDLE;
+  vk_struct->core.device.physical_device.handle = VK_NULL_HANDLE;
   if(candidates.rbegin()->first > 0){
-    vk_struct->device.physical_device = candidates.rbegin()->second;
+    vk_struct->core.device.physical_device = candidates.rbegin()->second;
   }else{
     std::cout<<"[error] failed to find a suitable GPU"<<std::endl;
     std::cout<<"-------------------------------------"<<std::endl;
@@ -108,7 +108,7 @@ void Physical::find_best_physical_device(){
     }
     exit(0);
   }
-  if(vk_struct->device.physical_device.handle == VK_NULL_HANDLE){
+  if(vk_struct->core.device.physical_device.handle == VK_NULL_HANDLE){
     throw std::runtime_error("[error] problem retrieving a suitable GPU");
   }
 
@@ -271,7 +271,7 @@ void Physical::find_physical_device_support(vk::device::structure::Physical& phy
   vkEnumerateDeviceExtensionProperties(physical_device.handle, nullptr, &num_ext, vec_ext_capable.data());
 
   //Check if all required extension are in the list
-  std::vector<const char*> vec_ext_required = vk_struct->instance.extension_device;
+  std::vector<const char*> vec_ext_required = vk_struct->core.instance.extension_device;
   std::set<std::string> set_ext_required(vec_ext_required.begin(), vec_ext_required.end());
   for(const auto& extension : vec_ext_capable){
     set_ext_required.erase(extension.extensionName);

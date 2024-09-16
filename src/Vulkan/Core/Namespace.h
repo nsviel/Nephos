@@ -15,3 +15,4 @@
 #include <Vulkan/Core/VK_memory/Namespace.h>
 #include <Vulkan/Core/VK_pool/Namespace.h>
 #include <Vulkan/Core/VK_pipeline/Namespace.h>
+#include <Vulkan/Core/Structure.h>

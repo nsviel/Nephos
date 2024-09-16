@@ -38,7 +38,7 @@ void Layer::create_validation_layer(){
     VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
   create_info.pfnUserCallback = vk::validation::Callback;
 
-  VkResult result = create_debug_EXT(vk_struct->instance.handle, &create_info, nullptr, &EXT_debug);
+  VkResult result = create_debug_EXT(vk_struct->core.instance.handle, &create_info, nullptr, &EXT_debug);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to set up debug messenger!");
   }
@@ -49,7 +49,7 @@ void Layer::clean_layer(){
   //---------------------------
 
   if(with_validation_layer){
-    destroy_debug_EXT(vk_struct->instance.handle, EXT_debug, nullptr);
+    destroy_debug_EXT(vk_struct->core.instance.handle, EXT_debug, nullptr);
   }
 
   //---------------------------

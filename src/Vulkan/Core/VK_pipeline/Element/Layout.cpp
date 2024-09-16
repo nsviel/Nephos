@@ -26,7 +26,7 @@ void Layout::create_pipeline_layout(vk::structure::Pipeline* pipeline){
 void Layout::clean_pipeline_layout(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  vkDestroyPipelineLayout(vk_struct->device.handle, pipeline->layout, nullptr);
+  vkDestroyPipelineLayout(vk_struct->core.device.handle, pipeline->layout, nullptr);
 
   //---------------------------
 }
@@ -42,7 +42,7 @@ void Layout::create_simple_layout(vk::structure::Pipeline* pipeline){
   pipeline_layout_info.pSetLayouts = &pipeline->binding.descriptor_set.layout;
 
   //Pipeline layout creation
-  VkResult result = vkCreatePipelineLayout(vk_struct->device.handle, &pipeline_layout_info, nullptr, &pipeline->layout);
+  VkResult result = vkCreatePipelineLayout(vk_struct->core.device.handle, &pipeline_layout_info, nullptr, &pipeline->layout);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create pipeline layout!");
   }
@@ -67,7 +67,7 @@ void Layout::create_pushconstant_layout(vk::structure::Pipeline* pipeline){
   //pipeline_layout_info.pPushConstantRanges = &pushconstant_range;
 
   //Pipeline layout creation
-  VkResult result = vkCreatePipelineLayout(vk_struct->device.handle, &pipeline_layout_info, nullptr, &pipeline->layout);
+  VkResult result = vkCreatePipelineLayout(vk_struct->core.device.handle, &pipeline_layout_info, nullptr, &pipeline->layout);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create pipeline layout!");
   }

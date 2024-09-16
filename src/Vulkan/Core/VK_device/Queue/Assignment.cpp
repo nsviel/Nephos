@@ -30,11 +30,11 @@ void Assignment::assign_queue(){
 
 //Subfunction
 void Assignment::assign_graphics_queue(){
-  vk::queue::structure::Set& set = vk_struct->device.queue;
+  vk::queue::structure::Set& set = vk_struct->core.device.queue;
   //---------------------------
 
   int index = 0;
-  for(auto& family : vk_struct->device.physical_device.vec_queue_family){
+  for(auto& family : vk_struct->core.device.physical_device.vec_queue_family){
     if(family.capable_graphics && set.graphics.family_ID == -1){
       set.graphics.family_ID = index;
       set.graphics.family_index = family.current_index++;
@@ -49,11 +49,11 @@ void Assignment::assign_graphics_queue(){
   //---------------------------
 }
 void Assignment::assign_presentation_queue(){
-  vk::queue::structure::Set& set = vk_struct->device.queue;
+  vk::queue::structure::Set& set = vk_struct->core.device.queue;
   //---------------------------
 
   int index = 0;
-  for(auto& family : vk_struct->device.physical_device.vec_queue_family){
+  for(auto& family : vk_struct->core.device.physical_device.vec_queue_family){
     if(family.capable_presentation && set.presentation.family_ID == -1){
       set.presentation.family_ID = index;
       set.presentation.family_index = family.current_index++;
@@ -68,11 +68,11 @@ void Assignment::assign_presentation_queue(){
   //---------------------------
 }
 void Assignment::assign_transfer_queue(){
-  vk::queue::structure::Set& set = vk_struct->device.queue;
+  vk::queue::structure::Set& set = vk_struct->core.device.queue;
   //---------------------------
 
   int index = 0;
-  for(auto& family : vk_struct->device.physical_device.vec_queue_family){
+  for(auto& family : vk_struct->core.device.physical_device.vec_queue_family){
     if(family.capable_transfer && set.transfer.family_ID == -1){
       set.transfer.family_ID = index;
       set.transfer.family_index = family.current_index++;
@@ -87,7 +87,7 @@ void Assignment::assign_transfer_queue(){
   //---------------------------
 }
 void Assignment::check_proper_assigment(){
-  vk::queue::structure::Set& set = vk_struct->device.queue;
+  vk::queue::structure::Set& set = vk_struct->core.device.queue;
   //---------------------------
 
   //check for good assigment

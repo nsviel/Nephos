@@ -18,8 +18,8 @@ Headless::~Headless(){}
 void Headless::draw_frame(){
   //---------------------------
 
-  //vk_struct->queue.graphics->wait_for_idle();
-  //vk_struct->queue.presentation->wait_for_idle();
+  //vk_struct->core.queue.graphics->wait_for_idle();
+  //vk_struct->core.queue.presentation->wait_for_idle();
   vk::synchro::structure::Semaphore* semaphore = nullptr;
 
   //Renderpass
@@ -43,7 +43,7 @@ void Headless::draw_frame(){
   }
 
   //Submission
-  vk_struct->queue.graphics->add_command(std::move(vec_command));
+  vk_struct->core.queue.graphics->add_command(std::move(vec_command));
 
   //---------------------------
 }

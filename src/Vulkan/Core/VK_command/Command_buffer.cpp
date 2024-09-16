@@ -25,7 +25,7 @@ void Command_buffer::init_pool(vk::pool::structure::Command_buffer* pool){
   //---------------------------
 
   //Number of command buffer
-  int number = vk_struct->device.physical_device.discrete_gpu ? 100 : 10;
+  int number = vk_struct->core.device.physical_device.discrete_gpu ? 100 : 10;
   pool->size = number;
 
   //Create a pool of command buffer number
@@ -63,7 +63,7 @@ void Command_buffer::clean_pool(vk::pool::structure::Command_buffer* pool){
   //Clear all old command buffer
   for(auto& command_buffer : pool->tank){
     vk_query->clean_query_pool(&command_buffer->query);
-    vkFreeCommandBuffers(vk_struct->device.handle, pool->allocator, 1, &command_buffer->handle);
+    vkFreeCommandBuffers(vk_struct->core.device.handle, pool->allocator, 1, &command_buffer->handle);
   }
 
   //---------------------------
@@ -80,7 +80,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::structure::Command_
   alloc_info.commandPool = pool->allocator;
   alloc_info.commandBufferCount = 1;
 
-  VkResult result = vkAllocateCommandBuffers(vk_struct->device.handle, &alloc_info, &command_buffer.handle);
+  VkResult result = vkAllocateCommandBuffers(vk_struct->core.device.handle, &alloc_info, &command_buffer.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
   }
@@ -88,7 +88,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::structure::Command_
   //---------------------------
 }
 void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data){
-  vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->device.queue.transfer);
+  vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->core.device.queue.transfer);
   //---------------------------
 
   //Command buffer allocation
@@ -98,7 +98,7 @@ void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data
   alloc_info.commandPool = pool->allocator;
   alloc_info.commandBufferCount = 1;
 
-  VkResult result = vkAllocateCommandBuffers(vk_struct->device.handle, &alloc_info, &data->command_buffer_secondary);
+  VkResult result = vkAllocateCommandBuffers(vk_struct->core.device.handle, &alloc_info, &data->command_buffer_secondary);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
   }

@@ -22,7 +22,7 @@ Graphical::~Graphical(){}
 void Graphical::draw_frame(){
   //---------------------------
 
-  vk_struct->queue.presentation->make_rendering();
+  vk_struct->core.queue.presentation->make_rendering();
 
   //---------------------------
 }
@@ -56,7 +56,7 @@ void Graphical::copy_to_swapchain(std::vector<std::unique_ptr<vk::structure::Com
 
   //Copy renderpass to swapchain image
   vk::structure::Renderpass& renderpass = vk_struct->renderpass.onscreen;
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_transfer->copy_image_to_image(renderpass.framebuffer.color, vk_struct->swapchain.vec_frame[vk_struct->swapchain.current_ID]->color);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_transfer->copy_image_to_image(renderpass.framebuffer.color, vk_struct->core.swapchain.vec_frame[vk_struct->core.swapchain.current_ID]->color);
 
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->semaphore_wait = semaphore.handle;

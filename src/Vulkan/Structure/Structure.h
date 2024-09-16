@@ -1,13 +1,6 @@
 #pragma once
 
-#include <Vulkan/Core/VK_command/Structure/Command.h>
-#include <Vulkan/Core/VK_data/Structure/Data.h>
-#include <Vulkan/Core/VK_queue/Structure/Class.h>
-#include <Vulkan/Core/VK_device/Structure/Logical.h>
-#include <Vulkan/Core/VK_instance/Structure/Instance.h>
-#include <Vulkan/Core/VK_presentation/Structure/Swapchain.h>
-#include <Vulkan/Core/VK_pool/Structure/Pool.h>
-#include <Vulkan/Core/VK_presentation/Structure/Viewport.h>
+#include <Vulkan/Core/Structure.h>
 
 #include <Vulkan/Render/VK_engine/Structure/Profiler.h>
 #include <Vulkan/Render/VK_pipeline/Structure/Structure.h>
@@ -32,19 +25,14 @@ struct Structure{
   //Structure
   vk::structure::Window window;
   vk::structure::Panel panel;
-  vk::structure::Instance instance;
-  vk::structure::Viewport viewport;
-  vk::device::structure::Logical device;
-  vk::structure::Swapchain swapchain;
-  vk::data::structure::Data data;
   vk::structure::Parameter param;
-  vk::pool::structure::Pool pools;
-  vk::structure::Command command;
   vk::profiler::Structure profiler;
-  vk::queue::structure::Class queue;
   vk::render::pipeline::Structure render;
   vk::render::structure::Renderpass renderpass;
   vk::gui::Structure gui;
+
+
+  vk::core::Structure core;
 
   //---------------------------
 };

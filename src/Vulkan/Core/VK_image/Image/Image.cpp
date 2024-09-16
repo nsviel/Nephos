@@ -31,19 +31,19 @@ void Image::create_image(vk::structure::Image& image){
 void Image::clean_image(vk::structure::Image& image){
   //---------------------------
 
-  vkDestroySampler(vk_struct->device.handle, image.sampler, nullptr);
+  vkDestroySampler(vk_struct->core.device.handle, image.sampler, nullptr);
 
   if(image.view != nullptr)
   this->clean_image_view(image);
-  vkDestroyImage(vk_struct->device.handle, image.handle, nullptr);
-  vkFreeMemory(vk_struct->device.handle, image.mem, nullptr);
+  vkDestroyImage(vk_struct->core.device.handle, image.handle, nullptr);
+  vkFreeMemory(vk_struct->core.device.handle, image.mem, nullptr);
 
   //---------------------------
 }
 void Image::clean_image_view(vk::structure::Image& image){
   //---------------------------
 
-  vkDestroyImageView(vk_struct->device.handle, image.view, nullptr);
+  vkDestroyImageView(vk_struct->core.device.handle, image.view, nullptr);
 
   //---------------------------
 }
@@ -64,10 +64,10 @@ void Image::create_image_handle(vk::structure::Image& image){
   image_info.tiling = image.tiling;
   image_info.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
   image_info.usage = image.usage | VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
-  image_info.samples = vk_struct->device.physical_device.max_sample_count;
+  image_info.samples = vk_struct->core.device.physical_device.max_sample_count;
   image_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
-  VkResult result = vkCreateImage(vk_struct->device.handle, &image_info, nullptr, &image.handle);
+  VkResult result = vkCreateImage(vk_struct->core.device.handle, &image_info, nullptr, &image.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create image!");
   }
@@ -90,7 +90,7 @@ void Image::create_image_view(vk::structure::Image& image){
   view_info.image = image.handle;
   view_info.flags = 0;
 
-  VkResult result = vkCreateImageView(vk_struct->device.handle, &view_info, nullptr, &image.view);
+  VkResult result = vkCreateImageView(vk_struct->core.device.handle, &view_info, nullptr, &image.view);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create image view!");
   }
@@ -108,14 +108,14 @@ void Image::create_image_sampler(vk::structure::Image& image){
   sampler_info.addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT;
   sampler_info.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
   sampler_info.anisotropyEnable = VK_TRUE;
-  sampler_info.maxAnisotropy = vk_struct->device.physical_device.properties.limits.maxSamplerAnisotropy;
+  sampler_info.maxAnisotropy = vk_struct->core.device.physical_device.properties.limits.maxSamplerAnisotropy;
   sampler_info.borderColor = VK_BORDER_COLOR_INT_OPAQUE_BLACK;
   sampler_info.unnormalizedCoordinates = VK_FALSE;
   sampler_info.compareEnable = VK_FALSE;
   sampler_info.compareOp = VK_COMPARE_OP_ALWAYS;
   sampler_info.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
 
-  VkResult result = vkCreateSampler(vk_struct->device.handle, &sampler_info, nullptr, &image.sampler);
+  VkResult result = vkCreateSampler(vk_struct->core.device.handle, &sampler_info, nullptr, &image.sampler);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create image sampler!");
   }

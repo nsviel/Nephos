@@ -76,7 +76,7 @@ void GLFW::create_surface(){
   //---------------------------
 
   this->update_window_dim();
-  VkResult result = glfwCreateWindowSurface(vk_struct->instance.handle, vk_struct->window.handle, nullptr, &vk_struct->window.surface);
+  VkResult result = glfwCreateWindowSurface(vk_struct->core.instance.handle, vk_struct->window.handle, nullptr, &vk_struct->window.surface);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create window surface!");
   }

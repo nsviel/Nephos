@@ -52,17 +52,17 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image& image){
 
   //Save staging buffer data to file
   void* mappedData;
-  vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
+  vkMapMemory(vk_struct->core.device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   int channels = 4;  // Assuming RGBA data
   std::string filename = "temp.jpg";
   if(stbi_write_jpg(filename.c_str(), image.width, image.height, channels, mappedData, image.width * channels) == 0){
     throw std::runtime_error("Failed to write PNG file!");
   }
-  vkUnmapMemory(vk_struct->device.handle, staging_mem);
+  vkUnmapMemory(vk_struct->core.device.handle, staging_mem);
 
   //Free memory
-  vkDestroyBuffer(vk_struct->device.handle, staging_buffer, nullptr);
-  vkFreeMemory(vk_struct->device.handle, staging_mem, nullptr);
+  vkDestroyBuffer(vk_struct->core.device.handle, staging_buffer, nullptr);
+  vkFreeMemory(vk_struct->core.device.handle, staging_mem, nullptr);
 
   std::string finalFilename = "image.jpeg";
   std::rename(filename.c_str(), finalFilename.c_str()); // Rename temporary file to final filename
@@ -87,7 +87,7 @@ void Screenshot::export_image_to_bmp(vk::structure::Image& image){
 
   //Save staging buffer data to file
   void* mappedData;
-  vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
+  vkMapMemory(vk_struct->core.device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
 
   // Invert red and green channels
   unsigned char* pixelData = static_cast<unsigned char*>(mappedData);
@@ -103,11 +103,11 @@ void Screenshot::export_image_to_bmp(vk::structure::Image& image){
     return;
   }
 
-  vkUnmapMemory(vk_struct->device.handle, staging_mem);
+  vkUnmapMemory(vk_struct->core.device.handle, staging_mem);
 
   //Free memory
-  vkDestroyBuffer(vk_struct->device.handle, staging_buffer, nullptr);
-  vkFreeMemory(vk_struct->device.handle, staging_mem, nullptr);
+  vkDestroyBuffer(vk_struct->core.device.handle, staging_buffer, nullptr);
+  vkFreeMemory(vk_struct->core.device.handle, staging_mem, nullptr);
 
   std::string finalFilename = "image.bmp";
   std::rename(filename.c_str(), finalFilename.c_str()); // Rename temporary file to final filename
@@ -132,7 +132,7 @@ void Screenshot::export_image_to_binary(vk::structure::Image& image){
   //Save staging buffer data to file
   void* mappedData;
   void* pixelData = malloc(bufferSize);
-  VkResult mapResult =vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
+  VkResult mapResult =vkMapMemory(vk_struct->core.device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   //  memcpy(pixelData, mappedData, static_cast<size_t>(tex_size));
   if(mapResult == VK_SUCCESS){
       // Use mappedData as needed
@@ -152,15 +152,15 @@ void Screenshot::export_image_to_binary(vk::structure::Image& image){
           fprintf(stderr, "Error opening file for writing: %s\n", "truc.bin");
       }
 
-      vkUnmapMemory(vk_struct->device.handle, staging_mem);
+      vkUnmapMemory(vk_struct->core.device.handle, staging_mem);
   }else{
       // Handle error if memory mapping fails
       fprintf(stderr, "Error mapping memory: %d\n", mapResult);
   }
 
   //Free memory
-  vkDestroyBuffer(vk_struct->device.handle, staging_buffer, nullptr);
-  vkFreeMemory(vk_struct->device.handle, staging_mem, nullptr);
+  vkDestroyBuffer(vk_struct->core.device.handle, staging_buffer, nullptr);
+  vkFreeMemory(vk_struct->core.device.handle, staging_mem, nullptr);
 
   //---------------------------
 }
@@ -171,13 +171,13 @@ VkDeviceSize Screenshot::calculate_image_size(VkFormat format, VkExtent3D extent
 
   // Get the number of bytes per pixel for the specified format
   VkFormatProperties formatProperties;
-  vkGetPhysicalDeviceFormatProperties(vk_struct->device.physical_device.handle, format, &formatProperties);
+  vkGetPhysicalDeviceFormatProperties(vk_struct->core.device.physical_device.handle, format, &formatProperties);
 
   if((formatProperties.linearTilingFeatures & VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT) == 0){
     // Format does not support linear tiling, use optimal tiling instead
     // You may need to handle this differently based on your specific requirements
     // In this example, we'll assume optimal tiling support
-    vkGetPhysicalDeviceFormatProperties(vk_struct->device.physical_device.handle, format, &formatProperties);
+    vkGetPhysicalDeviceFormatProperties(vk_struct->core.device.physical_device.handle, format, &formatProperties);
   }
 
   VkDeviceSize bytesPerPixel = 0;

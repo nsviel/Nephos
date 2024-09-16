@@ -38,7 +38,7 @@ VkSurfaceFormatKHR Color::retrieve_surface_format(const std::vector<VkSurfaceFor
 
   //Check if standar RGB is available
   for(const auto& format : dev_format){
-    if(format.format == vk_struct->swapchain.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
+    if(format.format == vk_struct->core.swapchain.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
       return format;
     }
   }
@@ -55,7 +55,7 @@ VkFormat Color::find_color_format(){
   if(vk_struct->param.headless){
     format = VK_FORMAT_R8G8B8A8_UNORM;
   }else{
-    std::vector<VkSurfaceFormatKHR> surface_format = vk_struct->device.physical_device.formats;
+    std::vector<VkSurfaceFormatKHR> surface_format = vk_struct->core.device.physical_device.formats;
     VkSurfaceFormatKHR surfaceFormat = retrieve_surface_format(surface_format);
     format = surfaceFormat.format;
   }

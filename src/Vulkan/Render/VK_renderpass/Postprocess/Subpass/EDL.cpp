@@ -76,7 +76,7 @@ void EDL::draw_canvas(vk::structure::Subpass& subpass){
   //---------------------------
 
   vk_viewport->cmd_viewport(subpass.command_buffer->handle);
-  vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_struct->data.canvas);
+  vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_struct->core.data.canvas);
 
   //---------------------------
 }

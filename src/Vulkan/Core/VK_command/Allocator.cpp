@@ -22,24 +22,24 @@ void Allocator::init(){
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   //---------------------------
 
-  this->create_command_buffer_pool(&vk_struct->device.queue.graphics);
-  this->create_command_buffer_pool(&vk_struct->device.queue.transfer);
+  this->create_command_buffer_pool(&vk_struct->core.device.queue.graphics);
+  this->create_command_buffer_pool(&vk_struct->core.device.queue.transfer);
 
   //---------------------------
 }
 void Allocator::reset(){
   //---------------------------
 
-  this->reset_command_buffer_pool(&vk_struct->device.queue.graphics);
-  this->reset_command_buffer_pool(&vk_struct->device.queue.transfer);
+  this->reset_command_buffer_pool(&vk_struct->core.device.queue.graphics);
+  this->reset_command_buffer_pool(&vk_struct->core.device.queue.transfer);
 
   //---------------------------
 }
 void Allocator::clean(){
   //---------------------------
 
-  this->clean_command_buffer_pool(&vk_struct->device.queue.graphics);
-  this->clean_command_buffer_pool(&vk_struct->device.queue.transfer);
+  this->clean_command_buffer_pool(&vk_struct->core.device.queue.graphics);
+  this->clean_command_buffer_pool(&vk_struct->core.device.queue.transfer);
 
   //---------------------------
 }
@@ -49,7 +49,7 @@ void Allocator::create_command_buffer_pool(vk::queue::structure::Queue* queue){
   //---------------------------
 
   //Number of command buffer pool
-  int number = vk_struct->device.physical_device.discrete_gpu ? 100 : 10;
+  int number = vk_struct->core.device.physical_device.discrete_gpu ? 100 : 10;
 
   //Create a pool of command buffer pool number
   for(int i=0; i<number; i++){

@@ -31,8 +31,8 @@ void Shader::clean_pipeline_shader(){
   //---------------------------
 
   for(auto& shader : vec_shader){
-    vkDestroyShaderModule(vk_struct->device.handle, shader.vs, nullptr);
-    vkDestroyShaderModule(vk_struct->device.handle, shader.fs, nullptr);
+    vkDestroyShaderModule(vk_struct->core.device.handle, shader.vs, nullptr);
+    vkDestroyShaderModule(vk_struct->core.device.handle, shader.fs, nullptr);
   }
   vec_shader.clear();
 
@@ -98,7 +98,7 @@ VkShaderModule Shader::create_module(const std::vector<char>& code){
 
   //Shader module creation
   VkShaderModule shaderModule;
-  VkResult result = vkCreateShaderModule(vk_struct->device.handle, &create_info, nullptr, &shaderModule);
+  VkResult result = vkCreateShaderModule(vk_struct->core.device.handle, &create_info, nullptr, &shaderModule);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create shader module!");
   }

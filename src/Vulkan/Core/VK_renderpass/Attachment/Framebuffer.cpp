@@ -89,7 +89,7 @@ void Framebuffer::create_framebuffer_handle(vk::structure::Renderpass& renderpas
   framebufferInfo.height = vk_struct->window.extent.height;
   framebufferInfo.layers = 1;
 
-  VkResult result = vkCreateFramebuffer(vk_struct->device.handle, &framebufferInfo, nullptr, &framebuffer.handle);
+  VkResult result = vkCreateFramebuffer(vk_struct->core.device.handle, &framebufferInfo, nullptr, &framebuffer.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create framebuffer!");
   }
@@ -110,7 +110,7 @@ void Framebuffer::clean_framebuffer_image(vk::structure::Framebuffer& framebuffe
 void Framebuffer::clean_framebuffer_handle(VkFramebuffer& fbo){
   //---------------------------
 
-  vkDestroyFramebuffer(vk_struct->device.handle, fbo, nullptr);
+  vkDestroyFramebuffer(vk_struct->core.device.handle, fbo, nullptr);
 
   //---------------------------
 }

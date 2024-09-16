@@ -41,7 +41,7 @@ void Canvas::init(){
   uv.push_back(glm::vec2(0.0f,  1.0f));
 
   //Canvas data
-  vk::structure::Object& vk_object = *vk_struct->data.canvas;
+  vk::structure::Object& vk_object = *vk_struct->core.data.canvas;
   vk_object.data->name = "vk::canvas";
   vk_object.data->xyz = xyz;
   vk_object.data->uv = uv;
@@ -56,7 +56,7 @@ void Canvas::init(){
 void Canvas::clean(){
   //---------------------------
 
-  vk_buffer->clean_buffers(*vk_struct->data.canvas);
+  vk_buffer->clean_buffers(*vk_struct->core.data.canvas);
 
   //---------------------------
 }

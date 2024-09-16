@@ -56,14 +56,14 @@ void Submission::submit_rendering(std::vector<std::unique_ptr<vk::structure::Com
   set->vec_command = std::move(vec_command);;
   set->semaphore = semaphore->handle;
   set->supress = false;
-  vk_struct->queue.graphics->add_command(set);
+  vk_struct->core.queue.graphics->add_command(set);
   set->wait_until_done();
   delete set;
 
   //---------------------------
 }
 void Submission::submit_presentation(vk::synchro::structure::Semaphore* semaphore){
-  vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
+  vk::structure::Swapchain* swapchain = &vk_struct->core.swapchain;
   //---------------------------
 
   VkPresentInfoKHR presentation_info{};
@@ -75,7 +75,7 @@ void Submission::submit_presentation(vk::synchro::structure::Semaphore* semaphor
   presentation_info.pImageIndices = &swapchain->current_ID;
   presentation_info.pResults = nullptr; // Optional
 
-  VkQueue queue = vk_struct->device.queue.presentation.handle;
+  VkQueue queue = vk_struct->core.device.queue.presentation.handle;
   VkResult result = vkQueuePresentKHR(queue, &presentation_info);
 
   //Window resizing
@@ -92,11 +92,11 @@ void Submission::submit_presentation(vk::synchro::structure::Semaphore* semaphor
   //---------------------------
 }
 void Submission::next_frame_ID(){
-  vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
+  vk::structure::Swapchain* swapchain = &vk_struct->core.swapchain;
   //---------------------------
 
   int current_ID = swapchain->current_ID;
-  current_ID = (current_ID + 1) % vk_struct->instance.max_frame_inflight;
+  current_ID = (current_ID + 1) % vk_struct->core.instance.max_frame_inflight;
   swapchain->current_ID = current_ID;
 
   //---------------------------

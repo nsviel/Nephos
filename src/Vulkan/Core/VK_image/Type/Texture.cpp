@@ -26,8 +26,8 @@ Texture::~Texture(){}
 void Texture::clean(){
   //---------------------------
 
-  auto it =  vk_struct->data.list_vk_texture.begin();
-  while(it !=  vk_struct->data.list_vk_texture.end()){
+  auto it =  vk_struct->core.data.list_vk_texture.begin();
+  while(it !=  vk_struct->core.data.list_vk_texture.end()){
     std::shared_ptr<vk::structure::Texture> texture = *it;
 
     //Remove texture elements
@@ -35,8 +35,8 @@ void Texture::clean(){
     vk_buffer->clean_buffer(&texture->stagger);
 
     //Remove texture from list
-    vk_struct->data.list_vk_texture.remove(texture);
-    it = vk_struct->data.list_vk_texture.begin();
+    vk_struct->core.data.list_vk_texture.remove(texture);
+    it = vk_struct->core.data.list_vk_texture.begin();
   }
 
   //---------------------------
@@ -120,7 +120,7 @@ void Texture::create_texture(std::shared_ptr<vk::structure::Texture> texture){
   //Make associated operation
   vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, utl_image.size);
   vk_mem_transfer->copy_texture_to_gpu(*texture);
-  vk_struct->data.list_vk_texture.push_back(texture);
+  vk_struct->core.data.list_vk_texture.push_back(texture);
 
   //---------------------------
 }
@@ -167,7 +167,7 @@ VkFormat Texture::find_texture_format(std::shared_ptr<utl::media::Image> image){
 std::shared_ptr<vk::structure::Texture> Texture::query_texture(int UID){
   //---------------------------
 
-  for(auto& texture : vk_struct->data.list_vk_texture){
+  for(auto& texture : vk_struct->core.data.list_vk_texture){
     if(texture->UID == UID){
       return texture;
     }

@@ -44,7 +44,7 @@ void Swapchain::clean(){
   //---------------------------
 
   vk_frame->clean_frame();
-  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.handle, nullptr);
+  vkDestroySwapchainKHR(vk_struct->core.device.handle, vk_struct->core.swapchain.handle, nullptr);
 
   //---------------------------
 }
@@ -78,11 +78,11 @@ void Swapchain::retrieve_swapchain_image(){
   //---------------------------
 
   //Get number of swapchain images
-  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.handle, &vk_struct->swapchain.max_frame, nullptr);
+  vkGetSwapchainImagesKHR(vk_struct->core.device.handle, vk_struct->core.swapchain.handle, &vk_struct->core.swapchain.max_frame, nullptr);
 
   //Fill swapchain image
-  vk_struct->swapchain.vec_image.resize(vk_struct->swapchain.max_frame);
-  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.handle, &vk_struct->swapchain.max_frame, vk_struct->swapchain.vec_image.data());
+  vk_struct->core.swapchain.vec_image.resize(vk_struct->core.swapchain.max_frame);
+  vkGetSwapchainImagesKHR(vk_struct->core.device.handle, vk_struct->core.swapchain.handle, &vk_struct->core.swapchain.max_frame, vk_struct->core.swapchain.vec_image.data());
 
   //---------------------------
 }
@@ -91,12 +91,12 @@ void Swapchain::create_swapchain_handle(){
   //---------------------------
 
   uint32_t queueFamilyIndices[] = {
-    (unsigned int) vk_struct->device.queue.graphics.family_ID,
-    (unsigned int) vk_struct->device.queue.presentation.family_ID
+    (unsigned int) vk_struct->core.device.queue.graphics.family_ID,
+    (unsigned int) vk_struct->core.device.queue.presentation.family_ID
   };
 
   VkSwapchainCreateInfoKHR create_info{};
-  if(vk_struct->device.queue.graphics.family_ID != vk_struct->device.queue.presentation.family_ID){
+  if(vk_struct->core.device.queue.graphics.family_ID != vk_struct->core.device.queue.presentation.family_ID){
     create_info.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
     create_info.queueFamilyIndexCount = 2;
     create_info.pQueueFamilyIndices = queueFamilyIndices;
@@ -107,22 +107,22 @@ void Swapchain::create_swapchain_handle(){
   }
 
   create_info.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
-  create_info.minImageCount = vk_struct->swapchain.max_frame;
+  create_info.minImageCount = vk_struct->core.swapchain.max_frame;
   create_info.surface = vk_struct->window.surface;
-  create_info.imageFormat = vk_struct->swapchain.format.format;
-  create_info.imageColorSpace = vk_struct->swapchain.format.colorSpace;
+  create_info.imageFormat = vk_struct->core.swapchain.format.format;
+  create_info.imageColorSpace = vk_struct->core.swapchain.format.colorSpace;
   create_info.imageExtent = vk_struct->window.extent;
   create_info.imageArrayLayers = 1;
   create_info.imageUsage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT; //VK_IMAGE_USAGE_TRANSFER_DST_BIT for post-processing
   create_info.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; //Ignore alpha channel
-  create_info.presentMode = vk_struct->swapchain.presentation_mode;
+  create_info.presentMode = vk_struct->core.swapchain.presentation_mode;
   create_info.clipped = VK_TRUE;
   create_info.oldSwapchain = VK_NULL_HANDLE;
 
-  VkSurfaceCapabilitiesKHR surface_capability = vk_struct->device.physical_device.capabilities;
+  VkSurfaceCapabilitiesKHR surface_capability = vk_struct->core.device.physical_device.capabilities;
   create_info.preTransform = surface_capability.currentTransform;
 
-  VkResult result = vkCreateSwapchainKHR(vk_struct->device.handle, &create_info, nullptr, &vk_struct->swapchain.handle);
+  VkResult result = vkCreateSwapchainKHR(vk_struct->core.device.handle, &create_info, nullptr, &vk_struct->core.swapchain.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create swap chain!");
   }
@@ -130,7 +130,7 @@ void Swapchain::create_swapchain_handle(){
   //---------------------------
 }
 void Swapchain::find_swapchain_max_nb_image(){
-  VkSurfaceCapabilitiesKHR surface_capability = vk_struct->device.physical_device.capabilities;
+  VkSurfaceCapabilitiesKHR surface_capability = vk_struct->core.device.physical_device.capabilities;
   //---------------------------
 
   //Get swap chain image capacity (0 means no maximum)
@@ -140,26 +140,26 @@ void Swapchain::find_swapchain_max_nb_image(){
   }
 
   //---------------------------
-  vk_struct->swapchain.max_frame = nb_image;
+  vk_struct->core.swapchain.max_frame = nb_image;
 }
 void Swapchain::find_swapchain_surface_format(){
-  std::vector<VkSurfaceFormatKHR>& dev_format = vk_struct->device.physical_device.formats;
+  std::vector<VkSurfaceFormatKHR>& dev_format = vk_struct->core.device.physical_device.formats;
   VkSurfaceFormatKHR swapchain_format = dev_format[0];
   //---------------------------
 
   //Check if standar RGB is available
   for(const auto& format : dev_format){
-    if(format.format == vk_struct->swapchain.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
+    if(format.format == vk_struct->core.swapchain.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
       swapchain_format = format;
       break;
     }
   }
 
   //---------------------------
-  vk_struct->swapchain.format = swapchain_format;
+  vk_struct->core.swapchain.format = swapchain_format;
 }
 void Swapchain::find_swapchain_presentation_mode(){
-  std::vector<VkPresentModeKHR>& dev_mode = vk_struct->device.physical_device.presentation_mode;
+  std::vector<VkPresentModeKHR>& dev_mode = vk_struct->core.device.physical_device.presentation_mode;
   //---------------------------
 
   //4 possible modes:
@@ -175,10 +175,10 @@ void Swapchain::find_swapchain_presentation_mode(){
   }
 
   //---------------------------
-  vk_struct->swapchain.presentation_mode = presentation_mode;
+  vk_struct->core.swapchain.presentation_mode = presentation_mode;
 }
 bool Swapchain::acquire_next_image(vk::synchro::structure::Semaphore* semaphore){
-  vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
+  vk::structure::Swapchain* swapchain = &vk_struct->core.swapchain;
   //---------------------------
 
   //Acquiring an image from the swap chain
@@ -186,7 +186,7 @@ bool Swapchain::acquire_next_image(vk::synchro::structure::Semaphore* semaphore)
     this->recreate_swapchain();
     return false;
   }
-  VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->handle, UINT64_MAX, semaphore->handle, VK_NULL_HANDLE, &swapchain->current_ID);
+  VkResult result = vkAcquireNextImageKHR(vk_struct->core.device.handle, swapchain->handle, UINT64_MAX, semaphore->handle, VK_NULL_HANDLE, &swapchain->current_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
     this->recreate_swapchain();
     return false;

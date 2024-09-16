@@ -31,8 +31,8 @@ void Logical::init(){
 void Logical::clean(){
   //---------------------------
 
-  vkDestroyDevice(vk_struct->device.handle, nullptr);
-  vk_struct->device.handle = VK_NULL_HANDLE;
+  vkDestroyDevice(vk_struct->core.device.handle, nullptr);
+  vk_struct->core.device.handle = VK_NULL_HANDLE;
 
   //---------------------------
 }
@@ -55,12 +55,12 @@ void Logical::create_logical_device(){
   create_info.pQueueCreateInfos = vec_queue_info.data();
   create_info.queueCreateInfoCount = static_cast<uint32_t>(vec_queue_info.size());
   create_info.pEnabledFeatures = &device_features;
-  create_info.enabledExtensionCount = static_cast<uint32_t>(vk_struct->instance.extension_device.size());
-  create_info.ppEnabledExtensionNames = vk_struct->instance.extension_device.data();
+  create_info.enabledExtensionCount = static_cast<uint32_t>(vk_struct->core.instance.extension_device.size());
+  create_info.ppEnabledExtensionNames = vk_struct->core.instance.extension_device.data();
   create_info.enabledLayerCount = 0;
 
   //Creating the logical device
-  VkResult result = vkCreateDevice(vk_struct->device.physical_device.handle, &create_info, nullptr, &vk_struct->device.handle);
+  VkResult result = vkCreateDevice(vk_struct->core.device.physical_device.handle, &create_info, nullptr, &vk_struct->core.device.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create logical device!");
   }
@@ -68,7 +68,7 @@ void Logical::create_logical_device(){
   //---------------------------
 }
 void Logical::create_device_queue(){
-  vk::queue::structure::Set& set = vk_struct->device.queue;
+  vk::queue::structure::Set& set = vk_struct->core.device.queue;
   //---------------------------
 
   vk_queue->create_queue(set.graphics);

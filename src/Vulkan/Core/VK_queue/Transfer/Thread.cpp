@@ -23,8 +23,8 @@ Thread::~Thread(){}
 void Thread::thread_init(){
   //---------------------------
 
-  vk_struct->device.queue.transfer.type = vk::queue::TRANSFER;
-  vk_struct->device.queue.transfer.thread_ID = thr::get_ID_str();
+  vk_struct->core.device.queue.transfer.type = vk::queue::TRANSFER;
+  vk_struct->core.device.queue.transfer.thread_ID = thr::get_ID_str();
 
   //---------------------------
 }

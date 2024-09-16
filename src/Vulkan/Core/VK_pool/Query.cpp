@@ -28,7 +28,7 @@ vk::pool::structure::Query Query::create_query_pool(){
   info.sType = VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO;
   info.queryType = VK_QUERY_TYPE_TIMESTAMP;
   info.queryCount = query_pool.nb_query; // Number of timestamp queries to perform
-  vkCreateQueryPool(vk_struct->device.handle, &info, nullptr, &query_pool.pool);
+  vkCreateQueryPool(vk_struct->core.device.handle, &info, nullptr, &query_pool.pool);
 
   //---------------------------
   return query_pool;
@@ -36,7 +36,7 @@ vk::pool::structure::Query Query::create_query_pool(){
 void Query::clean_query_pool(vk::pool::structure::Query* query_pool){
   //---------------------------
 
-  vkDestroyQueryPool(vk_struct->device.handle, query_pool->pool, nullptr);
+  vkDestroyQueryPool(vk_struct->core.device.handle, query_pool->pool, nullptr);
 
   //---------------------------
 }
@@ -66,9 +66,9 @@ void Query::find_query_timestamp(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
   uint64_t timestamps[query->nb_query];
-  vkGetQueryPoolResults(vk_struct->device.handle, query->pool, 0, query->nb_query, sizeof(uint64_t) * query->nb_query, timestamps, sizeof(uint64_t), VK_QUERY_RESULT_64_BIT);
+  vkGetQueryPoolResults(vk_struct->core.device.handle, query->pool, 0, query->nb_query, sizeof(uint64_t) * query->nb_query, timestamps, sizeof(uint64_t), VK_QUERY_RESULT_64_BIT);
 
-  float delta = float(timestamps[1] - timestamps[0]) * vk_struct->device.physical_device.timestamp_period / 1000000000.0f;
+  float delta = float(timestamps[1] - timestamps[0]) * vk_struct->core.device.physical_device.timestamp_period / 1000000000.0f;
   command_buffer.duration = delta;
 
   vk::profiler::Command_buffer prf_command;

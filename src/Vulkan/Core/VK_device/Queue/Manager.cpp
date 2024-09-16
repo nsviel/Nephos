@@ -23,7 +23,7 @@ void Manager::create_queue(vk::queue::structure::Queue& queue){
   if(queue.family_ID == -1) return;
   //---------------------------
 
-  vkGetDeviceQueue(vk_struct->device.handle, queue.family_ID, queue.family_index, &queue.handle);
+  vkGetDeviceQueue(vk_struct->core.device.handle, queue.family_ID, queue.family_index, &queue.handle);
 
   //---------------------------
 }
@@ -32,7 +32,7 @@ void Manager::create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_
 
   vk_assigment->assign_queue();
 
-  for(auto& family : vk_struct->device.physical_device.vec_queue_family){
+  for(auto& family : vk_struct->core.device.physical_device.vec_queue_family){
     if(family.vec_queue.size() == 0) continue;
 
     //Create queue info accordingly

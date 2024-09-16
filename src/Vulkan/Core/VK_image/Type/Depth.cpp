@@ -54,7 +54,7 @@ VkFormat Depth::find_supported_format(const std::vector<VkFormat>& format_candid
 
   for(VkFormat format : format_candidates){
     VkFormatProperties property;
-    vkGetPhysicalDeviceFormatProperties(vk_struct->device.physical_device.handle, format, &property);
+    vkGetPhysicalDeviceFormatProperties(vk_struct->core.device.physical_device.handle, format, &property);
 
     //tiling
     bool tiling_ok;

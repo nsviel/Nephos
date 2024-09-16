@@ -22,8 +22,8 @@ Thread::~Thread(){}
 void Thread::thread_init(){
   //---------------------------
 
-  vk_struct->device.queue.presentation.type = vk::queue::PRESENTATION;
-  vk_struct->device.queue.presentation.thread_ID = thr::get_ID_str();
+  vk_struct->core.device.queue.presentation.type = vk::queue::PRESENTATION;
+  vk_struct->core.device.queue.presentation.thread_ID = thr::get_ID_str();
 
   //---------------------------
 }

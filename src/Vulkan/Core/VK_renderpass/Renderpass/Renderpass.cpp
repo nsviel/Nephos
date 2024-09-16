@@ -96,7 +96,7 @@ void Renderpass::create_renderpass(vk::structure::Renderpass& renderpass){
   renderpass_info.pDependencies = renderpass.vec_dependency.data();
 
   //Render pass creation
-  VkResult result = vkCreateRenderPass(vk_struct->device.handle, &renderpass_info, nullptr, &renderpass.handle);
+  VkResult result = vkCreateRenderPass(vk_struct->core.device.handle, &renderpass_info, nullptr, &renderpass.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create render pass!");
   }
@@ -107,7 +107,7 @@ void Renderpass::clean_renderpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   vk_framebuffer->clean_framebuffer(renderpass);
-  vkDestroyRenderPass(vk_struct->device.handle, renderpass.handle, nullptr);
+  vkDestroyRenderPass(vk_struct->core.device.handle, renderpass.handle, nullptr);
   vk_pipeline->clean_pipeline(renderpass);
 
   //---------------------------

@@ -50,7 +50,7 @@ void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
 
   vk::synchro::structure::Fence* fence = vk_fence->query_free_fence();
 
-  VkQueue queue = vk_struct->device.queue.transfer.handle;
+  VkQueue queue = vk_struct->core.device.queue.transfer.handle;
   VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), fence->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] graphics queue submission");
@@ -59,7 +59,7 @@ void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
     throw std::runtime_error("[error] graphics queue submission timeout");
   }
 
-  vkWaitForFences(vk_struct->device.handle, 1, &fence->handle, VK_TRUE, UINT64_MAX);
+  vkWaitForFences(vk_struct->core.device.handle, 1, &fence->handle, VK_TRUE, UINT64_MAX);
   vk_fence->reset_fence(fence);
 
   //---------------------------

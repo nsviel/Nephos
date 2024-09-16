@@ -18,11 +18,11 @@ Fence::~Fence(){}
 
 //Pool function
 void Fence::init_pool(){
-  vk::pool::structure::Fence* pool = &vk_struct->pools.fence;
+  vk::pool::structure::Fence* pool = &vk_struct->core.pools.fence;
   //---------------------------
 
   //Number of fence
-  int number = vk_struct->device.physical_device.discrete_gpu ? 100 : 10;
+  int number = vk_struct->core.device.physical_device.discrete_gpu ? 100 : 10;
   pool->size = number;
 
   //Create a pool of fence number
@@ -40,7 +40,7 @@ void Fence::init_pool(){
 void Fence::clean_pool(){
   //---------------------------
 
-  for(auto& vk_fence : vk_struct->pools.fence.tank){
+  for(auto& vk_fence : vk_struct->core.pools.fence.tank){
     this->clean_fence(&vk_fence);
   }
 
@@ -55,7 +55,7 @@ void Fence::create_fence(vk::synchro::structure::Fence* fence){
   info.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
   info.flags = VK_FENCE_CREATE_SIGNALED_BIT;
 
-  VkResult result = vkCreateFence(vk_struct->device.handle, &info, nullptr, &fence->handle);
+  VkResult result = vkCreateFence(vk_struct->core.device.handle, &info, nullptr, &fence->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create fence");
   }
@@ -65,7 +65,7 @@ void Fence::create_fence(vk::synchro::structure::Fence* fence){
 void Fence::clean_fence(vk::synchro::structure::Fence* fence){
   //---------------------------
 
-  vkDestroyFence(vk_struct->device.handle, fence->handle, nullptr);
+  vkDestroyFence(vk_struct->core.device.handle, fence->handle, nullptr);
 
   //---------------------------
 }
@@ -73,7 +73,7 @@ void Fence::reset_fence(vk::synchro::structure::Fence* fence){
   if(fence == nullptr) return;
   //---------------------------
 
-  VkResult result = vkResetFences(vk_struct->device.handle, 1, &fence->handle);
+  VkResult result = vkResetFences(vk_struct->core.device.handle, 1, &fence->handle);
   if(result != VK_SUCCESS){
     std::cout<<"[error] reseting fence"<<std::endl;
   }
@@ -85,7 +85,7 @@ void Fence::reset_fence(vk::synchro::structure::Fence* fence){
 
 //Subfunction
 vk::synchro::structure::Fence* Fence::query_free_fence(){
-  vk::pool::structure::Fence* pool = &vk_struct->pools.fence;
+  vk::pool::structure::Fence* pool = &vk_struct->core.pools.fence;
   //---------------------------
 
   std::lock_guard<std::mutex> lock(pool->mutex);
@@ -120,7 +120,7 @@ bool Fence::is_fence_available(vk::synchro::structure::Fence* fence){
 
   if(fence == nullptr) return true;
 
-  VkResult result = vkGetFenceStatus(vk_struct->device.handle, fence->handle);
+  VkResult result = vkGetFenceStatus(vk_struct->core.device.handle, fence->handle);
 
   //Operation completed
   if(result == VK_SUCCESS){

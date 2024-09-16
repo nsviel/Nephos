@@ -49,7 +49,7 @@ void Sampler::update_sampler(vk::binding::structure::Binding& binding, vk::struc
   write_sampler.descriptorCount = 1;
   write_sampler.pImageInfo = &image_info;
 
-  vkUpdateDescriptorSets(vk_struct->device.handle, 1, &write_sampler, 0, nullptr);
+  vkUpdateDescriptorSets(vk_struct->core.device.handle, 1, &write_sampler, 0, nullptr);
 
   //---------------------------
 }

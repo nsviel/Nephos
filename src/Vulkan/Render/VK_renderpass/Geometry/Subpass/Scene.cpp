@@ -59,7 +59,7 @@ void Scene::cmd_draw_point(vk::structure::Subpass& subpass){
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
 
   //Bind and draw vertex buffers
-  for(auto& vk_object : vk_struct->data.list_vk_object){
+  for(auto& vk_object : vk_struct->core.data.list_vk_object){
     utl::base::Data& data = *vk_object->data;
     utl::base::Pose& pose = *vk_object->pose;
 
@@ -80,7 +80,7 @@ void Scene::cmd_draw_line(vk::structure::Subpass& subpass){
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
 
   //Bind and draw vertex buffers
-  for(auto& vk_object : vk_struct->data.list_vk_object){
+  for(auto& vk_object : vk_struct->core.data.list_vk_object){
     utl::base::Data& data = *vk_object->data;
     utl::base::Pose& pose = *vk_object->pose;
 
@@ -101,7 +101,7 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass& subpass){
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
 
   //Bind and draw vertex buffers
-  for(auto& vk_object : vk_struct->data.list_vk_object){
+  for(auto& vk_object : vk_struct->core.data.list_vk_object){
     utl::base::Data& data = *vk_object->data;
     utl::base::Pose& pose = *vk_object->pose;
 

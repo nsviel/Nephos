@@ -17,11 +17,11 @@ Semaphore::~Semaphore(){}
 
 //Pool function
 void Semaphore::init_pool(){
-  vk::pool::structure::Semaphore* pool = &vk_struct->pools.semaphore;
+  vk::pool::structure::Semaphore* pool = &vk_struct->core.pools.semaphore;
   //---------------------------
 
   //Number of semaphore
-  int number = vk_struct->device.physical_device.discrete_gpu ? 100 : 10;
+  int number = vk_struct->core.device.physical_device.discrete_gpu ? 100 : 10;
   pool->size = number;
 
   //Create a pool of semaphore number
@@ -37,7 +37,7 @@ void Semaphore::init_pool(){
   //---------------------------
 }
 void Semaphore::clean_pool(){
-  vk::pool::structure::Semaphore* pool = &vk_struct->pools.semaphore;
+  vk::pool::structure::Semaphore* pool = &vk_struct->core.pools.semaphore;
   //---------------------------
 
   for(int i=0; i<pool->size; i++){
@@ -48,7 +48,7 @@ void Semaphore::clean_pool(){
   //---------------------------
 }
 void Semaphore::reset_pool(){
-  vk::pool::structure::Semaphore* pool = &vk_struct->pools.semaphore;
+  vk::pool::structure::Semaphore* pool = &vk_struct->core.pools.semaphore;
   //---------------------------
 
   for(int i=0; i<pool->size; i++){
@@ -67,7 +67,7 @@ void Semaphore::create_semaphore(vk::synchro::structure::Semaphore* semaphore){
   VkSemaphoreCreateInfo info{};
   info.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
 
-  result = vkCreateSemaphore(vk_struct->device.handle, &info, nullptr, &semaphore->handle);
+  result = vkCreateSemaphore(vk_struct->core.device.handle, &info, nullptr, &semaphore->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create semaphore");
   }
@@ -77,7 +77,7 @@ void Semaphore::create_semaphore(vk::synchro::structure::Semaphore* semaphore){
 void Semaphore::clean_semaphore(vk::synchro::structure::Semaphore* semaphore){
   //---------------------------
 
-  vkDestroySemaphore(vk_struct->device.handle, semaphore->handle, nullptr);
+  vkDestroySemaphore(vk_struct->core.device.handle, semaphore->handle, nullptr);
 
   //---------------------------
 }
@@ -91,7 +91,7 @@ void Semaphore::reset_semaphore(vk::synchro::structure::Semaphore* semaphore){
   signalInfo.value = 0;
 
   // Call vkSignalSemaphoreKHR to signal (reset) the semaphore
-  VkResult result = vkSignalSemaphore(vk_struct->device.handle, &signalInfo);
+  VkResult result = vkSignalSemaphore(vk_struct->core.device.handle, &signalInfo);
   if(result != VK_SUCCESS){
       throw std::runtime_error("Failed to reset semaphore!");
   }
@@ -104,7 +104,7 @@ void Semaphore::reset_semaphore(vk::synchro::structure::Semaphore* semaphore){
 
 //Subfunction
 vk::synchro::structure::Semaphore* Semaphore::query_free_semaphore(){
-  vk::pool::structure::Semaphore* pool = &vk_struct->pools.semaphore;
+  vk::pool::structure::Semaphore* pool = &vk_struct->core.pools.semaphore;
   //---------------------------
 
   std::lock_guard<std::mutex> lock(pool->mutex);

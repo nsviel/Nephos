@@ -28,7 +28,7 @@ void Layout::create_layout(vk::binding::structure::Binding& binding){
 void Layout::clean_layout(vk::binding::structure::Binding& binding){
   //---------------------------
 
-  vkDestroyDescriptorSetLayout(vk_struct->device.handle, binding.descriptor_set.layout, nullptr);
+  vkDestroyDescriptorSetLayout(vk_struct->core.device.handle, binding.descriptor_set.layout, nullptr);
 
   //---------------------------
 }
@@ -62,7 +62,7 @@ void Layout::create_layout(vk::binding::structure::Binding& binding, std::vector
 
   //Layout set layout creation
   VkDescriptorSetLayout descriptor_layout;
-  VkResult result = vkCreateDescriptorSetLayout(vk_struct->device.handle, &layoutInfo, nullptr, &descriptor_layout);
+  VkResult result = vkCreateDescriptorSetLayout(vk_struct->core.device.handle, &layoutInfo, nullptr, &descriptor_layout);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create descriptor set layout!");
   }

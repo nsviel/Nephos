@@ -94,9 +94,9 @@ void Object::info_pipeline_viewport(vk::structure::Pipeline* pipeline){
   info_viewport = {};
   info_viewport.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
   info_viewport.viewportCount = 1;
-  info_viewport.pViewports = &vk_struct->viewport.handle;
+  info_viewport.pViewports = &vk_struct->core.viewport.handle;
   info_viewport.scissorCount = 1;
-  info_viewport.pScissors = &vk_struct->viewport.scissor;
+  info_viewport.pScissors = &vk_struct->core.viewport.scissor;
 
   //---------------------------
 }
@@ -124,7 +124,7 @@ void Object::info_pipeline_multisampling(vk::structure::Pipeline* pipeline){
   info_multisample = {};
   info_multisample.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
   info_multisample.sampleShadingEnable = VK_FALSE;
-  info_multisample.rasterizationSamples = vk_struct->device.physical_device.max_sample_count;
+  info_multisample.rasterizationSamples = vk_struct->core.device.physical_device.max_sample_count;
   info_multisample.minSampleShading = 1.0f; // Optional
   info_multisample.pSampleMask = nullptr; // Optional
   info_multisample.alphaToCoverageEnable = VK_FALSE; // Optional
@@ -203,7 +203,7 @@ void Object::create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::s
   pipeline_info.basePipelineHandle = VK_NULL_HANDLE; // Optional
   pipeline_info.basePipelineIndex = -1; // Optional
 
-  VkResult result = vkCreateGraphicsPipelines(vk_struct->device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->handle);
+  VkResult result = vkCreateGraphicsPipelines(vk_struct->core.device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->handle);
 
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create graphics pipeline!");
@@ -214,7 +214,7 @@ void Object::create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::s
 void Object::clean_pipeline_handle(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  vkDestroyPipeline(vk_struct->device.handle, pipeline->handle, nullptr);
+  vkDestroyPipeline(vk_struct->core.device.handle, pipeline->handle, nullptr);
 
   //---------------------------
 }

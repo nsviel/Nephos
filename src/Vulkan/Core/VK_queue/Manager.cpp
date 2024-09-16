@@ -19,17 +19,17 @@ Manager::~Manager(){}
 void Manager::init(){
   //---------------------------
 
-  vk_struct->queue.transfer = new vk::queue::transfer::Thread(vk_struct);
-  vk_struct->queue.graphics = new vk::queue::graphics::Thread(vk_struct);
-  vk_struct->queue.presentation = new vk::queue::presentation::Thread(vk_struct);
+  vk_struct->core.queue.transfer = new vk::queue::transfer::Thread(vk_struct);
+  vk_struct->core.queue.graphics = new vk::queue::graphics::Thread(vk_struct);
+  vk_struct->core.queue.presentation = new vk::queue::presentation::Thread(vk_struct);
 
   //---------------------------
 }
 void Manager::clean(){
   //---------------------------
 
-  vk_struct->queue.transfer->stop_thread();
-  vk_struct->queue.graphics->stop_thread();
+  vk_struct->core.queue.transfer->stop_thread();
+  vk_struct->core.queue.graphics->stop_thread();
 
   //---------------------------
 }

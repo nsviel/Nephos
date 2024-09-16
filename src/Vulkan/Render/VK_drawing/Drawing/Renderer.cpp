@@ -22,7 +22,7 @@ Renderer::~Renderer(){}
 void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
-  vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->device.queue.graphics);
+  vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->core.device.queue.graphics);
   std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   renderpass->command_buffer = command_buffer;
   command_buffer->name = renderpass->name;

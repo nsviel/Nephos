@@ -24,8 +24,8 @@ Thread::~Thread(){}
 void Thread::thread_init(){
   //---------------------------
 
-  vk_struct->device.queue.graphics.type = vk::queue::GRAPHICS;
-  vk_struct->device.queue.graphics.thread_ID = thr::get_ID_str();
+  vk_struct->core.device.queue.graphics.type = vk::queue::GRAPHICS;
+  vk_struct->core.device.queue.graphics.thread_ID = thr::get_ID_str();
 
   //---------------------------
 }
@@ -46,7 +46,7 @@ void Thread::thread_loop(){
 
 //Subfunction
 void Thread::add_command(std::unique_ptr<vk::structure::Command> command){
-  if(vk_struct->queue.standby) return;
+  if(vk_struct->core.queue.standby) return;
   //---------------------------
 
   mutex.lock();
@@ -61,7 +61,7 @@ void Thread::add_command(std::unique_ptr<vk::structure::Command> command){
   //---------------------------
 }
 void Thread::add_command(std::vector<std::unique_ptr<vk::structure::Command>> vec_command){
-  if(vk_struct->queue.standby) return;
+  if(vk_struct->core.queue.standby) return;
   //---------------------------
 
   mutex.lock();
@@ -76,7 +76,7 @@ void Thread::add_command(std::vector<std::unique_ptr<vk::structure::Command>> ve
   //---------------------------
 }
 void Thread::add_command(vk::command::structure::Set* set){
-  if(vk_struct->queue.standby) return;
+  if(vk_struct->core.queue.standby) return;
   //---------------------------
 
   mutex.lock();
