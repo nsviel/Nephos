@@ -11,10 +11,6 @@ namespace cam::projection{
 Orthographic::Orthographic(cam::Node* node_camera){
   //---------------------------
 
-  vk::Node* node_vulkan = node_camera->get_node_vulkan();
-
-  this->vk_window = node_vulkan->get_vk_window();
-
   //---------------------------
 }
 Orthographic::~Orthographic(){}
