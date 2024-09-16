@@ -120,16 +120,6 @@ void Data::descriptor_vk_object(vk::structure::Object& vk_object){
   vk::structure::Pipeline* pipeline = vk_struct->core.pipeline.map[vk_object.data->topology.type];
   vk_descriptor_set->allocate(vk_object.descriptor_set, pipeline->descriptor.layout);
 
-
-/*
-  binding.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_mvp());
-
-  if(data.topology.type == utl::topology::POINT){
-    //binding.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_point_size());
-  }
-
-  vk_binding->create_binding(binding);
-*/
   //---------------------------
 }
 

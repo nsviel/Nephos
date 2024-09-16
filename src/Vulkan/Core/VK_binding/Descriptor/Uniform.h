@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/Core/VK_binding/Structure/Binding.h>
+#include <Vulkan/Core/VK_binding/Structure/Layout.h>
 #include <iostream>
 #include <cstring>
 #include <string>

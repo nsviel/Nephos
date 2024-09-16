@@ -65,7 +65,14 @@ void Scene::cmd_draw_point(vk::structure::Subpass& subpass){
 
     if(check_data(data, utl::topology::POINT)){
       vk_uniform->update_uniform("mvp", pipeline->descriptor.layout, pose.mvp);
-    //  vk_uniform->update_uniform("point_size", vk_object->binding, data.topology.width);
+
+
+      vk::pipeline::topology::Structure machin;
+      machin.model = pose.mvp;
+      vk_uniform->update_uniform("mvp_str", pipeline->descriptor.layout, machin);
+
+
+      vk_uniform->update_uniform("point_size", pipeline->descriptor.layout, data.topology.width);
       vk_descriptor_set->bind(subpass.command_buffer->handle, pipeline, vk_object->descriptor_set.handle);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }
