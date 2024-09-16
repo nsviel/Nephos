@@ -43,6 +43,13 @@ void Pipeline::clean_pipeline(vk::structure::Renderpass& renderpass){
 
   //---------------------------
 }
+void Pipeline::add_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
+  //---------------------------
+
+  subpass.map_pipeline["line"] = &pipeline;
+
+  //---------------------------
+}
 
 //Pipeline creation / cleaning
 void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline){

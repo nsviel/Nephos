@@ -11,6 +11,7 @@ namespace vk::pipeline{class Object;}
 namespace vk::pipeline{class Layout;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
+namespace vk::structure{class Subpass;}
 
 
 namespace vk::pipeline{
@@ -26,6 +27,7 @@ public:
   //Main function
   void create_pipeline(vk::structure::Renderpass& renderpass);
   void clean_pipeline(vk::structure::Renderpass& renderpass);
+  void add_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
 
   //Pipeline creation
   void create_pipeline_struct(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline);
