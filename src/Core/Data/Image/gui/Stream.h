@@ -5,7 +5,7 @@
 
 namespace dat::img{class Node;}
 namespace vk::image{class Texture;}
-namespace vk::gui{class Imgui;}
+namespace vk{class Interface;}
 namespace vk::structure{class Texture;}
 namespace utl::media{class Image;}
 
@@ -30,7 +30,7 @@ public:
 
 private:
   vk::image::Texture* vk_texture;
-  vk::gui::Imgui* vk_imgui;
+  vk::Interface* vk_interface;
 
   float current_timestamp = -1;
   int current_UID = -1;

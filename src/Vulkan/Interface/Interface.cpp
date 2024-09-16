@@ -1,6 +1,7 @@
 #include "Interface.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk{
@@ -28,6 +29,12 @@ glm::vec2 Interface::get_mouse_pose(){
 }
 glm::vec2 Interface::get_dimension(){
   return vk_window->get_dimension();
+}
+void Interface::load_texture(std::shared_ptr<utl::media::Image> utl_image){
+  vk_imgui->load_texture(utl_image);
+}
+ImTextureID Interface::query_engine_texture(){
+  return vk_imgui->query_engine_texture();
 }
 
 }
