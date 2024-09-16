@@ -6,7 +6,7 @@
 namespace vk::binding{class Uniform;}
 namespace vk::binding{class Sampler;}
 namespace vk{class Structure;}
-namespace vk::binding::structure{class Binding;}
+namespace vk::binding::structure{class Layout;}
 namespace vk::structure{class Image;}
 namespace vk::structure{class Pipeline;}
 namespace utl::base{class Data;}
@@ -23,12 +23,12 @@ public:
 
 public:
   //Main function
-  void create_layout(vk::binding::structure::Binding& binding);
-  void clean_layout(vk::binding::structure::Binding& binding);
+  void create_layout(vk::binding::structure::Layout& layout);
+  void clean_layout(vk::binding::structure::Layout& layout);
 
   //Subfunction
-  void make_required_binding(vk::binding::structure::Binding& binding, std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
-  void create_layout(vk::binding::structure::Binding& binding, std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
+  void make_required_binding(vk::binding::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
+  void create_layout_object(vk::binding::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
 
 private:
   vk::Structure* vk_struct;

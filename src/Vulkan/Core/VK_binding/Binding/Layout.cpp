@@ -16,28 +16,28 @@ Layout::Layout(vk::Structure* vk_struct){
 Layout::~Layout(){}
 
 //Main function
-void Layout::create_layout(vk::binding::structure::Binding& binding){
+void Layout::create_layout(vk::binding::structure::Layout& layout){
   //---------------------------
 
   std::vector<VkDescriptorSetLayoutBinding> vec_binding;
-  this->make_required_binding(binding, vec_binding);
-  this->create_layout(binding, vec_binding);
+  this->make_required_binding(layout, vec_binding);
+  this->create_layout_object(layout, vec_binding);
 
   //---------------------------
 }
-void Layout::clean_layout(vk::binding::structure::Binding& binding){
+void Layout::clean_layout(vk::binding::structure::Layout& layout){
   //---------------------------
 
-  vkDestroyDescriptorSetLayout(vk_struct->core.device.handle, binding.layout.handle, nullptr);
+  vkDestroyDescriptorSetLayout(vk_struct->core.device.handle, layout.handle, nullptr);
 
   //---------------------------
 }
 
 //Subfunction
-void Layout::make_required_binding(vk::binding::structure::Binding& binding, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
+void Layout::make_required_binding(vk::binding::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
   //---------------------------
 
-  for(auto& descriptor : binding.layout.vec_descriptor){
+  for(auto& descriptor : layout.vec_descriptor){
     //Convert it into descriptor binding
     VkDescriptorSetLayoutBinding layout_binding{};
     layout_binding.binding = descriptor.binding;
@@ -51,7 +51,7 @@ void Layout::make_required_binding(vk::binding::structure::Binding& binding, std
 
   //---------------------------
 }
-void Layout::create_layout(vk::binding::structure::Binding& binding, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
+void Layout::create_layout_object(vk::binding::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
   //---------------------------
 
   //Combination and info
@@ -67,7 +67,7 @@ void Layout::create_layout(vk::binding::structure::Binding& binding, std::vector
     throw std::runtime_error("failed to create descriptor set layout!");
   }
 
-  binding.layout.handle = descriptor_layout;
+  layout.handle = descriptor_layout;
 
   //---------------------------
 }

@@ -26,7 +26,6 @@ public:
 
 public:
   //Main function
-  void create_layout(vk::binding::structure::Layout& layout);
   void create_binding(vk::binding::structure::Binding& binding);
   void clean_binding(vk::binding::structure::Binding& binding);
 

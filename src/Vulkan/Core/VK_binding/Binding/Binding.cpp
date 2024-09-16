@@ -24,18 +24,10 @@ Binding::~Binding(){}
 void Binding::create_binding(vk::binding::structure::Binding& binding){
   //---------------------------
 
-  vk_layout->create_layout(binding);
+  vk_layout->create_layout(binding.layout);
   this->create_descriptor(binding);
   vk_descriptor_set->allocate(binding);
   vk_descriptor_set->update(binding);
-
-  //---------------------------
-}
-void Binding::create_layout(vk::binding::structure::Layout& layout){
-  //---------------------------
-
-//  vk_layout->create_layout(binding);
-//  this->create_descriptor(binding);
 
   //---------------------------
 }
