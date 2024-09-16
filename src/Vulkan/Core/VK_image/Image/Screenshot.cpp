@@ -29,7 +29,7 @@ Screenshot::~Screenshot(){}
 void Screenshot::make_screenshot(){
   //---------------------------
 
-  vk::structure::Renderpass& renderpass = vk_struct->renderpass.edl;
+  vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.edl;
   this->export_image_to_bmp(renderpass.framebuffer.color);
 
   //---------------------------

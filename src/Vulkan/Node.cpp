@@ -11,7 +11,7 @@ Node::Node(bool* running){
   //---------------------------
 
   this->vk_struct = new vk::Structure(running);
-  this->vk_engine = vk_struct->param.headless ? static_cast<vk::main::Engine*>(new vk::main::Headless(vk_struct)) : static_cast<vk::main::Engine*>(new vk::main::Graphical(vk_struct));
+  this->vk_engine = vk_struct->render.param.headless ? static_cast<vk::main::Engine*>(new vk::main::Headless(vk_struct)) : static_cast<vk::main::Engine*>(new vk::main::Graphical(vk_struct));
   this->vk_render = new vk::render::Render(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);

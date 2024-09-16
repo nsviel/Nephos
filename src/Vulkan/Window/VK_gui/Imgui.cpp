@@ -64,9 +64,9 @@ void Imgui::create_context(){
   ImGui::StyleColorsDark();
 
   // Setup Platform/Renderer bindings
-  if(!vk_struct->param.headless){
-    vk::structure::Renderpass& renderpass = vk_struct->renderpass.onscreen;
-    ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
+  if(!vk_struct->render.param.headless){
+    vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.onscreen;
+    ImGui_ImplGlfw_InitForVulkan(vk_struct->window.window.handle, true);
     ImGui_ImplVulkan_InitInfo init_info = {};
     init_info.Instance = vk_struct->core.instance.handle;
     init_info.PhysicalDevice = vk_struct->core.device.physical_device.handle;
@@ -85,11 +85,11 @@ void Imgui::create_context(){
   //---------------------------
 }
 void Imgui::draw_frame(vk::structure::Command_buffer& command_buffer){
-  if(vk_struct->param.headless) return;
+  if(vk_struct->render.param.headless) return;
   //---------------------------
 
   //Check resizing
-  if(vk_struct->window.resizing) return;
+  if(vk_struct->window.window.resizing) return;
   if(vk_window->is_window_resized()) return;
 
   //Draw imgui stuff
@@ -119,7 +119,7 @@ void Imgui::resize_event(){
   //---------------------------
 }
 void Imgui::glfw_clean(){
-  if(vk_struct->param.headless) return;
+  if(vk_struct->render.param.headless) return;
   //---------------------------
 
   ImGui_ImplVulkan_DestroyFontUploadObjects();
@@ -129,7 +129,7 @@ void Imgui::glfw_clean(){
   //---------------------------
 }
 void Imgui::glfw_new_frame(){
-  if(vk_struct->param.headless) return;
+  if(vk_struct->render.param.headless) return;
   //---------------------------
 
   ImGui_ImplVulkan_NewFrame();
@@ -147,13 +147,13 @@ void Imgui::load_texture(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
 }
 void Imgui::update_render_descriptor(){
-  if(vk_struct->param.headless) return;
+  if(vk_struct->render.param.headless) return;
   //---------------------------
 
-  vk::structure::Renderpass& renderpass = vk_struct->renderpass.edl;
+  vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.edl;
   vk::structure::Image* image = &renderpass.framebuffer.color;
 
-  vk_struct->gui.descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vk_struct->window.gui.descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //---------------------------
 }
@@ -171,10 +171,10 @@ ImTextureID Imgui::create_imgui_texture(int UID){
   return imgui_texture;
 }
 ImTextureID Imgui::query_engine_texture(){
-  if(vk_struct->gui.descriptor == VK_NULL_HANDLE) return 0;
+  if(vk_struct->window.gui.descriptor == VK_NULL_HANDLE) return 0;
   //---------------------------
 
-  ImTextureID texture = reinterpret_cast<ImTextureID>(vk_struct->gui.descriptor);
+  ImTextureID texture = reinterpret_cast<ImTextureID>(vk_struct->window.gui.descriptor);
 
   //---------------------------
   return texture;

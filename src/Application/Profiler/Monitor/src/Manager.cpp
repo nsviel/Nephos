@@ -70,7 +70,7 @@ void Manager::collect_gpu_task(){
   prf::monitor::Tasker* tasker = prf_struct->profiler_main.fetch_tasker("gpu");
   //---------------------------
 
-  std::vector<vk::profiler::Command_buffer>& vec_command = vk_struct->profiler.vec_command_buffer;
+  std::vector<vk::profiler::Command_buffer>& vec_command = vk_struct->render.profiler.vec_command_buffer;
 
   float ts_current = 0;
   for(int i=0; i<vec_command.size(); i++){

@@ -93,7 +93,7 @@ void Font::font_build(){
   io.Fonts->Build();
 
   //Insert into engine
-  if(vk_struct->param.headless) return;
+  if(vk_struct->render.param.headless) return;
   vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->core.device.queue.graphics);
   std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   vk_command_buffer->start_command_buffer_primary(*command_buffer);

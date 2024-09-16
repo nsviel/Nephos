@@ -17,7 +17,7 @@ Viewport::~Viewport(){}
 
 //Main function
 void Viewport::init(){
-  glm::vec2 win_dim = vk_struct->window.dimension;
+  glm::vec2 win_dim = vk_struct->window.window.dimension;
   //---------------------------
 
   //Viewport
@@ -32,7 +32,7 @@ void Viewport::init(){
   //Full viewport scissor
   vk_struct->core.viewport.scissor = {};
   vk_struct->core.viewport.scissor.offset = {0, 0};
-  vk_struct->core.viewport.scissor.extent = vk_struct->window.extent;
+  vk_struct->core.viewport.scissor.extent = vk_struct->window.window.extent;
 
   //---------------------------
 }
@@ -48,7 +48,7 @@ void Viewport::cmd_viewport(VkCommandBuffer& command_buffer){
   //---------------------------
 }
 void Viewport::update_viewport(){
-  glm::vec2 win_dim = vk_struct->window.dimension;
+  glm::vec2 win_dim = vk_struct->window.window.dimension;
   //---------------------------
 
   //Viewport scene
@@ -58,14 +58,14 @@ void Viewport::update_viewport(){
   vk_struct->core.viewport.handle.height = win_dim.y;
 
   //Scissor
-  vk_struct->core.viewport.scissor.extent = vk_struct->window.extent;
+  vk_struct->core.viewport.scissor.extent = vk_struct->window.window.extent;
 
   //---------------------------
 }
 
 //Subfunction
 vk::structure::Viewport* Viewport::create_viewport(){
-  glm::vec2 win_dim = vk_struct->window.dimension;
+  glm::vec2 win_dim = vk_struct->window.window.dimension;
   //---------------------------
 
   //Viewport
@@ -81,7 +81,7 @@ vk::structure::Viewport* Viewport::create_viewport(){
   //Full viewport scissor
   viewport->scissor = {};
   viewport->scissor.offset = {0, 0};
-  viewport->scissor.extent = vk_struct->window.extent;
+  viewport->scissor.extent = vk_struct->window.window.extent;
 
   //---------------------------
   return viewport;

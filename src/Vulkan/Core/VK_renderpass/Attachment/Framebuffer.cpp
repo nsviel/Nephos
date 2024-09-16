@@ -22,7 +22,7 @@ Framebuffer::~Framebuffer(){}
 void Framebuffer::init(){
   //---------------------------
 
-  for(auto& renderpass : vk_struct->renderpass.vector){
+  for(auto& renderpass : vk_struct->render.renderpass.vector){
     this->create_framebuffer(*renderpass);
   }
 
@@ -31,7 +31,7 @@ void Framebuffer::init(){
 void Framebuffer::clean(){
   //---------------------------
 
-  for(auto& renderpass : vk_struct->renderpass.vector){
+  for(auto& renderpass : vk_struct->render.renderpass.vector){
     this->clean_framebuffer(*renderpass);
   }
 
@@ -85,8 +85,8 @@ void Framebuffer::create_framebuffer_handle(vk::structure::Renderpass& renderpas
   framebufferInfo.renderPass = renderpass.handle;
   framebufferInfo.attachmentCount = static_cast<uint32_t>(framebuffer.vec_attachment.size());
   framebufferInfo.pAttachments = framebuffer.vec_attachment.data();
-  framebufferInfo.width = vk_struct->window.extent.width;
-  framebufferInfo.height = vk_struct->window.extent.height;
+  framebufferInfo.width = vk_struct->window.window.extent.width;
+  framebufferInfo.height = vk_struct->window.window.extent.height;
   framebufferInfo.layers = 1;
 
   VkResult result = vkCreateFramebuffer(vk_struct->core.device.handle, &framebufferInfo, nullptr, &framebuffer.handle);

@@ -52,7 +52,7 @@ void Renderer::design_panel(){
 
 //Subfunction
 void Renderer::engine_texture(){
-  if(vk_struct->param.headless) return;
+  if(vk_struct->render.param.headless) return;
   //---------------------------
 
   //Retrieve rendering texture

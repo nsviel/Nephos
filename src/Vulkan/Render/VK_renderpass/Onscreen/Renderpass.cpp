@@ -18,14 +18,14 @@ Renderpass::~Renderpass(){}
 
 //Main function
 void Renderpass::init(){
-  vk::structure::Renderpass& renderpass = vk_struct->renderpass.onscreen;
-  if(vk_struct->param.headless) return;
+  vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.onscreen;
+  if(vk_struct->render.param.headless) return;
   //---------------------------
 
   vk_subpass->create_subpass(renderpass);
 
   //---------------------------
-  vk_struct->renderpass.vector.push_back(&renderpass);
+  vk_struct->render.renderpass.vector.push_back(&renderpass);
 }
 
 }

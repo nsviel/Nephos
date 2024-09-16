@@ -19,7 +19,7 @@ Profiler::~Profiler(){}
 void Profiler::clear(){
   //---------------------------
 
-  vk_struct->profiler.vec_command_buffer.clear();
+  vk_struct->render.profiler.vec_command_buffer.clear();
 
   //---------------------------
 }

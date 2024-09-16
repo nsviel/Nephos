@@ -74,7 +74,7 @@ void Query::find_query_timestamp(vk::structure::Command_buffer& command_buffer){
   vk::profiler::Command_buffer prf_command;
   prf_command.name = command_buffer.name;
   prf_command.duration = command_buffer.duration;
-  vk_struct->profiler.vec_command_buffer.push_back(prf_command);
+  vk_struct->render.profiler.vec_command_buffer.push_back(prf_command);
 
   //---------------------------
 }
