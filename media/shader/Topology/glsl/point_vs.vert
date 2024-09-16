@@ -12,6 +12,11 @@ layout(location = 1) out vec3 frag_rgb;
 //Uniform
 layout(binding = 0) uniform MVP{mat4 value;} uniform_mvp;
 layout(binding = 1) uniform SIZE{float value;} uniform_size;
+layout(binding = 2) uniform mvp_str{
+  mat4 model;
+  mat4 view;
+  mat4 projection;
+};
 
 
 void main(){

@@ -58,6 +58,7 @@ void Point::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   pipeline.binding.vec_descriptor.push_back(vk::pipeline::topology::uniform_mvp());
+  pipeline.binding.vec_descriptor.push_back(vk::pipeline::topology::uniform_mvp_str());
   pipeline.binding.vec_descriptor.push_back(vk::pipeline::topology::uniform_point_size());
 
   //---------------------------
