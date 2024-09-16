@@ -10,11 +10,7 @@ namespace vk::pipeline::topology{
 
 //Uniform
 vk::binding::structure::Descriptor uniform_mvp();
+vk::binding::structure::Descriptor uniform_mvp_str();
 vk::binding::structure::Descriptor uniform_point_size();
-vk::binding::structure::Descriptor uniform_edl();
-
-//Sampler
-vk::binding::structure::Descriptor sampler_color();
-vk::binding::structure::Descriptor sampler_depth();
 
 }
