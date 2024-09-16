@@ -9,8 +9,6 @@ namespace vk::render::pipeline{
 Factory::Factory(vk::Structure* vk_struct){
   //---------------------------
 
-  this->vk_struct = vk_struct;
-  this->pipe_canvas = new vk::render::pipeline::Canvas(vk_struct);
   this->pipe_edl = new vk::render::pipeline::EDL(vk_struct);
   this->pipe_line = new vk::render::pipeline::Line(vk_struct);
   this->pipe_point = new vk::render::pipeline::Point(vk_struct);
@@ -21,13 +19,6 @@ Factory::Factory(vk::Structure* vk_struct){
 Factory::~Factory(){}
 
 //Main function
-void Factory::add_pipeline_canvas(vk::structure::Subpass& subpass){
-  //---------------------------
-
-  pipe_canvas->add_pipeline(subpass);
-
-  //---------------------------
-}
 void Factory::add_pipeline_line(vk::structure::Subpass& subpass){
   //---------------------------
 
