@@ -43,14 +43,14 @@ void Pipeline::clean_pipeline(vk::structure::Renderpass& renderpass){
 
   //---------------------------
 }
-void Pipeline::add_pipeline_topology(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
+void Pipeline::add_pipeline_topology(vk::structure::Subpass& subpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
   //Subset pipeline map
-  subpass.map_pipeline[pipeline.info.name] = &pipeline;
+  subpass.map_pipeline[pipeline->info.name] = pipeline;
 
   //Whole program pipeline map
-  vk_struct->core.pipeline.map[pipeline.info.topology] = &pipeline;
+  vk_struct->core.pipeline.map[pipeline->info.topology] = pipeline;
 
   //---------------------------
 }

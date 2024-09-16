@@ -72,16 +72,13 @@ void Scene::cmd_draw_point(vk::structure::Subpass& subpass){
       machin.model = glm::transpose(pose.model);
       machin.view = vk_struct->core.presentation.view;
       machin.projection = vk_struct->core.presentation.projection;
-      vk_uniform->update_uniform("mvp_str", pipeline->descriptor.layout, machin);
+    //  vk_uniform->update_uniform("mvp_str", pipeline->descriptor.layout, machin);
 
 
 glm::mat4 truc = machin.projection * machin.view * machin.model;
-say("-----");
-say(truc);
-say("   ");
-say(pose.mvp);
 
-      vk_uniform->update_uniform("point_size", pipeline->descriptor.layout, data.topology.width);
+
+      //vk_uniform->update_uniform("point_size", pipeline->descriptor.layout, data.topology.width);
       vk_descriptor_set->bind(subpass.command_buffer->handle, pipeline, vk_object->descriptor_set.handle);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }

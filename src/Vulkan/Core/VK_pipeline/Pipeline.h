@@ -27,7 +27,7 @@ public:
   //Main function
   void create_pipeline(vk::structure::Renderpass& renderpass);
   void clean_pipeline(vk::structure::Renderpass& renderpass);
-  void add_pipeline_topology(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
+  void add_pipeline_topology(vk::structure::Subpass& subpass, vk::structure::Pipeline* pipeline);
 
   //Pipeline creation
   void create_pipeline_struct(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline);

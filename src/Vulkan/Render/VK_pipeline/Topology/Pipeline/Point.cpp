@@ -27,7 +27,7 @@ void Point::add_pipeline(vk::structure::Subpass& subpass){
   this->set_binding(*pipeline);
 
   //---------------------------
-  vk_pipeline->add_pipeline_topology(subpass, *pipeline);
+  vk_pipeline->add_pipeline_topology(subpass, pipeline);
 }
 
 //Subfunction
@@ -60,8 +60,8 @@ void Point::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_mvp());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_mvp_str());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_point_size());
+  //pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_mvp_str());
+  //pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_point_size());
 
   //---------------------------
 }
