@@ -16,15 +16,6 @@ Node::Node(bool* running){
   this->vk_render = new vk::render::Node(vk_struct);
   this->vk_window = new vk::window::Node(vk_struct);
 
-
-
-
-  this->vk_imgui = new vk::gui::Imgui(vk_struct);
-  this->vk_texture = new vk::image::Texture(vk_struct);
-  this->vk_screenshot = new vk::image::Screenshot(vk_struct);
-  this->vk_data = new vk::data::Data(vk_struct);
-
-
   //---------------------------
 }
 Node::~Node(){}

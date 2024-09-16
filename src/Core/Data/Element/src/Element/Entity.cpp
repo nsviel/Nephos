@@ -14,7 +14,7 @@ Entity::Entity(dat::elm::Node* node_element){
   vk::Node* node_vulkan = node_element->get_node_vulkan();
 
   this->dat_uid = node_element->get_dat_uid();
-  this->vk_data = node_vulkan->get_vk_data();
+  this->vk_interface = node_vulkan->get_vk_interface();
   this->atr_location = new dat::atr::Location();
 
   //---------------------------
@@ -36,7 +36,7 @@ void Entity::remove_entity(std::shared_ptr<dat::base::Entity> entity){
   //----------------------------
 
   entity->clean();
-  vk_data->remove(data);
+  vk_interface->remove_data(data);
 
   //Remove glyph data
   for(auto& glyph : entity->list_glyph){
@@ -79,7 +79,7 @@ void Entity::update_data(std::shared_ptr<dat::base::Entity> entity){
   //----------------------------
 
   if(entity->data->is_updated){
-    vk_data->insert(entity->data, entity->pose);
+    vk_interface->insert_data(entity->data, entity->pose);
 
     //Update attribut
     atr_location->compute_centroid(*entity);

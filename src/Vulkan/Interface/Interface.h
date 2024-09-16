@@ -24,11 +24,15 @@ public:
 
 public:
   //Main function
+  void insert_data(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose);
+  void remove_data(utl::base::Data& data);
   void load_texture(std::shared_ptr<utl::media::Image> utl_image);
   void set_mouse_pose(glm::vec2 pos);
   glm::vec2 get_mouse_pose();
   glm::vec2 get_dimension();
   ImTextureID query_engine_texture();
+  void insert_texture(std::shared_ptr<utl::media::Image> utl_image);
+  void make_screenshot();
 
 private:
   vk::gui::Imgui* vk_imgui;

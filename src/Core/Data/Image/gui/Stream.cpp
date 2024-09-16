@@ -12,7 +12,6 @@ Stream::Stream(dat::img::Node* node_image){
 
   vk::Node* node_vulkan = node_image->get_node_vulkan();
 
-  this->vk_texture = node_vulkan->get_vk_texture();
   this->vk_interface = node_vulkan->get_vk_interface();
 
   //---------------------------
@@ -56,12 +55,12 @@ void Stream::convert_data_into_texture(std::shared_ptr<utl::media::Image> utl_im
 
   //Load texture into vulkan
   if(load){
-    vk_texture->insert_texture(utl_image);
+    vk_interface->insert_texture(utl_image);
     vk_interface->load_texture(utl_image);
     current_UID = utl_image->UID;
   //update texture data
   }else if(update){
-    vk_texture->insert_texture(utl_image);
+    vk_interface->insert_texture(utl_image);
     current_timestamp = utl_image->timestamp;
   }
 

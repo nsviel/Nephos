@@ -6,8 +6,8 @@
 namespace dat::elm{class Node;}
 namespace dat::elm{class UID;}
 namespace dat::base{class Entity;}
-namespace vk::data{class Data;}
 namespace dat::atr{class Location;}
+namespace vk{class Interface;}
 
 
 namespace dat::elm{
@@ -28,7 +28,7 @@ public:
   void update_data(std::shared_ptr<dat::base::Entity> entity);
 
 private:
-  vk::data::Data* vk_data;
+  vk::Interface* vk_interface;
   dat::elm::UID* dat_uid;
   dat::atr::Location* atr_location;
 };
