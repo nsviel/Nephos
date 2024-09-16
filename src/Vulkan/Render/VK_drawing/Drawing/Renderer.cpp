@@ -83,11 +83,17 @@ void Renderer::stop_renderpass(vk::structure::Renderpass* renderpass){
 void Renderer::draw_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
-  for(auto& subpass : renderpass->vec_subpass){
+  for (size_t i = 0; i < renderpass->vec_subpass.size(); ++i) {
+    auto& subpass = renderpass->vec_subpass[i];
+
+    //Draw operation
     subpass->command_buffer = renderpass->command_buffer;
     subpass->draw_task(subpass);
 
-    //vkCmdNextSubpass(*renderpass->command_buffer, VK_SUBPASS_CONTENTS_INLINE);
+    //Next subpass
+    if (i < renderpass->vec_subpass.size() - 1) {
+      vkCmdNextSubpass(renderpass->command_buffer->handle, VK_SUBPASS_CONTENTS_INLINE);
+    }
   }
 
   //---------------------------
