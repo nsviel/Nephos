@@ -37,16 +37,6 @@ public:
 
 private:
   vk::Structure* vk_struct;
-
-  VkPipelineVertexInputStateCreateInfo info_vertex;
-  VkPipelineInputAssemblyStateCreateInfo info_topology;
-  VkPipelineDynamicStateCreateInfo info_dynamic;
-  VkPipelineViewportStateCreateInfo info_viewport;
-  VkPipelineRasterizationStateCreateInfo info_rasterization;
-  VkPipelineMultisampleStateCreateInfo info_multisample;
-  VkPipelineColorBlendAttachmentState info_blend_attachment;
-  VkPipelineColorBlendStateCreateInfo info_blend;
-  VkPipelineDepthStencilStateCreateInfo info_stencil;
 };
 
 }

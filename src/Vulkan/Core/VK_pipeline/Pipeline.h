@@ -32,7 +32,7 @@ public:
   void recreate_pipeline(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline);
   void add_pipeline_topology(vk::structure::Subpass& subpass, std::shared_ptr<vk::structure::Pipeline>);
 
-  //Pipeline creation
+  //Subfunction
   void create_pipeline_struct(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline);
   void clean_pipeline_struct(vk::structure::Pipeline& pipeline);
   void cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline);

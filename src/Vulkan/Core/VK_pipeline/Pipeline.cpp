@@ -66,17 +66,14 @@ void Pipeline::add_pipeline_topology(vk::structure::Subpass& subpass, std::share
   //---------------------------
 }
 
-//Pipeline creation / cleaning
+//Subfunction
 void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  //Pipeline layout & binding
   vk_descriptor->create_pipeline_descriptor(pipeline);
   vk_shader->create_pipeline_shader(pipeline);
   vk_vertex->pipeline_vertex_description(pipeline);
   vk_layout->create_pipeline_layout(pipeline);
-
-  //Pipeline obj
   vk_object->create_pipeline_object(renderpass, pipeline);
   vk_shader->clean_pipeline_shader(pipeline);
 

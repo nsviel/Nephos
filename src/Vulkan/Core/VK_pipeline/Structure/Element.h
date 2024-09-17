@@ -14,6 +14,16 @@ struct Element{
   std::vector<VkVertexInputAttributeDescription> vec_vertex_attribute;
   std::vector<VkDynamicState> vec_dynamic_state;
 
+  VkPipelineVertexInputStateCreateInfo vertex;
+  VkPipelineInputAssemblyStateCreateInfo topology;
+  VkPipelineDynamicStateCreateInfo dynamic;
+  VkPipelineViewportStateCreateInfo viewport;
+  VkPipelineRasterizationStateCreateInfo rasterization;
+  VkPipelineMultisampleStateCreateInfo multisample;
+  VkPipelineColorBlendAttachmentState blend_attachment;
+  VkPipelineColorBlendStateCreateInfo blend;
+  VkPipelineDepthStencilStateCreateInfo stencil;
+
   //---------------------------
 };
 
