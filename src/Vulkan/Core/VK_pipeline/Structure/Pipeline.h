@@ -3,7 +3,7 @@
 #include <Vulkan/Core/VK_pipeline/Structure/Info.h>
 #include <Vulkan/Core/VK_pipeline/Structure/Element.h>
 #include <Vulkan/Core/VK_pipeline/Structure/Descriptor.h>
-#include <Vulkan/Core/VK_shader/Structure/Info.h>
+#include <Vulkan/Core/VK_shader/Structure/Shader.h>
 #include <vulkan/vulkan.h>
 
 
@@ -18,7 +18,7 @@ struct Pipeline{
   vk::pipeline::structure::Info info;
   vk::pipeline::structure::Element element;
   vk::pipeline::structure::Descriptor descriptor;
-  vk::shader::structure::Info shader;
+  vk::shader::structure::Shader shader;
 
   //---------------------------
 };
