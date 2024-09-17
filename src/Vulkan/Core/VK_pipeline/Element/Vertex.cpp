@@ -111,14 +111,15 @@ void Vertex::add_vertex_uv(vk::structure::Pipeline& pipeline){
 void Vertex::info_pipeline_vertex(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.element.vertex = {};
-  pipeline.element.vertex.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-  pipeline.element.vertex.vertexBindingDescriptionCount = static_cast<uint32_t>(pipeline.element.vec_vertex_binding.size());
-  pipeline.element.vertex.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline.element.vec_vertex_attribute.size());
-  pipeline.element.vertex.pVertexBindingDescriptions = pipeline.element.vec_vertex_binding.data();
-  pipeline.element.vertex.pVertexAttributeDescriptions = pipeline.element.vec_vertex_attribute.data();
+  VkPipelineVertexInputStateCreateInfo vertex{};
+  vertex.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+  vertex.vertexBindingDescriptionCount = static_cast<uint32_t>(pipeline.element.vec_vertex_binding.size());
+  vertex.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline.element.vec_vertex_attribute.size());
+  vertex.pVertexBindingDescriptions = pipeline.element.vec_vertex_binding.data();
+  vertex.pVertexAttributeDescriptions = pipeline.element.vec_vertex_attribute.data();
 
   //---------------------------
+  pipeline.element.vertex = vertex;
 }
 
 }

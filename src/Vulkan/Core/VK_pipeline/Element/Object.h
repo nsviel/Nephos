@@ -21,7 +21,6 @@ public:
   void create_pipeline_object(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline);
 
   //Subfunction
-  void info_pipeline_vertex(vk::structure::Pipeline& pipeline);
   void info_pipeline_topology(vk::structure::Pipeline& pipeline);
   void info_pipeline_dynamic(vk::structure::Pipeline& pipeline);
   void info_pipeline_viewport(vk::structure::Pipeline& pipeline);

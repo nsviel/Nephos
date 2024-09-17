@@ -19,7 +19,6 @@ Object::~Object(){}
 void Object::create_pipeline_object(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  this->info_pipeline_vertex(pipeline);
   this->info_pipeline_topology(pipeline);
   this->info_pipeline_dynamic(pipeline);
   this->info_pipeline_viewport(pipeline);
@@ -34,18 +33,6 @@ void Object::create_pipeline_object(vk::structure::Renderpass& renderpass, vk::s
 }
 
 //Subfunction
-void Object::info_pipeline_vertex(vk::structure::Pipeline& pipeline){
-  //---------------------------
-
-  pipeline.element.vertex = {};
-  pipeline.element.vertex.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-  pipeline.element.vertex.vertexBindingDescriptionCount = static_cast<uint32_t>(pipeline.element.vec_vertex_binding.size());
-  pipeline.element.vertex.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline.element.vec_vertex_attribute.size());
-  pipeline.element.vertex.pVertexBindingDescriptions = pipeline.element.vec_vertex_binding.data();
-  pipeline.element.vertex.pVertexAttributeDescriptions = pipeline.element.vec_vertex_attribute.data();
-
-  //---------------------------
-}
 void Object::info_pipeline_topology(vk::structure::Pipeline& pipeline){
   //---------------------------
 
