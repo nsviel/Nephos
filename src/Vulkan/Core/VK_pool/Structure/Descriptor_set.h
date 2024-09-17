@@ -14,9 +14,9 @@ namespace vk::pool::structure{
 struct Descriptor_set{
   //---------------------------
 
-  std::mutex mutex;
-  VkDescriptorPool allocator = VK_NULL_HANDLE;
   std::vector<vk::descriptor::structure::Descriptor_set> tank;
+  std::mutex mutex;
+  VkDescriptorPool pool = VK_NULL_HANDLE;
   uint32_t size = 100;
 
   //---------------------------

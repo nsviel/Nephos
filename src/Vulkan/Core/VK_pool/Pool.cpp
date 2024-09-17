@@ -19,25 +19,21 @@ Pool::~Pool(){}
 void Pool::init(){
   //---------------------------
 
-  this->create_descriptor_pool();
+  this->create_descriptor_set_pool();
 
   //---------------------------
 }
 void Pool::clean(){
   //---------------------------
 
-  this->clean_descriptor_pool();
+  this->clean_descriptor_set_pool();
 
   //---------------------------
 }
 
 //Descriptor pool
-void Pool::create_descriptor_pool(){
+void Pool::create_descriptor_set_pool(){
   //---------------------------
-
-  int pool_nb_uniform = 1000;
-  int pool_nb_sampler = 1000;
-  int pool_nb_descriptor = 1000;
 
   //Maximum number of descriptor per type
   VkDescriptorPoolSize pool_size[] ={
@@ -60,27 +56,27 @@ void Pool::create_descriptor_pool(){
   pool_info.maxSets = 1000 * IM_ARRAYSIZE(pool_size);
   pool_info.poolSizeCount = (uint32_t)IM_ARRAYSIZE(pool_size);
   pool_info.pPoolSizes = pool_size;
-  VkResult result = vkCreateDescriptorPool(vk_struct->core.device.handle, &pool_info, nullptr, &vk_struct->core.pools.descriptor_set.allocator);
+  VkResult result = vkCreateDescriptorPool(vk_struct->core.device.handle, &pool_info, nullptr, &vk_struct->core.pools.descriptor_set.pool);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create gui");
   }
 
   //---------------------------
 }
-void Pool::reset_descriptor_pool(){
+void Pool::reset_descriptor_set_pool(){
   //---------------------------
 
-  VkResult result = vkResetDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.allocator, 0);
+  VkResult result = vkResetDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.pool, 0);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to reset descripto pool");
   }
 
   //---------------------------
 }
-void Pool::clean_descriptor_pool(){
+void Pool::clean_descriptor_set_pool(){
   //---------------------------
 
-  vkDestroyDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.allocator, nullptr);
+  vkDestroyDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.pool, nullptr);
 
   //---------------------------
 }

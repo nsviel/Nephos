@@ -68,7 +68,7 @@ void Descriptor_set::update_descriptor_set(vk::descriptor::structure::Descriptor
 void Descriptor_set::clean_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
-  vkFreeDescriptorSets(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.allocator, 1, &descriptor_set.handle);
+  vkFreeDescriptorSets(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.pool, 1, &descriptor_set.handle);
 
   //---------------------------
 }
@@ -79,7 +79,7 @@ void Descriptor_set::allocate_handle(vk::descriptor::structure::Descriptor_set& 
 
   VkDescriptorSetAllocateInfo allocation_info{};
   allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-  allocation_info.descriptorPool = vk_struct->core.pools.descriptor_set.allocator;
+  allocation_info.descriptorPool = vk_struct->core.pools.descriptor_set.pool;
   allocation_info.descriptorSetCount = 1;
   allocation_info.pSetLayouts = &layout.handle;
 

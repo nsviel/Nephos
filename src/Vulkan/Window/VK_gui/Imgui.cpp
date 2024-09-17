@@ -72,7 +72,7 @@ void Imgui::create_context(){
     init_info.PhysicalDevice = vk_struct->core.device.physical_device.handle;
     init_info.Device = vk_struct->core.device.handle;
     init_info.Queue = vk_struct->core.device.queue.graphics.handle;
-    init_info.DescriptorPool = vk_struct->core.pools.descriptor_set.allocator;
+    init_info.DescriptorPool = vk_struct->core.pools.descriptor_set.pool;
     init_info.PipelineCache = VK_NULL_HANDLE;
     init_info.MinImageCount = 2;
     init_info.ImageCount = 2;
