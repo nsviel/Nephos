@@ -55,7 +55,7 @@ void Triangle::set_shader(vk::structure::Pipeline& pipeline){
   shader_info.with_depth_test = true;
 
   //---------------------------
-  pipeline.shader = shader_info;
+  pipeline.shader.info = shader_info;
 }
 void Triangle::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
