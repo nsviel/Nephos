@@ -16,7 +16,8 @@ struct Layout{
 
   //Binding description
   VkDescriptorSetLayout handle = VK_NULL_HANDLE;
-
+  std::vector<VkDescriptorSetLayoutBinding> vec_binding;
+  
   //Binding elements
   std::vector<vk::descriptor::structure::Descriptor> vec_descriptor;
   std::unordered_map<std::string, vk::descriptor::structure::Pushconst*> map_pushcst;

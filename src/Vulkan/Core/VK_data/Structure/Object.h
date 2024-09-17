@@ -33,18 +33,17 @@ struct Buffer_set{
 struct Object{
   //---------------------------
 
-  //Data
+  //Vulkan stuff
   int UID = 0;
-  std::shared_ptr<utl::base::Data> data = std::make_shared<utl::base::Data>();
-  std::shared_ptr<utl::base::Pose> pose = std::make_shared<utl::base::Pose>();
-
-  //Binding
-  std::list< std::shared_ptr<vk::structure::Texture> > list_vk_texture;
   VkCommandBuffer command_buffer_secondary = VK_NULL_HANDLE;
-  vk::structure::Buffer_set buffer;
-
   vk::descriptor::structure::Descriptor_set descriptor_set;
 
+  //Data
+  std::shared_ptr<utl::base::Data> data = std::make_shared<utl::base::Data>();
+  std::shared_ptr<utl::base::Pose> pose = std::make_shared<utl::base::Pose>();
+  std::list< std::shared_ptr<vk::structure::Texture> > list_vk_texture;
+  vk::structure::Buffer_set buffer;
+  
   //---------------------------
 };
 

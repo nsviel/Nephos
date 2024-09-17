@@ -27,8 +27,8 @@ public:
   void clean_layout(vk::descriptor::structure::Layout& layout);
 
   //Subfunction
-  void make_required_binding(vk::descriptor::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
-  void create_layout_object(vk::descriptor::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
+  void make_required_binding(vk::descriptor::structure::Layout& layout);
+  void create_layout_object(vk::descriptor::structure::Layout& layout);
   void create_descriptor(vk::descriptor::structure::Layout& layout);
 
 private:

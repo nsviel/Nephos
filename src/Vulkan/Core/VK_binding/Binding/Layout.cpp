@@ -12,7 +12,7 @@ Layout::Layout(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
-  
+
   //---------------------------
 }
 Layout::~Layout(){}
@@ -21,9 +21,9 @@ Layout::~Layout(){}
 void Layout::create_layout(vk::descriptor::structure::Layout& layout){
   //---------------------------
 
-  std::vector<VkDescriptorSetLayoutBinding> vec_binding;
-  this->make_required_binding(layout, vec_binding);
-  this->create_layout_object(layout, vec_binding);
+
+  this->make_required_binding(layout);
+  this->create_layout_object(layout);
   this->create_descriptor(layout);
 
   //---------------------------
@@ -37,7 +37,8 @@ void Layout::clean_layout(vk::descriptor::structure::Layout& layout){
 }
 
 //Subfunction
-void Layout::make_required_binding(vk::descriptor::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
+void Layout::make_required_binding(vk::descriptor::structure::Layout& layout){
+  layout.vec_binding.clear();
   //---------------------------
 
   for(auto& descriptor : layout.vec_descriptor){
@@ -49,19 +50,19 @@ void Layout::make_required_binding(vk::descriptor::structure::Layout& layout, st
     layout_binding.stageFlags = descriptor.stage;
     layout_binding.pImmutableSamplers = nullptr; // Optional
 
-    vec_binding.push_back(layout_binding);
+    layout.vec_binding.push_back(layout_binding);
   }
 
   //---------------------------
 }
-void Layout::create_layout_object(vk::descriptor::structure::Layout& layout, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
+void Layout::create_layout_object(vk::descriptor::structure::Layout& layout){
   //---------------------------
 
   //Combination and info
   VkDescriptorSetLayoutCreateInfo layoutInfo{};
   layoutInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
-  layoutInfo.bindingCount = static_cast<uint32_t>(vec_binding.size());
-  layoutInfo.pBindings = vec_binding.data();
+  layoutInfo.bindingCount = static_cast<uint32_t>(layout.vec_binding.size());
+  layoutInfo.pBindings = layout.vec_binding.data();
 
   //Layout set layout creation
   VkDescriptorSetLayout descriptor_layout;
