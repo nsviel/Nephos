@@ -45,8 +45,8 @@ void Shader::create_shader_module(vk::structure::Pipeline& pipeline){
 
   //Load spir format shaders
   vk_file->recompile_shader(pipeline.info.shader);
-  auto code_vert = vk_file->read_file(pipeline.info.shader.path_spir_vs);
-  auto code_frag = vk_file->read_file(pipeline.info.shader.path_spir_fs);
+  auto code_vert = vk_file->read_file(pipeline.info.shader.path_spir.vs);
+  auto code_frag = vk_file->read_file(pipeline.info.shader.path_spir.fs);
 
   //Create associated shader modules
   VkShaderModule module_vert = create_module(code_vert);

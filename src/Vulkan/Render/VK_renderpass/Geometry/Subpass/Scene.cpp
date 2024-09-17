@@ -65,6 +65,7 @@ void Scene::cmd_draw_point(vk::structure::Subpass& subpass){
     utl::base::Pose& pose = *vk_object->pose;
 
     if(check_data(data, utl::topology::POINT)){
+
       vk_uniform->update_uniform("mvp", pipeline->descriptor.layout, pose.mvp);
 
 

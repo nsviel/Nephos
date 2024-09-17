@@ -48,10 +48,10 @@ void EDL::set_shader(vk::structure::Pipeline& pipeline){
 
   utl::shader::Info shader_info;
   shader_info.name = "EDL";
-  shader_info.path_glsl_vs = "../media/shader/EDL/glsl/edl_vs.vert";
-  shader_info.path_glsl_fs = "../media/shader/EDL/glsl/edl_fs.frag";
-  shader_info.path_spir_vs = "../media/shader/EDL/spir/edl_vs.spv";
-  shader_info.path_spir_fs = "../media/shader/EDL/spir/edl_fs.spv";
+  shader_info.path_glsl.vs = "../media/shader/EDL/glsl/edl_vs.vert";
+  shader_info.path_glsl.fs = "../media/shader/EDL/glsl/edl_fs.frag";
+  shader_info.path_spir.vs = "../media/shader/EDL/spir/edl_vs.spv";
+  shader_info.path_spir.fs = "../media/shader/EDL/spir/edl_fs.spv";
   shader_info.with_recompilation = true;
   shader_info.with_depth_test = true;
 

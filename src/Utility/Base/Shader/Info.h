@@ -5,6 +5,15 @@
 
 namespace utl::shader{
 
+struct Path_shader{
+  //---------------------------
+
+  std::string vs = "";
+  std::string fs = "";
+
+  //---------------------------
+};
+
 struct Info{
   //---------------------------
 
@@ -14,11 +23,9 @@ struct Info{
   bool with_depth_test = false;
 
   //Path
-  std::string path_glsl_vs = "";
-  std::string path_glsl_fs = "";
-  std::string path_spir_vs = "";
-  std::string path_spir_fs = "";
-
+  utl::shader::Path_shader path_glsl;
+  utl::shader::Path_shader path_spir;
+  
   //---------------------------
 };
 
