@@ -21,7 +21,6 @@ public:
 public:
   //Main function
   void hot_shader_reload(std::string shader_1, std::string shader_2);
-  void recreate_pipeline(vk::structure::Renderpass* renderpass, vk::structure::Pipeline& pipeline);
 
 private:
   vk::Structure* vk_struct;

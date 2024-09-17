@@ -15,7 +15,8 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
   this->vk_vertex = new vk::pipeline::Vertex(vk_struct);
   this->vk_object = new vk::pipeline::Object(vk_struct);
   this->vk_layout = new vk::pipeline::Layout(vk_struct);
-
+  this->vk_synchro = new vk::synchro::Synchro(vk_struct);
+  
   //---------------------------
 }
 Pipeline::~Pipeline(){}
@@ -40,6 +41,16 @@ void Pipeline::clean_pipeline(vk::structure::Renderpass& renderpass){
       this->clean_pipeline_struct(*pipeline);
     }
   }
+
+  //---------------------------
+}
+void Pipeline::recreate_pipeline(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
+  //---------------------------
+
+  vk_synchro->wait_idle_and_pause();
+  this->clean_pipeline_struct(pipeline);
+  this->create_pipeline_struct(renderpass, pipeline);
+  vk_synchro->end_idle();
 
   //---------------------------
 }

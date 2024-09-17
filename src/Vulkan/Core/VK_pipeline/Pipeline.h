@@ -13,6 +13,7 @@ namespace vk::pipeline{class Layout;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Subpass;}
+namespace vk::synchro{class Synchro;}
 
 
 namespace vk::pipeline{
@@ -28,6 +29,7 @@ public:
   //Main function
   void create_pipeline(vk::structure::Renderpass& renderpass);
   void clean_pipeline(vk::structure::Renderpass& renderpass);
+  void recreate_pipeline(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline);
   void add_pipeline_topology(vk::structure::Subpass& subpass, std::shared_ptr<vk::structure::Pipeline>);
 
   //Pipeline creation
@@ -42,6 +44,7 @@ private:
   vk::pipeline::Vertex* vk_vertex;
   vk::pipeline::Object* vk_object;
   vk::pipeline::Layout* vk_layout;
+  vk::synchro::Synchro* vk_synchro;
 };
 
 }
