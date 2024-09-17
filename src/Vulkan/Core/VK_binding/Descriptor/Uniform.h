@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstring>
 #include <string>
+#include <any>
 
 namespace vk::memory{class Allocator;}
 namespace vk{class Structure;}
@@ -31,12 +32,9 @@ public:
   void update_uniform(std::string name, vk::descriptor::structure::Layout& layout, T value){
     //---------------------------
 
+    //Retrieve uniform to update
     auto it = layout.map_uniform.find(name);
-    if(it != layout.map_uniform.end()){
-      vk::descriptor::structure::Uniform* uniform = it->second;
-      std::memcpy(uniform->mapped, &value, sizeof(value));
-    }
-    else{
+    if(it == layout.map_uniform.end()){
       std::cout << "------------------------" << std::endl;
       std::cout << "[error] Update uniform -> name not recognized \033[1;31m" << name << "\033[0m" << std::endl;
       std::cout << "Existing uniform names: " << std::endl;
@@ -48,6 +46,10 @@ public:
       std::cout << "------------------------" << std::endl;
       exit(0);
     }
+
+    //Update uniform
+    auto uniform = it->second;
+    std::memcpy(uniform->mapped, &value, sizeof(value));
 
     //---------------------------
   }

@@ -21,7 +21,7 @@ Uniform::~Uniform(){}
 void Uniform::create_uniform(vk::descriptor::structure::Layout& layout, vk::descriptor::structure::Descriptor& descriptor){
   //---------------------------
 
-  vk::descriptor::structure::Uniform* uniform = new vk::descriptor::structure::Uniform();
+  std::shared_ptr<vk::descriptor::structure::Uniform> uniform = std::make_shared<vk::descriptor::structure::Uniform>();
   uniform->name = descriptor.name;
   uniform->binding = descriptor.binding;
   uniform->size = descriptor.size;
@@ -30,7 +30,7 @@ void Uniform::create_uniform(vk::descriptor::structure::Layout& layout, vk::desc
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
   vkMapMemory(vk_struct->core.device.handle, uniform->mem, 0, uniform->size, 0, &uniform->mapped);
 
-  layout.map_uniform[descriptor.name] = uniform;
+  layout.map_uniform[descriptor.name] = std::move(uniform);
 
   //---------------------------
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vulkan/vulkan.h>
+#include <memory>
 #include <string>
 
 namespace vk{class Structure;}
@@ -27,7 +28,7 @@ public:
   void update_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout, vk::structure::Image* image);
 
   //Subfunction
-  vk::descriptor::structure::Sampler* query_sampler(vk::descriptor::structure::Layout& layout, std::string& name);
+  std::shared_ptr<vk::descriptor::structure::Sampler> query_sampler(vk::descriptor::structure::Layout& layout, std::string& name);
 
 private:
   vk::Structure* vk_struct;

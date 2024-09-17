@@ -6,6 +6,7 @@
 #include <Vulkan/Core/VK_binding/Structure/Pushconst.h>
 #include <vulkan/vulkan.h>
 #include <unordered_map>
+#include <memory>
 #include <vector>
 
 
@@ -17,12 +18,12 @@ struct Layout{
   //Binding description
   VkDescriptorSetLayout handle = VK_NULL_HANDLE;
   std::vector<VkDescriptorSetLayoutBinding> vec_binding;
-  
+
   //Binding elements
   std::vector<vk::descriptor::structure::Descriptor> vec_descriptor;
-  std::unordered_map<std::string, vk::descriptor::structure::Pushconst*> map_pushcst;
-  std::unordered_map<std::string, vk::descriptor::structure::Uniform*> map_uniform;
-  std::unordered_map<std::string, vk::descriptor::structure::Sampler*> map_sampler;
+  std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Pushconst>> map_pushcst;
+  std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Uniform>> map_uniform;
+  std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Sampler>> map_sampler;
 
   //---------------------------
 };

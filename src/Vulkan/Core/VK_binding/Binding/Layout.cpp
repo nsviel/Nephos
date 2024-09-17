@@ -59,19 +59,16 @@ void Layout::create_layout_object(vk::descriptor::structure::Layout& layout){
   //---------------------------
 
   //Combination and info
-  VkDescriptorSetLayoutCreateInfo layoutInfo{};
-  layoutInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
-  layoutInfo.bindingCount = static_cast<uint32_t>(layout.vec_binding.size());
-  layoutInfo.pBindings = layout.vec_binding.data();
+  VkDescriptorSetLayoutCreateInfo layout_info{};
+  layout_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
+  layout_info.bindingCount = static_cast<uint32_t>(layout.vec_binding.size());
+  layout_info.pBindings = layout.vec_binding.data();
 
   //Layout set layout creation
-  VkDescriptorSetLayout descriptor_layout;
-  VkResult result = vkCreateDescriptorSetLayout(vk_struct->core.device.handle, &layoutInfo, nullptr, &descriptor_layout);
+  VkResult result = vkCreateDescriptorSetLayout(vk_struct->core.device.handle, &layout_info, nullptr, &layout.handle);
   if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to create descriptor set layout!");
+    std::cout<<"[error] failed to create descriptor set layout"<<std::endl;
   }
-
-  layout.handle = descriptor_layout;
 
   //---------------------------
 }
