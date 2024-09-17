@@ -4,6 +4,7 @@
 #include <Vulkan/Render/Structure.h>
 #include <Vulkan/Window/Structure.h>
 #include <Vulkan/Interface/Parameter.h>
+#include <Vulkan/Interface/State.h>
 
 
 namespace vk{
@@ -21,7 +22,8 @@ struct Structure{
   vk::render::Structure render;
   vk::window::Structure window;
   vk::structure::Parameter param;
-  
+  vk::structure::State state;
+
   //---------------------------
 };
 

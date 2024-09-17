@@ -22,7 +22,7 @@ int UID::query_free_UID(){
 
 
   //---------------------------
-  return vk_struct->param.UID++;
+  return vk_struct->state.UID++;
 }
 
 }

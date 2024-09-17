@@ -58,7 +58,7 @@ void Pool::create_descriptor_set_pool(){
   pool_info.pPoolSizes = pool_size;
   VkResult result = vkCreateDescriptorPool(vk_struct->core.device.handle, &pool_info, nullptr, &vk_struct->core.pools.descriptor_set.pool);
   if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create gui");
+    std::cout<<"[error] failed to create descriptor set pool"<<std::endl;
   }
 
   //---------------------------
@@ -68,7 +68,7 @@ void Pool::reset_descriptor_set_pool(){
 
   VkResult result = vkResetDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.pool, 0);
   if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to reset descripto pool");
+    std::cout<<"[error] failed to reset descriptor set pool"<<std::endl;
   }
 
   //---------------------------
@@ -94,7 +94,7 @@ void Pool::create_command_pool(vk::pool::structure::Command_buffer* pool, int fa
   //Command pool creation
   VkResult result = vkCreateCommandPool(vk_struct->core.device.handle, &pool_info, nullptr, &pool->allocator);
   if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create command pool!");
+    std::cout<<"[error] failed to create command buffer pool"<<std::endl;
   }
 
   //---------------------------
@@ -104,7 +104,7 @@ void Pool::reset_command_pool(vk::pool::structure::Command_buffer* pool){
 
   VkResult result = vkResetCommandPool(vk_struct->core.device.handle, pool->allocator, 0);
   if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to reset command pool");
+    std::cout<<"[error] failed to reset command buffer pool"<<std::endl;
   }
 
   //---------------------------

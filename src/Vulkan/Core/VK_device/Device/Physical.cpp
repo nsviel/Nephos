@@ -139,7 +139,7 @@ void Physical::rate_device_suitability(vk::device::structure::Physical& physical
   // Check if integrated GPU
   if(physical_device.type == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
     physical_device.discrete_gpu = true;
-    if(vk_struct->param.dedicated_gpu){
+    if(vk_struct->state.dedicated_gpu){
       score += 100000;
     }
     else{
