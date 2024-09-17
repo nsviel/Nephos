@@ -34,6 +34,29 @@ void Uniform::create_uniform(vk::descriptor::structure::Layout& layout, vk::desc
 
   //---------------------------
 }
+void Uniform::insert_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Uniform& uniform){
+  //---------------------------
+
+  //Blabla
+  VkDescriptorBufferInfo descriptor_info = {};
+  descriptor_info.buffer = uniform.buffer;
+  descriptor_info.offset = 0;
+  descriptor_info.range = uniform.size;
+
+  //Blabla
+  VkWriteDescriptorSet write_uniform = {};
+  write_uniform.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+  write_uniform.dstSet = descriptor_set.handle;
+  write_uniform.dstBinding = uniform.binding;
+  write_uniform.dstArrayElement = 0;
+  write_uniform.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+  write_uniform.descriptorCount = 1;
+  write_uniform.pBufferInfo = &descriptor_info;
+
+  vkUpdateDescriptorSets(vk_struct->core.device.handle, 1, &write_uniform, 0, nullptr);
+
+  //---------------------------
+}
 void Uniform::clean_uniform(vk::descriptor::structure::Layout& layout){
   //---------------------------
 

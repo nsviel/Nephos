@@ -90,8 +90,6 @@ void Descriptor_set::allocate_handle(vk::descriptor::structure::Descriptor_set& 
     throw std::runtime_error("failed to allocate descriptor sets!");
   }
 
-  this->update_descriptor_set(descriptor_set, layout);
-
   //---------------------------
 }
 
