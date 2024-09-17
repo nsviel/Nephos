@@ -79,7 +79,7 @@ glm::mat4 truc = machin.projection * machin.view * machin.model;
 
 
       //vk_uniform->update_uniform("point_size", pipeline->descriptor.layout, data.topology.width);
-      vk_descriptor_set->bind(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set.handle);
+      vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set.handle);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }
   }
@@ -99,7 +99,7 @@ void Scene::cmd_draw_line(vk::structure::Subpass& subpass){
 
     if(check_data(data, utl::topology::LINE)){
       vk_uniform->update_uniform("mvp", pipeline->descriptor.layout, pose.mvp);
-      vk_descriptor_set->bind(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set.handle);
+      vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set.handle);
       vk_drawer->cmd_line_with(subpass.command_buffer->handle, *vk_object);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }
@@ -120,7 +120,7 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass& subpass){
 
     if(check_data(data, utl::topology::TRIANGLE)){
       vk_uniform->update_uniform("mvp", pipeline->descriptor.layout, pose.mvp);
-      vk_descriptor_set->bind(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set.handle);
+      vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set.handle);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }
   }

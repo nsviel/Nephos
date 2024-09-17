@@ -60,7 +60,7 @@ void Pool::create_descriptor_pool(){
   pool_info.maxSets = 1000 * IM_ARRAYSIZE(pool_size);
   pool_info.poolSizeCount = (uint32_t)IM_ARRAYSIZE(pool_size);
   pool_info.pPoolSizes = pool_size;
-  VkResult result = vkCreateDescriptorPool(vk_struct->core.device.handle, &pool_info, nullptr, &vk_struct->core.pools.descriptor.allocator);
+  VkResult result = vkCreateDescriptorPool(vk_struct->core.device.handle, &pool_info, nullptr, &vk_struct->core.pools.descriptor_set.allocator);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create gui");
   }
@@ -70,7 +70,7 @@ void Pool::create_descriptor_pool(){
 void Pool::reset_descriptor_pool(){
   //---------------------------
 
-  VkResult result = vkResetDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor.allocator, 0);
+  VkResult result = vkResetDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.allocator, 0);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to reset descripto pool");
   }
@@ -80,7 +80,7 @@ void Pool::reset_descriptor_pool(){
 void Pool::clean_descriptor_pool(){
   //---------------------------
 
-  vkDestroyDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor.allocator, nullptr);
+  vkDestroyDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.allocator, nullptr);
 
   //---------------------------
 }

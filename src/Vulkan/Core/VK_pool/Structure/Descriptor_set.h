@@ -11,7 +11,7 @@
 
 namespace vk::pool::structure{
 
-struct Descriptor{
+struct Descriptor_set{
   //---------------------------
 
   std::mutex mutex;
