@@ -41,7 +41,7 @@ void Panel::run_panel(){
   if(!entity) return;
   //---------------------------
 
-  if(*show_window && entity->list_image.size() != 0){
+  if(*show_window && !entity->list_image.empty()){
     ImGuiWindowFlags flag;
     flag |= ImGuiWindowFlags_NoCollapse;
     flag |= ImGuiWindowFlags_AlwaysAutoResize;

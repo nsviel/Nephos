@@ -63,7 +63,7 @@ void Element::remove_set(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   // Check if the current set has the query entity
-  while(set->list_entity.size() != 0){
+  while(!set->list_entity.empty()){
     std::shared_ptr<dat::base::Entity> entity = *set->list_entity.begin();
     this->remove_entity(set, entity);
   }

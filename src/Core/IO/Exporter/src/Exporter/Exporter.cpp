@@ -103,7 +103,7 @@ bool Exporter::is_recording(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
-  if(sensor && sensor->info.vec_recorder.size() != 0){
+  if(sensor && !sensor->info.vec_recorder.empty()){
     return true;
   }
 

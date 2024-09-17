@@ -169,7 +169,7 @@ void Color::color_option(std::shared_ptr<utl::base::Element> element){
     std::vector<std::string> vec_name = atr_field->get_field_names(*entity->data);
 
     //Init
-    if(entity->data->vec_field.size() != 0 && atr_struct->color.field == ""){
+    if(!entity->data->vec_field.empty() && atr_struct->color.field == ""){
       atr_struct->color.field = vec_name[0];
       atr_struct->color.range = atr_field->get_field_range(*entity->data, vec_name[0]);
     }

@@ -35,16 +35,18 @@ void Descriptor_set::bind_descriptor_set(VkCommandBuffer& command_buffer, vk::st
 void Descriptor_set::update_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
   //---------------------------
 
+  //CLear description vectors
+  descriptor_set.vec_descriptor_write.clear();
+  descriptor_set.vec_descriptor_buffer_info.clear();
+
   //Make list of writeable uniform
-  std::vector<VkWriteDescriptorSet> vec_descriptor_write;
-  std::vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
   for(auto& [name, uniform] : layout.map_uniform){
     //Blabla
     VkDescriptorBufferInfo descriptor_info = {};
     descriptor_info.buffer = uniform->buffer;
     descriptor_info.offset = 0;
     descriptor_info.range = uniform->size;
-    vec_descriptor_buffer_info.push_back(descriptor_info);
+    descriptor_set.vec_descriptor_buffer_info.push_back(descriptor_info);
 
     //Blabla
     VkWriteDescriptorSet write_uniform = {};
@@ -54,13 +56,13 @@ void Descriptor_set::update_descriptor_set(vk::descriptor::structure::Descriptor
     write_uniform.dstArrayElement = 0;
     write_uniform.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
     write_uniform.descriptorCount = 1;
-    write_uniform.pBufferInfo = &descriptor_info;
-    vec_descriptor_write.push_back(write_uniform);
+    write_uniform.pBufferInfo = &descriptor_set.vec_descriptor_buffer_info.back();
+    descriptor_set.vec_descriptor_write.push_back(write_uniform);
   }
 
   //Update descriptor
-  if(vec_descriptor_write.size() != 0){
-    vkUpdateDescriptorSets(vk_struct->core.device.handle, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
+  if(!descriptor_set.vec_descriptor_write.empty()){
+    vkUpdateDescriptorSets(vk_struct->core.device.handle, static_cast<uint32_t>(descriptor_set.vec_descriptor_write.size()), descriptor_set.vec_descriptor_write.data(), 0, nullptr);
   }
 
   //---------------------------
