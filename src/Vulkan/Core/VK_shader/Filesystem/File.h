@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace vk::shader{class Info;}
+namespace vk::shader::structure{class Info;}
 namespace vk{class Structure;}
 namespace vk::structure{class Pipeline;}
 
@@ -21,7 +21,7 @@ public:
 public:
   //Main function
   std::vector<char> read_file(const std::string& filename);
-  void recompile_shader(vk::shader::Info& shader_info);
+  void recompile_shader(vk::shader::structure::Info& shader_info);
   void run_recompilation(std::string path_glsl, std::string path_spir);
 
 private:

@@ -40,7 +40,7 @@ std::vector<char> File::read_file(const std::string& path){
   //---------------------------
   return buffer;
 }
-void File::recompile_shader(vk::shader::Info& shader_info){
+void File::recompile_shader(vk::shader::structure::Info& shader_info){
   //---------------------------
 
   //Compile shader from GLSL to SPIR-V

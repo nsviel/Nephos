@@ -4,11 +4,12 @@
 #include <string>
 #include <vector>
 
-namespace vk::shader{class Info;}
 namespace vk{class Structure;}
 namespace vk::structure{class Pipeline;}
 namespace vk::pipeline::structure{class Shader;}
 namespace vk::shader{class File;}
+namespace vk::shader::structure{class Module;}
+namespace vk::shader::structure{class Info;}
 
 
 namespace vk::pipeline{
@@ -34,7 +35,7 @@ private:
   vk::Structure* vk_struct;
   vk::shader::File* vk_file;
 
-  std::vector<vk::pipeline::structure::Shader> vec_shader;
+  std::vector<vk::shader::structure::Module> vec_shader;
 };
 
 }

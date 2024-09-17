@@ -44,7 +44,7 @@ void Point::set_pipeline(vk::structure::Pipeline& pipeline){
 void Point::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk::shader::Info shader_info;
+  vk::shader::structure::Info shader_info;
   shader_info.name = "Point";
   shader_info.path_glsl.vs = "../media/shader/Topology/glsl/point_vs.vert";
   shader_info.path_glsl.fs = "../media/shader/Topology/glsl/point_fs.frag";
@@ -54,7 +54,7 @@ void Point::set_shader(vk::structure::Pipeline& pipeline){
   shader_info.with_depth_test = true;
 
   //---------------------------
-  pipeline.info.shader = shader_info;
+  pipeline.shader = shader_info;
 }
 void Point::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------

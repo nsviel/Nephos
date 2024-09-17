@@ -70,7 +70,7 @@ void Shader::retrieve_shader_subclasses(){
 
   std::string selection = vec_shader_class[ID_class];
 
-  std::vector<vk::shader::Info*> vec_shader_info;
+  std::vector<vk::shader::structure::Info*> vec_shader_info;
   if(selection == "EDL"){
     //vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
     //vec_shader_info = shader_edl->get_vec_shader_info();

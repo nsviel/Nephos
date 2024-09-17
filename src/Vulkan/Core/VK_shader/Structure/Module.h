@@ -3,9 +3,9 @@
 #include <vulkan/vulkan.h>
 
 
-namespace vk::pipeline::structure{
+namespace vk::shader::structure{
 
-struct Shader{
+struct Module{
   //---------------------------
 
   VkShaderModule vs;

@@ -22,6 +22,7 @@ Shader::~Shader(){}
 void Shader::create_pipeline_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
+  vk_file->recompile_shader(pipeline.shader);
   this->create_shader_module(pipeline);
   this->create_shader_info(pipeline);
 
@@ -44,15 +45,15 @@ void Shader::create_shader_module(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   //Load spir format shaders
-  vk_file->recompile_shader(pipeline.info.shader);
-  auto code_vert = vk_file->read_file(pipeline.info.shader.path_spir.vs);
-  auto code_frag = vk_file->read_file(pipeline.info.shader.path_spir.fs);
+  auto code_vert = vk_file->read_file(pipeline.shader.path_spir.vs);
+  auto code_frag = vk_file->read_file(pipeline.shader.path_spir.fs);
 
   //Create associated shader modules
   VkShaderModule module_vert = create_module(code_vert);
   VkShaderModule module_frag = create_module(code_frag);
 
-  vk::pipeline::structure::Shader shader;
+  //Create shader module and store it --- But for what omg ???
+  vk::shader::structure::Module shader;
   shader.vs = module_vert;
   shader.fs = module_frag;
   vec_shader.push_back(shader);
@@ -97,14 +98,14 @@ VkShaderModule Shader::create_module(const std::vector<char>& code){
   create_info.pCode = reinterpret_cast<const uint32_t*>(code.data());
 
   //Shader module creation
-  VkShaderModule shaderModule;
-  VkResult result = vkCreateShaderModule(vk_struct->core.device.handle, &create_info, nullptr, &shaderModule);
+  VkShaderModule module;
+  VkResult result = vkCreateShaderModule(vk_struct->core.device.handle, &create_info, nullptr, &module);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create shader module!");
   }
 
   //---------------------------
-  return shaderModule;
+  return module;
 }
 
 }

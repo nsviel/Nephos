@@ -3,7 +3,7 @@
 #include <string>
 
 
-namespace vk::shader{
+namespace vk::shader::structure{
 
 struct Path{
   //---------------------------
@@ -23,8 +23,8 @@ struct Info{
   bool with_depth_test = false;
 
   //Path
-  vk::shader::Path path_glsl;
-  vk::shader::Path path_spir;
+  vk::shader::structure::Path path_glsl;
+  vk::shader::structure::Path path_spir;
 
   //---------------------------
 };

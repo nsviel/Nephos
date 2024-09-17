@@ -168,8 +168,8 @@ void Object::info_pipeline_depth(vk::structure::Pipeline& pipeline){
 
   info_stencil = {};
   info_stencil.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
-  info_stencil.depthTestEnable = (pipeline.info.shader.with_depth_test) ? VK_TRUE : VK_FALSE;
-  info_stencil.depthWriteEnable = (pipeline.info.shader.with_depth_test) ? VK_TRUE : VK_FALSE;
+  info_stencil.depthTestEnable = (pipeline.shader.with_depth_test) ? VK_TRUE : VK_FALSE;
+  info_stencil.depthWriteEnable = (pipeline.shader.with_depth_test) ? VK_TRUE : VK_FALSE;
   info_stencil.depthCompareOp = VK_COMPARE_OP_LESS;
   info_stencil.depthBoundsTestEnable = VK_FALSE;
   info_stencil.minDepthBounds = 0.0f; // Optional
