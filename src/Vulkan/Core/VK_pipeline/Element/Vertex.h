@@ -18,8 +18,9 @@ public:
   void pipeline_vertex_description(vk::structure::Pipeline& pipeline);
 
   //subfunction
-  void single_vertex_attribut(vk::structure::Pipeline& pipeline);
-  void flow_vertex_binding(vk::structure::Pipeline& pipeline);
+  void add_vertex_xyz(vk::structure::Pipeline& pipeline);
+  void add_vertex_rgba(vk::structure::Pipeline& pipeline);
+  void add_vertex_uv(vk::structure::Pipeline& pipeline);
 
 private:
   vk::Structure* vk_struct;
