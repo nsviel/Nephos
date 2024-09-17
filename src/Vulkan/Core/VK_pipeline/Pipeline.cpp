@@ -26,7 +26,7 @@ void Pipeline::create_pipeline(vk::structure::Renderpass& renderpass){
 
   for(auto& subpass : renderpass.vec_subpass){
     for(auto& [name, pipeline] : subpass->map_pipeline){
-      this->create_pipeline_struct(renderpass, pipeline);
+      this->create_pipeline_struct(renderpass, *pipeline);
     }
   }
 
@@ -37,13 +37,13 @@ void Pipeline::clean_pipeline(vk::structure::Renderpass& renderpass){
 
   for(auto& subpass : renderpass.vec_subpass){
     for(auto& [name, pipeline] : subpass->map_pipeline){
-      this->clean_pipeline_struct(pipeline);
+      this->clean_pipeline_struct(*pipeline);
     }
   }
 
   //---------------------------
 }
-void Pipeline::add_pipeline_topology(vk::structure::Subpass& subpass, vk::structure::Pipeline* pipeline){
+void Pipeline::add_pipeline_topology(vk::structure::Subpass& subpass, std::shared_ptr<vk::structure::Pipeline> pipeline){
   //---------------------------
 
   //Subset pipeline map
@@ -56,7 +56,7 @@ void Pipeline::add_pipeline_topology(vk::structure::Subpass& subpass, vk::struct
 }
 
 //Pipeline creation / cleaning
-void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline){
+void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
   //Pipeline layout & binding
@@ -71,7 +71,7 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk:
 
   //---------------------------
 }
-void Pipeline::clean_pipeline_struct(vk::structure::Pipeline* pipeline){
+void Pipeline::clean_pipeline_struct(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk_object->clean_pipeline_handle(pipeline);
@@ -80,10 +80,10 @@ void Pipeline::clean_pipeline_struct(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void Pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline){
+void Pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vkCmdBindPipeline(command_buffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline->handle);
+  vkCmdBindPipeline(command_buffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.handle);
 
   //---------------------------
 }

@@ -20,9 +20,9 @@ CFD::~CFD(){}
 
 //Main function
 void CFD::add_pipeline(vk::structure::Subpass& subpass){
+  std::shared_ptr<vk::structure::Pipeline> pipeline = std::make_shared<vk::structure::Pipeline>();
   //---------------------------
 
-  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   this->set_pipeline(*pipeline);
   this->set_shader(*pipeline);
   this->set_binding(*pipeline);

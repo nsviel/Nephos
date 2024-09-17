@@ -19,7 +19,7 @@ Shader::Shader(vk::Structure* vk_struct){
 Shader::~Shader(){}
 
 //Main function
-void Shader::create_pipeline_shader(vk::structure::Pipeline* pipeline){
+void Shader::create_pipeline_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   this->create_shader_module(pipeline);
@@ -40,13 +40,13 @@ void Shader::clean_pipeline_shader(){
 }
 
 //Subfunction
-void Shader::create_shader_module(vk::structure::Pipeline* pipeline){
+void Shader::create_shader_module(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   //Load spir format shaders
-  vk_file->recompile_shader(pipeline->info.shader);
-  auto code_vert = vk_file->read_file(pipeline->info.shader.path_spir_vs);
-  auto code_frag = vk_file->read_file(pipeline->info.shader.path_spir_fs);
+  vk_file->recompile_shader(pipeline.info.shader);
+  auto code_vert = vk_file->read_file(pipeline.info.shader.path_spir_vs);
+  auto code_frag = vk_file->read_file(pipeline.info.shader.path_spir_fs);
 
   //Create associated shader modules
   VkShaderModule module_vert = create_module(code_vert);
@@ -59,7 +59,7 @@ void Shader::create_shader_module(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void Shader::create_shader_info(vk::structure::Pipeline* pipeline){
+void Shader::create_shader_info(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   for(auto& shader : vec_shader){
@@ -80,8 +80,8 @@ void Shader::create_shader_info(vk::structure::Pipeline* pipeline){
     info_frag.pSpecializationInfo = nullptr;
 
     //Shader info array
-    pipeline->element.vec_shader_stage.push_back(info_vert);
-    pipeline->element.vec_shader_stage.push_back(info_frag);
+    pipeline.element.vec_shader_stage.push_back(info_vert);
+    pipeline.element.vec_shader_stage.push_back(info_frag);
   }
 
   //---------------------------

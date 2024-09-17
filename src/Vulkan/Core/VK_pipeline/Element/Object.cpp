@@ -16,7 +16,7 @@ Object::Object(vk::Structure* vk_struct){
 Object::~Object(){}
 
 //Main function
-void Object::create_pipeline_object(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline){
+void Object::create_pipeline_object(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
   this->info_pipeline_vertex(pipeline);
@@ -34,26 +34,26 @@ void Object::create_pipeline_object(vk::structure::Renderpass& renderpass, vk::s
 }
 
 //Subfunction
-void Object::info_pipeline_vertex(vk::structure::Pipeline* pipeline){
+void Object::info_pipeline_vertex(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   info_vertex = {};
   info_vertex.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-  info_vertex.vertexBindingDescriptionCount = static_cast<uint32_t>(pipeline->element.vec_vertex_binding.size());
-  info_vertex.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline->element.vec_attribut_info.size());
-  info_vertex.pVertexBindingDescriptions = pipeline->element.vec_vertex_binding.data();
-  info_vertex.pVertexAttributeDescriptions = pipeline->element.vec_attribut_info.data();
+  info_vertex.vertexBindingDescriptionCount = static_cast<uint32_t>(pipeline.element.vec_vertex_binding.size());
+  info_vertex.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline.element.vec_attribut_info.size());
+  info_vertex.pVertexBindingDescriptions = pipeline.element.vec_vertex_binding.data();
+  info_vertex.pVertexAttributeDescriptions = pipeline.element.vec_attribut_info.data();
 
   //---------------------------
 }
-void Object::info_pipeline_topology(vk::structure::Pipeline* pipeline){
+void Object::info_pipeline_topology(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   info_topology = {};
   info_topology.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
   info_topology.primitiveRestartEnable = VK_FALSE;
 
-  switch(pipeline->info.topology){
+  switch(pipeline.info.topology){
     case utl::topology::POINT:{
       info_topology.topology = VK_PRIMITIVE_TOPOLOGY_POINT_LIST;
       break;
@@ -70,10 +70,10 @@ void Object::info_pipeline_topology(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void Object::info_pipeline_dynamic(vk::structure::Pipeline* pipeline){
+void Object::info_pipeline_dynamic(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  std::vector<VkDynamicState>& vec_dynamic_state = pipeline->element.vec_dynamic_state;
+  std::vector<VkDynamicState>& vec_dynamic_state = pipeline.element.vec_dynamic_state;
   vec_dynamic_state.clear();
   vec_dynamic_state.push_back(VK_DYNAMIC_STATE_VIEWPORT);
   vec_dynamic_state.push_back(VK_DYNAMIC_STATE_SCISSOR);
@@ -87,7 +87,7 @@ void Object::info_pipeline_dynamic(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void Object::info_pipeline_viewport(vk::structure::Pipeline* pipeline){
+void Object::info_pipeline_viewport(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   //Viewport info
@@ -100,7 +100,7 @@ void Object::info_pipeline_viewport(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void Object::info_pipeline_rasterization(vk::structure::Pipeline* pipeline){
+void Object::info_pipeline_rasterization(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   info_rasterization = {};
@@ -118,7 +118,7 @@ void Object::info_pipeline_rasterization(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void Object::info_pipeline_multisampling(vk::structure::Pipeline* pipeline){
+void Object::info_pipeline_multisampling(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   info_multisample = {};
@@ -132,7 +132,7 @@ void Object::info_pipeline_multisampling(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void Object::info_pipeline_blend_attachment(vk::structure::Pipeline* pipeline){
+void Object::info_pipeline_blend_attachment(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   info_blend_attachment = {};
@@ -147,7 +147,7 @@ void Object::info_pipeline_blend_attachment(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void Object::info_pipeline_blend(vk::structure::Pipeline* pipeline){
+void Object::info_pipeline_blend(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   info_blend = {};
@@ -163,13 +163,13 @@ void Object::info_pipeline_blend(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void Object::info_pipeline_depth(vk::structure::Pipeline* pipeline){
+void Object::info_pipeline_depth(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   info_stencil = {};
   info_stencil.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
-  info_stencil.depthTestEnable = (pipeline->info.shader.with_depth_test) ? VK_TRUE : VK_FALSE;
-  info_stencil.depthWriteEnable = (pipeline->info.shader.with_depth_test) ? VK_TRUE : VK_FALSE;
+  info_stencil.depthTestEnable = (pipeline.info.shader.with_depth_test) ? VK_TRUE : VK_FALSE;
+  info_stencil.depthWriteEnable = (pipeline.info.shader.with_depth_test) ? VK_TRUE : VK_FALSE;
   info_stencil.depthCompareOp = VK_COMPARE_OP_LESS;
   info_stencil.depthBoundsTestEnable = VK_FALSE;
   info_stencil.minDepthBounds = 0.0f; // Optional
@@ -182,13 +182,13 @@ void Object::info_pipeline_depth(vk::structure::Pipeline* pipeline){
 }
 
 //Creation function
-void Object::create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::structure::Pipeline* pipeline){
+void Object::create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
   VkGraphicsPipelineCreateInfo pipeline_info{};
   pipeline_info.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-  pipeline_info.stageCount = static_cast<uint32_t>(pipeline->element.vec_shader_stage.size());
-  pipeline_info.pStages = pipeline->element.vec_shader_stage.data();
+  pipeline_info.stageCount = static_cast<uint32_t>(pipeline.element.vec_shader_stage.size());
+  pipeline_info.pStages = pipeline.element.vec_shader_stage.data();
   pipeline_info.pVertexInputState = &info_vertex;
   pipeline_info.pInputAssemblyState = &info_topology;
   pipeline_info.pViewportState = &info_viewport;
@@ -197,13 +197,13 @@ void Object::create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::s
   pipeline_info.pDepthStencilState = &info_stencil;
   pipeline_info.pColorBlendState = &info_blend;
   pipeline_info.pDynamicState = &info_dynamic;
-  pipeline_info.layout = pipeline->layout;
+  pipeline_info.layout = pipeline.layout;
   pipeline_info.renderPass = renderpass.handle;
   pipeline_info.subpass = 0;
   pipeline_info.basePipelineHandle = VK_NULL_HANDLE; // Optional
   pipeline_info.basePipelineIndex = -1; // Optional
 
-  VkResult result = vkCreateGraphicsPipelines(vk_struct->core.device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->handle);
+  VkResult result = vkCreateGraphicsPipelines(vk_struct->core.device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline.handle);
 
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create graphics pipeline!");
@@ -211,10 +211,10 @@ void Object::create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::s
 
   //---------------------------
 }
-void Object::clean_pipeline_handle(vk::structure::Pipeline* pipeline){
+void Object::clean_pipeline_handle(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vkDestroyPipeline(vk_struct->core.device.handle, pipeline->handle, nullptr);
+  vkDestroyPipeline(vk_struct->core.device.handle, pipeline.handle, nullptr);
 
   //---------------------------
 }

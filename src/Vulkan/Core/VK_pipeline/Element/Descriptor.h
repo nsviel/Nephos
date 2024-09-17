@@ -23,8 +23,8 @@ public:
 
 public:
   //Main function
-  void create_pipeline_descriptor(vk::structure::Pipeline* pipeline);
-  void clean_pipeline_descriptor(vk::structure::Pipeline* pipeline);
+  void create_pipeline_descriptor(vk::structure::Pipeline& pipeline);
+  void clean_pipeline_descriptor(vk::structure::Pipeline& pipeline);
 
 private:
   vk::descriptor::Uniform* vk_uniform;

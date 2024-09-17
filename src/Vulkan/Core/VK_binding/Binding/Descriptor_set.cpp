@@ -34,10 +34,10 @@ void Descriptor_set::allocate(vk::descriptor::structure::Descriptor_set& descrip
 
   //---------------------------
 }
-void Descriptor_set::bind(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet descriptor_set){
+void Descriptor_set::bind(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline, VkDescriptorSet descriptor_set){
   //---------------------------
 
-  vkCmdBindDescriptorSets(command_buffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline->layout, 0, 1, &descriptor_set, 0, nullptr);
+  vkCmdBindDescriptorSets(command_buffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.layout, 0, 1, &descriptor_set, 0, nullptr);
 
   //---------------------------
 }

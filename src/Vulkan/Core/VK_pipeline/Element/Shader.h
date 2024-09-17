@@ -22,12 +22,12 @@ public:
 
 public:
   //Main function
-  void create_pipeline_shader(vk::structure::Pipeline* pipeline);
+  void create_pipeline_shader(vk::structure::Pipeline& pipeline);
   void clean_pipeline_shader();
 
   //Subfunction
-  void create_shader_module(vk::structure::Pipeline* pipeline);
-  void create_shader_info(vk::structure::Pipeline* pipeline);
+  void create_shader_module(vk::structure::Pipeline& pipeline);
+  void create_shader_info(vk::structure::Pipeline& pipeline);
   VkShaderModule create_module(const std::vector<char>& code);
 
 private:

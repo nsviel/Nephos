@@ -30,7 +30,7 @@ struct Subpass{
   vk::structure::Attachment depth;
   std::vector<vk::structure::Attachment> vec_color;
   std::vector<vk::structure::Attachment> vec_color_resolve;
-  std::unordered_map<std::string, vk::structure::Pipeline*> map_pipeline;
+  std::unordered_map< std::string, std::shared_ptr<vk::structure::Pipeline> > map_pipeline;
   std::function<void(Subpass* subpass)> draw_task;
 
   //---------------------------

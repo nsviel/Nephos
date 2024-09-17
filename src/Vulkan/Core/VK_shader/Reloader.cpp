@@ -38,7 +38,7 @@ void Reloader::hot_shader_reload(std::string shader_1, std::string shader_2){
 */
   //---------------------------
 }
-void Reloader::recreate_pipeline(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
+void Reloader::recreate_pipeline(vk::structure::Renderpass* renderpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk_synchro->wait_idle_and_pause();

@@ -19,7 +19,7 @@ Point::~Point(){}
 
 //Main function
 void Point::add_pipeline(vk::structure::Subpass& subpass){
-  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
+  std::shared_ptr<vk::structure::Pipeline> pipeline = std::make_shared<vk::structure::Pipeline>();
   //---------------------------
 
   this->set_pipeline(*pipeline);

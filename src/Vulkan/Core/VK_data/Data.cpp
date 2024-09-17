@@ -117,7 +117,7 @@ void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
 void Data::descriptor_vk_object(vk::structure::Object& vk_object){
   //---------------------------
 
-  vk::structure::Pipeline* pipeline = vk_struct->core.pipeline.map[vk_object.data->topology.type];
+  std::shared_ptr<vk::structure::Pipeline> pipeline = vk_struct->core.pipeline.map[vk_object.data->topology.type];
   vk_descriptor_set->allocate(vk_object.descriptor_set, pipeline->descriptor.layout);
 
   //---------------------------

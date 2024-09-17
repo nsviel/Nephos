@@ -22,7 +22,7 @@ public:
 public:
   //Main function
   void allocate(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
-  void bind(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set);
+  void bind(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline, VkDescriptorSet set);
   void update(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
   void clean(vk::descriptor::structure::Binding& binding);
 

@@ -20,19 +20,19 @@ Descriptor::Descriptor(vk::Structure* vk_struct){
 Descriptor::~Descriptor(){}
 
 //Main function
-void Descriptor::create_pipeline_descriptor(vk::structure::Pipeline* pipeline){
+void Descriptor::create_pipeline_descriptor(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk_layout->create_layout(pipeline->descriptor.layout);
-  vk_descriptor_set->allocate(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout);
+  vk_layout->create_layout(pipeline.descriptor.layout);
+  vk_descriptor_set->allocate(pipeline.descriptor.descriptor_set, pipeline.descriptor.layout);
 
   //---------------------------
 }
-void Descriptor::clean_pipeline_descriptor(vk::structure::Pipeline* pipeline){
+void Descriptor::clean_pipeline_descriptor(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk_layout->clean_layout(pipeline->descriptor.layout);
-  vk_uniform->clean_uniform(pipeline->descriptor.layout);
+  vk_layout->clean_layout(pipeline.descriptor.layout);
+  vk_uniform->clean_uniform(pipeline.descriptor.layout);
 
   //---------------------------
 }

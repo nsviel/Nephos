@@ -17,7 +17,7 @@ Vertex::Vertex(vk::Structure* vk_struct){
 Vertex::~Vertex(){}
 
 //Main function
-void Vertex::pipeline_vertex_description(vk::structure::Pipeline* pipeline){
+void Vertex::pipeline_vertex_description(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   this->single_vertex_attribut(pipeline);
@@ -27,11 +27,11 @@ void Vertex::pipeline_vertex_description(vk::structure::Pipeline* pipeline){
 }
 
 //Subfunction
-void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
-  pipeline->element.vec_attribut_info.clear();
+void Vertex::single_vertex_attribut(vk::structure::Pipeline& pipeline){
+  pipeline.element.vec_attribut_info.clear();
   //---------------------------
 
-  for(auto& attribut : pipeline->info.vec_attribut){
+  for(auto& attribut : pipeline.info.vec_attribut){
     VkVertexInputAttributeDescription attribut_info{};
 
     switch(attribut){
@@ -62,16 +62,16 @@ void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
       }
     }
 
-    pipeline->element.vec_attribut_info.push_back(attribut_info);
+    pipeline.element.vec_attribut_info.push_back(attribut_info);
   }
 
   //---------------------------
 }
-void Vertex::flow_vertex_binding(vk::structure::Pipeline* pipeline){
-  pipeline->element.vec_vertex_binding.clear();
+void Vertex::flow_vertex_binding(vk::structure::Pipeline& pipeline){
+  pipeline.element.vec_vertex_binding.clear();
   //---------------------------
 
-  for(auto& attribut : pipeline->info.vec_attribut){
+  for(auto& attribut : pipeline.info.vec_attribut){
     VkVertexInputBindingDescription description{};
 
     switch(attribut){
@@ -99,7 +99,7 @@ void Vertex::flow_vertex_binding(vk::structure::Pipeline* pipeline){
       }
     }
 
-    pipeline->element.vec_vertex_binding.push_back(description);
+    pipeline.element.vec_vertex_binding.push_back(description);
   }
 
   //---------------------------
