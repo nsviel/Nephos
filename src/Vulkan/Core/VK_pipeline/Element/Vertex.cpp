@@ -19,24 +19,27 @@ Vertex::~Vertex(){}
 //Main function
 void Vertex::pipeline_vertex_description(vk::structure::Pipeline& pipeline){
   pipeline.element.vec_vertex_attribute.clear();
+  pipeline.element.vec_vertex_binding.clear();
   //---------------------------
 
-  switch(attribut){
-    case vk::attribut::XYZ:{
-      this->add_vertex_xyz(pipeline);
-      break;
-    }
-    case vk::attribut::RGBA:{
-      this->add_vertex_rgba(pipeline);
-      break;
-    }
-    case vk::attribut::UV:{
-      this->add_vertex_uv(pipeline);
-      break;
-    }
-    default:{
-      std::cout<<"[error] pipeline vertex description"<<std::endl;
-      break;
+  for(auto& attribut : pipeline.info.vec_attribut){
+    switch(attribut){
+      case vk::attribut::XYZ:{
+        this->add_vertex_xyz(pipeline);
+        break;
+      }
+      case vk::attribut::RGBA:{
+        this->add_vertex_rgba(pipeline);
+        break;
+      }
+      case vk::attribut::UV:{
+        this->add_vertex_uv(pipeline);
+        break;
+      }
+      default:{
+        std::cout<<"[error] pipeline vertex description"<<std::endl;
+        break;
+      }
     }
   }
 
