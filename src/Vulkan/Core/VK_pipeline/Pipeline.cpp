@@ -16,7 +16,7 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
   this->vk_object = new vk::pipeline::Object(vk_struct);
   this->vk_layout = new vk::pipeline::Layout(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
-  
+
   //---------------------------
 }
 Pipeline::~Pipeline(){}
@@ -78,7 +78,7 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk:
 
   //Pipeline obj
   vk_object->create_pipeline_object(renderpass, pipeline);
-  vk_shader->clean_pipeline_shader();
+  vk_shader->clean_pipeline_shader(pipeline);
 
   //---------------------------
 }

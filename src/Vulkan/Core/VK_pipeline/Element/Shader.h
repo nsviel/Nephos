@@ -6,10 +6,7 @@
 
 namespace vk{class Structure;}
 namespace vk::structure{class Pipeline;}
-namespace vk::pipeline::structure{class Shader;}
 namespace vk::shader{class File;}
-namespace vk::shader::structure{class Module;}
-namespace vk::shader::structure{class Info;}
 
 
 namespace vk::pipeline{
@@ -24,7 +21,7 @@ public:
 public:
   //Main function
   void create_pipeline_shader(vk::structure::Pipeline& pipeline);
-  void clean_pipeline_shader();
+  void clean_pipeline_shader(vk::structure::Pipeline& pipeline);
 
   //Subfunction
   void create_shader_module(vk::structure::Pipeline& pipeline);
@@ -34,8 +31,6 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::shader::File* vk_file;
-
-  std::vector<vk::shader::structure::Module> vec_shader;
 };
 
 }

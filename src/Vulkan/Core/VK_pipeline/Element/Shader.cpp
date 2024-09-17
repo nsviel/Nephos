@@ -28,14 +28,11 @@ void Shader::create_pipeline_shader(vk::structure::Pipeline& pipeline){
 
   //---------------------------
 }
-void Shader::clean_pipeline_shader(){
+void Shader::clean_pipeline_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  for(auto& shader : vec_shader){
-    vkDestroyShaderModule(vk_struct->core.device.handle, shader.vs, nullptr);
-    vkDestroyShaderModule(vk_struct->core.device.handle, shader.fs, nullptr);
-  }
-  vec_shader.clear();
+  vkDestroyShaderModule(vk_struct->core.device.handle, pipeline.shader.module.vs, nullptr);
+  vkDestroyShaderModule(vk_struct->core.device.handle, pipeline.shader.module.fs, nullptr);
 
   //---------------------------
 }
@@ -49,41 +46,32 @@ void Shader::create_shader_module(vk::structure::Pipeline& pipeline){
   auto code_frag = vk_file->read_file(pipeline.shader.info.path_spir.fs);
 
   //Create associated shader modules
-  VkShaderModule module_vert = create_module(code_vert);
-  VkShaderModule module_frag = create_module(code_frag);
-
-  //Create shader module and store it --- But for what omg ???
-  vk::shader::structure::Module shader;
-  shader.vs = module_vert;
-  shader.fs = module_frag;
-  vec_shader.push_back(shader);
+  pipeline.shader.module.vs = create_module(code_vert);
+  pipeline.shader.module.fs = create_module(code_frag);
 
   //---------------------------
 }
 void Shader::create_shader_info(vk::structure::Pipeline& pipeline){
+  pipeline.element.vec_shader_stage.clear();
   //---------------------------
 
-  for(auto& shader : vec_shader){
-    //Vertex shader link in pipeline
-    VkPipelineShaderStageCreateInfo info_vert{};
-    info_vert.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
-    info_vert.stage = VK_SHADER_STAGE_VERTEX_BIT;
-    info_vert.module = shader.vs;
-    info_vert.pName = "main";
-    info_vert.pSpecializationInfo = nullptr;
+  //Vertex shader link in pipeline
+  VkPipelineShaderStageCreateInfo info_vert{};
+  info_vert.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+  info_vert.stage = VK_SHADER_STAGE_VERTEX_BIT;
+  info_vert.module = pipeline.shader.module.vs;
+  info_vert.pName = "main";
+  info_vert.pSpecializationInfo = nullptr;
+  pipeline.element.vec_shader_stage.push_back(info_vert);
 
-    //Fragment shader link in pipeline
-    VkPipelineShaderStageCreateInfo info_frag{};
-    info_frag.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
-    info_frag.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-    info_frag.module = shader.fs;
-    info_frag.pName = "main";
-    info_frag.pSpecializationInfo = nullptr;
-
-    //Shader info array
-    pipeline.element.vec_shader_stage.push_back(info_vert);
-    pipeline.element.vec_shader_stage.push_back(info_frag);
-  }
+  //Fragment shader link in pipeline
+  VkPipelineShaderStageCreateInfo info_frag{};
+  info_frag.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+  info_frag.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+  info_frag.module = pipeline.shader.module.fs;
+  info_frag.pName = "main";
+  info_frag.pSpecializationInfo = nullptr;
+  pipeline.element.vec_shader_stage.push_back(info_frag);
 
   //---------------------------
 }
