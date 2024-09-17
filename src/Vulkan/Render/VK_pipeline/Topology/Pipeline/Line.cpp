@@ -44,7 +44,7 @@ void Line::set_pipeline(vk::structure::Pipeline& pipeline){
 void Line::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  utl::shader::Info shader_info;
+  vk::shader::Info shader_info;
   shader_info.name = "Line";
   shader_info.path_glsl.vs = "../media/shader/Topology/glsl/line_vs.vert";
   shader_info.path_glsl.fs = "../media/shader/Topology/glsl/line_fs.frag";

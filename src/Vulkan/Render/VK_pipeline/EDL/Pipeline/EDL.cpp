@@ -46,7 +46,7 @@ void EDL::set_pipeline(vk::structure::Pipeline& pipeline){
 void EDL::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  utl::shader::Info shader_info;
+  vk::shader::Info shader_info;
   shader_info.name = "EDL";
   shader_info.path_glsl.vs = "../media/shader/EDL/glsl/edl_vs.vert";
   shader_info.path_glsl.fs = "../media/shader/EDL/glsl/edl_fs.frag";

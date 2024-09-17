@@ -3,9 +3,9 @@
 #include <string>
 
 
-namespace utl::shader{
+namespace vk::shader{
 
-struct Path_shader{
+struct Path{
   //---------------------------
 
   std::string vs = "";
@@ -23,9 +23,9 @@ struct Info{
   bool with_depth_test = false;
 
   //Path
-  utl::shader::Path_shader path_glsl;
-  utl::shader::Path_shader path_spir;
-  
+  vk::shader::Path path_glsl;
+  vk::shader::Path path_spir;
+
   //---------------------------
 };
 

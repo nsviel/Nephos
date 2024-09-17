@@ -44,7 +44,7 @@ void Point::set_pipeline(vk::structure::Pipeline& pipeline){
 void Point::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  utl::shader::Info shader_info;
+  vk::shader::Info shader_info;
   shader_info.name = "Point";
   shader_info.path_glsl.vs = "../media/shader/Topology/glsl/point_vs.vert";
   shader_info.path_glsl.fs = "../media/shader/Topology/glsl/point_fs.frag";

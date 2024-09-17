@@ -44,7 +44,7 @@ void CFD::set_pipeline(vk::structure::Pipeline& pipeline){
 void CFD::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  utl::shader::Info shader_info;
+  vk::shader::Info shader_info;
   shader_info.name = "CFD";
   shader_info.path_glsl.vs = "../media/shader/CFD/glsl/cfd_vs.vert";
   shader_info.path_glsl.fs = "../media/shader/CFD/glsl/cfd_fs.frag";

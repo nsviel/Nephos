@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/Core/VK_pipeline/Structure/Enum.h>
-#include <Utility/Base/Shader/Info.h>
+#include <Vulkan/Core/VK_shader/Structure/Info.h>
 #include <Utility/Base/Data/Topology.h>
 #include <vector>
 #include <string>
@@ -15,7 +15,7 @@ struct Info{
   std::string name = "";
   std::vector<vk::attribut::ID> vec_attribut;
   utl::topology::Type topology = utl::topology::POINT;
-  utl::shader::Info shader;
+  vk::shader::Info shader;
 
   //---------------------------
 };

@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace utl::shader{class Info;}
+namespace vk::shader{class Info;}
 namespace vk{class Structure;}
 namespace vk::structure{class Pipeline;}
 namespace vk::pipeline::structure{class Shader;}

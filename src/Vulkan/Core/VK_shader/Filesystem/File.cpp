@@ -40,7 +40,7 @@ std::vector<char> File::read_file(const std::string& path){
   //---------------------------
   return buffer;
 }
-void File::recompile_shader(utl::shader::Info& shader_info){
+void File::recompile_shader(vk::shader::Info& shader_info){
   //---------------------------
 
   //Compile shader from GLSL to SPIR-V
@@ -54,7 +54,7 @@ void File::recompile_shader(utl::shader::Info& shader_info){
 void File::run_recompilation(std::string path_glsl, std::string path_spir){
   //---------------------------
 
-  std::string command = "../src/Vulkan/Core/VK_shader/Compile.sh " + path_glsl + " " + path_spir + " >> " + path_output +" 2>&1";
+  std::string command = "../src/Vulkan/Core/VK_shader/Filesystem/Compile.sh " + path_glsl + " " + path_spir + " >> " + path_output +" 2>&1";
   int result = system(command.c_str());
   if(result != 0){
     std::cout<<"[error] Shader compilation GLSL -> SPIR-V\n"<<command<<std::endl;
