@@ -23,7 +23,7 @@ void Pipeline::create_pipeline(vk::structure::Renderpass& renderpass){
 
   for(auto& subpass : renderpass.vec_subpass){
     for(auto& [name, pipeline] : subpass->map_pipeline){
-      this->create_pipeline_struct(renderpass, *pipeline);
+      vk_component->create_pipeline_object(renderpass, pipeline);
     }
   }
 
@@ -34,7 +34,7 @@ void Pipeline::clean_pipeline(vk::structure::Renderpass& renderpass){
 
   for(auto& subpass : renderpass.vec_subpass){
     for(auto& [name, pipeline] : subpass->map_pipeline){
-      this->clean_pipeline_struct(*pipeline);
+      vk_component->clean_pipeline_object(pipeline);
     }
   }
 
@@ -44,12 +44,14 @@ void Pipeline::recreate_pipeline(vk::structure::Renderpass& renderpass, vk::stru
   //---------------------------
 
   vk_synchro->wait_idle_and_pause();
-  this->clean_pipeline_struct(pipeline);
-  this->create_pipeline_struct(renderpass, pipeline);
+  vk_component->clean_pipeline_object(pipeline);
+  vk_component->create_pipeline_object(renderpass, pipeline);
   vk_synchro->end_idle();
 
   //---------------------------
 }
+
+//Subfunction
 void Pipeline::add_pipeline_topology(vk::structure::Subpass& subpass, std::shared_ptr<vk::structure::Pipeline> pipeline){
   //---------------------------
 
@@ -58,22 +60,6 @@ void Pipeline::add_pipeline_topology(vk::structure::Subpass& subpass, std::share
 
   //Whole program pipeline map
   vk_struct->core.pipeline.map[pipeline->info.topology] = pipeline;
-
-  //---------------------------
-}
-
-//Subfunction
-void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
-  //---------------------------
-
-  vk_component->create_pipeline_object(renderpass, pipeline);
-
-  //---------------------------
-}
-void Pipeline::clean_pipeline_struct(vk::structure::Pipeline& pipeline){
-  //---------------------------
-
-  vk_component->clean_pipeline_object(pipeline);
 
   //---------------------------
 }
