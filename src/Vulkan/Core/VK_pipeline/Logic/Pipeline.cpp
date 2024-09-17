@@ -23,7 +23,7 @@ void Pipeline::create_pipeline(vk::structure::Renderpass& renderpass){
 
   for(auto& subpass : renderpass.vec_subpass){
     for(auto& [name, pipeline] : subpass->map_pipeline){
-      vk_component->create_pipeline_object(renderpass, pipeline);
+      vk_component->create_pipeline_object(renderpass, *pipeline);
     }
   }
 
@@ -34,7 +34,7 @@ void Pipeline::clean_pipeline(vk::structure::Renderpass& renderpass){
 
   for(auto& subpass : renderpass.vec_subpass){
     for(auto& [name, pipeline] : subpass->map_pipeline){
-      vk_component->clean_pipeline_object(pipeline);
+      vk_component->clean_pipeline_object(*pipeline);
     }
   }
 
