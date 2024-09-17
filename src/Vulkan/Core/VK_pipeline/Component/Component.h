@@ -9,12 +9,12 @@ namespace vk::structure{class Pipeline;}
 
 namespace vk::pipeline{
 
-class Object
+class Component
 {
 public:
   //Constructor / Destructor
-  Object(vk::Structure* vk_struct);
-  ~Object();
+  Component(vk::Structure* vk_struct);
+  ~Component();
 
 public:
   //Main function
@@ -28,7 +28,7 @@ public:
   void info_pipeline_multisampling(vk::structure::Pipeline& pipeline);
   void info_pipeline_blend_attachment(vk::structure::Pipeline& pipeline);
   void info_pipeline_blend(vk::structure::Pipeline& pipeline);
-  void info_pipeline_depth(vk::structure::Pipeline& pipeline);
+  void info_pipeline_depth_stencil(vk::structure::Pipeline& pipeline);
 
   //Creation function
   void create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline);

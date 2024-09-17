@@ -1,4 +1,4 @@
-#include "Object.h"
+#include "Component.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,19 +6,20 @@
 namespace vk::pipeline{
 
 //Constructor / Destructor
-Object::Object(vk::Structure* vk_struct){
+Component::Component(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
 
   //---------------------------
 }
-Object::~Object(){}
+Component::~Component(){}
 
 //Main function
-void Object::create_pipeline_object(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
+void Component::create_pipeline_object(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
+  //Pipeline attribut description
   this->info_pipeline_topology(pipeline);
   this->info_pipeline_dynamic(pipeline);
   this->info_pipeline_viewport(pipeline);
@@ -26,14 +27,16 @@ void Object::create_pipeline_object(vk::structure::Renderpass& renderpass, vk::s
   this->info_pipeline_multisampling(pipeline);
   this->info_pipeline_blend_attachment(pipeline);
   this->info_pipeline_blend(pipeline);
-  this->info_pipeline_depth(pipeline);
+  this->info_pipeline_depth_stencil(pipeline);
+
+  //Pipeline creation
   this->create_pipeline_handle(renderpass, pipeline);
 
   //---------------------------
 }
 
 //Subfunction
-void Object::info_pipeline_topology(vk::structure::Pipeline& pipeline){
+void Component::info_pipeline_topology(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   VkPipelineInputAssemblyStateCreateInfo topology{};
@@ -56,12 +59,12 @@ void Object::info_pipeline_topology(vk::structure::Pipeline& pipeline){
   }
 
   //---------------------------
-  pipeline.element.topology = topology;
+  pipeline.component.topology = topology;
 }
-void Object::info_pipeline_dynamic(vk::structure::Pipeline& pipeline){
+void Component::info_pipeline_dynamic(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  std::vector<VkDynamicState>& vec_dynamic_state = pipeline.element.vec_dynamic_state;
+  std::vector<VkDynamicState>& vec_dynamic_state = pipeline.component.vec_dynamic_state;
   vec_dynamic_state.clear();
   vec_dynamic_state.push_back(VK_DYNAMIC_STATE_VIEWPORT);
   vec_dynamic_state.push_back(VK_DYNAMIC_STATE_SCISSOR);
@@ -74,9 +77,9 @@ void Object::info_pipeline_dynamic(vk::structure::Pipeline& pipeline){
   dynamic.pDynamicStates = vec_dynamic_state.data();
 
   //---------------------------
-  pipeline.element.dynamic = dynamic;
+  pipeline.component.dynamic = dynamic;
 }
-void Object::info_pipeline_viewport(vk::structure::Pipeline& pipeline){
+void Component::info_pipeline_viewport(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   //Viewport info
@@ -88,9 +91,9 @@ void Object::info_pipeline_viewport(vk::structure::Pipeline& pipeline){
   viewport.pScissors = &vk_struct->core.viewport.scissor;
 
   //---------------------------
-  pipeline.element.viewport = viewport;
+  pipeline.component.viewport = viewport;
 }
-void Object::info_pipeline_rasterization(vk::structure::Pipeline& pipeline){
+void Component::info_pipeline_rasterization(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   VkPipelineRasterizationStateCreateInfo rasterization{};
@@ -107,9 +110,9 @@ void Object::info_pipeline_rasterization(vk::structure::Pipeline& pipeline){
   rasterization.depthBiasSlopeFactor = 0.0f; // Optional
 
   //---------------------------
-  pipeline.element.rasterization = rasterization;
+  pipeline.component.rasterization = rasterization;
 }
-void Object::info_pipeline_multisampling(vk::structure::Pipeline& pipeline){
+void Component::info_pipeline_multisampling(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   VkPipelineMultisampleStateCreateInfo multisample{};
@@ -122,9 +125,9 @@ void Object::info_pipeline_multisampling(vk::structure::Pipeline& pipeline){
   multisample.alphaToOneEnable = VK_FALSE; // Optional
 
   //---------------------------
-  pipeline.element.multisample = multisample;
+  pipeline.component.multisample = multisample;
 }
-void Object::info_pipeline_blend_attachment(vk::structure::Pipeline& pipeline){
+void Component::info_pipeline_blend_attachment(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   VkPipelineColorBlendAttachmentState blend_attachment{};
@@ -138,9 +141,9 @@ void Object::info_pipeline_blend_attachment(vk::structure::Pipeline& pipeline){
   blend_attachment.alphaBlendOp = VK_BLEND_OP_ADD; // Optional
 
   //---------------------------
-  pipeline.element.blend_attachment = blend_attachment;
+  pipeline.component.blend_attachment = blend_attachment;
 }
-void Object::info_pipeline_blend(vk::structure::Pipeline& pipeline){
+void Component::info_pipeline_blend(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   VkPipelineColorBlendStateCreateInfo blend{};
@@ -148,16 +151,16 @@ void Object::info_pipeline_blend(vk::structure::Pipeline& pipeline){
   blend.logicOpEnable = VK_FALSE;
   blend.logicOp = VK_LOGIC_OP_COPY; // Optional
   blend.attachmentCount = 1;
-  blend.pAttachments = &pipeline.element.blend_attachment;
+  blend.pAttachments = &pipeline.component.blend_attachment;
   blend.blendConstants[0] = 0.0f; // Optional
   blend.blendConstants[1] = 0.0f; // Optional
   blend.blendConstants[2] = 0.0f; // Optional
   blend.blendConstants[3] = 0.0f; // Optional
 
   //---------------------------
-  pipeline.element.blend = blend;
+  pipeline.component.blend = blend;
 }
-void Object::info_pipeline_depth(vk::structure::Pipeline& pipeline){
+void Component::info_pipeline_depth_stencil(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   VkPipelineDepthStencilStateCreateInfo stencil;
@@ -173,25 +176,25 @@ void Object::info_pipeline_depth(vk::structure::Pipeline& pipeline){
   stencil.back = {}; // Optional
 
   //---------------------------
-  pipeline.element.stencil = stencil;
+  pipeline.component.stencil = stencil;
 }
 
 //Creation function
-void Object::create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
+void Component::create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
   VkGraphicsPipelineCreateInfo pipeline_info{};
   pipeline_info.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-  pipeline_info.stageCount = static_cast<uint32_t>(pipeline.element.vec_shader_stage.size());
-  pipeline_info.pStages = pipeline.element.vec_shader_stage.data();
-  pipeline_info.pVertexInputState = &pipeline.element.vertex;
-  pipeline_info.pInputAssemblyState = &pipeline.element.topology;
-  pipeline_info.pViewportState = &pipeline.element.viewport;
-  pipeline_info.pRasterizationState = &pipeline.element.rasterization;
-  pipeline_info.pMultisampleState = &pipeline.element.multisample;
-  pipeline_info.pDepthStencilState = &pipeline.element.stencil;
-  pipeline_info.pColorBlendState = &pipeline.element.blend;
-  pipeline_info.pDynamicState = &pipeline.element.dynamic;
+  pipeline_info.stageCount = static_cast<uint32_t>(pipeline.component.vec_shader_stage.size());
+  pipeline_info.pStages = pipeline.component.vec_shader_stage.data();
+  pipeline_info.pVertexInputState = &pipeline.component.vertex;
+  pipeline_info.pInputAssemblyState = &pipeline.component.topology;
+  pipeline_info.pViewportState = &pipeline.component.viewport;
+  pipeline_info.pRasterizationState = &pipeline.component.rasterization;
+  pipeline_info.pMultisampleState = &pipeline.component.multisample;
+  pipeline_info.pDepthStencilState = &pipeline.component.stencil;
+  pipeline_info.pColorBlendState = &pipeline.component.blend;
+  pipeline_info.pDynamicState = &pipeline.component.dynamic;
   pipeline_info.layout = pipeline.layout;
   pipeline_info.renderPass = renderpass.handle;
   pipeline_info.subpass = 0;
@@ -199,14 +202,13 @@ void Object::create_pipeline_handle(vk::structure::Renderpass& renderpass, vk::s
   pipeline_info.basePipelineIndex = -1; // Optional
 
   VkResult result = vkCreateGraphicsPipelines(vk_struct->core.device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline.handle);
-
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create graphics pipeline!");
   }
 
   //---------------------------
 }
-void Object::clean_pipeline_handle(vk::structure::Pipeline& pipeline){
+void Component::clean_pipeline_handle(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vkDestroyPipeline(vk_struct->core.device.handle, pipeline.handle, nullptr);

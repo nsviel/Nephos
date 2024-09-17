@@ -8,7 +8,7 @@ namespace vk::pipeline{class Descriptor;}
 namespace vk::draw{class Viewport;}
 namespace vk::pipeline{class Shader;}
 namespace vk::pipeline{class Vertex;}
-namespace vk::pipeline{class Object;}
+namespace vk::pipeline{class Component;}
 namespace vk::pipeline{class Layout;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
@@ -42,7 +42,7 @@ private:
   vk::pipeline::Descriptor* vk_descriptor;
   vk::pipeline::Shader* vk_shader;
   vk::pipeline::Vertex* vk_vertex;
-  vk::pipeline::Object* vk_object;
+  vk::pipeline::Component* vk_component;
   vk::pipeline::Layout* vk_layout;
   vk::synchro::Synchro* vk_synchro;
 };

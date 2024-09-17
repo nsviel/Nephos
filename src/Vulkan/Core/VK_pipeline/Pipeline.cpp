@@ -13,7 +13,7 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
   this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
   this->vk_shader = new vk::pipeline::Shader(vk_struct);
   this->vk_vertex = new vk::pipeline::Vertex(vk_struct);
-  this->vk_object = new vk::pipeline::Object(vk_struct);
+  this->vk_component = new vk::pipeline::Component(vk_struct);
   this->vk_layout = new vk::pipeline::Layout(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
 
@@ -74,7 +74,7 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk:
   vk_shader->create_pipeline_shader(pipeline);
   vk_vertex->pipeline_vertex_description(pipeline);
   vk_layout->create_pipeline_layout(pipeline);
-  vk_object->create_pipeline_object(renderpass, pipeline);
+  vk_component->create_pipeline_object(renderpass, pipeline);
   vk_shader->clean_pipeline_shader(pipeline);
 
   //---------------------------
@@ -82,7 +82,7 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass& renderpass, vk:
 void Pipeline::clean_pipeline_struct(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk_object->clean_pipeline_handle(pipeline);
+  vk_component->clean_pipeline_handle(pipeline);
   vk_layout->clean_pipeline_layout(pipeline);
   vk_descriptor->clean_pipeline_descriptor(pipeline);
 

@@ -6,7 +6,7 @@
 
 namespace vk::pipeline::structure{
 
-struct Element{
+struct Component{
   //---------------------------
 
   std::vector<VkPipelineShaderStageCreateInfo> vec_shader_stage;

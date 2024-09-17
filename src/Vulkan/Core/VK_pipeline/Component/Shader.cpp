@@ -52,7 +52,7 @@ void Shader::create_shader_module(vk::structure::Pipeline& pipeline){
   //---------------------------
 }
 void Shader::create_shader_info(vk::structure::Pipeline& pipeline){
-  pipeline.element.vec_shader_stage.clear();
+  pipeline.component.vec_shader_stage.clear();
   //---------------------------
 
   //Vertex shader link in pipeline
@@ -62,7 +62,7 @@ void Shader::create_shader_info(vk::structure::Pipeline& pipeline){
   info_vert.module = pipeline.shader.module.vs;
   info_vert.pName = "main";
   info_vert.pSpecializationInfo = nullptr;
-  pipeline.element.vec_shader_stage.push_back(info_vert);
+  pipeline.component.vec_shader_stage.push_back(info_vert);
 
   //Fragment shader link in pipeline
   VkPipelineShaderStageCreateInfo info_frag{};
@@ -71,7 +71,7 @@ void Shader::create_shader_info(vk::structure::Pipeline& pipeline){
   info_frag.module = pipeline.shader.module.fs;
   info_frag.pName = "main";
   info_frag.pSpecializationInfo = nullptr;
-  pipeline.element.vec_shader_stage.push_back(info_frag);
+  pipeline.component.vec_shader_stage.push_back(info_frag);
 
   //---------------------------
 }
