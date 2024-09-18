@@ -17,7 +17,7 @@ Sampler::Sampler(vk::Structure* vk_struct){
 Sampler::~Sampler(){}
 
 //Main function
-void Sampler::create_sampler(vk::descriptor::structure::Layout& layout, vk::descriptor::structure::Descriptor& descriptor){
+void Sampler::create_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor){
   //---------------------------
 
   std::shared_ptr<vk::descriptor::structure::Sampler> sampler = std::make_shared<vk::descriptor::structure::Sampler>();
@@ -25,14 +25,14 @@ void Sampler::create_sampler(vk::descriptor::structure::Layout& layout, vk::desc
   sampler->binding = descriptor.binding;
   sampler->type = descriptor.type;
 
-  layout.map_sampler[descriptor.name] = std::move(sampler);
+  descriptor_set.map_sampler[descriptor.name] = std::move(sampler);
 
   //---------------------------
 }
 void Sampler::insert_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout, vk::structure::Image* image){
   //---------------------------
 
-  auto sampler = query_sampler(layout, image->name);
+  auto sampler = query_sampler(descriptor_set, image->name);
   if(!sampler) return;
 
   VkDescriptorImageInfo image_info = {};
@@ -55,16 +55,16 @@ void Sampler::insert_sampler(vk::descriptor::structure::Descriptor_set& descript
 }
 
 //Subfunction
-std::shared_ptr<vk::descriptor::structure::Sampler> Sampler::query_sampler(vk::descriptor::structure::Layout& layout, std::string& name){
+std::shared_ptr<vk::descriptor::structure::Sampler> Sampler::query_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, std::string& name){
   //---------------------------
 
-  auto it = layout.map_sampler.find(name);
-  if (it == layout.map_sampler.end()) {
+  auto it = descriptor_set.map_sampler.find(name);
+  if (it == descriptor_set.map_sampler.end()) {
     std::cout<<"------------------------"<<std::endl;
     std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<name<<"\033[0m"<<std::endl;
     std::cout<<"Existing uniform names: "<<std::endl;
 
-    for(auto& [name, sampler] : layout.map_sampler){
+    for(auto& [name, sampler] : descriptor_set.map_sampler){
       std::cout<<"\033[1;32m"<<name<<"\033[0m"<<std::endl;
     }
 

@@ -1,6 +1,11 @@
 #pragma once
 
+#include <Vulkan/Core/VK_binding/Structure/Sampler.h>
+#include <Vulkan/Core/VK_binding/Structure/Uniform.h>
+#include <Vulkan/Core/VK_binding/Structure/Pushconst.h>
 #include <vulkan/vulkan.h>
+#include <unordered_map>
+#include <memory>
 #include <vector>
 
 
@@ -14,6 +19,11 @@ struct Descriptor_set{
   //Associated descriptor descriptions
   std::vector<VkWriteDescriptorSet> vec_write_descriptor_set;
   std::vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
+
+  //Associated descriptor
+  std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Pushconst>> map_pushcst;
+  std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Uniform>> map_uniform;
+  std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Sampler>> map_sampler;
 
   //---------------------------
 };

@@ -11,6 +11,8 @@ Descriptor_set::Descriptor_set(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
+  this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
+  this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
 
   //---------------------------
 }
@@ -21,6 +23,7 @@ void Descriptor_set::allocate_descriptor_set(vk::descriptor::structure::Descript
   //---------------------------
 
   this->allocate_handle(descriptor_set, layout);
+  this->create_descriptor(descriptor_set, layout);
   this->update_descriptor_set(descriptor_set, layout);
 
   //---------------------------
@@ -65,7 +68,7 @@ void Descriptor_set::update_descriptor_set(vk::descriptor::structure::Descriptor
   descriptor_set.vec_descriptor_buffer_info.clear();
 
   //Make list of writeable uniform
-  for(auto& [name, uniform] : layout.map_uniform){
+  for(auto& [name, uniform] : descriptor_set.map_uniform){
     //Descriptor buffer info
     VkDescriptorBufferInfo descriptor_info = {};
     descriptor_info.buffer = uniform->buffer;
@@ -88,6 +91,26 @@ void Descriptor_set::update_descriptor_set(vk::descriptor::structure::Descriptor
   //Update descriptor
   if(!descriptor_set.vec_write_descriptor_set.empty()){
     vkUpdateDescriptorSets(vk_struct->core.device.handle, static_cast<uint32_t>(descriptor_set.vec_write_descriptor_set.size()), descriptor_set.vec_write_descriptor_set.data(), 0, nullptr);
+  }
+
+  //---------------------------
+}
+void Descriptor_set::create_descriptor(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
+  //---------------------------
+
+  for(auto& descriptor : layout.vec_descriptor){
+
+    switch(descriptor.type){
+      case VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER:{
+        vk_sampler->create_sampler(descriptor_set, descriptor);
+        break;
+      }
+      case VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER:{
+        vk_uniform->create_uniform(descriptor_set, descriptor);
+        break;
+      }
+    }
+
   }
 
   //---------------------------

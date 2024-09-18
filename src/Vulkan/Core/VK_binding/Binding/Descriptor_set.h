@@ -4,6 +4,8 @@
 #include <vector>
 
 namespace vk{class Structure;}
+namespace vk::descriptor{class Uniform;}
+namespace vk::descriptor{class Sampler;}
 namespace vk::descriptor::structure{class Descriptor_set;}
 namespace vk::descriptor::structure{class Layout;}
 namespace vk::structure{class Pipeline;}
@@ -27,9 +29,12 @@ public:
   //Subfunction
   void allocate_handle(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
   void update_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
-  
+  void create_descriptor(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
+
 private:
   vk::Structure* vk_struct;
+  vk::descriptor::Uniform* vk_uniform;
+  vk::descriptor::Sampler* vk_sampler;
 };
 
 }

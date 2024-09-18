@@ -45,8 +45,8 @@ void Scene::draw_subpass(vk::structure::Subpass& subpass){
   //---------------------------
 
   vk_viewport->cmd_viewport(subpass.command_buffer->handle);
-  this->cmd_draw_point(subpass);
-  //this->cmd_draw_line(subpass);
+  //this->cmd_draw_point(subpass);
+  this->cmd_draw_line(subpass);
   //this->cmd_draw_triangle(subpass);
 
   //---------------------------
@@ -66,17 +66,20 @@ void Scene::cmd_draw_point(vk::structure::Subpass& subpass){
 
     if(check_data(data, utl::topology::POINT)){
 
-      vk_uniform->update_uniform("mvp", pipeline->descriptor.layout, pose.mvp);
+      say("---- 1");
+      say(pose.mvp);
+
+      vk_uniform->update_uniform("mvp", vk_object->descriptor_set, pose.mvp);
 
 
+      /*
       vk::pipeline::topology::Structure machin;
       machin.model = glm::transpose(pose.model);
       machin.view = vk_struct->core.presentation.view;
       machin.projection = vk_struct->core.presentation.projection;
-    //  vk_uniform->update_uniform("mvp_str", pipeline->descriptor.layout, machin);
-
-
-glm::mat4 truc = machin.projection * machin.view * machin.model;
+      //  vk_uniform->update_uniform("mvp_str", pipeline->descriptor.layout, machin);
+      glm::mat4 truc = machin.projection * machin.view * machin.model;
+      */
 
 
       //vk_uniform->update_uniform("point_size", pipeline->descriptor.layout, data.topology.width);
@@ -99,7 +102,10 @@ void Scene::cmd_draw_line(vk::structure::Subpass& subpass){
     utl::base::Pose& pose = *vk_object->pose;
 
     if(check_data(data, utl::topology::LINE)){
-      vk_uniform->update_uniform("mvp", pipeline->descriptor.layout, pose.mvp);
+      say("---- 2");
+      say(pose.mvp);
+
+      vk_uniform->update_uniform("mvp", vk_object->descriptor_set, pose.mvp);
       vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set);
       vk_drawer->cmd_line_with(subpass.command_buffer->handle, *vk_object);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
@@ -120,7 +126,7 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass& subpass){
     utl::base::Pose& pose = *vk_object->pose;
 
     if(check_data(data, utl::topology::TRIANGLE)){
-      vk_uniform->update_uniform("mvp", pipeline->descriptor.layout, pose.mvp);
+      vk_uniform->update_uniform("mvp", vk_object->descriptor_set, pose.mvp);
       vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }

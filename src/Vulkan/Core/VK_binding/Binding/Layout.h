@@ -3,8 +3,6 @@
 #include <vulkan/vulkan.h>
 #include <vector>
 
-namespace vk::descriptor{class Uniform;}
-namespace vk::descriptor{class Sampler;}
 namespace vk{class Structure;}
 namespace vk::descriptor::structure{class Layout;}
 namespace vk::structure{class Image;}
@@ -29,12 +27,9 @@ public:
   //Subfunction
   void make_required_binding(vk::descriptor::structure::Layout& layout);
   void create_layout_object(vk::descriptor::structure::Layout& layout);
-  void create_descriptor(vk::descriptor::structure::Layout& layout);
 
 private:
   vk::Structure* vk_struct;
-  vk::descriptor::Uniform* vk_uniform;
-  vk::descriptor::Sampler* vk_sampler;
 };
 
 }

@@ -10,8 +10,6 @@ Layout::Layout(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
-  this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
 
   //---------------------------
 }
@@ -21,10 +19,8 @@ Layout::~Layout(){}
 void Layout::create_layout(vk::descriptor::structure::Layout& layout){
   //---------------------------
 
-
   this->make_required_binding(layout);
   this->create_layout_object(layout);
-  this->create_descriptor(layout);
 
   //---------------------------
 }
@@ -68,26 +64,6 @@ void Layout::create_layout_object(vk::descriptor::structure::Layout& layout){
   VkResult result = vkCreateDescriptorSetLayout(vk_struct->core.device.handle, &layout_info, nullptr, &layout.handle);
   if(result != VK_SUCCESS){
     std::cout<<"[error] failed to create descriptor set layout"<<std::endl;
-  }
-
-  //---------------------------
-}
-void Layout::create_descriptor(vk::descriptor::structure::Layout& layout){
-  //---------------------------
-
-  for(auto& descriptor : layout.vec_descriptor){
-
-    switch(descriptor.type){
-      case VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER:{
-        vk_sampler->create_sampler(layout, descriptor);
-        break;
-      }
-      case VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER:{
-        vk_uniform->create_uniform(layout, descriptor);
-        break;
-      }
-    }
-
   }
 
   //---------------------------
