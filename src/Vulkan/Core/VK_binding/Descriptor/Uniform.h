@@ -27,7 +27,7 @@ public:
   //Main function
   void create_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor);
   void insert_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Uniform& uniform);
-  void clean_uniform(vk::descriptor::structure::Layout& layout);
+  void clean_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set);
 
   //Subfunction
   template <typename T>

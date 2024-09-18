@@ -57,14 +57,14 @@ void Uniform::insert_uniform(vk::descriptor::structure::Descriptor_set& descript
 
   //---------------------------
 }
-void Uniform::clean_uniform(vk::descriptor::structure::Layout& layout){
+void Uniform::clean_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set){
   //---------------------------
-/*
-  for(auto& [name, uniform] : layout.map_uniform){
+
+  for(auto& [name, uniform] : descriptor_set.map_uniform){
     vkDestroyBuffer(vk_struct->core.device.handle, uniform->buffer, nullptr);
     vkFreeMemory(vk_struct->core.device.handle, uniform->mem, nullptr);
   }
-*/
+
   //---------------------------
 }
 

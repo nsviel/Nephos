@@ -31,8 +31,8 @@ void Descriptor::create_pipeline_descriptor(vk::structure::Pipeline& pipeline){
 void Descriptor::clean_pipeline_descriptor(vk::structure::Pipeline& pipeline){
   //---------------------------
 
+  vk_uniform->clean_uniform(pipeline.descriptor.descriptor_set);
   vk_layout->clean_layout(pipeline.descriptor.layout);
-  //vk_uniform->clean_uniform(pipeline.descriptor.layout);
 
   //---------------------------
 }

@@ -28,17 +28,11 @@ void Descriptor_set::allocate_descriptor_set(vk::descriptor::structure::Descript
 
   //---------------------------
 }
-void Descriptor_set::bind_descriptor_set(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline, vk::descriptor::structure::Descriptor_set& descriptor_set){
-  //---------------------------
-
-  vkCmdBindDescriptorSets(command_buffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.layout, 0, 1, &descriptor_set.handle, 0, nullptr);
-
-  //---------------------------
-}
 void Descriptor_set::clean_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
-  vkFreeDescriptorSets(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.pool, 1, &descriptor_set.handle);
+  this->free_handle(descriptor_set);
+  vk_uniform->clean_uniform(descriptor_set);
 
   //---------------------------
 }
@@ -57,6 +51,13 @@ void Descriptor_set::allocate_handle(vk::descriptor::structure::Descriptor_set& 
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate descriptor sets!");
   }
+
+  //---------------------------
+}
+void Descriptor_set::free_handle(vk::descriptor::structure::Descriptor_set& descriptor_set){
+  //---------------------------
+
+  vkFreeDescriptorSets(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.pool, 1, &descriptor_set.handle);
 
   //---------------------------
 }
@@ -122,6 +123,12 @@ void Descriptor_set::update_descriptor_set(vk::descriptor::structure::Descriptor
 
   //---------------------------
 }
+void Descriptor_set::bind_descriptor_set(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline, vk::descriptor::structure::Descriptor_set& descriptor_set){
+  //---------------------------
 
+  vkCmdBindDescriptorSets(command_buffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.layout, 0, 1, &descriptor_set.handle, 0, nullptr);
+
+  //---------------------------
+}
 
 }
