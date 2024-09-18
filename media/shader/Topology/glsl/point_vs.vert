@@ -9,7 +9,7 @@ layout(location = 1) in vec3 in_rgb;
 layout(location = 0) out vec3 frag_rgb;
 
 //Uniform
-layout(binding = 0) uniform mvp{
+layout(binding = 0) uniform MVP{
   mat4 model;
   mat4 view;
   mat4 projection;

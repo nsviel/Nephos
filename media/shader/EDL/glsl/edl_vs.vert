@@ -1,5 +1,6 @@
 #version 450
 //#extension GL_EXT_debug_printf : enable
+//debugPrintfEXT("[SHADER] Shader value is %f", myfloat);
 
 //Input
 layout(location = 0) in vec3 in_xyz;
@@ -15,8 +16,5 @@ void main(){
   gl_Position = vec4(in_xyz.xy, 0.0, 1.0);
   frag_uv = in_uv;
 
-//  float myfloat = 999;
-//debugPrintfEXT("[SHADER] Shader value is %f", myfloat);
-
-    //---------------------------
+  //---------------------------
 }

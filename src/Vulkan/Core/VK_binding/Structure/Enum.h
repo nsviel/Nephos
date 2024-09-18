@@ -6,8 +6,8 @@ namespace vk::uniform{
 
 enum ID{
   MVP = 0,
-  WIDTH = 1,
-  EDL = 5,
+  TOPOLOGY_WIDTH = 1,
+  PARAMETER = 5,
 };
 
 }

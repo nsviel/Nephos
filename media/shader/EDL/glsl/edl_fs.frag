@@ -7,7 +7,7 @@ layout(location = 4) in vec2 frag_uv;
 layout(location = 0) out vec4 out_rgb;
 
 //Uniform
-layout(binding = 5) uniform param{
+layout(binding = 5) uniform Param{
   bool activated;
   float z_near;
   float z_far;
@@ -21,6 +21,7 @@ layout(binding = 5) uniform param{
 layout(binding = 10) uniform sampler2D tex_color;
 layout(binding = 11) uniform sampler2D tex_depth;
 
+//Constant
 vec2 table_index[8] = vec2[](\
   vec2(1.0, 0.0),\
   vec2(1.0, 1.0),\

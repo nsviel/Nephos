@@ -11,8 +11,8 @@ layout(binding = 0) uniform MVP{
   mat4 model;
   mat4 view;
   mat4 projection;
-} uniform_mvp;
-layout(binding = 5) uniform param{
+};
+layout(binding = 5) uniform Param{
   float depth_scale;
   float depth_offset;
   int tex_depth_width;
@@ -28,15 +28,13 @@ void main(){
   //---------------------------
 
   // Convert pixel coordinates to normalized device coordinates
-  vec2 tpos = vec2(float(ipos.x) / float(tex_depth_width), float(ipos.y) / float(tex_depth_height));
-
+  vec2 tpos = gl_FragCoord.xy / vec2(tex_depth_width, tex_depth_height);
 
   // Compute color position in the color texture space
-  vec2 color_pos = vec2(tpos.x, 1.0 - tpos.y);
+  vec2 color_pos = vec2(tpos.x, 1.0 - tpos.y); // Assuming the color texture uses a different coordinate system
 
   // Sample color from the color texture
   frag_rgb = texture(tex_color, color_pos).rgb;
-
 
   // Sample depth value from the depth texture and scale to meters
   float depth = texture(tex_depth, tpos).r * depth_scale + depth_offset;
@@ -47,7 +45,7 @@ void main(){
   // Compute final position in clip space
   gl_Position = projection * view * world_pos;
 
-  // Compute point size based on distance (optional)
+  // Optional: Compute point size based on distance
   // gl_PointSize = clamp(10.0 - 0.1 * depth, 1.0, 10.0);
 
   //---------------------------
