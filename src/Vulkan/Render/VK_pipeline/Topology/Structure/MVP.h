@@ -3,7 +3,7 @@
 
 namespace vk::pipeline::topology{
 
-struct Structure{
+struct MVP{
   //---------------------------
 
   glm::mat4 model = glm::mat4(1.0f);

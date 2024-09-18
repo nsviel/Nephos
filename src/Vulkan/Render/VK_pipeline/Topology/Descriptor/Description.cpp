@@ -12,21 +12,8 @@ vk::descriptor::structure::Descriptor uniform_mvp(){
 
   vk::descriptor::structure::Descriptor descriptor;
   descriptor.name = "mvp";
-  descriptor.size = sizeof(glm::mat4);
+  descriptor.size = sizeof(vk::pipeline::topology::MVP);
   descriptor.binding = vk::uniform::MVP;
-  descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-  descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
-
-  //---------------------------
-  return descriptor;
-}
-vk::descriptor::structure::Descriptor uniform_mvp_str(){
-  //---------------------------
-
-  vk::descriptor::structure::Descriptor descriptor;
-  descriptor.name = "mvp_str";
-  descriptor.size = sizeof(vk::pipeline::topology::Structure);
-  descriptor.binding = vk::uniform::MVP_STR;
   descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
   descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
 
