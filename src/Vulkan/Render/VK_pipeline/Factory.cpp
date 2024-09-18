@@ -9,10 +9,11 @@ namespace vk::render::pipeline{
 Factory::Factory(vk::Structure* vk_struct){
   //---------------------------
 
-  this->pipe_edl = new vk::pipeline::edl::EDL(vk_struct);
   this->pipe_line = new vk::pipeline::topology::Line(vk_struct);
   this->pipe_point = new vk::pipeline::topology::Point(vk_struct);
   this->pipe_triangle = new vk::pipeline::topology::Triangle(vk_struct);
+  this->pipe_dynamic = new vk::pipeline::dyn::Point(vk_struct);
+  this->pipe_edl = new vk::pipeline::edl::EDL(vk_struct);
 
   //---------------------------
 }
@@ -37,6 +38,13 @@ void Factory::add_pipeline_triangle(vk::structure::Subpass& subpass){
   //---------------------------
 
   pipe_triangle->add_pipeline(subpass);
+
+  //---------------------------
+}
+void Factory::add_pipeline_dynamic(vk::structure::Subpass& subpass){
+  //---------------------------
+
+  pipe_dynamic->add_pipeline(subpass);
 
   //---------------------------
 }

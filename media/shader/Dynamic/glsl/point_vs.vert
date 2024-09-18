@@ -12,6 +12,7 @@ layout(binding = 0) uniform MVP{
   mat4 view;
   mat4 projection;
 };
+layout(binding = 1) uniform width{float point_size;};
 layout(binding = 5) uniform Param{
   float depth_scale;
   float depth_offset;
@@ -27,6 +28,11 @@ layout(binding = 1) uniform sampler2D tex_color;
 void main(){
   //---------------------------
 
+  gl_Position = vec4(1.0, 1.0, 1.0, 1.0);
+  gl_PointSize = point_size;
+  frag_rgb = in_rgb;
+
+/*
   // Convert pixel coordinates to normalized device coordinates
   vec2 tpos = gl_FragCoord.xy / vec2(tex_depth_width, tex_depth_height);
 
@@ -47,6 +53,6 @@ void main(){
 
   // Optional: Compute point size based on distance
   // gl_PointSize = clamp(10.0 - 0.1 * depth, 1.0, 10.0);
-
+*/
   //---------------------------
 }

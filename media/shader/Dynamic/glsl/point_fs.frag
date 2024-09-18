@@ -10,7 +10,7 @@ layout(location = 0) out vec4 out_rgb;
 void main(){
   //---------------------------
 
-  out_rgb = frag_rgb;
+  out_rgb = vec4(frag_rgb, 1);
 
   //---------------------------
 }

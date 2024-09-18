@@ -37,6 +37,7 @@ void Scene::create_subpass(vk::structure::Renderpass& renderpass){
   vk_factory->add_pipeline_line(*subpass);
   vk_factory->add_pipeline_point(*subpass);
   vk_factory->add_pipeline_triangle(*subpass);
+  vk_factory->add_pipeline_dynamic(*subpass);
 
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
@@ -128,7 +129,7 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass& subpass){
       machin.view = vk_struct->core.presentation.view;
       machin.projection = vk_struct->core.presentation.projection;
       vk_uniform->update_uniform("mvp", vk_object->descriptor_set, machin);
-      
+
       vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }

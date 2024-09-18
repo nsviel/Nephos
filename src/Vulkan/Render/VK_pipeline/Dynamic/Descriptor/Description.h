@@ -6,12 +6,12 @@
 namespace vk::descriptor::structure{class Descriptor;}
 
 
-namespace vk::pipeline::cfd{
+namespace vk::pipeline::dyn{
 
 //Uniform
 vk::descriptor::structure::Descriptor uniform_mvp();
 vk::descriptor::structure::Descriptor uniform_point_size();
-vk::descriptor::structure::Descriptor uniform_cfd();
+vk::descriptor::structure::Descriptor uniform_dynamic();
 
 //Sampler
 vk::descriptor::structure::Descriptor sampler_color();
