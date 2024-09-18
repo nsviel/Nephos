@@ -32,6 +32,31 @@ void Descriptor_set::bind_descriptor_set(VkCommandBuffer& command_buffer, vk::st
 
   //---------------------------
 }
+void Descriptor_set::clean_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set){
+  //---------------------------
+
+  vkFreeDescriptorSets(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.pool, 1, &descriptor_set.handle);
+
+  //---------------------------
+}
+
+//Subfunction
+void Descriptor_set::allocate_handle(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
+  //---------------------------
+
+  VkDescriptorSetAllocateInfo allocation_info{};
+  allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
+  allocation_info.descriptorPool = vk_struct->core.pools.descriptor_set.pool;
+  allocation_info.descriptorSetCount = 1;
+  allocation_info.pSetLayouts = &layout.handle;
+
+  VkResult result = vkAllocateDescriptorSets(vk_struct->core.device.handle, &allocation_info, &descriptor_set.handle);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("failed to allocate descriptor sets!");
+  }
+
+  //---------------------------
+}
 void Descriptor_set::update_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
   //---------------------------
 
@@ -63,31 +88,6 @@ void Descriptor_set::update_descriptor_set(vk::descriptor::structure::Descriptor
   //Update descriptor
   if(!descriptor_set.vec_write_descriptor_set.empty()){
     vkUpdateDescriptorSets(vk_struct->core.device.handle, static_cast<uint32_t>(descriptor_set.vec_write_descriptor_set.size()), descriptor_set.vec_write_descriptor_set.data(), 0, nullptr);
-  }
-
-  //---------------------------
-}
-void Descriptor_set::clean_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set){
-  //---------------------------
-
-  vkFreeDescriptorSets(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.pool, 1, &descriptor_set.handle);
-
-  //---------------------------
-}
-
-//Subfunction
-void Descriptor_set::allocate_handle(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
-  //---------------------------
-
-  VkDescriptorSetAllocateInfo allocation_info{};
-  allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-  allocation_info.descriptorPool = vk_struct->core.pools.descriptor_set.pool;
-  allocation_info.descriptorSetCount = 1;
-  allocation_info.pSetLayouts = &layout.handle;
-
-  VkResult result = vkAllocateDescriptorSets(vk_struct->core.device.handle, &allocation_info, &descriptor_set.handle);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to allocate descriptor sets!");
   }
 
   //---------------------------

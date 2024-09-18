@@ -34,7 +34,7 @@ void Renderpass::create_renderpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   renderpass.name = "edl";
-  vk_struct->render.renderpass.vector.push_back(&renderpass);
+  vk_struct->render.renderpass.vec_renderpass.push_back(&renderpass);
 
   //---------------------------
 

@@ -9,7 +9,7 @@ namespace vk::render::structure{
 struct Renderpass{
   //---------------------------
 
-  std::vector<vk::structure::Renderpass*> vector;
+  std::vector<vk::structure::Renderpass*> vec_renderpass;
   vk::structure::Renderpass onscreen;
   vk::structure::Renderpass offscreen;
   vk::structure::Renderpass edl;

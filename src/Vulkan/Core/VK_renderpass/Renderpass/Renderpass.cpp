@@ -23,13 +23,13 @@ void Renderpass::init(){
   //---------------------------
 
   //Check for renderpass demande
-  if(vk_struct->render.renderpass.vector.size() == 0){
+  if(vk_struct->render.renderpass.vec_renderpass.size() == 0){
     std::cout<<"[error] No renderpass initiated"<<std::endl;
     exit(0);
   }
 
   //Create renderpass according to the vec of renderpass demande
-  for(auto& renderpass : vk_struct->render.renderpass.vector){
+  for(auto& renderpass : vk_struct->render.renderpass.vec_renderpass){
     this->init_renderpass(*renderpass);
   }
 
@@ -38,7 +38,7 @@ void Renderpass::init(){
 void Renderpass::clean(){
   //---------------------------
 
-  for(auto& renderpass : vk_struct->render.renderpass.vector){
+  for(auto& renderpass : vk_struct->render.renderpass.vec_renderpass){
     this->clean_renderpass(*renderpass);
   }
 

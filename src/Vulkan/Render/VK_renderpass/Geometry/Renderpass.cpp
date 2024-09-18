@@ -24,7 +24,7 @@ void Renderpass::init(){
   vk_scene->create_subpass(renderpass);
 
   //---------------------------
-  vk_struct->render.renderpass.vector.push_back(&renderpass);
+  vk_struct->render.renderpass.vec_renderpass.push_back(&renderpass);
 }
 
 }

@@ -46,8 +46,8 @@ void Scene::draw_subpass(vk::structure::Subpass& subpass){
 
   vk_viewport->cmd_viewport(subpass.command_buffer->handle);
   this->cmd_draw_point(subpass);
-  this->cmd_draw_line(subpass);
-  this->cmd_draw_triangle(subpass);
+  //this->cmd_draw_line(subpass);
+  //this->cmd_draw_triangle(subpass);
 
   //---------------------------
 }
@@ -133,8 +133,8 @@ bool Scene::check_data(utl::base::Data& data, int typology){
 
   if(data.topology.type != typology) return false;
   if(data.is_visible == false) return false;
-  if(data.xyz.size() == 0) return false;
-  if(data.rgba.size() == 0) return false;
+  if(data.xyz.empty()) return false;
+  if(data.rgba.empty()) return false;
   if(data.rgba.size() != data.xyz.size()) return false;
 
   //---------------------------
