@@ -26,7 +26,7 @@ public:
 public:
   //Main function
   void create_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor);
-  void insert_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Uniform& uniform);
+  void actualize_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set);
   void clean_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set);
 
   //Subfunction

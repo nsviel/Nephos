@@ -34,26 +34,48 @@ void Uniform::create_uniform(vk::descriptor::structure::Descriptor_set& descript
 
   //---------------------------
 }
-void Uniform::insert_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Uniform& uniform){
+void Uniform::actualize_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set){
+  VkDeviceSize alignment = vk_struct->core.device.physical_device.properties.limits.minUniformBufferOffsetAlignment;
   //---------------------------
 
-  //Blabla
-  VkDescriptorBufferInfo descriptor_info = {};
-  descriptor_info.buffer = uniform.buffer;
-  descriptor_info.offset = 0;
-  descriptor_info.range = uniform.size;
+  //Associated descriptor descriptions
+  std::vector<VkWriteDescriptorSet> vec_write_descriptor_set;
+  std::vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
 
-  //Blabla
-  VkWriteDescriptorSet write_uniform = {};
-  write_uniform.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-  write_uniform.dstSet = descriptor_set.handle;
-  write_uniform.dstBinding = uniform.binding;
-  write_uniform.dstArrayElement = 0;
-  write_uniform.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-  write_uniform.descriptorCount = 1;
-  write_uniform.pBufferInfo = &descriptor_info;
+  //Make list of writeable uniform
+  std::size_t previous_size = 0;
+  for(auto& [name, uniform] : descriptor_set.map_uniform){
+    if (uniform->buffer == VK_NULL_HANDLE) {
+      throw std::runtime_error("Invalid VkBuffer handle.");
+    }
 
-  vkUpdateDescriptorSets(vk_struct->core.device.handle, 1, &write_uniform, 0, nullptr);
+    //Descriptor buffer info
+    VkDescriptorBufferInfo descriptor_info{};
+    descriptor_info.buffer = uniform->buffer;
+    descriptor_info.offset = previous_size;
+    descriptor_info.range = uniform->size;
+    vec_descriptor_buffer_info.push_back(descriptor_info);
+    //previous_size = uniform->size;
+
+    //Write descriptor info
+    VkWriteDescriptorSet write_uniform{};
+    write_uniform.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+    write_uniform.dstSet = descriptor_set.handle;
+    write_uniform.dstBinding = uniform->binding;
+    write_uniform.dstArrayElement = 0;
+    write_uniform.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+    write_uniform.descriptorCount = 1;
+    write_uniform.pBufferInfo = &descriptor_info;
+    vec_write_descriptor_set.push_back(write_uniform);
+  }
+
+  //Update descriptor
+  if(!vec_write_descriptor_set.empty()){
+    vkUpdateDescriptorSets(vk_struct->core.device.handle, static_cast<uint32_t>(vec_write_descriptor_set.size()), vec_write_descriptor_set.data(), 0, nullptr);
+  }
+
+  //Dunno why but need to wait few ms here
+  std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
   //---------------------------
 }

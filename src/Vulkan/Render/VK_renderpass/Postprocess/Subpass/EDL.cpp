@@ -57,8 +57,8 @@ void EDL::update_binding(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
 
   for(auto& [name, pipeline] : subpass.map_pipeline){
-    vk_sampler->insert_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.color);
-    vk_sampler->insert_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.depth);
+    vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.color);
+    vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.depth);
   }
 
   //vk_shader->update_shader();
