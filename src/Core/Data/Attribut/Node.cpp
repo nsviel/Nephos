@@ -11,8 +11,8 @@ Node::Node(dat::Node* node_data){
   //---------------------------
 
   this->node_element = node_data->get_node_element();
+  
   this->atr_struct = new dat::atr::Structure();
-  this->gui_panel = new dat::atr::gui::Panel(this);
 
   //---------------------------
 }
