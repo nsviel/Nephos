@@ -28,7 +28,10 @@ void Uniform::create_uniform(vk::descriptor::structure::Descriptor_set& descript
 
   vk_mem_allocator->create_gpu_buffer(uniform->size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
-  vkMapMemory(vk_struct->core.device.handle, uniform->mem, 0, uniform->size, 0, &uniform->mapped);
+  VkResult result = vkMapMemory(vk_struct->core.device.handle, uniform->mem, 0, uniform->size, 0, &uniform->mapped);
+  if (result != VK_SUCCESS) {
+    std::cout<<"[error] Ici ça merde"<<std::endl;
+  }
 
   descriptor_set.map_uniform[descriptor.name] = std::move(uniform);
 
@@ -38,24 +41,21 @@ void Uniform::actualize_uniform(vk::descriptor::structure::Descriptor_set& descr
   VkDeviceSize alignment = vk_struct->core.device.physical_device.properties.limits.minUniformBufferOffsetAlignment;
   //---------------------------
 
-  //Associated descriptor descriptions
-  std::vector<VkWriteDescriptorSet> vec_write_descriptor_set;
-  std::vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
+  descriptor_set.vec_descriptor_buffer_info.clear();
+  descriptor_set.vec_write_descriptor_set.clear();
 
   //Make list of writeable uniform
-  std::size_t previous_size = 0;
   for(auto& [name, uniform] : descriptor_set.map_uniform){
     if (uniform->buffer == VK_NULL_HANDLE) {
-      throw std::runtime_error("Invalid VkBuffer handle.");
+      std::cout<<"[error] Invalid VkBuffer handle"<<std::endl;
     }
 
     //Descriptor buffer info
     VkDescriptorBufferInfo descriptor_info{};
     descriptor_info.buffer = uniform->buffer;
-    descriptor_info.offset = previous_size;
+    descriptor_info.offset = 0;
     descriptor_info.range = uniform->size;
-    vec_descriptor_buffer_info.push_back(descriptor_info);
-    //previous_size = uniform->size;
+    descriptor_set.vec_descriptor_buffer_info.push_back(descriptor_info);
 
     //Write descriptor info
     VkWriteDescriptorSet write_uniform{};
@@ -65,13 +65,13 @@ void Uniform::actualize_uniform(vk::descriptor::structure::Descriptor_set& descr
     write_uniform.dstArrayElement = 0;
     write_uniform.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
     write_uniform.descriptorCount = 1;
-    write_uniform.pBufferInfo = &descriptor_info;
-    vec_write_descriptor_set.push_back(write_uniform);
+    write_uniform.pBufferInfo = &descriptor_set.vec_descriptor_buffer_info.back();
+    descriptor_set.vec_write_descriptor_set.push_back(write_uniform);
   }
 
   //Update descriptor
-  if(!vec_write_descriptor_set.empty()){
-    vkUpdateDescriptorSets(vk_struct->core.device.handle, static_cast<uint32_t>(vec_write_descriptor_set.size()), vec_write_descriptor_set.data(), 0, nullptr);
+  if(!descriptor_set.vec_write_descriptor_set.empty()){
+    vkUpdateDescriptorSets(vk_struct->core.device.handle, static_cast<uint32_t>(descriptor_set.vec_write_descriptor_set.size()), descriptor_set.vec_write_descriptor_set.data(), 0, nullptr);
   }
 
   //Dunno why but need to wait few ms here

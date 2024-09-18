@@ -1,6 +1,7 @@
 #include "Allocator.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::memory{
@@ -69,8 +70,8 @@ void Allocator::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, V
   buffer_info.size = size;
   buffer_info.usage = usage;
   buffer_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
-  VkResult result = vkCreateBuffer(vk_struct->core.device.handle, &buffer_info, nullptr, &buffer);
 
+  VkResult result = vkCreateBuffer(vk_struct->core.device.handle, &buffer_info, nullptr, &buffer);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create gpu buffer");
   }
@@ -93,7 +94,7 @@ void Allocator::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& b
   //Allocate buffer memory on the GPU
   VkResult result = vkAllocateMemory(vk_struct->core.device.handle, &allocation_info, nullptr, &buffer_memory);
   if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to allocate buffer memory!");
+    std::cout<<"[error] failed to allocate buffer memory"<<std::endl;
   }
 
   //Bind the buffer with memory on the GPU side
