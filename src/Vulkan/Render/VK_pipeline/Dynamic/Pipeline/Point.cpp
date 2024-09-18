@@ -1,4 +1,4 @@
-#include "CFD.h"
+#include "Point.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::pipeline::cfd{
 
 //Constructor / Destructor
-CFD::CFD(vk::Structure* vk_struct){
+Point::Point(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -16,10 +16,10 @@ CFD::CFD(vk::Structure* vk_struct){
 
   //---------------------------
 }
-CFD::~CFD(){}
+Point::~Point(){}
 
 //Main function
-void CFD::add_pipeline(vk::structure::Subpass& subpass){
+void Point::add_pipeline(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = std::make_shared<vk::structure::Pipeline>();
   //---------------------------
 
@@ -32,7 +32,7 @@ void CFD::add_pipeline(vk::structure::Subpass& subpass){
 }
 
 //Subfunction
-void CFD::set_pipeline(vk::structure::Pipeline& pipeline){
+void Point::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   pipeline.info.topology = utl::topology::TRIANGLE;
@@ -41,22 +41,22 @@ void CFD::set_pipeline(vk::structure::Pipeline& pipeline){
 
   //---------------------------
 }
-void CFD::set_shader(vk::structure::Pipeline& pipeline){
+void Point::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk::shader::structure::Info shader_info;
-  shader_info.name = "CFD";
-  shader_info.path_glsl.vs = "../media/shader/CFD/glsl/cfd_vs.vert";
-  shader_info.path_glsl.fs = "../media/shader/CFD/glsl/cfd_fs.frag";
-  shader_info.path_spir.vs = "../media/shader/CFD/spir/cfd_vs.spv";
-  shader_info.path_spir.fs = "../media/shader/CFD/spir/cfd_fs.spv";
+  shader_info.name = "Dynamic_point";
+  shader_info.path_glsl.vs = "../media/shader/Dynamic/glsl/cfd_vs.vert";
+  shader_info.path_glsl.fs = "../media/shader/Dynamic/glsl/cfd_fs.frag";
+  shader_info.path_spir.vs = "../media/shader/Dynamic/spir/cfd_vs.spv";
+  shader_info.path_spir.fs = "../media/shader/Dynamic/spir/cfd_fs.spv";
   shader_info.with_recompilation = true;
   shader_info.with_depth_test = true;
 
   //---------------------------
   pipeline.shader.info = shader_info;
 }
-void CFD::set_binding(vk::structure::Pipeline& pipeline){
+void Point::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::cfd::sampler_color());
