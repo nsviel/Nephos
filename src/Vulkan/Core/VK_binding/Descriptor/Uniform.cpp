@@ -29,7 +29,7 @@ void Uniform::create_uniform(vk::descriptor::structure::Descriptor_set& descript
   vk_mem_allocator->create_gpu_buffer(uniform->size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
   VkResult result = vkMapMemory(vk_struct->core.device.handle, uniform->mem, 0, uniform->size, 0, &uniform->mapped);
-  if (result != VK_SUCCESS) {
+  if(result != VK_SUCCESS){
     std::cout<<"[error] Ici ça merde"<<std::endl;
   }
 
@@ -38,24 +38,14 @@ void Uniform::create_uniform(vk::descriptor::structure::Descriptor_set& descript
   //---------------------------
 }
 void Uniform::actualize_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set){
-  VkDeviceSize alignment = vk_struct->core.device.physical_device.properties.limits.minUniformBufferOffsetAlignment;
   //---------------------------
 
-  descriptor_set.vec_descriptor_buffer_info.clear();
-  descriptor_set.vec_write_descriptor_set.clear();
-
-  //Make list of writeable uniform
   for(auto& [name, uniform] : descriptor_set.map_uniform){
-    if (uniform->buffer == VK_NULL_HANDLE) {
-      std::cout<<"[error] Invalid VkBuffer handle"<<std::endl;
-    }
-
     //Descriptor buffer info
     VkDescriptorBufferInfo descriptor_info{};
     descriptor_info.buffer = uniform->buffer;
     descriptor_info.offset = 0;
     descriptor_info.range = uniform->size;
-    descriptor_set.vec_descriptor_buffer_info.push_back(descriptor_info);
 
     //Write descriptor info
     VkWriteDescriptorSet write_uniform{};
@@ -65,17 +55,10 @@ void Uniform::actualize_uniform(vk::descriptor::structure::Descriptor_set& descr
     write_uniform.dstArrayElement = 0;
     write_uniform.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
     write_uniform.descriptorCount = 1;
-    write_uniform.pBufferInfo = &descriptor_set.vec_descriptor_buffer_info.back();
-    descriptor_set.vec_write_descriptor_set.push_back(write_uniform);
-  }
+    write_uniform.pBufferInfo = &descriptor_info;
 
-  //Update descriptor
-  if(!descriptor_set.vec_write_descriptor_set.empty()){
-    vkUpdateDescriptorSets(vk_struct->core.device.handle, static_cast<uint32_t>(descriptor_set.vec_write_descriptor_set.size()), descriptor_set.vec_write_descriptor_set.data(), 0, nullptr);
+    vkUpdateDescriptorSets(vk_struct->core.device.handle, 1, &write_uniform, 0, nullptr);
   }
-
-  //Dunno why but need to wait few ms here
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
   //---------------------------
 }

@@ -21,7 +21,7 @@ Descriptor_set::~Descriptor_set(){}
 //Main function
 void Descriptor_set::allocate_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
   //---------------------------
-say("----");
+
   this->allocate_handle(descriptor_set, layout);
   this->create_descriptor(descriptor_set, layout);
   this->update_descriptor_set(descriptor_set, layout);

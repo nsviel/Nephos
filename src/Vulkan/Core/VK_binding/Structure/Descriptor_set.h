@@ -15,11 +15,7 @@ struct Descriptor_set{
   //---------------------------
 
   VkDescriptorSet handle = VK_NULL_HANDLE;
-
-  //Descriptor descriptions
-  std::vector<VkWriteDescriptorSet> vec_write_descriptor_set;
-  std::vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
-
+  
   //Associated descriptor
   std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Pushconst>> map_pushcst;
   std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Uniform>> map_uniform;

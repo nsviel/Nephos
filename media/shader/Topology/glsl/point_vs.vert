@@ -23,10 +23,8 @@ void main(){
 
   gl_Position = uniform_mvp.value * vec4(in_xyz, 1.0);
   //gl_Position = uniform_mvp_str.projection * uniform_mvp_str.view * uniform_mvp_str.model * vec4(in_xyz, 1.0);
-  gl_PointSize = 5;//uniform_size.value;
+  gl_PointSize = uniform_size.value;
   frag_rgb = in_rgb;
-
-    //debugPrintfEXT("%f", uniform_size.value);
 
   //---------------------------
 }

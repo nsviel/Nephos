@@ -78,7 +78,7 @@ void Scene::cmd_draw_point(vk::structure::Subpass& subpass){
 
 
 
-      //vk_uniform->update_uniform("point_size", vk_object->descriptor_set, data.topology.width);
+      vk_uniform->update_uniform("point_size", vk_object->descriptor_set, data.topology.width);
       vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set);
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }
