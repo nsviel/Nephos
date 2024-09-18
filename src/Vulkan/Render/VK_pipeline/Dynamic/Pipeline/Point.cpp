@@ -35,7 +35,7 @@ void Point::add_pipeline(vk::structure::Subpass& subpass){
 void Point::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.info.topology = utl::topology::TRIANGLE;
+  pipeline.info.topology = utl::topology::POINT;
   pipeline.info.vec_attribut.push_back(vk::attribut::XYZ);
   pipeline.info.vec_attribut.push_back(vk::attribut::UV);
 
@@ -45,7 +45,7 @@ void Point::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk::shader::structure::Info shader_info;
-  shader_info.name = "Dynamic_point";
+  shader_info.name = "dynamic_point";
   shader_info.path_glsl.vs = "../media/shader/Dynamic/glsl/cfd_vs.vert";
   shader_info.path_glsl.fs = "../media/shader/Dynamic/glsl/cfd_fs.frag";
   shader_info.path_spir.vs = "../media/shader/Dynamic/spir/cfd_vs.spv";

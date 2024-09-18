@@ -7,13 +7,17 @@ layout(location = 1) in vec3 in_rgb;
 layout(location = 0) out vec3 frag_rgb;
 
 //Uniform
-uniform mat4 model;
-uniform mat4 view;
-uniform mat4 projection;
-uniform float depth_scale; // Scale to convert depth values to meters
-uniform float depth_offset; // Offset for depth correction
-uniform int tex_depth_width; // Width of the point cloud (depth image width)
-uniform int tex_depth_height; // Height of the point cloud (depth image height)
+layout(binding = 0) uniform MVP{
+  mat4 model;
+  mat4 view;
+  mat4 projection;
+} uniform_mvp;
+layout(binding = 5) uniform param{
+  float depth_scale;
+  float depth_offset;
+  int tex_depth_width;
+  int tex_depth_height;
+};
 
 //Sampler
 layout(binding = 0) uniform sampler2D tex_depth;

@@ -9,19 +9,19 @@ layout(location = 1) in vec3 in_rgb;
 layout(location = 0) out vec3 frag_rgb;
 
 //Uniform
-layout(binding = 0) uniform MVP{
+layout(binding = 0) uniform mvp{
   mat4 model;
   mat4 view;
   mat4 projection;
-} uniform_mvp;
-layout(binding = 1) uniform SIZE{float value;} uniform_size;
+};
+layout(binding = 1) uniform width{float point_size;};
 
 
 void main(){
   //---------------------------
 
-  gl_Position = uniform_mvp.projection * uniform_mvp.view * uniform_mvp.model * vec4(in_xyz, 1.0);
-  gl_PointSize = uniform_size.value;
+  gl_Position = projection * view * model * vec4(in_xyz, 1.0);
+  gl_PointSize = point_size;
   frag_rgb = in_rgb;
 
   //---------------------------
