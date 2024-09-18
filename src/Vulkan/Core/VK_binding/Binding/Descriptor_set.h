@@ -21,7 +21,7 @@ public:
 public:
   //Main function
   void allocate_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
-  void bind_descriptor_set(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline, VkDescriptorSet set);
+  void bind_descriptor_set(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline, vk::descriptor::structure::Descriptor_set& descriptor_set);
   void update_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
   void clean_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set);
 

@@ -9,10 +9,11 @@ namespace vk::descriptor::structure{
 struct Descriptor_set{
   //---------------------------
 
-  std::vector<VkWriteDescriptorSet> vec_descriptor_write;
-  std::vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
   VkDescriptorSet handle = VK_NULL_HANDLE;
-  bool is_available = true;
+
+  //Associated descriptor descriptions
+  std::vector<VkWriteDescriptorSet> vec_write_descriptor_set;
+  std::vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
 
   //---------------------------
 };
