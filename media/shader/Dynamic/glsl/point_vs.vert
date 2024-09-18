@@ -1,8 +1,5 @@
 #version 450
 
-//Input
-layout(location = 1) in vec3 in_rgb;
-
 //Ouput
 layout(location = 0) out vec3 frag_rgb;
 
@@ -30,7 +27,7 @@ void main(){
 
   gl_Position = vec4(1.0, 1.0, 1.0, 1.0);
   gl_PointSize = point_size;
-  frag_rgb = in_rgb;
+  frag_rgb = vec3(1.0, 1.0, 1.0);
 
 /*
   // Convert pixel coordinates to normalized device coordinates
