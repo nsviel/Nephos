@@ -116,7 +116,10 @@ void Descriptor_set::update_descriptor_set(vk::descriptor::structure::Descriptor
   if(!descriptor_set.vec_write_descriptor_set.empty()){
     vkUpdateDescriptorSets(vk_struct->core.device.handle, static_cast<uint32_t>(descriptor_set.vec_write_descriptor_set.size()), descriptor_set.vec_write_descriptor_set.data(), 0, nullptr);
   }
-say("---end 2");
+
+  //Dunno why but need to wait few ms here
+  std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
   //---------------------------
 }
 
