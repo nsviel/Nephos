@@ -11,18 +11,18 @@ layout(location = 0) out vec3 frag_rgb;
 //Uniform
 layout(binding = 0) uniform MVP{mat4 value;} uniform_mvp;
 layout(binding = 1) uniform SIZE{float value;} uniform_size;
-/*layout(binding = 2) uniform MVP_STR{
+layout(binding = 2) uniform MVP_STR{
   mat4 model;
   mat4 view;
   mat4 projection;
-} uniform_mvp_str;*/
+} uniform_mvp_str;
 
 
 void main(){
   //---------------------------
 
   gl_Position = uniform_mvp.value * vec4(in_xyz, 1.0);
-  //gl_Position = uniform_mvp_str.projection * uniform_mvp_str.view * uniform_mvp_str.model * vec4(in_xyz, 1.0);
+  gl_Position = uniform_mvp_str.projection * uniform_mvp_str.view * uniform_mvp_str.model * vec4(in_xyz, 1.0);
   gl_PointSize = uniform_size.value;
   frag_rgb = in_rgb;
 

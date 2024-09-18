@@ -68,13 +68,13 @@ void Scene::cmd_draw_point(vk::structure::Subpass& subpass){
       vk_uniform->update_uniform("mvp", vk_object->descriptor_set, pose.mvp);
 
 
-/*
+
       vk::pipeline::topology::Structure machin;
       machin.model = glm::transpose(pose.model);
       machin.view = vk_struct->core.presentation.view;
       machin.projection = vk_struct->core.presentation.projection;
       vk_uniform->update_uniform("mvp_str", vk_object->descriptor_set, machin);
-*/
+
 
 
 
