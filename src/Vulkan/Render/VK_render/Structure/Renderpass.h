@@ -4,9 +4,9 @@
 #include <vector>
 
 
-namespace vk::render::renderpass{
+namespace vk::render{
 
-struct Structure{
+struct Renderpass{
   //---------------------------
 
   std::vector<vk::structure::Renderpass*> vec_renderpass;

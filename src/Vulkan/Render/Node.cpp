@@ -12,7 +12,7 @@ Node::Node(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_drawer = new vk::draw::Graphical(vk_struct);
-  this->vk_renderpass = new vk::render::Renderpass(vk_struct);
+  this->vk_render = new vk::render::Render(vk_struct);
 
   //---------------------------
 }
@@ -22,7 +22,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  vk_renderpass->init();
+  vk_render->init();
 
   //---------------------------
 }

@@ -3,9 +3,9 @@
 #include <Vulkan/Render/VK_renderpass/Postprocess/Descriptor/EDL.h>
 
 
-namespace vk::render::pipeline{
+namespace vk::render{
 
-struct Structure{
+struct Pipeline{
   //---------------------------
 
   vk::postprocess::EDL edl;

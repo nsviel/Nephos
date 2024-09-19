@@ -8,12 +8,12 @@ namespace vk::present{class Renderpass;}
 
 namespace vk::render{
 
-class Renderpass
+class Render
 {
 public:
   //Constructor / Destructor
-  Renderpass(vk::Structure* vk_struct);
-  ~Renderpass();
+  Render(vk::Structure* vk_struct);
+  ~Render();
 
 public:
   //Main function
