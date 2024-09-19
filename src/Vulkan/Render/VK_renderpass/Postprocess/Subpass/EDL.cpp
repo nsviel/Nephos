@@ -43,37 +43,39 @@ void EDL::create_subpass(vk::structure::Renderpass& renderpass){
 void EDL::draw_edl(vk::structure::Subpass& subpass){
   //---------------------------
 
-  this->update_binding(subpass);
+  this->bind_pipeline(subpass);
+  this->update_descriptor(subpass);
   this->draw_canvas(subpass);
 
   //---------------------------
 }
 
 //Subfunction
-void EDL::update_binding(vk::structure::Subpass& subpass){
+void EDL::bind_pipeline(vk::structure::Subpass& subpass){
   //---------------------------
 
-  //Bind pipeline
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
 
+  //---------------------------
+}
+void EDL::update_descriptor(vk::structure::Subpass& subpass){
+  //---------------------------
 
-
+  //Update samplers
   vk::structure::Framebuffer& frame_scene = vk_struct->render.renderpass.geometry.framebuffer;
-
   for(auto& [name, pipeline] : subpass.map_pipeline){
     vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.color);
     vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.depth);
   }
 
-  //vk_shader->update_shader();
+  //Update parameters
   vk::pipeline::edl::Structure& edl_struct = vk_struct->render.pipeline.edl;
   edl_struct.tex_width = vk_struct->window.window.dimension.x;
   edl_struct.tex_height = vk_struct->window.window.dimension.y;
-
   vk_uniform->update_uniform("EDL_param", pipeline->descriptor.descriptor_set, edl_struct);
 
-
+  //Bind descriptor set
   vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, pipeline->descriptor.descriptor_set);
 
   //---------------------------

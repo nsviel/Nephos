@@ -34,7 +34,8 @@ public:
   void draw_edl(vk::structure::Subpass& subpass);
 
   //Subfunction
-  void update_binding(vk::structure::Subpass& subpass);
+  void bind_pipeline(vk::structure::Subpass& subpass);
+  void update_descriptor(vk::structure::Subpass& subpass);
   void draw_canvas(vk::structure::Subpass& subpass);
 
 private:
