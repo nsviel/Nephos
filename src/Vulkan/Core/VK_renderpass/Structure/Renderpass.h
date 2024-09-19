@@ -12,12 +12,25 @@ namespace vk::structure{
 struct Attachment_set{
   //---------------------------
 
+  //Attachment
   std::vector<vk::structure::Attachment> vec_color;
   std::vector<vk::structure::Attachment> vec_color_resolve;
+  vk::structure::Attachment depth;
+
+  //Description
+  vk::renderpass::Target target = vk::renderpass::SHADER;
   std::vector<VkAttachmentReference> vec_color_ref;
   std::vector<VkAttachmentReference> vec_color_resolve_ref;
-  vk::structure::Attachment depth;
-  vk::renderpass::Target target = vk::renderpass::SHADER;
+  std::vector<VkAttachmentDescription> vec_description;
+
+  //---------------------------
+};
+
+struct Subpass_set{
+  //---------------------------
+
+  std::vector<VkSubpassDescription> vec_description;
+  std::vector<VkSubpassDependency> vec_dependency;
 
   //---------------------------
 };
@@ -32,16 +45,12 @@ struct Renderpass{
   //Renderpass
   VkRenderPass handle = VK_NULL_HANDLE;
   VkPipelineStageFlags pipeline_flag = 0;
-  vk::structure::Framebuffer framebuffer;
   std::shared_ptr<vk::structure::Command_buffer> command_buffer;
-
-  //Subpass
   std::vector<vk::structure::Subpass*> vec_subpass;
-  std::vector<VkSubpassDescription> vec_description;
-  std::vector<VkSubpassDependency> vec_dependency;
-  std::vector<VkAttachmentDescription> vec_attachment;
 
-  //Attachment
+  //Structure
+  vk::structure::Framebuffer framebuffer;
+  vk::structure::Subpass_set subpass;
   vk::structure::Attachment_set attachment;
 
   //---------------------------

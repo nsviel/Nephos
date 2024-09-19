@@ -91,21 +91,8 @@ void Renderpass::subpass_description(vk::structure::Renderpass& renderpass){
   //Get all related subpass descriptions, attachments and dependencies
   for(auto& subpass : renderpass.vec_subpass){
     // Add subpass description & dependency
-    renderpass.vec_description.push_back(subpass->description);
-    renderpass.vec_dependency.push_back(subpass->dependency);
-
-    // Add color attachments
-    for(int j=0; j<renderpass.attachment.vec_color.size(); j++){
-      renderpass.vec_attachment.push_back(renderpass.attachment.vec_color[j].description);
-    }
-
-    // Add color resolve attachments
-    for(int j=0; j<renderpass.attachment.vec_color_resolve.size(); j++){
-      renderpass.vec_attachment.push_back(renderpass.attachment.vec_color_resolve[j].description);
-    }
-
-    // Add depth attachment
-    renderpass.vec_attachment.push_back(renderpass.attachment.depth.description);
+    renderpass.subpass.vec_description.push_back(subpass->description);
+    renderpass.subpass.vec_dependency.push_back(subpass->dependency);
   }
 
   //---------------------------
@@ -127,12 +114,12 @@ void Renderpass::create_renderpass(vk::structure::Renderpass& renderpass){
   //Create renderpass
   VkRenderPassCreateInfo renderpass_info{};
   renderpass_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
-  renderpass_info.attachmentCount = renderpass.vec_attachment.size();
-  renderpass_info.pAttachments = renderpass.vec_attachment.data();
-  renderpass_info.subpassCount = renderpass.vec_description.size();
-  renderpass_info.pSubpasses = renderpass.vec_description.data();
-  renderpass_info.dependencyCount = renderpass.vec_dependency.size();
-  renderpass_info.pDependencies = renderpass.vec_dependency.data();
+  renderpass_info.attachmentCount = renderpass.attachment.vec_description.size();
+  renderpass_info.pAttachments = renderpass.attachment.vec_description.data();
+  renderpass_info.subpassCount = renderpass.subpass.vec_description.size();
+  renderpass_info.pSubpasses = renderpass.subpass.vec_description.data();
+  renderpass_info.dependencyCount = renderpass.subpass.vec_dependency.size();
+  renderpass_info.pDependencies = renderpass.subpass.vec_dependency.data();
 
   //Render pass creation
   VkResult result = vkCreateRenderPass(vk_struct->core.device.handle, &renderpass_info, nullptr, &renderpass.handle);

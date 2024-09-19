@@ -29,6 +29,7 @@ void Attachment::attachment_shader(vk::structure::Renderpass& renderpass){
   this->color_reference(color);
   renderpass.attachment.vec_color.push_back(color);
   renderpass.attachment.vec_color_ref.push_back(color.reference);
+  renderpass.attachment.vec_description.push_back(color.description);
 
   // Depth
   vk::structure::Attachment depth;
@@ -37,6 +38,7 @@ void Attachment::attachment_shader(vk::structure::Renderpass& renderpass){
   this->depth_description(depth);
   this->depth_reference(depth);
   renderpass.attachment.depth = depth;
+  renderpass.attachment.vec_description.push_back(depth.description);
 
   // Color resolver
   vk::structure::Attachment color_resolve;
@@ -60,6 +62,7 @@ void Attachment::attachment_transfert(vk::structure::Renderpass& renderpass){
   this->color_reference(color);
   renderpass.attachment.vec_color.push_back(color);
   renderpass.attachment.vec_color_ref.push_back(color.reference);
+  renderpass.attachment.vec_description.push_back(color.description);
 
   // Depth
   vk::structure::Attachment depth;
@@ -68,6 +71,7 @@ void Attachment::attachment_transfert(vk::structure::Renderpass& renderpass){
   this->depth_description(depth);
   this->depth_reference(depth);
   renderpass.attachment.depth = depth;
+  renderpass.attachment.vec_description.push_back(depth.description);
 
   //---------------------------
 }
@@ -82,6 +86,7 @@ void Attachment::attachment_presentation(vk::structure::Renderpass& renderpass){
   this->color_reference(color);
   renderpass.attachment.vec_color.push_back(color);
   renderpass.attachment.vec_color_ref.push_back(color.reference);
+  renderpass.attachment.vec_description.push_back(color.description);
 
   // Depth
   vk::structure::Attachment depth;
@@ -90,7 +95,8 @@ void Attachment::attachment_presentation(vk::structure::Renderpass& renderpass){
   this->depth_description(depth);
   this->depth_reference(depth);
   renderpass.attachment.depth = depth;
-
+  renderpass.attachment.vec_description.push_back(depth.description);
+  
   //---------------------------
 }
 
