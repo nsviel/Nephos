@@ -12,6 +12,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_subpass = new vk::render::geometry::Subpass(vk_struct);
   this->vk_point = new vk::render::geometry::Point(vk_struct);
+  this->vk_line = new vk::render::geometry::Line(vk_struct);
 
   //---------------------------
 }
@@ -25,6 +26,7 @@ void Renderpass::init(){
 
   vk_subpass->create_subpass(renderpass);
   vk_point->create_subpass(renderpass);
+  vk_line->create_subpass(renderpass);
 
   //---------------------------
   vk_struct->render.renderpass.vec_renderpass.push_back(&renderpass);

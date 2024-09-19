@@ -45,73 +45,12 @@ void Subpass::draw_subpass(vk::structure::Subpass& subpass){
   //---------------------------
 
   vk_viewport->cmd_viewport(subpass.command_buffer->handle);
-  this->draw_pipeline_point(subpass);
-  this->draw_pipeline_line(subpass);
   this->draw_pipeline_triangle(subpass);
 
   //---------------------------
 }
 
 //Subfunction
-void Subpass::draw_pipeline_point(vk::structure::Subpass& subpass){
-  //---------------------------
-/*
-  //Bind pipeline
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["point"];
-  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
-
-  //Bind and draw vertex buffers
-  for(auto& vk_object : vk_struct->core.data.list_vk_object){
-    utl::base::Data& data = *vk_object->data;
-    utl::base::Pose& pose = *vk_object->pose;
-
-    if(check_data(data, utl::topology::POINT)){
-
-      vk::pipeline::topology::MVP machin;
-      machin.model = glm::transpose(pose.model);
-      machin.view = vk_struct->core.presentation.view;
-      machin.projection = vk_struct->core.presentation.projection;
-      vk_uniform->update_uniform("mvp", vk_object->descriptor_set, machin);
-
-
-
-
-      vk_uniform->update_uniform("point_size", vk_object->descriptor_set, data.topology.width);
-      vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set);
-      vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
-    }
-  }
-*/
-  //---------------------------
-}
-void Subpass::draw_pipeline_line(vk::structure::Subpass& subpass){
-  //---------------------------
-
-  //Bind pipeline
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["line"];
-  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
-
-  //Bind and draw vertex buffers
-  for(auto& vk_object : vk_struct->core.data.list_vk_object){
-    utl::base::Data& data = *vk_object->data;
-    utl::base::Pose& pose = *vk_object->pose;
-
-    if(check_data(data, utl::topology::LINE)){
-
-      vk::pipeline::topology::MVP machin;
-      machin.model = glm::transpose(pose.model);
-      machin.view = vk_struct->core.presentation.view;
-      machin.projection = vk_struct->core.presentation.projection;
-      vk_uniform->update_uniform("mvp", vk_object->descriptor_set, machin);
-
-      vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set);
-      vk_drawer->cmd_line_with(subpass.command_buffer->handle, *vk_object);
-      vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
-    }
-  }
-
-  //---------------------------
-}
 void Subpass::draw_pipeline_triangle(vk::structure::Subpass& subpass){
   //---------------------------
 
