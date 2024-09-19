@@ -14,12 +14,12 @@ namespace utl::base{class Data;}
 
 namespace vk::render::geometry{
 
-class Scene
+class Subpass
 {
 public:
   //Constructor / Destructor
-  Scene(vk::Structure* vk_struct);
-  ~Scene();
+  Subpass(vk::Structure* vk_struct);
+  ~Subpass();
 
 public:
   //Main function
@@ -27,9 +27,10 @@ public:
   void draw_subpass(vk::structure::Subpass& subpass);
 
   //Subfunction
-  void cmd_draw_point(vk::structure::Subpass& subpass);
-  void cmd_draw_line(vk::structure::Subpass& subpass);
-  void cmd_draw_triangle(vk::structure::Subpass& subpass);
+  void draw_pipeline_point(vk::structure::Subpass& subpass);
+  void draw_pipeline_line(vk::structure::Subpass& subpass);
+  void draw_pipeline_triangle(vk::structure::Subpass& subpass);
+  void draw_pipeline_dynamic(vk::structure::Subpass& subpass);
   bool check_data(utl::base::Data& data, int typology);
 
 private:

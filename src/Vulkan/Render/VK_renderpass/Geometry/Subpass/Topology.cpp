@@ -1,4 +1,4 @@
-#include "Scene.h"
+#include "Topology.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::render::geometry{
 
 //Constructor / Destructor
-Scene::Scene(vk::Structure* vk_struct){
+Topology::Topology(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -20,10 +20,10 @@ Scene::Scene(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Scene::~Scene(){}
+Topology::~Topology(){}
 
 //Main function
-void Scene::create_subpass(vk::structure::Renderpass& renderpass){
+void Topology::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   //Set subpass object
@@ -42,19 +42,19 @@ void Scene::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
 }
-void Scene::draw_subpass(vk::structure::Subpass& subpass){
+void Topology::draw_subpass(vk::structure::Subpass& subpass){
   //---------------------------
 
   vk_viewport->cmd_viewport(subpass.command_buffer->handle);
-  this->cmd_draw_point(subpass);
-  this->cmd_draw_line(subpass);
-  this->cmd_draw_triangle(subpass);
+  this->draw_pipeline_point(subpass);
+  this->draw_pipeline_line(subpass);
+  this->draw_pipeline_triangle(subpass);
 
   //---------------------------
 }
 
 //Subfunction
-void Scene::cmd_draw_point(vk::structure::Subpass& subpass){
+void Topology::draw_pipeline_point(vk::structure::Subpass& subpass){
   //---------------------------
 
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["point"];
@@ -84,7 +84,7 @@ void Scene::cmd_draw_point(vk::structure::Subpass& subpass){
 
   //---------------------------
 }
-void Scene::cmd_draw_line(vk::structure::Subpass& subpass){
+void Topology::draw_pipeline_line(vk::structure::Subpass& subpass){
   //---------------------------
 
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["line"];
@@ -111,7 +111,7 @@ void Scene::cmd_draw_line(vk::structure::Subpass& subpass){
 
   //---------------------------
 }
-void Scene::cmd_draw_triangle(vk::structure::Subpass& subpass){
+void Topology::draw_pipeline_triangle(vk::structure::Subpass& subpass){
   //---------------------------
 
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["triangle"];
@@ -137,7 +137,33 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass& subpass){
 
   //---------------------------
 }
-bool Scene::check_data(utl::base::Data& data, int typology){
+void Topology::draw_pipeline_dynamic(vk::structure::Subpass& subpass){
+  //---------------------------
+
+  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["dynamic_point"];
+  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
+
+  //Bind and draw vertex buffers
+  for(auto& vk_object : vk_struct->core.data.list_vk_object){
+    utl::base::Data& data = *vk_object->data;
+    utl::base::Pose& pose = *vk_object->pose;
+
+    if(check_data(data, utl::topology::DYNAMIC_POINT)){
+
+      vk::pipeline::topology::MVP machin;
+      machin.model = glm::transpose(pose.model);
+      machin.view = vk_struct->core.presentation.view;
+      machin.projection = vk_struct->core.presentation.projection;
+      vk_uniform->update_uniform("mvp", vk_object->descriptor_set, machin);
+
+      vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set);
+      vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
+    }
+  }
+
+  //---------------------------
+}
+bool Topology::check_data(utl::base::Data& data, int typology){
   //---------------------------
 
   if(data.topology.type != typology) return false;
