@@ -44,7 +44,6 @@ struct Renderpass{
 
   //Renderpass
   VkRenderPass handle = VK_NULL_HANDLE;
-  VkPipelineStageFlags pipeline_flag = 0;
   std::shared_ptr<vk::structure::Command_buffer> command_buffer;
   std::vector<vk::structure::Subpass*> vec_subpass;
 

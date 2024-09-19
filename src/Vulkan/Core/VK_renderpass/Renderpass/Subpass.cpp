@@ -50,8 +50,8 @@ void Subpass::create_subpass_description(vk::structure::Renderpass& renderpass, 
   subpass_dependency.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT;
 
   //---------------------------
-  subpass.description = subpass_description;
-  subpass.dependency = subpass_dependency;
+  renderpass.subpass.vec_description.push_back(subpass_description);
+  renderpass.subpass.vec_dependency.push_back(subpass_dependency);
 }
 
 }

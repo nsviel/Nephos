@@ -54,7 +54,6 @@ void Renderpass::init_renderpass(vk::structure::Renderpass& renderpass){
 
   this->attachment_renderpass(renderpass);
   vk_subpass->create_subpass(renderpass);
-  this->subpass_description(renderpass);
   this->create_renderpass(renderpass);
   vk_pipeline->create_pipeline(renderpass);
   vk_framebuffer->create_framebuffer(renderpass);
@@ -81,18 +80,6 @@ void Renderpass::attachment_renderpass(vk::structure::Renderpass& renderpass){
       std::cout<<"[error] renderpass attachment target not recognized"<<std::endl;
       return;
     }
-  }
-
-  //---------------------------
-}
-void Renderpass::subpass_description(vk::structure::Renderpass& renderpass){
-  //---------------------------
-
-  //Get all related subpass descriptions, attachments and dependencies
-  for(auto& subpass : renderpass.vec_subpass){
-    // Add subpass description & dependency
-    renderpass.subpass.vec_description.push_back(subpass->description);
-    renderpass.subpass.vec_dependency.push_back(subpass->dependency);
   }
 
   //---------------------------
@@ -133,8 +120,8 @@ void Renderpass::clean_renderpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   vk_framebuffer->clean_framebuffer(renderpass);
-  vkDestroyRenderPass(vk_struct->core.device.handle, renderpass.handle, nullptr);
   vk_pipeline->clean_pipeline(renderpass);
+  vkDestroyRenderPass(vk_struct->core.device.handle, renderpass.handle, nullptr);
 
   //---------------------------
 }

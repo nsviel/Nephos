@@ -23,8 +23,6 @@ struct Subpass{
   std::function<void(Subpass* subpass)> update_sampler = [](Subpass* subpass){};
 
   //Subpass info
-  VkSubpassDescription description = {};
-  VkSubpassDependency dependency = {};
   std::shared_ptr<vk::structure::Command_buffer> command_buffer;
   int source = -1;
   int index = -1;

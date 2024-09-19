@@ -11,6 +11,7 @@ struct Framebuffer{
 
   //Main object
   VkFramebuffer handle = VK_NULL_HANDLE;
+  std::vector<VkImageView> vec_attachment;
 
   //Attachment
   vk::structure::Image color;
@@ -18,7 +19,6 @@ struct Framebuffer{
   vk::structure::Image depth;
   vk::structure::Image location;
   vk::structure::Image normal;
-  std::vector<VkImageView> vec_attachment;
 
   //---------------------------
 };
