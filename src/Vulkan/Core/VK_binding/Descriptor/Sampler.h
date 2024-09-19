@@ -25,6 +25,7 @@ public:
 public:
   //Main function
   void create_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor);
+  void actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set);
   void actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::structure::Image* image);
 
   //Subfunction

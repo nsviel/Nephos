@@ -29,6 +29,31 @@ void Sampler::create_sampler(vk::descriptor::structure::Descriptor_set& descript
 
   //---------------------------
 }
+void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set){
+  //---------------------------
+
+  for(auto& [name, sampler] : descriptor_set.map_sampler){
+    //Descriptor image info
+    VkDescriptorImageInfo image_info = {};
+    image_info.imageLayout = sampler->image->layout;
+    image_info.imageView = sampler->image->view;
+    image_info.sampler = sampler->image->sampler;
+
+    //Write descriptor info
+    VkWriteDescriptorSet write_sampler = {};
+    write_sampler.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+    write_sampler.dstSet = descriptor_set.handle;
+    write_sampler.dstBinding = sampler->binding;
+    write_sampler.dstArrayElement = 0;
+    write_sampler.descriptorType = sampler->type;
+    write_sampler.descriptorCount = 1;
+    write_sampler.pImageInfo = &image_info;
+
+    vkUpdateDescriptorSets(vk_struct->core.device.handle, 1, &write_sampler, 0, nullptr);
+  }
+
+  //---------------------------
+}
 void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::structure::Image* image){
   //---------------------------
 
