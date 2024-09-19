@@ -1,13 +1,13 @@
 #pragma once
 
 namespace vk{class Structure;}
-namespace vk::subpass::topology{class Point;}
-namespace vk::subpass::topology{class Line;}
-namespace vk::subpass::topology{class Triangle;}
-namespace vk::subpass::dynamic{class Point;}
+namespace vk::geometry::subpass::topology{class Point;}
+namespace vk::geometry::subpass::topology{class Line;}
+namespace vk::geometry::subpass::topology{class Triangle;}
+namespace vk::geometry::subpass::dynamic{class Point;}
 
 
-namespace vk::render::geometry{
+namespace vk::geometry{
 
 class Renderpass
 {
@@ -22,10 +22,10 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::subpass::topology::Point* vk_point;
-  vk::subpass::topology::Line* vk_line;
-  vk::subpass::topology::Triangle* vk_triangle;
-  vk::subpass::dynamic::Point* vk_dynamic_point;
+  vk::geometry::subpass::topology::Point* vk_point;
+  vk::geometry::subpass::topology::Line* vk_line;
+  vk::geometry::subpass::topology::Triangle* vk_triangle;
+  vk::geometry::subpass::dynamic::Point* vk_dynamic_point;
 };
 
 }

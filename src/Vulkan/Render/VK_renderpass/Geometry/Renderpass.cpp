@@ -3,17 +3,17 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::render::geometry{
+namespace vk::geometry{
 
 //Constructor / Destructor
 Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_point = new vk::subpass::topology::Point(vk_struct);
-  this->vk_line = new vk::subpass::topology::Line(vk_struct);
-  this->vk_triangle = new vk::subpass::topology::Triangle(vk_struct);
-  this->vk_dynamic_point = new vk::subpass::dynamic::Point(vk_struct);
+  this->vk_point = new vk::geometry::subpass::topology::Point(vk_struct);
+  this->vk_line = new vk::geometry::subpass::topology::Line(vk_struct);
+  this->vk_triangle = new vk::geometry::subpass::topology::Triangle(vk_struct);
+  this->vk_dynamic_point = new vk::geometry::subpass::dynamic::Point(vk_struct);
 
   //---------------------------
 }

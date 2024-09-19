@@ -7,7 +7,7 @@ namespace vk::structure{class Pipeline;}
 namespace vk::pipeline{class Pipeline;}
 
 
-namespace vk::pipeline::topology{
+namespace vk::geometry::pipeline::topology{
 
 class Triangle
 {

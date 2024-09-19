@@ -14,7 +14,7 @@ namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Object;}
 
 
-namespace vk::subpass::dynamic{
+namespace vk::geometry::subpass::dynamic{
 
 class Point
 {

@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::pipeline::topology{
+namespace vk::geometry::pipeline::topology{
 
 //Constructor / Destructor
 Point::Point(vk::Structure* vk_struct){
@@ -61,8 +61,8 @@ void Point::set_shader(vk::structure::Pipeline& pipeline){
 void Point::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::geometry::uniform_mvp());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::geometry::uniform_point_size());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::uniform_mvp());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::uniform_point_size());
 
   //---------------------------
 }

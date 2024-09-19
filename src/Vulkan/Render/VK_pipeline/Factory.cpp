@@ -9,10 +9,10 @@ namespace vk::render::pipeline{
 Factory::Factory(vk::Structure* vk_struct){
   //---------------------------
 
-  this->pipe_line = new vk::pipeline::topology::Line(vk_struct);
-  this->pipe_point = new vk::pipeline::topology::Point(vk_struct);
-  this->pipe_triangle = new vk::pipeline::topology::Triangle(vk_struct);
-  this->pipe_dynamic_point = new vk::pipeline::dyn::Point(vk_struct);
+  this->pipe_line = new vk::geometry::pipeline::topology::Line(vk_struct);
+  this->pipe_point = new vk::geometry::pipeline::topology::Point(vk_struct);
+  this->pipe_triangle = new vk::geometry::pipeline::topology::Triangle(vk_struct);
+  this->pipe_dynamic_point = new vk::geometry::pipeline::dynamic::Point(vk_struct);
 
   //---------------------------
 }

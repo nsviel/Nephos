@@ -6,7 +6,7 @@
 namespace vk::descriptor::structure{class Descriptor;}
 
 
-namespace vk::pipeline::geometry{
+namespace vk::geometry{
 
 //Uniform
 vk::descriptor::structure::Descriptor uniform_mvp();

@@ -2,7 +2,7 @@
 
 namespace vk{class Structure;}
 
-namespace vk::pipeline::topology{class Triangle;}
+namespace vk::geometry::pipeline::topology{class Triangle;}
 namespace vk::pipeline{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::descriptor{class Descriptor_set;}
@@ -14,7 +14,7 @@ namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Object;}
 
 
-namespace vk::subpass::topology{
+namespace vk::geometry::subpass::topology{
 
 class Triangle
 {
@@ -37,7 +37,7 @@ private:
 
 private:
   vk::Structure* vk_struct;
-  vk::pipeline::topology::Triangle* vk_triangle;
+  vk::geometry::pipeline::topology::Triangle* vk_triangle;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::descriptor::Uniform* vk_uniform;
   vk::draw::Drawer* vk_drawer;

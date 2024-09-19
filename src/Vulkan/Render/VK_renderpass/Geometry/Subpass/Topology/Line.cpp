@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::subpass::topology{
+namespace vk::geometry::subpass::topology{
 
 //Constructor / Destructor
 Line::Line(vk::Structure* vk_struct){
@@ -16,7 +16,7 @@ Line::Line(vk::Structure* vk_struct){
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_drawer = new vk::draw::Drawer(vk_struct);
-  this->vk_line = new vk::pipeline::topology::Line(vk_struct);
+  this->vk_line = new vk::geometry::pipeline::topology::Line(vk_struct);
 
   //---------------------------
 }
@@ -68,7 +68,7 @@ void Line::bind_descriptor(vk::structure::Subpass& subpass, vk::structure::Objec
   //---------------------------
 
   //MVP
-  vk::pipeline::geometry::MVP machin;
+  vk::geometry::MVP machin;
   machin.model = glm::transpose(pose.model);
   machin.view = vk_struct->core.presentation.view;
   machin.projection = vk_struct->core.presentation.projection;

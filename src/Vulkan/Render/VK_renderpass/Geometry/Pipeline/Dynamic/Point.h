@@ -7,7 +7,7 @@ namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 
 
-namespace vk::pipeline::dyn{
+namespace vk::geometry::pipeline::dynamic{
 
 class Point
 {
