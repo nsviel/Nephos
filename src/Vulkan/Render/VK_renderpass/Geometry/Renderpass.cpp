@@ -24,7 +24,7 @@ void Renderpass::init(){
   //---------------------------
 
   vk_subpass->create_subpass(renderpass);
-  //vk_point->create_subpass(renderpass);
+  vk_point->create_subpass(renderpass);
 
   //---------------------------
   vk_struct->render.renderpass.vec_renderpass.push_back(&renderpass);

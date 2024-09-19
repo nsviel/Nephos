@@ -25,10 +25,10 @@ public:
   //Subfunction
   void init_renderpass(vk::structure::Renderpass& renderpass);
   void attachment_renderpass(vk::structure::Renderpass& renderpass);
-  void subpass_sampler();
   void create_renderpass(vk::structure::Renderpass& renderpass);
   void clean_renderpass(vk::structure::Renderpass& renderpass);
-
+  void actualize_sampler();
+  
 private:
   vk::Structure* vk_struct;
   vk::pipeline::Pipeline* vk_pipeline;

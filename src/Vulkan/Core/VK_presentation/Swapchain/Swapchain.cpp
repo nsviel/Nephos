@@ -74,7 +74,7 @@ void Swapchain::recreate_swapchain(){
   vk_imgui->resize_event();
   vk_semaphore->reset_pool();
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
-  vk_renderpass->subpass_sampler();
+  vk_renderpass->actualize_sampler();
 
   //---------------------------
 }

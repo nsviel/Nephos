@@ -34,7 +34,7 @@ void Renderpass::init(){
     this->init_renderpass(*renderpass);
   }
 
-  this->subpass_sampler();
+  this->actualize_sampler();
 
   //---------------------------
 }
@@ -84,17 +84,6 @@ void Renderpass::attachment_renderpass(vk::structure::Renderpass& renderpass){
 
   //---------------------------
 }
-void Renderpass::subpass_sampler(){
-  //---------------------------
-
-  for(auto& renderpass : vk_struct->render.renderpass.vec_renderpass){
-    for(auto& subpass : renderpass->vec_subpass){
-      subpass->update_sampler(subpass);
-    }
-  }
-
-  //---------------------------
-}
 void Renderpass::create_renderpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
@@ -122,6 +111,17 @@ void Renderpass::clean_renderpass(vk::structure::Renderpass& renderpass){
   vk_framebuffer->clean_framebuffer(renderpass);
   vk_pipeline->clean_pipeline(renderpass);
   vkDestroyRenderPass(vk_struct->core.device.handle, renderpass.handle, nullptr);
+
+  //---------------------------
+}
+void Renderpass::actualize_sampler(){
+  //---------------------------
+
+  for(auto& renderpass : vk_struct->render.renderpass.vec_renderpass){
+    for(auto& subpass : renderpass->vec_subpass){
+      subpass->update_sampler(subpass);
+    }
+  }
 
   //---------------------------
 }
