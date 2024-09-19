@@ -29,7 +29,7 @@ void Sampler::create_sampler(vk::descriptor::structure::Descriptor_set& descript
 
   //---------------------------
 }
-void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout, vk::structure::Image* image){
+void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::structure::Image* image){
   //---------------------------
 
   auto sampler = query_sampler(descriptor_set, image->name);

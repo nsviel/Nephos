@@ -52,21 +52,22 @@ void EDL::draw_edl(vk::structure::Subpass& subpass){
 
 //Subfunction
 void EDL::bind_pipeline(vk::structure::Subpass& subpass){
+  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   //---------------------------
 
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
 
   //---------------------------
 }
 void EDL::update_descriptor(vk::structure::Subpass& subpass){
+  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   //---------------------------
 
   //Update samplers
-  vk::structure::Framebuffer& frame_scene = vk_struct->render.renderpass.geometry.framebuffer;
+  vk::structure::Framebuffer& framebuffer = vk_struct->render.renderpass.geometry.framebuffer;
   for(auto& [name, pipeline] : subpass.map_pipeline){
-    vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.color);
-    vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.depth);
+    vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, &framebuffer.color);
+    vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, &framebuffer.depth);
   }
 
   //Update parameters
