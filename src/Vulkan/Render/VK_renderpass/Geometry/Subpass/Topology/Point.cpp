@@ -16,7 +16,7 @@ Point::Point(vk::Structure* vk_struct){
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_drawer = new vk::draw::Drawer(vk_struct);
-  this->vk_factory = new vk::render::pipeline::Factory(vk_struct);
+  this->vk_point = new vk::pipeline::topology::Point(vk_struct);
 
   //---------------------------
 }
@@ -33,7 +33,7 @@ void Point::create_subpass(vk::structure::Renderpass& renderpass){
   subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
 
   //Subpass pipeline
-  vk_factory->add_pipeline_point(*subpass);
+  vk_point->add_pipeline(*subpass);
 
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
