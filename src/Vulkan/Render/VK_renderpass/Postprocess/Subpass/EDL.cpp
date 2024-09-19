@@ -78,8 +78,6 @@ void EDL::update_descriptor(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   //---------------------------
 
-
-
   //Update parameters
   vk::pipeline::edl::Structure& edl_struct = vk_struct->render.pipeline.edl;
   edl_struct.tex_width = vk_struct->window.window.dimension.x;
