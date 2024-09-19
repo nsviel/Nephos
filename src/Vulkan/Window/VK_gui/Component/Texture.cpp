@@ -33,7 +33,7 @@ void Texture::update_render_texture(){
   if(vk_struct->param.headless) return;
   //---------------------------
 
-  vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.edl;
+  vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.postprocess;
   vk::structure::Image* image = &renderpass.framebuffer.color;
 
   vk_struct->window.gui.descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);

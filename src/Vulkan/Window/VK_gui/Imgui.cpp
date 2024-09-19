@@ -65,7 +65,7 @@ void Imgui::create_context(){
 
   // Setup Platform/Renderer bindings
   if(!vk_struct->param.headless){
-    vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.onscreen;
+    vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.presentation;
     ImGui_ImplGlfw_InitForVulkan(vk_struct->window.window.handle, true);
     ImGui_ImplVulkan_InitInfo init_info = {};
     init_info.Instance = vk_struct->core.instance.handle;

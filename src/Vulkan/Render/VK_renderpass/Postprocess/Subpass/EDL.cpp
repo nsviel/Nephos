@@ -27,12 +27,14 @@ EDL::~EDL(){}
 void EDL::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
+  //Subpass object
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->index = 0;
   subpass->source = VK_SUBPASS_EXTERNAL;
   subpass->target = vk::renderpass::SHADER;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_edl(*subpass);};
 
+  //Subpass pipelines
   vk_factory->add_pipeline_edl(*subpass);
 
   //---------------------------
@@ -55,9 +57,9 @@ void EDL::update_binding(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
 
-  vk::pipeline::edl::Structure& edl_struct = vk_struct->render.pipeline.edl;
-  vk::structure::Renderpass* renderpass_scene = vk_struct->render.renderpass.vec_renderpass[0];
-  vk::structure::Framebuffer& frame_scene = renderpass_scene->framebuffer;
+
+
+  vk::structure::Framebuffer& frame_scene = vk_struct->render.renderpass.geometry.framebuffer;
 
   for(auto& [name, pipeline] : subpass.map_pipeline){
     vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.color);
@@ -65,6 +67,7 @@ void EDL::update_binding(vk::structure::Subpass& subpass){
   }
 
   //vk_shader->update_shader();
+  vk::pipeline::edl::Structure& edl_struct = vk_struct->render.pipeline.edl;
   edl_struct.tex_width = vk_struct->window.window.dimension.x;
   edl_struct.tex_height = vk_struct->window.window.dimension.y;
 

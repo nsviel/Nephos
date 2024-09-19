@@ -10,9 +10,9 @@ struct Renderpass{
   //---------------------------
 
   std::vector<vk::structure::Renderpass*> vec_renderpass;
-  vk::structure::Renderpass onscreen;
-  vk::structure::Renderpass offscreen;
-  vk::structure::Renderpass edl;
+  vk::structure::Renderpass geometry;
+  vk::structure::Renderpass postprocess;
+  vk::structure::Renderpass presentation;
 
   //---------------------------
 };

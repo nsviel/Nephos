@@ -26,14 +26,14 @@ Subpass::~Subpass(){}
 void Subpass::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
-  //Set subpass object
+  //Subpass object
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->index = 0;
   subpass->source = VK_SUBPASS_EXTERNAL;
   subpass->target = vk::renderpass::SHADER;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
 
-  //Set pipeline
+  //Subpass pipeline
   vk_factory->add_pipeline_line(*subpass);
   vk_factory->add_pipeline_point(*subpass);
   vk_factory->add_pipeline_triangle(*subpass);

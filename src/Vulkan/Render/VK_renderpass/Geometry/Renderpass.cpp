@@ -18,7 +18,7 @@ Renderpass::~Renderpass(){}
 
 //Main function
 void Renderpass::init(){
-  vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.offscreen;
+  vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.geometry;
   //---------------------------
 
   vk_subpass->create_subpass(renderpass);
