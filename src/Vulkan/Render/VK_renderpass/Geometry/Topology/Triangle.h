@@ -8,9 +8,6 @@ namespace vk::draw{class Viewport;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
 namespace vk::draw{class Drawer;}
-
-
-
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
@@ -19,12 +16,12 @@ namespace vk::structure{class Object;}
 
 namespace vk::render::geometry{
 
-class Line
+class Triangle
 {
 public:
   //Constructor / Destructor
-  Line(vk::Structure* vk_struct);
-  ~Line();
+  Triangle(vk::Structure* vk_struct);
+  ~Triangle();
 
 public:
   //Main function

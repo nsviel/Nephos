@@ -1,13 +1,13 @@
-#include "Line.h"
+#include "Point.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace vk::render::geometry{
+namespace vk::render::dynamic{
 
 //Constructor / Destructor
-Line::Line(vk::Structure* vk_struct){
+Point::Point(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -20,32 +20,32 @@ Line::Line(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Line::~Line(){}
+Point::~Point(){}
 
 //Main function
-void Line::create_subpass(vk::structure::Renderpass& renderpass){
+void Point::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   //Subpass object
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
-  subpass->index = 2;
-  subpass->source = 1;
+  subpass->index = 1;
+  subpass->source = 0;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
 
   //Subpass pipeline
-  vk_factory->add_pipeline_line(*subpass);
+  vk_factory->add_pipeline_point(*subpass);
 
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
 }
-void Line::draw_subpass(vk::structure::Subpass& subpass){
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["line"];
+void Point::draw_subpass(vk::structure::Subpass& subpass){
+  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["point"];
   //---------------------------
 
   this->bind_pipeline(subpass, *pipeline);
 
   for(auto& vk_object : vk_struct->core.data.list_vk_object){
-    if(!check_data(*vk_object, utl::topology::LINE)) continue;
+    if(!check_data(*vk_object, utl::topology::POINT)) continue;
     this->bind_descriptor(subpass, *vk_object, *pipeline);
     this->draw_data(*vk_object, subpass);
   }
@@ -54,7 +54,7 @@ void Line::draw_subpass(vk::structure::Subpass& subpass){
 }
 
 //Subfunction
-void Line::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
+void Point::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
@@ -62,7 +62,7 @@ void Line::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipelin
 
   //---------------------------
 }
-void Line::bind_descriptor(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
+void Point::bind_descriptor(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
   utl::base::Data& data = *vk_object.data;
   utl::base::Pose& pose = *vk_object.pose;
   //---------------------------
@@ -74,20 +74,22 @@ void Line::bind_descriptor(vk::structure::Subpass& subpass, vk::structure::Objec
   machin.projection = vk_struct->core.presentation.projection;
   vk_uniform->update_uniform("mvp", vk_object.descriptor_set, machin);
 
+  //Topology width
+  vk_uniform->update_uniform("point_size", vk_object.descriptor_set, data.topology.width);
+
   //Descriptor set
   vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
 
   //---------------------------
 }
-void Line::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass){
+void Point::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass){
   //---------------------------
 
-  vk_drawer->cmd_line_with(subpass.command_buffer->handle, vk_object);
   vk_drawer->cmd_draw_data(subpass.command_buffer->handle, vk_object);
 
   //---------------------------
 }
-bool Line::check_data(vk::structure::Object& vk_object, int topology){
+bool Point::check_data(vk::structure::Object& vk_object, int topology){
   utl::base::Data& data = *vk_object.data;
   //---------------------------
 
