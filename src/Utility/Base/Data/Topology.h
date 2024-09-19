@@ -8,7 +8,6 @@ enum Type{
   LINE = 1,
   TRIANGLE = 2,
   QUAD = 3,
-  DYNAMIC_POINT = 4,
 };
 
 }

@@ -45,7 +45,7 @@ void Triangle::draw_subpass(vk::structure::Subpass& subpass){
   this->bind_pipeline(subpass, *pipeline);
 
   for(auto& vk_object : vk_struct->core.data.list_vk_object){
-    if(!check_data(*vk_object, utl::topology::TRIANGLE)) continue;
+    if(!check_data(*vk_object, utl::topology::TRIANGLE, false)) continue;
     this->update_uniform(subpass, *vk_object, *pipeline);
     this->draw_data(*vk_object, subpass);
   }
@@ -86,7 +86,7 @@ void Triangle::draw_data(vk::structure::Object& vk_object, vk::structure::Subpas
 
   //---------------------------
 }
-bool Triangle::check_data(vk::structure::Object& vk_object, int topology){
+bool Triangle::check_data(vk::structure::Object& vk_object, int topology, bool dynamic){
   utl::base::Data& data = *vk_object.data;
   //---------------------------
 

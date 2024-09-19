@@ -45,7 +45,7 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
   this->bind_pipeline(subpass, *pipeline);
 
   for(auto& vk_object : vk_struct->core.data.list_vk_object){
-    if(!check_data(*vk_object, utl::topology::DYNAMIC_POINT)) continue;
+    if(!check_data(*vk_object, utl::topology::POINT, true)) continue;
     this->update_uniform(subpass, *vk_object, *pipeline);
     this->update_sampler(subpass, *vk_object, *pipeline);
     this->draw_data(*vk_object, subpass);
@@ -77,13 +77,13 @@ void Point::update_uniform(vk::structure::Subpass& subpass, vk::structure::Objec
 
   //Topology width
   vk_uniform->update_uniform("point_size", vk_object.descriptor_set, data.topology.width);
-
+/*
   //Update parameters
   vk::geometry::Dynamic dyn_struct;;
   dyn_struct.tex_depth_width = vk_struct->window.window.dimension.x;
   dyn_struct.tex_depth_height = vk_struct->window.window.dimension.y;
   vk_uniform->update_uniform("DYN_param", pipeline.descriptor.descriptor_set, dyn_struct);
-
+*/
   //Descriptor set
   vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
 
@@ -117,7 +117,7 @@ void Point::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& 
 
   //---------------------------
 }
-bool Point::check_data(vk::structure::Object& vk_object, int topology){
+bool Point::check_data(vk::structure::Object& vk_object, int topology, bool dynamic){
   utl::base::Data& data = *vk_object.data;
   //---------------------------
 

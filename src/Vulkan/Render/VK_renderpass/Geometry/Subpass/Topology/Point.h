@@ -33,7 +33,7 @@ private:
   void bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
   void update_uniform(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline);
   void draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass);
-  bool check_data(vk::structure::Object& vk_object, int topology);
+  bool check_data(vk::structure::Object& vk_object, int topology, bool dynamic);
 
 private:
   vk::Structure* vk_struct;
