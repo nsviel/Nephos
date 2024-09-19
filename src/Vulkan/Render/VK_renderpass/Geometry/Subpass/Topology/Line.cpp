@@ -68,7 +68,7 @@ void Line::bind_descriptor(vk::structure::Subpass& subpass, vk::structure::Objec
   //---------------------------
 
   //MVP
-  vk::pipeline::topology::MVP machin;
+  vk::pipeline::geometry::MVP machin;
   machin.model = glm::transpose(pose.model);
   machin.view = vk_struct->core.presentation.view;
   machin.projection = vk_struct->core.presentation.projection;

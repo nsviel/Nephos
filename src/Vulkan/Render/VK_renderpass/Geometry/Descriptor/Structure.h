@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace vk::pipeline::dyn{
+namespace vk::pipeline::geometry{
 
 struct Structure{
   //---------------------------

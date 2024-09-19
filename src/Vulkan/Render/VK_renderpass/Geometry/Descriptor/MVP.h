@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace vk::pipeline::topology{
+namespace vk::pipeline::geometry{
 
 struct MVP{
   //---------------------------

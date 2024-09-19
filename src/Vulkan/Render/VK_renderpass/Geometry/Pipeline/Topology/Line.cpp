@@ -60,7 +60,7 @@ void Line::set_shader(vk::structure::Pipeline& pipeline){
 void Line::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::topology::uniform_mvp());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::pipeline::geometry::uniform_mvp());
 
   //---------------------------
 }
