@@ -14,6 +14,7 @@ namespace vk::window{class Window;}
 namespace vk::window{class Event;}
 namespace vk::gui{class Imgui;}
 namespace vk::synchro{class Semaphore;}
+namespace vk::renderpass{class Renderpass;}
 
 
 namespace vk::presentation{
@@ -51,6 +52,7 @@ private:
   vk::window::Event* vk_event;
   vk::gui::Imgui* vk_imgui;
   vk::synchro::Semaphore* vk_semaphore;
+  vk::renderpass::Renderpass* vk_renderpass;
 };
 
 }

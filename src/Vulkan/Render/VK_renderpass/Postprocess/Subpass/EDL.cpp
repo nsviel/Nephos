@@ -50,16 +50,6 @@ void EDL::draw_edl(vk::structure::Subpass& subpass){
 
   //---------------------------
 }
-
-//Subfunction
-void EDL::bind_pipeline(vk::structure::Subpass& subpass){
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
-  //---------------------------
-
-  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
-
-  //---------------------------
-}
 void EDL::update_sampler(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   //---------------------------
@@ -70,6 +60,17 @@ void EDL::update_sampler(vk::structure::Subpass& subpass){
   vk::structure::Framebuffer& framebuffer = vk_struct->render.renderpass.geometry.framebuffer;
   sampler_color->image = std::make_unique<vk::structure::Image>(framebuffer.color);
   sampler_depth->image = std::make_unique<vk::structure::Image>(framebuffer.depth);
+
+  //---------------------------
+  vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set);
+}
+
+//Subfunction
+void EDL::bind_pipeline(vk::structure::Subpass& subpass){
+  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
+  //---------------------------
+
+  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
 
   //---------------------------
 }

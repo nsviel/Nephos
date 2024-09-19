@@ -19,8 +19,8 @@ struct Subpass{
   //---------------------------
 
   //Function
-  std::function<void(Subpass* subpass)> draw_task;
-  std::function<void(Subpass* subpass)> update_sampler;
+  std::function<void(Subpass* subpass)> draw_task = [](Subpass* subpass){};
+  std::function<void(Subpass* subpass)> update_sampler = [](Subpass* subpass){};
 
   //Subpass info
   VkSubpassDescription description = {};

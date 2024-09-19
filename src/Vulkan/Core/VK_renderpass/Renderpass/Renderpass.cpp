@@ -33,6 +33,8 @@ void Renderpass::init(){
     this->init_renderpass(*renderpass);
   }
 
+  this->subpass_sampler();
+
   //---------------------------
 }
 void Renderpass::clean(){
@@ -78,6 +80,17 @@ void Renderpass::subpass_description(vk::structure::Renderpass& renderpass){
 
     // Add depth attachment
     renderpass.vec_attachment.push_back(subpass->depth.description);
+  }
+
+  //---------------------------
+}
+void Renderpass::subpass_sampler(){
+  //---------------------------
+
+  for(auto& renderpass : vk_struct->render.renderpass.vec_renderpass){
+    for(auto& subpass : renderpass->vec_subpass){
+      subpass->update_sampler(subpass);
+    }
   }
 
   //---------------------------
