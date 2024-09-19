@@ -41,10 +41,11 @@ void EDL::create_subpass(vk::structure::Renderpass& renderpass){
   renderpass.vec_subpass.push_back(subpass);
 }
 void EDL::draw_edl(vk::structure::Subpass& subpass){
+  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   //---------------------------
 
-  this->bind_pipeline(subpass);
-  this->update_descriptor(subpass);
+  this->bind_pipeline(subpass, *pipeline);
+  this->update_descriptor(subpass, *pipeline);
   this->draw_canvas(subpass);
 
   //---------------------------
@@ -65,33 +66,32 @@ void EDL::update_sampler(vk::structure::Subpass& subpass){
 }
 
 //Subfunction
-void EDL::bind_pipeline(vk::structure::Subpass& subpass){
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
+void EDL::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
+  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
+  vk_viewport->cmd_viewport(subpass.command_buffer->handle);
 
   //---------------------------
 }
-void EDL::update_descriptor(vk::structure::Subpass& subpass){
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
+void EDL::update_descriptor(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
   //Update parameters
   vk::pipeline::edl::Structure& edl_struct = vk_struct->render.pipeline.edl;
   edl_struct.tex_width = vk_struct->window.window.dimension.x;
   edl_struct.tex_height = vk_struct->window.window.dimension.y;
-  vk_uniform->update_uniform("EDL_param", pipeline->descriptor.descriptor_set, edl_struct);
+  vk_uniform->update_uniform("EDL_param", pipeline.descriptor.descriptor_set, edl_struct);
 
   //Bind descriptor set
-  vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, pipeline->descriptor.descriptor_set);
+  vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, pipeline, pipeline.descriptor.descriptor_set);
 
   //---------------------------
 }
 void EDL::draw_canvas(vk::structure::Subpass& subpass){
   //---------------------------
 
-  vk_viewport->cmd_viewport(subpass.command_buffer->handle);
+
   vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_struct->core.data.canvas);
 
   //---------------------------

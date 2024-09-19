@@ -4,8 +4,6 @@ namespace vk{class Structure;}
 namespace vk::renderpass{class Renderpass;}
 namespace vk::descriptor{class Uniform;}
 namespace vk::descriptor{class Sampler;}
-namespace vk::structure{class Subpass;}
-namespace vk::structure{class Renderpass;}
 namespace vk::render::edl{class Shader;}
 namespace vk::draw{class Drawer;}
 namespace vk::render::pipeline{class Factory;}
@@ -17,6 +15,8 @@ namespace vk::descriptor{class Sampler;}
 namespace vk::draw{class Drawer;}
 namespace vk::render::edl{class Shader;}
 namespace vk::structure{class Subpass;}
+namespace vk::structure{class Pipeline;}
+namespace vk::structure{class Renderpass;}
 
 
 namespace vk::render::edl{
@@ -33,10 +33,10 @@ public:
   void create_subpass(vk::structure::Renderpass& renderpass);
   void draw_edl(vk::structure::Subpass& subpass);
   void update_sampler(vk::structure::Subpass& subpass);
-  
+
   //Subfunction
-  void bind_pipeline(vk::structure::Subpass& subpass);
-  void update_descriptor(vk::structure::Subpass& subpass);
+  void bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
+  void update_descriptor(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
   void draw_canvas(vk::structure::Subpass& subpass);
 
 private:

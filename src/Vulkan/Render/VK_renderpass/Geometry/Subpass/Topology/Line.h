@@ -2,7 +2,7 @@
 
 namespace vk{class Structure;}
 
-namespace vk::render::pipeline{class Factory;}
+namespace vk::pipeline::topology{class Line;}
 namespace vk::pipeline{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::descriptor{class Descriptor_set;}
@@ -37,7 +37,7 @@ private:
 
 private:
   vk::Structure* vk_struct;
-  vk::render::pipeline::Factory* vk_factory;
+  vk::pipeline::topology::Line* vk_line;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::descriptor::Uniform* vk_uniform;
   vk::draw::Drawer* vk_drawer;
