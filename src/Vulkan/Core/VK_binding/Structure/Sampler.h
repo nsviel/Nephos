@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Media/Image.h>
+#include <Vulkan/Core/VK_image/Structure/Image.h>
 #include <vulkan/vulkan.h>
 #include <memory>
 #include <string>
@@ -12,7 +12,7 @@ struct Sampler{
   //---------------------------
 
   VkDescriptorType type = VK_DESCRIPTOR_TYPE_SAMPLER;
-  std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>();
+  std::shared_ptr<vk::structure::Image> image = std::make_shared<vk::structure::Image>();
   std::string name = "";
   int binding = 0;
 
