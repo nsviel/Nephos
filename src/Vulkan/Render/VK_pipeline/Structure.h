@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/Render/VK_pipeline/EDL/Structure/Structure.h>
+#include <Vulkan/Render/VK_renderpass/Postprocess/Descriptor/Structure.h>
 
 
 namespace vk::render::pipeline{
