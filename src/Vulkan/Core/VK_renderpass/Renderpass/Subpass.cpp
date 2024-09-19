@@ -31,27 +31,14 @@ void Subpass::create_subpass(vk::structure::Renderpass& renderpass){
 void Subpass::create_subpass_description(vk::structure::Renderpass& renderpass, vk::structure::Subpass& subpass){
   //---------------------------
 
-  //Format elements
-  uint32_t nb_color_attachment = 0;
-  std::vector<VkAttachmentReference*> vec_color;
-  for(int i=0; i<renderpass.vec_color.size(); i++){
-    vec_color.push_back(&renderpass.vec_color[0].reference);
-  }
-  nb_color_attachment += renderpass.vec_color.size();
-  std::vector<VkAttachmentReference*> vec_color_resolve;
-  for(int i=0; i<renderpass.vec_color_resolve.size(); i++){
-    vec_color_resolve.push_back(&renderpass.vec_color_resolve[0].reference);
-  }
-  nb_color_attachment += renderpass.vec_color_resolve.size();
-
   //Subpass decription
   VkSubpassDescription subpass_description{};
   subpass_description.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
-  subpass_description.pDepthStencilAttachment = &renderpass.depth.reference;
-  subpass_description.colorAttachmentCount = nb_color_attachment;
-  subpass_description.pColorAttachments = *vec_color.data();
-  if(vec_color_resolve.size() != 0)
-  subpass_description.pResolveAttachments = *vec_color_resolve.data();
+  subpass_description.pDepthStencilAttachment = &renderpass.attachment.depth.reference;
+  subpass_description.colorAttachmentCount = renderpass.attachment.vec_color_ref.size();
+  subpass_description.pColorAttachments = renderpass.attachment.vec_color_ref.data();
+  if(!renderpass.attachment.vec_color_resolve_ref.empty())
+  subpass_description.pResolveAttachments = renderpass.attachment.vec_color_resolve_ref.data();
 
   //Subpass dependencies
   VkSubpassDependency subpass_dependency{};

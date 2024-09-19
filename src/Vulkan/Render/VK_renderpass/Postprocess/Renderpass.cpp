@@ -20,7 +20,7 @@ Renderpass::~Renderpass(){}
 //Init function
 void Renderpass::init(){
   vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.postprocess;
-  renderpass.target = vk::renderpass::SHADER;
+  renderpass.attachment.target = vk::renderpass::SHADER;
   //---------------------------
 
   vk_edl->create_subpass(renderpass);

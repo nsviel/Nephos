@@ -64,7 +64,7 @@ void Renderpass::init_renderpass(vk::structure::Renderpass& renderpass){
 void Renderpass::attachment_renderpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
-  switch(renderpass.target){
+  switch(renderpass.attachment.target){
     case vk::renderpass::SHADER:{
       vk_attachment->attachment_shader(renderpass);
       break;
@@ -95,17 +95,17 @@ void Renderpass::subpass_description(vk::structure::Renderpass& renderpass){
     renderpass.vec_dependency.push_back(subpass->dependency);
 
     // Add color attachments
-    for(int j=0; j<renderpass.vec_color.size(); j++){
-      renderpass.vec_attachment.push_back(renderpass.vec_color[j].description);
+    for(int j=0; j<renderpass.attachment.vec_color.size(); j++){
+      renderpass.vec_attachment.push_back(renderpass.attachment.vec_color[j].description);
     }
 
     // Add color resolve attachments
-    for(int j=0; j<renderpass.vec_color_resolve.size(); j++){
-      renderpass.vec_attachment.push_back(renderpass.vec_color_resolve[j].description);
+    for(int j=0; j<renderpass.attachment.vec_color_resolve.size(); j++){
+      renderpass.vec_attachment.push_back(renderpass.attachment.vec_color_resolve[j].description);
     }
 
     // Add depth attachment
-    renderpass.vec_attachment.push_back(renderpass.depth.description);
+    renderpass.vec_attachment.push_back(renderpass.attachment.depth.description);
   }
 
   //---------------------------
