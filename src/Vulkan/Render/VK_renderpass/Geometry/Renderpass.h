@@ -2,7 +2,7 @@
 
 namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
-namespace vk::render::geometry{class Scene;}
+namespace vk::render::geometry{class Subpass;}
 
 
 namespace vk::render::geometry{
@@ -20,7 +20,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::render::geometry::Scene* vk_scene;
+  vk::render::geometry::Subpass* vk_subpass;
 };
 
 }

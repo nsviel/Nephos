@@ -74,7 +74,7 @@ void Topology::topology_line(utl::base::Data& data){
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::TextColored(color, "%d", data.topology.width);
+  ImGui::TextColored(color, "%.0f", data.topology.width);
 
   //---------------------------
 }
@@ -112,7 +112,7 @@ void Topology::topology_point(utl::base::Data& data){
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::TextColored(color, "%d", data.topology.width);
+  ImGui::TextColored(color, "%.0f", data.topology.width);
 
   //---------------------------
 }

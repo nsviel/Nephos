@@ -57,6 +57,7 @@ void Subpass::draw_subpass(vk::structure::Subpass& subpass){
 void Subpass::draw_pipeline_point(vk::structure::Subpass& subpass){
   //---------------------------
 
+  //Bind pipeline
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["point"];
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
 
@@ -87,6 +88,7 @@ void Subpass::draw_pipeline_point(vk::structure::Subpass& subpass){
 void Subpass::draw_pipeline_line(vk::structure::Subpass& subpass){
   //---------------------------
 
+  //Bind pipeline
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["line"];
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
 
@@ -114,6 +116,7 @@ void Subpass::draw_pipeline_line(vk::structure::Subpass& subpass){
 void Subpass::draw_pipeline_triangle(vk::structure::Subpass& subpass){
   //---------------------------
 
+  //Bind pipeline
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["triangle"];
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
 
@@ -140,6 +143,7 @@ void Subpass::draw_pipeline_triangle(vk::structure::Subpass& subpass){
 void Subpass::draw_pipeline_dynamic(vk::structure::Subpass& subpass){
   //---------------------------
 
+  //Bind pipeline
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["dynamic_point"];
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
 

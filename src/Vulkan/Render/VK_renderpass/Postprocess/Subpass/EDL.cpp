@@ -51,10 +51,13 @@ void EDL::draw_edl(vk::structure::Subpass& subpass){
 void EDL::update_binding(vk::structure::Subpass& subpass){
   //---------------------------
 
+  //Bind pipeline
+  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
+  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
+
   vk::pipeline::edl::Structure& edl_struct = vk_struct->render.pipeline.edl;
   vk::structure::Renderpass* renderpass_scene = vk_struct->render.renderpass.vec_renderpass[0];
   vk::structure::Framebuffer& frame_scene = renderpass_scene->framebuffer;
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
 
   for(auto& [name, pipeline] : subpass.map_pipeline){
     vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, pipeline->descriptor.layout, &frame_scene.color);
@@ -67,7 +70,7 @@ void EDL::update_binding(vk::structure::Subpass& subpass){
 
   vk_uniform->update_uniform("EDL_param", pipeline->descriptor.descriptor_set, edl_struct);
 
-  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
+
   vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, pipeline->descriptor.descriptor_set);
 
   //---------------------------
