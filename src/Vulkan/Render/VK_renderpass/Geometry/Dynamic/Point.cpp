@@ -28,24 +28,24 @@ void Point::create_subpass(vk::structure::Renderpass& renderpass){
 
   //Subpass object
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
-  subpass->index = 2;
-  subpass->source = 3;
+  subpass->index = 3;
+  subpass->source = 2;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
 
   //Subpass pipeline
-  vk_factory->add_pipeline_point(*subpass);
+  vk_factory->add_pipeline_dynamic_point(*subpass);
 
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
 }
 void Point::draw_subpass(vk::structure::Subpass& subpass){
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["point"];
+  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["dynamic_point"];
   //---------------------------
 
   this->bind_pipeline(subpass, *pipeline);
 
   for(auto& vk_object : vk_struct->core.data.list_vk_object){
-    if(!check_data(*vk_object, utl::topology::POINT)) continue;
+    if(!check_data(*vk_object, utl::topology::DYNAMIC_POINT)) continue;
     this->bind_descriptor(subpass, *vk_object, *pipeline);
     this->draw_data(*vk_object, subpass);
   }

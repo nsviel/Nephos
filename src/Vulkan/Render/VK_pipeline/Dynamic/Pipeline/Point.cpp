@@ -29,7 +29,7 @@ void Point::add_pipeline(vk::structure::Subpass& subpass){
   this->set_binding(*pipeline);
 
   //---------------------------
-  subpass.map_pipeline["cfd"] = pipeline;
+  subpass.map_pipeline["dynamic_point"] = pipeline;
 }
 
 //Subfunction

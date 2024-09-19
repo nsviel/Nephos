@@ -23,14 +23,14 @@ public:
   void add_pipeline_line(vk::structure::Subpass& subpass);
   void add_pipeline_point(vk::structure::Subpass& subpass);
   void add_pipeline_triangle(vk::structure::Subpass& subpass);
-  void add_pipeline_dynamic(vk::structure::Subpass& subpass);
+  void add_pipeline_dynamic_point(vk::structure::Subpass& subpass);
   void add_pipeline_edl(vk::structure::Subpass& subpass);
 
 private:
   vk::pipeline::topology::Line* pipe_line;
   vk::pipeline::topology::Point* pipe_point;
   vk::pipeline::topology::Triangle* pipe_triangle;
-  vk::pipeline::dyn::Point* pipe_dynamic;
+  vk::pipeline::dyn::Point* pipe_dynamic_point;
   vk::pipeline::edl::EDL* pipe_edl;
 };
 
