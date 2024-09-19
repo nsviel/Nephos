@@ -39,50 +39,61 @@ void Point::create_subpass(vk::structure::Renderpass& renderpass){
   renderpass.vec_subpass.push_back(subpass);
 }
 void Point::draw_subpass(vk::structure::Subpass& subpass){
+  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["point"];
   //---------------------------
 
-  vk_viewport->cmd_viewport(subpass.command_buffer->handle);
-  this->draw_pipeline_point(subpass);
+  this->bind_pipeline(subpass, *pipeline);
+
+  for(auto& vk_object : vk_struct->core.data.list_vk_object){
+    if(!check_data(*vk_object, utl::topology::POINT)) continue;
+    this->bind_descriptor(subpass, *vk_object, *pipeline);
+    this->draw_data(*vk_object, subpass);
+  }
 
   //---------------------------
 }
 
 //Subfunction
-void Point::draw_pipeline_point(vk::structure::Subpass& subpass){
+void Point::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  //Bind pipeline
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["point"];
-  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
-
-  //Bind and draw vertex buffers
-  for(auto& vk_object : vk_struct->core.data.list_vk_object){
-    utl::base::Data& data = *vk_object->data;
-    utl::base::Pose& pose = *vk_object->pose;
-
-    if(check_data(data, utl::topology::POINT)){
-
-      vk::pipeline::topology::MVP machin;
-      machin.model = glm::transpose(pose.model);
-      machin.view = vk_struct->core.presentation.view;
-      machin.projection = vk_struct->core.presentation.projection;
-      vk_uniform->update_uniform("mvp", vk_object->descriptor_set, machin);
-
-
-
-
-      vk_uniform->update_uniform("point_size", vk_object->descriptor_set, data.topology.width);
-      vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, *pipeline, vk_object->descriptor_set);
-      vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
-    }
-  }
+  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
+  vk_viewport->cmd_viewport(subpass.command_buffer->handle);
 
   //---------------------------
 }
-bool Point::check_data(utl::base::Data& data, int typology){
+void Point::bind_descriptor(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
+  utl::base::Data& data = *vk_object.data;
+  utl::base::Pose& pose = *vk_object.pose;
   //---------------------------
 
-  if(data.topology.type != typology) return false;
+  //MVP
+  vk::pipeline::topology::MVP machin;
+  machin.model = glm::transpose(pose.model);
+  machin.view = vk_struct->core.presentation.view;
+  machin.projection = vk_struct->core.presentation.projection;
+  vk_uniform->update_uniform("mvp", vk_object.descriptor_set, machin);
+
+  //Topology width
+  vk_uniform->update_uniform("point_size", vk_object.descriptor_set, data.topology.width);
+
+  //Descriptor set
+  vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
+
+  //---------------------------
+}
+void Point::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass){
+  //---------------------------
+
+  vk_drawer->cmd_draw_data(subpass.command_buffer->handle, vk_object);
+
+  //---------------------------
+}
+bool Point::check_data(vk::structure::Object& vk_object, int topology){
+  utl::base::Data& data = *vk_object.data;
+  //---------------------------
+
+  if(data.topology.type != topology) return false;
   if(data.is_visible == false) return false;
   if(data.xyz.empty()) return false;
   if(data.rgba.empty()) return false;

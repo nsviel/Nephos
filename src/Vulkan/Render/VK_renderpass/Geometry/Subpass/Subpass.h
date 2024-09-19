@@ -31,7 +31,7 @@ public:
   void draw_pipeline_line(vk::structure::Subpass& subpass);
   void draw_pipeline_triangle(vk::structure::Subpass& subpass);
   void draw_pipeline_dynamic(vk::structure::Subpass& subpass);
-  bool check_data(utl::base::Data& data, int typology);
+  bool check_data(utl::base::Data& data, int topology);
 
 private:
   vk::Structure* vk_struct;

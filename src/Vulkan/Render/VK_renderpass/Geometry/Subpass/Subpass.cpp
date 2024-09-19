@@ -166,10 +166,10 @@ void Subpass::draw_pipeline_dynamic(vk::structure::Subpass& subpass){
 
   //---------------------------
 }
-bool Subpass::check_data(utl::base::Data& data, int typology){
+bool Subpass::check_data(utl::base::Data& data, int topology){
   //---------------------------
 
-  if(data.topology.type != typology) return false;
+  if(data.topology.type != topology) return false;
   if(data.is_visible == false) return false;
   if(data.xyz.empty()) return false;
   if(data.rgba.empty()) return false;
