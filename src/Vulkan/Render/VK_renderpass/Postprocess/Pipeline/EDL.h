@@ -8,7 +8,7 @@ namespace vk::structure{class Pipeline;}
 namespace vk::pipeline{class Pipeline;}
 
 
-namespace vk::pipeline::edl{
+namespace vk::postprocess::pipeline{
 
 class EDL
 {

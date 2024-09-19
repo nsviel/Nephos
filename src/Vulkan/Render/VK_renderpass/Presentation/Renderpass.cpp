@@ -3,14 +3,14 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::render::onscreen{
+namespace vk::present{
 
 //Constructor / Destructor
 Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_subpass = new vk::render::onscreen::Canvas(vk_struct);
+  this->vk_subpass = new vk::present::subpass::Canvas(vk_struct);
 
   //---------------------------
 }

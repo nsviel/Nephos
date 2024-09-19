@@ -1,9 +1,9 @@
 #pragma once
 
 namespace vk{class Structure;}
-namespace vk::render::edl{class Renderpass;}
+namespace vk::postprocess{class Renderpass;}
 namespace vk::render::geometry{class Renderpass;}
-namespace vk::render::onscreen{class Renderpass;}
+namespace vk::present{class Renderpass;}
 
 
 namespace vk::render{
@@ -22,8 +22,8 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::render::geometry::Renderpass* rp_scene;
-  vk::render::edl::Renderpass* rp_edl;
-  vk::render::onscreen::Renderpass* rp_gui;
+  vk::postprocess::Renderpass* rp_edl;
+  vk::present::Renderpass* rp_gui;
 };
 
 }

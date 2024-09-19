@@ -11,8 +11,8 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->rp_scene = new vk::render::geometry::Renderpass(vk_struct);
-  this->rp_edl = new vk::render::edl::Renderpass(vk_struct);
-  this->rp_gui = new vk::render::onscreen::Renderpass(vk_struct);
+  this->rp_edl = new vk::postprocess::Renderpass(vk_struct);
+  this->rp_gui = new vk::present::Renderpass(vk_struct);
 
   //---------------------------
 }

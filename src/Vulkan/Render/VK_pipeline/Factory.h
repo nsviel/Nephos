@@ -5,7 +5,6 @@ namespace vk::pipeline::topology{class Line;}
 namespace vk::pipeline::topology{class Point;}
 namespace vk::pipeline::topology{class Triangle;}
 namespace vk::pipeline::dyn{class Point;}
-namespace vk::pipeline::edl{class EDL;}
 namespace vk::structure{class Subpass;}
 
 
@@ -24,14 +23,12 @@ public:
   void add_pipeline_point(vk::structure::Subpass& subpass);
   void add_pipeline_triangle(vk::structure::Subpass& subpass);
   void add_pipeline_dynamic_point(vk::structure::Subpass& subpass);
-  void add_pipeline_edl(vk::structure::Subpass& subpass);
 
 private:
   vk::pipeline::topology::Line* pipe_line;
   vk::pipeline::topology::Point* pipe_point;
   vk::pipeline::topology::Triangle* pipe_triangle;
   vk::pipeline::dyn::Point* pipe_dynamic_point;
-  vk::pipeline::edl::EDL* pipe_edl;
 };
 
 }

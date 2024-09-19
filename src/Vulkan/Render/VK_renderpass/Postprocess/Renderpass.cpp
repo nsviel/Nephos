@@ -4,14 +4,14 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::render::edl{
+namespace vk::postprocess{
 
 //Constructor / Destructor
 Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_edl = new vk::subpass::edl::EDL(vk_struct);
+  this->vk_edl = new vk::postprocess::subpass::EDL(vk_struct);
 
   //---------------------------
 }

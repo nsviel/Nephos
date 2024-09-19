@@ -13,7 +13,6 @@ Factory::Factory(vk::Structure* vk_struct){
   this->pipe_point = new vk::pipeline::topology::Point(vk_struct);
   this->pipe_triangle = new vk::pipeline::topology::Triangle(vk_struct);
   this->pipe_dynamic_point = new vk::pipeline::dyn::Point(vk_struct);
-  this->pipe_edl = new vk::pipeline::edl::EDL(vk_struct);
 
   //---------------------------
 }
@@ -48,12 +47,6 @@ void Factory::add_pipeline_dynamic_point(vk::structure::Subpass& subpass){
 
   //---------------------------
 }
-void Factory::add_pipeline_edl(vk::structure::Subpass& subpass){
-  //---------------------------
 
-  pipe_edl->add_pipeline(subpass);
-
-  //---------------------------
-}
 
 }

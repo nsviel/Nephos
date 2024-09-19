@@ -1,11 +1,11 @@
 #pragma once
 
 namespace vk{class Structure;}
-namespace vk::render::onscreen{class Canvas;}
+namespace vk::present::subpass{class Canvas;}
 namespace vk::structure{class Renderpass;}
 
 
-namespace vk::render::onscreen{
+namespace vk::present{
 
 class Renderpass
 {
@@ -20,7 +20,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::render::onscreen::Canvas* vk_subpass;
+  vk::present::subpass::Canvas* vk_subpass;
 };
 
 }

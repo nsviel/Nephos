@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::render::onscreen{
+namespace vk::present::subpass{
 
 //Constructor / Destructor
 Canvas::Canvas(vk::Structure* vk_struct){

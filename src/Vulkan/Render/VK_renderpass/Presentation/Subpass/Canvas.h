@@ -8,7 +8,7 @@ namespace vk::structure{class Renderpass;}
 namespace vk::gui{class Imgui;}
 
 
-namespace vk::render::onscreen{
+namespace vk::present::subpass{
 
 class Canvas
 {

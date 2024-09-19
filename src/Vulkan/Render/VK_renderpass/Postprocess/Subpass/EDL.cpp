@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::subpass::edl{
+namespace vk::postprocess::subpass{
 
 //Constructor / Destructor
 EDL::EDL(vk::Structure* vk_struct){
@@ -13,7 +13,7 @@ EDL::EDL(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
-  this->vk_factory = new vk::render::pipeline::Factory(vk_struct);
+  this->vk_edl = new vk::postprocess::pipeline::EDL(vk_struct);
   this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
@@ -35,7 +35,7 @@ void EDL::create_subpass(vk::structure::Renderpass& renderpass){
   subpass->update_sampler = [this](vk::structure::Subpass* subpass) {this->update_sampler(*subpass);};
 
   //Subpass pipelines
-  vk_factory->add_pipeline_edl(*subpass);
+  vk_edl->add_pipeline(*subpass);
 
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
@@ -78,7 +78,7 @@ void EDL::update_descriptor(vk::structure::Subpass& subpass, vk::structure::Pipe
   //---------------------------
 
   //Update parameters
-  vk::pipeline::edl::Structure& edl_struct = vk_struct->render.pipeline.edl;
+  vk::postprocess::EDL& edl_struct = vk_struct->render.pipeline.edl;
   edl_struct.tex_width = vk_struct->window.window.dimension.x;
   edl_struct.tex_height = vk_struct->window.window.dimension.y;
   vk_uniform->update_uniform("EDL_param", pipeline.descriptor.descriptor_set, edl_struct);
