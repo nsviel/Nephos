@@ -3,7 +3,7 @@
 
 namespace vk::geometry{
 
-struct Structure{
+struct Dynamic{
   //---------------------------
 
   float depth_scale = 1;

@@ -37,8 +37,8 @@ vk::descriptor::structure::Descriptor uniform_dynamic(){
   //---------------------------
 
   vk::descriptor::structure::Descriptor descriptor;
-  descriptor.name = "EDL_param";
-  descriptor.size = sizeof(vk::geometry::Structure);
+  descriptor.name = "DYN_param";
+  descriptor.size = sizeof(vk::geometry::Dynamic);
   descriptor.binding = vk::uniform::PARAMETER;
   descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
   descriptor.stage = VK_SHADER_STAGE_FRAGMENT_BIT;

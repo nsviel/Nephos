@@ -77,6 +77,12 @@ void Point::bind_descriptor(vk::structure::Subpass& subpass, vk::structure::Obje
   //Topology width
   vk_uniform->update_uniform("point_size", vk_object.descriptor_set, data.topology.width);
 
+  //Update parameters
+  vk::geometry::Dynamic dyn_struct;;
+  dyn_struct.tex_depth_width = vk_struct->window.window.dimension.x;
+  dyn_struct.tex_depth_height = vk_struct->window.window.dimension.y;
+  vk_uniform->update_uniform("DYN_param", pipeline.descriptor.descriptor_set, dyn_struct);
+
   //Descriptor set
   vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
 
