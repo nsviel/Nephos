@@ -6,7 +6,7 @@ namespace vk::descriptor{class Uniform;}
 namespace vk::descriptor{class Sampler;}
 namespace vk::render::edl{class Shader;}
 namespace vk::draw{class Drawer;}
-namespace vk::postprocess::pipeline{class EDL;} 
+namespace vk::postprocess::pipeline{class EDL;}
 namespace vk::pipeline{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::descriptor{class Descriptor_set;}

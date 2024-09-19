@@ -94,7 +94,7 @@ void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_p
 
   //Data
   vk_buffer->create_buffer(*vk_object);
-  vk_texture->insert_texture(std::make_shared<utl::media::Image>(data->texture));
+  //vk_texture->insert_texture(std::make_shared<utl::media::Image>(data->texture));
 
   //Descriptor
   this->descriptor_vk_object(*vk_object);
@@ -116,7 +116,7 @@ void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
 }
 void Data::descriptor_vk_object(vk::structure::Object& vk_object){
   //---------------------------
-  
+
   std::shared_ptr<vk::structure::Pipeline> pipeline = vk_struct->core.pipeline.map[vk_object.data->topology.type];
   vk_descriptor_set->allocate_descriptor_set(vk_object.descriptor_set, pipeline->descriptor.layout);
 

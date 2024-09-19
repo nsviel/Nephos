@@ -14,6 +14,16 @@ layout(binding = 0) uniform MVP{
   mat4 projection;
 };
 layout(binding = 1) uniform width{float point_size;};
+layout(binding = 5) uniform Param{
+  float depth_scale;
+  float depth_offset;
+  int tex_depth_width;
+  int tex_depth_height;
+};
+
+//Sampler
+layout(binding = 10) uniform sampler2D tex_depth;
+layout(binding = 11) uniform sampler2D tex_color;
 
 
 void main(){

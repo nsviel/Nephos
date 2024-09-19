@@ -5,11 +5,13 @@
 #include <Utility/Base/Data/Topology.h>
 #include <Utility/Base/Data/Path.h>
 #include <Utility/Base/Media/Image.h>
+#include <unordered_map>
 #include <glm/glm.hpp>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <mutex>
-#include <iostream>
+#include <list>
 
 
 namespace utl::base{
@@ -33,7 +35,6 @@ struct Data : public utl::base::Element{
   //Infos
   utl::base::Topology topology;
   utl::base::Path path;
-  utl::media::Image texture;
   glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
   glm::vec3 centroid = glm::vec3(0.0f, 0.0f, 0.0f);
 
@@ -44,6 +45,7 @@ struct Data : public utl::base::Element{
   std::vector<glm::vec3> Nxyz;  //Normal
   std::vector<glm::vec2> uv;    //UV coordinate
   std::vector<utl::base::Field> vec_field;
+  std::unordered_map<std::string, std::shared_ptr<utl::media::Image>> map_texture;
 
   //---------------------------
 };

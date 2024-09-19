@@ -26,7 +26,7 @@ void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Ima
   this->manage_UID(image);
   if(has_image_UID(entity, image->UID)) return;
   if(image->format == "") image->format = "R8G8B8A8_SRGB";
-  entity.list_image.push_back(image);
+  entity.data->map_texture[image->name] = image;
 
   //----------------------------
 }
@@ -45,37 +45,37 @@ bool Image::has_image_UID(dat::base::Entity& entity, int UID){
   //----------------------------
 
   //Search for already existing image with same type
-  for(auto& image : entity.list_image){
-    if(image->UID == UID) return true;
+  for(auto& [name, texture] : entity.data->map_texture){
+    if(texture->UID == UID) return true;
   }
 
   //----------------------------
   return false;
 }
-std::shared_ptr<utl::media::Image> Image::get_image(dat::base::Entity& entity, std::string name){
-  if(name == "") return nullptr;
+std::shared_ptr<utl::media::Image> Image::get_image(dat::base::Entity& entity, std::string query){
+  if(query == "") return nullptr;
   //----------------------------
 
   //Search for already existing image with same type
-  for(auto& image : entity.list_image){
-    if(image->name == name) return image;
+  for(auto& [name, texture] : entity.data->map_texture){
+    if(name == query) return texture;
   }
 
   //----------------------------
   return nullptr;
 }
-std::shared_ptr<utl::media::Image> Image::get_or_create_image(dat::base::Entity& entity, std::string name){
-  if(name == "") return nullptr;
+std::shared_ptr<utl::media::Image> Image::get_or_create_image(dat::base::Entity& entity, std::string query){
+  if(query == "") return nullptr;
   //----------------------------
 
   //Search for already existing image with same type
-  for(auto& image : entity.list_image){
-    if(image->name == name) return image;
+  for(auto& [name, texture] : entity.data->map_texture){
+    if(name == query) return texture;
   }
 
   //Else create it
   std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>();
-  image->name = name;
+  image->name = query;
   this->add_image(entity, image);
 
   //----------------------------

@@ -117,9 +117,10 @@ void Loader::load_object_textured(utl::base::Path path, utl::base::Path path_tex
   if(!object) return;
 
   //Texture
-  utl::media::Image& texture = object->data->texture;
-  dat::img::load_image_data(texture, path_texture.build());
-  texture.name = "texture";
+  std::shared_ptr<utl::media::Image> texture = std::make_shared<utl::media::Image>();
+  dat::img::load_image_data(*texture, path_texture.build());
+  texture->name = "texture";
+  object->data->map_texture[texture->name] = texture;
 
   //Insert it
   io_operation->insert_object(object);

@@ -34,9 +34,8 @@ struct Entity : public utl::base::Element{
   //Data
   std::weak_ptr<dat::base::Set>  set_parent;
   std::list< std::shared_ptr<dat::base::Glyph> > list_glyph;
-  std::list< std::shared_ptr<utl::media::Image> > list_image;
   std::shared_ptr<utl::base::Data> data = std::make_shared<utl::base::Data>();
-  
+
   //---------------------------
 };
 

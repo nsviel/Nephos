@@ -41,7 +41,7 @@ void Panel::run_panel(){
   if(!entity) return;
   //---------------------------
 
-  if(*show_window && !entity->list_image.empty()){
+  if(*show_window && !entity->data->map_texture.empty()){
     ImGuiWindowFlags flag;
     flag |= ImGuiWindowFlags_NoCollapse;
     flag |= ImGuiWindowFlags_AlwaysAutoResize;
@@ -79,11 +79,11 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
     //All in one
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("All##4567", NULL)){
-      size = ImVec2(size.x, size.y / entity->list_image.size() - 3.33);
+      size = ImVec2(size.x, size.y / entity->data->map_texture.size() - 3.33);
 
       int index = 0;
-      for(auto& image : entity->list_image){
-        this->draw_stream_image(image, size, index++);
+      for(auto& [name, texture] : entity->data->map_texture){
+        this->draw_stream_image(texture, size, index++);
       }
 
       ImGui::EndTabItem();
@@ -91,11 +91,11 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
 
     //All image in separate tab
     int index = 0;
-    for(auto& image : entity->list_image){
+    for(auto& [name, texture] : entity->data->map_texture){
       ImGui::SetNextItemWidth(100);
-      std::string title = image->name + "##4567";
+      std::string title = texture->name + "##4567";
       if(ImGui::BeginTabItem(title.c_str(), NULL)){
-        this->draw_stream_image(image, size, index++);
+        this->draw_stream_image(texture, size, index++);
         ImGui::EndTabItem();
       }
     }
