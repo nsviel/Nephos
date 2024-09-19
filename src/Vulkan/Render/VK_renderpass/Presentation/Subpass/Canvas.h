@@ -2,7 +2,7 @@
 
 namespace vk{class Structure;}
 namespace vk::renderpass{class Renderpass;}
-namespace vk::render::pipeline{class Factory;}
+namespace vk::geometry::pipeline::topology{class Triangle;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 namespace vk::gui{class Imgui;}
@@ -25,7 +25,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::renderpass::Renderpass* vk_renderpass;
-  vk::render::pipeline::Factory* vk_factory;
+  vk::geometry::pipeline::topology::Triangle* vk_triangle;
   vk::gui::Imgui* vk_imgui;
 };
 

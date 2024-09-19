@@ -11,7 +11,7 @@ Canvas::Canvas(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_renderpass = new vk::renderpass::Renderpass(vk_struct);
-  this->vk_factory = new vk::render::pipeline::Factory(vk_struct);
+  this->vk_triangle = new vk::geometry::pipeline::topology::Triangle(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
 
   //---------------------------
@@ -29,7 +29,7 @@ void Canvas::create_subpass(vk::structure::Renderpass& renderpass){
   subpass->draw_task = [this](vk::structure::Subpass* subpass){Canvas::draw_subpass(*subpass);};
 
   //Set pipeline
-  vk_factory->add_pipeline_triangle(*subpass);
+  vk_triangle->add_pipeline(*subpass);
 
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
