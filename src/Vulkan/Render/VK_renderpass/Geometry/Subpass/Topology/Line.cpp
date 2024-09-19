@@ -92,6 +92,7 @@ bool Line::check_data(vk::structure::Object& vk_object, int topology, bool dynam
   //---------------------------
 
   if(data.topology.type != topology) return false;
+  if(data.is_dynamic != dynamic) return false;
   if(data.is_visible == false) return false;
   if(data.xyz.empty()) return false;
   if(data.rgba.empty()) return false;

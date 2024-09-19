@@ -24,6 +24,7 @@ struct Data : public utl::base::Element{
   //State
   bool is_visible = true;
   bool is_updated = false;
+  bool is_dynamic = false;
   int nb_data_max = -1;
   int width = -1;
   int height = -1;
