@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::render::dynamic{
+namespace vk::subpass::dynamic{
 
 //Constructor / Destructor
 Point::Point(vk::Structure* vk_struct){

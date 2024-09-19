@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::render::topology{
+namespace vk::subpass::topology{
 
 //Constructor / Destructor
 Point::Point(vk::Structure* vk_struct){

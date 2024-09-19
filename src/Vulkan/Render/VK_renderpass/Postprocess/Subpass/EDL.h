@@ -19,7 +19,7 @@ namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Renderpass;}
 
 
-namespace vk::render::edl{
+namespace vk::subpass::edl{
 
 class EDL
 {

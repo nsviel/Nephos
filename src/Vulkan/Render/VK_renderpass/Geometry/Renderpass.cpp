@@ -10,10 +10,10 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_point = new vk::render::topology::Point(vk_struct);
-  this->vk_line = new vk::render::topology::Line(vk_struct);
-  this->vk_triangle = new vk::render::topology::Triangle(vk_struct);
-  this->vk_dynamic_point = new vk::render::dynamic::Point(vk_struct);
+  this->vk_point = new vk::subpass::topology::Point(vk_struct);
+  this->vk_line = new vk::subpass::topology::Line(vk_struct);
+  this->vk_triangle = new vk::subpass::topology::Triangle(vk_struct);
+  this->vk_dynamic_point = new vk::subpass::dynamic::Point(vk_struct);
 
   //---------------------------
 }

@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::render::edl{
+namespace vk::subpass::edl{
 
 //Constructor / Destructor
 EDL::EDL(vk::Structure* vk_struct){

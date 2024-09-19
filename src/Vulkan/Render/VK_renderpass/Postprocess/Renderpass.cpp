@@ -11,7 +11,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_edl = new vk::render::edl::EDL(vk_struct);
+  this->vk_edl = new vk::subpass::edl::EDL(vk_struct);
 
   //---------------------------
 }
