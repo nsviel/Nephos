@@ -52,7 +52,7 @@ void Playback::init_info(k4n::playback::Sensor& sensor){
   sensor.calibration.path.insert("../media/calibration/kinect.json");
 
   sensor.data->name = sensor.data->path.name;
-  sensor.data->topology.type = utl::topology::POINT;
+  sensor.data->topology.type = utl::topology::DYNAMIC_POINT;
   sensor.data->nb_data_max = 10000000;
 
   sensor.info.model = "kinect";

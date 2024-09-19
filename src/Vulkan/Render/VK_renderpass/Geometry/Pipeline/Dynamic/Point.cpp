@@ -12,7 +12,7 @@ Point::Point(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
-  this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
+  this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
 
   //---------------------------
 }
@@ -29,24 +29,27 @@ void Point::add_pipeline(vk::structure::Subpass& subpass){
   this->set_binding(*pipeline);
 
   //---------------------------
-  subpass.map_pipeline["dynamic_point"] = pipeline;
+  vk_pipeline->add_pipeline_topology(subpass, pipeline);
 }
 
 //Subfunction
 void Point::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.info.topology = utl::topology::POINT;
-  pipeline.info.vec_attribut.push_back(vk::attribut::XYZ);
-  pipeline.info.vec_attribut.push_back(vk::attribut::RGBA);
-  pipeline.info.vec_attribut.push_back(vk::attribut::UV);
+  vk::pipeline::structure::Info pipeline_info{};
+  pipeline_info.name = "dynamic_point";
+  pipeline_info.topology = utl::topology::DYNAMIC_POINT;
+  pipeline_info.vec_attribut.push_back(vk::attribut::XYZ);
+  pipeline_info.vec_attribut.push_back(vk::attribut::RGBA);
+  pipeline_info.vec_attribut.push_back(vk::attribut::UV);
 
   //---------------------------
+  pipeline.info = pipeline_info;
 }
 void Point::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk::shader::structure::Info shader_info;
+  vk::shader::structure::Info shader_info{};
   shader_info.name = "dynamic_point";
   shader_info.path_glsl.vs = "../media/shader/Dynamic/glsl/point_vs.vert";
   shader_info.path_glsl.fs = "../media/shader/Dynamic/glsl/point_fs.frag";

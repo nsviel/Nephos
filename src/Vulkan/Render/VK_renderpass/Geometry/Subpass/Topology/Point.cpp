@@ -45,7 +45,7 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
   this->bind_pipeline(subpass, *pipeline);
 
   for(auto& vk_object : vk_struct->core.data.list_vk_object){
-    if(!check_data(*vk_object, utl::topology::POINT, false)) continue;
+    if(!check_data(*vk_object, utl::topology::POINT)) continue;
     this->update_uniform(subpass, *vk_object, *pipeline);
     this->draw_data(*vk_object, subpass);
   }
@@ -89,12 +89,11 @@ void Point::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& 
 
   //---------------------------
 }
-bool Point::check_data(vk::structure::Object& vk_object, int topology, bool dynamic){
+bool Point::check_data(vk::structure::Object& vk_object, int topology){
   utl::base::Data& data = *vk_object.data;
   //---------------------------
 
   if(data.topology.type != topology) return false;
-  if(data.is_dynamic != dynamic) return false;
   if(data.is_visible == false) return false;
   if(data.xyz.empty()) return false;
   if(data.rgba.empty()) return false;

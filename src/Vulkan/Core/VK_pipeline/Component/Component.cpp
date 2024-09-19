@@ -75,6 +75,10 @@ void Component::info_pipeline_topology(vk::structure::Pipeline& pipeline){
       topology.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
       break;
     }
+    case utl::topology::DYNAMIC_POINT:{
+      topology.topology = VK_PRIMITIVE_TOPOLOGY_POINT_LIST;
+      break;
+    }
   }
 
   //---------------------------
