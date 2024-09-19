@@ -33,6 +33,7 @@ void EDL::create_subpass(vk::structure::Renderpass& renderpass){
   subpass->source = VK_SUBPASS_EXTERNAL;
   subpass->target = vk::renderpass::SHADER;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_edl(*subpass);};
+  subpass->update_sampler = [this](vk::structure::Subpass* subpass) {this->update_sampler(*subpass);};
 
   //Subpass pipelines
   vk_factory->add_pipeline_edl(*subpass);
@@ -59,20 +60,29 @@ void EDL::bind_pipeline(vk::structure::Subpass& subpass){
 
   //---------------------------
 }
+void EDL::update_sampler(vk::structure::Subpass& subpass){
+  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
+  //---------------------------
+
+  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_color = vk_sampler->query_sampler(pipeline->descriptor.descriptor_set, "tex_color");
+  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_depth = vk_sampler->query_sampler(pipeline->descriptor.descriptor_set, "tex_depth");
+
+  vk::structure::Framebuffer& framebuffer = vk_struct->render.renderpass.geometry.framebuffer;
+  sampler_color->image = std::make_unique<vk::structure::Image>(framebuffer.color);
+  sampler_depth->image = std::make_unique<vk::structure::Image>(framebuffer.depth);
+
+  //---------------------------
+}
 void EDL::update_descriptor(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   //---------------------------
 
-  static bool a = true;
-
   //Update samplers
   vk::structure::Framebuffer& framebuffer = vk_struct->render.renderpass.geometry.framebuffer;
-  if(a)
   for(auto& [name, pipeline] : subpass.map_pipeline){
     vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, &framebuffer.color);
     vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set, &framebuffer.depth);
   }
-  a = false;
 
   //Update parameters
   vk::pipeline::edl::Structure& edl_struct = vk_struct->render.pipeline.edl;

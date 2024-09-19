@@ -85,6 +85,7 @@ void Descriptor_set::update_descriptor_set(vk::descriptor::structure::Descriptor
   //---------------------------
 
   vk_uniform->actualize_uniform(descriptor_set);
+  vk_sampler->actualize_sampler(descriptor_set);  
 
   //---------------------------
 }

@@ -29,7 +29,7 @@ public:
   void actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::structure::Image* image);
 
   //Subfunction
-  std::shared_ptr<vk::descriptor::structure::Sampler> query_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, std::string& name);
+  std::shared_ptr<vk::descriptor::structure::Sampler> query_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, std::string name);
 
 private:
   vk::Structure* vk_struct;

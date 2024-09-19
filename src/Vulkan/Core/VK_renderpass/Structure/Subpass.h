@@ -18,6 +18,10 @@ namespace vk::structure{
 struct Subpass{
   //---------------------------
 
+  //Function
+  std::function<void(Subpass* subpass)> draw_task;
+  std::function<void(Subpass* subpass)> update_sampler;
+
   //Subpass info
   VkSubpassDescription description = {};
   VkSubpassDependency dependency = {};
@@ -31,7 +35,6 @@ struct Subpass{
   std::vector<vk::structure::Attachment> vec_color;
   std::vector<vk::structure::Attachment> vec_color_resolve;
   std::unordered_map< std::string, std::shared_ptr<vk::structure::Pipeline> > map_pipeline;
-  std::function<void(Subpass* subpass)> draw_task;
 
   //---------------------------
 };

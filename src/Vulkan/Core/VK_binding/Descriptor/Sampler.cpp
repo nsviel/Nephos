@@ -32,7 +32,9 @@ void Sampler::create_sampler(vk::descriptor::structure::Descriptor_set& descript
 void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
-  for(auto& [name, sampler] : descriptor_set.map_sampler){
+  for(auto& [name, sampler] : descriptor_set.map_sampler){;
+    if(!sampler->image) continue;
+
     //Descriptor image info
     VkDescriptorImageInfo image_info = {};
     image_info.imageLayout = sampler->image->layout;
@@ -80,7 +82,7 @@ void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descr
 }
 
 //Subfunction
-std::shared_ptr<vk::descriptor::structure::Sampler> Sampler::query_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, std::string& name){
+std::shared_ptr<vk::descriptor::structure::Sampler> Sampler::query_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, std::string name){
   //---------------------------
 
   auto it = descriptor_set.map_sampler.find(name);
