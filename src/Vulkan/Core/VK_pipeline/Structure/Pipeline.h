@@ -14,6 +14,7 @@ struct Pipeline{
 
   VkPipeline handle = VK_NULL_HANDLE;
   VkPipelineLayout layout = VK_NULL_HANDLE;
+  int subpass_ID = 0;
 
   vk::pipeline::structure::Info info;
   vk::pipeline::structure::Component component;

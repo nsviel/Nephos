@@ -50,7 +50,7 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
 //Subfunction
 void Point::draw_pipeline_point(vk::structure::Subpass& subpass){
   //---------------------------
-/*
+
   //Bind pipeline
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["point"];
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
@@ -76,7 +76,7 @@ void Point::draw_pipeline_point(vk::structure::Subpass& subpass){
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }
   }
-*/
+
   //---------------------------
 }
 bool Point::check_data(utl::base::Data& data, int typology){

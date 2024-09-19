@@ -20,6 +20,7 @@ Triangle::~Triangle(){}
 //Main function
 void Triangle::add_pipeline(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = std::make_shared<vk::structure::Pipeline>();
+  pipeline->subpass_ID = subpass.index;
   //---------------------------
 
   this->set_pipeline(*pipeline);

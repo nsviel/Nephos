@@ -20,6 +20,7 @@ Point::~Point(){}
 //Main function
 void Point::add_pipeline(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = std::make_shared<vk::structure::Pipeline>();
+  pipeline->subpass_ID = subpass.index;
   //---------------------------
 
   this->set_pipeline(*pipeline);
@@ -33,6 +34,7 @@ void Point::add_pipeline(vk::structure::Subpass& subpass){
 //Subfunction
 void Point::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
+
 
   pipeline.info.name = "point";
   pipeline.info.topology = utl::topology::POINT;

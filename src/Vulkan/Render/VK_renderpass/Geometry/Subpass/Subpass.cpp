@@ -34,7 +34,7 @@ void Subpass::create_subpass(vk::structure::Renderpass& renderpass){
 
   //Subpass pipeline
   vk_factory->add_pipeline_line(*subpass);
-  vk_factory->add_pipeline_point(*subpass);
+  //vk_factory->add_pipeline_point(*subpass);
   vk_factory->add_pipeline_triangle(*subpass);
   vk_factory->add_pipeline_dynamic(*subpass);
 
@@ -55,7 +55,7 @@ void Subpass::draw_subpass(vk::structure::Subpass& subpass){
 //Subfunction
 void Subpass::draw_pipeline_point(vk::structure::Subpass& subpass){
   //---------------------------
-
+/*
   //Bind pipeline
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["point"];
   vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, *pipeline);
@@ -81,7 +81,7 @@ void Subpass::draw_pipeline_point(vk::structure::Subpass& subpass){
       vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_object);
     }
   }
-
+*/
   //---------------------------
 }
 void Subpass::draw_pipeline_line(vk::structure::Subpass& subpass){

@@ -14,7 +14,7 @@ Component::Component(vk::Structure* vk_struct){
   this->vk_shader = new vk::pipeline::Shader(vk_struct);
   this->vk_vertex = new vk::pipeline::Vertex(vk_struct);
   this->vk_layout = new vk::pipeline::Layout(vk_struct);
-  
+
   //---------------------------
 }
 Component::~Component(){}
@@ -216,7 +216,7 @@ void Component::create_pipeline_handle(vk::structure::Renderpass& renderpass, vk
   pipeline_info.pDynamicState = &pipeline.component.dynamic;
   pipeline_info.layout = pipeline.layout;
   pipeline_info.renderPass = renderpass.handle;
-  pipeline_info.subpass = 0;
+  pipeline_info.subpass = pipeline.subpass_ID;
   pipeline_info.basePipelineHandle = VK_NULL_HANDLE; // Optional
   pipeline_info.basePipelineIndex = -1; // Optional
 
