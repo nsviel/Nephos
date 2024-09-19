@@ -46,7 +46,7 @@ void Line::draw_subpass(vk::structure::Subpass& subpass){
 
   for(auto& vk_object : vk_struct->core.data.list_vk_object){
     if(!check_data(*vk_object, utl::topology::LINE)) continue;
-    this->bind_descriptor(subpass, *vk_object, *pipeline);
+    this->update_uniform(subpass, *vk_object, *pipeline);
     this->draw_data(*vk_object, subpass);
   }
 
@@ -62,7 +62,7 @@ void Line::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipelin
 
   //---------------------------
 }
-void Line::bind_descriptor(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
+void Line::update_uniform(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
   utl::base::Data& data = *vk_object.data;
   utl::base::Pose& pose = *vk_object.pose;
   //---------------------------

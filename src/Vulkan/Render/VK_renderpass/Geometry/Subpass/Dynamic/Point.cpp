@@ -46,7 +46,8 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
 
   for(auto& vk_object : vk_struct->core.data.list_vk_object){
     if(!check_data(*vk_object, utl::topology::DYNAMIC_POINT)) continue;
-    this->bind_descriptor(subpass, *vk_object, *pipeline);
+    this->update_uniform(subpass, *vk_object, *pipeline);
+    this->update_sampler(subpass, *vk_object, *pipeline);
     this->draw_data(*vk_object, subpass);
   }
 
@@ -62,7 +63,7 @@ void Point::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeli
 
   //---------------------------
 }
-void Point::bind_descriptor(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
+void Point::update_uniform(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
   utl::base::Data& data = *vk_object.data;
   utl::base::Pose& pose = *vk_object.pose;
   //---------------------------
@@ -86,6 +87,27 @@ void Point::bind_descriptor(vk::structure::Subpass& subpass, vk::structure::Obje
   //Descriptor set
   vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
 
+  //---------------------------
+}
+void Point::update_sampler(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
+  utl::base::Data& data = *vk_object.data;
+  utl::base::Pose& pose = *vk_object.pose;
+  //---------------------------
+
+/*
+  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
+  //---------------------------
+
+  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_color = vk_sampler->query_sampler(pipeline->descriptor.descriptor_set, "tex_color");
+  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_depth = vk_sampler->query_sampler(pipeline->descriptor.descriptor_set, "tex_depth");
+
+  vk::structure::Framebuffer& framebuffer = vk_struct->render.renderpass.geometry.framebuffer;
+  sampler_color->image = std::make_unique<vk::structure::Image>(framebuffer.color);
+  sampler_depth->image = std::make_unique<vk::structure::Image>(framebuffer.depth);
+
+  //---------------------------
+  vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set);
+*/
   //---------------------------
 }
 void Point::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass){
