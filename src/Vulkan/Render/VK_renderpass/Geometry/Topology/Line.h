@@ -14,7 +14,7 @@ namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Object;}
 
 
-namespace vk::render::geometry{
+namespace vk::render::topology{
 
 class Line
 {

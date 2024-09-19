@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::render::geometry{
+namespace vk::render::topology{
 
 //Constructor / Destructor
 Triangle::Triangle(vk::Structure* vk_struct){

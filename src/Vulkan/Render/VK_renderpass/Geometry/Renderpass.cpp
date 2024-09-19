@@ -10,9 +10,9 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_point = new vk::render::geometry::Point(vk_struct);
-  this->vk_line = new vk::render::geometry::Line(vk_struct);
-  this->vk_triangle = new vk::render::geometry::Triangle(vk_struct);
+  this->vk_point = new vk::render::topology::Point(vk_struct);
+  this->vk_line = new vk::render::topology::Line(vk_struct);
+  this->vk_triangle = new vk::render::topology::Triangle(vk_struct);
 
   //---------------------------
 }

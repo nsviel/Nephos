@@ -28,8 +28,8 @@ void Point::create_subpass(vk::structure::Renderpass& renderpass){
 
   //Subpass object
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
-  subpass->index = 1;
-  subpass->source = 0;
+  subpass->index = 2;
+  subpass->source = 3;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
 
   //Subpass pipeline

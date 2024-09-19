@@ -1,9 +1,9 @@
 #pragma once
 
 namespace vk{class Structure;}
-namespace vk::render::geometry{class Point;}
-namespace vk::render::geometry{class Line;}
-namespace vk::render::geometry{class Triangle;}
+namespace vk::render::topology{class Point;}
+namespace vk::render::topology{class Line;}
+namespace vk::render::topology{class Triangle;}
 
 
 namespace vk::render::geometry{
@@ -21,9 +21,9 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::render::geometry::Point* vk_point;
-  vk::render::geometry::Line* vk_line;
-  vk::render::geometry::Triangle* vk_triangle;
+  vk::render::topology::Point* vk_point;
+  vk::render::topology::Line* vk_line;
+  vk::render::topology::Triangle* vk_triangle;
 };
 
 }
