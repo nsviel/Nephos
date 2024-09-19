@@ -23,10 +23,13 @@ Image::~Image(){}
 void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Image> image){
   //----------------------------
 
+  //Check if image already inseretd
+  auto& is_image = entity.data->map_image[image->name];
+  if(is_image) return;
+
+  //Else insert it
   this->manage_UID(image);
-  if(has_image_UID(entity, image->UID)) return;
-  if(image->format == "") image->format = "R8G8B8A8_SRGB";
-  entity.data->map_texture[image->name] = image;
+  entity.data->map_image[image->name] = image;
 
   //----------------------------
 }
@@ -41,11 +44,11 @@ void Image::manage_UID(std::shared_ptr<utl::media::Image> image){
 }
 
 //Subfunction
-bool Image::has_image_UID(dat::base::Entity& entity, int UID){
+bool Image::is_image_inserted(dat::base::Entity& entity, int UID){
   //----------------------------
 
   //Search for already existing image with same type
-  for(auto& [name, texture] : entity.data->map_texture){
+  for(auto& [name, texture] : entity.data->map_image){
     if(texture->UID == UID) return true;
   }
 
@@ -56,10 +59,8 @@ std::shared_ptr<utl::media::Image> Image::get_image(dat::base::Entity& entity, s
   if(query == "") return nullptr;
   //----------------------------
 
-  //Search for already existing image with same type
-  for(auto& [name, texture] : entity.data->map_texture){
-    if(name == query) return texture;
-  }
+  auto& image = entity.data->map_image[query];
+  if(image) return image;
 
   //----------------------------
   return nullptr;
@@ -69,17 +70,16 @@ std::shared_ptr<utl::media::Image> Image::get_or_create_image(dat::base::Entity&
   //----------------------------
 
   //Search for already existing image with same type
-  for(auto& [name, texture] : entity.data->map_texture){
-    if(name == query) return texture;
-  }
+  auto& image = entity.data->map_image[query];
+  if(image) return image;
 
   //Else create it
-  std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>();
-  image->name = query;
-  this->add_image(entity, image);
+  std::shared_ptr<utl::media::Image> new_image = std::make_shared<utl::media::Image>();
+  new_image->name = query;
+  this->add_image(entity, new_image);
 
   //----------------------------
-  return image;
+  return new_image;
 }
 
 }

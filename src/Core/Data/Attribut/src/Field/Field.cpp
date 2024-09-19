@@ -19,8 +19,8 @@ std::vector<std::string> Field::get_field_names(utl::base::Data& data){
   std::vector<std::string> vec_name;
   //---------------------------
 
-  for(const auto& field : data.vec_field){
-    vec_name.push_back(field.name);
+  for(auto& [name, field] : data.map_field){
+    vec_name.push_back(name);
   }
 
   //---------------------------
@@ -68,14 +68,13 @@ void Field::create_field(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   //Check if field is already present
-  if (std::any_of(data.vec_field.begin(), data.vec_field.end(), [&](const auto& field){ return field.name == name; })){
-    return;
-  }
+  auto& field = data.map_field[name];
+  if(field) return;
 
   //Create it
-  utl::base::Field field;
-  field.name = name;
-  data.vec_field.push_back(field);
+  std::shared_ptr<utl::base::Field> new_field = std::make_shared<utl::base::Field>();
+  new_field->name = name;
+  data.map_field[name] = new_field;
 
   //---------------------------
 }
@@ -84,13 +83,10 @@ void Field::create_field(utl::base::Data& data, const std::string& name){
 std::shared_ptr<utl::base::Field> Field::get_field(utl::base::Data& data, const std::string& name){
   //---------------------------
 
-  auto it = std::find_if(data.vec_field.begin(), data.vec_field.end(), [&](const auto& field){ return field.name == name; });
-  if (it != data.vec_field.end()){
-    return std::make_shared<utl::base::Field>(*it);
-  }
+  auto& field = data.map_field[name];
 
   //---------------------------
-  return nullptr;
+  return field;
 }
 
 }

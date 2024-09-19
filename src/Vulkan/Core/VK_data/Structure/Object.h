@@ -5,6 +5,7 @@
 #include <Vulkan/Core/VK_binding/Structure/Descriptor_set.h>
 #include <Utility/Base/Data/Data.h>
 #include <Utility/Base/Data/Pose.h>
+#include <unordered_map>
 #include <memory>
 #include <list>
 
@@ -41,9 +42,9 @@ struct Object{
   //Data
   std::shared_ptr<utl::base::Data> data = std::make_shared<utl::base::Data>();
   std::shared_ptr<utl::base::Pose> pose = std::make_shared<utl::base::Pose>();
-  std::list< std::shared_ptr<vk::structure::Texture> > list_vk_texture;
+  std::unordered_map<std::string, std::shared_ptr<vk::structure::Texture>> map_texture;
   vk::structure::Buffer_set buffer;
-  
+
   //---------------------------
 };
 

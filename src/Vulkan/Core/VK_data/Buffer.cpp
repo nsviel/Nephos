@@ -99,7 +99,7 @@ int Buffer::get_size_buffer(vk::structure::Object& vk_object){
   utl::base::Data& data = *vk_object.data;
   //---------------------------
 
-  int max_data = (data.nb_data_max != -1) ? data.nb_data_max : data.xyz.size();
+  int max_data = (data.size_max != -1) ? data.size_max : data.xyz.size();
 
   //---------------------------
   return max_data;

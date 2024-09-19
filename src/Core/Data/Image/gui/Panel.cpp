@@ -41,7 +41,7 @@ void Panel::run_panel(){
   if(!entity) return;
   //---------------------------
 
-  if(*show_window && !entity->data->map_texture.empty()){
+  if(*show_window && !entity->data->map_image.empty()){
     ImGuiWindowFlags flag;
     flag |= ImGuiWindowFlags_NoCollapse;
     flag |= ImGuiWindowFlags_AlwaysAutoResize;
@@ -71,7 +71,7 @@ void Panel::design_panel(std::shared_ptr<dat::base::Entity> entity){
 //All devices
 void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
-
+/*
   //Display capture images
   if(ImGui::BeginTabBar("device_tab##4567")){
     ImVec2 size = ImGui::GetContentRegionAvail();
@@ -79,11 +79,11 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
     //All in one
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("All##4567", NULL)){
-      size = ImVec2(size.x, size.y / entity->data->map_texture.size() - 3.33);
+      size = ImVec2(size.x, size.y / entity->data->map_image.size() - 3.33);
 
       int index = 0;
-      for(auto& [name, texture] : entity->data->map_texture){
-        this->draw_stream_image(texture, size, index++);
+      for(auto& [name, image] : entity->data->map_image){
+        this->draw_stream_image(image, size, index++);
       }
 
       ImGui::EndTabItem();
@@ -91,29 +91,29 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
 
     //All image in separate tab
     int index = 0;
-    for(auto& [name, texture] : entity->data->map_texture){
+    for(auto& [name, image] : entity->data->map_image){
       ImGui::SetNextItemWidth(100);
-      std::string title = texture->name + "##4567";
+      std::string title = image->name + "##4567";
       if(ImGui::BeginTabItem(title.c_str(), NULL)){
-        this->draw_stream_image(texture, size, index++);
+        this->draw_stream_image(image, size, index++);
         ImGui::EndTabItem();
       }
     }
 
     ImGui::EndTabBar();
   }
-
+*/
   //---------------------------
 }
 void Panel::draw_stream_image(std::shared_ptr<utl::media::Image> image, ImVec2 size, int idx){
   if(idx >= vec_stream.size()) return;
   //---------------------------
-
+/*
   if(image->size == 0) return;
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_stream[idx]->draw_stream(image, size);
   //gui_overlay->overlay_capture(entity, &entity->color.data, size, image_pose);
-
+*/
   //---------------------------
 }
 

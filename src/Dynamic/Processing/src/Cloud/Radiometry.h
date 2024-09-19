@@ -7,7 +7,6 @@ namespace dyn::prc{class Node;}
 namespace dyn::prc{class Structure;}
 namespace dat::base{class Sensor;}
 namespace rad::cor{class Correction;}
-namespace dat::img{class Image;}
 
 
 namespace dyn::prc::cloud{
@@ -31,7 +30,6 @@ public:
 private:
   dyn::prc::Structure* dyn_struct;
   rad::cor::Correction* rad_correction;
-  dat::img::Image* dat_image;
 
   std::thread thread;
   bool thread_idle = true;

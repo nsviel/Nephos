@@ -26,15 +26,15 @@ struct Data : public utl::base::Element{
   //State
   bool is_visible = true;
   bool is_updated = false;
-  int nb_data_max = -1;
+  int size_max = -1;
   int width = -1;
   int height = -1;
   int size = -1;
   std::mutex mutex;
 
   //Infos
-  utl::base::Topology topology;
   utl::base::Path path;
+  utl::base::Topology topology;
   glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
   glm::vec3 centroid = glm::vec3(0.0f, 0.0f, 0.0f);
 
@@ -44,8 +44,8 @@ struct Data : public utl::base::Element{
   std::vector<glm::vec4> rgba;  //Displayed color data
   std::vector<glm::vec3> Nxyz;  //Normal
   std::vector<glm::vec2> uv;    //UV coordinate
-  std::vector<utl::base::Field> vec_field;
-  std::unordered_map<std::string, std::shared_ptr<utl::media::Image>> map_texture;
+  std::unordered_map<std::string, std::shared_ptr<utl::base::Field>> map_field;
+  std::unordered_map<std::string, std::shared_ptr<utl::media::Image>> map_image;
 
   //---------------------------
 };

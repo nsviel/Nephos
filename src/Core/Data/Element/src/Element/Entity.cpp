@@ -49,10 +49,10 @@ void Entity::reset_pose(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Pose& pose = *entity->pose;
   //----------------------------
 
-  glm::mat4 init = pose.model_init;
+  glm::mat4 init = pose.initial;
   pose = {};
   pose.model = init;
-  pose.model_init = init;
+  pose.initial = init;
 
   //----------------------------
 }

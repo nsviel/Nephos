@@ -53,7 +53,7 @@ void Playback::init_info(k4n::playback::Sensor& sensor){
 
   sensor.data->name = sensor.data->path.name;
   sensor.data->topology.type = utl::topology::DYNAMIC_POINT;
-  sensor.data->nb_data_max = 10000000;
+  sensor.data->size_max = 10000000;
 
   sensor.info.model = "kinect";
   sensor.info.depth_mode = "NFOV";

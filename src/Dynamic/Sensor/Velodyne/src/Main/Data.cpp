@@ -32,7 +32,7 @@ void Data::create_object(){
   vld_struct->data.object->name = "capture_1";
   vld_struct->data.object->data->name = "velodyne::capture::data";
   vld_struct->data.object->data->topology.type = utl::topology::POINT;
-  vld_struct->data.object->data->nb_data_max = 1000000;
+  vld_struct->data.object->data->size_max = 1000000;
   vld_struct->data.object->pose.model[2][3] = 1;
   dat_entity->init_entity(vld_struct->data.object);
 

@@ -36,7 +36,7 @@ void IO::load_transformation(std::shared_ptr<utl::base::Element> element, std::s
 
   if(mat != glm::mat4(1)){
     pose.model = mat;
-    pose.model_init = mat;
+    pose.initial = mat;
   }
 
   //---------------------------

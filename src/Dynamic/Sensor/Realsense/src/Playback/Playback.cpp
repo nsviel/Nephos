@@ -74,7 +74,7 @@ void Playback::init_info(rlx::playback::Sensor& sensor){
   sensor.info.model = "realsense";
   sensor.data->name = sensor.name;
   sensor.data->topology.type = utl::topology::POINT;
-  sensor.data->nb_data_max = 10000000;
+  sensor.data->size_max = 10000000;
   sensor.data->path.directory = utl::path::get_current_path_abs();
   sensor.pose->model[2][3] = 1;
 

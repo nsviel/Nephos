@@ -50,8 +50,6 @@ void Sphere::update_pose(dat::base::Entity& entity){
   if(mat_model != glm::mat4(1.0f)){
     utl::base::Pose& entity_pose = *entity.pose;
     pose->model = mat_model * entity_pose.model;
-
-    cam_control->compute_camera_mvp(*pose);
   }
 
   //---------------------------

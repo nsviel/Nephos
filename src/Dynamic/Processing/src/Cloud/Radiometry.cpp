@@ -13,12 +13,9 @@ namespace dyn::prc::cloud{
 Radiometry::Radiometry(dyn::prc::Node* node_processing){
   //---------------------------
 
-  dat::Node* node_data = node_processing->get_node_data();
-  dat::img::Node* node_image = node_data->get_node_image();
   rad::Node* node_radio = node_processing->get_node_radio();
   rad::cor::Node* node_correction = node_radio->get_node_correction();
 
-  this->dat_image = node_image->get_dat_image();
   this->rad_correction = node_correction->get_rad_correction();
 
   //---------------------------
@@ -65,7 +62,7 @@ void Radiometry::wait_thread(){
 void Radiometry::compute_correction(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
-  std::shared_ptr<utl::media::Image> image = dat_image->get_image(*sensor, "Intensity");
+  std::shared_ptr<utl::media::Image> image = sensor->data->map_image["Intensity"];
   rad_correction->make_image_correction(*sensor, image);
 
   //---------------------------

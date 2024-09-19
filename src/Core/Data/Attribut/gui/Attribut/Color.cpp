@@ -115,7 +115,7 @@ void Color::color_mode_field(std::shared_ptr<utl::base::Element> element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data->vec_field.size() == 0);
+  bool condition = (entity->data->map_field.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("Field##colorization", &atr_struct->color.mode, dat::atr::color::FIELD)){
@@ -131,7 +131,7 @@ void Color::color_mode_heatmap(std::shared_ptr<utl::base::Element> element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data->vec_field.size() == 0);
+  bool condition = (entity->data->map_field.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("Heatmap##colorization", &atr_struct->color.mode, dat::atr::color::HEATMAP)){
@@ -169,7 +169,7 @@ void Color::color_option(std::shared_ptr<utl::base::Element> element){
     std::vector<std::string> vec_name = atr_field->get_field_names(*entity->data);
 
     //Init
-    if(!entity->data->vec_field.empty() && atr_struct->color.field == ""){
+    if(!entity->data->map_field.empty() && atr_struct->color.field == ""){
       atr_struct->color.field = vec_name[0];
       atr_struct->color.range = atr_field->get_field_range(*entity->data, vec_name[0]);
     }

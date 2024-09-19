@@ -123,11 +123,12 @@ void Control::update_pose(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Pose& pose = *entity->pose;
   //----------------------------
 
-  vk_interface->set_mat_view(compute_camera_view());
-  vk_interface->set_mat_projection(compute_camera_proj());
+  //Update vulkan camera matrices
+  glm::mat4 cam_view = compute_camera_view();
+  glm::mat4 cam_proj = compute_camera_proj();
 
-  //Update own pose
-  this->compute_camera_mvp(pose);
+  vk_interface->set_mat_view(cam_view);
+  vk_interface->set_mat_projection(cam_proj);
 
   //Update own glyph pose
   for(auto& glyph : entity->list_glyph){
@@ -179,17 +180,6 @@ glm::mat4 Control::compute_camera_mvp(){
 
   //---------------------------
   return mvpMatrix;
-}
-void Control::compute_camera_mvp(utl::base::Pose& pose){
-  //---------------------------
-
-  glm::mat4 cam_modl = glm::transpose(pose.model);
-  glm::mat4 cam_view = compute_camera_view();
-  glm::mat4 cam_proj = compute_camera_proj();
-
-  pose.mvp = cam_proj * cam_view * cam_modl;
-
-  //---------------------------
 }
 glm::mat4 Control::compute_camera_pose(){
   std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;

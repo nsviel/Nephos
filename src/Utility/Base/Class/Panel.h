@@ -8,7 +8,11 @@ namespace utl::gui{
 struct Panel{
   //---------------------------
 
-  Panel(const std::string& n, const std::string& i, bool o) : name(n), icon(i), is_open(o){}
+  Panel(const std::string& name, const std::string& icon, bool open){
+    this->name = name;
+    this->icon = icon;
+    this->is_open = open;
+  }
 
   std::string name;
   std::string icon;
