@@ -1,7 +1,7 @@
 #pragma once
 
-namespace vk::renderpass{class Attachment;}
 namespace vk{class Structure;}
+namespace vk::renderpass{class Attachment;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
 
@@ -20,10 +20,7 @@ public:
   void create_subpass(vk::structure::Renderpass& renderpass);
 
   //Subfunction
-  void create_subpass_shader(vk::structure::Subpass& subpass);
-  void create_subpass_transfert(vk::structure::Subpass& subpass);
-  void create_subpass_presentation(vk::structure::Subpass& subpass);
-  void create_subpass_description(vk::structure::Subpass& subpass);
+  void create_subpass_description(vk::structure::Renderpass& renderpass, vk::structure::Subpass& subpass);
 
 private:
   vk::Structure* vk_struct;

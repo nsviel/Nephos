@@ -13,6 +13,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
   this->vk_subpass = new Subpass(vk_struct);
   this->vk_framebuffer = new vk::renderpass::Framebuffer(vk_struct);
+  this->vk_attachment = new Attachment(vk_struct);
 
   //---------------------------
 }
@@ -51,11 +52,36 @@ void Renderpass::clean(){
 void Renderpass::init_renderpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
+  this->attachment_renderpass(renderpass);
   vk_subpass->create_subpass(renderpass);
   this->subpass_description(renderpass);
   this->create_renderpass(renderpass);
   vk_pipeline->create_pipeline(renderpass);
   vk_framebuffer->create_framebuffer(renderpass);
+
+  //---------------------------
+}
+void Renderpass::attachment_renderpass(vk::structure::Renderpass& renderpass){
+  //---------------------------
+
+  switch(renderpass.target){
+    case vk::renderpass::SHADER:{
+      vk_attachment->attachment_shader(renderpass);
+      break;
+    }
+    case vk::renderpass::TRANSFER:{
+      vk_attachment->attachment_transfert(renderpass);
+      break;
+    }
+    case vk::renderpass::PRESENTATION:{
+      vk_attachment->attachment_presentation(renderpass);
+      break;
+    }
+    default:{
+      std::cout<<"[error] renderpass attachment target not recognized"<<std::endl;
+      return;
+    }
+  }
 
   //---------------------------
 }
@@ -69,17 +95,17 @@ void Renderpass::subpass_description(vk::structure::Renderpass& renderpass){
     renderpass.vec_dependency.push_back(subpass->dependency);
 
     // Add color attachments
-    for(int j=0; j<subpass->vec_color.size(); j++){
-      renderpass.vec_attachment.push_back(subpass->vec_color[j].description);
+    for(int j=0; j<renderpass.vec_color.size(); j++){
+      renderpass.vec_attachment.push_back(renderpass.vec_color[j].description);
     }
 
     // Add color resolve attachments
-    for(int j=0; j<subpass->vec_color_resolve.size(); j++){
-      renderpass.vec_attachment.push_back(subpass->vec_color_resolve[j].description);
+    for(int j=0; j<renderpass.vec_color_resolve.size(); j++){
+      renderpass.vec_attachment.push_back(renderpass.vec_color_resolve[j].description);
     }
 
     // Add depth attachment
-    renderpass.vec_attachment.push_back(subpass->depth.description);
+    renderpass.vec_attachment.push_back(renderpass.depth.description);
   }
 
   //---------------------------

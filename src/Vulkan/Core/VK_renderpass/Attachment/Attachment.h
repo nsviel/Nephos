@@ -1,8 +1,9 @@
 #pragma once
 
+namespace vk{class Structure;}
 namespace vk::image{class Color;}
 namespace vk::image{class Depth;}
-namespace vk{class Structure;}
+namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Attachment;}
 
 
@@ -16,6 +17,11 @@ public:
   ~Attachment();
 
 public:
+  //Main function
+  void attachment_shader(vk::structure::Renderpass& renderpass);
+  void attachment_transfert(vk::structure::Renderpass& renderpass);
+  void attachment_presentation(vk::structure::Renderpass& renderpass);
+
   //Color attachment
   void color_description(vk::structure::Attachment& color);
   void color_reference(vk::structure::Attachment& color);

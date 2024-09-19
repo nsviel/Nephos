@@ -19,6 +19,7 @@ Renderpass::~Renderpass(){}
 //Main function
 void Renderpass::init(){
   vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.presentation;
+  renderpass.target = vk::renderpass::PRESENTATION;
   if(vk_struct->param.headless) return;
   //---------------------------
 

@@ -17,6 +17,79 @@ Attachment::Attachment(vk::Structure* vk_struct){
 }
 Attachment::~Attachment(){}
 
+//Main function
+void Attachment::attachment_shader(vk::structure::Renderpass& renderpass){
+  //---------------------------
+
+  // Color
+  vk::structure::Attachment color;
+  color.index = vk::attachment::COLOR;
+  color.layout_final = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+  this->color_description(color);
+  this->color_reference(color);
+  renderpass.vec_color.push_back(color);
+
+  // Depth
+  vk::structure::Attachment depth;
+  depth.index = vk::attachment::DEPTH;
+  depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+  this->depth_description(depth);
+  this->depth_reference(depth);
+  renderpass.depth = depth;
+
+  // Color resolver
+  vk::structure::Attachment color_resolve;
+  color_resolve.index = vk::attachment::COLOR;
+  color_resolve.layout_final = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+  this->color_resolve_description(color_resolve);
+  this->color_resolve_reference(color_resolve);
+  //renderpass.vec_color_resolve.push_back(color_resolve);
+
+  //---------------------------
+}
+void Attachment::attachment_transfert(vk::structure::Renderpass& renderpass){
+  //---------------------------
+
+  // Color
+  vk::structure::Attachment color;
+  color.index = vk::attachment::COLOR;
+  color.layout_final = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+  this->color_description(color);
+  this->color_reference(color);
+  renderpass.vec_color.push_back(color);
+
+  // Depth
+  vk::structure::Attachment depth;
+  depth.index = vk::attachment::DEPTH;
+  depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+  this->depth_description(depth);
+  this->depth_reference(depth);
+  renderpass.depth = depth;
+
+  //---------------------------
+}
+void Attachment::attachment_presentation(vk::structure::Renderpass& renderpass){
+  //---------------------------
+
+  // Color
+  vk::structure::Attachment color;
+  color.index = vk::attachment::COLOR;
+  color.layout_final = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+  this->color_description(color);
+  this->color_reference(color);
+  renderpass.vec_color.push_back(color);
+
+  // Depth
+  vk::structure::Attachment depth;
+  depth.index = vk::attachment::DEPTH;
+  depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+  this->depth_description(depth);
+  this->depth_reference(depth);
+  renderpass.depth = depth;
+
+  //---------------------------
+}
+
 //Color attachment
 void Attachment::color_description(vk::structure::Attachment& color){
   //---------------------------

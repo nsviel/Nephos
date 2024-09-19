@@ -2,10 +2,10 @@
 
 #include <vulkan/vulkan.h>
 
+namespace vk{class Structure;}
 namespace vk::image{class Color;}
 namespace vk::image{class Depth;}
 namespace vk::image{class Image;}
-namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Framebuffer;}
 namespace vk::structure{class Frame;}

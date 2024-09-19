@@ -26,14 +26,10 @@ struct Subpass{
   VkSubpassDescription description = {};
   VkSubpassDependency dependency = {};
   std::shared_ptr<vk::structure::Command_buffer> command_buffer;
-  vk::renderpass::Target target = vk::renderpass::SHADER;
   int source = -1;
   int index = -1;
 
-  //Attachment
-  vk::structure::Attachment depth;
-  std::vector<vk::structure::Attachment> vec_color;
-  std::vector<vk::structure::Attachment> vec_color_resolve;
+  //Pipeline
   std::unordered_map< std::string, std::shared_ptr<vk::structure::Pipeline> > map_pipeline;
 
   //---------------------------
