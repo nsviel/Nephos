@@ -45,7 +45,7 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
 
   this->bind_pipeline(subpass, *pipeline);
 
-  for(auto& vk_object : vk_struct->core.data.list_vk_object){
+  for(auto& [uid, vk_object] : vk_struct->core.data.map_vk_object){
     if(!check_data(*vk_object, utl::topology::DYNAMIC_POINT)) continue;
     this->update_uniform(*vk_object, *pipeline);
     this->update_sampler(*vk_object, *pipeline);

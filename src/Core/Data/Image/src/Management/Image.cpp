@@ -2,6 +2,7 @@
 
 #include <Data/Image/Namespace.h>
 #include <Data/Element/Namespace.h>
+#include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -11,8 +12,10 @@ namespace dat::img{
 Image::Image(dat::img::Node* node_image){
   //---------------------------
 
+  vk::Node* node_vulkan = node_image->get_node_vulkan();
   dat::elm::Node* node_element = node_image->get_node_element();
 
+  this->vk_interface = node_vulkan->get_vk_interface();
   this->dat_uid = node_element->get_dat_uid();
 
   //---------------------------
@@ -31,6 +34,7 @@ void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Ima
   //Else insert it
   image->UID = dat_uid->generate_UID();
   data.map_image[image->name] = image;
+  vk_interface->insert_texture(data, image);
 
   //----------------------------
 }

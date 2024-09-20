@@ -44,7 +44,7 @@ void Triangle::draw_subpass(vk::structure::Subpass& subpass){
 
   this->bind_pipeline(subpass, *pipeline);
 
-  for(auto& vk_object : vk_struct->core.data.list_vk_object){
+  for(auto& [uid, vk_object] : vk_struct->core.data.map_vk_object){
     if(!check_data(*vk_object, utl::topology::TRIANGLE)) continue;
     this->update_uniform(subpass, *vk_object, *pipeline);
     this->draw_data(*vk_object, subpass);

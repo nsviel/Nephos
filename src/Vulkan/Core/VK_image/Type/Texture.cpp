@@ -43,6 +43,34 @@ void Texture::clean(){
 }
 
 //Texture function
+void Texture::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> utl_image){
+  //---------------------------
+
+  //Check image integrity
+  if(!utl_image) return;
+  if(utl_image->format == "") return;
+  if(utl_image->size == 0) return;
+  if(utl_image->width == 0) return;
+  if(utl_image->height == 0) return;
+/*
+  //Check if image already exists
+  auto it = data.map_image.find(query);
+  if(it != data.map_image.end()) return it->second;
+
+
+  auto texture = query_texture(utl_image->texture_ID);
+  if(texture){
+    this->update_texture(texture);
+  }
+  //Else create it
+  else{
+    texture = std::make_shared<vk::structure::Texture>();
+    texture->utl_image = utl_image;
+    this->create_texture(texture);
+  }*/
+
+  //---------------------------
+}
 void Texture::insert_texture(std::shared_ptr<utl::media::Image> utl_image){
   if(!utl_image || utl_image->size == 0) return;
   //---------------------------

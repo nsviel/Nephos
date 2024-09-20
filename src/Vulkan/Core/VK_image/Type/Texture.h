@@ -13,6 +13,7 @@ namespace vk::data{class Buffer;}
 namespace vk::instance{class UID;}
 namespace vk::image{class Screenshot;}
 namespace utl::media{class Image;}
+namespace utl::base{class Data;}
 
 
 namespace vk::image{
@@ -29,6 +30,7 @@ public:
   void clean();
 
   //Texture function
+  void insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> utl_image);
   void insert_texture(std::shared_ptr<utl::media::Image> utl_image);
   void export_texture(std::shared_ptr<utl::media::Image> utl_image);
   void clean_texture(std::shared_ptr<vk::structure::Texture> texture);

@@ -28,12 +28,10 @@ void Data::insert(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::ba
   //---------------------------
 
   //Check if data already in engine
-  bool is_in_list = false;
-  for(auto& vk_object : vk_struct->core.data.list_vk_object){
-    if(data->UID == vk_object->data->UID){
-      this->update_vk_object(data, *vk_object);
-      return;
-    }
+  auto it = vk_struct->core.data.map_vk_object.find(data->UID);
+  if(it != vk_struct->core.data.map_vk_object.end()){
+    this->update_vk_object(data, *it->second);
+    return;
   }
 
   //If not, insert it
@@ -45,26 +43,20 @@ void Data::remove(utl::base::Data& data){
   //---------------------------
 
   //Search for vk object to remove
-  std::shared_ptr<vk::structure::Object> vk_object;
-  for(auto& object : vk_struct->core.data.list_vk_object){
-    if(data.UID == object->data->UID){
-      vk_object = object;
-    }
+  auto it = vk_struct->core.data.map_vk_object.find(data.UID);
+  if(it != vk_struct->core.data.map_vk_object.end()){
+    this->clean_vk_object(it->second);
   }
-
-  //Remove it
-  this->clean_vk_object(vk_object);
 
   //---------------------------
 }
 void Data::clean(){
-  std::list<std::shared_ptr<vk::structure::Object>>& list_vk_object = vk_struct->core.data.list_vk_object;
   //---------------------------
 
-  auto it = list_vk_object.begin();
-  while(it != list_vk_object.end()){
-    this->clean_vk_object(*it);
-    it = list_vk_object.begin();
+  auto it = vk_struct->core.data.map_vk_object.begin();
+  while(it != vk_struct->core.data.map_vk_object.end()){
+    this->clean_vk_object(it->second);
+    it = vk_struct->core.data.map_vk_object.begin();
   }
 
   //---------------------------
@@ -100,17 +92,23 @@ void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_p
   this->descriptor_vk_object(*vk_object);
 
   //Insert data struct into set
-  vk_struct->core.data.list_vk_object.push_back(vk_object);
+  vk_struct->core.data.map_vk_object[data->UID] = vk_object;
 
   //---------------------------
 }
 void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
   //---------------------------
 
+  //Properly clean object elements
   vk_buffer->clean_buffers(*vk_object);
   vk_texture->clean_texture(*vk_object);
   vk_descriptor_set->clean_descriptor_set(vk_object->descriptor_set);
-  vk_struct->core.data.list_vk_object.remove(vk_object);
+
+  //Remove from data list
+  auto it = vk_struct->core.data.map_vk_object.find(vk_object->data->UID);
+  if (it != vk_struct->core.data.map_vk_object.end()) {
+    vk_struct->core.data.map_vk_object.erase(it);
+  }
 
   //---------------------------
 }

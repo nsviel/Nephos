@@ -32,11 +32,14 @@ void Interface::insert_data(std::shared_ptr<utl::base::Data> data, std::shared_p
 void Interface::remove_data(utl::base::Data& data){
   vk_data->remove(data);
 }
-void Interface::insert_texture(std::shared_ptr<utl::media::Image> utl_image){
-  vk_texture->insert_texture(utl_image);
+void Interface::insert_texture(std::shared_ptr<utl::media::Image> image){
+  vk_texture->insert_texture(image);
 }
-void Interface::insert_gui_texture(std::shared_ptr<utl::media::Image> utl_image){
-  vk_texgui->insert_texture(utl_image);
+void Interface::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
+  vk_texture->insert_texture(data, image);
+}
+void Interface::insert_gui_texture(std::shared_ptr<utl::media::Image> image){
+  vk_texgui->insert_texture(image);
 }
 
 //Window function
