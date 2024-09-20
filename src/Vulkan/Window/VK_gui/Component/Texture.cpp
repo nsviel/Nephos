@@ -43,7 +43,7 @@ void Texture::update_render_texture(){
 ImTextureID Texture::create_imgui_texture(int UID){
   //---------------------------
 
-  std::shared_ptr<vk::structure::Texture> texture = vk_texture->query_texture(UID);
+  /*std::shared_ptr<vk::structure::Texture> texture = vk_texture->query_texture(UID);
   if(!texture) return 0;
 
   //Retrieve descriptor from vulkan texture
@@ -51,7 +51,7 @@ ImTextureID Texture::create_imgui_texture(int UID){
   ImTextureID imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
 
   //---------------------------
-  return imgui_texture;
+  return imgui_texture;*/return 0;
 }
 ImTextureID Texture::query_render_texture(){
   if(vk_struct->window.gui.descriptor == VK_NULL_HANDLE) return 0;

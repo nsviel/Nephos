@@ -36,10 +36,6 @@ public:
   void export_texture(std::shared_ptr<vk::structure::Texture> texture);
   void clean_texture(std::shared_ptr<vk::structure::Texture> texture);
 
-
-
-  std::shared_ptr<vk::structure::Texture> query_texture(int UID);
-
 private:
   vk::Structure* vk_struct;
   vk::memory::Allocator* vk_mem_allocator;

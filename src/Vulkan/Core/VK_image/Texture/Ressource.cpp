@@ -43,7 +43,7 @@ void Ressource::clean(){
   //---------------------------
 }
 
-//Texture function
+//Subfunction
 void Ressource::create_texture(std::shared_ptr<vk::structure::Texture> texture){
   utl::media::Image& image = *texture->image;
   //---------------------------
@@ -96,23 +96,6 @@ void Ressource::clean_texture(std::shared_ptr<vk::structure::Texture> texture){
   texture->image->texture_ID = -1;
 
   //---------------------------
-}
-
-//Texture subfunction
-
-
-//Subfunction
-std::shared_ptr<vk::structure::Texture> Ressource::query_texture(int UID){
-  //---------------------------
-/*
-  for(auto& texture : vk_struct->core.data.list_vk_texture){
-    if(texture->image->UID == UID){
-      return texture;
-    }
-  }*/
-
-  //---------------------------
-  return nullptr;
 }
 
 }
