@@ -3,7 +3,7 @@
 #include <memory>
 
 namespace vk::data{class Buffer;}
-namespace vk::texture{class Ressource;}
+namespace vk::texture{class Data;}
 namespace vk::command{class Command_buffer;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk{class Structure;}
@@ -41,7 +41,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::data::Buffer* vk_buffer;
-  vk::texture::Ressource* vk_texture;
+  vk::texture::Data* vk_texture;
   vk::command::Command_buffer* vk_command_buffer;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::instance::UID* vk_uid;

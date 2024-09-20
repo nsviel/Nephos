@@ -17,6 +17,7 @@ Data::Data(vk::Structure* vk_struct){
   this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);
   this->vk_uid = new vk::instance::UID(vk_struct);
   this->vk_screenshot = new vk::image::Screenshot(vk_struct);
+  this->vk_ressource = new vk::texture::Ressource(vk_struct);
 
   //---------------------------
 }
@@ -47,6 +48,17 @@ void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Ima
   texture->image = utl_image;
   this->create_texture(texture);
 */
+  //---------------------------
+}
+
+//Subfunction
+void Data::clean_texture(vk::structure::Object& vk_object){
+  //---------------------------
+
+  for(auto& [name, texture] : vk_object.map_texture){
+    vk_ressource->clean_texture(texture);
+  }
+
   //---------------------------
 }
 
