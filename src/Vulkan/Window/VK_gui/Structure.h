@@ -9,7 +9,7 @@ namespace vk::gui{
 struct Structure{
   //---------------------------
 
-  VkDescriptorSet descriptor = VK_NULL_HANDLE;
+  VkDescriptorSet descriptor_set = VK_NULL_HANDLE;
 
   //---------------------------
 };

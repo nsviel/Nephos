@@ -1,4 +1,4 @@
-#include "Texture.h"
+#include "Render.h"
 
 #include <Utility/Namespace.h>
 #include <Vulkan/Namespace.h>
@@ -11,7 +11,7 @@
 namespace vk::gui{
 
 //Constructor / Destructor
-Texture::Texture(vk::Structure* vk_struct){
+Render::Render(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -19,24 +19,10 @@ Texture::Texture(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Texture::~Texture(){}
+Render::~Render(){}
 
 //Main function
-void Texture::insert_texture(std::shared_ptr<utl::media::Image> utl_image){
-  //---------------------------
-/*
-  std::shared_ptr<vk::structure::Texture> texture = vk_texture->query_texture(utl_image->texture_ID);
-  if(!texture) return;
-
-  //Retrieve descriptor from vulkan texture
-  VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->wrapper.sampler, texture->wrapper.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-  ImTextureID imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
-
-  utl_image->gui_texture_ID = imgui_texture;
-*/
-  //---------------------------
-}
-void Texture::update_render_texture(){
+void Render::update_render_texture(){
   if(vk_struct->param.headless) return;
   //---------------------------
 
@@ -47,8 +33,7 @@ void Texture::update_render_texture(){
 
   //---------------------------
 }
-ImTextureID Texture::query_render_texture(){
-  if(vk_struct->window.gui.descriptor_set == VK_NULL_HANDLE) return 0;
+ImTextureID Render::query_render_texture(){
   //---------------------------
 
   ImTextureID texture = reinterpret_cast<ImTextureID>(vk_struct->window.gui.descriptor_set);
