@@ -14,10 +14,12 @@ Playback::Playback(rlx::Node* node_realsense){
 
   dat::Node* node_data = node_realsense->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
+  dat::img::Node* node_image = node_data->get_node_image();
 
-  this->dat_sensor = node_element->get_dat_sensor();
   this->rlx_struct = node_realsense->get_rlx_struct();
   this->rlx_configuration = new rlx::playback::Configuration(node_realsense);
+  this->dat_sensor = node_element->get_dat_sensor();
+  this->dat_image = node_image->get_dat_image();
 
   //---------------------------
 }
@@ -29,6 +31,7 @@ void Playback::init(rlx::playback::Sensor& sensor){
 
   rlx_configuration->init(sensor);
   this->init_info(sensor);
+  this->init_image(sensor);
   this->init_capture(sensor);
   dat_sensor->init_sensor(sensor);
 
@@ -77,6 +80,14 @@ void Playback::init_info(rlx::playback::Sensor& sensor){
   sensor.data->size_max = 10000000;
   sensor.data->path.directory = utl::path::get_current_path_abs();
   sensor.pose->model[2][3] = 1;
+
+  //---------------------------
+}
+void Playback::init_image(rlx::playback::Sensor& sensor){
+  //---------------------------
+
+  dat_image->add_image(sensor, sensor.image.color);
+  dat_image->add_image(sensor, sensor.image.depth);
 
   //---------------------------
 }

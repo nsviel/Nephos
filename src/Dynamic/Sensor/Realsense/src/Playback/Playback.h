@@ -8,6 +8,7 @@ namespace rlx::playback{class Configuration;}
 namespace rlx::playback{class Sensor;}
 namespace dat::base{class Sensor;}
 namespace dat::elm{class Sensor;}
+namespace dat::img{class Image;}
 
 
 namespace rlx::playback{
@@ -27,12 +28,14 @@ public:
 
   //Subfunction
   void init_info(rlx::playback::Sensor& sensor);
+  void init_image(rlx::playback::Sensor& sensor);
   void init_capture(rlx::playback::Sensor& sensor);
 
 private:
   rlx::Structure* rlx_struct;
   rlx::playback::Configuration* rlx_configuration;
   dat::elm::Sensor* dat_sensor;
+  dat::img::Image* dat_image;
 };
 
 }

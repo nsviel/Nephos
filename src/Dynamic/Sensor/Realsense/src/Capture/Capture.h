@@ -7,7 +7,8 @@ namespace rlx{class Structure;}
 namespace rlx::capture{class Configuration;}
 namespace rlx::capture{class Sensor;}
 namespace dat::base{class Sensor;}
-namespace dat::elm{class Sensor;}  
+namespace dat::elm{class Sensor;}
+namespace dat::img{class Image;}
 
 
 namespace rlx::capture{
@@ -27,12 +28,14 @@ public:
 
   //Subfunction
   void init_info(rlx::capture::Sensor& sensor);
+  void init_image(rlx::capture::Sensor& sensor);
   void init_capture(rlx::capture::Sensor& sensor);
 
 private:
   rlx::Structure* rlx_struct;
   rlx::capture::Configuration* rlx_configuration;
   dat::elm::Sensor* dat_sensor;
+  dat::img::Image* dat_image;
 };
 
 }

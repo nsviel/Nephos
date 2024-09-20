@@ -55,8 +55,7 @@ std::shared_ptr<utl::media::Image> Image::get_or_create_image(dat::base::Entity&
   if(it != data.map_image.end()) return it->second;
 
   //Else create it
-  std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>();
-  image->name = query;
+  std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>(query);
   this->add_image(entity, image);
 
   //----------------------------

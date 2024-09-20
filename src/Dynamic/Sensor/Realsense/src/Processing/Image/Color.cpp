@@ -35,12 +35,10 @@ void Color::extract_data(dat::base::Sensor& sensor){
   std::string format = retrieve_format(frame.get_profile().format());
 
   //Image
-  image->name = "Color";
   image->timestamp = frame.get_timestamp();
   image->width = frame.as<rs2::video_frame>().get_width();
   image->height = frame.as<rs2::video_frame>().get_height();
   this->retrieve_data(frame, format, image);
-  dat_image->add_image(sensor, image);
 
   //---------------------------
 }

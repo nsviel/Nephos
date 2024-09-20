@@ -13,10 +13,12 @@ Capture::Capture(k4n::Node* node_k4n){
 
   dat::Node* node_data = node_k4n->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
+  dat::img::Node* node_image = node_data->get_node_image();
 
   this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->dat_sensor = node_element->get_dat_sensor();
+  this->dat_image = node_image->get_dat_image();
 
   //---------------------------
 }
@@ -28,6 +30,7 @@ void Capture::init(k4n::capture::Sensor& sensor){
 
   this->init_info(sensor);
   this->init_device(sensor);
+  this->init_image(sensor);
   dat_sensor->init_sensor(sensor);
   k4n_config->init_configuration(sensor);
   this->init_capture(sensor);
@@ -112,6 +115,15 @@ void Capture::init_capture(k4n::capture::Sensor& sensor){
   //---------------------------
 
   sensor.device.handle.start_cameras(&sensor.device.configuration);
+
+  //---------------------------
+}
+void Capture::init_image(k4n::capture::Sensor& sensor){
+  //---------------------------
+
+  dat_image->add_image(sensor, sensor.color.image);
+  dat_image->add_image(sensor, sensor.depth.image);
+  dat_image->add_image(sensor, sensor.infra.image);
 
   //---------------------------
 }
