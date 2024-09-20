@@ -89,7 +89,7 @@ void Point::update_uniform(vk::structure::Object& vk_object, vk::structure::Pipe
 }
 void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
   //---------------------------
-
+/*
   std::shared_ptr<vk::descriptor::structure::Sampler> sampler_color = vk_sampler->query_sampler(pipeline.descriptor.descriptor_set, "tex_color");
   std::shared_ptr<vk::descriptor::structure::Sampler> sampler_depth = vk_sampler->query_sampler(pipeline.descriptor.descriptor_set, "tex_depth");
 
@@ -102,7 +102,7 @@ void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipe
   sampler_depth->image = std::make_shared<vk::structure::Image>(vk_texture_depth->wrapper);
 
   vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set);
-sayHello();
+sayHello();*/
   //---------------------------
 }
 void Point::draw_data(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass){

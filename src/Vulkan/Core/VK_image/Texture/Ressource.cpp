@@ -44,62 +44,6 @@ void Ressource::clean(){
 }
 
 //Texture function
-void Ressource::insert_texture(std::shared_ptr<utl::media::Image> image){
-  if(!image || image->size == 0) return;
-  //---------------------------
-
-  //Input image checks
-  if(image->format == "") return;
-  if(image->width == 0 || image->height == 0) return;
-
-  //If the texture exists, update it
-  auto texture = query_texture(image->texture_ID);
-  if(texture){
-    this->update_texture(texture);
-  }
-  //Else create it
-  else{
-    texture = std::make_shared<vk::structure::Texture>();
-    texture->image = image;
-    this->create_texture(texture);
-  }
-
-  //---------------------------
-}
-void Ressource::export_texture(std::shared_ptr<utl::media::Image> image){
-  //---------------------------
-
-  std::shared_ptr<vk::structure::Texture> texture = query_texture(image->texture_ID);
-  if(!texture) return;
-
-  vk_screenshot->export_image_to_jpeg(texture->wrapper);
-
-  //---------------------------
-}
-void Ressource::clean_texture(std::shared_ptr<vk::structure::Texture> texture){
-  //---------------------------
-
-  vk_image->clean_image(texture->wrapper);
-  vk_buffer->clean_buffer(&texture->stagger);
-  texture->image->texture_ID = -1;
-
-  //---------------------------
-}
-
-//Texture subfunction
-void Ressource::update_texture(std::shared_ptr<vk::structure::Texture> texture){
-  //---------------------------
-
-  //Check if size hasn't changed
-  if(texture->stagger.size < texture->image->size){
-    this->clean_texture(texture);
-    return;
-  }
-
-  vk_mem_transfer->copy_texture_to_gpu(*texture);
-
-  //---------------------------
-}
 void Ressource::create_texture(std::shared_ptr<vk::structure::Texture> texture){
   utl::media::Image& image = *texture->image;
   //---------------------------
@@ -123,6 +67,39 @@ void Ressource::create_texture(std::shared_ptr<vk::structure::Texture> texture){
 
   //---------------------------
 }
+void Ressource::update_texture(std::shared_ptr<vk::structure::Texture> texture){
+  //---------------------------
+
+  //Check if size hasn't changed
+  if(texture->stagger.size < texture->image->size){
+    this->clean_texture(texture);
+    return;
+  }
+
+  vk_mem_transfer->copy_texture_to_gpu(*texture);
+
+  //---------------------------
+}
+void Ressource::export_texture(std::shared_ptr<vk::structure::Texture> texture){
+  if(!texture) return;
+  //---------------------------
+
+  vk_screenshot->export_image_to_jpeg(texture->wrapper);
+
+  //---------------------------
+}
+void Ressource::clean_texture(std::shared_ptr<vk::structure::Texture> texture){
+  //---------------------------
+
+  vk_image->clean_image(texture->wrapper);
+  vk_buffer->clean_buffer(&texture->stagger);
+  texture->image->texture_ID = -1;
+
+  //---------------------------
+}
+
+//Texture subfunction
+
 
 //Subfunction
 std::shared_ptr<vk::structure::Texture> Ressource::query_texture(int UID){

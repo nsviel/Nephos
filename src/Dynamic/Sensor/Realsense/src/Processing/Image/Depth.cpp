@@ -68,7 +68,7 @@ void Depth::retrieve_data(rs2::frame& frame, std::string format, std::shared_ptr
   std::vector<uint8_t> buffer;
   this->convert_image_into_color(frame, buffer);
 
-  image->format = "R8G8B8A8_SRGB";
+  image->format = "RGBA8";
   image->data = buffer;
   image->size = buffer.size();
 

@@ -30,16 +30,14 @@ public:
   //Main function
   void clean();
 
-  //Texture function
-  void insert_texture(std::shared_ptr<utl::media::Image> utl_image);
-  void export_texture(std::shared_ptr<utl::media::Image> utl_image);
+  //Subfunction
+  void create_texture(std::shared_ptr<vk::structure::Texture> texture);
+  void update_texture(std::shared_ptr<vk::structure::Texture> texture);
+  void export_texture(std::shared_ptr<vk::structure::Texture> texture);
   void clean_texture(std::shared_ptr<vk::structure::Texture> texture);
 
-  //Texture subfunction
-  void update_texture(std::shared_ptr<vk::structure::Texture> texture);
-  void create_texture(std::shared_ptr<vk::structure::Texture> texture);
 
-  //Subfunction
+
   std::shared_ptr<vk::structure::Texture> query_texture(int UID);
 
 private:

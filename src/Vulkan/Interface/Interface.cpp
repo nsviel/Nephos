@@ -34,7 +34,7 @@ void Interface::remove_data(utl::base::Data& data){
   vk_data->remove(data);
 }
 void Interface::insert_texture(std::shared_ptr<utl::media::Image> image){
-  vk_texture->insert_texture(image);
+  //vk_texture->insert_texture(image);
 }
 void Interface::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
   //vk_texture->insert_texture(data, image);

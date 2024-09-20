@@ -91,7 +91,7 @@ std::string Color::retrieve_format(k4a_image_format_t color_format){
       break;
     }
     case K4A_IMAGE_FORMAT_COLOR_BGRA32:{
-      format = "B8G8R8A8_SRGB";
+      format = "BGRA8";
       break;
     }
     default:{
@@ -117,7 +117,7 @@ uint8_t* Color::retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int
       sensor.infra.data.width * sensor.infra.data.height * 3,
       nullptr,
       nullptr);
-    sensor.color.data.format = "B8G8R8A8_SRGB";
+    sensor.color.data.format = "BGRA8";
   }*/
 
   for(int i = 0; i < width * height; i += 2){
@@ -161,12 +161,12 @@ tjDestroy(tj_handle);
 
   if(format == "MJPEG"){
     this->retrieve_bgra_from_mjpeg(image, data);
-    format = "B8G8R8A8_SRGB";
+    format = "BGRA8";
   }else{
     uint8_t* image_data = image.get_buffer();
     size_t size = image.get_size();
     data = std::vector<uint8_t>(image_data, image_data + size);
-    format = "B8G8R8A8_SRGB";
+    format = "BGRA8";
   }
 */
   //---------------------------

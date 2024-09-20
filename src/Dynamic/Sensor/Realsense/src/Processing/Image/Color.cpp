@@ -54,11 +54,11 @@ std::string Color::retrieve_format(rs2_format color_format){
       break;
     }
     case RS2_FORMAT_BGR8: {
-      format = "B8G8R8A8_SRGB";
+      format = "BGRA8";
       break;
     }
     case RS2_FORMAT_RGBA8: {
-      format = "R8G8B8A8_SRGB";
+      format = "RGBA8";
       break;
     }
     case RS2_FORMAT_BGRA8: {
@@ -110,7 +110,7 @@ void Color::retrieve_data(rs2::frame& frame, std::string format, std::shared_ptr
     std::copy(data, data + size, buffer.begin());
   }
 
-  image->format = "R8G8B8A8_SRGB";
+  image->format = "RGBA8";
   image->data = buffer;
   image->size = buffer.size();
 

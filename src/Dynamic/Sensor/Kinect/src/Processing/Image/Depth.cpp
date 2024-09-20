@@ -64,7 +64,7 @@ void Depth::retrieve_image(k4n::base::Sensor& sensor){
   image->size = buffer.size();
   image->width = sensor.depth.data.width;
   image->height = sensor.depth.data.height;
-  image->format = "R8G8B8A8_SRGB";
+  image->format = "RGBA8";
   image->timestamp = sensor.depth.data.timestamp;
 
   //---------------------------

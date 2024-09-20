@@ -27,10 +27,10 @@ VkFormat Format::find_texture_format(std::shared_ptr<utl::media::Image> image){
   VkFormat format = VK_FORMAT_UNDEFINED;
   //---------------------------
 
-  if(image->format == "R8G8B8A8_SRGB" || image->format == "MJPEG"){
+  if(image->format == "RGBA8"){
     format = VK_FORMAT_R8G8B8A8_SRGB;
   }
-  else if(image->format == "B8G8R8A8_SRGB"){
+  else if(image->format == "BGRA8"){
     format = VK_FORMAT_B8G8R8A8_SRGB;
   }
   else if(image->format == "R16_UNORM"){
