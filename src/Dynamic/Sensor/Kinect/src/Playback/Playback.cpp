@@ -13,10 +13,12 @@ Playback::Playback(k4n::Node* node_k4n){
 
   dat::Node* node_data = node_k4n->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
+  dat::img::Node* node_image = node_data->get_node_image();
 
   this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_config = new k4n::playback::Configuration(node_k4n);
   this->dat_sensor = node_element->get_dat_sensor();
+  this->dat_image = node_image->get_dat_image();
 
   //---------------------------
 }
@@ -29,6 +31,7 @@ void Playback::init(k4n::playback::Sensor& sensor){
   this->init_info(sensor);
   this->init_playback(sensor);
   this->init_timestamp(sensor);
+  this->init_image(sensor);
   dat_sensor->init_sensor(sensor);
   k4n_config->init_configuration(sensor);
 
@@ -83,6 +86,15 @@ void Playback::init_timestamp(k4n::playback::Sensor& sensor){
   sensor.timestamp.begin = k4n_config->find_mkv_ts_beg(sensor.data->path.build());
   sensor.timestamp.end = k4n_config->find_mkv_ts_end(sensor.data->path.build());
   sensor.timestamp.duration = sensor.timestamp.end - sensor.timestamp.begin;
+
+  //---------------------------
+}
+void Playback::init_image(k4n::playback::Sensor& sensor){
+  //---------------------------
+
+  dat_image->add_image(sensor, sensor.color.image);
+  dat_image->add_image(sensor, sensor.depth.image);
+  dat_image->add_image(sensor, sensor.infra.image);
 
   //---------------------------
 }
