@@ -29,33 +29,13 @@ void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Ima
   if(it != data.map_image.end()) return;
 
   //Else insert it
-  this->manage_UID(image);
+  image->UID = dat_uid->generate_UID();
   data.map_image[image->name] = image;
-
-  //----------------------------
-}
-void Image::manage_UID(std::shared_ptr<utl::media::Image> image){
-  //----------------------------
-
-  if(image->UID == -1){
-    image->UID = dat_uid->generate_UID();
-  }
 
   //----------------------------
 }
 
 //Subfunction
-bool Image::is_image_inserted(dat::base::Entity& entity, int UID){
-  //----------------------------
-
-  //Search for already existing image with same type
-  for(auto& [name, texture] : entity.data->map_image){
-    if(texture->UID == UID) return true;
-  }
-
-  //----------------------------
-  return false;
-}
 std::shared_ptr<utl::media::Image> Image::get_image(dat::base::Entity& entity, std::string query){
   utl::base::Data& data = *entity.data;
   //----------------------------

@@ -12,6 +12,10 @@ namespace io::imp{
 Loader::Loader(io::imp::Node* node_importer){
   //---------------------------
 
+  dat::Node* node_data = node_importer->get_node_data();
+  dat::img::Node* node_image = node_data->get_node_image();
+
+  this->dat_image = node_image->get_dat_image();
   this->io_importer = node_importer->get_io_importer();
   this->io_operation = node_importer->get_io_operation();
 
@@ -117,10 +121,10 @@ void Loader::load_object_textured(utl::base::Path path, utl::base::Path path_tex
   if(!object) return;
 
   //Texture
-  std::shared_ptr<utl::media::Image> texture = std::make_shared<utl::media::Image>();
-  dat::img::load_image_data(*texture, path_texture.build());
-  texture->name = "texture";
-  object->data->map_image[texture->name] = texture;
+  std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>();
+  dat::img::load_image_data(*image, path_texture.build());
+  image->name = "texture";
+  dat_image->add_image(*object, image);
 
   //Insert it
   io_operation->insert_object(object);

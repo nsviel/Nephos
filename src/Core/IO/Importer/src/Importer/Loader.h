@@ -7,6 +7,7 @@
 namespace io::imp{class Node;}
 namespace io::imp{class Importer;}
 namespace io::imp{class Operation;}
+namespace dat::img{class Image;}
 namespace utl::base{class Path;}
 namespace utl::base{class Data;}
 namespace utl::base{class Element;}
@@ -37,6 +38,7 @@ public:
 private:
   io::imp::Importer* io_importer;
   io::imp::Operation* io_operation;
+  dat::img::Image* dat_image;
 };
 
 }

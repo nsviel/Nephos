@@ -1,4 +1,4 @@
-#include "Media.h"
+#include "Processor.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <image/stb_image.h>
@@ -27,21 +27,6 @@ void load_image_data(utl::media::Image& image, std::string path){
 
   //---------------------------
 }
-bool is_device_connected(const std::string& devicePath){
-  //---------------------------
-
-  int fileDescriptor = open(devicePath.c_str(), O_RDONLY);
-
-  if(fileDescriptor == -1){
-    // Failed to open the device file
-    return false;
-  }
-
-  close(fileDescriptor);  // Close the file descriptor
-
-  //---------------------------
-  return true;
-}
 void add_alpha_channel(utl::media::Image& image){
   //---------------------------
 
@@ -59,7 +44,7 @@ void add_alpha_channel(utl::media::Image& image){
   // Replace the old data with the new RGBA data
   image.data = std::move(new_data);
   image.size = image.data.size();
-  
+
   //---------------------------
 }
 

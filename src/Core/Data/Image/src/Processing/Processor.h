@@ -7,7 +7,6 @@
 namespace dat::img{
 
 void load_image_data(utl::media::Image& image, std::string path);
-bool is_device_connected(const std::string& devicePath);
 void add_alpha_channel(utl::media::Image& image);
 
 }

@@ -22,10 +22,8 @@ public:
 public:
   //Main function
   void add_image(dat::base::Entity& entityy, std::shared_ptr<utl::media::Image> image);
-  void manage_UID(std::shared_ptr<utl::media::Image> image);
 
   //Subfunction
-  bool is_image_inserted(dat::base::Entity& entity, int UID);
   std::shared_ptr<utl::media::Image> get_image(dat::base::Entity& entity, std::string name);
   std::shared_ptr<utl::media::Image> get_or_create_image(dat::base::Entity& entity, std::string name);
 
