@@ -10,7 +10,6 @@ namespace vk::instance{class Extension;}
 namespace vk::instance{class Pool;}
 namespace vk::device{class Logical;}
 namespace vk::descriptor{class Descriptor_set;}
-namespace vk::texture{class Ressource;}
 namespace vk::gui{class Imgui;}
 namespace vk::data{class Data;}
 namespace vk::data{class Canvas;}
@@ -58,7 +57,6 @@ private:
   vk::command::Command_buffer* vk_command_buffer;
   vk::command::Profiler* vk_profiler;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
-  vk::texture::Ressource* vk_texture;
   vk::instance::Pool* vk_pool;
   vk::data::Data* vk_data;
   vk::draw::Viewport* vk_viewport;

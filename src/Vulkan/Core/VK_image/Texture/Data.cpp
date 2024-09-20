@@ -11,12 +11,6 @@ Data::Data(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_image = new vk::image::Image(vk_struct);
-  this->vk_mem_allocator = new vk::memory::Allocator(vk_struct);
-  this->vk_buffer = new vk::data::Buffer(vk_struct);
-  this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);
-  this->vk_uid = new vk::instance::UID(vk_struct);
-  this->vk_screenshot = new vk::image::Screenshot(vk_struct);
   this->vk_ressource = new vk::texture::Ressource(vk_struct);
 
   //---------------------------

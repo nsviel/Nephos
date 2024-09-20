@@ -17,7 +17,6 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
   this->vk_device = new vk::device::Logical(vk_struct);
-  this->vk_texture = new vk::texture::Ressource(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_data = new vk::data::Data(vk_struct);
   this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
@@ -76,7 +75,6 @@ void Node::clean(){
 
   vk_imgui->clean();
   vk_queue->clean();
-  vk_texture->clean();
   vk_renderpass->clean();
   vk_swapchain->clean();
   vk_canvas->clean();
