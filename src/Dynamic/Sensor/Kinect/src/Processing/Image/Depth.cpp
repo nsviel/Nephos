@@ -60,14 +60,12 @@ void Depth::retrieve_image(k4n::base::Sensor& sensor){
   this->convert_image_into_color(sensor, buffer);
 
   //Image
-  image->name = "Depth";
   image->data = buffer;
   image->size = buffer.size();
   image->width = sensor.depth.data.width;
   image->height = sensor.depth.data.height;
   image->format = "R8G8B8A8_SRGB";
   image->timestamp = sensor.depth.data.timestamp;
-  dat_image->add_image(sensor, image);
 
   //---------------------------
 }

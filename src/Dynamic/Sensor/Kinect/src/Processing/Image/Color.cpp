@@ -55,14 +55,12 @@ void Color::retrieve_image(k4n::base::Sensor& sensor){
   //---------------------------
 
   //Image
-  image->name = "Color";
   image->data = std::vector<uint8_t>(sensor.color.data.buffer, sensor.color.data.buffer + sensor.color.data.size);
   image->size = image->data.size();
   image->width = sensor.color.data.width;
   image->height = sensor.color.data.height;
   image->format = sensor.color.data.format;
   image->timestamp = sensor.color.data.timestamp;
-  //dat_image->add_image(sensor, image);
 
   //---------------------------
 }

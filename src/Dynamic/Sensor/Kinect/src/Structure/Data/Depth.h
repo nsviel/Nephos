@@ -26,7 +26,7 @@ struct Structure{
 
   k4n::depth::Configuration config;
   k4n::structure::Data data;
-  std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>();
+  std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>("Depth");
 
   //---------------------------
 };

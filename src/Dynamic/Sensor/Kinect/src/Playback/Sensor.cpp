@@ -47,7 +47,7 @@ void Sensor::thread_init(){
   graph.add_dependency("capture", "data");
   graph.add_dependency("data", "cloud");
   graph.add_dependency("cloud", "operation");
-//tic();toc_thread("4");
+
   //---------------------------
 }
 void Sensor::thread_loop(){

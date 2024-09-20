@@ -10,6 +10,9 @@ namespace utl::media{
 struct Image : public utl::base::Element{
   //---------------------------
 
+  Image(){};
+  Image(std::string name){this->name = name;}
+
   //Info
   int channel_nb = 4;
   int channel_byte = 1;
