@@ -60,10 +60,15 @@ void Radiometry::wait_thread(){
 
 //Subfunction
 void Radiometry::compute_correction(std::shared_ptr<dat::base::Sensor> sensor){
+  utl::base::Data& data = *sensor->data;
   //---------------------------
 
-  std::shared_ptr<utl::media::Image> image = sensor->data->map_image["Intensity"];
-  rad_correction->make_image_correction(*sensor, image);
+  //Search for image
+  auto it = data.map_image.find("Intensity");
+  if(it == data.map_image.end()) return;
+
+  //Apply correction on it
+  rad_correction->make_image_correction(*sensor, it->second);
 
   //---------------------------
 }

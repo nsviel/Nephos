@@ -70,20 +70,22 @@ void Panel::design_panel(std::shared_ptr<dat::base::Entity> entity){
 
 //All devices
 void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
+  utl::base::Data& data = *entity->data;
   //---------------------------
-/*
+
   //Display capture images
   if(ImGui::BeginTabBar("device_tab##4567")){
-    ImVec2 size = ImGui::GetContentRegionAvail();
+    ImVec2 dimension = ImGui::GetContentRegionAvail();
 
     //All in one
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("All##4567", NULL)){
-      size = ImVec2(size.x, size.y / entity->data->map_image.size() - 3.33);
+      dimension.y = dimension.y / data.map_image.size() - 3.33;
 
       int index = 0;
-      for(auto& [name, image] : entity->data->map_image){
-        this->draw_stream_image(image, size, index++);
+      for(auto& [name, image] : data.map_image){
+        if(!image) continue;
+        this->draw_stream_image(image, dimension, index++);
       }
 
       ImGui::EndTabItem();
@@ -91,29 +93,30 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
 
     //All image in separate tab
     int index = 0;
-    for(auto& [name, image] : entity->data->map_image){
-      ImGui::SetNextItemWidth(100);
+    for(auto& [name, image] : data.map_image){
+      if(!image) continue;
       std::string title = image->name + "##4567";
+      ImGui::SetNextItemWidth(100);
       if(ImGui::BeginTabItem(title.c_str(), NULL)){
-        this->draw_stream_image(image, size, index++);
+        this->draw_stream_image(image, dimension, index++);
         ImGui::EndTabItem();
       }
     }
 
     ImGui::EndTabBar();
   }
-*/
+
   //---------------------------
 }
-void Panel::draw_stream_image(std::shared_ptr<utl::media::Image> image, ImVec2 size, int idx){
+void Panel::draw_stream_image(std::shared_ptr<utl::media::Image> image, ImVec2 dimension, int idx){
   if(idx >= vec_stream.size()) return;
   //---------------------------
-/*
+
   if(image->size == 0) return;
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_stream[idx]->draw_stream(image, size);
-  //gui_overlay->overlay_capture(entity, &entity->color.data, size, image_pose);
-*/
+  vec_stream[idx]->draw_stream(image, dimension);
+  //gui_overlay->overlay_capture(entity, &entity->color.data, dimension, image_pose);
+
   //---------------------------
 }
 

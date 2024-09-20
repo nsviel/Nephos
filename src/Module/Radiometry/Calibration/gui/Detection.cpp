@@ -125,10 +125,13 @@ void Detection::detection_image(dat::base::Sensor& sensor){
   ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
 
+  //Search for image
+  utl::base::Data& data = *sensor.data;
+  auto it = data.map_image.find("Detection");
+  if(it == data.map_image.end()) return;
+
   //Display image with detected spheres
-  std::shared_ptr<utl::media::Image> image = sensor.data->map_image["Detection"];
-  if(!image) return;
-  stream->draw_stream(image, ImVec2(available_space.x, available_space.y - 5));
+  stream->draw_stream(it->second, ImVec2(available_space.x, available_space.y - 5));
 
   //---------------------------
   ImGui::Separator();

@@ -21,15 +21,16 @@ Image::~Image(){}
 
 //Main function
 void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Image> image){
+  utl::base::Data& data = *entity.data;
   //----------------------------
 
   //Check if image already inseretd
-  auto& is_image = entity.data->map_image[image->name];
-  if(is_image) return;
+  auto it = data.map_image.find(image->name);
+  if(it != data.map_image.end()) return;
 
   //Else insert it
   this->manage_UID(image);
-  entity.data->map_image[image->name] = image;
+  data.map_image[image->name] = image;
 
   //----------------------------
 }
@@ -56,30 +57,30 @@ bool Image::is_image_inserted(dat::base::Entity& entity, int UID){
   return false;
 }
 std::shared_ptr<utl::media::Image> Image::get_image(dat::base::Entity& entity, std::string query){
-  if(query == "") return nullptr;
+  utl::base::Data& data = *entity.data;
   //----------------------------
 
-  auto& image = entity.data->map_image[query];
-  if(image) return image;
+  auto it = data.map_image.find(query);
+  if(it != data.map_image.end()) return it->second;
 
   //----------------------------
   return nullptr;
 }
 std::shared_ptr<utl::media::Image> Image::get_or_create_image(dat::base::Entity& entity, std::string query){
-  if(query == "") return nullptr;
+  utl::base::Data& data = *entity.data;
   //----------------------------
 
   //Search for already existing image with same type
-  auto& image = entity.data->map_image[query];
-  if(image) return image;
+  auto it = data.map_image.find(query);
+  if(it != data.map_image.end()) return it->second;
 
   //Else create it
-  std::shared_ptr<utl::media::Image> new_image = std::make_shared<utl::media::Image>();
-  new_image->name = query;
-  this->add_image(entity, new_image);
+  std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>();
+  image->name = query;
+  this->add_image(entity, image);
 
   //----------------------------
-  return new_image;
+  return image;
 }
 
 }
