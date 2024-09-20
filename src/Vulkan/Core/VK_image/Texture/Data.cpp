@@ -18,15 +18,15 @@ Data::Data(vk::Structure* vk_struct){
 Data::~Data(){}
 
 //Main function
-void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> utl_image){
+void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
   //---------------------------
-/*
+
   //Check image integrity
-  if(!utl_image) return;
-  if(utl_image->format == "") return;
-  if(utl_image->size == 0) return;
-  if(utl_image->width == 0) return;
-  if(utl_image->height == 0) return;
+  if(!image) return;
+  if(image->format == "") return;
+  if(image->size == 0) return;
+  if(image->width == 0) return;
+  if(image->height == 0) return;
 
   //Retrieve data vk object
   auto it_object = vk_struct->core.data.map_vk_object.find(data.UID);
@@ -34,18 +34,26 @@ void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Ima
   auto vk_object = it_object->second;
 
   //Check if image already inserted
-  auto it_tex = vk_object->map_texture.find(utl_image->name);
+  auto it_tex = vk_object->map_texture.find(image->name);
   if(it_tex != vk_object->map_texture.end()) return;
 
   //Create texture from image
-  auto texture = std::make_shared<vk::structure::Texture>();
-  texture->image = utl_image;
-  this->create_texture(texture);
-*/
+  this->create_texture(*vk_object, image);
+
   //---------------------------
 }
 
 //Subfunction
+void Data::create_texture(vk::structure::Object& vk_object, std::shared_ptr<utl::media::Image> image){
+  //---------------------------
+
+  auto texture = std::make_shared<vk::structure::Texture>();
+  texture->image = image;
+  vk_ressource->create_texture(texture);
+  vk_object.map_texture[image->name] = texture;
+
+  //---------------------------
+}
 void Data::clean_texture(vk::structure::Object& vk_object){
   //---------------------------
 

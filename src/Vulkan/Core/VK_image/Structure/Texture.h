@@ -11,9 +11,13 @@ namespace vk::structure{
 struct Texture{
   //---------------------------
 
+  //Actual texture components
   std::shared_ptr<utl::media::Image> image;
   vk::structure::Image wrapper;
   vk::data::structure::Buffer stagger;
+
+  //For gui display
+  VkDescriptorSet descriptor_set = VK_NULL_HANDLE;
 
   //---------------------------
 };

@@ -15,6 +15,7 @@ struct Data{
 
   std::shared_ptr<vk::structure::Object> canvas = std::make_shared<vk::structure::Object>();
   std::unordered_map< int, std::shared_ptr<vk::structure::Object> > map_vk_object;
+  std::unordered_map< int, std::shared_ptr<vk::structure::Texture> > map_vk_texture;
 
   //---------------------------
 };

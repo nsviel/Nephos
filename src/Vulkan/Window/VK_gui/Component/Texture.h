@@ -21,7 +21,6 @@ public:
   //Main function
   void insert_texture(std::shared_ptr<utl::media::Image> utl_image);
   void update_render_texture();
-  ImTextureID create_imgui_texture(int UID);
   ImTextureID query_render_texture();
 
 private:

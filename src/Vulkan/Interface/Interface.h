@@ -7,7 +7,7 @@
 namespace vk{class Structure;}
 namespace vk::gui{class Imgui;}
 namespace vk::gui{class Texture;}
-namespace vk::texture{class Ressource;}
+namespace vk::texture{class Data;}
 namespace vk::image{class Screenshot;}
 namespace vk::window{class Window;}
 namespace vk::data{class Data;}
@@ -30,7 +30,6 @@ public:
   ImTextureID query_render_texture();
   void insert_data(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose);
   void remove_data(utl::base::Data& data);
-  void insert_texture(std::shared_ptr<utl::media::Image> utl_image);
   void insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> utl_image);
   void insert_gui_texture(std::shared_ptr<utl::media::Image> utl_image);
 
@@ -47,7 +46,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::gui::Imgui* vk_imgui;
-  vk::texture::Ressource* vk_texture;
+  vk::texture::Data* vk_texture;
   vk::image::Screenshot* vk_screenshot;
   vk::window::Window* vk_window;
   vk::data::Data* vk_data;

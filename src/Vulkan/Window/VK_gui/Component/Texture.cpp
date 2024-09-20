@@ -24,9 +24,16 @@ Texture::~Texture(){}
 //Main function
 void Texture::insert_texture(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
+/*
+  std::shared_ptr<vk::structure::Texture> texture = vk_texture->query_texture(utl_image->texture_ID);
+  if(!texture) return;
 
-  utl_image->gui_texture_ID = create_imgui_texture(utl_image->texture_ID);
+  //Retrieve descriptor from vulkan texture
+  VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->wrapper.sampler, texture->wrapper.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  ImTextureID imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
 
+  utl_image->gui_texture_ID = imgui_texture;
+*/
   //---------------------------
 }
 void Texture::update_render_texture(){
@@ -39,19 +46,6 @@ void Texture::update_render_texture(){
   vk_struct->window.gui.descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //---------------------------
-}
-ImTextureID Texture::create_imgui_texture(int UID){
-  //---------------------------
-
-  /*std::shared_ptr<vk::structure::Texture> texture = vk_texture->query_texture(UID);
-  if(!texture) return 0;
-
-  //Retrieve descriptor from vulkan texture
-  VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->wrapper.sampler, texture->wrapper.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-  ImTextureID imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
-
-  //---------------------------
-  return imgui_texture;*/return 0;
 }
 ImTextureID Texture::query_render_texture(){
   if(vk_struct->window.gui.descriptor == VK_NULL_HANDLE) return 0;
