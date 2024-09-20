@@ -12,7 +12,7 @@ Data::Data(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_buffer = new vk::data::Buffer(vk_struct);
-  this->vk_texture = new vk::image::Texture(vk_struct);
+  this->vk_texture = new vk::texture::Ressource(vk_struct);
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uid = new vk::instance::UID(vk_struct);

@@ -1,13 +1,13 @@
-#include "Texture.h"
+#include "Ressource.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace vk::image{
+namespace vk::texture{
 
 //Constructor / Destructor
-Texture::Texture(vk::Structure* vk_struct){
+Ressource::Ressource(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -20,10 +20,10 @@ Texture::Texture(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Texture::~Texture(){}
+Ressource::~Ressource(){}
 
 //Main function
-void Texture::clean(){
+void Ressource::clean(){
   //---------------------------
 
   auto it =  vk_struct->core.data.list_vk_texture.begin();
@@ -43,7 +43,7 @@ void Texture::clean(){
 }
 
 //Texture function
-void Texture::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> utl_image){
+void Ressource::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
 
   //Check image integrity
@@ -69,7 +69,7 @@ void Texture::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::
 
   //---------------------------
 }
-void Texture::insert_texture(std::shared_ptr<utl::media::Image> utl_image){
+void Ressource::insert_texture(std::shared_ptr<utl::media::Image> utl_image){
   if(!utl_image || utl_image->size == 0) return;
   //---------------------------
 
@@ -91,7 +91,7 @@ void Texture::insert_texture(std::shared_ptr<utl::media::Image> utl_image){
 
   //---------------------------
 }
-void Texture::export_texture(std::shared_ptr<utl::media::Image> utl_image){
+void Ressource::export_texture(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
 
   std::shared_ptr<vk::structure::Texture> texture = query_texture(utl_image->texture_ID);
@@ -101,7 +101,7 @@ void Texture::export_texture(std::shared_ptr<utl::media::Image> utl_image){
 
   //---------------------------
 }
-void Texture::clean_texture(std::shared_ptr<vk::structure::Texture> texture){
+void Ressource::clean_texture(std::shared_ptr<vk::structure::Texture> texture){
   //---------------------------
 
   vk_image->clean_image(texture->wrapper);
@@ -112,7 +112,7 @@ void Texture::clean_texture(std::shared_ptr<vk::structure::Texture> texture){
 }
 
 //Texture subfunction
-void Texture::update_texture(std::shared_ptr<vk::structure::Texture> texture){
+void Ressource::update_texture(std::shared_ptr<vk::structure::Texture> texture){
   //---------------------------
 
   //Check if size hasn't changed
@@ -125,7 +125,7 @@ void Texture::update_texture(std::shared_ptr<vk::structure::Texture> texture){
 
   //---------------------------
 }
-void Texture::create_texture(std::shared_ptr<vk::structure::Texture> texture){
+void Ressource::create_texture(std::shared_ptr<vk::structure::Texture> texture){
   utl::media::Image& utl_image = *texture->image;
   //---------------------------
 
@@ -150,7 +150,7 @@ void Texture::create_texture(std::shared_ptr<vk::structure::Texture> texture){
 }
 
 //Subfunction
-void Texture::clean_texture(vk::structure::Object& vk_object){
+void Ressource::clean_texture(vk::structure::Object& vk_object){
   //---------------------------
 
   for(auto& [name, texture] : vk_object.map_texture){
@@ -159,7 +159,7 @@ void Texture::clean_texture(vk::structure::Object& vk_object){
 
   //---------------------------
 }
-VkFormat Texture::find_texture_format(std::shared_ptr<utl::media::Image> image){
+VkFormat Ressource::find_texture_format(std::shared_ptr<utl::media::Image> image){
   VkFormat format = VK_FORMAT_UNDEFINED;
   //---------------------------
 
@@ -188,7 +188,7 @@ VkFormat Texture::find_texture_format(std::shared_ptr<utl::media::Image> image){
   //---------------------------
   return format;
 }
-std::shared_ptr<vk::structure::Texture> Texture::query_texture(int UID){
+std::shared_ptr<vk::structure::Texture> Ressource::query_texture(int UID){
   //---------------------------
 /*
   for(auto& texture : vk_struct->core.data.list_vk_texture){

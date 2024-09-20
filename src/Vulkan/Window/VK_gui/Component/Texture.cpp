@@ -15,7 +15,7 @@ Texture::Texture(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_texture = new vk::image::Texture(vk_struct);
+  this->vk_texture = new vk::texture::Ressource(vk_struct);
 
   //---------------------------
 }

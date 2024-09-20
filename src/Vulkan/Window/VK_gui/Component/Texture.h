@@ -4,7 +4,7 @@
 #include <memory>
 
 namespace vk{class Structure;}
-namespace vk::image{class Texture;}
+namespace vk::texture{class Ressource;}
 namespace utl::media{class Image;}
 
 
@@ -26,7 +26,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::image::Texture* vk_texture;
+  vk::texture::Ressource* vk_texture;
 };
 
 }

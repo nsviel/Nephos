@@ -16,33 +16,18 @@ namespace utl::media{class Image;}
 namespace utl::base{class Data;}
 
 
-namespace vk::image{
+namespace vk::texture{
 
-class Texture
+class Data
 {
 public:
   //Constructor / Destructor
-  Texture(vk::Structure* vk_struct);
-  ~Texture();
+  Data(vk::Structure* vk_struct);
+  ~Data();
 
 public:
   //Main function
-  void clean();
-
-  //Texture function
   void insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> utl_image);
-  void insert_texture(std::shared_ptr<utl::media::Image> utl_image);
-  void export_texture(std::shared_ptr<utl::media::Image> utl_image);
-  void clean_texture(std::shared_ptr<vk::structure::Texture> texture);
-
-  //Texture subfunction
-  void clean_texture(vk::structure::Object& vk_object);
-  void update_texture(std::shared_ptr<vk::structure::Texture> texture);
-  void create_texture(std::shared_ptr<vk::structure::Texture> texture);
-
-  //Subfunction
-  VkFormat find_texture_format(std::shared_ptr<utl::media::Image> image);
-  std::shared_ptr<vk::structure::Texture> query_texture(int UID);
 
 private:
   vk::Structure* vk_struct;

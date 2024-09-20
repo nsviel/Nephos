@@ -20,14 +20,10 @@ public:
   void clean_image(vk::structure::Image& image);
   void clean_image_view(vk::structure::Image& image);
 
-  //Image vulkan creation
+  //Subfunction
   void create_image_handle(vk::structure::Image& image);
   void create_image_view(vk::structure::Image& image);
   void create_image_sampler(vk::structure::Image& image);
-
-  //Subfunction
-  void compute_mipmap(vk::structure::Image& image);
-  void generate_mipmap(vk::structure::Image& image);
 
 private:
   vk::Structure* vk_struct;
