@@ -31,7 +31,7 @@ void Texture::clean(){
     std::shared_ptr<vk::structure::Texture> texture = *it;
 
     //Remove texture elements
-    vk_image->clean_image(texture->vk_image);
+    vk_image->clean_image(texture->wrapper);
     vk_buffer->clean_buffer(&texture->stagger);
 
     //Remove texture from list
@@ -52,22 +52,20 @@ void Texture::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::
   if(utl_image->size == 0) return;
   if(utl_image->width == 0) return;
   if(utl_image->height == 0) return;
-/*
-  //Check if image already exists
-  auto it = data.map_image.find(query);
-  if(it != data.map_image.end()) return it->second;
 
+  //Retrieve data vk object
+  auto it_object = vk_struct->core.data.map_vk_object.find(data.UID);
+  if(it_object == vk_struct->core.data.map_vk_object.end()) return;
+  auto vk_object = it_object->second;
 
-  auto texture = query_texture(utl_image->texture_ID);
-  if(texture){
-    this->update_texture(texture);
-  }
-  //Else create it
-  else{
-    texture = std::make_shared<vk::structure::Texture>();
-    texture->utl_image = utl_image;
-    this->create_texture(texture);
-  }*/
+  //Check if image already inserted
+  auto it_tex = vk_object->map_texture.find(utl_image->name);
+  if(it_tex != vk_object->map_texture.end()) return;
+
+  //Create texture from image
+  auto texture = std::make_shared<vk::structure::Texture>();
+  texture->image = utl_image;
+  this->create_texture(texture);
 
   //---------------------------
 }
@@ -87,7 +85,7 @@ void Texture::insert_texture(std::shared_ptr<utl::media::Image> utl_image){
   //Else create it
   else{
     texture = std::make_shared<vk::structure::Texture>();
-    texture->utl_image = utl_image;
+    texture->image = utl_image;
     this->create_texture(texture);
   }
 
@@ -99,16 +97,16 @@ void Texture::export_texture(std::shared_ptr<utl::media::Image> utl_image){
   std::shared_ptr<vk::structure::Texture> texture = query_texture(utl_image->texture_ID);
   if(!texture) return;
 
-  vk_screenshot->export_image_to_jpeg(texture->vk_image);
+  vk_screenshot->export_image_to_jpeg(texture->wrapper);
 
   //---------------------------
 }
 void Texture::clean_texture(std::shared_ptr<vk::structure::Texture> texture){
   //---------------------------
 
-  vk_image->clean_image(texture->vk_image);
+  vk_image->clean_image(texture->wrapper);
   vk_buffer->clean_buffer(&texture->stagger);
-  texture->utl_image->texture_ID = -1;
+  texture->image->texture_ID = -1;
 
   //---------------------------
 }
@@ -118,7 +116,7 @@ void Texture::update_texture(std::shared_ptr<vk::structure::Texture> texture){
   //---------------------------
 
   //Check if size hasn't changed
-  if(texture->stagger.size < texture->utl_image->size){
+  if(texture->stagger.size < texture->image->size){
     this->clean_texture(texture);
     return;
   }
@@ -128,22 +126,20 @@ void Texture::update_texture(std::shared_ptr<vk::structure::Texture> texture){
   //---------------------------
 }
 void Texture::create_texture(std::shared_ptr<vk::structure::Texture> texture){
-  utl::media::Image& utl_image = *texture->utl_image;
+  utl::media::Image& utl_image = *texture->image;
   //---------------------------
 
   //Create texture container
-  texture->UID = vk_uid->query_free_UID();
-  utl_image.texture_ID = texture->UID;
-  VkFormat format = find_texture_format(texture->utl_image);
+  VkFormat format = find_texture_format(texture->image);
   if(format == VK_FORMAT_UNDEFINED) return;
 
   //Create associated vk_image
-  texture->vk_image.width = utl_image.width;
-  texture->vk_image.height = utl_image.height;
-  texture->vk_image.format = format;
-  texture->vk_image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  texture->vk_image.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
-  vk_image->create_image(texture->vk_image);
+  texture->wrapper.width = utl_image.width;
+  texture->wrapper.height = utl_image.height;
+  texture->wrapper.format = format;
+  texture->wrapper.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  texture->wrapper.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
+  vk_image->create_image(texture->wrapper);
 
   //Make associated operation
   vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, utl_image.size);
@@ -194,13 +190,13 @@ VkFormat Texture::find_texture_format(std::shared_ptr<utl::media::Image> image){
 }
 std::shared_ptr<vk::structure::Texture> Texture::query_texture(int UID){
   //---------------------------
-
+/*
   for(auto& texture : vk_struct->core.data.list_vk_texture){
     if(texture->UID == UID){
       return texture;
     }
   }
-
+*/
   //---------------------------
   return nullptr;
 }

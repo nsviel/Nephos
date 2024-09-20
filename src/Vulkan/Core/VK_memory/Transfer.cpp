@@ -26,11 +26,11 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture& texture){
   //Copy data to stagging buffer
   void* staging_data;
   vkMapMemory(vk_struct->core.device.handle, texture.stagger.mem, 0, texture.stagger.size, 0, &staging_data);
-  memcpy(staging_data, texture.utl_image->data.data(), texture.stagger.size);
+  memcpy(staging_data, texture.image->data.data(), texture.stagger.size);
   vkUnmapMemory(vk_struct->core.device.handle, texture.stagger.mem);
 
   //Copy stagger buffer to GPU
-  this->copy_buffer_to_image(texture.vk_image, texture.stagger.vbo);
+  this->copy_buffer_to_image(texture.wrapper, texture.stagger.vbo);
 
   //---------------------------
 }

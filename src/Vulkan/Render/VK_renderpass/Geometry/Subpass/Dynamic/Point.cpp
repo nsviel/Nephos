@@ -98,8 +98,8 @@ void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipe
   std::shared_ptr<vk::structure::Texture> vk_texture_depth = vk_texture.query_texture(vk_object.data->map_image["Depth"]->UID);
   if(!vk_texture_color || !vk_texture_depth) return;
 
-  sampler_color->image = std::make_shared<vk::structure::Image>(vk_texture_color->vk_image);
-  sampler_depth->image = std::make_shared<vk::structure::Image>(vk_texture_depth->vk_image);
+  sampler_color->image = std::make_shared<vk::structure::Image>(vk_texture_color->wrapper);
+  sampler_depth->image = std::make_shared<vk::structure::Image>(vk_texture_depth->wrapper);
 
   vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set);
 sayHello();

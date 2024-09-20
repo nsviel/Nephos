@@ -47,7 +47,7 @@ ImTextureID Texture::create_imgui_texture(int UID){
   if(!texture) return 0;
 
   //Retrieve descriptor from vulkan texture
-  VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->vk_image.sampler, texture->vk_image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->wrapper.sampler, texture->wrapper.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   ImTextureID imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
 
   //---------------------------

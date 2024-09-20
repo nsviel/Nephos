@@ -11,13 +11,8 @@ namespace vk::structure{
 struct Texture{
   //---------------------------
 
-  //General
-  int UID = 0;
-  std::string name = "";
-
-  //Structure
-  std::shared_ptr<utl::media::Image> utl_image;
-  vk::structure::Image vk_image;
+  std::shared_ptr<utl::media::Image> image;
+  vk::structure::Image wrapper;
   vk::data::structure::Buffer stagger;
 
   //---------------------------
