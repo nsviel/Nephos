@@ -51,7 +51,7 @@ void Glyph::update_glyph(std::shared_ptr<dat::base::Entity> entity){
 
   //Update own glyph data
   for(auto& glyph : entity->list_glyph){
-    glyph->update_glyph(entity);
+    glyph->update_glyph(*entity);
     dat_entity->update_data(*glyph);
 
     //Reccursivity

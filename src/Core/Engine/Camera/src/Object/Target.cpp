@@ -32,10 +32,10 @@ void Target::create(){
 
   //---------------------------
 }
-void Target::update_pose(std::shared_ptr<dat::base::Entity> entity){
+void Target::update_pose(dat::base::Entity& entity){
   //---------------------------
 
-  if(std::shared_ptr<cam::Entity> camera = std::dynamic_pointer_cast<cam::Entity>(entity)){
+  if(cam::Entity* camera = dynamic_cast<cam::Entity*>(&entity)){
     if(camera->mode != CAMERA_MODE_ARCBALL && data->is_visible) data->is_visible = false;
 
     glm::mat4 translation(1.0);

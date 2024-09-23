@@ -34,15 +34,15 @@ void Normal::create(){
 
   //---------------------------
 }
-void Normal::update_pose(std::shared_ptr<dat::base::Entity> entity){
+void Normal::update_pose(dat::base::Entity& entity){
   //---------------------------
 
-  utl::base::Pose& entity_pose = *entity->pose;
+  utl::base::Pose& entity_pose = *entity.pose;
   pose->model = entity_pose.model;
 
   //---------------------------
 }
-void Normal::update_glyph(std::shared_ptr<dat::base::Entity> entity){
+void Normal::update_glyph(dat::base::Entity& entity){
   //---------------------------
 
   this->construct(entity);
@@ -51,7 +51,7 @@ void Normal::update_glyph(std::shared_ptr<dat::base::Entity> entity){
 }
 
 //Subfunction
-void Normal::construct(std::shared_ptr<dat::base::Entity> entity){
+void Normal::construct(dat::base::Entity& entity){
   //---------------------------
 
   //Data glyph
@@ -62,8 +62,8 @@ void Normal::construct(std::shared_ptr<dat::base::Entity> entity){
   rgb_g.reserve(data->rgba.size());
 
   //Data entity
-  std::vector<glm::vec3>& xyz_e = entity->data->xyz;
-  std::vector<glm::vec3>& Nxyz_e = entity->data->Nxyz;
+  std::vector<glm::vec3>& xyz_e = entity.data->xyz;
+  std::vector<glm::vec3>& Nxyz_e = entity.data->Nxyz;
 
   //Check vector length
   if(xyz_e.size() == 0 || Nxyz_e.size() == 0 || Nxyz_e.size() != xyz_e.size()) return;
@@ -77,7 +77,7 @@ void Normal::construct(std::shared_ptr<dat::base::Entity> entity){
     if(nxyz == glm::vec3(0, 0, 0)) continue;
 
     glm::vec3 xyz_n = glm::vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
-    glm::vec4 nxyz_h = glm::vec4(nxyz.x,  nxyz.y,  nxyz.z, 1) * entity->pose->rotat;
+    glm::vec4 nxyz_h = glm::vec4(nxyz.x,  nxyz.y,  nxyz.z, 1) * entity.pose->rotat;
     glm::vec4 rgb_n = glm::vec4(abs(nxyz_h.x),  abs(nxyz_h.y), abs(nxyz_h.z), 1);
 
     xyz_g.push_back(xyz);

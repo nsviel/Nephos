@@ -31,10 +31,10 @@ void Axis::create(){
 
   //---------------------------
 }
-void Axis::update_pose(std::shared_ptr<dat::base::Entity> entity){
+void Axis::update_pose(dat::base::Entity& entity){
   //---------------------------
 
-  utl::base::Pose& entity_pose = *entity->pose;
+  utl::base::Pose& entity_pose = *entity.pose;
   pose->model = entity_pose.model;
 
   //---------------------------

@@ -93,6 +93,10 @@ void Entity::update_data(dat::base::Entity& entity){
     entity.data->is_updated = false;
   }
 
+  for(auto& glyph : entity.list_glyph){
+    glyph->update_pose(entity);
+  }
+
   //----------------------------
 }
 
