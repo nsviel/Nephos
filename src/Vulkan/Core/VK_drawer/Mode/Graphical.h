@@ -27,9 +27,6 @@ public:
 
 public:
   //Main function
-  void draw_frame();
-
-  //Subfunction
   void record_renderpass(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore& semaphore);
   void copy_to_swapchain(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore& semaphore);
 

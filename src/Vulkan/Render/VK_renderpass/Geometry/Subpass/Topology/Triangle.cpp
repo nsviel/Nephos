@@ -15,7 +15,7 @@ Triangle::Triangle(vk::Structure* vk_struct){
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
-  this->vk_drawer = new vk::draw::Drawer(vk_struct);
+  this->vk_drawer = new vk::draw::Vertex(vk_struct);
   this->vk_triangle = new vk::geometry::pipeline::topology::Triangle(vk_struct);
 
   //---------------------------
@@ -82,7 +82,7 @@ void Triangle::update_uniform(vk::structure::Subpass& subpass, vk::structure::Ob
 void Triangle::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass){
   //---------------------------
 
-  vk_drawer->cmd_draw_data(subpass.command_buffer->handle, vk_object);
+  vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, vk_object);
 
   //---------------------------
 }

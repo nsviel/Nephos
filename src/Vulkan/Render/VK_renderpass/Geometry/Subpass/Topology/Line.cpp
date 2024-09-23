@@ -15,7 +15,7 @@ Line::Line(vk::Structure* vk_struct){
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
-  this->vk_drawer = new vk::draw::Drawer(vk_struct);
+  this->vk_drawer = new vk::draw::Vertex(vk_struct);
   this->vk_line = new vk::geometry::pipeline::topology::Line(vk_struct);
 
   //---------------------------
@@ -83,7 +83,7 @@ void Line::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& s
   //---------------------------
 
   vk_drawer->cmd_line_with(subpass.command_buffer->handle, vk_object);
-  vk_drawer->cmd_draw_data(subpass.command_buffer->handle, vk_object);
+  vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, vk_object);
 
   //---------------------------
 }

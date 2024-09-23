@@ -23,15 +23,6 @@ Graphical::Graphical(vk::Structure* vk_struct){
 Graphical::~Graphical(){}
 
 //Main function
-void Graphical::draw_frame(){
-  //---------------------------
-
-  vk_struct->core.queue.presentation->make_rendering();
-
-  //---------------------------
-}
-
-//Subfunction
 void Graphical::record_renderpass(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore& semaphore){
   //---------------------------
 

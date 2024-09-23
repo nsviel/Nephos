@@ -7,7 +7,7 @@ namespace vk::draw{class Viewport;}
 namespace vk::descriptor{class Sampler;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
-namespace vk::draw{class Drawer;}
+namespace vk::draw{class Vertex;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
@@ -41,7 +41,7 @@ private:
   vk::geometry::pipeline::dynamic::Point* vk_point;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::descriptor::Uniform* vk_uniform;
-  vk::draw::Drawer* vk_drawer;
+  vk::draw::Vertex* vk_drawer;
   vk::pipeline::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
   vk::descriptor::Sampler* vk_sampler;

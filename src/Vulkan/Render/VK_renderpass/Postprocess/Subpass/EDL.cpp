@@ -17,7 +17,7 @@ EDL::EDL(vk::Structure* vk_struct){
   this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
-  this->vk_drawer = new vk::draw::Drawer(vk_struct);
+  this->vk_drawer = new vk::draw::Vertex(vk_struct);
 
   //---------------------------
 }
@@ -92,7 +92,7 @@ void EDL::draw_canvas(vk::structure::Subpass& subpass){
   //---------------------------
 
 
-  vk_drawer->cmd_draw_data(subpass.command_buffer->handle, *vk_struct->core.data.canvas);
+  vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, *vk_struct->core.data.canvas);
 
   //---------------------------
 }

@@ -1,4 +1,4 @@
-#include "Drawer.h"
+#include "Vertex.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::draw{
 
 //Constructor / Destructor
-Drawer::Drawer(vk::Structure* vk_struct){
+Vertex::Vertex(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -16,10 +16,10 @@ Drawer::Drawer(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Drawer::~Drawer(){}
+Vertex::~Vertex(){}
 
 //Draw command
-void Drawer::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object){
+void Vertex::cmd_draw_vertex(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object){
   //---------------------------
 
   VkDeviceSize offsets[] = {0};
@@ -37,7 +37,7 @@ void Drawer::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Objec
 
   //---------------------------
 }
-void Drawer::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object){
+void Vertex::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object){
   //---------------------------
 
   vkCmdSetLineWidth(command_buffer, vk_object.data->width);

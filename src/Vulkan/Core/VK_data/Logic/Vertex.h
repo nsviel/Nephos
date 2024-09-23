@@ -11,19 +11,16 @@ namespace vk::structure{class Object;}
 
 namespace vk::draw{
 
-class Drawer
+class Vertex
 {
 public:
   //Constructor / Destructor
-  Drawer(vk::Structure* vk_struct);
-  ~Drawer();
+  Vertex(vk::Structure* vk_struct);
+  ~Vertex();
 
 public:
   //Main function
-  virtual void draw_frame(){}
-
-  //Draw command
-  void cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object);
+  void cmd_draw_vertex(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object);
   void cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object);
 
 protected:
