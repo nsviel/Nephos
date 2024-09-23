@@ -21,7 +21,7 @@ void main(){
 
   gl_Position = projection * view * model * vec4(in_xyz, 1.0);
   gl_PointSize = point_size;
-  frag_rgb = in_rgb;
+  frag_rgb = in_xyz;
 
   //---------------------------
 }

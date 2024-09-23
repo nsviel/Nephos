@@ -14,7 +14,8 @@ Render::Render(vk::Structure* vk_struct){
   this->vk_render = new vk::gui::Render(vk_struct);
   this->vk_data = new vk::data::Function(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
-  
+  this->vk_shader = new vk::shader::Reloader(vk_struct);
+
   //---------------------------
 }
 Render::~Render(){}
@@ -32,9 +33,11 @@ void Render::draw_image(std::shared_ptr<utl::media::Image> image, glm::vec2 dime
 
   //---------------------------
 }
+void Render::reload_shader(){
+  vk_shader->hot_shader_reload();
+}
 void Render::new_frame(){
   vk_imgui->new_frame();
 }
-
 
 }

@@ -172,13 +172,13 @@ void Shader::check_reload(){
 }
 void Shader::reload_vulkan_shader(){
   //---------------------------
-
+/*
   gui_console->clear_log();
   std::string shader_class = vec_shader_class[ID_class];
   std::string shader_subclass = vec_shader_subclass[ID_subclass];
   vk_reload->hot_shader_reload(shader_class, shader_subclass);
   this->has_been_reloaded = true;
-
+*/
   //---------------------------
 }
 

@@ -2,11 +2,12 @@
 
 #include <string>
 
-namespace vk::pipeline{class Pipeline;}
 namespace vk{class Structure;}
+namespace vk::pipeline{class Pipeline;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
 namespace vk::synchro{class Synchro;}
+namespace vk::gui{class Render;}
 
 
 namespace vk::shader{
@@ -20,12 +21,16 @@ public:
 
 public:
   //Main function
-  void hot_shader_reload(std::string shader_1, std::string shader_2);
+  void hot_shader_reload();
+
+  //Subfunction
+  void reload_renderpass(vk::structure::Renderpass& renderpass);
 
 private:
   vk::Structure* vk_struct;
   vk::pipeline::Pipeline* vk_pipeline;
   vk::synchro::Synchro* vk_synchro;
+  vk::gui::Render* vk_render;
 };
 
 }

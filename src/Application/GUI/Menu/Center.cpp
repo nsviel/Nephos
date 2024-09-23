@@ -1,6 +1,7 @@
 #include "Center.h"
 
 #include <GUI/Namespace.h>
+#include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
@@ -11,11 +12,13 @@ namespace gui::menu{
 Center::Center(gui::Node* node_gui){
   //---------------------------
 
+  vk::Node* node_vulkan = node_gui->get_node_vulkan();
   core::Node* node_core = node_gui->get_node_core();
   //eng::Node* node_engine = node_core->get_node_engine();
   //cam::Node* node_camera = node_engine->get_node_camera();
 
   this->node_gui = node_gui;
+  this->vk_render = node_vulkan->get_vk_render();
   //this->cam_manager = node_camera->get_cam_manager();
 
   //---------------------------
@@ -44,6 +47,9 @@ void Center::draw(){
   }
   if(ImGui::MenuItem(ICON_FA_CAMERA)){
     this->menu_screenshot();
+  }
+  if(ImGui::MenuItem(ICON_FA_ROTATE)){
+    this->menu_reload();
   }
   ImGui::Separator();
 
@@ -82,6 +88,12 @@ void Center::menu_screenshot(){
 
   //---------------------------
 }
+void Center::menu_reload(){
+  //---------------------------
 
+  vk_render->reload_shader();
+
+  //---------------------------
+}
 
 }
