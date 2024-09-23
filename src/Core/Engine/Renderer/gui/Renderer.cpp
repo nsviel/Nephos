@@ -17,7 +17,7 @@ Renderer::Renderer(rnd::Node* node_renderer){
 
   this->ctr_navigation = node_control->get_ctr_navigation();
   this->gui_control = node_control->get_gui_control();
-  this->vk_interface = node_vulkan->get_vk_interface();
+  this->vk_data = node_vulkan->get_vk_data();
   this->vk_struct = node_vulkan->get_vk_struct();
 
   this->name = "Renderer";
@@ -52,11 +52,11 @@ void Renderer::design_panel(){
 
 //Subfunction
 void Renderer::engine_texture(){
-  if(vk_struct->param.headless) return;
+  if(vk_struct->interface.param.headless) return;
   //---------------------------
 
   //Retrieve rendering texture
-  ImTextureID texture = vk_interface->query_render_texture();
+  ImTextureID texture = vk_data->query_render_texture();
   if(texture == 0) return;
 
   //Display at window dimension

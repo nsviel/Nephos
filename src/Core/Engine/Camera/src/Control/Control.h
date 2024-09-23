@@ -13,7 +13,7 @@ namespace cam{class Structure;}
 namespace utl::base{class Pose;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Set;}
-namespace vk{class Interface;}
+namespace vk::interface{class Window;}
 
 
 namespace cam{
@@ -49,7 +49,7 @@ public:
 private:
   cam::projection::Perspective* cam_perspective;
   cam::Structure* cam_struct;
-  vk::Interface* vk_interface;
+  vk::interface::Window* vk_window;
 
   std::vector<cam::mode::Base*> vec_mode;
   cam::mode::Base* active_mode;

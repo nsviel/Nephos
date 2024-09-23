@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk{
+namespace vk::interface{
 
 //Constructor / Destructor
 Window::Window(vk::Structure* vk_struct){

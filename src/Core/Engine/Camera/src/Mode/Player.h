@@ -6,7 +6,7 @@
 
 namespace cam{class Node;}
 namespace cam{class Entity;}
-namespace vk{class Interface;}
+namespace vk::interface{class Window;}
 
 
 namespace cam::mode{
@@ -33,7 +33,7 @@ public:
   glm::mat4 compute_camera_view(std::shared_ptr<cam::Entity> camera);
 
 private:
-  vk::Interface* vk_interface;
+  vk::interface::Window* vk_window;
 
   glm::vec2 mouse_pose_old;
 };

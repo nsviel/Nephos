@@ -7,7 +7,7 @@ namespace ctr{class Structure;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
 namespace cam{class Structure;}
-namespace vk{class Interface;}
+namespace vk::interface{class Window;}
 
 
 namespace ctr::mode{
@@ -35,7 +35,7 @@ public:
 
 private:
   ctr::Structure* ctr_struct;
-  vk::Interface* vk_interface;
+  vk::interface::Window* vk_window;
   cam::Control* cam_control;
   cam::Manager* cam_manager;
   cam::Structure* cam_struct;

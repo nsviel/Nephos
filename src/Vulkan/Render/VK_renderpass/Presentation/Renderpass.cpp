@@ -20,7 +20,7 @@ Renderpass::~Renderpass(){}
 void Renderpass::init(){
   vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.presentation;
   renderpass.attachment.target = vk::renderpass::PRESENTATION;
-  if(vk_struct->param.headless) return;
+  if(vk_struct->interface.param.headless) return;
   //---------------------------
 
   vk_subpass->create_subpass(renderpass);

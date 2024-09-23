@@ -16,7 +16,7 @@ Manager::Manager(cam::Node* node_camera){
   dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->vk_interface = node_vulkan->get_vk_interface();
+  this->vk_window = node_vulkan->get_vk_window();
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_control = node_camera->get_cam_control();
   this->dat_graph = node_graph->get_gph_graph();
@@ -61,7 +61,7 @@ void Manager::reset_camera(){
 void Manager::make_screenshot(){
   //---------------------------
 
-  vk_interface->make_screenshot();
+  vk_window->make_screenshot();
 
   //---------------------------
 }

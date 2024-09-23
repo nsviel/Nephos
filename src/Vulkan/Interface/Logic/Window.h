@@ -10,7 +10,7 @@ namespace vk::image{class Screenshot;}
 namespace vk::window{class Window;}
 
 
-namespace vk{
+namespace vk::interface{
 
 class Window
 {

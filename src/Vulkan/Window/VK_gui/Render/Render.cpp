@@ -22,7 +22,7 @@ Render::~Render(){}
 
 //Main function
 void Render::update_render_texture(){
-  if(vk_struct->param.headless) return;
+  if(vk_struct->interface.param.headless) return;
   //---------------------------
 
   //Set presentation texture target

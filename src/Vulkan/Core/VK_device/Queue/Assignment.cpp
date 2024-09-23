@@ -99,7 +99,7 @@ void Assignment::check_proper_assigment(){
     std::cout<<"[error] in transfer queue family assigment"<<std::endl;
     exit(0);
   }
-  if(set.presentation.family_ID == -1 && !vk_struct->param.headless){
+  if(set.presentation.family_ID == -1 && !vk_struct->interface.param.headless){
     std::cout<<"[error] in presentation queue family assigment"<<std::endl;
     exit(0);
   }

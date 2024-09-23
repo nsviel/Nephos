@@ -14,7 +14,7 @@ Control::Control(cam::Node* node_camera){
 
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
-  this->vk_interface = node_vulkan->get_vk_interface();
+  this->vk_window = node_vulkan->get_vk_window();
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_perspective = new cam::projection::Perspective(node_camera);
 
@@ -127,8 +127,8 @@ void Control::update_pose(std::shared_ptr<dat::base::Entity> entity){
   glm::mat4 cam_view = compute_camera_view();
   glm::mat4 cam_proj = compute_camera_proj();
 
-  vk_interface->set_mat_view(cam_view);
-  vk_interface->set_mat_projection(cam_proj);
+  vk_window->set_mat_view(cam_view);
+  vk_window->set_mat_projection(cam_proj);
 
   //Update own glyph pose
   for(auto& glyph : entity->list_glyph){

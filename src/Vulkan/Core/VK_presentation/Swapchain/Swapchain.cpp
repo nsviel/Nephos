@@ -91,7 +91,7 @@ void Swapchain::retrieve_swapchain_image(){
   //---------------------------
 }
 void Swapchain::create_swapchain_handle(){
-  if(vk_struct->param.headless) return;
+  if(vk_struct->interface.param.headless) return;
   //---------------------------
 
   uint32_t queueFamilyIndices[] = {

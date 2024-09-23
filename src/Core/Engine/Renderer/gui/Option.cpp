@@ -57,7 +57,7 @@ void Option::option_color(){
   //---------------------------
 
   //Background color
-  ImGui::ColorEdit4("Background", (float*)&vk_struct->param.background_color);
+  ImGui::ColorEdit4("Background", (float*)&vk_struct->interface.param.background_color);
 
   //---------------------------
   ImGui::Separator();

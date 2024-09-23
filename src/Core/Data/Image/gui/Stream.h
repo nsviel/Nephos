@@ -4,7 +4,7 @@
 #include <memory>
 
 namespace dat::img{class Node;}
-namespace vk{class Interface;}
+namespace vk::interface{class Data;}
 namespace utl::media{class Image;}
 
 
@@ -27,7 +27,7 @@ public:
   void render_image(std::shared_ptr<utl::media::Image> utl_image, ImVec2& dimension);
 
 private:
-  vk::Interface* vk_interface;
+  vk::interface::Data* vk_data;
 
   float current_timestamp = -1;
   int current_UID = -1;

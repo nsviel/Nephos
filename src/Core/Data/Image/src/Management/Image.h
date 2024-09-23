@@ -4,10 +4,10 @@
 #include <memory>
 #include <string>
 
-namespace vk{class Interface;}
 namespace dat::img{class Node;}
 namespace dat::elm{class UID;}
 namespace dat::base{class Entity;}
+namespace vk::interface{class Data;}
 namespace utl::media{class Image;}
 
 
@@ -29,7 +29,7 @@ public:
   std::shared_ptr<utl::media::Image> get_or_create_image(dat::base::Entity& entity, std::string name);
 
 private:
-  vk::Interface* vk_interface;
+  vk::interface::Data* vk_data;
   dat::elm::UID* dat_uid;
 };
 

@@ -11,7 +11,7 @@ namespace cam{class Node;}
 namespace cam{class Entity;}
 namespace cam{class Structure;}
 namespace cam{class Control;}
-namespace vk{class Interface;}
+namespace vk::interface{class Window;}
 
 
 namespace cam{
@@ -32,7 +32,7 @@ private:
   core::Node* node_core;
   cam::Structure* cam_struct;
   cam::Control* cam_control;
-  vk::Interface* vk_interface;
+  vk::interface::Window* vk_window;
   dat::gph::Graph* dat_graph;
   dat::elm::Glyph* dat_glyph;
   dat::elm::Set* dat_set;

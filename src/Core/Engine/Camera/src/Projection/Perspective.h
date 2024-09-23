@@ -3,9 +3,9 @@
 #include <glm/glm.hpp>
 #include <memory>
 
-namespace vk{class Interface;}
 namespace cam{class Node;}
 namespace cam{class Entity;}
+namespace vk::interface{class Window;}
 
 
 namespace cam::projection{
@@ -21,7 +21,7 @@ public:
   glm::mat4 compute_proj_perspective(std::shared_ptr<cam::Entity> camera);
 
 private:
-  vk::Interface* vk_interface;
+  vk::interface::Window* vk_window;
 };
 
 }

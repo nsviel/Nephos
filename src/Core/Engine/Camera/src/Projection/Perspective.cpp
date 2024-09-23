@@ -13,7 +13,7 @@ Perspective::Perspective(cam::Node* node_camera){
 
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
-  this->vk_interface = node_vulkan->get_vk_interface();
+  this->vk_window = node_vulkan->get_vk_window();
 
   //---------------------------
 }
@@ -29,7 +29,7 @@ glm::mat4 Perspective::compute_proj_perspective(std::shared_ptr<cam::Entity> cam
   float z_far = camera->clip_far;
   float fov = glm::radians(camera->fov);
 
-  glm::vec2 window_dim = vk_interface->get_dimension();
+  glm::vec2 window_dim = vk_window->get_dimension();
   float ratio = window_dim.x / window_dim.y;
 
   cam_proj = glm::perspective(fov, ratio, z_near, z_far);
