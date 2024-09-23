@@ -9,6 +9,7 @@ namespace vk::render{class Node;}
 namespace vk::window{class Node;}
 namespace vk::interface{class Data;}
 namespace vk::interface{class Window;}
+namespace vk::interface{class Render;}
 
 
 namespace vk{
@@ -29,6 +30,7 @@ public:
   inline vk::Structure* get_vk_struct(){return vk_struct;}
   inline vk::interface::Data* get_vk_data(){return vk_interface_data;}
   inline vk::interface::Window* get_vk_window(){return vk_interface_window;}
+  inline vk::interface::Render* get_vk_render(){return vk_interface_render;}
 
 private:
   //Core
@@ -40,6 +42,7 @@ private:
   //Interface
   vk::interface::Data* vk_interface_data;
   vk::interface::Window* vk_interface_window;
+  vk::interface::Render* vk_interface_render;
 };
 
 }

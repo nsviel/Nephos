@@ -17,7 +17,7 @@ Renderer::Renderer(rnd::Node* node_renderer){
 
   this->ctr_navigation = node_control->get_ctr_navigation();
   this->gui_control = node_control->get_gui_control();
-  this->vk_data = node_vulkan->get_vk_data();
+  this->vk_render = node_vulkan->get_vk_render();
   this->vk_struct = node_vulkan->get_vk_struct();
 
   this->name = "Renderer";
@@ -57,7 +57,7 @@ void Renderer::engine_texture(){
 
   //Draw render texture
   ImVec2 dim = ImGui::GetContentRegionAvail();
-  vk_data->draw_render_texture(glm::vec2(dim.x, dim.y));
+  vk_render->draw_render_texture(glm::vec2(dim.x, dim.y));
 
   //Control
   if(ImGui::IsItemHovered()){

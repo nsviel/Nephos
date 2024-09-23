@@ -13,16 +13,12 @@ Data::Data(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_texture = new vk::texture::Data(vk_struct);
   this->vk_data = new vk::data::Data(vk_struct);
-  this->vk_render = new vk::gui::Render(vk_struct);
 
   //---------------------------
 }
 Data::~Data(){}
 
 //Main function
-void Data::draw_render_texture(glm::vec2 dimension){
-  vk_render->render_image_in_gui(vk_struct->render.presentation.texture, dimension);
-}
 void Data::insert_data(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose){
   vk_data->insert(data, pose);
 }
@@ -31,9 +27,6 @@ void Data::remove_data(utl::base::Data& data){
 }
 void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
   vk_texture->insert_texture(data, image);
-}
-void Data::draw_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
-  //vk_render->render_image_in_gui(data, image);
 }
 
 }

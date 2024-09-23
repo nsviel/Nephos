@@ -5,7 +5,7 @@
 namespace rnd{class Node;}
 namespace ctr::mode{class Navigation;}
 namespace ctr::gui{class Control;}
-namespace vk::interface{class Data;}
+namespace vk::interface{class Render;}
 namespace vk{class Structure;}
 namespace core{class Node;}
 
@@ -31,7 +31,7 @@ public:
 private:
   ctr::gui::Control* gui_control;
   ctr::mode::Navigation* ctr_navigation;
-  vk::interface::Data* vk_data;
+  vk::interface::Render* vk_render;
   vk::Structure* vk_struct;
 
   std::string name;
