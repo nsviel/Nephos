@@ -41,14 +41,14 @@ void Render::create_image_descriptor(vk::structure::Texture& texture){
 
   //---------------------------
 }
-void Render::render_image_in_gui(vk::structure::Texture& texture, ImVec2 dimension){
+void Render::render_image_in_gui(vk::structure::Texture& texture, glm::vec2 dimension){
   //---------------------------
 
   if(texture.descriptor_set = VK_NULL_HANDLE){
     this->create_image_descriptor(texture);
   }
 
-  ImGui::Image(texture.descriptor_set, dimension);
+  ImGui::Image(texture.descriptor_set, ImVec2(dimension.x, dimension.y));
 
   //---------------------------
 }

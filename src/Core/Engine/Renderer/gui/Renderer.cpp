@@ -55,12 +55,14 @@ void Renderer::engine_texture(){
   if(vk_struct->interface.param.headless) return;
   //---------------------------
 
-  //Retrieve rendering texture
+ImVec2 dim = ImGui::GetContentRegionAvail();
+vk_data->draw_render_texture(glm::vec2(dim.x, dim.y));
+/*  //Retrieve rendering texture
   ImTextureID texture = vk_data->query_render_texture();
   if(texture == 0) return;
 
   //Display at window dimension
-  ImGui::Image(texture, ImGui::GetContentRegionAvail());
+  ImGui::Image(texture, ImGui::GetContentRegionAvail());*/
 
   //Control
   if(ImGui::IsItemHovered()){

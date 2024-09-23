@@ -21,7 +21,7 @@ public:
   //Main function
   void update_render_texture();
   void create_image_descriptor(vk::structure::Texture& texture);
-  void render_image_in_gui(vk::structure::Texture& texture, ImVec2 dimension);
+  void render_image_in_gui(vk::structure::Texture& texture, glm::vec2 dimension);
   ImTextureID query_render_texture();
 
 private:

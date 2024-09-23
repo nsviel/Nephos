@@ -23,6 +23,9 @@ Data::~Data(){}
 ImTextureID Data::query_render_texture(){
   return vk_render->query_render_texture();
 }
+void Data::draw_render_texture(glm::vec2 dimension){
+  vk_render->render_image_in_gui(vk_struct->render.presentation.texture, dimension);
+}
 void Data::insert_data(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose){
   vk_data->insert(data, pose);
 }
