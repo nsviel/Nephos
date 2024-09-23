@@ -1,6 +1,7 @@
 #include "Layout.h"
 
 #include <GUI/Namespace.h>
+#include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -10,13 +11,14 @@ namespace gui{
 Layout::Layout(gui::Node* node_gui){
   //---------------------------
 
+  vk::Node* node_vulkan = node_gui->get_node_vulkan();
   this->node_gui = node_gui;
 
   this->gui_state = node_gui->get_gui_state();
   this->gui_demo = node_gui->get_gui_demo();
-  this->gui_docking = new gui::Docking();
   this->menu_left = new gui::menu::Left(node_gui);
   this->menu_center = new gui::menu::Center(node_gui);
+  this->vk_window = node_vulkan->get_vk_window();
 
   //---------------------------
 }
@@ -38,8 +40,7 @@ void Layout::draw_frame(){
   //---------------------------
 
   gui_state->loop();
-  ImGui::NewFrame();
-  gui_docking->loop();
+  vk_window->truc();
   gui_demo->loop();
 
   //---------------------------

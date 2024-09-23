@@ -16,6 +16,7 @@ Node::Node(app::Node* node_app){
 
   this->node_core = node_app->get_node_core();
   this->node_scene = node_app->get_node_scene();
+  this->node_vulkan = node_app->get_node_vulkan();
 
   this->gui_demo = new gui::menu::Demo(this);
   this->gui_state = new gui::state::Manager(this);

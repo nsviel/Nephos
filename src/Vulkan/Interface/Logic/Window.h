@@ -27,7 +27,8 @@ public:
   void make_screenshot();
   void set_mat_view(glm::mat4 mat);
   void set_mat_projection(glm::mat4 mat);
-
+  void truc();
+  
 private:
   vk::Structure* vk_struct;
   vk::gui::Imgui* vk_imgui;

@@ -53,7 +53,7 @@ void Imgui::clean(){
   //---------------------------
 }
 
-//Context
+//Subfunction
 void Imgui::create_context(){
   //---------------------------
 
@@ -63,24 +63,24 @@ void Imgui::create_context(){
   ImPlot::CreateContext();
   ImGui::StyleColorsDark();
 
-  // Setup Platform/Renderer bindings
-  if(!vk_struct->interface.param.headless){
-    vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.presentation;
-    ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
-    ImGui_ImplVulkan_InitInfo init_info = {};
-    init_info.Instance = vk_struct->core.instance.handle;
-    init_info.PhysicalDevice = vk_struct->core.device.physical_device.handle;
-    init_info.Device = vk_struct->core.device.handle;
-    init_info.Queue = vk_struct->core.device.queue.graphics.handle;
-    init_info.DescriptorPool = vk_struct->core.pools.descriptor_set.pool;
-    init_info.PipelineCache = VK_NULL_HANDLE;
-    init_info.MinImageCount = 2;
-    init_info.ImageCount = 2;
-    init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
-    init_info.Subpass = 0;
-    init_info.QueueFamily = vk_struct->core.device.queue.graphics.family_ID;
-    ImGui_ImplVulkan_Init(&init_info, renderpass.handle);
-  }
+  //If headless no need to init more
+  if(vk_struct->interface.param.headless) return;
+
+  //Init imgui vulkan implementation
+  ImGui_ImplVulkan_InitInfo init_info = {};
+  init_info.Instance = vk_struct->core.instance.handle;
+  init_info.PhysicalDevice = vk_struct->core.device.physical_device.handle;
+  init_info.Device = vk_struct->core.device.handle;
+  init_info.Queue = vk_struct->core.device.queue.graphics.handle;
+  init_info.DescriptorPool = vk_struct->core.pools.descriptor_set.pool;
+  init_info.PipelineCache = VK_NULL_HANDLE;
+  init_info.MinImageCount = 2;
+  init_info.ImageCount = 2;
+  init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
+  init_info.Subpass = 0;
+  init_info.QueueFamily = vk_struct->core.device.queue.graphics.family_ID;
+  ImGui_ImplVulkan_Init(&init_info, vk_struct->render.renderpass.presentation.handle);
+  ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
 
   //---------------------------
 }

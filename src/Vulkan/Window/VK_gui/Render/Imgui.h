@@ -26,7 +26,7 @@ public:
   void clean();
   void loop();
 
-  //Context
+  //Subfunction
   void create_context();
   void new_frame();
   void draw_frame(vk::structure::Command_buffer& command_buffer);

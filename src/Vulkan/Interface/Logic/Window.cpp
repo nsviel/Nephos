@@ -38,5 +38,8 @@ void Window::set_mat_view(glm::mat4 mat){
 void Window::set_mat_projection(glm::mat4 mat){
   vk_struct->core.presentation.projection = mat;
 }
+void Window::truc(){
+  vk_imgui->new_frame();
+}
 
 }

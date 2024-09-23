@@ -5,6 +5,7 @@
 namespace app{class Node;}
 namespace core{class Node;}
 namespace sce{class Node;}
+namespace vk{class Node;}
 
 namespace gui{class Layout;}
 namespace gui::state{class Manager;}
@@ -30,6 +31,7 @@ public:
 
   inline core::Node* get_node_core(){return node_core;}
   inline sce::Node* get_node_scene(){return node_scene;}
+  inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
   inline gui::menu::Demo* get_gui_demo(){return gui_demo;}
   inline gui::state::Manager* get_gui_state(){return gui_state;}
@@ -39,6 +41,7 @@ private:
   //Dependancy
   core::Node* node_core;
   sce::Node* node_scene;
+  vk::Node* node_vulkan;
 
   //Child
   gui::Layout* gui_layout;
