@@ -20,9 +20,6 @@ Data::Data(vk::Structure* vk_struct){
 Data::~Data(){}
 
 //Main function
-ImTextureID Data::query_render_texture(){
-  return vk_render->query_render_texture();
-}
 void Data::draw_render_texture(glm::vec2 dimension){
   vk_render->render_image_in_gui(vk_struct->render.presentation.texture, dimension);
 }

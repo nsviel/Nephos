@@ -2,6 +2,7 @@
 
 #include <imgui/core/imgui.h>
 #include <vulkan/vulkan.h>
+#include <glm/glm.hpp>
 #include <memory>
 
 namespace vk{class Structure;}
@@ -22,7 +23,6 @@ public:
   void update_render_texture();
   void create_image_descriptor(vk::structure::Texture& texture);
   void render_image_in_gui(vk::structure::Texture& texture, glm::vec2 dimension);
-  ImTextureID query_render_texture();
 
 private:
   vk::Structure* vk_struct;

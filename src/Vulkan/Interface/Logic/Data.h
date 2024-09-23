@@ -24,7 +24,6 @@ public:
 
 public:
   //Main function
-  ImTextureID query_render_texture();
   void draw_render_texture(glm::vec2 dimension);
   void insert_data(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose);
   void remove_data(utl::base::Data& data);

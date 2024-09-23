@@ -44,21 +44,19 @@ void Render::create_image_descriptor(vk::structure::Texture& texture){
 void Render::render_image_in_gui(vk::structure::Texture& texture, glm::vec2 dimension){
   //---------------------------
 
-  if(texture.descriptor_set = VK_NULL_HANDLE){
+  //Check if descriptor set is initialized
+  if(texture.descriptor_set == VK_NULL_HANDLE){
     this->create_image_descriptor(texture);
   }
 
-  ImGui::Image(texture.descriptor_set, ImVec2(dimension.x, dimension.y));
+  //Convert descriptor set into imgui texture ID
+  ImTextureID imtexture = reinterpret_cast<ImTextureID>(texture.descriptor_set);
+  if(imtexture == 0) return;
+
+  //Display image dimension
+  ImGui::Image(imtexture, ImVec2(dimension.x, dimension.y));
 
   //---------------------------
-}
-ImTextureID Render::query_render_texture(){
-  //---------------------------
-
-  ImTextureID texture = reinterpret_cast<ImTextureID>(vk_struct->render.presentation.texture.descriptor_set);
-
-  //---------------------------
-  return texture;
 }
 
 }
