@@ -32,5 +32,8 @@ void Data::remove_data(utl::base::Data& data){
 void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
   vk_texture->insert_texture(data, image);
 }
+void Data::draw_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
+  //vk_render->render_image_in_gui(data, image);
+}
 
 }
