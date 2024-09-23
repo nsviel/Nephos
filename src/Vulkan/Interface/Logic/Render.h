@@ -6,6 +6,7 @@
 
 namespace vk{class Structure;}
 namespace vk::gui{class Render;}
+namespace vk::data{class Function;}
 namespace utl::media{class Image;}
 namespace utl::base{class Data;}
 
@@ -22,11 +23,12 @@ public:
 public:
   //Main function
   void draw_render_texture(glm::vec2 dimension);
-  void draw_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image);
+  void draw_image(std::shared_ptr<utl::media::Image> image, glm::vec2 dimension);
 
 private:
   vk::Structure* vk_struct;
   vk::gui::Render* vk_render;
+  vk::data::Function* vk_data;
 };
 
 }

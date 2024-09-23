@@ -57,14 +57,8 @@ void Data::insert_texture(std::shared_ptr<utl::media::Image> image){
   //---------------------------
 }
 void Data::update_texture(std::shared_ptr<utl::media::Image> image){
+  if(!check_image(image)) return;
   //---------------------------
-/*
-  //Check image integrity
-  if(!image) return;
-  if(image->format == "") return;
-  if(image->size == 0) return;
-  if(image->width == 0) return;
-  if(image->height == 0) return;
 
   //Retrieve data vk object
   auto texture = vk_data->retrieve_vk_texture(*image);
@@ -72,7 +66,7 @@ void Data::update_texture(std::shared_ptr<utl::media::Image> image){
 
   //Create texture from image
   vk_ressource->update_texture(*texture);
-*/
+
   //---------------------------
 }
 

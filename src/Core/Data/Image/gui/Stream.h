@@ -5,6 +5,7 @@
 
 namespace dat::img{class Node;}
 namespace vk::interface{class Data;}
+namespace vk::interface{class Render;}
 namespace utl::media{class Image;}
 
 
@@ -23,11 +24,12 @@ public:
 
   //Subfunction
   bool check_image(std::shared_ptr<utl::media::Image> utl_image);
-  void convert_data_into_texture(std::shared_ptr<utl::media::Image> utl_image);
+  void update_texture(std::shared_ptr<utl::media::Image> utl_image);
   void render_image(std::shared_ptr<utl::media::Image> utl_image, ImVec2& dimension);
 
 private:
   vk::interface::Data* vk_data;
+  vk::interface::Render* vk_render;
 
   float current_timestamp = -1;
   int current_UID = -1;

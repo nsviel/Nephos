@@ -29,9 +29,15 @@ std::shared_ptr<vk::structure::Object> Function::retrieve_vk_object(utl::base::D
 std::shared_ptr<vk::structure::Texture> Function::retrieve_vk_texture(utl::media::Image& image){
   //---------------------------
 
+  //Search in all vk objects
   for(auto& [name, vk_object] : vk_struct->core.data.map_vk_object){
     auto texture = retrieve_vk_texture(*vk_object, image.name);
     if(texture) return texture;
+  }
+
+  //Search in all engine textures
+  for(auto& texture : vk_struct->core.data.list_vk_texture){
+    if(texture->image->UID == image.UID) return texture;
   }
 
   //---------------------------

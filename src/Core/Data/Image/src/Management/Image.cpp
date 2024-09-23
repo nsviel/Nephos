@@ -34,7 +34,7 @@ void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Ima
   //Else insert it
   image->UID = dat_uid->generate_UID();
   data.map_image[image->name] = image;
-  vk_data->insert_texture(data, image);
+  vk_data->insert_image(data, image);
 
   //----------------------------
 }
