@@ -5,6 +5,7 @@
 #include <Vulkan/Core/VK_command/Namespace.h>
 #include <Vulkan/Core/VK_data/Namespace.h>
 #include <Vulkan/Core/VK_device/Namespace.h>
+#include <Vulkan/Core/VK_drawer/Namespace.h>
 #include <Vulkan/Core/VK_image/Namespace.h>
 #include <Vulkan/Core/VK_instance/Namespace.h>
 #include <Vulkan/Core/VK_presentation/Namespace.h>

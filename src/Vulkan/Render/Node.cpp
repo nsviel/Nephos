@@ -29,7 +29,7 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  vk_drawer->draw_frame();
+  vk_render->loop();
 
   //---------------------------
 }

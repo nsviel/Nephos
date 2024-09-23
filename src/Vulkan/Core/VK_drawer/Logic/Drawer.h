@@ -2,10 +2,10 @@
 
 #include <vulkan/vulkan.h>
 
+namespace vk{class Structure;}
 namespace vk::draw{class Renderer;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
-namespace vk{class Structure;}
 namespace vk::structure{class Object;}
 
 

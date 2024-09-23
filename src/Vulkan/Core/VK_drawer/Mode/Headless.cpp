@@ -6,9 +6,13 @@
 namespace vk::draw{
 
 //Constructor / Destructor
-Headless::Headless(vk::Structure* vk_struct) : vk::draw::Drawer(vk_struct){
+Headless::Headless(vk::Structure* vk_struct){
   //---------------------------
 
+  this->vk_struct = vk_struct;
+  this->vk_render = new vk::draw::Renderer(vk_struct);
+  this->vk_fence = new vk::synchro::Fence(vk_struct);
+  this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
 
   //---------------------------
 }
