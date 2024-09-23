@@ -61,6 +61,7 @@ void Color::retrieve_image(k4n::base::Sensor& sensor){
   image->height = sensor.color.data.height;
   image->format = sensor.color.data.format;
   image->timestamp = sensor.color.data.timestamp;
+  dat_image->add_image(sensor, image);
 
   //---------------------------
 }

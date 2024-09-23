@@ -25,6 +25,7 @@ public:
   void add_image(dat::base::Entity& entityy, std::shared_ptr<utl::media::Image> image);
 
   //Subfunction
+  void insert_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Image> image);
   std::shared_ptr<utl::media::Image> get_image(dat::base::Entity& entity, std::string name);
   std::shared_ptr<utl::media::Image> get_or_create_image(dat::base::Entity& entity, std::string name);
 

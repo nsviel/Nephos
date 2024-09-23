@@ -32,7 +32,6 @@ void Capture::init(k4n::capture::Sensor& sensor){
   this->init_device(sensor);
   dat_sensor->init_sensor(sensor);
   k4n_config->init_configuration(sensor);
-  this->init_image(sensor);
   this->init_capture(sensor);
 
   //---------------------------
@@ -115,15 +114,6 @@ void Capture::init_capture(k4n::capture::Sensor& sensor){
   //---------------------------
 
   sensor.device.handle.start_cameras(&sensor.device.configuration);
-
-  //---------------------------
-}
-void Capture::init_image(k4n::capture::Sensor& sensor){
-  //---------------------------
-
-  dat_image->add_image(sensor, sensor.color.image);
-  dat_image->add_image(sensor, sensor.depth.image);
-  dat_image->add_image(sensor, sensor.infra.image);
 
   //---------------------------
 }

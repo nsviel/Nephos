@@ -64,7 +64,8 @@ void Infrared::retrieve_image(k4n::base::Sensor& sensor){
   image->height = sensor.infra.data.height;
   image->format = "RGBA8";
   image->timestamp = sensor.infra.data.timestamp;
-
+  dat_image->add_image(sensor, image);
+  
   //---------------------------
 }
 

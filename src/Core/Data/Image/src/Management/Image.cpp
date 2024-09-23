@@ -27,19 +27,30 @@ void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Ima
   utl::base::Data& data = *entity.data;
   //----------------------------
 
+  if(image->size == 0) return;
+  if(image->width == 0) return;
+  if(image->height == 0) return;
+
   //Check if image already inseretd
   auto it = data.map_image.find(image->name);
-  if(it != data.map_image.end()) return;
+  if(it == data.map_image.end()){
+    this->insert_image(entity, image);
+  }
 
-  //Else insert it
+  //----------------------------
+}
+
+//Subfunction
+void Image::insert_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Image> image){
+  utl::base::Data& data = *entity.data;
+  //----------------------------
+
   image->UID = dat_uid->generate_UID();
   data.map_image[image->name] = image;
   vk_data->insert_image(data, image);
 
   //----------------------------
 }
-
-//Subfunction
 std::shared_ptr<utl::media::Image> Image::get_image(dat::base::Entity& entity, std::string query){
   utl::base::Data& data = *entity.data;
   //----------------------------

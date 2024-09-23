@@ -19,7 +19,7 @@ Data::Data(vk::Structure* vk_struct){
 Data::~Data(){}
 
 //Main function
-void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){say("---");
+void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
   //---------------------------
 
   //Retrieve data vk object
