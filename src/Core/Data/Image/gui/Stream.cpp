@@ -42,28 +42,22 @@ bool Stream::check_image(std::shared_ptr<utl::media::Image> utl_image){
 }
 void Stream::convert_data_into_texture(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
-/*
-  bool load = (utl_image->texture_ID == -1 || current_UID != utl_image->UID);
+
   bool update = (current_timestamp != utl_image->timestamp);
 
   //Load texture into vulkan
-  if(load){
-    vk_interface->insert_texture(utl_image);
-    vk_interface->insert_gui_texture(utl_image);
-    current_UID = utl_image->UID;
-  //update texture data
-  }else if(update){
-    vk_interface->insert_texture(utl_image);
+  if(update){
+    //vk_interface->insert_texture(utl_image);
     current_timestamp = utl_image->timestamp;
   }
-*/
+
   //---------------------------
 }
 void Stream::render_image(std::shared_ptr<utl::media::Image> utl_image, ImVec2& dimension){
   if(utl_image->texture_ID == -1) return;
   //---------------------------
 
-  ImGui::Image(utl_image->gui_texture_ID, dimension);
+  //ImGui::Image(utl_image->gui_texture_ID, dimension);
 
   //---------------------------
 }

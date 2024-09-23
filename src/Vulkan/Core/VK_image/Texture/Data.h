@@ -23,6 +23,7 @@ public:
 public:
   //Main function
   void insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image);
+  void update_texture(std::shared_ptr<utl::media::Image> image);
 
   //Subfunction
   void create_texture(vk::structure::Object& vk_object, std::shared_ptr<utl::media::Image> image);

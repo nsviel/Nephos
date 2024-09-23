@@ -35,9 +35,6 @@ void Interface::remove_data(utl::base::Data& data){
 void Interface::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
   vk_texture->insert_texture(data, image);
 }
-void Interface::insert_gui_texture(std::shared_ptr<utl::media::Image> image){
-  //vk_render->insert_texture(image);
-}
 
 //Window function
 glm::vec2 Interface::get_mouse_pose(){

@@ -23,8 +23,8 @@ Ressource::Ressource(vk::Structure* vk_struct){
 Ressource::~Ressource(){}
 
 //Main function
-void Ressource::create_texture(std::shared_ptr<vk::structure::Texture> texture){
-  utl::media::Image& image = *texture->image;
+void Ressource::create_texture(vk::structure::Texture& texture){
+  utl::media::Image& image = *texture.image;
   //---------------------------
 
   //Create texture container
@@ -32,45 +32,44 @@ void Ressource::create_texture(std::shared_ptr<vk::structure::Texture> texture){
   if(format == VK_FORMAT_UNDEFINED) return;
 
   //Create associated vk_image
-  texture->wrapper.width = image.width;
-  texture->wrapper.height = image.height;
-  texture->wrapper.format = format;
-  texture->wrapper.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  texture->wrapper.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
-  vk_image->create_image(texture->wrapper);
+  texture.wrapper.width = image.width;
+  texture.wrapper.height = image.height;
+  texture.wrapper.format = format;
+  texture.wrapper.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  texture.wrapper.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
+  vk_image->create_image(texture.wrapper);
 
   //Make associated operation
-  vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, image.size);
-  vk_mem_transfer->copy_texture_to_gpu(*texture);
+  vk_mem_allocator->allocate_empty_stagger_buffer(texture.stagger, image.size);
+  vk_mem_transfer->copy_texture_to_gpu(texture);
 
   //---------------------------
 }
-void Ressource::update_texture(std::shared_ptr<vk::structure::Texture> texture){
+void Ressource::update_texture(vk::structure::Texture& texture){
   //---------------------------
 
   //Check if size hasn't changed
-  if(texture->stagger.size < texture->image->size){
+  if(texture.stagger.size < texture.image->size){
     this->clean_texture(texture);
     return;
   }
 
-  vk_mem_transfer->copy_texture_to_gpu(*texture);
+  vk_mem_transfer->copy_texture_to_gpu(texture);
 
   //---------------------------
 }
-void Ressource::export_texture(std::shared_ptr<vk::structure::Texture> texture){
-  if(!texture) return;
+void Ressource::export_texture(vk::structure::Texture& texture){
   //---------------------------
 
-  vk_screenshot->export_image_to_jpeg(texture->wrapper);
+  vk_screenshot->export_image_to_jpeg(texture.wrapper);
 
   //---------------------------
 }
-void Ressource::clean_texture(std::shared_ptr<vk::structure::Texture> texture){
+void Ressource::clean_texture(vk::structure::Texture& texture){
   //---------------------------
 
-  vk_image->clean_image(texture->wrapper);
-  vk_buffer->clean_buffer(&texture->stagger);
+  vk_image->clean_image(texture.wrapper);
+  vk_buffer->clean_buffer(&texture.stagger);
 
   //---------------------------
 }

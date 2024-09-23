@@ -26,6 +26,17 @@ std::shared_ptr<vk::structure::Object> Function::retrieve_vk_object(utl::base::D
   //---------------------------
   return it->second;
 }
+std::shared_ptr<vk::structure::Texture> Function::retrieve_vk_texture(utl::media::Image& image){
+  //---------------------------
+
+  for(auto& [name, vk_object] : vk_struct->core.data.map_vk_object){
+    auto texture = retrieve_vk_texture(*vk_object, image.name);
+    if(texture) return texture;
+  }
+
+  //---------------------------
+  return nullptr;
+}
 std::shared_ptr<vk::structure::Texture> Function::retrieve_vk_texture(vk::structure::Object& vk_object, std::string name){
   //---------------------------
 
