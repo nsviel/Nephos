@@ -23,8 +23,8 @@ void Depth::create_depth_image(vk::structure::Image* depth){
   //Create frame depth image
   depth->name = "tex_depth";
   depth->format = find_depth_format();
-  depth->width = vk_struct->window.window.extent.width;
-  depth->height = vk_struct->window.window.extent.height;
+  depth->width = vk_struct->window.extent.width;
+  depth->height = vk_struct->window.extent.height;
   depth->aspect = VK_IMAGE_ASPECT_DEPTH_BIT;
 
   vk_image->create_image(*depth);

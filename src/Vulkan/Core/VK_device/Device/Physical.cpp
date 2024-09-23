@@ -32,25 +32,25 @@ void Physical::compute_extent(){
   //---------------------------
 
   if(vk_struct->param.headless){
-    vk_struct->window.window.extent.width = vk_struct->param.headless_dim.x;
-    vk_struct->window.window.extent.height = vk_struct->param.headless_dim.y;
+    vk_struct->window.extent.width = vk_struct->param.headless_dim.x;
+    vk_struct->window.extent.height = vk_struct->param.headless_dim.y;
   }
   else{
     this->find_surface_capability(vk_struct->core.device.physical_device);
     VkSurfaceCapabilitiesKHR capabilities = vk_struct->core.device.physical_device.capabilities;
 
     if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){
-      vk_struct->window.window.extent = capabilities.currentExtent;
+      vk_struct->window.extent = capabilities.currentExtent;
     }
     else{
-      glm::vec2 fbo_dim = vk_struct->window.window.dimension;
-      vk_struct->window.window.extent = {
+      glm::vec2 fbo_dim = vk_struct->window.dimension;
+      vk_struct->window.extent = {
         static_cast<uint32_t>(fbo_dim.x),
         static_cast<uint32_t>(fbo_dim.y)
       };
 
-      vk_struct->window.window.extent.width = std::clamp(vk_struct->window.window.extent.width, capabilities.minImageExtent.width, capabilities.maxImageExtent.width);
-      vk_struct->window.window.extent.height = std::clamp(vk_struct->window.window.extent.height, capabilities.minImageExtent.height, capabilities.maxImageExtent.height);
+      vk_struct->window.extent.width = std::clamp(vk_struct->window.extent.width, capabilities.minImageExtent.width, capabilities.maxImageExtent.width);
+      vk_struct->window.extent.height = std::clamp(vk_struct->window.extent.height, capabilities.minImageExtent.height, capabilities.maxImageExtent.height);
     }
   }
 
@@ -285,7 +285,7 @@ void Physical::find_surface_capability(vk::device::structure::Physical& physical
 
   //Get basic surface capabilities
   VkSurfaceCapabilitiesKHR capabilities;
-  vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device.handle, vk_struct->window.window.surface, &capabilities);
+  vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device.handle, vk_struct->window.surface, &capabilities);
 
   //---------------------------
   physical_device.capabilities = capabilities;
@@ -295,14 +295,14 @@ void Physical::find_surface_format(vk::device::structure::Physical& physical_dev
 
   //Get supported surface format number
   uint32_t nb_format;
-  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, vk_struct->window.window.surface, &nb_format, nullptr);
+  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, vk_struct->window.surface, &nb_format, nullptr);
   if(nb_format == 0){
     std::cout<<"[error] No physical device surface format"<<std::endl;
   }
 
   //Get supported surface format list
   std::vector<VkSurfaceFormatKHR> formats(nb_format);
-  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, vk_struct->window.window.surface, &nb_format, formats.data());
+  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, vk_struct->window.surface, &nb_format, formats.data());
 
   //---------------------------
   physical_device.formats = formats;
@@ -312,14 +312,14 @@ void Physical::find_presentation_mode(vk::device::structure::Physical& physical_
 
   //Get presentation mode number
   uint32_t nb_mode_presentation;
-  vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.handle, vk_struct->window.window.surface, &nb_mode_presentation, nullptr);
+  vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.handle, vk_struct->window.surface, &nb_mode_presentation, nullptr);
   if(nb_mode_presentation == 0){
     std::cout<<"[error] No physical device surface presentation mode"<<std::endl;
   }
 
   //Get presentation mode list
   std::vector<VkPresentModeKHR> presentation_mode(nb_mode_presentation);
-  vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.handle, vk_struct->window.window.surface, &nb_mode_presentation, presentation_mode.data());
+  vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.handle, vk_struct->window.surface, &nb_mode_presentation, presentation_mode.data());
 
   //---------------------------
   physical_device.presentation_mode = presentation_mode;

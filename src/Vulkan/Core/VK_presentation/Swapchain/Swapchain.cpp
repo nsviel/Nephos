@@ -56,7 +56,7 @@ void Swapchain::recreate_swapchain(){
   //---------------------------
 
   //Pause if window is minimized
-  glm::vec2 dim = vk_struct->window.window.dimension;
+  glm::vec2 dim = vk_struct->window.dimension;
   while(dim == glm::vec2(0, 0)){
     vk_event->wait_event();
   }
@@ -112,10 +112,10 @@ void Swapchain::create_swapchain_handle(){
 
   create_info.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
   create_info.minImageCount = vk_struct->core.swapchain.max_frame;
-  create_info.surface = vk_struct->window.window.surface;
+  create_info.surface = vk_struct->window.surface;
   create_info.imageFormat = vk_struct->core.swapchain.format.format;
   create_info.imageColorSpace = vk_struct->core.swapchain.format.colorSpace;
-  create_info.imageExtent = vk_struct->window.window.extent;
+  create_info.imageExtent = vk_struct->window.extent;
   create_info.imageArrayLayers = 1;
   create_info.imageUsage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT; //VK_IMAGE_USAGE_TRANSFER_DST_BIT for post-processing
   create_info.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; //Ignore alpha channel

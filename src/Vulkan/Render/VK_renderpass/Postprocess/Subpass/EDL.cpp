@@ -79,8 +79,8 @@ void EDL::update_descriptor(vk::structure::Subpass& subpass, vk::structure::Pipe
 
   //Update parameters
   vk::postprocess::EDL& edl_struct = vk_struct->render.pipeline.edl;
-  edl_struct.tex_width = vk_struct->window.window.dimension.x;
-  edl_struct.tex_height = vk_struct->window.window.dimension.y;
+  edl_struct.tex_width = vk_struct->window.dimension.x;
+  edl_struct.tex_height = vk_struct->window.dimension.y;
   vk_uniform->update_uniform("EDL_param", pipeline.descriptor.descriptor_set, edl_struct);
 
   //Bind descriptor set

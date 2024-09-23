@@ -23,8 +23,8 @@ void Color::create_color_image(vk::structure::Image* color){
   //Create frame color image
   color->name = "tex_color";
   color->format = find_color_format();
-  color->width = vk_struct->window.window.extent.width;
-  color->height = vk_struct->window.window.extent.height;
+  color->width = vk_struct->window.extent.width;
+  color->height = vk_struct->window.extent.height;
   color->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
 
   vk_image->create_image(*color);

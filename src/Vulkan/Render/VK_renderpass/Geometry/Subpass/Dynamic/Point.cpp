@@ -81,8 +81,8 @@ void Point::update_uniform(vk::structure::Object& vk_object, vk::structure::Pipe
 
   //Update parameters
   vk::geometry::Dynamic dyn_struct;;
-  dyn_struct.tex_depth_width = vk_struct->window.window.dimension.x;
-  dyn_struct.tex_depth_height = vk_struct->window.window.dimension.y;
+  dyn_struct.tex_depth_width = vk_struct->window.dimension.x;
+  dyn_struct.tex_depth_height = vk_struct->window.dimension.y;
   vk_uniform->update_uniform("DYN_param", pipeline.descriptor.descriptor_set, dyn_struct);
 
   //---------------------------

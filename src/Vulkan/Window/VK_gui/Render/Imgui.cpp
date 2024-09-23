@@ -66,7 +66,7 @@ void Imgui::create_context(){
   // Setup Platform/Renderer bindings
   if(!vk_struct->param.headless){
     vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.presentation;
-    ImGui_ImplGlfw_InitForVulkan(vk_struct->window.window.handle, true);
+    ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
     ImGui_ImplVulkan_InitInfo init_info = {};
     init_info.Instance = vk_struct->core.instance.handle;
     init_info.PhysicalDevice = vk_struct->core.device.physical_device.handle;
@@ -89,7 +89,7 @@ void Imgui::draw_frame(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
   //Check resizing
-  if(vk_struct->window.window.resizing) return;
+  if(vk_struct->window.resizing) return;
   if(vk_window->is_window_resized()) return;
 
   //Draw imgui stuff

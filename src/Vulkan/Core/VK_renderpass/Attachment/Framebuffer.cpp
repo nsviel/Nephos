@@ -85,8 +85,8 @@ void Framebuffer::create_framebuffer_handle(vk::structure::Renderpass& renderpas
   framebufferInfo.renderPass = renderpass.handle;
   framebufferInfo.attachmentCount = static_cast<uint32_t>(framebuffer.vec_attachment.size());
   framebufferInfo.pAttachments = framebuffer.vec_attachment.data();
-  framebufferInfo.width = vk_struct->window.window.extent.width;
-  framebufferInfo.height = vk_struct->window.window.extent.height;
+  framebufferInfo.width = vk_struct->window.extent.width;
+  framebufferInfo.height = vk_struct->window.extent.height;
   framebufferInfo.layers = 1;
 
   VkResult result = vkCreateFramebuffer(vk_struct->core.device.handle, &framebufferInfo, nullptr, &framebuffer.handle);

@@ -57,7 +57,7 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
   renderpass_info.renderPass = renderpass->handle;
   renderpass_info.framebuffer = framebuffer;
   renderpass_info.renderArea.offset = {0, 0};
-  renderpass_info.renderArea.extent = vk_struct->window.window.extent;
+  renderpass_info.renderArea.extent = vk_struct->window.extent;
   renderpass_info.clearValueCount = static_cast<uint32_t>(clear_value.size());
   renderpass_info.pClearValues = clear_value.data();
 

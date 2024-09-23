@@ -29,7 +29,7 @@ void Render::update_render_texture(){
   vk::structure::Image& image = vk_struct->render.renderpass.postprocess.framebuffer.color;
 
   //Create gui image descriptor
-  this->create_image_descriptor(image, vk_struct->window.gui.descriptor_set);
+  this->create_image_descriptor(image, vk_struct->render.presentation.descriptor_set);
 
   //---------------------------
 }
@@ -43,7 +43,7 @@ void Render::create_image_descriptor(vk::structure::Image& image, VkDescriptorSe
 ImTextureID Render::query_render_texture(){
   //---------------------------
 
-  ImTextureID texture = reinterpret_cast<ImTextureID>(vk_struct->window.gui.descriptor_set);
+  ImTextureID texture = reinterpret_cast<ImTextureID>(vk_struct->render.presentation.descriptor_set);
 
   //---------------------------
   return texture;

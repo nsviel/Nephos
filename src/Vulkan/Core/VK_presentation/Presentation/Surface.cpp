@@ -27,7 +27,7 @@ void Surface::init(){
 void Surface::clean(){
   //---------------------------
 
-  vkDestroySurfaceKHR(vk_struct->core.instance.handle, vk_struct->window.window.surface, nullptr);
+  vkDestroySurfaceKHR(vk_struct->core.instance.handle, vk_struct->window.surface, nullptr);
 
   //---------------------------
 }

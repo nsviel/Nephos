@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Vulkan/Render/VK_renderpass/Postprocess/Descriptor/EDL.h>
+#include <vulkan/vulkan.h>
 
 
 namespace vk::render::structure{
 
-struct Render{
+struct Presentation{
   //---------------------------
 
   VkDescriptorSet descriptor_set = VK_NULL_HANDLE;

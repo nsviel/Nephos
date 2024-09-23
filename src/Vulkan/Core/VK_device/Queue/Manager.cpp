@@ -77,7 +77,7 @@ void Manager::find_queue_family_composition(vk::device::structure::Physical& phy
     //Presentation property
     if(!vk_struct->param.headless){
       VkBool32 presentation_supported = false;
-      vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, vk_struct->window.window.surface, &presentation_supported);
+      vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, vk_struct->window.surface, &presentation_supported);
       queue_family.capable_presentation = presentation_supported;
     }
 
