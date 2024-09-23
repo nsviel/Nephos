@@ -1,0 +1,42 @@
+#include "Window.h"
+
+#include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
+
+
+namespace vk{
+
+//Constructor / Destructor
+Window::Window(vk::Structure* vk_struct){
+  //---------------------------
+
+  this->vk_struct = vk_struct;
+  this->vk_imgui = new vk::gui::Imgui(vk_struct);
+  this->vk_window = new vk::window::Window(vk_struct);
+  this->vk_screenshot = new vk::image::Screenshot(vk_struct);
+
+  //---------------------------
+}
+Window::~Window(){}
+
+//Main function
+glm::vec2 Window::get_mouse_pose(){
+  return vk_window->get_mouse_pose();
+}
+glm::vec2 Window::get_dimension(){
+  return vk_window->get_dimension();
+}
+void Window::set_mouse_pose(glm::vec2 pose){
+  vk_window->set_mouse_pose(pose);
+}
+void Window::make_screenshot(){
+  vk_screenshot->make_screenshot();
+}
+void Window::set_mat_view(glm::mat4 mat){
+  vk_struct->core.presentation.view = mat;
+}
+void Window::set_mat_projection(glm::mat4 mat){
+  vk_struct->core.presentation.projection = mat;
+}
+
+}
