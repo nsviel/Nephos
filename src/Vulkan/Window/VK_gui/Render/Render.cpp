@@ -15,7 +15,6 @@ Render::Render(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_texture = new vk::texture::Ressource(vk_struct);
 
   //---------------------------
 }
@@ -26,10 +25,18 @@ void Render::update_render_texture(){
   if(vk_struct->param.headless) return;
   //---------------------------
 
-  vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.postprocess;
-  vk::structure::Image* image = &renderpass.framebuffer.color;
+  //Render image
+  vk::structure::Image& image = vk_struct->render.renderpass.postprocess.framebuffer.color;
 
-  vk_struct->window.gui.descriptor_set = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  //Create gui image descriptor
+  this->create_image_descriptor(image, vk_struct->window.gui.descriptor_set);
+
+  //---------------------------
+}
+void Render::create_image_descriptor(vk::structure::Image& image, VkDescriptorSet& descriptor_set){
+  //---------------------------
+
+  descriptor_set = ImGui_ImplVulkan_AddTexture(image.sampler, image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //---------------------------
 }

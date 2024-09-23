@@ -18,7 +18,7 @@ Imgui::Imgui(vk::Structure* vk_struct){
   this->vk_pool = new vk::instance::Pool(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
   this->vk_window = new vk::window::Window(vk_struct);
-  this->vk_texture = new vk::gui::Texture(vk_struct);
+  this->vk_render = new vk::gui::Render(vk_struct);
   this->vk_font = new vk::gui::Font(vk_struct);
   this->vk_docking = new vk::gui::Docking();
 
@@ -32,7 +32,7 @@ void Imgui::init(){
 
   this->create_context();
   vk_font->create_font();
-  vk_texture->update_render_texture();
+  vk_render->update_render_texture();
 
   //---------------------------
 }
@@ -111,7 +111,7 @@ void Imgui::new_frame(){
 void Imgui::resize_event(){
   //---------------------------
 
-  vk_texture->update_render_texture();
+  vk_render->update_render_texture();
 
   ImGui::NewFrame();
   vk_docking->loop();

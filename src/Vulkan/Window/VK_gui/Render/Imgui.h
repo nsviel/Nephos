@@ -1,16 +1,13 @@
 #pragma once
 
-#include <imgui/implot/implot.h>
-#include <memory>
-
+namespace vk{class Structure;}
+namespace vk::gui{class Render;}
+namespace vk::gui{class Font;}
+namespace vk::gui{class Docking;}
+namespace vk::window{class Window;}
 namespace vk::instance{class Pool;}
 namespace vk::presentation{class Surface;}
-namespace vk{class Structure;}
 namespace vk::structure{class Command_buffer;}
-namespace vk::gui{class Texture;}
-namespace vk::gui{class Font;}
-namespace vk::window{class Window;}
-namespace vk::gui{class Docking;}
 namespace utl::media{class Image;}
 
 
@@ -42,7 +39,7 @@ private:
   vk::structure::Command_buffer* command_buffer;
   vk::instance::Pool* vk_pool;
   vk::presentation::Surface* vk_surface;
-  vk::gui::Texture* vk_texture;
+  vk::gui::Render* vk_render;
   vk::window::Window* vk_window;
   vk::gui::Font* vk_font;
   vk::gui::Docking* vk_docking;

@@ -6,7 +6,7 @@
 
 namespace vk{class Structure;}
 namespace vk::gui{class Imgui;}
-namespace vk::gui{class Texture;}
+namespace vk::gui{class Render;}
 namespace vk::texture{class Data;}
 namespace vk::image{class Screenshot;}
 namespace vk::window{class Window;}
@@ -50,7 +50,7 @@ private:
   vk::image::Screenshot* vk_screenshot;
   vk::window::Window* vk_window;
   vk::data::Data* vk_data;
-  vk::gui::Texture* vk_texgui;
+  vk::gui::Render* vk_render;
 };
 
 }

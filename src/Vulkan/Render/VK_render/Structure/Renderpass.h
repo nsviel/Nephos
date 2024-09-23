@@ -4,7 +4,7 @@
 #include <vector>
 
 
-namespace vk::render{
+namespace vk::render::structure{
 
 struct Renderpass{
   //---------------------------

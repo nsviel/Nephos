@@ -16,7 +16,7 @@ Interface::Interface(vk::Structure* vk_struct){
   this->vk_texture = new vk::texture::Data(vk_struct);
   this->vk_screenshot = new vk::image::Screenshot(vk_struct);
   this->vk_data = new vk::data::Data(vk_struct);
-  this->vk_texgui = new vk::gui::Texture(vk_struct);
+  this->vk_render = new vk::gui::Render(vk_struct);
 
   //---------------------------
 }
@@ -24,7 +24,7 @@ Interface::~Interface(){}
 
 //Data function
 ImTextureID Interface::query_render_texture(){
-  return vk_texgui->query_render_texture();
+  return vk_render->query_render_texture();
 }
 void Interface::insert_data(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose){
   vk_data->insert(data, pose);
@@ -36,7 +36,7 @@ void Interface::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media
   vk_texture->insert_texture(data, image);
 }
 void Interface::insert_gui_texture(std::shared_ptr<utl::media::Image> image){
-  vk_texgui->insert_texture(image);
+  //vk_render->insert_texture(image);
 }
 
 //Window function

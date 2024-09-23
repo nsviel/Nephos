@@ -5,10 +5,10 @@
 
 namespace vk::render::structure{
 
-struct Pipeline{
+struct Render{
   //---------------------------
 
-  vk::postprocess::EDL edl;
+  VkDescriptorSet descriptor_set = VK_NULL_HANDLE;
 
   //---------------------------
 };

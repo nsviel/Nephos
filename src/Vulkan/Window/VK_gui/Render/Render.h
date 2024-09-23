@@ -1,11 +1,11 @@
 #pragma once
 
-#include <imgui/implot/implot.h>
+#include <imgui/core/imgui.h>
+#include <vulkan/vulkan.h>
 #include <memory>
 
 namespace vk{class Structure;}
-namespace vk::texture{class Ressource;}
-namespace utl::media{class Image;}
+namespace vk::structure{class Image;}
 
 
 namespace vk::gui{
@@ -19,13 +19,12 @@ public:
 
 public:
   //Main function
-  void insert_texture(std::shared_ptr<utl::media::Image> utl_image);
   void update_render_texture();
+  void create_image_descriptor(vk::structure::Image& image, VkDescriptorSet& descriptor_set);
   ImTextureID query_render_texture();
 
 private:
   vk::Structure* vk_struct;
-  vk::texture::Ressource* vk_texture;
 };
 
 }

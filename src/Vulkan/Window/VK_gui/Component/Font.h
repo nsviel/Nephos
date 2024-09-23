@@ -1,11 +1,10 @@
 #pragma once
 
-#include <imgui/implot/implot.h>
 #include <string>
 
+namespace vk{class Structure;}
 namespace vk::command{class Command_buffer;}
 namespace vk::command{class Allocator;}
-namespace vk{class Structure;}
 
 
 namespace vk::gui{
