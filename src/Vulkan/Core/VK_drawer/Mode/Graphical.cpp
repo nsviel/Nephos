@@ -24,6 +24,7 @@ Graphical::~Graphical(){}
 
 //Main function
 void Graphical::record_renderpass(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore& semaphore){
+  vk_struct->core.profiler.vec_command_buffer.clear();
   //---------------------------
 
   for(auto& renderpass : vk_struct->render.renderpass.vec_renderpass){

@@ -17,7 +17,6 @@ namespace vk::draw{class Viewport;}
 namespace vk::shader{class Reloader;}
 namespace vk::command{class Allocator;}
 namespace vk::command{class Command_buffer;}
-namespace vk::command{class Profiler;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
 namespace vk::renderpass{class Renderpass;}
@@ -43,7 +42,6 @@ public:
 public:
   //Main function
   void init();
-  void loop();
   void clean();
 
 private:
@@ -55,7 +53,6 @@ private:
   vk::presentation::Swapchain* vk_swapchain;
   vk::renderpass::Renderpass* vk_renderpass;
   vk::command::Command_buffer* vk_command_buffer;
-  vk::command::Profiler* vk_profiler;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::instance::Pool* vk_pool;
   vk::data::Data* vk_data;
