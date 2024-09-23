@@ -89,7 +89,7 @@ void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_p
 
   //Texture
   for(auto& [name, image] : data->map_image){
-    //vk_texture->create_texture(*vk_object, image);
+    vk_texture->create_texture(*vk_object, image);
   }
 
   //Descriptor
