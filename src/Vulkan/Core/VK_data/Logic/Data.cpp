@@ -93,7 +93,8 @@ void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_p
   }
 
   //Descriptor
-  this->descriptor_vk_object(*vk_object);
+  std::shared_ptr<vk::structure::Pipeline> pipeline = vk_struct->core.pipeline.map[vk_object->data->topology.type];
+  vk_descriptor_set->allocate_descriptor_set(vk_object->descriptor_set, pipeline->descriptor.layout);
 
   //Insert data struct into set
   vk_struct->core.data.map_vk_object[data->UID] = vk_object;
@@ -110,17 +111,9 @@ void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
 
   //Remove from data list
   auto it = vk_struct->core.data.map_vk_object.find(vk_object->data->UID);
-  if (it != vk_struct->core.data.map_vk_object.end()) {
+  if (it != vk_struct->core.data.map_vk_object.end()){
     vk_struct->core.data.map_vk_object.erase(it);
   }
-
-  //---------------------------
-}
-void Data::descriptor_vk_object(vk::structure::Object& vk_object){
-  //---------------------------
-
-  std::shared_ptr<vk::structure::Pipeline> pipeline = vk_struct->core.pipeline.map[vk_object.data->topology.type];
-  vk_descriptor_set->allocate_descriptor_set(vk_object.descriptor_set, pipeline->descriptor.layout);
 
   //---------------------------
 }

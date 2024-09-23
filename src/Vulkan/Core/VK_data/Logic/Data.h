@@ -36,7 +36,6 @@ public:
   void update_vk_object(std::shared_ptr<utl::base::Data> data, vk::structure::Object& vk_object);
   void create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose);
   void clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object);
-  void descriptor_vk_object(vk::structure::Object& vk_object);
   std::shared_ptr<vk::structure::Object> retrieve_vk_object(utl::base::Data& data);
 
 private:

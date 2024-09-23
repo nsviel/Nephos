@@ -30,13 +30,13 @@ void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Ima
   //Check if image already inserted
   auto vk_texture = vk_data->retrieve_vk_texture(*vk_object, image->name);
   if(vk_texture) return;
-
+sayHello();
   //Create texture from image and insert
   auto texture = std::make_shared<vk::structure::Texture>();
   texture->image = image;
   vk_ressource->create_texture(*texture);
   vk_object->map_texture[image->name] = texture;
-
+say(vk_object->map_texture.size());
   //---------------------------
 }
 void Data::insert_texture(std::shared_ptr<utl::media::Image> image){

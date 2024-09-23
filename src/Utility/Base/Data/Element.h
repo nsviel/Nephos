@@ -12,8 +12,8 @@ struct Element{
 
   int UID = -1;
   bool is_selectable = true;
-  std::string name = "";
-  std::string type = "";
+  std::string name = "defaut";
+  std::string type = "element";
   std::shared_ptr<utl::base::Pose> pose = std::make_shared<utl::base::Pose>();
 
   virtual void info(){}
