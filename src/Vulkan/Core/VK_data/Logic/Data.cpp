@@ -124,5 +124,14 @@ void Data::descriptor_vk_object(vk::structure::Object& vk_object){
 
   //---------------------------
 }
+std::shared_ptr<vk::structure::Object> Data::retrieve_vk_object(utl::base::Data& data){
+  //---------------------------
+
+  auto it_object = vk_struct->core.data.map_vk_object.find(data.UID);
+  if(it_object == vk_struct->core.data.map_vk_object.end()) return nullptr;
+
+  //---------------------------
+  return it_object->second;
+}
 
 }

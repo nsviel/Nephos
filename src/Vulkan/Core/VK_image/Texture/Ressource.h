@@ -11,6 +11,7 @@ namespace vk::memory{class Allocator;}
 namespace vk::memory{class Transfer;}
 namespace vk::data{class Buffer;}
 namespace vk::texture{class Format;}
+namespace vk::gui{class Render;}
 
 
 namespace vk::texture{
@@ -37,6 +38,7 @@ private:
   vk::image::Screenshot* vk_screenshot;
   vk::texture::Format* vk_format;
   vk::data::Buffer* vk_buffer;
+  vk::gui::Render* vk_render;
 };
 
 }

@@ -33,16 +33,9 @@ void Stream::draw_stream(std::shared_ptr<utl::media::Image> utl_image, ImVec2 di
 bool Stream::check_image(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
 
-  if(utl_image == nullptr){
-    return false;
-  }
-  if(utl_image->size == 0){
-    return false;
-  }
-  if(utl_image->format == ""){
-    std::cout<<"[error] stream image should have format specified"<<std::endl;
-    return false;
-  }
+  if(utl_image == nullptr) return false;
+  if(utl_image->size == 0) return false;
+  if(utl_image->format == "") return false;
 
   //---------------------------
   return true;
