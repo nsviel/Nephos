@@ -11,7 +11,7 @@ Renderer::Renderer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
+  this->vk_command = new vk::command::Command(vk_struct);
   this->vk_allocator = new vk::command::Allocator(vk_struct);
 
   //---------------------------
@@ -23,7 +23,7 @@ void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->core.device.queue.graphics);
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command_buffer->query_free_command_buffer(pool);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(pool);
   renderpass->command_buffer = command_buffer;
   command_buffer->name = renderpass->name;
 
@@ -31,7 +31,7 @@ void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
   this->draw_subpass(renderpass);
   this->stop_renderpass(renderpass);
 
-  vk_command_buffer->end_command_buffer(*command_buffer);
+  vk_command->end_command_buffer(*command_buffer);
 
   //---------------------------
 }
@@ -42,7 +42,7 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
 
   VkFramebuffer framebuffer = renderpass->framebuffer.handle;
 
-  vk_command_buffer->start_command_buffer_primary(*renderpass->command_buffer);
+  vk_command->start_command_buffer_primary(*renderpass->command_buffer);
 
   std::array<VkClearValue, 2> clear_value{};
   clear_value[0].color = {{

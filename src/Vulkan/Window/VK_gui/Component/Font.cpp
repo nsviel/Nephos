@@ -12,7 +12,7 @@ Font::Font(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
+  this->vk_command = new vk::command::Command(vk_struct);
   this->vk_allocator = new vk::command::Allocator(vk_struct);
 
   this->path_text = "../media/config/font/DroidSans.ttf";
@@ -95,12 +95,12 @@ void Font::font_build(){
   //Insert into engine
   if(vk_struct->interface.param.headless) return;
   vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->core.device.queue.graphics);
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command_buffer->query_free_command_buffer(pool);
-  vk_command_buffer->start_command_buffer_primary(*command_buffer);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(pool);
+  vk_command->start_command_buffer_primary(*command_buffer);
 
   ImGui_ImplVulkan_CreateFontsTexture(command_buffer->handle);
 
-  vk_command_buffer->end_command_buffer(*command_buffer);
+  vk_command->end_command_buffer(*command_buffer);
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->command_buffer = command_buffer;
   vk_struct->core.queue.graphics->add_command(std::move(command));
