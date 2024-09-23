@@ -23,7 +23,7 @@ Window::~Window(){}
 glm::vec2 Window::get_mouse_pose(){
   return vk_window->get_mouse_pose();
 }
-glm::vec2 Window::get_dimension(){
+glm::vec2 Window::get_window_dimension(){
   return vk_window->get_dimension();
 }
 void Window::set_mouse_pose(glm::vec2 pose){

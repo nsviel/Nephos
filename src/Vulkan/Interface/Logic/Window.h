@@ -22,7 +22,7 @@ public:
 public:
   //Main function
   glm::vec2 get_mouse_pose();
-  glm::vec2 get_dimension();
+  glm::vec2 get_window_dimension();
   void set_mouse_pose(glm::vec2 pos);
   void make_screenshot();
   void set_mat_view(glm::mat4 mat);

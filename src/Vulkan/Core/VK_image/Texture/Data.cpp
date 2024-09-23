@@ -20,14 +20,8 @@ Data::~Data(){}
 
 //Main function
 void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
+  if(!check_image(image)) return;
   //---------------------------
-
-  //Check image integrity
-  if(!image) return;
-  if(image->format == "") return;
-  if(image->size == 0) return;
-  if(image->width == 0) return;
-  if(image->height == 0) return;
 
   //Retrieve data vk object
   auto vk_object = vk_data->retrieve_vk_object(data);
@@ -37,8 +31,28 @@ void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Ima
   auto vk_texture = vk_data->retrieve_vk_texture(*vk_object, image->name);
   if(vk_object) return;
 
+  //Create texture from image and insert
+  auto texture = std::make_shared<vk::structure::Texture>();
+  texture->image = image;
+  vk_ressource->create_texture(*texture);
+  vk_object->map_texture[image->name] = texture;
+
+  //---------------------------
+}
+void Data::insert_texture(std::shared_ptr<utl::media::Image> image){
+  if(!check_image(image)) return;
+  //---------------------------
+
+  //Check if image already inserted
+  for(auto& texture : vk_struct->core.data.list_vk_texture){
+    if(texture->image->UID == image->UID) return;
+  }
+
   //Create texture from image
-  this->create_texture(*vk_object, image);
+  auto texture = std::make_shared<vk::structure::Texture>();
+  texture->image = image;
+  vk_ressource->create_texture(*texture);
+  vk_struct->core.data.list_vk_texture.push_back(texture);
 
   //---------------------------
 }
@@ -69,7 +83,6 @@ void Data::create_texture(vk::structure::Object& vk_object, std::shared_ptr<utl:
   auto texture = std::make_shared<vk::structure::Texture>();
   texture->image = image;
   vk_ressource->create_texture(*texture);
-  vk_object.map_texture[image->name] = texture;
 
   //---------------------------
 }
@@ -81,6 +94,18 @@ void Data::clean_texture(vk::structure::Object& vk_object){
   }
 
   //---------------------------
+}
+bool Data::check_image(std::shared_ptr<utl::media::Image> image){
+  //---------------------------
+
+  if(!image) return false;
+  if(image->format == "") return false;
+  if(image->size == 0) return false;
+  if(image->width == 0) return false;
+  if(image->height == 0) return false;
+
+  //---------------------------
+  return true;
 }
 
 }

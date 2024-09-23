@@ -68,7 +68,7 @@ void Arcball::camera_mouse(std::shared_ptr<cam::Entity> camera){
   //---------------------------
 
   glm::vec2 mouse_pose = vk_window->get_mouse_pose();
-  glm::vec2 window_dim = vk_window->get_dimension();
+  glm::vec2 window_dim = vk_window->get_window_dimension();
   glm::vec2 window_center = camera->panel_center;
 
   // step 1 : Calculate the amount of rotation given the mouse movement.

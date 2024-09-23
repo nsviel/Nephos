@@ -41,7 +41,7 @@ void Render::create_image_descriptor(vk::structure::Texture& texture){
 
   //---------------------------
 }
-void Render::render_image_in_gui(vk::structure::Texture& texture, glm::vec2 dimension){
+void Render::display_image(vk::structure::Texture& texture, glm::vec2 dimension){
   //---------------------------
 
   //Check if descriptor set is initialized
