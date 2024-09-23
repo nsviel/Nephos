@@ -82,14 +82,14 @@ void Button::button_visibility(std::shared_ptr<dat::base::Entity> entity){
   if(entity->data->is_visible){
     std::string label = std::string(ICON_FA_EYE) + "##" + std::to_string(entity->UID);
     if(ImGui::SmallButton(label.c_str())){
-      dat_entity->visibility_entity(entity, false);
+      dat_entity->visibility_entity(*entity, false);
     }
   }
   //If not visible
   else{
     std::string label = std::string(ICON_FA_EYE_SLASH) + "##" + std::to_string(entity->UID);
     if(ImGui::SmallButton(label.c_str())){
-      dat_entity->visibility_entity(entity, true);
+      dat_entity->visibility_entity(*entity, true);
     }
   }
 

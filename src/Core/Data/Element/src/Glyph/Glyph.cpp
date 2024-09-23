@@ -52,7 +52,7 @@ void Glyph::update_glyph(std::shared_ptr<dat::base::Entity> entity){
   //Update own glyph data
   for(auto& glyph : entity->list_glyph){
     glyph->update_glyph(entity);
-    dat_entity->update_data(glyph);
+    dat_entity->update_data(*glyph);
 
     //Reccursivity
     this->update_glyph(glyph);
@@ -67,7 +67,7 @@ void Glyph::update_glyph(std::shared_ptr<dat::base::Object> object, int type){
   for(auto& glyph : object->list_glyph){
     if(glyph->type == type){
       glyph->update_glyph(object);
-      dat_entity->update_data(glyph);
+      dat_entity->update_data(*glyph);
     }
 
     //Reccursivity
@@ -82,7 +82,7 @@ void Glyph::create_glyph(std::shared_ptr<dat::base::Glyph> glyph){
   //----------------------------
 
   glyph->create();
-  dat_entity->init_entity(glyph);
+  dat_entity->init_entity(*glyph);
 
   //Update own glyph data
   for(auto& subglyph : glyph->list_glyph){

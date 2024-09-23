@@ -23,7 +23,7 @@ void Set::update_data(std::shared_ptr<dat::base::Set> set){
 
   // Process entities within the current set
   for(auto& entity : set->list_entity){
-    dat_entity->update_data(entity);
+    dat_entity->update_data(*entity);
   }
 
   // Recursively process nested sets
@@ -42,7 +42,7 @@ void Set::reset_set(std::shared_ptr<dat::base::Set> set){
 
   //Reset all associated entities
   for(auto& entity : set->list_entity){
-    dat_entity->reset_pose(entity);
+    dat_entity->reset_pose(*entity);
   }
 
   //Reset all associated subsets
@@ -58,8 +58,8 @@ void Set::visibility_set(std::shared_ptr<dat::base::Set> set, bool value){
 
   set->is_visible = value;
 
-  for(std::shared_ptr<dat::base::Entity> entity : set->list_entity){
-    dat_entity->visibility_entity(entity, value);
+  for(auto& entity : set->list_entity){
+    dat_entity->visibility_entity(*entity, value);
   }
 
   // Recursively call remove for each nested set
@@ -192,7 +192,7 @@ void Set::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat
     }
 
     // Effectively remove the entity
-    dat_entity->remove_entity(found_entity);
+    dat_entity->remove_entity(*found_entity);
   }
 
   // Recursively call remove for each nested set
@@ -227,7 +227,7 @@ void Set::remove_all_entity(std::shared_ptr<dat::base::Set> set){
     //Effective remove
     it = set->list_entity.erase(it);
     set->nb_entity--;
-    dat_entity->remove_entity(entity);
+    dat_entity->remove_entity(*entity);
   }
 
   // Recursively call remove_entity_recursive for each nested set

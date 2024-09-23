@@ -135,7 +135,7 @@ void Operation::ope_insertion(std::shared_ptr<dat::base::Object> object){
 
   auto parent_set = object->set_parent.lock();
   dat_set->insert_entity(parent_set, object);
-  dat_entity->init_entity(object);
+  dat_entity->init_entity(*object);
   dat_glyph->insert_glyph(object);
   gph_selection->select_element(object);
 

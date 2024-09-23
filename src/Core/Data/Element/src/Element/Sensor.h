@@ -3,6 +3,7 @@
 #include <memory>
 
 namespace dat::elm{class Node;}
+namespace dat::elm{class Entity;}
 namespace dat::base{class Sensor;}
 namespace prf::monitor{class Manager;}
 namespace utl::base{class Element;}
@@ -24,6 +25,7 @@ public:
 
 private:
   prf::monitor::Manager* prf_monitor;
+  dat::elm::Entity* dat_entity;
 };
 
 }

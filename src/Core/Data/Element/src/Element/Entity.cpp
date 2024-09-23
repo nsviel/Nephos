@@ -3,6 +3,7 @@
 #include <Data/Element/Namespace.h>
 #include <Data/Attribut/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace dat::elm{
@@ -22,31 +23,32 @@ Entity::Entity(dat::elm::Node* node_element){
 Entity::~Entity(){}
 
 //Main function
-void Entity::init_entity(std::shared_ptr<dat::base::Entity> entity){
+void Entity::init_entity(dat::base::Entity& entity){
   //---------------------------
 
-  entity->UID = dat_uid->generate_UID();
-  entity->data->UID = dat_uid->generate_UID();
-  entity->data->is_updated = true;
+  entity.UID = dat_uid->generate_UID();
+  entity.data->UID = dat_uid->generate_UID();
+  entity.data->is_updated = true;
+  vk_data->insert_data(entity.data, entity.pose);
 
   //---------------------------
 }
-void Entity::remove_entity(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = *entity->data;
+void Entity::remove_entity(dat::base::Entity& entity){
+  utl::base::Data& data = *entity.data;
   //----------------------------
 
-  entity->clean();
+  entity.clean();
   vk_data->remove_data(data);
 
   //Remove glyph data
-  for(auto& glyph : entity->list_glyph){
-    this->remove_entity(glyph);
+  for(auto& glyph : entity.list_glyph){
+    this->remove_entity(*glyph);
   }
 
   //----------------------------
 }
-void Entity::reset_pose(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Pose& pose = *entity->pose;
+void Entity::reset_pose(dat::base::Entity& entity){
+  utl::base::Pose& pose = *entity.pose;
   //----------------------------
 
   glm::mat4 init = pose.initial;
@@ -56,40 +58,39 @@ void Entity::reset_pose(std::shared_ptr<dat::base::Entity> entity){
 
   //----------------------------
 }
-void Entity::visibility_entity(std::shared_ptr<dat::base::Entity> entity, bool value){
-  if(!entity) return;
+void Entity::visibility_entity(dat::base::Entity& entity, bool value){
   //---------------------------
 
-  entity->data->is_visible = value;
+  entity.data->is_visible = value;
 
   //Glyph visibility
-  for(std::shared_ptr<dat::base::Glyph> glyph : entity->list_glyph){
-    this->visibility_entity(glyph, value);
+  for(auto& glyph : entity.list_glyph){
+    this->visibility_entity(*glyph, value);
   }
 
   //If visible so parent set is too
-  std::shared_ptr<dat::base::Set> set = entity->set_parent.lock();
+  std::shared_ptr<dat::base::Set> set = entity.set_parent.lock();
   if(value && set && !set->is_visible){
     set->is_visible  = true;
   }
 
   //---------------------------
 }
-void Entity::update_data(std::shared_ptr<dat::base::Entity> entity){
+void Entity::update_data(dat::base::Entity& entity){
   //----------------------------
 
-  if(entity->data->is_updated){
-    vk_data->insert_data(entity->data, entity->pose);
+  if(entity.data->is_updated){
+    vk_data->insert_data(entity.data, entity.pose);
 
     //Update attribut
-    atr_location->compute_centroid(*entity);
+    atr_location->compute_centroid(entity);
 
     //Update own glyph pose
-    for(auto& glyph : entity->list_glyph){
-      this->update_data(glyph);
+    for(auto& glyph : entity.list_glyph){
+      this->update_data(*glyph);
     }
 
-    entity->data->is_updated = false;
+    entity.data->is_updated = false;
   }
 
   //----------------------------

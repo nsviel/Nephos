@@ -2,6 +2,7 @@
 
 #include <Data/Image/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace dat::img::gui{

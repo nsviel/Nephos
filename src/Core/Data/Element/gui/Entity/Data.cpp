@@ -42,7 +42,7 @@ void Data::entity_info(std::shared_ptr<dat::base::Entity> entity){
   ImGui::Text("Visibility"); ImGui::TableNextColumn();
   utl::base::Data& data = *entity->data;
   if(ImGui::Checkbox("##4555", &data.is_visible)){
-    dat_entity->visibility_entity(entity, data.is_visible);
+    dat_entity->visibility_entity(*entity, data.is_visible);
   }
 
   //Name

@@ -16,7 +16,8 @@ Sensor::Sensor(dat::elm::Node* node_element){
   prf::monitor::Node* node_monitor = node_profiler->get_node_monitor();
 
   this->prf_monitor = node_monitor->get_prf_manager();
-
+  this->dat_entity = node_element->get_dat_entity();
+  
   //---------------------------
 }
 Sensor::~Sensor(){}
@@ -26,6 +27,7 @@ void Sensor::init_sensor(dat::base::Sensor& sensor){
   //---------------------------
 
   prf_monitor->add_profiler(&sensor.profiler, sensor.name);
+  dat_entity->init_entity(sensor);
 
   //---------------------------
 }

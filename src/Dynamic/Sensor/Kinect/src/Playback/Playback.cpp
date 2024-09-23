@@ -31,9 +31,9 @@ void Playback::init(k4n::playback::Sensor& sensor){
   this->init_info(sensor);
   this->init_playback(sensor);
   this->init_timestamp(sensor);
-  this->init_image(sensor);
   dat_sensor->init_sensor(sensor);
   k4n_config->init_configuration(sensor);
+  this->init_image(sensor);
 
   //---------------------------
 }

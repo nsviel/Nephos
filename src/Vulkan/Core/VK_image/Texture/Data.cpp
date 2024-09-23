@@ -19,14 +19,14 @@ Data::Data(vk::Structure* vk_struct){
 Data::~Data(){}
 
 //Main function
-void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
-  if(!check_image(image)) return;
+void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){say("---");
+//  if(!check_image(image)) return;
   //---------------------------
-
+sayHello();
   //Retrieve data vk object
   auto vk_object = vk_data->retrieve_vk_object(data);
   if(!vk_object) return;
-
+sayHello();
   //Check if image already inserted
   auto vk_texture = vk_data->retrieve_vk_texture(*vk_object, image->name);
   if(vk_object) return;
@@ -36,7 +36,7 @@ void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Ima
   texture->image = image;
   vk_ressource->create_texture(*texture);
   vk_object->map_texture[image->name] = texture;
-
+sayHello();
   //---------------------------
 }
 void Data::insert_texture(std::shared_ptr<utl::media::Image> image){
