@@ -20,11 +20,20 @@ Function::~Function(){}
 std::shared_ptr<vk::structure::Object> Function::retrieve_vk_object(utl::base::Data& data){
   //---------------------------
 
-  auto it_object = vk_struct->core.data.map_vk_object.find(data.UID);
-  if(it_object == vk_struct->core.data.map_vk_object.end()) return nullptr;
+  auto it = vk_struct->core.data.map_vk_object.find(data.UID);
+  if(it == vk_struct->core.data.map_vk_object.end()) return nullptr;
 
   //---------------------------
-  return it_object->second;
+  return it->second;
+}
+std::shared_ptr<vk::structure::Texture> Function::retrieve_vk_texture(vk::structure::Object& vk_object, std::string name){
+  //---------------------------
+
+  auto it = vk_object.map_texture.find(name);
+  if(it == vk_object.map_texture.end()) return nullptr;
+
+  //---------------------------
+  return it->second;
 }
 
 }

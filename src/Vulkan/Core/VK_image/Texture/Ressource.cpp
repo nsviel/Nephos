@@ -17,7 +17,6 @@ Ressource::Ressource(vk::Structure* vk_struct){
   this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);
   this->vk_screenshot = new vk::image::Screenshot(vk_struct);
   this->vk_format = new vk::texture::Format(vk_struct);
-  this->vk_render = new vk::gui::Render(vk_struct);
 
   //---------------------------
 }
@@ -39,7 +38,6 @@ void Ressource::create_texture(std::shared_ptr<vk::structure::Texture> texture){
   texture->wrapper.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   texture->wrapper.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
   vk_image->create_image(texture->wrapper);
-  vk_render->create_image_descriptor(texture->wrapper, texture->descriptor_set);
 
   //Make associated operation
   vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, image.size);

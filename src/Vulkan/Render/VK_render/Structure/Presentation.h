@@ -8,7 +8,7 @@ namespace vk::render::structure{
 struct Presentation{
   //---------------------------
 
-  VkDescriptorSet descriptor_set = VK_NULL_HANDLE;
+  vk::structure::Texture texture;
 
   //---------------------------
 };

@@ -25,25 +25,37 @@ void Render::update_render_texture(){
   if(vk_struct->param.headless) return;
   //---------------------------
 
-  //Render image
-  vk::structure::Image& image = vk_struct->render.renderpass.postprocess.framebuffer.color;
+  //Set presentation texture target
+  vk::structure::Texture& texture = vk_struct->render.presentation.texture;
+  texture.wrapper = vk_struct->render.renderpass.postprocess.framebuffer.color;
 
-  //Create gui image descriptor
-  this->create_image_descriptor(image, vk_struct->render.presentation.descriptor_set);
+  //Create presentation texture descriptor
+  this->create_image_descriptor(texture);
 
   //---------------------------
 }
-void Render::create_image_descriptor(vk::structure::Image& image, VkDescriptorSet& descriptor_set){
+void Render::create_image_descriptor(vk::structure::Texture& texture){
   //---------------------------
 
-  descriptor_set = ImGui_ImplVulkan_AddTexture(image.sampler, image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  texture.descriptor_set = ImGui_ImplVulkan_AddTexture(texture.wrapper.sampler, texture.wrapper.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+
+  //---------------------------
+}
+void Render::render_image_in_gui(vk::structure::Texture& texture, ImVec2 dimension){
+  //---------------------------
+
+  if(texture.descriptor_set = VK_NULL_HANDLE){
+    this->create_image_descriptor(texture);
+  }
+
+  ImGui::Image(texture.descriptor_set, dimension);
 
   //---------------------------
 }
 ImTextureID Render::query_render_texture(){
   //---------------------------
 
-  ImTextureID texture = reinterpret_cast<ImTextureID>(vk_struct->render.presentation.descriptor_set);
+  ImTextureID texture = reinterpret_cast<ImTextureID>(vk_struct->render.presentation.texture.descriptor_set);
 
   //---------------------------
   return texture;

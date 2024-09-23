@@ -5,7 +5,7 @@
 #include <memory>
 
 namespace vk{class Structure;}
-namespace vk::structure{class Image;}
+namespace vk::structure{class Texture;}
 
 
 namespace vk::gui{
@@ -20,7 +20,8 @@ public:
 public:
   //Main function
   void update_render_texture();
-  void create_image_descriptor(vk::structure::Image& image, VkDescriptorSet& descriptor_set);
+  void create_image_descriptor(vk::structure::Texture& texture);
+  void render_image_in_gui(vk::structure::Texture& texture, ImVec2 dimension);
   ImTextureID query_render_texture();
 
 private:

@@ -12,6 +12,7 @@ Data::Data(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_ressource = new vk::texture::Ressource(vk_struct);
+  this->vk_data = new vk::data::Function(vk_struct);
 
   //---------------------------
 }
@@ -29,13 +30,12 @@ void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Ima
   if(image->height == 0) return;
 
   //Retrieve data vk object
-  auto it_object = vk_struct->core.data.map_vk_object.find(data.UID);
-  if(it_object == vk_struct->core.data.map_vk_object.end()) return;
-  auto vk_object = it_object->second;
+  auto vk_object = vk_data->retrieve_vk_object(data);
+  if(!vk_object) return;
 
   //Check if image already inserted
-  auto it_tex = vk_object->map_texture.find(image->name);
-  if(it_tex != vk_object->map_texture.end()) return;
+  auto vk_texture = vk_data->retrieve_vk_texture(*vk_object, image->name);
+  if(vk_object) return;
 
   //Create texture from image
   this->create_texture(*vk_object, image);
