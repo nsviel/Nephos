@@ -11,7 +11,6 @@ Window::Window(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_window = new vk::window::Window(vk_struct);
   this->vk_screenshot = new vk::image::Screenshot(vk_struct);
 
@@ -37,9 +36,6 @@ void Window::set_mat_view(glm::mat4 mat){
 }
 void Window::set_mat_projection(glm::mat4 mat){
   vk_struct->core.presentation.projection = mat;
-}
-void Window::truc(){
-  vk_imgui->new_frame();
 }
 
 }

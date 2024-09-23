@@ -8,7 +8,7 @@ namespace gui::state{class Manager;}
 namespace gui::menu{class Left;}
 namespace gui::menu{class Center;}
 namespace gui::menu{class Demo;}
-namespace vk::interface{class Window;}
+namespace vk::interface{class Render;}
 
 
 namespace gui{
@@ -36,7 +36,7 @@ private:
   gui::menu::Demo* gui_demo;
   gui::menu::Left* menu_left;
   gui::menu::Center* menu_center;
-  vk::interface::Window* vk_window;
+  vk::interface::Render* vk_render;
 };
 
 }

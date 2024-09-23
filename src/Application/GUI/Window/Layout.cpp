@@ -18,7 +18,7 @@ Layout::Layout(gui::Node* node_gui){
   this->gui_demo = node_gui->get_gui_demo();
   this->menu_left = new gui::menu::Left(node_gui);
   this->menu_center = new gui::menu::Center(node_gui);
-  this->vk_window = node_vulkan->get_vk_window();
+  this->vk_render = node_vulkan->get_vk_render();
 
   //---------------------------
 }
@@ -40,7 +40,7 @@ void Layout::draw_frame(){
   //---------------------------
 
   gui_state->loop();
-  vk_window->truc();
+  vk_render->new_frame();
   gui_demo->loop();
 
   //---------------------------
