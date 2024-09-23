@@ -29,8 +29,8 @@ sayHello();
 sayHello();
   //Check if image already inserted
   auto vk_texture = vk_data->retrieve_vk_texture(*vk_object, image->name);
-  if(vk_object) return;
-
+  if(vk_texture) return;
+sayHello();
   //Create texture from image and insert
   auto texture = std::make_shared<vk::structure::Texture>();
   texture->image = image;
