@@ -16,8 +16,8 @@ struct Image : public utl::base::Element{
   //Info
   int channel_nb = 4;
   int channel_byte = 1;
-  int width = -1;
-  int height = -1;
+  int width = 1;
+  int height = 1;
   int size = 0;
   double timestamp = -1;
 
