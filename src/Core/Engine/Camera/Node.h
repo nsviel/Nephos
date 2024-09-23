@@ -8,6 +8,7 @@ namespace eng{class Node;}
 namespace sce{class Node;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
+namespace cam{class MVP;}
 namespace cam{class Pather;}
 namespace cam{class Structure;}
 namespace cam::gui{class Panel;}
@@ -43,6 +44,7 @@ private:
   //Child
   cam::Structure* cam_struct;
   cam::Control* cam_control;
+  cam::MVP* cam_mvp;
   cam::Manager* cam_manager;
   cam::Pather* cam_pather;
   cam::gui::Panel* gui_panel;

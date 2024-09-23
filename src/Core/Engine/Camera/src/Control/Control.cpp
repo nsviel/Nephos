@@ -18,15 +18,15 @@ Control::Control(cam::Node* node_camera){
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_perspective = new cam::projection::Perspective(node_camera);
 
-  this->vec_mode.push_back(new cam::mode::Player(node_camera));
-  this->vec_mode.push_back(new cam::mode::Arcball(node_camera));
-  this->active_mode = vec_mode[0];
+  cam_struct->vec_mode.push_back(new cam::mode::Player(node_camera));
+  cam_struct->vec_mode.push_back(new cam::mode::Arcball(node_camera));
+  cam_struct->active_mode = cam_struct->vec_mode[0];
 
   //---------------------------
 }
 Control::~Control(){}
 
-//Camera movement
+//Main function
 void Control::control_keyboard(int direction, bool fast){
   std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
@@ -39,27 +39,27 @@ void Control::control_keyboard(int direction, bool fast){
 
   switch(direction){
     case CAMERA_FORWARD:{
-      active_mode->camera_forward(camera, cam_speed);
+      cam_struct->active_mode->camera_forward(camera, cam_speed);
       break;
     }
     case CAMERA_BACKWARD:{
-      active_mode->camera_backward(camera, cam_speed);
+      cam_struct->active_mode->camera_backward(camera, cam_speed);
       break;
     }
     case CAMERA_RIGHT:{
-      active_mode->camera_right(camera, cam_speed);
+      cam_struct->active_mode->camera_right(camera, cam_speed);
       break;
     }
     case CAMERA_LEFT:{
-      active_mode->camera_left(camera, cam_speed);
+      cam_struct->active_mode->camera_left(camera, cam_speed);
       break;
     }
     case CAMERA_UP:{
-      active_mode->camera_up(camera, cam_speed);
+      cam_struct->active_mode->camera_up(camera, cam_speed);
       break;
     }
     case CAMERA_DOWN:{
-      active_mode->camera_down(camera, cam_speed);
+      cam_struct->active_mode->camera_down(camera, cam_speed);
       break;
     }
   }
@@ -71,7 +71,7 @@ void Control::control_mouse(){
   //---------------------------
 
   if(camera->cam_move){
-    active_mode->camera_mouse(camera);
+    cam_struct->active_mode->camera_mouse(camera);
     ImGui::SetMouseCursor(ImGuiMouseCursor_None);
   }
 
@@ -83,7 +83,7 @@ void Control::control_zoom(float value){
 
   switch(camera->projection){
     case CAMERA_PROJ_PERSPECTIVE:{
-      active_mode->camera_zoom(camera, value);
+      cam_struct->active_mode->camera_zoom(camera, value);
       break;
     }
     case CAMERA_PROJ_ORTHOGRAPHIC:{
@@ -98,105 +98,9 @@ void Control::control_wheel(float value){
   std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
-  active_mode->camera_wheel(camera, value);
+  cam_struct->active_mode->camera_wheel(camera, value);
 
   //---------------------------
-}
-
-//Camera matrix
-void Control::update_pose(std::shared_ptr<dat::base::Set> set){
-  //---------------------------
-
-  // Process entities within the current set
-  for(auto& entity : set->list_entity){
-    this->update_pose(entity);
-  }
-
-  // Recursively process nested sets
-  for(auto& subset : set->list_subset){
-    this->update_pose(subset);
-  }
-
-  //---------------------------
-}
-void Control::update_pose(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Pose& pose = *entity->pose;
-  //----------------------------
-
-  //Update vulkan camera matrices
-  glm::mat4 cam_view = compute_camera_view();
-  glm::mat4 cam_proj = compute_camera_proj();
-
-  vk_window->set_mat_view(cam_view);
-  vk_window->set_mat_projection(cam_proj);
-
-  //Update own glyph pose
-  for(auto& glyph : entity->list_glyph){
-    glyph->update_pose(entity);
-    this->update_pose(glyph);
-  }
-
-  //----------------------------
-}
-
-glm::mat4 Control::compute_camera_view(){
-  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
-  //---------------------------
-
-  glm::mat4 cam_view = active_mode->compute_camera_view(camera);
-
-  //---------------------------
-  return cam_view;
-}
-glm::mat4 Control::compute_camera_proj(){
-  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
-  //---------------------------
-
-  glm::mat4 projection = glm::mat4(1.0f);
-  if(camera == nullptr) return projection;
-
-  switch(camera->projection){
-    case CAMERA_PROJ_PERSPECTIVE:{
-      projection = cam_perspective->compute_proj_perspective(camera);
-      break;
-    }
-    case CAMERA_PROJ_ORTHOGRAPHIC:{
-      //projection = cam_proj->compute_proj_ortho(camera);
-      break;
-    }
-  }
-
-  //---------------------------
-  return projection;
-}
-glm::mat4 Control::compute_camera_mvp(){
-  //---------------------------
-
-  glm::mat4 cam_modl = glm::mat4(1);
-  glm::mat4 cam_view = compute_camera_view();
-  glm::mat4 cam_proj = compute_camera_proj();
-
-  glm::mat4 mvpMatrix = cam_proj * cam_view * cam_modl;
-
-  //---------------------------
-  return mvpMatrix;
-}
-glm::mat4 Control::compute_camera_pose(){
-  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
-  //---------------------------
-
-  glm::vec3 zaxis = normalize(camera->cam_F);
-  glm::vec3 xaxis = normalize(cross(camera->cam_U, zaxis));
-  glm::vec3 yaxis = cross(zaxis, xaxis);
-
-  glm::mat4 absPose(
-    xaxis[0], yaxis[0], zaxis[0], camera->cam_P[0],
-    xaxis[1], yaxis[1], zaxis[1], camera->cam_P[1],
-    xaxis[2], yaxis[2], zaxis[2], camera->cam_P[2],
-    0,       0,       0,     1);
-
-  //---------------------------
-  return absPose;
 }
 
 //Camera parameter
@@ -220,11 +124,11 @@ void Control::set_camera_mode(std::shared_ptr<cam::Entity> camera){
 
   switch(camera->mode){
     case CAMERA_MODE_PLAYER:{
-      this->active_mode = vec_mode[0];
+      cam_struct->active_mode = cam_struct->vec_mode[0];
       break;
     }
     case CAMERA_MODE_ARCBALL:{
-      this->active_mode = vec_mode[1];
+      cam_struct->active_mode = cam_struct->vec_mode[1];
       break;
     }
   }

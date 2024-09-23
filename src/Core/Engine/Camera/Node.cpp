@@ -20,6 +20,7 @@ Node::Node(eng::Node* node_engine){
   //Child
   this->cam_struct = new cam::Structure();
   this->cam_control = new cam::Control(this);
+  this->cam_mvp = new cam::MVP(this);
   this->cam_manager = new cam::Manager(this);
   this->cam_pather = new cam::Pather(this);
   this->gui_panel = new cam::gui::Panel(this, &cam_panel->is_open);
@@ -46,10 +47,7 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-    dat::gph::Node* node_graph = node_data->get_node_graph();
-    dat::gph::Structure* gph_struct = node_graph->get_gph_struct();
-
-  cam_control->update_pose(gph_struct->set_main);
+  cam_mvp->update_mvp();
   cam_control->control_mouse();
   cam_pather->loop();
 
