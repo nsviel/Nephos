@@ -11,7 +11,7 @@ Transfer::Transfer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_transition = new vk::image::Transition(vk_struct);
+  this->vk_transition = new vk::memory::Transition(vk_struct);
   this->vk_command = new vk::command::Command(vk_struct);
   this->vk_command_allocator = new vk::command::Allocator(vk_struct);
 

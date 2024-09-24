@@ -8,9 +8,8 @@ extern "C" {
 #include <libswscale/swscale.h>
 }
 
-namespace vk::image{class Image;}
-namespace vk::image{class Transition;}
 namespace vk{class Structure;}
+namespace vk::image{class Image;}
 namespace vk::structure{class Image;}
 namespace vk::command{class Command_buffer;}
 namespace vk::command{class Allocator;}
@@ -40,7 +39,6 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::image::Image* vk_image;
-  vk::image::Transition* vk_transition;
   vk::command::Command_buffer* vk_command_buffer;
   vk::command::Allocator* vk_command_allocator;
   vk::memory::Transfer* vk_mem_transfer;

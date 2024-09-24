@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::image{
+namespace vk::memory{
 
 //Constructor / Destructor
 Transition::Transition(vk::Structure* vk_struct){

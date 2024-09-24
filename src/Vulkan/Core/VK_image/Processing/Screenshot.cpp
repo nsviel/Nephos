@@ -15,7 +15,6 @@ Screenshot::Screenshot(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_image = new vk::image::Image(vk_struct);
-  this->vk_transition = new vk::image::Transition(vk_struct);
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   this->vk_command_allocator = new vk::command::Allocator(vk_struct);
   this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);

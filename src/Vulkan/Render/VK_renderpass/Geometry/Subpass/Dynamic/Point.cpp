@@ -103,7 +103,7 @@ void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipe
 
   sampler_color->image = std::make_shared<vk::structure::Image>(texture_color->wrapper);
   //sampler_depth->image = std::make_shared<vk::structure::Image>(texture_depth->wrapper);
-//  vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set);
+  //vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set);
 //sayHello();
 
 

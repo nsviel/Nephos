@@ -54,7 +54,7 @@ void Ressource::update_texture(vk::structure::Texture& texture){
     return;
   }
 
-  vk_mem_transfer->copy_texture_to_gpu(texture);
+  //vk_mem_transfer->copy_texture_to_gpu(texture);
 
   //---------------------------
 }

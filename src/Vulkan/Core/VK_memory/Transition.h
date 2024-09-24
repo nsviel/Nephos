@@ -8,7 +8,7 @@ namespace vk::structure{class Transition;}
 namespace vk::structure{class Image;}
 
 
-namespace vk::image{
+namespace vk::memory{
 
 class Transition
 {
