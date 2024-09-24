@@ -96,7 +96,7 @@ void Attachment::attachment_presentation(vk::structure::Renderpass& renderpass){
   this->depth_reference(depth);
   renderpass.attachment.depth = depth;
   renderpass.attachment.vec_description.push_back(depth.description);
-  
+
   //---------------------------
 }
 
@@ -111,7 +111,7 @@ void Attachment::color_description(vk::structure::Attachment& color){
   description.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
   description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
   description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-  description.initialLayout = TYP_IMAGE_LAYOUT_EMPTY;
+  description.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
   description.finalLayout = color.layout_final;
 
   //---------------------------
@@ -165,7 +165,7 @@ void Attachment::depth_description(vk::structure::Attachment& depth){
   description.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
   description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
   description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-  description.initialLayout = TYP_IMAGE_LAYOUT_EMPTY;
+  description.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
   description.finalLayout = depth.layout_final;
 
   //---------------------------

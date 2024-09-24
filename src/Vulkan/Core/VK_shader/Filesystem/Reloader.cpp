@@ -14,6 +14,7 @@ Reloader::Reloader(vk::Structure* vk_struct){
   this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_render = new vk::gui::Render(vk_struct);
+  this->vk_renderpass = new vk::renderpass::Renderpass(vk_struct);
 
   //---------------------------
 }
@@ -23,9 +24,13 @@ Reloader::~Reloader(){}
 void Reloader::hot_shader_reload(){
   //---------------------------
 
+  //Realod renderpass
   this->reload_renderpass(vk_struct->render.renderpass.geometry);
-  //this->reload_renderpass(vk_struct->render.renderpass.postprocess);
-  //vk_render->update_render_texture();
+  this->reload_renderpass(vk_struct->render.renderpass.postprocess);
+
+  //Reupdate sampler and descriptor set
+  vk_render->update_render_texture();
+  vk_renderpass->actualize_sampler();
 
   //---------------------------
 }

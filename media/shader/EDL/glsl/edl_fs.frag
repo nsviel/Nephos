@@ -71,7 +71,7 @@ float compute_shading(float depth_norm){
       sum +=  max(0.0, diff_depth);
     }
   }
-  float shade = exp(-sum * strength) ;
+  float shade = exp(-sum * strength);
 
   //---------------------------
   return shade;

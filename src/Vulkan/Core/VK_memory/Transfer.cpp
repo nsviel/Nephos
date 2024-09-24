@@ -43,7 +43,7 @@ void Transfer::copy_buffer_to_image(vk::structure::Image& image, VkBuffer buffer
   vk_command->start_command_buffer_primary(*command_buffer);
 
   //Transition + copy
-  vk_transition->image_layout_transition(command_buffer->handle, image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
+  vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
   VkBufferImageCopy region{};
   region.bufferOffset = 0;
   region.bufferRowLength = 0;
@@ -55,7 +55,7 @@ void Transfer::copy_buffer_to_image(vk::structure::Image& image, VkBuffer buffer
   region.imageOffset = {0, 0, 0};
   region.imageExtent = {image.width, image.height, 1};
   vkCmdCopyBufferToImage(command_buffer->handle, buffer, image.handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
-  vk_transition->image_layout_transition(command_buffer->handle, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //End and submit command
   vk_command->end_command_buffer(*command_buffer);

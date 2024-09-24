@@ -6,6 +6,7 @@ namespace vk{class Structure;}
 namespace vk::pipeline{class Pipeline;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
+namespace vk::renderpass{class Renderpass;}
 namespace vk::synchro{class Synchro;}
 namespace vk::gui{class Render;}
 
@@ -30,6 +31,7 @@ private:
   vk::Structure* vk_struct;
   vk::pipeline::Pipeline* vk_pipeline;
   vk::synchro::Synchro* vk_synchro;
+  vk::renderpass::Renderpass* vk_renderpass;
   vk::gui::Render* vk_render;
 };
 

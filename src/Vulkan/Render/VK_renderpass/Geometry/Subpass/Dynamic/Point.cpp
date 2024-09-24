@@ -18,6 +18,7 @@ Point::Point(vk::Structure* vk_struct){
   this->vk_drawer = new vk::draw::Vertex(vk_struct);
   this->vk_point = new vk::geometry::pipeline::dynamic::Point(vk_struct);
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
+  this->vk_data = new vk::data::Function(vk_struct);
 
   //---------------------------
 }
@@ -48,7 +49,7 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
   for(auto& [uid, vk_object] : vk_struct->core.data.map_vk_object){
     if(!check_data(*vk_object, utl::topology::DYNAMIC_POINT)) continue;
     this->update_uniform(*vk_object, *pipeline);
-    this->update_sampler(*vk_object, *pipeline);
+    this->update_sampler(*vk_object, *pipeline, subpass);
     this->draw_data(*vk_object, *pipeline, subpass);
   }
 
@@ -87,22 +88,23 @@ void Point::update_uniform(vk::structure::Object& vk_object, vk::structure::Pipe
 
   //---------------------------
 }
-void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
+void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass){
   //---------------------------
-/*
+
   std::shared_ptr<vk::descriptor::structure::Sampler> sampler_color = vk_sampler->query_sampler(pipeline.descriptor.descriptor_set, "tex_color");
   std::shared_ptr<vk::descriptor::structure::Sampler> sampler_depth = vk_sampler->query_sampler(pipeline.descriptor.descriptor_set, "tex_depth");
 
-  vk::texture::Ressource vk_texture(vk_struct);
-  std::shared_ptr<vk::structure::Texture> vk_texture_color = vk_texture.query_texture(vk_object.data->map_image["Color"]->UID);
-  std::shared_ptr<vk::structure::Texture> vk_texture_depth = vk_texture.query_texture(vk_object.data->map_image["Depth"]->UID);
-  if(!vk_texture_color || !vk_texture_depth) return;
 
-  sampler_color->image = std::make_shared<vk::structure::Image>(vk_texture_color->wrapper);
-  sampler_depth->image = std::make_shared<vk::structure::Image>(vk_texture_depth->wrapper);
+  std::shared_ptr<vk::structure::Texture> texture_color = vk_data->retrieve_vk_texture(vk_object, "Color");
+  std::shared_ptr<vk::structure::Texture> texture_depth = vk_data->retrieve_vk_texture(vk_object, "Depth");
+  if(!texture_color || !texture_depth) return;
 
-  vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set);
-sayHello();*/
+  sampler_color->image = std::make_shared<vk::structure::Image>(texture_color->wrapper);
+  //sampler_depth->image = std::make_shared<vk::structure::Image>(texture_depth->wrapper);
+
+
+  //vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set);
+//sayHello();
   //---------------------------
 }
 void Point::draw_data(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass){

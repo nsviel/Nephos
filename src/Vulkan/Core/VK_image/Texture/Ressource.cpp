@@ -42,7 +42,7 @@ void Ressource::create_texture(vk::structure::Texture& texture){
   //Make associated operation
   vk_mem_allocator->allocate_empty_stagger_buffer(texture.stagger, image.size);
   vk_mem_transfer->copy_texture_to_gpu(texture);
-
+say(image.name);
   //---------------------------
 }
 void Ressource::update_texture(vk::structure::Texture& texture){
