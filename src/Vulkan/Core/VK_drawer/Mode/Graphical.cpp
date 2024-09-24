@@ -52,7 +52,7 @@ void Graphical::copy_to_swapchain(std::vector<std::unique_ptr<vk::structure::Com
 
   //Copy renderpass to swapchain image
   vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.presentation;
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_transfer->copy_image_to_image(renderpass.framebuffer.color, vk_struct->core.swapchain.vec_frame[vk_struct->core.swapchain.current_ID]->color);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_transfer->copy_gpu_image_to_gpu_image(renderpass.framebuffer.color, vk_struct->core.swapchain.vec_frame[vk_struct->core.swapchain.current_ID]->color);
 
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->semaphore_wait = semaphore.handle;

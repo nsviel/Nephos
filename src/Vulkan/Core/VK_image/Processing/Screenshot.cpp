@@ -43,7 +43,7 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image& image){
   VkDeviceSize tex_size = image.width * image.height * 4;
   vk_mem_allocator->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
-  vk_mem_transfer->copy_image_to_buffer(image, staging_buffer);
+  vk_mem_transfer->copy_gpu_image_to_buffer(image, staging_buffer);
 
   //Find image info
   VkExtent3D imageExtent = {image.width, image.height, 1};  // Replace with your image dimensions
@@ -78,7 +78,7 @@ void Screenshot::export_image_to_bmp(vk::structure::Image& image){
   VkDeviceSize tex_size = image.width * image.height * 4;
   vk_mem_allocator->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
-  vk_mem_transfer->copy_image_to_buffer(image, staging_buffer);
+  vk_mem_transfer->copy_gpu_image_to_buffer(image, staging_buffer);
 
   //Find image info
   VkExtent3D imageExtent = {image.width, image.height, 1};  // Replace with your image dimensions
@@ -123,7 +123,7 @@ void Screenshot::export_image_to_binary(vk::structure::Image& image){
   VkDeviceSize tex_size = image.width * image.height * 4;
   vk_mem_allocator->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
-  vk_mem_transfer->copy_image_to_buffer(image, staging_buffer);
+  vk_mem_transfer->copy_gpu_image_to_buffer(image, staging_buffer);
 
   //Find image info
   VkExtent3D imageExtent = {image.width, image.height, 1};  // Replace with your image dimensions

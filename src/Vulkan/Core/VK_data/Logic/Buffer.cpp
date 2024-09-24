@@ -52,17 +52,17 @@ void Buffer::update_buffer(vk::structure::Object& vk_object){
 
   if(!data.xyz.empty()){
     VkDeviceSize data_size = sizeof(glm::vec3) * data.xyz.size();
-    vk_mem_transfer->copy_data_to_gpu(vk_object.buffer.xyz.data, vk_object.buffer.xyz.stagger, data.xyz.data(), data_size);
+    vk_mem_transfer->copy_vertex_to_gpu(vk_object.buffer.xyz.data, vk_object.buffer.xyz.stagger, data.xyz.data(), data_size);
   }
 
   if(!data.rgba.empty()){
     VkDeviceSize data_size = sizeof(glm::vec4) * data.rgba.size();
-    vk_mem_transfer->copy_data_to_gpu(vk_object.buffer.rgba.data, vk_object.buffer.rgba.stagger, data.rgba.data(), data_size);
+    vk_mem_transfer->copy_vertex_to_gpu(vk_object.buffer.rgba.data, vk_object.buffer.rgba.stagger, data.rgba.data(), data_size);
   }
 
   if(!data.uv.empty()){
     VkDeviceSize data_size = sizeof(glm::vec2) * data.uv.size();
-    vk_mem_transfer->copy_data_to_gpu(vk_object.buffer.uv.data, vk_object.buffer.uv.stagger, data.uv.data(), data_size);
+    vk_mem_transfer->copy_vertex_to_gpu(vk_object.buffer.uv.data, vk_object.buffer.uv.stagger, data.uv.data(), data_size);
   }
 
   //---------------------------
