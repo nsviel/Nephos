@@ -56,23 +56,20 @@ void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descr
 
   //---------------------------
 }
-void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::structure::Image* image){
+void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Sampler& sampler, vk::structure::Image& image){
   //---------------------------
 
-  auto sampler = query_sampler(descriptor_set, image->name);
-  if(!sampler) return;
-
   VkDescriptorImageInfo image_info = {};
-  image_info.imageLayout = image->layout;
-  image_info.imageView = image->view;
-  image_info.sampler = image->sampler;
+  image_info.imageLayout = image.layout;
+  image_info.imageView = image.view;
+  image_info.sampler = image.sampler;
 
   VkWriteDescriptorSet write_sampler = {};
   write_sampler.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
   write_sampler.dstSet = descriptor_set.handle;
-  write_sampler.dstBinding = sampler->binding;
+  write_sampler.dstBinding = sampler.binding;
   write_sampler.dstArrayElement = 0;
-  write_sampler.descriptorType = sampler->type;
+  write_sampler.descriptorType = sampler.type;
   write_sampler.descriptorCount = 1;
   write_sampler.pImageInfo = &image_info;
 

@@ -3,6 +3,7 @@
 #include <Vulkan/Core/VK_command/Structure/Command_buffer.h>
 #include <vulkan/vulkan.h>
 #include <memory>
+#include <string>
 
 
 namespace vk::structure{
@@ -11,6 +12,7 @@ struct Command{
   //---------------------------
 
   //Command
+  std::string name = "";
   std::shared_ptr<vk::structure::Command_buffer> command_buffer = std::make_shared<vk::structure::Command_buffer>();
   VkPipelineStageFlags wait_stage = 0;
 

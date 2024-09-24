@@ -36,13 +36,20 @@ void Ressource::create_texture(vk::structure::Texture& texture){
   texture.wrapper.height = image.height;
   texture.wrapper.format = format;
   texture.wrapper.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  texture.wrapper.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
+  texture.wrapper.usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
   vk_image->create_image(texture.wrapper);
 
   //Make associated operation
   vk_mem_allocator->allocate_empty_stagger_buffer(texture.stagger, image.size);
   vk_mem_transfer->copy_texture_to_gpu(texture);
 say(image.name);
+
+
+
+vk_mem_transfer->transit(texture.wrapper);
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  if(texture.wrapper.layout == VK_IMAGE_LAYOUT_UNDEFINED) sayHello();
+
   //---------------------------
 }
 void Ressource::update_texture(vk::structure::Texture& texture){

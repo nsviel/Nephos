@@ -87,7 +87,6 @@ void Thread::add_command(vk::command::structure::Set* set){
   cv.notify_one();
 
   //---------------------------
-
 }
 
 }

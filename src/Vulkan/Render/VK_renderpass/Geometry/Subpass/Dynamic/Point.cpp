@@ -93,7 +93,7 @@ void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipe
 
   std::shared_ptr<vk::descriptor::structure::Sampler> sampler_color = vk_sampler->query_sampler(pipeline.descriptor.descriptor_set, "tex_color");
   std::shared_ptr<vk::descriptor::structure::Sampler> sampler_depth = vk_sampler->query_sampler(pipeline.descriptor.descriptor_set, "tex_depth");
-
+  if(!sampler_color || !sampler_depth) return;
 
   std::shared_ptr<vk::structure::Texture> texture_color = vk_data->retrieve_vk_texture(vk_object, "Color");
   std::shared_ptr<vk::structure::Texture> texture_depth = vk_data->retrieve_vk_texture(vk_object, "Depth");
@@ -101,10 +101,14 @@ void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipe
 
 
 
-  sampler_color->image = std::make_shared<vk::structure::Image>(texture_color->wrapper);
-  //sampler_depth->image = std::make_shared<vk::structure::Image>(texture_depth->wrapper);
-  //vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set);
+static int a =0;
+if(a > 100){
+  //vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set, *sampler_color, texture_color->wrapper);
+  //vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set, *sampler_depth, texture_depth->wrapper);
 //sayHello();
+}
+
+a++;
 
 
   //---------------------------

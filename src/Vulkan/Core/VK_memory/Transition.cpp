@@ -73,7 +73,7 @@ VkAccessFlags Transition::find_access_flag(VkImageLayout& layout){
 
   switch(layout){
     case VK_IMAGE_LAYOUT_UNDEFINED:{
-      flag = 0;
+      flag = VK_ACCESS_NONE_KHR;
       break;
     }
     case VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL:{
@@ -89,7 +89,7 @@ VkAccessFlags Transition::find_access_flag(VkImageLayout& layout){
       break;
     }
     case VK_IMAGE_LAYOUT_PRESENT_SRC_KHR:{
-      flag = 0;
+      flag = VK_ACCESS_NONE_KHR;
       break;
     }
     default:{
@@ -109,20 +109,21 @@ VkPipelineStageFlags Transition::find_stage_flag(VkImageLayout& layout){
       flag = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT;
       break;
     }
-    case VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL:{
-      flag = VK_PIPELINE_STAGE_TRANSFER_BIT;
-      break;
-    }
+    case VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL:
     case VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL:{
       flag = VK_PIPELINE_STAGE_TRANSFER_BIT;
       break;
     }
     case VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL:{
-      flag = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
+      flag = VK_PIPELINE_STAGE_ALL_COMMANDS_BIT;
       break;
     }
     case VK_IMAGE_LAYOUT_PRESENT_SRC_KHR:{
       flag = VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT;
+      break;
+    }
+    case VK_IMAGE_LAYOUT_GENERAL:{
+      flag = VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT;
       break;
     }
     default:{

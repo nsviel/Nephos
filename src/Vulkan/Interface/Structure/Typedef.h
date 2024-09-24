@@ -11,9 +11,3 @@ typedef VkBufferUsageFlags buffer_usage;
 constexpr buffer_usage TYP_BUFFER_USAGE_SRC = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
 constexpr buffer_usage TYP_BUFFER_USAGE_DST = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
 constexpr buffer_usage TYP_BUFFER_USAGE_DST_VERTEX = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
-
-//Image usage
-typedef VkImageUsageFlags image_usage;
-constexpr image_usage TYP_IMAGE_USAGE_TRANSFERT = VK_IMAGE_USAGE_TRANSFER_DST_BIT;
-constexpr image_usage TYP_IMAGE_USAGE_SAMPLER = VK_IMAGE_USAGE_SAMPLED_BIT;
-constexpr image_usage TYP_IMAGE_USAGE_ATTACHMENT = VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT;
