@@ -42,13 +42,6 @@ void Ressource::create_texture(vk::structure::Texture& texture){
   //Make associated operation
   vk_mem_allocator->allocate_empty_stagger_buffer(texture.stagger, image.size);
   vk_mem_transfer->copy_texture_to_gpu(texture);
-say(image.name);
-
-
-
-vk_mem_transfer->transit(texture.wrapper);
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
-  if(texture.wrapper.layout == VK_IMAGE_LAYOUT_UNDEFINED) sayHello();
 
   //---------------------------
 }
@@ -61,7 +54,7 @@ void Ressource::update_texture(vk::structure::Texture& texture){
     return;
   }
 
-  //vk_mem_transfer->copy_texture_to_gpu(texture);
+  vk_mem_transfer->copy_texture_to_gpu(texture);
 
   //---------------------------
 }

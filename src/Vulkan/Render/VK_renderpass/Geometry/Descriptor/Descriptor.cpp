@@ -55,7 +55,7 @@ vk::descriptor::structure::Descriptor sampler_color(){
   descriptor.name = "tex_color";
   descriptor.binding = vk::sampler::COLOR;
   descriptor.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-  descriptor.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+  descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
 
   //---------------------------
   return descriptor;
@@ -67,7 +67,7 @@ vk::descriptor::structure::Descriptor sampler_depth(){
   descriptor.name = "tex_depth";
   descriptor.binding = vk::sampler::DEPTH;
   descriptor.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-  descriptor.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+  descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
 
   //---------------------------
   return descriptor;

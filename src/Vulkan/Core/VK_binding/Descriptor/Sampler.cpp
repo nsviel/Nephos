@@ -60,7 +60,7 @@ void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descr
   //---------------------------
 
   VkDescriptorImageInfo image_info = {};
-  image_info.imageLayout = image.layout;
+  image_info.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
   image_info.imageView = image.view;
   image_info.sampler = image.sampler;
 

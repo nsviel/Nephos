@@ -22,8 +22,8 @@ layout(binding = 5) uniform Param{
 };
 
 //Sampler
-layout(binding = 10) uniform sampler2D tex_depth;
-layout(binding = 11) uniform sampler2D tex_color;
+layout(binding = 10) uniform sampler2D tex_color;
+layout(binding = 11) uniform sampler2D tex_depth;
 
 
 void main(){
@@ -32,6 +32,9 @@ void main(){
   gl_Position = projection * view * model * vec4(in_xyz, 1.0);
   gl_PointSize = point_size;
   frag_rgb = in_rgb;
+
+  //vec4 colorSample = texture(tex_color, vec2(0.5));
+  //frag_rgb = colorSample.rgb;
 
   //---------------------------
 }

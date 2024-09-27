@@ -101,10 +101,12 @@ void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipe
 
 
 
+  vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set, *sampler_color, texture_color->wrapper);
+  vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set, *sampler_depth, texture_depth->wrapper);
+
 static int a =0;
 if(a > 100){
-  //vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set, *sampler_color, texture_color->wrapper);
-  //vk_sampler->actualize_sampler(pipeline.descriptor.descriptor_set, *sampler_depth, texture_depth->wrapper);
+
 //sayHello();
 }
 
