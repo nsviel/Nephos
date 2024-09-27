@@ -13,6 +13,7 @@ namespace vk::descriptor::structure{class Binding;}
 namespace vk::instance{class UID;}
 namespace vk::synchro{class Synchro;}
 namespace vk::descriptor{class Uniform;}
+namespace vk::data{class Object;}
 namespace utl::base{class Data;}
 namespace utl::base{class Pose;}
 
@@ -33,10 +34,6 @@ public:
   void clean();
 
   //Subfunction
-  void update_vk_object(std::shared_ptr<utl::base::Data> data, vk::structure::Object& vk_object);
-  void create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose);
-  void clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object);
-  std::shared_ptr<vk::structure::Object> retrieve_vk_object(utl::base::Data& data);
 
 private:
   vk::Structure* vk_struct;
@@ -47,6 +44,7 @@ private:
   vk::instance::UID* vk_uid;
   vk::synchro::Synchro* vk_synchro;
   vk::descriptor::Uniform* vk_uniform;
+  vk::data::Object* vk_object;
 };
 
 }

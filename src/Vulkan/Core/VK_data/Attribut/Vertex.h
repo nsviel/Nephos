@@ -9,7 +9,7 @@ namespace vk::synchro{class Semaphore;}
 namespace vk::structure{class Object;}
 
 
-namespace vk::draw{
+namespace vk::data{
 
 class Vertex
 {

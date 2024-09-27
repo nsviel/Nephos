@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::draw{
+namespace vk::data{
 
 //Constructor / Destructor
 Vertex::Vertex(vk::Structure* vk_struct){

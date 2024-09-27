@@ -15,7 +15,7 @@ Point::Point(vk::Structure* vk_struct){
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
-  this->vk_drawer = new vk::draw::Vertex(vk_struct);
+  this->vk_drawer = new vk::data::Vertex(vk_struct);
   this->vk_point = new vk::geometry::pipeline::topology::Point(vk_struct);
 
   //---------------------------
@@ -44,7 +44,7 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
 
   this->bind_pipeline(subpass, *pipeline);
 
-  for(auto& [uid, vk_object] : vk_struct->core.data.map_vk_object){
+  for(auto& [uid, vk_object] : vk_struct->core.data.map_object){
     if(!check_data(*vk_object, utl::topology::POINT)) continue;
     this->update_uniform(subpass, *vk_object, *pipeline);
     this->draw_data(*vk_object, subpass);

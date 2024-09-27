@@ -17,7 +17,7 @@ EDL::EDL(vk::Structure* vk_struct){
   this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
-  this->vk_drawer = new vk::draw::Vertex(vk_struct);
+  this->vk_drawer = new vk::data::Vertex(vk_struct);
 
   //---------------------------
 }

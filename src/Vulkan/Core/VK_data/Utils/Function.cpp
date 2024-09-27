@@ -20,8 +20,8 @@ Function::~Function(){}
 std::shared_ptr<vk::structure::Object> Function::retrieve_vk_object(utl::base::Data& data){
   //---------------------------
 
-  auto it = vk_struct->core.data.map_vk_object.find(data.UID);
-  if(it == vk_struct->core.data.map_vk_object.end()) return nullptr;
+  auto it = vk_struct->core.data.map_object.find(data.UID);
+  if(it == vk_struct->core.data.map_object.end()) return nullptr;
 
   //---------------------------
   return it->second;
@@ -30,7 +30,7 @@ std::shared_ptr<vk::structure::Texture> Function::retrieve_vk_texture(utl::media
   //---------------------------
 
   //Search in all vk objects
-  for(auto& [name, vk_object] : vk_struct->core.data.map_vk_object){
+  for(auto& [name, vk_object] : vk_struct->core.data.map_object){
     auto texture = retrieve_vk_texture(*vk_object, image.name);
     if(texture) return texture;
   }
