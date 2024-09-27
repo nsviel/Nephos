@@ -33,8 +33,8 @@ void main(){
   gl_PointSize = point_size;
   frag_rgb = in_rgb;
 
-  //vec4 colorSample = texture(tex_color, vec2(0.5));
-  //frag_rgb = colorSample.rgb;
+  vec4 colorSample = texture(tex_color, vec2(0.5));
+  frag_rgb = colorSample.rgb;
 
   //---------------------------
 }
