@@ -13,6 +13,7 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_component = new vk::pipeline::Component(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
+  this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
 
   //---------------------------
 }
@@ -24,7 +25,8 @@ void Pipeline::create_pipeline(vk::structure::Renderpass& renderpass){
 
   for(auto& subpass : renderpass.vec_subpass){
     for(auto& [name, pipeline] : subpass->map_pipeline){
-      vk_component->create_pipeline_object(renderpass, *pipeline);
+      vk_descriptor->create_pipeline_descriptor(*pipeline);
+      vk_component->create_pipeline_component(renderpass, *pipeline);
     }
   }
 
@@ -35,7 +37,8 @@ void Pipeline::clean_pipeline(vk::structure::Renderpass& renderpass){
 
   for(auto& subpass : renderpass.vec_subpass){
     for(auto& [name, pipeline] : subpass->map_pipeline){
-      vk_component->clean_pipeline_object(*pipeline);
+      vk_component->clean_pipeline_component(*pipeline);
+      vk_descriptor->clean_pipeline_descriptor(*pipeline);
     }
   }
 
@@ -45,8 +48,8 @@ void Pipeline::recreate_pipeline(vk::structure::Renderpass& renderpass, vk::stru
   //---------------------------
 
   vk_synchro->wait_idle_and_pause();
-  vk_component->clean_pipeline_object(pipeline);
-  vk_component->create_pipeline_object(renderpass, pipeline);
+  vk_component->clean_pipeline_component(pipeline);
+  vk_component->create_pipeline_component(renderpass, pipeline);
   vk_synchro->end_idle();
 
   //---------------------------

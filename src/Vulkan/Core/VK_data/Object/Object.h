@@ -2,17 +2,17 @@
 
 #include <memory>
 
+namespace vk{class Structure;}
 namespace vk::data{class Buffer;}
 namespace vk::texture{class Data;}
 namespace vk::command{class Command_buffer;}
-namespace vk::descriptor{class Descriptor_set;}
-namespace vk{class Structure;}
-namespace vk::structure{class Object;}
-namespace vk::structure{class Pipeline;}
-namespace vk::descriptor::structure{class Binding;}
 namespace vk::instance{class UID;}
 namespace vk::synchro{class Synchro;}
+namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
+namespace vk::descriptor::structure{class Binding;}
+namespace vk::structure{class Object;}
+namespace vk::structure{class Pipeline;}
 namespace utl::base{class Data;}
 namespace utl::base{class Pose;}
 

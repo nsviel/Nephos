@@ -3,7 +3,6 @@
 #include <vulkan/vulkan.h>
 
 namespace vk{class Structure;}
-namespace vk::pipeline{class Descriptor;}
 namespace vk::pipeline{class Layout;}
 namespace vk::pipeline{class Shader;}
 namespace vk::pipeline{class Vertex;}
@@ -22,8 +21,8 @@ public:
 
 public:
   //Main function
-  void create_pipeline_object(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline);
-  void clean_pipeline_object(vk::structure::Pipeline& pipeline);
+  void create_pipeline_component(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline);
+  void clean_pipeline_component(vk::structure::Pipeline& pipeline);
 
   //Subfunction
   void info_pipeline_topology(vk::structure::Pipeline& pipeline);
@@ -41,7 +40,6 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::pipeline::Descriptor* vk_descriptor;
   vk::pipeline::Shader* vk_shader;
   vk::pipeline::Vertex* vk_vertex;
   vk::pipeline::Layout* vk_layout;

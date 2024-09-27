@@ -7,6 +7,7 @@ namespace vk{class Structure;}
 namespace vk::draw{class Viewport;}
 namespace vk::synchro{class Synchro;}
 namespace vk::pipeline{class Component;}
+namespace vk::pipeline{class Descriptor;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Subpass;}
@@ -33,6 +34,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
+  vk::pipeline::Descriptor* vk_descriptor;
   vk::pipeline::Component* vk_component;
   vk::synchro::Synchro* vk_synchro;
 };
