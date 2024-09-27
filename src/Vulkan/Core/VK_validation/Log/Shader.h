@@ -13,16 +13,17 @@ public:
     static Shader instance;
     return instance;
   }
-  void add_shader_printf(const std::string& message){
-    shader_printf = message;
-  }
-  const std::string& get_shader_printf() const {
-    return shader_printf;
-  }
+
+public:
+  //Main function
+  void print_message(std::string message);
+
+  //Subfunction
+  void print_header(std::string message);
+  void print_message_ID(std::string message);
 
 private:
   Shader() = default;
-  std::string shader_printf;
 };
 
 }

@@ -14,11 +14,13 @@ public:
     return instance;
   }
 
+public:
   //Main function
-  void print_validation_error(std::string message);
+  void print_message(std::string message);
 
   //Subfunction
   void print_header(std::string message);
+  void print_severity(VkDebugUtilsMessageSeverityFlagBitsEXT message_severity);
   void print_message_ID(std::string message);
 
 private:

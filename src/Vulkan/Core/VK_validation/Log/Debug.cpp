@@ -7,7 +7,7 @@
 namespace vk::validation::log{
 
 //Main function
-void Debug::print_validation_error(std::string message){
+void Debug::print_message(std::string message){
   //---------------------------
 
   this->print_header(message);
@@ -38,9 +38,42 @@ void Debug::print_header(std::string message){
   std::string type = obj_info.substr(pose_typ + 7);
 
   // Print type and handle information in shaded colors
-  std::cerr << "\033[1;33m" << object << "\033[0m" << std::endl;
-  std::cerr << "\033[1;90m" << "type " << "\033[0m" << type << std::endl;
-  std::cerr << "\033[1;90m" << "hand " << "\033[0m" << handle << std::endl;
+  std::cout << "\033[1;33m" << object << "\033[0m" << std::endl;
+  std::cout << "\033[1;90m" << "type " << "\033[0m" << type << std::endl;
+  std::cout << "\033[1;90m" << "hand " << "\033[0m" << handle << std::endl;
+
+  //---------------------------
+}
+void Debug::print_severity(VkDebugUtilsMessageSeverityFlagBitsEXT message_severity){
+  std::string severity = "";
+  //---------------------------
+
+  //Determine severity
+  switch (message_severity) {
+    case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:{
+      severity = "verbose";
+      break;
+    }
+    case VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT:{
+      severity = "info";
+      break;
+    }
+    case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:{
+      severity = "warning";
+      break;
+    }
+    case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:{
+      severity = "error";
+      break;
+    }
+    default:{
+      severity = "unknown";
+      break;
+    }
+  }
+
+  //Print it
+  std::cout << "Severity: [\033[1;33m" << object << "\033[0m]" << std::endl;
 
   //---------------------------
 }
