@@ -22,8 +22,13 @@ public:
   void print_header(std::string message);
   void print_message_ID(std::string message);
 
+  inline std::string get_message(){return message;}
+
 private:
   Shader() = default;
+
+  std::string message = "";
+  bool print_terminal = true;
 };
 
 }

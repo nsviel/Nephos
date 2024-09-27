@@ -10,8 +10,12 @@ namespace vk::validation::log{
 void Shader::print_message(std::string message){
   //---------------------------
 
-  this->print_header(message);
-  this->print_message_ID(message);
+  if(print_terminal){
+    this->print_header(message);
+    this->print_message_ID(message);
+  }else{
+    this->message = message;
+  }
 
   //---------------------------
 }
