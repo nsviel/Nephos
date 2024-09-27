@@ -28,7 +28,7 @@ void Instance::init(){
 void Instance::clean(){
   //---------------------------
 
-  vk_validation->clean_layer();
+  vk_validation->clean_validation_layer();
   vkDestroyInstance(vk_struct->core.instance.handle, nullptr);
 
   //---------------------------

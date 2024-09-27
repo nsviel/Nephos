@@ -25,7 +25,6 @@ void Layer::create_validation_layer(){
   if(!with_validation_layer) return;
   //---------------------------
 
-//COMPRENDRE POURQUOI YA 2 FOIS CES INSTRUCTIONS
   VkDebugUtilsMessengerCreateInfoEXT create_info{};
   create_info.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
   create_info.messageSeverity =
@@ -38,19 +37,18 @@ void Layer::create_validation_layer(){
     VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
   create_info.pfnUserCallback = vk::validation::Callback;
 
-  VkResult result = create_debug_EXT(vk_struct->core.instance.handle, &create_info, nullptr, &EXT_debug);
+  VkResult result = create_debug_EXT(vk_struct->core.instance.handle, &create_info, nullptr, &vk_struct->core.validation.messenger);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to set up debug messenger!");
   }
 
   //---------------------------
 }
-void Layer::clean_layer(){
+void Layer::clean_validation_layer(){
+  if(!with_validation_layer) return;
   //---------------------------
 
-  if(with_validation_layer){
-    destroy_debug_EXT(vk_struct->core.instance.handle, EXT_debug, nullptr);
-  }
+  destroy_debug_EXT(vk_struct->core.instance.handle, vk_struct->core.validation.messenger, nullptr);
 
   //---------------------------
 }
@@ -60,32 +58,13 @@ void* Layer::find_validation_extension(){
   //---------------------------
 
   if(with_validation_layer && check_validation_layer_support()){
-    void* ptr_debug = extension_debug(nullptr);
-    void* ptr_feature = extension_feature(ptr_debug);
+    void* ptr_feature = extension_feature(vk_struct->core.validation.messenger);
 
     return ptr_feature;
   }
 
   //---------------------------
   return nullptr;
-}
-void* Layer::extension_debug(void* ptr){
-  //---------------------------
-
-  EXT_debug_info = {};
-  EXT_debug_info.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
-  EXT_debug_info.messageSeverity =
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | \
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | \
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
-  EXT_debug_info.messageType =
-    VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | \
-    VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
-  EXT_debug_info.pfnUserCallback = vk::validation::Callback;
-  EXT_debug_info.pNext = ptr;
-
-  //---------------------------
-  return &EXT_debug_info;
 }
 void* Layer::extension_feature(void* ptr){
   //---------------------------

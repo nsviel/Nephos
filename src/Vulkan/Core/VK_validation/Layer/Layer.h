@@ -19,11 +19,10 @@ public:
 public:
   //Main function
   void create_validation_layer();
-  void clean_layer();
+  void clean_validation_layer();
 
   //Extension
   void* find_validation_extension();
-  void* extension_debug(void* ptr);
   void* extension_feature(void* ptr);
 
   //Subfunction

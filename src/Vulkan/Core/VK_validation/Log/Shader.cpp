@@ -1,5 +1,6 @@
 #include "Shader.h"
 
+#include <Utility/Namespace.h>
 #include <iostream>
 #include <string>
 
@@ -24,8 +25,8 @@ void Shader::print_message(std::string message){
 void Shader::print_header(std::string message){
   //---------------------------
 
-  std::cerr << "--------------------------" << std::endl;
-  std::cerr << "[" << "\033[1;32mVL\033[0m] [\033[1;33mSHADER\033[0m]" << std::endl;
+  std::cout << "--------------------------" << std::endl;
+  std::cout << "[" << "\033[1;32mVL\033[0m] [\033[1;33mSHADER\033[0m]" << std::endl;
 
   //---------------------------
 }

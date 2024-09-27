@@ -1,5 +1,6 @@
 #include "Debug.h"
 
+#include <Utility/Namespace.h>
 #include <iostream>
 #include <string>
 
@@ -73,7 +74,7 @@ void Debug::print_severity(VkDebugUtilsMessageSeverityFlagBitsEXT message_severi
   }
 
   //Print it
-  std::cout << "Severity: [\033[1;33m" << object << "\033[0m]" << std::endl;
+  std::cout << "Severity: [\033[1;33m" << severity << "\033[0m]" << std::endl;
 
   //---------------------------
 }
