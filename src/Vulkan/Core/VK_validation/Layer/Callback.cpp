@@ -2,6 +2,7 @@
 
 #include <Vulkan/Core/VK_validation/Log/Debug.h>
 #include <Vulkan/Core/VK_validation/Log/Shader.h>
+#include <Utility/Namspace.h>
 #include <cstring>
 
 
@@ -14,7 +15,7 @@ VKAPI_ATTR VkBool32 VKAPI_CALL Callback(VkDebugUtilsMessageSeverityFlagBitsEXT m
 
   //Shader printf
   size_t shaderPos = message.find("[SHADER]");
-  if(shaderPos != std::string::npos){
+  if(shaderPos != std::string::npos){sayHello();
     vk::validation::log::Shader::get_instance().add_shader_printf(message);
   }
   //Common validation layer message
