@@ -21,52 +21,34 @@ Layer::Layer(vk::Structure* vk_struct){
 Layer::~Layer(){}
 
 //Main function
-void Layer::create_validation_layer(){
-  if(!with_validation_layer) return;
+void Layer::init(){
+  if(!with_validation_layer || !check_validation_support()) return;
   //---------------------------
 
-  VkDebugUtilsMessengerCreateInfoEXT create_info{};
-  create_info.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
-  create_info.messageSeverity =
+  this->create_messenger_info();
+  this->create_feature_info();
+
+  //---------------------------
+}
+void Layer::create_messenger_info(){
+  //---------------------------
+
+  VkDebugUtilsMessengerCreateInfoEXT messenger_info{};
+  messenger_info.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
+  messenger_info.messageSeverity =
     VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | \
     VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | \
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT | \
-    VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT;
-  create_info.messageType =
+    VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
+  messenger_info.messageType =
     VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | \
     VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
-  create_info.pfnUserCallback = vk::validation::Callback;
-
-  VkResult result = create_debug_EXT(vk_struct->core.instance.handle, &create_info, nullptr, &vk_struct->core.validation.messenger);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to set up debug messenger!");
-  }
+  messenger_info.pfnUserCallback = vk::validation::Callback;
+  messenger_info.pNext = nullptr;
 
   //---------------------------
+  vk_struct->core.validation.messenger_info = messenger_info;
 }
-void Layer::clean_validation_layer(){
-  if(!with_validation_layer) return;
-  //---------------------------
-
-  destroy_debug_EXT(vk_struct->core.instance.handle, vk_struct->core.validation.messenger, nullptr);
-
-  //---------------------------
-}
-
-//Extension
-void* Layer::find_validation_extension(){
-  //---------------------------
-
-  if(with_validation_layer && check_validation_layer_support()){
-    void* ptr_feature = extension_feature(vk_struct->core.validation.messenger);
-
-    return ptr_feature;
-  }
-
-  //---------------------------
-  return nullptr;
-}
-void* Layer::extension_feature(void* ptr){
+void Layer::create_feature_info(){
   //---------------------------
 
   if(with_best_practice){
@@ -76,18 +58,16 @@ void* Layer::extension_feature(void* ptr){
     EXT_enables.push_back(VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT);
   }
 
-  EXT_feature = {};
-  EXT_feature.sType = VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT;
-  EXT_feature.enabledValidationFeatureCount = static_cast<uint32_t>(EXT_enables.size());
-  EXT_feature.pEnabledValidationFeatures = EXT_enables.data();
-  EXT_feature.pNext = ptr;
+  VkValidationFeaturesEXT feature_info = {};
+  feature_info.sType = VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT;
+  feature_info.enabledValidationFeatureCount = static_cast<uint32_t>(EXT_enables.size());
+  feature_info.pEnabledValidationFeatures = EXT_enables.data();
+  feature_info.pNext = &vk_struct->core.validation.messenger_info;
 
   //---------------------------
-  return &EXT_feature;
+  vk_struct->core.validation.feature_info = feature_info;
 }
-
-//Subfunction
-bool Layer::check_validation_layer_support(){
+bool Layer::check_validation_support(){
   //---------------------------
 
   //Checks if all of the requested layers are available
@@ -116,27 +96,37 @@ bool Layer::check_validation_layer_support(){
   //---------------------------
   return true;
 }
-VkResult Layer::create_debug_EXT(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugUtilsMessengerEXT* pDebugMessenger){
+
+
+
+
+
+
+void Layer::create_validation_layer(){
+  if(!with_validation_layer) return;
   //---------------------------
 
-  auto func = (PFN_vkCreateDebugUtilsMessengerEXT) vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
-  if(func != nullptr){
-    return func(instance, pCreateInfo, pAllocator, pDebugMessenger);
-  }else{
-    return VK_ERROR_EXTENSION_NOT_PRESENT;
+  auto func = (PFN_vkCreateDebugUtilsMessengerEXT) vkGetInstanceProcAddr(vk_struct->core.instance.handle, "vkCreateDebugUtilsMessengerEXT");
+  if(func == nullptr) return;
+
+  VkResult result = func(vk_struct->core.instance.handle, &vk_struct->core.validation.messenger_info, nullptr, &vk_struct->core.validation.messenger);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to set up debug messenger!");
   }
 
   //---------------------------
 }
-void Layer::destroy_debug_EXT(VkInstance instance, VkDebugUtilsMessengerEXT EXT_debug, const VkAllocationCallbacks* pAllocator){
+void Layer::clean_validation_layer(){
+  if(!with_validation_layer) return;
   //---------------------------
 
-  auto func = (PFN_vkDestroyDebugUtilsMessengerEXT) vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
-  if(func != nullptr){
-    func(instance, EXT_debug, pAllocator);
-  }
+  auto func = (PFN_vkDestroyDebugUtilsMessengerEXT) vkGetInstanceProcAddr(vk_struct->core.instance.handle, "vkDestroyDebugUtilsMessengerEXT");
+  if(func == nullptr) return;
+
+  func(vk_struct->core.instance.handle, vk_struct->core.validation.messenger, nullptr);
 
   //---------------------------
 }
+
 
 }

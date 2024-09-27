@@ -9,8 +9,9 @@ namespace vk::validation{
 struct Structure{
   //---------------------------
 
+  VkDebugUtilsMessengerCreateInfoEXT messenger_info;
+  VkValidationFeaturesEXT feature_info;
   VkDebugUtilsMessengerEXT messenger;
-  VkValidationFeaturesEXT feature;
 
   //---------------------------
 };

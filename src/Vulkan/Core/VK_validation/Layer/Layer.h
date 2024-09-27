@@ -18,17 +18,21 @@ public:
 
 public:
   //Main function
+  void init();
+  void create_messenger_info();
+  void create_feature_info();
+  bool check_validation_support();
+
+
+
+
   void create_validation_layer();
   void clean_validation_layer();
 
-  //Extension
-  void* find_validation_extension();
-  void* extension_feature(void* ptr);
+
+
 
   //Subfunction
-  bool check_validation_layer_support();
-  VkResult create_debug_EXT(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugUtilsMessengerEXT* pDebugMessenger);
-  void destroy_debug_EXT(VkInstance instance, VkDebugUtilsMessengerEXT debugMessenger, const VkAllocationCallbacks* pAllocator);
 
   inline std::vector<const char*> get_validation_layers(){return validation_layers;};
 

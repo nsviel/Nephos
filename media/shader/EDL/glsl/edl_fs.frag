@@ -91,7 +91,7 @@ void main(){
   }
 
   float point_size =3.0;
-debugPrintfEXT("[SHADER] Jaime les pommes et les poires %f", point_size);
+//debugPrintfEXT("[SHADER] Jaime les pommes et les poires %f", point_size);
 
   //---------------------------
   out_rgb = vec4(color_rgba.rgb, 1.0);

@@ -19,9 +19,10 @@ Instance::~Instance(){}
 //Main function
 void Instance::init(){
   //---------------------------
-  vk_validation->create_validation_layer();
-  this->create_instance();
 
+  vk_validation->init();
+  this->create_instance();
+  vk_validation->create_validation_layer();
 
   //---------------------------
 }
@@ -56,7 +57,7 @@ void Instance::create_instance(){
   create_info.ppEnabledExtensionNames = vk_struct->core.instance.extension_instance.data();
   create_info.enabledLayerCount = static_cast<uint32_t>(validation_layers.size());
   create_info.ppEnabledLayerNames = validation_layers.data();
-  create_info.pNext = vk_validation->find_validation_extension();
+  create_info.pNext = &vk_struct->core.validation.feature_info;
 
   //Create instance
   VkResult result = vkCreateInstance(&create_info, nullptr, &vk_struct->core.instance.handle);
