@@ -20,16 +20,16 @@ Instance::~Instance(){}
 void Instance::init(){
   //---------------------------
 
-  vk_validation->init();
+  vk_validation->init_validation_info();
   this->create_instance();
-  vk_validation->create_validation_layer();
+  vk_validation->create_validation_messenger();
 
   //---------------------------
 }
 void Instance::clean(){
   //---------------------------
 
-  vk_validation->clean_validation_layer();
+  vk_validation->clean_validation_messenger();
   vkDestroyInstance(vk_struct->core.instance.handle, nullptr);
 
   //---------------------------
@@ -49,14 +49,13 @@ void Instance::create_instance(){
   appInfo.apiVersion = VK_API_VERSION_1_0;
 
   //Instance info
-  std::vector<const char*> validation_layers = vk_validation->get_validation_layers();
   VkInstanceCreateInfo create_info{};
   create_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
   create_info.pApplicationInfo = &appInfo;
   create_info.enabledExtensionCount = static_cast<uint32_t>(vk_struct->core.instance.extension_instance.size());
   create_info.ppEnabledExtensionNames = vk_struct->core.instance.extension_instance.data();
-  create_info.enabledLayerCount = static_cast<uint32_t>(validation_layers.size());
-  create_info.ppEnabledLayerNames = validation_layers.data();
+  create_info.enabledLayerCount = static_cast<uint32_t>(vk_struct->core.validation.vec_layer.size());
+  create_info.ppEnabledLayerNames = vk_struct->core.validation.vec_layer.data();
   create_info.pNext = &vk_struct->core.validation.feature_info;
 
   //Create instance

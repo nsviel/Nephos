@@ -11,22 +11,62 @@ Layer::Layer(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
 
-  this->validation_layers = {"VK_LAYER_KHRONOS_validation"};
-  this->with_validation_layer = true;
-  this->with_best_practice = false;
-  this->with_shader_printf = true;
-
   //---------------------------
 }
 Layer::~Layer(){}
 
 //Main function
-void Layer::init(){
-  if(!with_validation_layer || !check_validation_support()) return;
+void Layer::init_validation_info(){
+  if(!vk_struct->core.validation.enable) return;
   //---------------------------
 
+  this->create_layer_info();
+  if(!check_validation_support()) return;
   this->create_messenger_info();
   this->create_feature_info();
+
+  //---------------------------
+}
+void Layer::create_validation_messenger(){
+  if(!vk_struct->core.validation.enable) return;
+  //---------------------------
+
+  auto func = (PFN_vkCreateDebugUtilsMessengerEXT) vkGetInstanceProcAddr(vk_struct->core.instance.handle, "vkCreateDebugUtilsMessengerEXT");
+  if(func == nullptr) return;
+
+  VkResult result = func(vk_struct->core.instance.handle, &vk_struct->core.validation.messenger_info, nullptr, &vk_struct->core.validation.messenger);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to set up debug messenger!");
+  }
+
+  //---------------------------
+}
+void Layer::clean_validation_messenger(){
+  if(!vk_struct->core.validation.enable) return;
+  //---------------------------
+
+  auto func = (PFN_vkDestroyDebugUtilsMessengerEXT) vkGetInstanceProcAddr(vk_struct->core.instance.handle, "vkDestroyDebugUtilsMessengerEXT");
+  if(func == nullptr) return;
+
+  func(vk_struct->core.instance.handle, vk_struct->core.validation.messenger, nullptr);
+
+  //---------------------------
+}
+
+//Subfunction
+void Layer::create_layer_info(){
+  //---------------------------
+
+  //Layer info
+  std::vector<const char*>& vec_layer = vk_struct->core.validation.vec_layer;
+  vec_layer.clear();
+  vec_layer.push_back("VK_LAYER_KHRONOS_validation");
+
+  //Feature info
+  std::vector<VkValidationFeatureEnableEXT>& vec_feature = vk_struct->core.validation.vec_feature;
+  vec_feature.clear();
+  //vec_feature.push_back(VK_VALIDATION_FEATURE_ENABLE_BEST_PRACTICES_EXT);
+  vec_feature.push_back(VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT);
 
   //---------------------------
 }
@@ -51,17 +91,10 @@ void Layer::create_messenger_info(){
 void Layer::create_feature_info(){
   //---------------------------
 
-  if(with_best_practice){
-    EXT_enables.push_back(VK_VALIDATION_FEATURE_ENABLE_BEST_PRACTICES_EXT);
-  }
-  if(with_shader_printf){
-    EXT_enables.push_back(VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT);
-  }
-
   VkValidationFeaturesEXT feature_info = {};
   feature_info.sType = VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT;
-  feature_info.enabledValidationFeatureCount = static_cast<uint32_t>(EXT_enables.size());
-  feature_info.pEnabledValidationFeatures = EXT_enables.data();
+  feature_info.enabledValidationFeatureCount = static_cast<uint32_t>(vk_struct->core.validation.vec_feature.size());
+  feature_info.pEnabledValidationFeatures = vk_struct->core.validation.vec_feature.data();
   feature_info.pNext = &vk_struct->core.validation.messenger_info;
 
   //---------------------------
@@ -78,7 +111,7 @@ bool Layer::check_validation_support(){
   vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
 
   //Check if all of the layers in validation_layers exist in the availableLayers list
-  for(const char* layerName : validation_layers){
+  for(const char* layerName : vk_struct->core.validation.vec_layer){
     bool layerFound = false;
 
     for(const auto& layerProperties : availableLayers){
@@ -96,37 +129,5 @@ bool Layer::check_validation_support(){
   //---------------------------
   return true;
 }
-
-
-
-
-
-
-void Layer::create_validation_layer(){
-  if(!with_validation_layer) return;
-  //---------------------------
-
-  auto func = (PFN_vkCreateDebugUtilsMessengerEXT) vkGetInstanceProcAddr(vk_struct->core.instance.handle, "vkCreateDebugUtilsMessengerEXT");
-  if(func == nullptr) return;
-
-  VkResult result = func(vk_struct->core.instance.handle, &vk_struct->core.validation.messenger_info, nullptr, &vk_struct->core.validation.messenger);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to set up debug messenger!");
-  }
-
-  //---------------------------
-}
-void Layer::clean_validation_layer(){
-  if(!with_validation_layer) return;
-  //---------------------------
-
-  auto func = (PFN_vkDestroyDebugUtilsMessengerEXT) vkGetInstanceProcAddr(vk_struct->core.instance.handle, "vkDestroyDebugUtilsMessengerEXT");
-  if(func == nullptr) return;
-
-  func(vk_struct->core.instance.handle, vk_struct->core.validation.messenger, nullptr);
-
-  //---------------------------
-}
-
 
 }
