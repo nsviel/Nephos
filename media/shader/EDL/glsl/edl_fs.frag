@@ -1,4 +1,5 @@
 #version 450
+#extension GL_EXT_debug_printf : enable
 
 //Input
 layout(location = 4) in vec2 frag_uv;
@@ -88,6 +89,9 @@ void main(){
     float shade = compute_shading(depth_norm);
     color_rgba.rgb *= shade;
   }
+
+  float point_size =3.0;
+debugPrintfEXT("[SHADER] %f", point_size);
 
   //---------------------------
   out_rgb = vec4(color_rgba.rgb, 1.0);
