@@ -37,7 +37,7 @@ public:
   //Subfunction
   void bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
   void update_descriptor(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
-  void draw_canvas(vk::structure::Subpass& subpass);
+  void draw_data(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
 
 private:
   vk::Structure* vk_struct;

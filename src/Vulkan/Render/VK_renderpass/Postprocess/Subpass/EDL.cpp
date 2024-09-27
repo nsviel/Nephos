@@ -46,7 +46,7 @@ void EDL::draw_edl(vk::structure::Subpass& subpass){
 
   this->bind_pipeline(subpass, *pipeline);
   this->update_descriptor(subpass, *pipeline);
-  this->draw_canvas(subpass);
+  this->draw_data(subpass, *pipeline);
 
   //---------------------------
 }
@@ -77,21 +77,17 @@ void EDL::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline
 void EDL::update_descriptor(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  //Update parameters
   vk::postprocess::EDL& edl_struct = vk_struct->render.pipeline.edl;
   edl_struct.tex_width = vk_struct->window.dimension.x;
   edl_struct.tex_height = vk_struct->window.dimension.y;
   vk_uniform->update_uniform("EDL_param", pipeline.descriptor.descriptor_set, edl_struct);
 
-  //Bind descriptor set
-  vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, pipeline, pipeline.descriptor.descriptor_set);
-
   //---------------------------
 }
-void EDL::draw_canvas(vk::structure::Subpass& subpass){
+void EDL::draw_data(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
-
+  vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, pipeline, pipeline.descriptor.descriptor_set);
   vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, *vk_struct->core.data.canvas);
 
   //---------------------------
