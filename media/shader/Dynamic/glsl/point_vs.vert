@@ -34,7 +34,7 @@ void main(){
   gl_PointSize = point_size;
   frag_rgb = in_rgb;
 
-  debugPrintfEXT("[SHADER] %f", tex_depth_width);
+  debugPrintfEXT("[SHADER] %d", tex_depth_width);
 
 /*
   vec4 colorSample = texture(tex_color, vec2(0.5));
