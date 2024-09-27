@@ -24,7 +24,7 @@ Object::Object(vk::Structure* vk_struct){
 Object::~Object(){}
 
 //Main function
-void Object::update_object(std::shared_ptr<utl::base::Data> data, vk::structure::Object& object){
+void Object::update_object(vk::structure::Object& object){
   //---------------------------
 
   //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
@@ -81,11 +81,11 @@ void Object::clean_object(std::shared_ptr<vk::structure::Object> object){
 std::shared_ptr<vk::structure::Object> Object::retrieve_object(utl::base::Data& data){
   //---------------------------
 
-  auto it_object = vk_struct->core.data.map_object.find(data.UID);
-  if(it_object == vk_struct->core.data.map_object.end()) return nullptr;
+  auto it = vk_struct->core.data.map_object.find(data.UID);
+  if(it == vk_struct->core.data.map_object.end()) return nullptr;
 
   //---------------------------
-  return it_object->second;
+  return it->second;
 }
 
 }
