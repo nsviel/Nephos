@@ -1,4 +1,5 @@
 #version 450
+#extension GL_EXT_debug_printf : enable
 
 //Input
 layout(location = 4) in vec2 frag_uv;

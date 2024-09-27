@@ -11,7 +11,7 @@ vk::descriptor::structure::Descriptor uniform_edl(){
   //---------------------------
 
   vk::descriptor::structure::Descriptor descriptor;
-  descriptor.name = "EDL_param";
+  descriptor.name = "parameter";
   descriptor.size = sizeof(vk::postprocess::EDL);
   descriptor.binding = vk::uniform::PARAMETER;
   descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;

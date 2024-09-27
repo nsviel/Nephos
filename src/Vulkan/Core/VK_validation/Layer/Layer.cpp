@@ -31,10 +31,23 @@ void Layer::create_validation_messenger(){
   if(!vk_struct->core.validation.enable) return;
   //---------------------------
 
+  VkDebugUtilsMessengerCreateInfoEXT messenger_info{};
+  messenger_info.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
+  messenger_info.messageSeverity =
+    VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | \
+    VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | \
+    VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT | \
+    VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT;
+  messenger_info.messageType =
+    VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | \
+    VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
+  messenger_info.pfnUserCallback = vk::validation::Callback;
+  messenger_info.pNext = nullptr;
+
   auto func = (PFN_vkCreateDebugUtilsMessengerEXT) vkGetInstanceProcAddr(vk_struct->core.instance.handle, "vkCreateDebugUtilsMessengerEXT");
   if(func == nullptr) return;
 
-  VkResult result = func(vk_struct->core.instance.handle, &vk_struct->core.validation.messenger_info, nullptr, &vk_struct->core.validation.messenger);
+  VkResult result = func(vk_struct->core.instance.handle, &messenger_info, nullptr, &vk_struct->core.validation.messenger);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to set up debug messenger!");
   }
@@ -103,19 +116,20 @@ void Layer::create_feature_info(){
 bool Layer::check_validation_support(){
   //---------------------------
 
-  //Checks if all of the requested layers are available
+  //Get layer count
   uint32_t layer_count;
   vkEnumerateInstanceLayerProperties(&layer_count, nullptr);
 
+  //Get layer property
   std::vector<VkLayerProperties> layer_available(layer_count);
   vkEnumerateInstanceLayerProperties(&layer_count, layer_available.data());
 
-  //Check if all of the layers in validation_layers exist in the layer_available list
+  //Check if requested layer is available
   for(const char* layer_name : vk_struct->core.validation.vec_layer){
     bool layer_found = false;
 
     for(const auto& layer_properties : layer_available){
-      if(strcmp(layer_name, layer_properties.layer_name) == 0){
+      if(strcmp(layer_name, layer_properties.layerName) == 0){
         layer_found = true;
         break;
       }

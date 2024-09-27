@@ -75,7 +75,7 @@ void Point::update_uniform(vk::structure::Subpass& subpass, vk::structure::Objec
   vk_uniform->update_uniform("mvp", vk_object.descriptor_set, machin);
 
   //Topology width
-  vk_uniform->update_uniform("point_size", vk_object.descriptor_set, data.topology.width);
+  vk_uniform->update_uniform("width", vk_object.descriptor_set, data.topology.width);
 
   //Descriptor set
   vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);

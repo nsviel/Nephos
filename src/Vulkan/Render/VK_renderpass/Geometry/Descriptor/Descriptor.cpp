@@ -24,7 +24,7 @@ vk::descriptor::structure::Descriptor uniform_point_size(){
   //---------------------------
 
   vk::descriptor::structure::Descriptor descriptor;
-  descriptor.name = "point_size";
+  descriptor.name = "width";
   descriptor.size = sizeof(float);
   descriptor.binding = vk::uniform::TOPOLOGY_WIDTH;
   descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
@@ -37,7 +37,7 @@ vk::descriptor::structure::Descriptor uniform_dynamic(){
   //---------------------------
 
   vk::descriptor::structure::Descriptor descriptor;
-  descriptor.name = "DYN_param";
+  descriptor.name = "parameter";
   descriptor.size = sizeof(vk::geometry::Dynamic);
   descriptor.binding = vk::uniform::PARAMETER;
   descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;

@@ -78,21 +78,22 @@ void Point::update_uniform(vk::structure::Object& vk_object, vk::structure::Pipe
   vk_uniform->update_uniform("mvp", vk_object.descriptor_set, machin);
 
   //Topology width
-  vk_uniform->update_uniform("point_size", vk_object.descriptor_set, data.topology.width);
+  vk_uniform->update_uniform("width", vk_object.descriptor_set, data.topology.width);
 
   //Update parameters
-  vk::geometry::Dynamic dyn_struct;;
-  dyn_struct.tex_depth_width = vk_struct->window.dimension.x;
-  dyn_struct.tex_depth_height = vk_struct->window.dimension.y;
-  vk_uniform->update_uniform("DYN_param", pipeline.descriptor.descriptor_set, dyn_struct);
+  std::shared_ptr<vk::structure::Texture> texture_depth = vk_data->retrieve_vk_texture(vk_object, "Depth");
+  vk::geometry::Dynamic dyn_struct;
+  dyn_struct.tex_depth_width = texture_depth->image->width;
+  dyn_struct.tex_depth_height = texture_depth->image->height;
+  vk_uniform->update_uniform("parameter", vk_object.descriptor_set, dyn_struct);
 
   //---------------------------
 }
 void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass){
   //---------------------------
 
-  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_color = vk_sampler->query_sampler(pipeline.descriptor.descriptor_set, "tex_color");
-  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_depth = vk_sampler->query_sampler(pipeline.descriptor.descriptor_set, "tex_depth");
+  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_color = vk_sampler->query_sampler(vk_object.descriptor_set, "tex_color");
+  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_depth = vk_sampler->query_sampler(vk_object.descriptor_set, "tex_depth");
   if(!sampler_color || !sampler_depth) return;
 
   std::shared_ptr<vk::structure::Texture> texture_color = vk_data->retrieve_vk_texture(vk_object, "Color");
