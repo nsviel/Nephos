@@ -19,9 +19,9 @@ Instance::~Instance(){}
 //Main function
 void Instance::init(){
   //---------------------------
-
-  this->create_instance();
   vk_validation->create_validation_layer();
+  this->create_instance();
+
 
   //---------------------------
 }
