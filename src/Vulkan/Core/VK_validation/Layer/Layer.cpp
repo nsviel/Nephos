@@ -104,24 +104,24 @@ bool Layer::check_validation_support(){
   //---------------------------
 
   //Checks if all of the requested layers are available
-  uint32_t layerCount;
-  vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
+  uint32_t layer_count;
+  vkEnumerateInstanceLayerProperties(&layer_count, nullptr);
 
-  std::vector<VkLayerProperties> availableLayers(layerCount);
-  vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+  std::vector<VkLayerProperties> layer_available(layer_count);
+  vkEnumerateInstanceLayerProperties(&layer_count, layer_available.data());
 
-  //Check if all of the layers in validation_layers exist in the availableLayers list
-  for(const char* layerName : vk_struct->core.validation.vec_layer){
-    bool layerFound = false;
+  //Check if all of the layers in validation_layers exist in the layer_available list
+  for(const char* layer_name : vk_struct->core.validation.vec_layer){
+    bool layer_found = false;
 
-    for(const auto& layerProperties : availableLayers){
-      if(strcmp(layerName, layerProperties.layerName) == 0){
-        layerFound = true;
+    for(const auto& layer_properties : layer_available){
+      if(strcmp(layer_name, layer_properties.layer_name) == 0){
+        layer_found = true;
         break;
       }
     }
 
-    if(!layerFound){
+    if(!layer_found){
       return false;
     }
   }
