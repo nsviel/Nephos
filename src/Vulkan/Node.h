@@ -6,6 +6,7 @@ namespace utl{class Node;}
 namespace vk{class Structure;}
 namespace vk::core{class Node;}
 namespace vk::render{class Node;}
+namespace vk::compute{class Node;}
 namespace vk::window{class Node;}
 namespace vk::interface{class Data;}
 namespace vk::interface{class Window;}
@@ -36,6 +37,7 @@ private:
   //Core
   vk::Structure* vk_struct;
   vk::render::Node* vk_render;
+  vk::compute::Node* vk_compute;
   vk::core::Node* vk_core;
   vk::window::Node* vk_window;
 

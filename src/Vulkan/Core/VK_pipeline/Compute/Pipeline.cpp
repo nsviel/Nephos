@@ -22,12 +22,12 @@ Pipeline::~Pipeline(){}
 //Main function
 void Pipeline::create_pipeline(std::shared_ptr<vk::structure::Pipeline> pipeline){
   //---------------------------
-
+/*
   vk_descriptor->create_pipeline_descriptor(*pipeline);
   vk_component->create_pipeline_component(*pipeline);
 
   vk_struct->core.pipeline.map_compute[pipeline->info.name] = pipeline;
-
+*/
   //---------------------------
 }
 void Pipeline::clean_pipeline(){

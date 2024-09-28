@@ -3,6 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace vk{class Structure;}
+namespace vk::compute::dtc{class Pipeline;}
 
 
 namespace vk::compute{
@@ -21,7 +22,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-
+  vk::compute::dtc::Pipeline* vk_dtc;
 };
 
 }

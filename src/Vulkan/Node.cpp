@@ -14,6 +14,7 @@ Node::Node(bool* running){
   this->vk_struct = new vk::Structure(running);
   this->vk_core = new vk::core::Node(vk_struct);
   this->vk_render = new vk::render::Node(vk_struct);
+  this->vk_compute = new vk::compute::Node(vk_struct);
   this->vk_window = new vk::window::Node(vk_struct);
 
   //Interface
@@ -31,6 +32,7 @@ void Node::init(){
 
   vk_window->init();
   vk_render->init();
+  vk_compute->init();
   vk_core->init();
 
   //---------------------------

@@ -19,7 +19,7 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
 Pipeline::~Pipeline(){}
 
 //Main function
-void Pipeline::add_pipeline(vk::structure::Subpass& subpass){
+void Pipeline::create_pipeline(){
   std::shared_ptr<vk::structure::Pipeline> pipeline = std::make_shared<vk::structure::Pipeline>();
   //---------------------------
 

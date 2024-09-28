@@ -11,6 +11,7 @@ Node::Node(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
+  this->vk_dtc = new vk::compute::dtc::Pipeline(vk_struct);
 
   //---------------------------
 }
@@ -20,6 +21,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
+  vk_dtc->create_pipeline();
 
   //---------------------------
 }

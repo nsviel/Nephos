@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  void add_pipeline(vk::structure::Subpass& subpass);
+  void create_pipeline();
 
   //Subfunction
   void set_pipeline(vk::structure::Pipeline& pipeline);
