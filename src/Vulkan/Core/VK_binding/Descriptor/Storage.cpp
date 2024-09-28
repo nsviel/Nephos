@@ -1,4 +1,4 @@
-#include "Sampler.h"
+#include "Storage.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,17 +7,17 @@
 namespace vk::descriptor{
 
 //Constructor / Destructor
-Sampler::Sampler(vk::Structure* vk_struct){
+Storage::Storage(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
 
   //---------------------------
 }
-Sampler::~Sampler(){}
+Storage::~Storage(){}
 
 //Main function
-void Sampler::create_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor){
+void Storage::create_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor){
   //---------------------------
 
   std::shared_ptr<vk::descriptor::structure::Sampler> sampler = std::make_shared<vk::descriptor::structure::Sampler>();
@@ -28,7 +28,7 @@ void Sampler::create_sampler(vk::descriptor::structure::Descriptor_set& descript
 
   //---------------------------
 }
-void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set){
+void Storage::actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
   for(auto& [name, sampler] : descriptor_set.map_sampler){;
@@ -55,7 +55,7 @@ void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descr
 
   //---------------------------
 }
-void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Sampler& sampler, vk::structure::Image& image){
+void Storage::actualize_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Sampler& sampler, vk::structure::Image& image){
   //---------------------------
 
   VkDescriptorImageInfo image_info = {};
@@ -78,7 +78,7 @@ void Sampler::actualize_sampler(vk::descriptor::structure::Descriptor_set& descr
 }
 
 //Subfunction
-std::shared_ptr<vk::descriptor::structure::Sampler> Sampler::query_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, std::string name){
+std::shared_ptr<vk::descriptor::structure::Sampler> Storage::query_sampler(vk::descriptor::structure::Descriptor_set& descriptor_set, std::string name){
   //---------------------------
 
   auto it = descriptor_set.map_sampler.find(name);

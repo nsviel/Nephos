@@ -37,7 +37,7 @@ void Depth_to_cloud::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk::pipeline::structure::Info pipeline_info{};
-  pipeline_info.name = "dynamic_point";
+  pipeline_info.name = "depth_to_cloud";
   pipeline_info.topology = utl::topology::DYNAMIC_POINT;
   pipeline_info.vec_attribut.push_back(vk::attribut::XYZ);
   pipeline_info.vec_attribut.push_back(vk::attribut::RGBA);
@@ -51,12 +51,9 @@ void Depth_to_cloud::set_shader(vk::structure::Pipeline& pipeline){
 
   vk::shader::structure::Info shader_info{};
   shader_info.name = "dynamic_point";
-  shader_info.path_glsl.vs = "../shader/Dynamic/glsl/point_vs.vert";
-  shader_info.path_glsl.fs = "../shader/Dynamic/glsl/point_fs.frag";
-  shader_info.path_spir.vs = "../shader/Dynamic/spir/point_vs.spv";
-  shader_info.path_spir.fs = "../shader/Dynamic/spir/point_fs.spv";
+  shader_info.path_glsl.comp = "../shader/Dynamic/glsl/depth_to_cloud.comp";
+  shader_info.path_spir.comp = "../shader/Dynamic/spir/depth_to_cloud.comp.spv";
   shader_info.with_recompilation = true;
-  shader_info.with_depth_test = true;
 
   //---------------------------
   pipeline.shader.info = shader_info;
@@ -64,9 +61,6 @@ void Depth_to_cloud::set_shader(vk::structure::Pipeline& pipeline){
 void Depth_to_cloud::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::uniform_mvp());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::uniform_point_size());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::uniform_dynamic());
   pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::sampler_color());
   pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::sampler_depth());
 

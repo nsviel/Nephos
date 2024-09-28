@@ -1,19 +1,18 @@
 #pragma once
 
+#include <Vulkan/Core/VK_image/Structure/Image.h>
 #include <vulkan/vulkan.h>
+#include <memory>
 #include <string>
 
 
 namespace vk::descriptor::structure{
 
-struct Uniform{
+struct Storage{
   //---------------------------
 
   std::string name = "";
-  std::size_t size = 0;
-  VkDeviceMemory mem = VK_NULL_HANDLE;
-  VkBuffer buffer = VK_NULL_HANDLE;
-  void* mapped = nullptr;
+  std::shared_ptr<vk::structure::Image> image;
   int binding = 0;
 
   //---------------------------

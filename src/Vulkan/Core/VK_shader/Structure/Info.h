@@ -10,6 +10,7 @@ struct Path{
 
   std::string vs = "";
   std::string fs = "";
+  std::string comp = "";
 
   //---------------------------
 };

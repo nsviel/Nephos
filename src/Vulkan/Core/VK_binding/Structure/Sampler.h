@@ -11,9 +11,8 @@ namespace vk::descriptor::structure{
 struct Sampler{
   //---------------------------
 
-  VkDescriptorType type = VK_DESCRIPTOR_TYPE_SAMPLER;
-  std::shared_ptr<vk::structure::Image> image;
   std::string name = "";
+  std::shared_ptr<vk::structure::Image> image;
   int binding = 0;
 
   //---------------------------

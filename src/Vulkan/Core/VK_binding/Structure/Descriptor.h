@@ -9,10 +9,10 @@ namespace vk::descriptor::structure{
 struct Descriptor{
   //---------------------------
 
-  VkDescriptorType type;
-  VkShaderStageFlagBits stage;
   std::string name = "";
   std::size_t size = 0;
+  VkDescriptorType type;
+  VkShaderStageFlagBits stage;
   int binding = 0;
 
   //---------------------------
