@@ -44,12 +44,12 @@ void Component::clean_pipeline_component(vk::structure::Pipeline& pipeline){
 void Component::create_pipeline_handle(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  VkGraphicsPipelineCreateInfo pipeline_info{};
+  VkComputePipelineCreateInfo pipeline_info{};
   pipeline_info.sType = VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO;
-  pipeline_info.stage = pipeline.component.vec_shader_stage[0]; // Only one stage for compute pipeline
+  pipeline_info.stage = pipeline.component.vec_shader_stage[0];
   pipeline_info.layout = pipeline.layout;
 
-  VkResult result = vkCreateGraphicsPipelines(vk_struct->core.device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline.handle);
+  VkResult result = vkCreateComputePipelines(vk_struct->core.device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline.handle);
   if(result != VK_SUCCESS){
     std::cout<<"[error] failed to create compute pipeline"<<std::endl;
   }
