@@ -3,7 +3,7 @@
 namespace vk{class Structure;}
 
 namespace vk::geometry::pipeline::topology{class Triangle;}
-namespace vk::pipeline{class Pipeline;}
+namespace vk::render{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
@@ -41,7 +41,7 @@ private:
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::descriptor::Uniform* vk_uniform;
   vk::data::Vertex* vk_drawer;
-  vk::pipeline::Pipeline* vk_pipeline;
+  vk::render::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
 };
 

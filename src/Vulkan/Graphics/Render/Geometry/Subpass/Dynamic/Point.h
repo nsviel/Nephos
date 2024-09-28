@@ -2,7 +2,7 @@
 
 namespace vk{class Structure;}
 namespace vk::geometry::pipeline::dynamic{class Point;}
-namespace vk::pipeline{class Pipeline;}
+namespace vk::render{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::descriptor{class Sampler;}
 namespace vk::descriptor{class Descriptor_set;}
@@ -43,7 +43,7 @@ private:
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::descriptor::Uniform* vk_uniform;
   vk::data::Vertex* vk_drawer;
-  vk::pipeline::Pipeline* vk_pipeline;
+  vk::render::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
   vk::descriptor::Sampler* vk_sampler;
   vk::data::Function* vk_data;

@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk{class Structure;}
-namespace vk::pipeline{class Pipeline;}
+namespace vk::render{class Pipeline;}
 namespace vk::renderpass{class Framebuffer;}
 namespace vk::renderpass{class Subpass;}
 namespace vk::renderpass{class Attachment;}
@@ -31,7 +31,7 @@ public:
   
 private:
   vk::Structure* vk_struct;
-  vk::pipeline::Pipeline* vk_pipeline;
+  vk::render::Pipeline* vk_pipeline;
   vk::renderpass::Subpass* vk_subpass;
   vk::renderpass::Framebuffer* vk_framebuffer;
   vk::renderpass::Attachment* vk_attachment;

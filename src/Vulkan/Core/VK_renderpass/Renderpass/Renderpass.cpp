@@ -10,7 +10,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
+  this->vk_pipeline = new vk::render::Pipeline(vk_struct);
   this->vk_subpass = new Subpass(vk_struct);
   this->vk_framebuffer = new vk::renderpass::Framebuffer(vk_struct);
   this->vk_attachment = new Attachment(vk_struct);

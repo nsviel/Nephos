@@ -10,7 +10,7 @@ namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
 
 
-namespace vk::pipeline{
+namespace vk::render{
 
 class Component
 {
