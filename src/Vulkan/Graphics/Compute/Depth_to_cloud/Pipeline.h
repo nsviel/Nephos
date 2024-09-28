@@ -2,12 +2,12 @@
 
 namespace vk{class Structure;}
 namespace vk::descriptor{class Uniform;}
-namespace vk::render{class Pipeline;}
+namespace vk::compute{class Pipeline;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 
 
-namespace vk::geometry::pipeline::dynamic{
+namespace vk::compute::dtc{
 
 class Pipeline
 {
@@ -28,7 +28,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::descriptor::Uniform* vk_uniform;
-  vk::render::Pipeline* vk_pipeline;
+  vk::compute::Pipeline* vk_pipeline;
 };
 
 }

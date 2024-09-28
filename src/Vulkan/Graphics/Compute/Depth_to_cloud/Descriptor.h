@@ -6,15 +6,9 @@
 namespace vk::structure{class Descriptor;}
 
 
-namespace vk::compute{
-
-//Uniform
-vk::structure::Descriptor uniform_mvp();
-vk::structure::Descriptor uniform_point_size();
-vk::structure::Descriptor uniform_dynamic();
+namespace vk::compute::dtc{
 
 //Sampler
-vk::structure::Descriptor sampler_color();
 vk::structure::Descriptor sampler_depth();
 
 }
