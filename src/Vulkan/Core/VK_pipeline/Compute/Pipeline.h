@@ -4,11 +4,9 @@
 #include <memory>
 
 namespace vk{class Structure;}
-namespace vk::draw{class Viewport;}
 namespace vk::synchro{class Synchro;}
 namespace vk::compute{class Component;}
 namespace vk::pipeline{class Descriptor;}
-namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Subpass;}
 
@@ -24,9 +22,9 @@ public:
 
 public:
   //Main function
-  void create_pipeline(vk::structure::Renderpass& renderpass);
-  void clean_pipeline(vk::structure::Renderpass& renderpass);
-  void recreate_pipeline(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline);
+  void create_pipeline(std::shared_ptr<vk::structure::Pipeline> pipeline);
+  void clean_pipeline();
+  void recreate_pipeline(vk::structure::Pipeline& pipeline);
 
   //Subfunction
   void cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline);

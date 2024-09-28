@@ -20,31 +20,27 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
 Pipeline::~Pipeline(){}
 
 //Main function
-void Pipeline::create_pipeline(vk::structure::Renderpass& renderpass){
+void Pipeline::create_pipeline(std::shared_ptr<vk::structure::Pipeline> pipeline){
   //---------------------------
 
-  for(auto& subpass : renderpass.vec_subpass){
-    for(auto& [name, pipeline] : subpass->map_pipeline){
-      vk_descriptor->create_pipeline_descriptor(*pipeline);
-      vk_component->create_pipeline_component(*pipeline);
-    }
+  vk_descriptor->create_pipeline_descriptor(*pipeline);
+  vk_component->create_pipeline_component(*pipeline);
+
+  vk_struct->core.pipeline.map_compute[pipeline->info.name] = pipeline;
+
+  //---------------------------
+}
+void Pipeline::clean_pipeline(){
+  //---------------------------
+
+  for(auto& [name, pipeline] : vk_struct->core.pipeline.map_topology){
+    vk_component->clean_pipeline_component(*pipeline);
+    vk_descriptor->clean_pipeline_descriptor(*pipeline);
   }
 
   //---------------------------
 }
-void Pipeline::clean_pipeline(vk::structure::Renderpass& renderpass){
-  //---------------------------
-
-  for(auto& subpass : renderpass.vec_subpass){
-    for(auto& [name, pipeline] : subpass->map_pipeline){
-      vk_component->clean_pipeline_component(*pipeline);
-      vk_descriptor->clean_pipeline_descriptor(*pipeline);
-    }
-  }
-
-  //---------------------------
-}
-void Pipeline::recreate_pipeline(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
+void Pipeline::recreate_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk_synchro->wait_idle_and_pause();

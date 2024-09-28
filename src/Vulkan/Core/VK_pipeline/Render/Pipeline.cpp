@@ -63,7 +63,7 @@ void Pipeline::add_pipeline_topology(vk::structure::Subpass& subpass, std::share
   subpass.map_pipeline[pipeline->info.name] = pipeline;
 
   //Whole program pipeline map
-  vk_struct->core.pipeline.map[pipeline->info.topology] = pipeline;
+  vk_struct->core.pipeline.map_topology[pipeline->info.topology] = pipeline;
 
   //---------------------------
 }
