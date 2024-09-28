@@ -18,7 +18,7 @@ Uniform::Uniform(vk::Structure* vk_struct){
 Uniform::~Uniform(){}
 
 //Uniform creation
-void Uniform::create_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor){
+void Uniform::create_uniform(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor){
   //---------------------------
 
   std::shared_ptr<vk::descriptor::structure::Uniform> uniform = std::make_shared<vk::descriptor::structure::Uniform>();
@@ -37,7 +37,7 @@ void Uniform::create_uniform(vk::descriptor::structure::Descriptor_set& descript
 
   //---------------------------
 }
-void Uniform::actualize_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set){
+void Uniform::actualize_uniform(vk::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
   for(auto& [name, uniform] : descriptor_set.map_uniform){
@@ -62,7 +62,7 @@ void Uniform::actualize_uniform(vk::descriptor::structure::Descriptor_set& descr
 
   //---------------------------
 }
-void Uniform::clean_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set){
+void Uniform::clean_uniform(vk::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
   for(auto& [name, uniform] : descriptor_set.map_uniform){

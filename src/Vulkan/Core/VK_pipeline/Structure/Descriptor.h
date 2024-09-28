@@ -9,7 +9,7 @@ namespace vk::pipeline::structure{
 struct Descriptor{
   //---------------------------
 
-  vk::descriptor::structure::Descriptor_set descriptor_set;
+  vk::structure::Descriptor_set descriptor_set;
   vk::descriptor::structure::Layout layout;
 
   //---------------------------

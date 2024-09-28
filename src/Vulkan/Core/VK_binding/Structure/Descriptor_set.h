@@ -9,13 +9,13 @@
 #include <vector>
 
 
-namespace vk::descriptor::structure{
+namespace vk::structure{
 
 struct Descriptor_set{
   //---------------------------
 
   VkDescriptorSet handle = VK_NULL_HANDLE;
-  
+
   //Associated descriptor
   std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Pushconst>> map_pushcst;
   std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Uniform>> map_uniform;

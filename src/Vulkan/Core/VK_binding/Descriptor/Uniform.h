@@ -9,7 +9,7 @@
 namespace vk::memory{class Allocator;}
 namespace vk{class Structure;}
 namespace vk::descriptor::structure{class Descriptor;}
-namespace vk::descriptor::structure{class Descriptor_set;}
+namespace vk::structure{class Descriptor_set;}
 namespace vk::descriptor::structure{class Layout;}
 namespace vk::descriptor::structure{class Uniform;}
 
@@ -25,13 +25,13 @@ public:
 
 public:
   //Main function
-  void create_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor);
-  void actualize_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set);
-  void clean_uniform(vk::descriptor::structure::Descriptor_set& descriptor_set);
+  void create_uniform(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor);
+  void actualize_uniform(vk::structure::Descriptor_set& descriptor_set);
+  void clean_uniform(vk::structure::Descriptor_set& descriptor_set);
 
   //Subfunction
   template <typename T>
-  void update_uniform(std::string name, vk::descriptor::structure::Descriptor_set& descriptor_set, T value){
+  void update_uniform(std::string name, vk::structure::Descriptor_set& descriptor_set, T value){
     //---------------------------
 
     //Retrieve uniform to update

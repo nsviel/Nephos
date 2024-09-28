@@ -6,7 +6,7 @@
 namespace vk{class Structure;}
 namespace vk::descriptor{class Uniform;}
 namespace vk::descriptor{class Sampler;}
-namespace vk::descriptor::structure{class Descriptor_set;}
+namespace vk::structure{class Descriptor_set;}
 namespace vk::descriptor::structure{class Layout;}
 namespace vk::structure{class Pipeline;}
 
@@ -22,15 +22,15 @@ public:
 
 public:
   //Main function
-  void allocate_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
-  void clean_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set);
+  void allocate_descriptor_set(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
+  void clean_descriptor_set(vk::structure::Descriptor_set& descriptor_set);
 
   //Subfunction
-  void allocate_handle(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
-  void free_handle(vk::descriptor::structure::Descriptor_set& descriptor_set);
-  void create_descriptor(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
-  void update_descriptor_set(vk::descriptor::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
-  void bind_descriptor_set(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline, vk::descriptor::structure::Descriptor_set& descriptor_set);
+  void allocate_handle(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
+  void free_handle(vk::structure::Descriptor_set& descriptor_set);
+  void create_descriptor(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
+  void update_descriptor_set(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout);
+  void bind_descriptor_set(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline, vk::structure::Descriptor_set& descriptor_set);
 
 private:
   vk::Structure* vk_struct;

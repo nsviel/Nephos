@@ -37,7 +37,7 @@ struct Object{
   //Vulkan stuff
   int UID = 0;
   VkCommandBuffer command_buffer_secondary = VK_NULL_HANDLE;
-  vk::descriptor::structure::Descriptor_set descriptor_set;
+  vk::structure::Descriptor_set descriptor_set;
 
   //Data
   std::shared_ptr<utl::base::Data> data = std::make_shared<utl::base::Data>();
