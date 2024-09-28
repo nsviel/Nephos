@@ -54,8 +54,8 @@ void EDL::update_sampler(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   //---------------------------
 
-  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_color = vk_sampler->query_sampler(pipeline->descriptor.descriptor_set, "tex_color");
-  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_depth = vk_sampler->query_sampler(pipeline->descriptor.descriptor_set, "tex_depth");
+  std::shared_ptr<vk::structure::Sampler> sampler_color = vk_sampler->query_sampler(pipeline->descriptor.descriptor_set, "tex_color");
+  std::shared_ptr<vk::structure::Sampler> sampler_depth = vk_sampler->query_sampler(pipeline->descriptor.descriptor_set, "tex_depth");
 
   vk::structure::Framebuffer& framebuffer = vk_struct->render.renderpass.geometry.framebuffer;
   sampler_color->image = std::make_shared<vk::structure::Image>(framebuffer.color);

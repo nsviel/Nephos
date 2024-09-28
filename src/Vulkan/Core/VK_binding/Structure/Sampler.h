@@ -6,7 +6,7 @@
 #include <string>
 
 
-namespace vk::descriptor::structure{
+namespace vk::structure{
 
 struct Sampler{
   //---------------------------

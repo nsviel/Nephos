@@ -11,7 +11,7 @@ namespace vk::memory{class Allocator;}
 namespace vk::structure{class Descriptor;}
 namespace vk::structure{class Descriptor_set;}
 namespace vk::structure{class Layout;}
-namespace vk::descriptor::structure{class Uniform;}
+namespace vk::structure{class Uniform;}
 
 
 namespace vk::descriptor{

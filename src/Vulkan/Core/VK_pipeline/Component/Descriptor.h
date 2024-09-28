@@ -8,7 +8,6 @@ namespace vk::descriptor{class Uniform;}
 namespace vk::descriptor{class Sampler;}
 namespace vk::descriptor{class Layout;}
 namespace vk::descriptor{class Descriptor_set;}
-namespace vk::descriptor::structure{class Binding;}
 namespace vk::structure{class Pipeline;}
 
 

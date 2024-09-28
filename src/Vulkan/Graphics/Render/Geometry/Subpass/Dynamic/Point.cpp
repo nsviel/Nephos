@@ -92,8 +92,8 @@ void Point::update_uniform(vk::structure::Object& vk_object, vk::structure::Pipe
 void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass){
   //---------------------------
 
-  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_color = vk_sampler->query_sampler(vk_object.descriptor_set, "tex_color");
-  std::shared_ptr<vk::descriptor::structure::Sampler> sampler_depth = vk_sampler->query_sampler(vk_object.descriptor_set, "tex_depth");
+  std::shared_ptr<vk::structure::Sampler> sampler_color = vk_sampler->query_sampler(vk_object.descriptor_set, "tex_color");
+  std::shared_ptr<vk::structure::Sampler> sampler_depth = vk_sampler->query_sampler(vk_object.descriptor_set, "tex_depth");
   if(!sampler_color || !sampler_depth) return;
 
   std::shared_ptr<vk::structure::Texture> texture_color = vk_data->retrieve_vk_texture(vk_object, "Color");

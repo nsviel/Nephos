@@ -21,7 +21,7 @@ Uniform::~Uniform(){}
 void Uniform::create_uniform(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
   //---------------------------
 
-  std::shared_ptr<vk::descriptor::structure::Uniform> uniform = std::make_shared<vk::descriptor::structure::Uniform>();
+  std::shared_ptr<vk::structure::Uniform> uniform = std::make_shared<vk::structure::Uniform>();
   uniform->name = descriptor.name;
   uniform->binding = descriptor.binding;
   uniform->size = descriptor.size;

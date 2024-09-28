@@ -20,7 +20,7 @@ Sampler::~Sampler(){}
 void Sampler::create_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
   //---------------------------
 
-  std::shared_ptr<vk::descriptor::structure::Sampler> sampler = std::make_shared<vk::descriptor::structure::Sampler>();
+  std::shared_ptr<vk::structure::Sampler> sampler = std::make_shared<vk::structure::Sampler>();
   sampler->name = descriptor.name;
   sampler->binding = descriptor.binding;
 
@@ -55,7 +55,7 @@ void Sampler::actualize_sampler(vk::structure::Descriptor_set& descriptor_set){
 
   //---------------------------
 }
-void Sampler::actualize_sampler(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Sampler& sampler, vk::structure::Image& image){
+void Sampler::actualize_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Sampler& sampler, vk::structure::Image& image){
   //---------------------------
 
   VkDescriptorImageInfo image_info = {};
@@ -78,7 +78,7 @@ void Sampler::actualize_sampler(vk::structure::Descriptor_set& descriptor_set, v
 }
 
 //Subfunction
-std::shared_ptr<vk::descriptor::structure::Sampler> Sampler::query_sampler(vk::structure::Descriptor_set& descriptor_set, std::string name){
+std::shared_ptr<vk::structure::Sampler> Sampler::query_sampler(vk::structure::Descriptor_set& descriptor_set, std::string name){
   //---------------------------
 
   auto it = descriptor_set.map_sampler.find(name);

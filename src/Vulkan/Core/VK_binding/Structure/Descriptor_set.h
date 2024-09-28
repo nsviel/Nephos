@@ -17,9 +17,9 @@ struct Descriptor_set{
   VkDescriptorSet handle = VK_NULL_HANDLE;
 
   //Associated descriptor
-  std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Pushconst>> map_pushcst;
-  std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Uniform>> map_uniform;
-  std::unordered_map<std::string, std::shared_ptr<vk::descriptor::structure::Sampler>> map_sampler;
+  std::unordered_map<std::string, std::shared_ptr<vk::structure::Pushconst>> map_pushcst;
+  std::unordered_map<std::string, std::shared_ptr<vk::structure::Uniform>> map_uniform;
+  std::unordered_map<std::string, std::shared_ptr<vk::structure::Sampler>> map_sampler;
 
   //---------------------------
 };

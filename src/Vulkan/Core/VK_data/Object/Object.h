@@ -10,7 +10,6 @@ namespace vk::instance{class UID;}
 namespace vk::synchro{class Synchro;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
-namespace vk::descriptor::structure{class Binding;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Pipeline;}
 namespace utl::base{class Data;}
