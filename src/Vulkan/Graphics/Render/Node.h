@@ -3,8 +3,9 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace vk{class Structure;}
-namespace vk::draw{class Graphical;}
-namespace vk::render{class Render;}
+namespace vk::postprocess{class Renderpass;}
+namespace vk::geometry{class Renderpass;}
+namespace vk::present{class Renderpass;}
 
 
 namespace vk::render{
@@ -23,8 +24,9 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::draw::Graphical* vk_drawer;
-  vk::render::Render* vk_render;
+  vk::geometry::Renderpass* rp_scene;
+  vk::postprocess::Renderpass* rp_edl;
+  vk::present::Renderpass* rp_gui;
 };
 
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/Core/Structure.h>
-#include <Vulkan/Graphics/Render/Structure.h>
+#include <Vulkan/Graphics/Render/Structure/Structure.h>
 #include <Vulkan/Window/VK_window/Structure/Window.h>
 #include <Vulkan/Interface/Structure.h>
 

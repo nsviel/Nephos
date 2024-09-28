@@ -11,8 +11,9 @@ Node::Node(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_drawer = new vk::draw::Graphical(vk_struct);
-  this->vk_render = new vk::render::Render(vk_struct);
+  this->rp_scene = new vk::geometry::Renderpass(vk_struct);
+  this->rp_edl = new vk::postprocess::Renderpass(vk_struct);
+  this->rp_gui = new vk::present::Renderpass(vk_struct);
 
   //---------------------------
 }
@@ -22,14 +23,16 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  vk_render->init();
+  rp_scene->init();
+  rp_edl->init();
+  rp_gui->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  vk_render->loop();
+  vk_struct->core.queue.presentation->make_rendering();
 
   //---------------------------
 }

@@ -31,7 +31,7 @@ void Render::init(){
 void Render::loop(){
   //---------------------------
 
-  vk_struct->core.queue.presentation->make_rendering();
+
 
   //---------------------------
 }
