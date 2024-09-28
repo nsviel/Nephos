@@ -1,4 +1,4 @@
-#include "Depth_to_cloud.h"
+#include "Pipeline.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::geometry::pipeline::dynamic{
 
 //Constructor / Destructor
-Depth_to_cloud::Depth_to_cloud(vk::Structure* vk_struct){
+Pipeline::Pipeline(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -16,10 +16,10 @@ Depth_to_cloud::Depth_to_cloud(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Depth_to_cloud::~Depth_to_cloud(){}
+Pipeline::~Pipeline(){}
 
 //Main function
-void Depth_to_cloud::add_pipeline(vk::structure::Subpass& subpass){
+void Pipeline::add_pipeline(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = std::make_shared<vk::structure::Pipeline>();
   pipeline->subpass_ID = subpass.index;
   //---------------------------
@@ -33,7 +33,7 @@ void Depth_to_cloud::add_pipeline(vk::structure::Subpass& subpass){
 }
 
 //Subfunction
-void Depth_to_cloud::set_pipeline(vk::structure::Pipeline& pipeline){
+void Pipeline::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk::pipeline::structure::Info pipeline_info{};
@@ -46,7 +46,7 @@ void Depth_to_cloud::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
   pipeline.info = pipeline_info;
 }
-void Depth_to_cloud::set_shader(vk::structure::Pipeline& pipeline){
+void Pipeline::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk::shader::structure::Info shader_info{};
@@ -58,7 +58,7 @@ void Depth_to_cloud::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
   pipeline.shader.info = shader_info;
 }
-void Depth_to_cloud::set_binding(vk::structure::Pipeline& pipeline){
+void Pipeline::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::sampler_color());

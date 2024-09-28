@@ -9,12 +9,12 @@ namespace vk::structure{class Pipeline;}
 
 namespace vk::geometry::pipeline::dynamic{
 
-class Depth_to_cloud
+class Pipeline
 {
 public:
   //Constructor / Destructor
-  Depth_to_cloud(vk::Structure* vk_struct);
-  ~Depth_to_cloud();
+  Pipeline(vk::Structure* vk_struct);
+  ~Pipeline();
 
 public:
   //Main function
