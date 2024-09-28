@@ -86,7 +86,7 @@ void Point::update_uniform(vk::structure::Object& vk_object, vk::structure::Pipe
   dyn_struct.tex_depth_width = texture_depth->image->width;
   dyn_struct.tex_depth_height = texture_depth->image->height;
   vk_uniform->update_uniform("parameter", vk_object.descriptor_set, dyn_struct);
-say(texture_depth->image->width);
+
   //---------------------------
 }
 void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass){

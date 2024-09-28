@@ -1,0 +1,49 @@
+#version 450
+
+//Sampler
+layout(location=1, r16ui) readonly uniform uimage2D tex_depth;
+layout(location=2, rg32f) readonly uniform image2D xy_table;
+
+//Ouput
+layout(location=0, rgba32f) writeonly uniform image2D tex_pc;
+
+//Workgroup
+layout(local_size_x = 1, local_size_y = 1) in;
+
+
+void main(){
+  //---------------------------
+
+  // Retrieve the pixel coordinates for the current invocation.
+  ivec2 pixel = ivec2(gl_GlobalInvocationID.xy);
+
+  // Load the depth value from the depth texture at the given pixel location.
+  float vertex_value = float(imageLoad(tex_depth, pixel));
+
+  // Load the corresponding XY table value, which provides the X and Y coordinates in 3D space.
+  vec2 xy_value = imageLoad(xy_table, pixel).xy;
+
+  // Initialize alpha for transparency; default to fully opaque.
+  float alpha = 1.0f;
+
+  // Compute the vertex position in 3D space using the depth value and XY table coordinates.
+  vec3 vertex_position = vec3(vertex_value * xy_value.x, vertex_value * xy_value.y, vertex_value);
+
+  // Check for invalid pixels (where XY table values are set to zero).
+  // If the XY values are zero, mark the vertex as transparent and set the vertex value to zero.
+  if (xy_value.x == 0.0f && xy_value.y == 0.0f) {
+    alpha = 0.0f; // Set alpha to zero for transparency.
+    vertex_value = 0.0f; // Set vertex value to zero to ignore this pixel.
+  }
+
+  // Convert vertex positions from millimeters to meters for consistency.
+  vertex_position /= 1000.0f;
+
+  // Flip the X coordinate to match the coordinate conventions between OpenGL and K4A.
+  vertex_position.x *= -1;
+
+  // Store the computed vertex position and alpha value in the point cloud texture.
+  imageStore(tex_pc, pixel, vec4(vertex_position, alpha));
+
+  //---------------------------
+}
