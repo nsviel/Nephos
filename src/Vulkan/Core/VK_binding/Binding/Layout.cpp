@@ -17,7 +17,7 @@ Layout::Layout(vk::Structure* vk_struct){
 Layout::~Layout(){}
 
 //Main function
-void Layout::create_layout(vk::descriptor::structure::Layout& layout){
+void Layout::create_layout(vk::structure::Layout& layout){
   //---------------------------
 
   this->make_required_binding(layout);
@@ -25,7 +25,7 @@ void Layout::create_layout(vk::descriptor::structure::Layout& layout){
 
   //---------------------------
 }
-void Layout::clean_layout(vk::descriptor::structure::Layout& layout){
+void Layout::clean_layout(vk::structure::Layout& layout){
   //---------------------------
 
   vkDestroyDescriptorSetLayout(vk_struct->core.device.handle, layout.handle, nullptr);
@@ -34,7 +34,7 @@ void Layout::clean_layout(vk::descriptor::structure::Layout& layout){
 }
 
 //Subfunction
-void Layout::make_required_binding(vk::descriptor::structure::Layout& layout){
+void Layout::make_required_binding(vk::structure::Layout& layout){
   layout.vec_binding.clear();
   //---------------------------
 
@@ -52,7 +52,7 @@ void Layout::make_required_binding(vk::descriptor::structure::Layout& layout){
 
   //---------------------------
 }
-void Layout::create_layout_object(vk::descriptor::structure::Layout& layout){
+void Layout::create_layout_object(vk::structure::Layout& layout){
   //---------------------------
 
   //Combination and info

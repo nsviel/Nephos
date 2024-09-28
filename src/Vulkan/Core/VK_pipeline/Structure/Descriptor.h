@@ -10,7 +10,7 @@ struct Descriptor{
   //---------------------------
 
   vk::structure::Descriptor_set descriptor_set;
-  vk::descriptor::structure::Layout layout;
+  vk::structure::Layout layout;
 
   //---------------------------
 };

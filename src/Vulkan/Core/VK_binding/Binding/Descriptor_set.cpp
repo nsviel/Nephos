@@ -19,7 +19,7 @@ Descriptor_set::Descriptor_set(vk::Structure* vk_struct){
 Descriptor_set::~Descriptor_set(){}
 
 //Main function
-void Descriptor_set::allocate_descriptor_set(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
+void Descriptor_set::allocate_descriptor_set(vk::structure::Descriptor_set& descriptor_set, vk::structure::Layout& layout){
   //---------------------------
 
   this->allocate_handle(descriptor_set, layout);
@@ -38,7 +38,7 @@ void Descriptor_set::clean_descriptor_set(vk::structure::Descriptor_set& descrip
 }
 
 //Subfunction
-void Descriptor_set::allocate_handle(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
+void Descriptor_set::allocate_handle(vk::structure::Descriptor_set& descriptor_set, vk::structure::Layout& layout){
   //---------------------------
 
   VkDescriptorSetAllocateInfo allocation_info{};
@@ -61,7 +61,7 @@ void Descriptor_set::free_handle(vk::structure::Descriptor_set& descriptor_set){
 
   //---------------------------
 }
-void Descriptor_set::create_descriptor(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
+void Descriptor_set::create_descriptor(vk::structure::Descriptor_set& descriptor_set, vk::structure::Layout& layout){
   //---------------------------
 
   for(auto& descriptor : layout.vec_descriptor){
@@ -81,7 +81,7 @@ void Descriptor_set::create_descriptor(vk::structure::Descriptor_set& descriptor
 
   //---------------------------
 }
-void Descriptor_set::update_descriptor_set(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Layout& layout){
+void Descriptor_set::update_descriptor_set(vk::structure::Descriptor_set& descriptor_set, vk::structure::Layout& layout){
   //---------------------------
 
   vk_uniform->actualize_uniform(descriptor_set);

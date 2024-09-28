@@ -6,7 +6,7 @@
 #include <vector>
 
 
-namespace vk::descriptor::structure{
+namespace vk::structure{
 
 struct Layout{
   //---------------------------
@@ -16,7 +16,7 @@ struct Layout{
   std::vector<VkDescriptorSetLayoutBinding> vec_binding;
 
   //Binding elements
-  std::vector<vk::descriptor::structure::Descriptor> vec_descriptor;
+  std::vector<vk::structure::Descriptor> vec_descriptor;
 
   //---------------------------
 };

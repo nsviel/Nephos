@@ -7,10 +7,10 @@
 namespace vk::postprocess{
 
 //Uniform
-vk::descriptor::structure::Descriptor uniform_edl(){
+vk::structure::Descriptor uniform_edl(){
   //---------------------------
 
-  vk::descriptor::structure::Descriptor descriptor;
+  vk::structure::Descriptor descriptor;
   descriptor.name = "parameter";
   descriptor.size = sizeof(vk::postprocess::EDL);
   descriptor.binding = vk::uniform::PARAMETER;
@@ -22,10 +22,10 @@ vk::descriptor::structure::Descriptor uniform_edl(){
 }
 
 //Sampler
-vk::descriptor::structure::Descriptor sampler_color(){
+vk::structure::Descriptor sampler_color(){
   //---------------------------
 
-  vk::descriptor::structure::Descriptor descriptor;
+  vk::structure::Descriptor descriptor;
   descriptor.name = "tex_color";
   descriptor.binding = vk::sampler::COLOR;
   descriptor.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
@@ -34,10 +34,10 @@ vk::descriptor::structure::Descriptor sampler_color(){
   //---------------------------
   return descriptor;
 }
-vk::descriptor::structure::Descriptor sampler_depth(){
+vk::structure::Descriptor sampler_depth(){
   //---------------------------
 
-  vk::descriptor::structure::Descriptor descriptor;
+  vk::structure::Descriptor descriptor;
   descriptor.name = "tex_depth";
   descriptor.binding = vk::sampler::DEPTH;
   descriptor.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;

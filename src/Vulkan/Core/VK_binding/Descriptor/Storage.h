@@ -5,9 +5,9 @@
 #include <string>
 
 namespace vk{class Structure;}
-namespace vk::descriptor::structure{class Descriptor;}
+namespace vk::structure{class Descriptor;}
 namespace vk::descriptor::structure{class Binding;}
-namespace vk::descriptor::structure{class Layout;}
+namespace vk::structure{class Layout;}
 namespace vk::descriptor::structure{class Sampler;}
 namespace vk::structure{class Descriptor_set;}
 namespace vk::structure{class Image;}
@@ -24,7 +24,7 @@ public:
 
 public:
   //Main function
-  void create_sampler(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor);
+  void create_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor);
   void actualize_sampler(vk::structure::Descriptor_set& descriptor_set);
   void actualize_sampler(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Sampler& sampler, vk::structure::Image& image);
 

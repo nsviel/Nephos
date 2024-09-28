@@ -17,7 +17,7 @@ Storage::Storage(vk::Structure* vk_struct){
 Storage::~Storage(){}
 
 //Main function
-void Storage::create_sampler(vk::structure::Descriptor_set& descriptor_set, vk::descriptor::structure::Descriptor& descriptor){
+void Storage::create_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
   //---------------------------
 
   std::shared_ptr<vk::descriptor::structure::Sampler> sampler = std::make_shared<vk::descriptor::structure::Sampler>();
