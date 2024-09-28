@@ -29,7 +29,6 @@ public:
   void recreate_pipeline(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline);
 
   //Subfunction
-  void add_pipeline_topology(vk::structure::Subpass& subpass, std::shared_ptr<vk::structure::Pipeline>);
   void cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline);
 
 private:
