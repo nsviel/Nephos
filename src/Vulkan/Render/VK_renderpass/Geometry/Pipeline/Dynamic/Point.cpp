@@ -51,10 +51,10 @@ void Point::set_shader(vk::structure::Pipeline& pipeline){
 
   vk::shader::structure::Info shader_info{};
   shader_info.name = "dynamic_point";
-  shader_info.path_glsl.vs = "../media/shader/Dynamic/glsl/point_vs.vert";
-  shader_info.path_glsl.fs = "../media/shader/Dynamic/glsl/point_fs.frag";
-  shader_info.path_spir.vs = "../media/shader/Dynamic/spir/point_vs.spv";
-  shader_info.path_spir.fs = "../media/shader/Dynamic/spir/point_fs.spv";
+  shader_info.path_glsl.vs = "../shader/Dynamic/glsl/point_vs.vert";
+  shader_info.path_glsl.fs = "../shader/Dynamic/glsl/point_fs.frag";
+  shader_info.path_spir.vs = "../shader/Dynamic/spir/point_vs.spv";
+  shader_info.path_spir.fs = "../shader/Dynamic/spir/point_fs.spv";
   shader_info.with_recompilation = true;
   shader_info.with_depth_test = true;
 
