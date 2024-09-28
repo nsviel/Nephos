@@ -20,33 +20,33 @@ Storage::~Storage(){}
 void Storage::create_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
   //---------------------------
 
-  std::shared_ptr<vk::structure::Sampler> sampler = std::make_shared<vk::structure::Sampler>();
-  sampler->name = descriptor.name;
-  sampler->binding = descriptor.binding;
+  std::shared_ptr<vk::structure::Storage> storage = std::make_shared<vk::structure::Storage>();
+  storage->name = descriptor.name;
+  storage->binding = descriptor.binding;
 
-  descriptor_set.map_sampler[descriptor.name] = std::move(sampler);
+  descriptor_set.map_storage[descriptor.name] = std::move(storage);
 
   //---------------------------
 }
 void Storage::actualize_sampler(vk::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
-  for(auto& [name, sampler] : descriptor_set.map_sampler){;
-    if(!sampler->image) continue;
+  for(auto& [name, storage] : descriptor_set.map_storage){;
+    if(!storage->image) continue;
 
     //Descriptor image info
     VkDescriptorImageInfo image_info = {};
-    image_info.imageLayout = sampler->image->layout;
-    image_info.imageView = sampler->image->view;
-    image_info.sampler = sampler->image->sampler;
+    image_info.imageLayout = storage->image->layout;
+    image_info.imageView = storage->image->view;
+    image_info.sampler = storage->image->sampler;
 
     //Write descriptor info
     VkWriteDescriptorSet write_sampler = {};
     write_sampler.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
     write_sampler.dstSet = descriptor_set.handle;
-    write_sampler.dstBinding = sampler->binding;
+    write_sampler.dstBinding = storage->binding;
     write_sampler.dstArrayElement = 0;
-    write_sampler.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+    write_sampler.descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
     write_sampler.descriptorCount = 1;
     write_sampler.pImageInfo = &image_info;
 
@@ -55,7 +55,7 @@ void Storage::actualize_sampler(vk::structure::Descriptor_set& descriptor_set){
 
   //---------------------------
 }
-void Storage::actualize_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Sampler& sampler, vk::structure::Image& image){
+void Storage::actualize_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Storage& storage, vk::structure::Image& image){
   //---------------------------
 
   VkDescriptorImageInfo image_info = {};
@@ -66,9 +66,9 @@ void Storage::actualize_sampler(vk::structure::Descriptor_set& descriptor_set, v
   VkWriteDescriptorSet write_sampler = {};
   write_sampler.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
   write_sampler.dstSet = descriptor_set.handle;
-  write_sampler.dstBinding = sampler.binding;
+  write_sampler.dstBinding = storage.binding;
   write_sampler.dstArrayElement = 0;
-  write_sampler.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+  write_sampler.descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
   write_sampler.descriptorCount = 1;
   write_sampler.pImageInfo = &image_info;
 
@@ -78,16 +78,16 @@ void Storage::actualize_sampler(vk::structure::Descriptor_set& descriptor_set, v
 }
 
 //Subfunction
-std::shared_ptr<vk::structure::Sampler> Storage::query_sampler(vk::structure::Descriptor_set& descriptor_set, std::string name){
+std::shared_ptr<vk::structure::Storage> Storage::query_storage(vk::structure::Descriptor_set& descriptor_set, std::string name){
   //---------------------------
 
-  auto it = descriptor_set.map_sampler.find(name);
-  if (it == descriptor_set.map_sampler.end()) {
+  auto it = descriptor_set.map_storage.find(name);
+  if (it == descriptor_set.map_storage.end()) {
     std::cout<<"------------------------"<<std::endl;
-    std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<name<<"\033[0m"<<std::endl;
+    std::cout<<"[error] Update storage -> name not recognized \033[1;31m"<<name<<"\033[0m"<<std::endl;
     std::cout<<"Existing uniform names: "<<std::endl;
 
-    for(auto& [name, sampler] : descriptor_set.map_sampler){
+    for(auto& [name, storage] : descriptor_set.map_storage){
       std::cout<<"\033[1;32m"<<name<<"\033[0m"<<std::endl;
     }
 
