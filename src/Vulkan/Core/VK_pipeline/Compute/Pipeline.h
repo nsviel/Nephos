@@ -22,11 +22,11 @@ public:
 
 public:
   //Main function
-  void create_pipeline(std::shared_ptr<vk::structure::Pipeline> pipeline);
-  void clean_pipeline();
-  void recreate_pipeline(vk::structure::Pipeline& pipeline);
+  void init();
+  void clean();
 
   //Subfunction
+  void recreate_pipeline(vk::structure::Pipeline& pipeline);
   void cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline);
 
 private:

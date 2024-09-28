@@ -28,6 +28,7 @@ namespace utl::base{class Data;}
 namespace utl::base{class Pose;}
 namespace vk::draw{class Graphical;}
 namespace vk::synchro{class Synchro;}
+namespace vk::compute{class Pipeline;}
 
 
 namespace vk::core{
@@ -58,6 +59,7 @@ private:
   vk::data::Data* vk_data;
   vk::draw::Viewport* vk_viewport;
   vk::shader::Reloader* vk_reload;
+  vk::compute::Pipeline* vk_pipeline;
   vk::presentation::Frame* vk_frame;
   vk::synchro::Synchro* vk_synchro;
   vk::data::Canvas* vk_canvas;

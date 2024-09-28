@@ -20,26 +20,28 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
 Pipeline::~Pipeline(){}
 
 //Main function
-void Pipeline::create_pipeline(std::shared_ptr<vk::structure::Pipeline> pipeline){
+void Pipeline::init(){
   //---------------------------
-/*
-  vk_descriptor->create_pipeline_descriptor(*pipeline);
-  vk_component->create_pipeline_component(*pipeline);
 
-  vk_struct->core.pipeline.map_compute[pipeline->info.name] = pipeline;
-*/
+  for(auto& [name, pipeline] : vk_struct->core.pipeline.map_compute){
+    vk_descriptor->create_pipeline_descriptor(*pipeline);
+    vk_component->create_pipeline_component(*pipeline);
+  }
+  
   //---------------------------
 }
-void Pipeline::clean_pipeline(){
+void Pipeline::clean(){
   //---------------------------
 
-  for(auto& [name, pipeline] : vk_struct->core.pipeline.map_topology){
+  for(auto& [name, pipeline] : vk_struct->core.pipeline.map_compute){
     vk_component->clean_pipeline_component(*pipeline);
     vk_descriptor->clean_pipeline_descriptor(*pipeline);
   }
 
   //---------------------------
 }
+
+//Subfunction
 void Pipeline::recreate_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
@@ -50,8 +52,6 @@ void Pipeline::recreate_pipeline(vk::structure::Pipeline& pipeline){
 
   //---------------------------
 }
-
-//Subfunction
 void Pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline){
   //---------------------------
 

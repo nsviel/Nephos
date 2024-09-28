@@ -1,19 +1,20 @@
 #version 450
 
-//Sampler
-layout(location=1, r16ui) readonly uniform uimage2D tex_depth;
-layout(location=2, rg32f) readonly uniform image2D xy_table;
+// Sampler
+//layout(binding = 1, r16ui) readonly uniform uimage2D tex_depth;
+//layout(binding = 2, rg32f) readonly uniform image2D xy_table;
 
-//Ouput
-layout(location=0, rgba32f) writeonly uniform image2D tex_pc;
+// Output
+//layout(binding = 0, rgba32f) writeonly uniform image2D tex_pc;
 
-//Workgroup
-layout(local_size_x = 1, local_size_y = 1) in;
+// Workgroup
+//layout(local_size_x = 1, local_size_y = 1) in;
 
 
 void main(){
   //---------------------------
-
+  //ie a = 4;
+/*
   // Retrieve the pixel coordinates for the current invocation.
   ivec2 pixel = ivec2(gl_GlobalInvocationID.xy);
 
@@ -30,10 +31,9 @@ void main(){
   vec3 vertex_position = vec3(vertex_value * xy_value.x, vertex_value * xy_value.y, vertex_value);
 
   // Check for invalid pixels (where XY table values are set to zero).
-  // If the XY values are zero, mark the vertex as transparent and set the vertex value to zero.
   if (xy_value.x == 0.0f && xy_value.y == 0.0f) {
-    alpha = 0.0f; // Set alpha to zero for transparency.
-    vertex_value = 0.0f; // Set vertex value to zero to ignore this pixel.
+    alpha = 0.0f;
+    vertex_value = 0.0f;
   }
 
   // Convert vertex positions from millimeters to meters for consistency.
@@ -44,6 +44,6 @@ void main(){
 
   // Store the computed vertex position and alpha value in the point cloud texture.
   imageStore(tex_pc, pixel, vec4(vertex_position, alpha));
-
+*/
   //---------------------------
 }

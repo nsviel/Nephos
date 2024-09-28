@@ -28,7 +28,7 @@ void Pipeline::create_pipeline(){
   this->set_binding(*pipeline);
 
   //---------------------------
-  vk_pipeline->create_pipeline(pipeline);
+  //vk_struct->core.pipeline.map_compute[pipeline->info.name] = pipeline;
 }
 
 //Subfunction
