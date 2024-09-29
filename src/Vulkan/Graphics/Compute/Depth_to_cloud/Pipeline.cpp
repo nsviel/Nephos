@@ -58,6 +58,8 @@ void Pipeline::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::sampler_depth());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::sampler_table_xy());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::sampler_storage_pc());
 
   //---------------------------
 }

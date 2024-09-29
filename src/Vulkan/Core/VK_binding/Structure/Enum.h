@@ -18,6 +18,8 @@ namespace vk::sampler{
 enum ID{
   COLOR = 10,
   DEPTH = 11,
+  TABLE_XY = 12,
+  STORAGE = 13,
 };
 
 }
