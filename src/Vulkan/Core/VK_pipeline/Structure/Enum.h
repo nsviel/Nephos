@@ -1,6 +1,16 @@
 #pragma once
 
 
+//Pipeline
+namespace vk::pipeline{
+
+enum Type{
+  RENDER = 0,
+  COMPUTE = 1,
+};
+
+}
+
 //Data attribut name
 namespace vk::attribut{
 

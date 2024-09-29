@@ -23,7 +23,11 @@ void Shader::create_pipeline_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk_file->recompile_shader(pipeline.shader);
-  this->create_shader_module(pipeline);
+
+  if(pipeline.info.type = vk::pipeline::RENDER){
+
+  }
+this->create_shader_module(pipeline);
   this->create_shader_info(pipeline);
 
   //---------------------------
@@ -39,6 +43,7 @@ void Shader::clean_pipeline_shader(vk::structure::Pipeline& pipeline){
 
 //Subfunction
 void Shader::create_shader_module(vk::structure::Pipeline& pipeline){
+  vk::shader::structure::Info& shader_info = pipeline.shader.info;
   //---------------------------
 
   //Load spir format shaders

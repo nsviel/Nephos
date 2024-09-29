@@ -52,12 +52,13 @@ void File::recompile_shader(vk::shader::structure::Shader& shader){
   //---------------------------
 }
 void File::run_recompilation(std::string path_glsl, std::string path_spir){
+  if(path_glsl == "" || path_spir == "") return;
   //---------------------------
 
-  std::string command = "../src/Vulkan/Core/VK_shader/Filesystem/Compile.sh " + path_glsl + " " + path_spir + " >> " + path_output +" 2>&1";
+  std::string command = "../extern/shader/glslc " + path_glsl + " -o " + path_spir;
   int result = system(command.c_str());
   if(result != 0){
-    std::cout<<"[error] Shader compilation GLSL -> SPIR-V\n"<<command<<std::endl;
+    std::cout<<"[error] failed shader compilation GLSL / SPIR-V"<<std::endl;
     exit(0);
   }
 

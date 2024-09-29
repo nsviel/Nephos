@@ -37,6 +37,7 @@ void Pipeline::set_pipeline(vk::structure::Pipeline& pipeline){
 
   vk::pipeline::structure::Info pipeline_info{};
   pipeline_info.name = "depth_to_cloud";
+  pipeline_info.type = vk::pipeline::COMPUTE;
 
   //---------------------------
   pipeline.info = pipeline_info;
@@ -47,7 +48,7 @@ void Pipeline::set_shader(vk::structure::Pipeline& pipeline){
   vk::shader::structure::Info shader_info{};
   shader_info.name = "depth_to_cloud";
   shader_info.path_glsl.comp = "../shader/Dynamic/glsl/depth_to_cloud.comp";
-  shader_info.path_spir.comp = "../shader/Dynamic/spir/depth_to_cloud.comp.spv";
+  shader_info.path_spir.comp = "../shader/Dynamic/spir/depth_to_cloud.spv";
   shader_info.with_recompilation = true;
 
   //---------------------------

@@ -35,13 +35,16 @@ void Triangle::add_pipeline(vk::structure::Subpass& subpass){
 void Triangle::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.info.name = "triangle";
-  pipeline.info.topology = utl::topology::TRIANGLE;
-  pipeline.info.vec_attribut.push_back(vk::attribut::XYZ);
-  pipeline.info.vec_attribut.push_back(vk::attribut::RGBA);
-  pipeline.info.vec_attribut.push_back(vk::attribut::UV);
+  vk::pipeline::structure::Info pipeline_info{};
+  pipeline_info.name = "triangle";
+  pipeline_info.topology = utl::topology::TRIANGLE;
+  pipeline_info.vec_attribut.push_back(vk::attribut::XYZ);
+  pipeline_info.vec_attribut.push_back(vk::attribut::RGBA);
+  pipeline_info.vec_attribut.push_back(vk::attribut::UV);
+  pipeline_info.type = vk::pipeline::RENDER;
 
   //---------------------------
+  pipeline.info = pipeline_info;
 }
 void Triangle::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------

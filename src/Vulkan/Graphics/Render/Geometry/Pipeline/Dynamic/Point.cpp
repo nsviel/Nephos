@@ -42,6 +42,7 @@ void Point::set_pipeline(vk::structure::Pipeline& pipeline){
   pipeline_info.vec_attribut.push_back(vk::attribut::XYZ);
   pipeline_info.vec_attribut.push_back(vk::attribut::RGBA);
   pipeline_info.vec_attribut.push_back(vk::attribut::UV);
+  pipeline_info.type = vk::pipeline::RENDER;
 
   //---------------------------
   pipeline.info = pipeline_info;

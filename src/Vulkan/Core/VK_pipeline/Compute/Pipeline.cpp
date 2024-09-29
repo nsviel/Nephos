@@ -27,7 +27,7 @@ void Pipeline::init(){
     vk_descriptor->create_pipeline_descriptor(*pipeline);
     vk_component->create_pipeline_component(*pipeline);
   }
-  
+
   //---------------------------
 }
 void Pipeline::clean(){

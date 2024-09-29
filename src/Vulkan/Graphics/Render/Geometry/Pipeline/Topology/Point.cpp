@@ -35,13 +35,15 @@ void Point::add_pipeline(vk::structure::Subpass& subpass){
 void Point::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-
-  pipeline.info.name = "point";
-  pipeline.info.topology = utl::topology::POINT;
-  pipeline.info.vec_attribut.push_back(vk::attribut::XYZ);
-  pipeline.info.vec_attribut.push_back(vk::attribut::RGBA);
+  vk::pipeline::structure::Info pipeline_info{};
+  pipeline_info.name = "point";
+  pipeline_info.topology = utl::topology::POINT;
+  pipeline_info.vec_attribut.push_back(vk::attribut::XYZ);
+  pipeline_info.vec_attribut.push_back(vk::attribut::RGBA);
+  pipeline_info.type = vk::pipeline::RENDER;
 
   //---------------------------
+  pipeline.info = pipeline_info;
 }
 void Point::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------

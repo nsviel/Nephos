@@ -14,7 +14,8 @@ struct Info{
   std::string name = "";
   std::vector<vk::attribut::ID> vec_attribut;
   utl::topology::Type topology = utl::topology::POINT;
-
+  vk::pipeline::Type type = vk::pipeline::RENDER;
+  
   //---------------------------
 };
 
