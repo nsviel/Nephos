@@ -5,7 +5,7 @@
 #include <Utility/Function/File/File.h>
 
 
-namespace vk::pipeline{
+namespace vk::shader{
 
 //Constructor / Destructor
 Compute::Compute(vk::Structure* vk_struct){
@@ -19,11 +19,18 @@ Compute::Compute(vk::Structure* vk_struct){
 Compute::~Compute(){}
 
 //Main function
-void Compute::create_compute_module(vk::structure::Pipeline& pipeline){
+void Compute::create_module(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   this->create_shader_module(pipeline);
   this->create_shader_info(pipeline);
+
+  //---------------------------
+}
+void Module::clean_module(vk::structure::Pipeline& pipeline){
+  //---------------------------
+
+  vkDestroyShaderModule(vk_struct->core.device.handle, pipeline.shader.module.comp, nullptr);
 
   //---------------------------
 }
@@ -37,7 +44,7 @@ void Compute::create_shader_module(vk::structure::Pipeline& pipeline){
   auto code_comp = vk_file->read_file(pipeline.shader.info.path_spir.comp);
 
   //Create associated shader modules
-  pipeline.shader.module.comp = create_module(code_comp);
+  pipeline.shader.module.comp = build_module(code_comp);
 
   //---------------------------
 }
@@ -55,7 +62,7 @@ void Compute::create_shader_info(vk::structure::Pipeline& pipeline){
 
   //---------------------------
 }
-VkShaderModule Compute::create_module(const std::vector<char>& code){
+VkShaderModule Compute::build_module(const std::vector<char>& code){
   //Shader modules are just a thin wrapper around the shader bytecode
   //---------------------------
 

@@ -9,7 +9,7 @@ namespace vk::structure{class Pipeline;}
 namespace vk::shader{class File;}
 
 
-namespace vk::pipeline{
+namespace vk::shader{
 
 class Render
 {
@@ -20,12 +20,13 @@ public:
 
 public:
   //Main function
-  void create_render_module(vk::structure::Pipeline& pipeline);
+  void create_module(vk::structure::Pipeline& pipeline);
+  void clean_module(vk::structure::Pipeline& pipeline);
 
   //Subfunction
   void create_shader_module(vk::structure::Pipeline& pipeline);
   void create_shader_info(vk::structure::Pipeline& pipeline);
-  VkShaderModule create_module(const std::vector<char>& code);
+  VkShaderModule build_module(const std::vector<char>& code);
 
 private:
   vk::Structure* vk_struct;

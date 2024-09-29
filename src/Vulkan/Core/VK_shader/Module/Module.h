@@ -11,12 +11,12 @@ namespace vk::shader{class File;}
 
 namespace vk::pipeline{
 
-class Shader
+class Module
 {
 public:
   //Constructor / Destructor
-  Shader(vk::Structure* vk_struct);
-  ~Shader();
+  Module(vk::Structure* vk_struct);
+  ~Module();
 
 public:
   //Main function

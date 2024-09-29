@@ -5,7 +5,7 @@
 #include <Utility/Function/File/File.h>
 
 
-namespace vk::pipeline{
+namespace vk::shader{
 
 //Constructor / Destructor
 Render::Render(vk::Structure* vk_struct){
@@ -19,11 +19,19 @@ Render::Render(vk::Structure* vk_struct){
 Render::~Render(){}
 
 //Main function
-void Render::create_render_module(vk::structure::Pipeline& pipeline){
+void Render::create_module(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   this->create_shader_module(pipeline);
   this->create_shader_info(pipeline);
+
+  //---------------------------
+}
+void Module::clean_module(vk::structure::Pipeline& pipeline){
+  //---------------------------
+
+  vkDestroyShaderModule(vk_struct->core.device.handle, pipeline.shader.module.vs, nullptr);
+  vkDestroyShaderModule(vk_struct->core.device.handle, pipeline.shader.module.fs, nullptr);
 
   //---------------------------
 }
@@ -38,8 +46,8 @@ void Render::create_shader_module(vk::structure::Pipeline& pipeline){
   auto code_frag = vk_file->read_file(pipeline.shader.info.path_spir.fs);
 
   //Create associated shader modules
-  pipeline.shader.module.vs = create_module(code_vert);
-  pipeline.shader.module.fs = create_module(code_frag);
+  pipeline.shader.module.vs = build_module(code_vert);
+  pipeline.shader.module.fs = build_module(code_frag);
 
   //---------------------------
 }
@@ -67,7 +75,7 @@ void Render::create_shader_info(vk::structure::Pipeline& pipeline){
 
   //---------------------------
 }
-VkShaderModule Render::create_module(const std::vector<char>& code){
+VkShaderModule Render::build_module(const std::vector<char>& code){
   //Shader modules are just a thin wrapper around the shader bytecode
   //---------------------------
 
