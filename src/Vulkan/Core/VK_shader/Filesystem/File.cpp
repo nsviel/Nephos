@@ -47,6 +47,7 @@ void File::recompile_shader(vk::shader::structure::Shader& shader){
   if(shader.info.with_recompilation){
     this->run_recompilation(shader.info.path_glsl.vs, shader.info.path_spir.vs);
     this->run_recompilation(shader.info.path_glsl.fs, shader.info.path_spir.fs);
+    this->run_recompilation(shader.info.path_glsl.comp, shader.info.path_spir.comp);
   }
 
   //---------------------------
