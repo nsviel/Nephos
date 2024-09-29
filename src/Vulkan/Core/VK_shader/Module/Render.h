@@ -11,20 +11,19 @@ namespace vk::shader{class File;}
 
 namespace vk::pipeline{
 
-class Shader
+class Render
 {
 public:
   //Constructor / Destructor
-  Shader(vk::Structure* vk_struct);
-  ~Shader();
+  Render(vk::Structure* vk_struct);
+  ~Render();
 
 public:
   //Main function
-  void create_pipeline_shader(vk::structure::Pipeline& pipeline);
-  void clean_pipeline_shader(vk::structure::Pipeline& pipeline);
+  void create_render_module(vk::structure::Pipeline& pipeline);
 
   //Subfunction
-  void create_render_module(vk::structure::Pipeline& pipeline);
+  void create_shader_module(vk::structure::Pipeline& pipeline);
   void create_shader_info(vk::structure::Pipeline& pipeline);
   VkShaderModule create_module(const std::vector<char>& code);
 

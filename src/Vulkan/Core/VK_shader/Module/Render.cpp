@@ -1,4 +1,4 @@
-#include "Shader.h"
+#include "Render.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,7 +8,7 @@
 namespace vk::pipeline{
 
 //Constructor / Destructor
-Shader::Shader(vk::Structure* vk_struct){
+Render::Render(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -16,33 +16,20 @@ Shader::Shader(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Shader::~Shader(){}
+Render::~Render(){}
 
 //Main function
-void Shader::create_pipeline_shader(vk::structure::Pipeline& pipeline){
+void Render::create_render_module(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk_file->recompile_shader(pipeline.shader);
-
-  if(pipeline.info.type = vk::pipeline::RENDER){
-
-  }
-this->create_render_module(pipeline);
+  this->create_shader_module(pipeline);
   this->create_shader_info(pipeline);
-
-  //---------------------------
-}
-void Shader::clean_pipeline_shader(vk::structure::Pipeline& pipeline){
-  //---------------------------
-
-  vkDestroyShaderModule(vk_struct->core.device.handle, pipeline.shader.module.vs, nullptr);
-  vkDestroyShaderModule(vk_struct->core.device.handle, pipeline.shader.module.fs, nullptr);
 
   //---------------------------
 }
 
 //Subfunction
-void Shader::create_render_module(vk::structure::Pipeline& pipeline){
+void Render::create_shader_module(vk::structure::Pipeline& pipeline){
   vk::shader::structure::Info& shader_info = pipeline.shader.info;
   //---------------------------
 
@@ -56,7 +43,7 @@ void Shader::create_render_module(vk::structure::Pipeline& pipeline){
 
   //---------------------------
 }
-void Shader::create_shader_info(vk::structure::Pipeline& pipeline){
+void Render::create_shader_info(vk::structure::Pipeline& pipeline){
   pipeline.component.vec_shader_stage.clear();
   //---------------------------
 
@@ -80,7 +67,7 @@ void Shader::create_shader_info(vk::structure::Pipeline& pipeline){
 
   //---------------------------
 }
-VkShaderModule Shader::create_module(const std::vector<char>& code){
+VkShaderModule Render::create_module(const std::vector<char>& code){
   //Shader modules are just a thin wrapper around the shader bytecode
   //---------------------------
 

@@ -10,6 +10,7 @@ struct Module{
 
   VkShaderModule vs;
   VkShaderModule fs;
+  VkShaderModule comp;
 
   //---------------------------
 };
