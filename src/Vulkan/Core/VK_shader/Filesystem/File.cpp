@@ -56,7 +56,7 @@ void File::run_recompilation(std::string path_glsl, std::string path_spir){
   if(path_glsl == "" || path_spir == "") return;
   //---------------------------
 
-  std::string command = "../extern/shader/glslc " + path_glsl + " -o " + path_spir;
+  std::string command = "glslc " + path_glsl + " -o " + path_spir;
   int result = system(command.c_str());
   if(result != 0){
     std::cout<<"[error] failed shader compilation GLSL / SPIR-V"<<std::endl;

@@ -70,6 +70,7 @@ void Node::clean(){
   vk_imgui->clean();
   vk_queue->clean();
   vk_renderpass->clean();
+  vk_pipeline->clean();
   vk_swapchain->clean();
   vk_canvas->clean();
   vk_data->clean();
