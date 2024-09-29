@@ -5,11 +5,13 @@
 #include <vector>
 
 namespace vk{class Structure;}
-namespace vk::structure{class Pipeline;}
 namespace vk::shader{class File;}
+namespace vk::shader{class Render;}
+namespace vk::shader{class Compute;}
+namespace vk::structure{class Pipeline;}
 
 
-namespace vk::pipeline{
+namespace vk::shader{
 
 class Module
 {
@@ -20,17 +22,14 @@ public:
 
 public:
   //Main function
-  void create_pipeline_shader(vk::structure::Pipeline& pipeline);
-  void clean_pipeline_shader(vk::structure::Pipeline& pipeline);
-
-  //Subfunction
-  void create_render_module(vk::structure::Pipeline& pipeline);
-  void create_shader_info(vk::structure::Pipeline& pipeline);
-  VkShaderModule create_module(const std::vector<char>& code);
+  void create_pipeline_module(vk::structure::Pipeline& pipeline);
+  void clean_pipeline_module(vk::structure::Pipeline& pipeline);
 
 private:
   vk::Structure* vk_struct;
   vk::shader::File* vk_file;
+  vk::shader::Render* vk_render;
+  vk::shader::Compute* vk_compute;
 };
 
 }

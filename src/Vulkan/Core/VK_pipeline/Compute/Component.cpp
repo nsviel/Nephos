@@ -10,7 +10,7 @@ Component::Component(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_shader = new vk::pipeline::Shader(vk_struct);
+  this->vk_shader = new vk::shader::Module(vk_struct);
   this->vk_layout = new vk::pipeline::Layout(vk_struct);
 
   //---------------------------
@@ -22,12 +22,12 @@ void Component::create_pipeline_component(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   //Pipeline attribut description
-  vk_shader->create_pipeline_shader(pipeline);
+  vk_shader->create_pipeline_module(pipeline);
   vk_layout->create_pipeline_layout(pipeline);
 
   //Pipeline creation
   this->create_pipeline_handle(pipeline);
-  vk_shader->clean_pipeline_shader(pipeline);
+  vk_shader->clean_pipeline_module(pipeline);
 
   //---------------------------
 }

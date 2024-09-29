@@ -5,7 +5,7 @@
 #include <Utility/Function/File/File.h>
 
 
-namespace vk::pipeline{
+namespace vk::shader{
 
 //Constructor / Destructor
 Module::Module(vk::Structure* vk_struct){
@@ -13,30 +13,45 @@ Module::Module(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_file = new vk::shader::File(vk_struct);
+  this->vk_compute = new vk::shader::Compute(vk_struct);
+  this->vk_render = new vk::shader::Render(vk_struct);
 
   //---------------------------
 }
 Module::~Module(){}
 
 //Main function
-void Module::create_pipeline_shader(vk::structure::Pipeline& pipeline){
+void Module::create_pipeline_module(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk_file->recompile_shader(pipeline.shader);
 
-  if(pipeline.info.type = vk::pipeline::RENDER){
-
+  switch(pipeline.info.type){
+    case vk::pipeline::RENDER:{
+      vk_render->create_module(pipeline);
+      break;
+    }
+    case vk::pipeline::COMPUTE:{
+      vk_compute->create_module(pipeline);
+      break;
+    }
   }
-this->create_render_module(pipeline);
-  this->create_shader_info(pipeline);
 
   //---------------------------
 }
-void Module::clean_pipeline_shader(vk::structure::Pipeline& pipeline){
+void Module::clean_pipeline_module(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vkDestroyShaderModule(vk_struct->core.device.handle, pipeline.shader.module.vs, nullptr);
-  vkDestroyShaderModule(vk_struct->core.device.handle, pipeline.shader.module.fs, nullptr);
+  switch(pipeline.info.type){
+    case vk::pipeline::RENDER:{
+      vk_render->clean_module(pipeline);
+      break;
+    }
+    case vk::pipeline::COMPUTE:{
+      vk_compute->clean_module(pipeline);
+      break;
+    }
+  }
 
   //---------------------------
 }

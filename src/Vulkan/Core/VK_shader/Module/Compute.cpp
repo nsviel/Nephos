@@ -27,7 +27,7 @@ void Compute::create_module(vk::structure::Pipeline& pipeline){
 
   //---------------------------
 }
-void Module::clean_module(vk::structure::Pipeline& pipeline){
+void Compute::clean_module(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vkDestroyShaderModule(vk_struct->core.device.handle, pipeline.shader.module.comp, nullptr);

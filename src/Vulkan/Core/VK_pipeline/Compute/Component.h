@@ -4,7 +4,7 @@
 
 namespace vk{class Structure;}
 namespace vk::pipeline{class Layout;}
-namespace vk::pipeline{class Shader;}
+namespace vk::shader{class Module;}
 namespace vk::structure{class Pipeline;}
 
 
@@ -28,7 +28,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::pipeline::Shader* vk_shader;
+  vk::shader::Module* vk_shader;
   vk::pipeline::Layout* vk_layout;
 };
 
