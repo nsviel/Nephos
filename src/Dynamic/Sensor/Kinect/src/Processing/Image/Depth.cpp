@@ -62,7 +62,7 @@ void Depth::retrieve_raw_image(k4n::base::Sensor& sensor){
   image->size = image->data.size();
   image->width = sensor.depth.data.width;
   image->height = sensor.depth.data.height;
-  image->format = "R16";
+  image->format = "R16_UINT";
   image->timestamp = sensor.depth.data.timestamp;
   dat_image->add_image(sensor, image);
 

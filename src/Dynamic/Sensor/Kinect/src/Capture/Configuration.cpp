@@ -49,15 +49,15 @@ void Configuration::make_default_configuration(){
   k4n_struct->config.synchro.disable_streaming_indicator = true;
   k4n_struct->config.synchro.synchronized_images_only = true;
 
-  k4n_struct->config.color.exposure.value = 15625;
-  k4n_struct->config.color.white_balance.value = 4500;
-  k4n_struct->config.color.brightness.value = 128;
-  k4n_struct->config.color.contrast.value = 5;
-  k4n_struct->config.color.saturation.value = 32;
-  k4n_struct->config.color.sharpness.value = 2;
-  k4n_struct->config.color.gain.value = 0;
-  k4n_struct->config.color.backlight_compensation.value = 0;
-  k4n_struct->config.color.power_frequency.value = 2;
+  k4n_struct->config.camera.exposure.value = 15625;
+  k4n_struct->config.camera.white_balance.value = 4500;
+  k4n_struct->config.camera.brightness.value = 128;
+  k4n_struct->config.camera.contrast.value = 5;
+  k4n_struct->config.camera.saturation.value = 32;
+  k4n_struct->config.camera.sharpness.value = 2;
+  k4n_struct->config.camera.gain.value = 0;
+  k4n_struct->config.camera.backlight_compensation.value = 0;
+  k4n_struct->config.camera.power_frequency.value = 2;
 
   //---------------------------
 }
@@ -107,15 +107,15 @@ void Configuration::make_camera_configuration(k4n::capture::Sensor& sensor){
   k4a::device& device = sensor.device.handle;
   //---------------------------
 
-  device.set_color_control(k4n_struct->config.color.exposure.command, k4n_struct->config.color.exposure.mode, k4n_struct->config.color.exposure.value);
-  device.set_color_control(k4n_struct->config.color.white_balance.command, k4n_struct->config.color.white_balance.mode, k4n_struct->config.color.white_balance.value);
-  device.set_color_control(k4n_struct->config.color.brightness.command, k4n_struct->config.color.brightness.mode, k4n_struct->config.color.brightness.value);
-  device.set_color_control(k4n_struct->config.color.contrast.command, k4n_struct->config.color.contrast.mode, k4n_struct->config.color.contrast.value);
-  device.set_color_control(k4n_struct->config.color.saturation.command, k4n_struct->config.color.saturation.mode, k4n_struct->config.color.saturation.value);
-  device.set_color_control(k4n_struct->config.color.sharpness.command, k4n_struct->config.color.sharpness.mode, k4n_struct->config.color.sharpness.value);
-  device.set_color_control(k4n_struct->config.color.gain.command, k4n_struct->config.color.gain.mode, k4n_struct->config.color.gain.value);
-  device.set_color_control(k4n_struct->config.color.backlight_compensation.command, k4n_struct->config.color.backlight_compensation.mode, k4n_struct->config.color.backlight_compensation.value);
-  device.set_color_control(k4n_struct->config.color.power_frequency.command, k4n_struct->config.color.power_frequency.mode, k4n_struct->config.color.power_frequency.value);
+  device.set_color_control(k4n_struct->config.camera.exposure.command, k4n_struct->config.camera.exposure.mode, k4n_struct->config.camera.exposure.value);
+  device.set_color_control(k4n_struct->config.camera.white_balance.command, k4n_struct->config.camera.white_balance.mode, k4n_struct->config.camera.white_balance.value);
+  device.set_color_control(k4n_struct->config.camera.brightness.command, k4n_struct->config.camera.brightness.mode, k4n_struct->config.camera.brightness.value);
+  device.set_color_control(k4n_struct->config.camera.contrast.command, k4n_struct->config.camera.contrast.mode, k4n_struct->config.camera.contrast.value);
+  device.set_color_control(k4n_struct->config.camera.saturation.command, k4n_struct->config.camera.saturation.mode, k4n_struct->config.camera.saturation.value);
+  device.set_color_control(k4n_struct->config.camera.sharpness.command, k4n_struct->config.camera.sharpness.mode, k4n_struct->config.camera.sharpness.value);
+  device.set_color_control(k4n_struct->config.camera.gain.command, k4n_struct->config.camera.gain.mode, k4n_struct->config.camera.gain.value);
+  device.set_color_control(k4n_struct->config.camera.backlight_compensation.command, k4n_struct->config.camera.backlight_compensation.mode, k4n_struct->config.camera.backlight_compensation.value);
+  device.set_color_control(k4n_struct->config.camera.power_frequency.command, k4n_struct->config.camera.power_frequency.mode, k4n_struct->config.camera.power_frequency.value);
 
   sensor.color.config = k4n_struct->config.color;
   sensor.depth.config = k4n_struct->config.depth;
