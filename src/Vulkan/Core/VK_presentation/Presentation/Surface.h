@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vulkan/vulkan.h>
+#include <vector>
+
 namespace vk{class Structure;}
 namespace vk::window{class Window;}
 
@@ -17,6 +20,9 @@ public:
   //Main function
   void init();
   void clean();
+
+  //Subfunction
+  VkSurfaceFormatKHR retrieve_surface_format(const std::vector<VkSurfaceFormatKHR>& surface_format);
 
 private:
   vk::Structure* vk_struct;
