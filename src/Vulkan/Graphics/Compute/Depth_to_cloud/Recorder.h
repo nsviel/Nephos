@@ -2,7 +2,11 @@
 
 namespace vk{class Structure;}
 namespace vk::descriptor{class Uniform;}
+namespace vk::descriptor{class Descriptor_set;}
 namespace vk::compute{class Pipeline;}
+namespace vk::data{class Function;}
+namespace vk::command{class Command;}
+namespace vk::command{class Allocator;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Object;}
@@ -20,17 +24,21 @@ public:
 
 public:
   //Main function
-  void run_compute(vk::structure::Object& vk_object, vk::structure::Command_buffer& command_buffer);
+  void run_compute(vk::structure::Object& vk_object);
 
   //Subfunction
-  void bind_pipeline(vk::structure::Object& vk_object, vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline);
-  void update_sampler(vk::structure::Pipeline& pipeline);
+  void bind_pipeline(vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline);
+  void update_descriptor(vk::structure::Pipeline& pipeline);
   void dispatch_pipeline(vk::structure::Object& vk_object, vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline);
 
 private:
   vk::Structure* vk_struct;
   vk::descriptor::Uniform* vk_uniform;
   vk::compute::Pipeline* vk_pipeline;
+  vk::data::Function* vk_data;
+  vk::command::Command* vk_command;
+  vk::command::Allocator* vk_command_allocator;
+  vk::descriptor::Descriptor_set* vk_descriptor_set;
 };
 
 }

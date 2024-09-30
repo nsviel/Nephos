@@ -94,8 +94,7 @@ void Font::font_build(){
 
   //Insert into engine
   if(vk_struct->interface.param.headless) return;
-  vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->core.device.queue.graphics);
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(pool);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
   vk_command->start_command_buffer_primary(*command_buffer);
 
   ImGui_ImplVulkan_CreateFontsTexture(command_buffer->handle);

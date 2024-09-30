@@ -21,9 +21,11 @@ Command::Command(vk::Structure* vk_struct){
 Command::~Command(){}
 
 //Main function
-std::shared_ptr<vk::structure::Command_buffer> Command::query_free_command_buffer(vk::pool::structure::Command_buffer* pool){
-  if(pool == nullptr) return nullptr;
+std::shared_ptr<vk::structure::Command_buffer> Command::query_free_command_buffer(vk::queue::structure::Queue& queue){
   //---------------------------
+
+  vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(queue);
+  if(pool == nullptr) return nullptr;
 
   // Random number generator setup
   std::random_device rd;

@@ -38,8 +38,7 @@ void Transfer::copy_image_to_gpu(vk::structure::Image& image, VkBuffer buffer){
   //---------------------------
 
   //Image transition from undefined layout to read only layout
-  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->core.device.queue.graphics);
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(pool);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
   vk_command->start_command_buffer_primary(*command_buffer);
 
   //Transition + copy
@@ -69,8 +68,7 @@ void Transfer::transit(vk::structure::Image& image){
   //---------------------------
 
   //Image transition from undefined layout to read only layout
-  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->core.device.queue.graphics);
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(pool);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
   vk_command->start_command_buffer_primary(*command_buffer);
 
   //Transition
@@ -89,8 +87,7 @@ void Transfer::copy_gpu_image_to_buffer(vk::structure::Image& image, VkBuffer bu
   //---------------------------
 
   //Image transition from undefined layout to read only layout
-  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->core.device.queue.graphics);
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(pool);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
   vk_command->start_command_buffer_primary(*command_buffer);
 
   // Image transition + copy
@@ -117,8 +114,7 @@ void Transfer::blit_gpu_image_to_gpu_image(vk::structure::Image& image_src, vk::
   //---------------------------
 
   // Image transition from undefined layout to transfer source layout
-  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->core.device.queue.graphics);
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(pool);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
   vk_command->start_command_buffer_primary(*command_buffer);
 
   // Image transition
@@ -154,8 +150,7 @@ void Transfer::copy_gpu_image_to_gpu_image_standalone(vk::structure::Image& imag
   //---------------------------
 
   // Image transition from undefined layout to transfer source layout
-  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->core.device.queue.graphics);
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(pool);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
   vk_command->start_command_buffer_primary(*command_buffer);
 
   // Image transition
@@ -188,8 +183,7 @@ std::shared_ptr<vk::structure::Command_buffer> Transfer::copy_gpu_image_to_gpu_i
   //---------------------------
 
   // Image transition from undefined layout to transfer source layout
-  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->core.device.queue.graphics);
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(pool);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
   vk_command->start_command_buffer_primary(*command_buffer);
 
   // Image transition
@@ -247,8 +241,7 @@ void Transfer::copy_vertex_to_gpu(vk::data::structure::Buffer& buffer, vk::data:
   vkUnmapMemory(vk_struct->core.device.handle, stagger.mem);
 
   // Create command buffer to cpy on gpu
-  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->core.device.queue.transfer);
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(pool);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.transfer);
   command_buffer->name = "transfer::data";
   if(command_buffer == nullptr) return;
 

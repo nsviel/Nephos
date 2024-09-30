@@ -23,12 +23,12 @@ public:
   void clean();
 
   //Subfunction
-  void create_command_buffer_pool(vk::queue::structure::Queue* queue);
-  void reset_command_buffer_pool(vk::queue::structure::Queue* queue);
-  void clean_command_buffer_pool(vk::queue::structure::Queue* queue);
+  void create_command_buffer_pool(vk::queue::structure::Queue& queue);
+  void reset_command_buffer_pool(vk::queue::structure::Queue& queue);
+  void clean_command_buffer_pool(vk::queue::structure::Queue& queue);
 
   //Command buffer pool use
-  vk::pool::structure::Command_buffer* query_free_pool(vk::queue::structure::Queue* queue);
+  vk::pool::structure::Command_buffer* query_free_pool(vk::queue::structure::Queue& queue);
 
 private:
   vk::Structure* vk_struct;

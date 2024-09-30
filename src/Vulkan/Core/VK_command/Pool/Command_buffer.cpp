@@ -88,7 +88,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::structure::Command_
   //---------------------------
 }
 void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data){
-  vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->core.device.queue.transfer);
+  vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(vk_struct->core.device.queue.transfer);
   //---------------------------
 
   //Command buffer allocation
