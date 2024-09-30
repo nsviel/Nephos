@@ -18,7 +18,7 @@ Uniform::Uniform(vk::Structure* vk_struct){
 Uniform::~Uniform(){}
 
 //Uniform creation
-void Uniform::create_uniform(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
+void Uniform::create_descriptor(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
   //---------------------------
 
   std::shared_ptr<vk::structure::Uniform> uniform = std::make_shared<vk::structure::Uniform>();

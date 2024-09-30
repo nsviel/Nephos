@@ -17,7 +17,7 @@ Sampler::Sampler(vk::Structure* vk_struct){
 Sampler::~Sampler(){}
 
 //Main function
-void Sampler::create_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
+void Sampler::create_descriptor(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
   //---------------------------
 
   std::shared_ptr<vk::structure::Sampler> sampler = std::make_shared<vk::structure::Sampler>();
@@ -85,7 +85,7 @@ std::shared_ptr<vk::structure::Sampler> Sampler::query_sampler(vk::structure::De
   if (it == descriptor_set.map_sampler.end()) {
     std::cout<<"------------------------"<<std::endl;
     std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<name<<"\033[0m"<<std::endl;
-    std::cout<<"Existing uniform names: "<<std::endl;
+    std::cout<<"Existing sampler names: "<<std::endl;
 
     for(auto& [name, sampler] : descriptor_set.map_sampler){
       std::cout<<"\033[1;32m"<<name<<"\033[0m"<<std::endl;

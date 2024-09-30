@@ -23,7 +23,7 @@ vk::structure::Descriptor sampler_table_xy(){
   //---------------------------
 
   vk::structure::Descriptor descriptor;
-  descriptor.name = "tex_table_xy";
+  descriptor.name = "tex_tablexy";
   descriptor.binding = vk::storage::TABLE_XY;
   descriptor.type = VK_DESCRIPTOR_TYPE_STORAGE_IMAGE;
   descriptor.stage = VK_SHADER_STAGE_COMPUTE_BIT;

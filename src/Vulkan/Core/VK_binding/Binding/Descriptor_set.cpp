@@ -13,6 +13,7 @@ Descriptor_set::Descriptor_set(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
+  this->vk_storage = new vk::descriptor::Storage(vk_struct);
 
   //---------------------------
 }
@@ -68,11 +69,15 @@ void Descriptor_set::create_descriptor(vk::structure::Descriptor_set& descriptor
 
     switch(descriptor.type){
       case VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER:{
-        vk_sampler->create_sampler(descriptor_set, descriptor);
+        vk_sampler->create_descriptor(descriptor_set, descriptor);
         break;
       }
       case VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER:{
-        vk_uniform->create_uniform(descriptor_set, descriptor);
+        vk_uniform->create_descriptor(descriptor_set, descriptor);
+        break;
+      }
+      case VK_DESCRIPTOR_TYPE_STORAGE_IMAGE:{
+        vk_storage->create_descriptor(descriptor_set, descriptor);
         break;
       }
     }
@@ -85,7 +90,7 @@ void Descriptor_set::update_descriptor_set(vk::structure::Descriptor_set& descri
   //---------------------------
 
   vk_uniform->actualize_uniform(descriptor_set);
-  vk_sampler->actualize_sampler(descriptor_set);  
+  vk_sampler->actualize_sampler(descriptor_set);
 
   //---------------------------
 }

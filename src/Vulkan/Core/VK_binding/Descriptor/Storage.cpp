@@ -17,7 +17,7 @@ Storage::Storage(vk::Structure* vk_struct){
 Storage::~Storage(){}
 
 //Main function
-void Storage::create_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
+void Storage::create_descriptor(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
   //---------------------------
 
   std::shared_ptr<vk::structure::Storage> storage = std::make_shared<vk::structure::Storage>();
@@ -46,7 +46,7 @@ void Storage::actualize_storage(vk::structure::Descriptor_set& descriptor_set){
     write_sampler.dstSet = descriptor_set.handle;
     write_sampler.dstBinding = storage->binding;
     write_sampler.dstArrayElement = 0;
-    write_sampler.descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
+    write_sampler.descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_IMAGE;
     write_sampler.descriptorCount = 1;
     write_sampler.pImageInfo = &image_info;
 
@@ -68,7 +68,7 @@ void Storage::actualize_storage(vk::structure::Descriptor_set& descriptor_set, v
   write_sampler.dstSet = descriptor_set.handle;
   write_sampler.dstBinding = storage.binding;
   write_sampler.dstArrayElement = 0;
-  write_sampler.descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
+  write_sampler.descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_IMAGE;
   write_sampler.descriptorCount = 1;
   write_sampler.pImageInfo = &image_info;
 
@@ -85,7 +85,7 @@ std::shared_ptr<vk::structure::Storage> Storage::query_storage(vk::structure::De
   if (it == descriptor_set.map_storage.end()) {
     std::cout<<"------------------------"<<std::endl;
     std::cout<<"[error] Update storage -> name not recognized \033[1;31m"<<name<<"\033[0m"<<std::endl;
-    std::cout<<"Existing uniform names: "<<std::endl;
+    std::cout<<"Existing storage image names: "<<std::endl;
 
     for(auto& [name, storage] : descriptor_set.map_storage){
       std::cout<<"\033[1;32m"<<name<<"\033[0m"<<std::endl;

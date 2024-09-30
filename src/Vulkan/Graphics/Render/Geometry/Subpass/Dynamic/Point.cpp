@@ -20,6 +20,7 @@ Point::Point(vk::Structure* vk_struct){
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
   this->vk_data = new vk::data::Function(vk_struct);
 
+
   //---------------------------
 }
 Point::~Point(){}
@@ -51,6 +52,9 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
     this->update_uniform(*vk_object, *pipeline);
     this->update_sampler(*vk_object, *pipeline, subpass);
     this->draw_data(*vk_object, *pipeline, subpass);
+
+    vk::compute::dtc::Recorder recorder(vk_struct);
+    recorder.run_compute(*vk_object);
   }
 
   //---------------------------

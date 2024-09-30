@@ -19,6 +19,7 @@ Image::~Image(){}
 
 //Main function
 void Image::create_image(vk::structure::Image& image){
+  if(!check_image_format(image)) return;
   //---------------------------
 
   this->create_image_handle(image);
@@ -63,7 +64,7 @@ void Image::create_image_handle(vk::structure::Image& image){
   image_info.format = image.format;
   image_info.tiling = image.tiling;
   image_info.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
-  image_info.usage = image.usage | VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
+  image_info.usage = image.usage | VK_IMAGE_USAGE_STORAGE_BIT | VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
   image_info.samples = vk_struct->core.device.physical_device.max_sample_count;
   image_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
@@ -118,6 +119,29 @@ void Image::create_image_sampler(vk::structure::Image& image){
   VkResult result = vkCreateSampler(vk_struct->core.device.handle, &sampler_info, nullptr, &image.sampler);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create image sampler!");
+  }
+
+  //---------------------------
+}
+bool Image::check_image_format(vk::structure::Image& image){
+  //---------------------------
+
+  VkImageFormatProperties format_property;
+  VkResult result = vkGetPhysicalDeviceImageFormatProperties(
+    vk_struct->core.device.physical_device.handle,
+    image.format,
+    VK_IMAGE_TYPE_2D,
+    VK_IMAGE_TILING_OPTIMAL,
+    VK_IMAGE_USAGE_STORAGE_BIT,
+    0,
+    &format_property
+  );
+
+  if(result == VK_SUCCESS){
+    return true;
+  }else{
+    std::cout<<"[error] image format not supported by device"<<std::endl;
+    return false;
   }
 
   //---------------------------

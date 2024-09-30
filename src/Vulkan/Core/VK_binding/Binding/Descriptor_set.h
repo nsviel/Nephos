@@ -6,6 +6,7 @@
 namespace vk{class Structure;}
 namespace vk::descriptor{class Uniform;}
 namespace vk::descriptor{class Sampler;}
+namespace vk::descriptor{class Storage;}
 namespace vk::structure{class Descriptor_set;}
 namespace vk::structure{class Layout;}
 namespace vk::structure{class Pipeline;}
@@ -36,6 +37,7 @@ private:
   vk::Structure* vk_struct;
   vk::descriptor::Uniform* vk_uniform;
   vk::descriptor::Sampler* vk_sampler;
+  vk::descriptor::Storage* vk_storage;
 };
 
 }

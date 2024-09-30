@@ -24,6 +24,7 @@ public:
   void create_image_handle(vk::structure::Image& image);
   void create_image_view(vk::structure::Image& image);
   void create_image_sampler(vk::structure::Image& image);
+  bool check_image_format(vk::structure::Image& image);
 
 private:
   vk::Structure* vk_struct;
