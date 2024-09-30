@@ -7,7 +7,7 @@ namespace vk::image{class Image;}
 namespace vk::memory{class Allocator;}
 namespace vk::memory{class Transfer;}
 namespace vk::data{class Buffer;}
-namespace vk::texture{class Format;}
+namespace vk::image{class Format;}
 
 
 namespace vk::texture{
@@ -32,7 +32,7 @@ private:
   vk::memory::Transfer* vk_mem_transfer;
   vk::image::Image* vk_image;
   vk::image::Screenshot* vk_screenshot;
-  vk::texture::Format* vk_format;
+  vk::image::Format* vk_format;
   vk::data::Buffer* vk_buffer;
 };
 

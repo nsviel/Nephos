@@ -4,9 +4,10 @@
 #include <string>
 
 namespace vk{class Structure;}
+namespace vk::structure{class Image;}
 
 
-namespace vk::texture{
+namespace vk::image{
 
 class Format
 {
@@ -18,6 +19,8 @@ public:
 public:
   //Main function
   VkFormat find_vk_format(std::string format);
+  VkImageUsageFlags find_usage_from_format(vk::structure::Image& image);
+  bool check_image_format(vk::structure::Image& image);
 
 private:
   vk::Structure* vk_struct;

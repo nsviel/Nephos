@@ -16,7 +16,7 @@ Ressource::Ressource(vk::Structure* vk_struct){
   this->vk_buffer = new vk::data::Buffer(vk_struct);
   this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);
   this->vk_screenshot = new vk::image::Screenshot(vk_struct);
-  this->vk_format = new vk::texture::Format(vk_struct);
+  this->vk_format = new vk::image::Format(vk_struct);
 
   //---------------------------
 }
