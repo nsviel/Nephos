@@ -64,19 +64,6 @@ void Color::retrieve_image(k4n::base::Sensor& sensor){
   image->timestamp = sensor.color.data.timestamp;
   dat_image->add_image(sensor, image);
 
-
-
-  std::shared_ptr<utl::media::Image> truc = std::make_shared<utl::media::Image>();
-  truc->name = "truc";
-  truc->display = false;
-  truc->data = std::vector<uint8_t>(sensor.color.data.buffer, sensor.color.data.buffer + sensor.color.data.size);
-  truc->size = truc->data.size();
-  truc->width = sensor.color.data.width;
-  truc->height = sensor.color.data.height;
-  truc->format = sensor.color.data.format;
-  truc->timestamp = sensor.color.data.timestamp;
-  dat_image->add_image(sensor, truc);
-
   //---------------------------
 }
 void Color::retrieve_timestamp(k4n::base::Sensor& sensor){

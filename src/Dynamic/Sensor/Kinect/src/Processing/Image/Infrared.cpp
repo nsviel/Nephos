@@ -27,7 +27,8 @@ void Infrared::extract_data(k4n::base::Sensor& sensor){
   //---------------------------
 
   this->retrieve_data(sensor);
-  this->retrieve_image(sensor);
+  this->retrieve_raw_image(sensor);
+  this->retrieve_colored_image(sensor);
 
   //---------------------------
 }
@@ -53,8 +54,24 @@ void Infrared::retrieve_data(k4n::base::Sensor& sensor){
 
   //---------------------------
 }
-void Infrared::retrieve_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::media::Image> image = sensor.infra.image;
+void Infrared::retrieve_raw_image(k4n::base::Sensor& sensor){
+  std::shared_ptr<utl::media::Image> image = sensor.infra.image_raw;
+  //---------------------------
+
+  //Image
+  image->display = false;
+  image->data = std::vector<uint8_t>(sensor.infra.data.buffer, sensor.infra.data.buffer + sensor.infra.data.size);
+  image->size = image->data.size();
+  image->width = sensor.infra.data.width;
+  image->height = sensor.infra.data.height;
+  image->format = "R16";
+  image->timestamp = sensor.infra.data.timestamp;
+  dat_image->add_image(sensor, image);
+
+  //---------------------------
+}
+void Infrared::retrieve_colored_image(k4n::base::Sensor& sensor){
+  std::shared_ptr<utl::media::Image> image = sensor.infra.image_colored;
   //---------------------------
 
   //Image
@@ -65,7 +82,7 @@ void Infrared::retrieve_image(k4n::base::Sensor& sensor){
   image->format = "RGBA8";
   image->timestamp = sensor.infra.data.timestamp;
   dat_image->add_image(sensor, image);
-  
+
   //---------------------------
 }
 
@@ -123,7 +140,7 @@ void Infrared::convert_image_into_color(k4n::base::Sensor& sensor){
     output[j + 3] = 255;
   }
 
-  sensor.infra.image->data = output;
+  sensor.infra.image_colored->data = output;
 
   //---------------------------
 }

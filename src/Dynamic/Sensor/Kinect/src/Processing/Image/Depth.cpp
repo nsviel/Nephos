@@ -24,7 +24,8 @@ void Depth::extract_data(k4n::base::Sensor& sensor){
   //---------------------------
 
   this->retrieve_data(sensor);
-  this->retrieve_image(sensor);
+  this->retrieve_raw_image(sensor);
+  this->retrieve_colored_image(sensor);
 
   //---------------------------
 }
@@ -51,8 +52,24 @@ void Depth::retrieve_data(k4n::base::Sensor& sensor){
 
   //---------------------------
 }
-void Depth::retrieve_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::media::Image> image = sensor.depth.image;
+void Depth::retrieve_raw_image(k4n::base::Sensor& sensor){
+  std::shared_ptr<utl::media::Image> image = sensor.depth.image_raw;
+  //---------------------------
+
+  //Image
+  image->display = false;
+  image->data = std::vector<uint8_t>(sensor.depth.data.buffer, sensor.depth.data.buffer + sensor.depth.data.size);
+  image->size = image->data.size();
+  image->width = sensor.depth.data.width;
+  image->height = sensor.depth.data.height;
+  image->format = "R16";
+  image->timestamp = sensor.depth.data.timestamp;
+  dat_image->add_image(sensor, image);
+
+  //---------------------------
+}
+void Depth::retrieve_colored_image(k4n::base::Sensor& sensor){
+  std::shared_ptr<utl::media::Image> image = sensor.depth.image_colored;
   //---------------------------
 
   //Colorization
@@ -67,7 +84,7 @@ void Depth::retrieve_image(k4n::base::Sensor& sensor){
   image->format = "RGBA8";
   image->timestamp = sensor.depth.data.timestamp;
   dat_image->add_image(sensor, image);
-  
+
   //---------------------------
 }
 

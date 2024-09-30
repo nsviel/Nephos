@@ -24,7 +24,8 @@ public:
 
   //Data function
   void retrieve_data(k4n::base::Sensor& sensor);
-  void retrieve_image(k4n::base::Sensor& sensor);
+  void retrieve_raw_image(k4n::base::Sensor& sensor);
+  void retrieve_colored_image(k4n::base::Sensor& sensor);
 
   //Subfunction
   std::string retrieve_format(k4a_image_format_t color_format);
