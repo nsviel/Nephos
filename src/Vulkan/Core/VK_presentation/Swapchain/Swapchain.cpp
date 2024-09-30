@@ -147,12 +147,12 @@ void Swapchain::find_swapchain_max_nb_image(){
   vk_struct->core.swapchain.max_frame = nb_image;
 }
 void Swapchain::find_swapchain_surface_format(){
-  std::vector<VkSurfaceFormatKHR>& dev_format = vk_struct->core.device.physical_device.formats;
-  VkSurfaceFormatKHR swapchain_format = dev_format[0];
+  std::vector<VkSurfaceFormatKHR>& vec_surface_format = vk_struct->core.device.physical_device.vec_surface_format;
+  VkSurfaceFormatKHR swapchain_format = vec_surface_format[0];
   //---------------------------
 
   //Check if standar RGB is available
-  for(const auto& format : dev_format){
+  for(const auto& format : vec_surface_format){
     if(format.format == vk_struct->core.swapchain.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
       swapchain_format = format;
       break;

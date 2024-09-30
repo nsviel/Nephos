@@ -1,6 +1,7 @@
 #include "Color.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::image{
@@ -33,20 +34,23 @@ void Color::create_color_image(vk::structure::Image* color){
 }
 
 //Subfunction
-VkSurfaceFormatKHR Color::retrieve_surface_format(const std::vector<VkSurfaceFormatKHR>& dev_format){
+VkSurfaceFormatKHR Color::retrieve_surface_format(const std::vector<VkSurfaceFormatKHR>& surface_format){
   //---------------------------
 
+  VkFormat required_format = vk_struct->core.swapchain.required_image_format;
+  VkColorSpaceKHR required_color_sapce = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR;
+
   //Check if standar RGB is available
-  for(const auto& format : dev_format){
-    if(format.format == vk_struct->core.swapchain.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
+  for(const auto& format : surface_format){
+    if(format.format == required_format && format.colorSpace == required_color_sapce){
       return format;
     }
   }
 
-  std::cout<<"[error] Standard RGB is no available"<<std::endl;
+  std::cout<<"[error] format or standard RGB not available"<<std::endl;
 
   //---------------------------
-  return dev_format[0];
+  return surface_format[0];
 }
 VkFormat Color::find_color_format(){
   VkFormat format;
@@ -55,9 +59,9 @@ VkFormat Color::find_color_format(){
   if(vk_struct->interface.param.headless){
     format = VK_FORMAT_R8G8B8A8_UNORM;
   }else{
-    std::vector<VkSurfaceFormatKHR> surface_format = vk_struct->core.device.physical_device.formats;
-    VkSurfaceFormatKHR surfaceFormat = retrieve_surface_format(surface_format);
-    format = surfaceFormat.format;
+    std::vector<VkSurfaceFormatKHR> vec_surface_format = vk_struct->core.device.physical_device.vec_surface_format;
+    VkSurfaceFormatKHR surface_format = retrieve_surface_format(vec_surface_format);
+    format = surface_format.format;
   }
 
   //---------------------------

@@ -194,9 +194,6 @@ VkDeviceSize Screenshot::calculate_image_size(VkFormat format, VkExtent3D extent
     case VK_FORMAT_B8G8R8A8_UNORM:
       bytesPerPixel = 4;
       break;
-    case VK_FORMAT_B8G8R8A8_SRGB:
-      bytesPerPixel = 4;
-      break;
     case VK_FORMAT_R8G8B8A8_SRGB:
       bytesPerPixel = 4;
       break;

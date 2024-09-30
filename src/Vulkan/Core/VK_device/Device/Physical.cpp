@@ -169,7 +169,7 @@ bool Physical::device_suitability_onscreen(vk::device::structure::Physical& phys
   this->find_surface_capability(physical_device);
   this->find_surface_format(physical_device);
   this->find_presentation_mode(physical_device);
-  bool swapChain_ok = !physical_device.formats.empty() && !physical_device.presentation_mode.empty();
+  bool swapChain_ok = !physical_device.vec_surface_format.empty() && !physical_device.presentation_mode.empty();
   if(swapChain_ok == false) return false;
 
   //Supported features
@@ -301,11 +301,11 @@ void Physical::find_surface_format(vk::device::structure::Physical& physical_dev
   }
 
   //Get supported surface format list
-  std::vector<VkSurfaceFormatKHR> formats(nb_format);
-  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, vk_struct->window.surface, &nb_format, formats.data());
+  std::vector<VkSurfaceFormatKHR> vec_surface_format(nb_format);
+  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, vk_struct->window.surface, &nb_format, vec_surface_format.data());
 
   //---------------------------
-  physical_device.formats = formats;
+  physical_device.vec_surface_format = vec_surface_format;
 }
 void Physical::find_presentation_mode(vk::device::structure::Physical& physical_device){
   //---------------------------

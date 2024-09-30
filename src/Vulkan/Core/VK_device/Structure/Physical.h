@@ -28,7 +28,7 @@ struct Physical{
   VkSurfaceCapabilitiesKHR capabilities = {};
   VkSampleCountFlagBits max_sample_count = VK_SAMPLE_COUNT_1_BIT;
 
-  std::vector<VkSurfaceFormatKHR> formats;
+  std::vector<VkSurfaceFormatKHR> vec_surface_format;
   std::vector<VkPresentModeKHR> presentation_mode;
   std::vector<vk::queue::structure::Family> vec_queue_family;
 
