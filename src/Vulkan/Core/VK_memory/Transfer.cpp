@@ -21,6 +21,7 @@ Transfer::~Transfer(){}
 
 //Image GPU function
 void Transfer::copy_texture_to_gpu(vk::structure::Texture& texture){
+  if(texture.image->size == 0) return;
   //---------------------------
 
   //Copy data to stagging buffer
