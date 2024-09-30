@@ -59,7 +59,7 @@ void Storage::actualize_storage(vk::structure::Descriptor_set& descriptor_set, v
   //---------------------------
 
   VkDescriptorImageInfo image_info = {};
-  image_info.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+  image_info.imageLayout = VK_IMAGE_LAYOUT_GENERAL;
   image_info.imageView = image.view;
   image_info.sampler = image.sampler;
 

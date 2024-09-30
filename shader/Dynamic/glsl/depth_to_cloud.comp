@@ -1,4 +1,5 @@
 #version 450
+#extension GL_EXT_debug_printf : enable
 
 // Storage input
 layout(binding = 20, r16ui) readonly uniform uimage2D tex_depth;
@@ -13,6 +14,8 @@ layout(local_size_x = 1, local_size_y = 1) in;
 
 void main(){
   //---------------------------
+
+  //debugPrintfEXT("[SHADER] hello");
 
   // Retrieve the pixel coordinates for the current invocation.
   ivec2 pixel = ivec2(gl_GlobalInvocationID.xy);

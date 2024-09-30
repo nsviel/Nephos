@@ -67,6 +67,7 @@ void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure
   //Cloud texture
   std::shared_ptr<vk::structure::Storage> storage_cloud = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_cloud");
   std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
+  if(!storage_cloud || !tex_cloud) return;
   vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_cloud, tex_cloud->wrapper);
 
   //---------------------------
