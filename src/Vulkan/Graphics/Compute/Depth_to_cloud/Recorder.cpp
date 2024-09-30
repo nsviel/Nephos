@@ -37,6 +37,7 @@ void Recorder::run_compute(vk::structure::Object& vk_object){
 
   //End command buffer
   vk_command->end_command_buffer(*command_buffer);
+  //vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->command_buffer = command_buffer;
   vk_struct->core.queue.graphics->add_command(std::move(command));
