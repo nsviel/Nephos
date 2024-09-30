@@ -54,7 +54,7 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
     this->draw_data(*vk_object, *pipeline, subpass);
 
     vk::compute::dtc::Recorder recorder(vk_struct);
-    recorder.run_compute(*vk_object);
+    //recorder.run_compute(*vk_object);
   }
 
   //---------------------------
@@ -85,10 +85,10 @@ void Point::update_uniform(vk::structure::Object& vk_object, vk::structure::Pipe
   vk_uniform->update_uniform("width", vk_object.descriptor_set, data.topology.width);
 
   //Update parameters
-  std::shared_ptr<vk::structure::Texture> texture_depth = vk_data->retrieve_vk_texture(vk_object, "Depth");
+  std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "Depth");
   vk::geometry::Dynamic dyn_struct;
-  dyn_struct.tex_depth_width = texture_depth->image->width;
-  dyn_struct.tex_depth_height = texture_depth->image->height;
+  dyn_struct.tex_depth_width = tex_depth->image->width;
+  dyn_struct.tex_depth_height = tex_depth->image->height;
   vk_uniform->update_uniform("parameter", vk_object.descriptor_set, dyn_struct);
 
   //---------------------------

@@ -26,8 +26,8 @@ void Render::update_render_texture(){
   //---------------------------
 
   //Set presentation texture target
-  vk::structure::Texture& texture = vk_struct->render.presentation.texture;
-  texture.wrapper = vk_struct->render.renderpass.postprocess.framebuffer.color;
+  vk::structure::Texture& texture = vk_struct->graphics.render.presentation.texture;
+  texture.wrapper = vk_struct->graphics.render.renderpass.postprocess.framebuffer.color;
 
   //Create presentation texture descriptor
   this->create_image_descriptor(texture);

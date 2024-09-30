@@ -3,6 +3,7 @@
 namespace vk{class Structure;}
 namespace vk::descriptor{class Uniform;}
 namespace vk::compute{class Pipeline;}
+namespace vk::texture{class Data;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 
@@ -29,6 +30,7 @@ private:
   vk::Structure* vk_struct;
   vk::descriptor::Uniform* vk_uniform;
   vk::compute::Pipeline* vk_pipeline;
+  vk::texture::Data* vk_texture;
 };
 
 }

@@ -11,6 +11,8 @@ namespace vk::structure{
 struct Texture{
   //---------------------------
 
+  int UID = 0;
+
   //Actual texture components
   std::shared_ptr<utl::media::Image> image;
   vk::structure::Image wrapper;

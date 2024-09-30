@@ -6,7 +6,9 @@
 namespace vk{class Structure;}
 namespace vk::texture{class Ressource;}
 namespace vk::data{class Function;}
+namespace vk::instance{class UID;}
 namespace vk::structure{class Object;}
+namespace vk::structure{class Texture;}
 namespace utl::media{class Image;}
 namespace utl::base{class Data;}
 
@@ -35,6 +37,7 @@ private:
   vk::Structure* vk_struct;
   vk::texture::Ressource* vk_ressource;
   vk::data::Function* vk_data;
+  vk::instance::UID* vk_uid;
 };
 
 }

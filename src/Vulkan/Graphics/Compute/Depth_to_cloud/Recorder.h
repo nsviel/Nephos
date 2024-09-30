@@ -6,6 +6,7 @@ namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Storage;}
 namespace vk::compute{class Pipeline;}
 namespace vk::data{class Function;}
+namespace vk::texture{class Data;}
 namespace vk::command{class Command;}
 namespace vk::command{class Allocator;}
 namespace vk::structure{class Subpass;}
@@ -29,6 +30,7 @@ public:
 
   //Subfunction
   void bind_pipeline(vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline);
+  void create_texture(vk::structure::Object& vk_object);
   void update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline);
   void dispatch_pipeline(vk::structure::Object& vk_object, vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline);
 
@@ -41,6 +43,7 @@ private:
   vk::command::Allocator* vk_command_allocator;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::descriptor::Storage* vk_storage;
+  vk::texture::Data* vk_texture;
 };
 
 }

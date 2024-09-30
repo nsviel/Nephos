@@ -13,6 +13,7 @@ Data::Data(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_ressource = new vk::texture::Ressource(vk_struct);
   this->vk_data = new vk::data::Function(vk_struct);
+  this->vk_uid = new vk::instance::UID(vk_struct);
 
   //---------------------------
 }
@@ -41,6 +42,7 @@ void Data::insert_texture(vk::structure::Object& vk_object, std::shared_ptr<utl:
 
   //Create texture from image and insert
   auto texture = std::make_shared<vk::structure::Texture>();
+  texture->UID = vk_uid->query_free_UID();
   texture->image = image;
   vk_ressource->create_texture(*texture);
   vk_object.map_texture[image->name] = texture;
@@ -58,6 +60,7 @@ void Data::insert_texture(std::shared_ptr<utl::media::Image> image){
 
   //Create texture from image
   auto texture = std::make_shared<vk::structure::Texture>();
+  texture->UID = vk_uid->query_free_UID();
   texture->image = image;
   vk_ressource->create_texture(*texture);
   vk_struct->core.data.list_vk_texture.push_back(texture);
@@ -93,7 +96,7 @@ bool Data::check_image(std::shared_ptr<utl::media::Image> image){
 
   if(!image) return false;
   if(image->format == "") return false;
-  if(image->size == 0) return false;
+  //if(image->size == 0) return false;
   if(image->width == 0) return false;
   if(image->height == 0) return false;
 

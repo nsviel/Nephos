@@ -6,7 +6,7 @@ layout(binding = 20, r16ui) readonly uniform uimage2D tex_depth;
 layout(binding = 21, rg32f) readonly uniform image2D xy_table;
 
 // Storage output
-layout(binding = 22, rgba32f) writeonly uniform image2D tex_pc;
+layout(binding = 22, rgba32f) writeonly uniform image2D tex_cloud;
 
 // Workgroup
 layout(local_size_x = 1, local_size_y = 1) in;
@@ -45,7 +45,7 @@ void main(){
   vertex_position.x *= -1;
 
   // Store the computed vertex position and alpha value in the point cloud texture.
-  imageStore(tex_pc, pixel, vec4(vertex_position, alpha));
+  imageStore(tex_cloud, pixel, vec4(vertex_position, alpha));
 
   //---------------------------
 }

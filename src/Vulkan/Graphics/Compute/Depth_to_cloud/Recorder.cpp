@@ -18,6 +18,7 @@ Recorder::Recorder(vk::Structure* vk_struct){
   this->vk_command = new vk::command::Command(vk_struct);
   this->vk_command_allocator = new vk::command::Allocator(vk_struct);
   this->vk_storage = new vk::descriptor::Storage(vk_struct);
+  this->vk_texture = new vk::texture::Data(vk_struct);
 
   //---------------------------
 }
@@ -51,6 +52,18 @@ void Recorder::bind_pipeline(vk::structure::Command_buffer& command_buffer, vk::
 
   //---------------------------
 }
+void Recorder::create_texture(vk::structure::Object& vk_object){
+  //---------------------------
+
+  std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "Depth");
+  std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>("cloud");
+  image->format = "RG32";
+  image->width = tex_depth->image->width;
+  image->height = tex_depth->image->height;
+  vk_texture->insert_texture(vk_object, image);
+
+  //---------------------------
+}
 void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
   //---------------------------
 
@@ -67,7 +80,10 @@ void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure
   //Cloud texture
   std::shared_ptr<vk::structure::Storage> storage_cloud = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_cloud");
   std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
-  if(!storage_cloud || !tex_cloud) return;
+  if(!tex_cloud){
+    this->create_texture(vk_object);
+    tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
+  }
   vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_cloud, tex_cloud->wrapper);
 
   //---------------------------

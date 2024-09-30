@@ -18,7 +18,7 @@ Renderpass::~Renderpass(){}
 
 //Main function
 void Renderpass::init(){
-  vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.presentation;
+  vk::structure::Renderpass& renderpass = vk_struct->graphics.render.renderpass.presentation;
   renderpass.attachment.target = vk::renderpass::PRESENTATION;
   if(vk_struct->interface.param.headless) return;
   //---------------------------
@@ -26,7 +26,7 @@ void Renderpass::init(){
   vk_subpass->create_subpass(renderpass);
 
   //---------------------------
-  vk_struct->render.renderpass.vec_renderpass.push_back(&renderpass);
+  vk_struct->graphics.render.renderpass.vec_renderpass.push_back(&renderpass);
 }
 
 }

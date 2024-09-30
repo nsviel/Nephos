@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/Core/Structure.h>
-#include <Vulkan/Graphics/Render/Structure/Structure.h>
+#include <Vulkan/Graphics/Structure.h>
 #include <Vulkan/Window/VK_window/Structure/Window.h>
 #include <Vulkan/Interface/Structure.h>
 
@@ -18,7 +18,7 @@ struct Structure{
 
   //Structure
   vk::core::Structure core;
-  vk::render::Structure render;
+  vk::graphics::Structure graphics;
   vk::structure::Window window;
   vk::structure::Interface interface;
 

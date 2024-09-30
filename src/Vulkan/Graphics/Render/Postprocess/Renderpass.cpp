@@ -19,14 +19,14 @@ Renderpass::~Renderpass(){}
 
 //Init function
 void Renderpass::init(){
-  vk::structure::Renderpass& renderpass = vk_struct->render.renderpass.postprocess;
+  vk::structure::Renderpass& renderpass = vk_struct->graphics.render.renderpass.postprocess;
   renderpass.attachment.target = vk::renderpass::SHADER;
   //---------------------------
 
   vk_edl->create_subpass(renderpass);
 
   //---------------------------
-  vk_struct->render.renderpass.vec_renderpass.push_back(&renderpass);
+  vk_struct->graphics.render.renderpass.vec_renderpass.push_back(&renderpass);
 }
 
 }
