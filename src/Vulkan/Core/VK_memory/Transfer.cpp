@@ -252,7 +252,7 @@ void Transfer::copy_vertex_to_gpu(vk::data::structure::Buffer& buffer, vk::data:
   vkCmdCopyBuffer(command_buffer->handle, stagger.vbo, buffer.vbo, 1, &region);
 
   vk_command->end_command_buffer(*command_buffer);
-  vk_struct->core.queue.transfer->add_command(command_buffer);
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.transfer);
 
   //---------------------------
 }

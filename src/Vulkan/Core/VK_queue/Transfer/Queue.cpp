@@ -44,12 +44,12 @@ void Queue::thread_loop(){
 }
 
 //Subfunction
-void Queue::add_command(std::shared_ptr<vk::structure::Command_buffer> command_buffer){
+void Queue::add_command(std::unique_ptr<vk::structure::Command> command){
   mutex.lock();
   //---------------------------
 
-  if(command_buffer->is_recorded){
-    queue.push(command_buffer);
+  if(command->command_buffer->is_recorded){
+    queue.push(command->command_buffer);
     cv.notify_one();
   }
 
