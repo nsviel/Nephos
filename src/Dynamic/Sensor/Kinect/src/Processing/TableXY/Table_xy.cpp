@@ -9,7 +9,7 @@ bad results
 */
 
 
-namespace k4n::processing::image{
+namespace k4n::processing{
 
 //Constructor / Destructor
 Table_xy::Table_xy(k4n::Node* node_k4n){

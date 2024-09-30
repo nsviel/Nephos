@@ -11,7 +11,7 @@ namespace k4n{class Structure;}
 namespace k4n::base{class Sensor;}
 
 
-namespace k4n::processing::image{
+namespace k4n::processing{
 
 class Table_xy : public thr::Job
 {

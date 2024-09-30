@@ -11,7 +11,7 @@ namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
 
 
-namespace k4n::processing::image{
+namespace k4n::transformation{
 
 class Depth_to_color
 {

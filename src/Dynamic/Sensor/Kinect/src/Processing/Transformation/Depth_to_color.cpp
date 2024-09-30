@@ -3,7 +3,7 @@
 #include <Kinect/Namespace.h>
 
 
-namespace k4n::processing::image{
+namespace k4n::transformation{
 
 //Constructor / Destructor
 Depth_to_color::Depth_to_color(k4n::Node* node_k4n){

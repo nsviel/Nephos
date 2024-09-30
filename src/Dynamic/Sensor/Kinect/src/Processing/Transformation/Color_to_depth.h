@@ -9,10 +9,9 @@
 
 namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
-namespace k4n::processing::image{class Table_xy;}
 
 
-namespace k4n::processing::image{
+namespace k4n::transformation{
 
 class Color_to_depth
 {
@@ -31,7 +30,6 @@ public:
   bool check_data(k4n::base::Sensor& sensor);
 
 private:
-  k4n::processing::image::Table_xy* table_xy;
 };
 
 }

@@ -5,6 +5,7 @@
 #include <string>
 
 namespace k4n{class Node;}
+namespace k4n::processing{class Table_xy;}
 namespace k4n::base{class Sensor;}
 namespace dat::img{class Image;}
 
@@ -34,6 +35,7 @@ public:
   void retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data);
 
 private:
+  k4n::processing::Table_xy* k4n_table;
   dat::img::Image* dat_image;
 };
 

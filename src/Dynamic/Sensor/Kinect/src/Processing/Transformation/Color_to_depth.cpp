@@ -3,13 +3,12 @@
 #include <Kinect/Namespace.h>
 
 
-namespace k4n::processing::image{
+namespace k4n::transformation{
 
 //Constructor / Destructor
 Color_to_depth::Color_to_depth(k4n::Node* node_k4n){
   //---------------------------
 
-  this->table_xy = new k4n::processing::image::Table_xy(node_k4n);
 
   //---------------------------
 }

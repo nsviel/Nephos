@@ -3,7 +3,7 @@
 #include <Kinect/Namespace.h>
 
 
-namespace k4n{
+namespace k4n::processing{
 
 //Constructor / Destructor
 Utils::Utils(k4n::Node* node_k4n){

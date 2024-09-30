@@ -14,6 +14,7 @@ Color::Color(k4n::Node* node_k4n){
   dat::img::Node* node_image = node_data->get_node_image();
 
   this->dat_image = node_image->get_dat_image();
+  this->k4n_table = new k4n::processing::Table_xy(node_k4n);
 
   //---------------------------
 }

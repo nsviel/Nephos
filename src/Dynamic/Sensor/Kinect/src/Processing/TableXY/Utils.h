@@ -8,7 +8,7 @@ namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
 
 
-namespace k4n{
+namespace k4n::processing{
 
 class Utils
 {
