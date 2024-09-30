@@ -17,6 +17,7 @@ Recorder::Recorder(vk::Structure* vk_struct){
   this->vk_data = new vk::data::Function(vk_struct);
   this->vk_command = new vk::command::Command(vk_struct);
   this->vk_command_allocator = new vk::command::Allocator(vk_struct);
+  this->vk_storage = new vk::descriptor::Storage(vk_struct);
 
   //---------------------------
 }
@@ -32,15 +33,12 @@ void Recorder::run_compute(vk::structure::Object& vk_object){
   vk_command->start_command_buffer_primary(*command_buffer);
 
   this->bind_pipeline(*command_buffer, *pipeline);
-  this->update_descriptor(*pipeline);
+  this->update_descriptor(vk_object, *pipeline);
   this->dispatch_pipeline(vk_object, *command_buffer, *pipeline);
 
   //End command buffer
   vk_command->end_command_buffer(*command_buffer);
-  //vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
-  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->command_buffer = command_buffer;
-  vk_struct->core.queue.graphics->add_command(std::move(command));
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
 
   //---------------------------
 }
@@ -53,9 +51,13 @@ void Recorder::bind_pipeline(vk::structure::Command_buffer& command_buffer, vk::
 
   //---------------------------
 }
-void Recorder::update_descriptor(vk::structure::Pipeline& pipeline){
+void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
   //---------------------------
 
+  //Depth texture
+  std::shared_ptr<vk::structure::Storage> storage_depth = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_depth");
+  std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "depth_raw");
+  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_depth, tex_depth->wrapper);
 
 
   //---------------------------

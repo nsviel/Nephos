@@ -100,9 +100,7 @@ void Font::font_build(){
   ImGui_ImplVulkan_CreateFontsTexture(command_buffer->handle);
 
   vk_command->end_command_buffer(*command_buffer);
-  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->command_buffer = command_buffer;
-  vk_struct->core.queue.graphics->add_command(std::move(command));
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
 
   //---------------------------
 }

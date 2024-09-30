@@ -28,7 +28,7 @@ void Storage::create_sampler(vk::structure::Descriptor_set& descriptor_set, vk::
 
   //---------------------------
 }
-void Storage::actualize_sampler(vk::structure::Descriptor_set& descriptor_set){
+void Storage::actualize_storage(vk::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
   for(auto& [name, storage] : descriptor_set.map_storage){;
@@ -55,7 +55,7 @@ void Storage::actualize_sampler(vk::structure::Descriptor_set& descriptor_set){
 
   //---------------------------
 }
-void Storage::actualize_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Storage& storage, vk::structure::Image& image){
+void Storage::actualize_storage(vk::structure::Descriptor_set& descriptor_set, vk::structure::Storage& storage, vk::structure::Image& image){
   //---------------------------
 
   VkDescriptorImageInfo image_info = {};

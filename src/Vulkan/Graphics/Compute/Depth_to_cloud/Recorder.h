@@ -3,6 +3,7 @@
 namespace vk{class Structure;}
 namespace vk::descriptor{class Uniform;}
 namespace vk::descriptor{class Descriptor_set;}
+namespace vk::descriptor{class Storage;}
 namespace vk::compute{class Pipeline;}
 namespace vk::data{class Function;}
 namespace vk::command{class Command;}
@@ -28,7 +29,7 @@ public:
 
   //Subfunction
   void bind_pipeline(vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline);
-  void update_descriptor(vk::structure::Pipeline& pipeline);
+  void update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline);
   void dispatch_pipeline(vk::structure::Object& vk_object, vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline);
 
 private:
@@ -39,6 +40,7 @@ private:
   vk::command::Command* vk_command;
   vk::command::Allocator* vk_command_allocator;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
+  vk::descriptor::Storage* vk_storage;
 };
 
 }

@@ -58,9 +58,7 @@ void Transfer::copy_image_to_gpu(vk::structure::Image& image, VkBuffer buffer){
 
   //End and submit command
   vk_command->end_command_buffer(*command_buffer);
-  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->command_buffer = command_buffer;
-  vk_struct->core.queue.graphics->add_command(std::move(command));
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
 
   //---------------------------
 }
@@ -76,10 +74,7 @@ void Transfer::transit(vk::structure::Image& image){
 
   //End and submit command
   vk_command->end_command_buffer(*command_buffer);
-  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->command_buffer = command_buffer;
-  command->name = "transition";
-  vk_struct->core.queue.graphics->add_command(std::move(command));
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
 
   //---------------------------
 }
@@ -104,9 +99,7 @@ void Transfer::copy_gpu_image_to_buffer(vk::structure::Image& image, VkBuffer bu
 
   //End and submit command buffer
   vk_command->end_command_buffer(*command_buffer);
-  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->command_buffer = command_buffer;
-  vk_struct->core.queue.graphics->add_command(std::move(command));
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
 
   //---------------------------
 }
@@ -140,9 +133,7 @@ void Transfer::blit_gpu_image_to_gpu_image(vk::structure::Image& image_src, vk::
 
   //End and submit command buffer
   vk_command->end_command_buffer(*command_buffer);
-  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->command_buffer = command_buffer;
-  vk_struct->core.queue.graphics->add_command(std::move(command));
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
 
   //---------------------------
 }
@@ -173,9 +164,7 @@ void Transfer::copy_gpu_image_to_gpu_image_standalone(vk::structure::Image& imag
 
   //End and submit command buffer
   vk_command->end_command_buffer(*command_buffer);
-  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->command_buffer = command_buffer;
-  vk_struct->core.queue.graphics->add_command(std::move(command));
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
 
   //---------------------------
 }
