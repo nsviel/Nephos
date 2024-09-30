@@ -25,6 +25,7 @@ public:
   void thread_function();
 
   //Subfunction
+  void build_texture(k4n::base::Sensor& sensor, k4a_calibration_type_t calibration);
   void table_color_to_depth(k4n::base::Sensor& sensor);
   void apply_map(k4n::base::Sensor& sensor, int i);
 
