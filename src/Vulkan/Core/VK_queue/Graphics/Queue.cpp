@@ -1,4 +1,4 @@
-#include "Thread.h"
+#include "Queue.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::queue::graphics{
 
 //Constructor / Destructor
-Thread::Thread(vk::Structure* vk_struct){
+Queue::Queue(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -18,10 +18,10 @@ Thread::Thread(vk::Structure* vk_struct){
   this->start_thread();
 
 }
-Thread::~Thread(){}
+Queue::~Queue(){}
 
 //Main function
-void Thread::thread_init(){
+void Queue::thread_init(){
   //---------------------------
 
   vk_struct->core.device.queue.graphics.type = vk::queue::GRAPHICS;
@@ -29,7 +29,7 @@ void Thread::thread_init(){
 
   //---------------------------
 }
-void Thread::thread_loop(){
+void Queue::thread_loop(){
   //---------------------------
 
   //Wait for command
@@ -45,7 +45,7 @@ void Thread::thread_loop(){
 }
 
 //Subfunction
-void Thread::add_command(std::unique_ptr<vk::structure::Command> command){
+void Queue::add_command(std::unique_ptr<vk::structure::Command> command){
   if(vk_struct->core.queue.standby) return;
   //---------------------------
 
@@ -60,7 +60,7 @@ void Thread::add_command(std::unique_ptr<vk::structure::Command> command){
 
   //---------------------------
 }
-void Thread::add_command(std::vector<std::unique_ptr<vk::structure::Command>> vec_command){
+void Queue::add_command(std::vector<std::unique_ptr<vk::structure::Command>> vec_command){
   if(vk_struct->core.queue.standby) return;
   //---------------------------
 
@@ -75,7 +75,7 @@ void Thread::add_command(std::vector<std::unique_ptr<vk::structure::Command>> ve
 
   //---------------------------
 }
-void Thread::add_command(vk::command::structure::Set* set){
+void Queue::add_command(vk::command::structure::Set* set){
   if(vk_struct->core.queue.standby) return;
   //---------------------------
 

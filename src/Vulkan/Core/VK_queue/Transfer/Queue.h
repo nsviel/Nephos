@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/Core/VK_queue/Structure/Thread.h>
+#include <Vulkan/Core/VK_queue/Structure/Base.h>
 #include <vulkan/vulkan.h>
 #include <memory>
 #include <vector>
@@ -13,12 +13,12 @@ namespace vk::queue::transfer{class Submission;}
 
 namespace vk::queue::transfer{
 
-class Thread : public vk::queue::Thread
+class Queue : public vk::queue::Base
 {
 public:
   //Constructor / Destructor
-  Thread(vk::Structure* vk_struct);
-  ~Thread();
+  Queue(vk::Structure* vk_struct);
+  ~Queue();
 
 public:
   //Main function

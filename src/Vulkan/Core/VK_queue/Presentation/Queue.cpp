@@ -1,34 +1,33 @@
-#include "Thread.h"
+#include "Queue.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
-#include <thread>
 
 
-namespace vk::queue::transfer{
+namespace vk::queue::presentation{
 
 //Constructor / Destructor
-Thread::Thread(vk::Structure* vk_struct){
+Queue::Queue(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_submission = new vk::queue::transfer::Submission(vk_struct);
+  this->vk_submission = new vk::queue::presentation::Submission(vk_struct);
 
   //---------------------------
   this->start_thread();
 }
-Thread::~Thread(){}
+Queue::~Queue(){}
 
 //Main function
-void Thread::thread_init(){
+void Queue::thread_init(){
   //---------------------------
 
-  vk_struct->core.device.queue.transfer.type = vk::queue::TRANSFER;
-  vk_struct->core.device.queue.transfer.thread_ID = thr::get_ID_str();
+  vk_struct->core.device.queue.presentation.type = vk::queue::PRESENTATION;
+  vk_struct->core.device.queue.presentation.thread_ID = thr::get_ID_str();
 
   //---------------------------
 }
-void Thread::thread_loop(){
+void Queue::thread_loop(){
   //---------------------------
 
   //Wait for command
@@ -37,24 +36,29 @@ void Thread::thread_loop(){
   if(!thread_running) return;
 
   //Submit command
-  vk_submission->process_command(*queue.front());
+  vk_submission->make_rendering();
   queue.pop();
 
   //---------------------------
 }
 
 //Subfunction
-void Thread::add_command(std::shared_ptr<vk::structure::Command_buffer> command_buffer){
+void Queue::make_rendering_thread(){
+  //---------------------------
+
   mutex.lock();
-  //---------------------------
-
-  if(command_buffer->is_recorded){
-    queue.push(command_buffer);
-    cv.notify_one();
-  }
-
-  //---------------------------
+  queue.push(true);
   mutex.unlock();
+  cv.notify_one();
+
+  //---------------------------
+}
+void Queue::make_rendering(){
+  //---------------------------
+
+  vk_submission->make_rendering();
+
+  //---------------------------
 }
 
 }

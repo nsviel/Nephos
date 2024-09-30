@@ -19,9 +19,9 @@ Manager::~Manager(){}
 void Manager::init(){
   //---------------------------
 
-  vk_struct->core.queue.transfer = new vk::queue::transfer::Thread(vk_struct);
-  vk_struct->core.queue.graphics = new vk::queue::graphics::Thread(vk_struct);
-  vk_struct->core.queue.presentation = new vk::queue::presentation::Thread(vk_struct);
+  vk_struct->core.queue.transfer = new vk::queue::transfer::Queue(vk_struct);
+  vk_struct->core.queue.graphics = new vk::queue::graphics::Queue(vk_struct);
+  vk_struct->core.queue.presentation = new vk::queue::presentation::Queue(vk_struct);
 
   //---------------------------
 }

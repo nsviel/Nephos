@@ -1,4 +1,4 @@
-#include "Thread.h"
+#include "Base.h"
 
 #include <Utility/Namespace.h>
 
@@ -11,17 +11,17 @@ with init, end and inside while loop
 namespace vk::queue{
 
 //Main function
-void Thread::start_thread(){
+void Base::start_thread(){
   //---------------------------
 
   if(!thread_running.load()){
     thread_running.store(true);
-    this->thread = std::thread(&Thread::run_thread, this);
+    this->thread = std::thread(&Base::run_thread, this);
   }
 
   //---------------------------
 }
-void Thread::run_thread(){
+void Base::run_thread(){
   //---------------------------
 
   this->thread_init();
@@ -35,7 +35,7 @@ void Thread::run_thread(){
 
   //---------------------------
 }
-void Thread::stop_thread(){
+void Base::stop_thread(){
   //---------------------------
 
   //Stop signal
@@ -51,7 +51,7 @@ void Thread::stop_thread(){
 }
 
 //State function
-void Thread::thread_pause(){
+void Base::thread_pause(){
   //---------------------------
 
   // Wait for command
@@ -60,7 +60,7 @@ void Thread::thread_pause(){
 
   //---------------------------
 }
-void Thread::set_pause(bool value){
+void Base::set_pause(bool value){
   //---------------------------
 
   thread_paused.store(value);
