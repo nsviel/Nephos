@@ -9,6 +9,8 @@
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::base{class Sensor;}
+namespace utl::media{class Image;}
+namespace dat::img{class Image;}
 
 
 namespace k4n::processing{
@@ -25,10 +27,13 @@ public:
   void build_table_xy(k4n::base::Sensor& sensor);
 
   //Subfunction
-  void build_texture(k4n::base::Sensor& sensor, k4a_calibration_type_t calibration);
+  void build_color_texture(k4n::base::Sensor& sensor);
+  void build_depth_texture(k4n::base::Sensor& sensor);
+  void build_texture(k4n::base::Sensor& sensor, utl::media::Image& image, k4a_calibration_type_t calibration);
 
 private:
   k4n::Structure* k4n_struct;
+  dat::img::Image* dat_image;
 };
 
 }

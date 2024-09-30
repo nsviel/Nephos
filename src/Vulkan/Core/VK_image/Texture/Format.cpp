@@ -27,6 +27,9 @@ VkFormat Format::find_vk_format(std::string format){
   else if(format == "BGRA8"){
     vk_format = VK_FORMAT_B8G8R8A8_SRGB;
   }
+  else if(format == "RG32"){
+    vk_format = VK_FORMAT_R32G32_SFLOAT;
+  }
   else if(format == "R16_UINT"){
     vk_format = VK_FORMAT_R16_UINT;
   }

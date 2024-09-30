@@ -50,11 +50,7 @@ void Data::extract_data(dat::base::Sensor& sensor){
   this->make_transformation(*k4n_sensor);
   tasker->task_end("transformation");
 
-
-  tic();
-  k4n_table->build_texture(*k4n_sensor);
-  toc_ms("hey");
-
+  k4n_table->build_table_xy(*k4n_sensor);
 
   //---------------------------
 }
