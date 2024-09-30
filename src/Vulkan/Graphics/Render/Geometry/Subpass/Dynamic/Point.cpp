@@ -54,7 +54,7 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
     this->draw_data(*vk_object, *pipeline, subpass);
 
     vk::compute::dtc::Recorder recorder(vk_struct);
-    recorder.run_compute(*vk_object);
+    //recorder.run_compute(*vk_object);
   }
 
   //---------------------------
