@@ -11,11 +11,10 @@ namespace k4n::infrared{
 struct Configuration{
   //---------------------------
 
-  bool enabled = true;
-  int division = 1000;
-
   uint16_t level_min = 0;
   uint16_t level_max = 1000;
+  bool enabled = true;
+  int division = 1000;
 
   //---------------------------
 };

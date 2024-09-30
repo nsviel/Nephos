@@ -14,11 +14,9 @@ namespace k4n::color{
 struct Configuration{
   //---------------------------
 
-  //General
-  bool enabled = true;
-
   k4a_image_format_t format = K4A_IMAGE_FORMAT_COLOR_YUY2;
   k4a_color_resolution_t resolution = K4A_COLOR_RESOLUTION_720P;
+  bool enabled = true;
 
   //---------------------------
 };
@@ -30,6 +28,7 @@ struct Structure{
   k4n::color::Configuration config;
   k4n::structure::Data data;
   std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>("Color");
+  std::shared_ptr<utl::media::Image> table_xy = std::make_shared<utl::media::Image>("color_table_xy");
 
   //---------------------------
 };
