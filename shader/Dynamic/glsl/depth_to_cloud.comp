@@ -1,11 +1,11 @@
 #version 450
 
-// Sampler
-layout(binding = 11, r16ui) readonly uniform uimage2D tex_depth;
-layout(binding = 12, rg32f) readonly uniform image2D xy_table;
+// Storage input
+layout(binding = 20, r16ui) readonly uniform uimage2D tex_depth;
+layout(binding = 21, rg32f) readonly uniform image2D xy_table;
 
-// Output
-layout(binding = 13, rgba32f) writeonly uniform image2D tex_pc;
+// Storage output
+layout(binding = 22, rgba32f) writeonly uniform image2D tex_pc;
 
 // Workgroup
 layout(local_size_x = 1, local_size_y = 1) in;
