@@ -17,6 +17,7 @@ Data::Data(k4n::Node* node_k4n){
   this->k4n_ir = new k4n::processing::image::Infrared(node_k4n);
   this->k4n_depth_to_color = new k4n::transformation::Depth_to_color(node_k4n);
   this->k4n_color_to_depth = new k4n::transformation::Color_to_depth(node_k4n);
+  this->k4n_table = new k4n::processing::Table_xy(node_k4n);
 
   //---------------------------
 }
@@ -48,6 +49,12 @@ void Data::extract_data(dat::base::Sensor& sensor){
   tasker->task_begin("transformation");
   this->make_transformation(*k4n_sensor);
   tasker->task_end("transformation");
+
+
+  tic();
+  k4n_table->build_texture(*k4n_sensor);
+  toc_ms("hey");
+
 
   //---------------------------
 }
