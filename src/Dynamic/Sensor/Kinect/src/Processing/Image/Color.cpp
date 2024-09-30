@@ -26,7 +26,7 @@ void Color::extract_data(k4n::base::Sensor& sensor){
   this->retrieve_data(sensor);
   this->retrieve_image(sensor);
   this->retrieve_timestamp(sensor);
-  
+
   //---------------------------
 }
 
@@ -56,12 +56,11 @@ void Color::retrieve_image(k4n::base::Sensor& sensor){
 
   //Image
   image->display = true;
-  image->data = std::vector<uint8_t>(sensor.color.data.buffer, sensor.color.data.buffer + sensor.color.data.size);
-  image->size = image->data.size();
   image->width = sensor.color.data.width;
   image->height = sensor.color.data.height;
   image->format = sensor.color.data.format;
   image->timestamp = sensor.color.data.timestamp;
+  this->convert_bgra_to_rgba(sensor);
   dat_image->add_image(sensor, image);
 
   //---------------------------
@@ -93,7 +92,7 @@ std::string Color::retrieve_format(k4a_image_format_t color_format){
       break;
     }
     case K4A_IMAGE_FORMAT_COLOR_BGRA32:{
-      format = "BGRA8";
+      format = "RGBA8";
       break;
     }
     default:{
@@ -192,6 +191,38 @@ void Color::retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& da
   //Creat a new k4a image with RGBA data format
   image = k4a::image::create_from_buffer(K4A_IMAGE_FORMAT_COLOR_BGRA32, width, height, width * 4, data.data(), data.size(), nullptr, nullptr);
 */
+  //---------------------------
+}
+void Color::convert_bgra_to_rgba(k4n::base::Sensor& sensor){
+  std::shared_ptr<utl::media::Image> image = sensor.color.image;
+  //---------------------------
+
+  // Retrieve the BGR(A) data from the sensor
+  const uint8_t* bgr_buffer = sensor.color.data.buffer;
+  size_t bgr_size = sensor.color.data.size;
+
+  // Prepare a vector for RGBA data
+  image->data.resize(bgr_size); // RGBA will have 4 bytes per pixel
+  size_t rgba_index = 0;
+
+  // Convert BGR to RGBA
+  for (size_t i = 0; i < bgr_size; i += 4) {
+    // Assuming the format is BGRA
+    uint8_t b = bgr_buffer[i];     // B
+    uint8_t g = bgr_buffer[i + 1]; // G
+    uint8_t r = bgr_buffer[i + 2]; // R
+    uint8_t a = bgr_buffer[i + 3]; // A
+
+    // Fill the RGBA data
+    image->data[rgba_index++] = r; // R
+    image->data[rgba_index++] = g; // G
+    image->data[rgba_index++] = b; // B
+    image->data[rgba_index++] = a; // A
+  }
+
+  // Set the size of the RGBA image data
+  image->size = rgba_index;
+
   //---------------------------
 }
 

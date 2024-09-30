@@ -32,6 +32,7 @@ public:
   uint8_t* retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height);
   void retrieve_data_from_capture(k4a::image& image, std::vector<uint8_t>& data, std::string& format);
   void retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data);
+  void convert_bgra_to_rgba(k4n::base::Sensor& sensor);
 
 private:
   dat::img::Image* dat_image;

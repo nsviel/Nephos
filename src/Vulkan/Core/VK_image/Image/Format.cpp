@@ -4,9 +4,9 @@
 #include <Utility/Namespace.h>
 
 /*
-VK_FORMAT_R8G8B8A8_SRGB : for sampled texture
-VK_FORMAT_D32_SFLOAT : for depth attachment
-VK_FORMAT_R32_SFLOAT or VK_FORMAT_R16_UINT : for storage
+VK_FORMAT_R8G8B8A8_SRGB : for color image
+VK_FORMAT_D32_SFLOAT : for depth image
+VK_FORMAT_R32G32_SFLOAT : for high precision texture
 */
 
 
@@ -30,9 +30,6 @@ VkFormat Format::find_vk_format(std::string format){
   if(format == "RGBA8"){
     vk_format = VK_FORMAT_R8G8B8A8_SRGB;
   }
-  else if(format == "BGRA8"){
-    vk_format = VK_FORMAT_B8G8R8A8_SRGB;
-  }
   else if(format == "RG32"){
     vk_format = VK_FORMAT_R32G32_SFLOAT;
   }
@@ -49,6 +46,8 @@ VkFormat Format::find_vk_format(std::string format){
 VkImageUsageFlags Format::find_usage_from_format(vk::structure::Image& image){
   VkImageUsageFlags usage = image.usage;
   //---------------------------
+
+  if(image.format == VK_FORMAT_B8G8R8A8_SRGB) sayHello();
 
   switch(image.format){
     case VK_FORMAT_D32_SFLOAT:

@@ -53,16 +53,8 @@ std::string Color::retrieve_format(rs2_format color_format){
       format = "R8G8B8_SRGB";
       break;
     }
-    case RS2_FORMAT_BGR8: {
-      format = "BGRA8";
-      break;
-    }
     case RS2_FORMAT_RGBA8: {
       format = "RGBA8";
-      break;
-    }
-    case RS2_FORMAT_BGRA8: {
-      format = "BGRA8";
       break;
     }
     case RS2_FORMAT_YUYV: {
