@@ -66,7 +66,9 @@ void Recorder::create_texture(vk::structure::Object& vk_object){
 }
 void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
   //---------------------------
-
+say("----------------------------------");
+say("----------------------------------");
+say("----------------------------------");
   //Depth texture
   std::shared_ptr<vk::structure::Storage> storage_depth = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_depth");
   std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "depth_raw");
@@ -91,7 +93,7 @@ void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure
 }
 void Recorder::dispatch_pipeline(vk::structure::Object& vk_object, vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline){
   //---------------------------
-say(pipeline.layout);
+
   // Update descriptor set
   vk_pipeline->cmd_bind_descriptor_set(command_buffer.handle, pipeline, pipeline.descriptor.descriptor_set);
 
