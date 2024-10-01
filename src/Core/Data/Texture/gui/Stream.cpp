@@ -1,6 +1,6 @@
 #include "Stream.h"
 
-#include <Data/Image/Namespace.h>
+#include <Data/Texture/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 

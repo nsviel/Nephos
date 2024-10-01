@@ -1,4 +1,4 @@
-set(LIBRARY_NAME DATA_IMAGE)
+set(LIBRARY_NAME DATA_TEXTURE)
 
 #-----------------
 # Source files

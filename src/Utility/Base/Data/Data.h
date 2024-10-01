@@ -46,6 +46,8 @@ struct Data : public utl::base::Element{
   std::vector<glm::vec2> uv;    //UV coordinate
   std::unordered_map<std::string, std::shared_ptr<utl::base::Field>> map_field;
   std::unordered_map<std::string, std::shared_ptr<utl::base::Image>> map_image;
+  std::unordered_map<std::string, std::shared_ptr<utl::base::Depth>> map_depth;
+  std::unordered_map<std::string, std::shared_ptr<utl::base::Storage>> map_storage;
 
   //---------------------------
 };

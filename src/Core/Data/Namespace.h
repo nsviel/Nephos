@@ -5,6 +5,6 @@
 #include <Data/Base/Namespace.h>
 #include <Data/Element/Namespace.h>
 #include <Data/Graph/Namespace.h>
-#include <Data/Image/Namespace.h>
 #include <Data/Player/Namespace.h>
 #include <Data/Sensor/Namespace.h>
+#include <Data/Texture/Namespace.h>
