@@ -68,7 +68,7 @@ void Point::set_binding(vk::structure::Pipeline& pipeline){
   pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::uniform_mvp());
   pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::uniform_point_size());
   pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::uniform_dynamic());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::storage_cloud());
+  //pipeline.descriptor.layout.vec_descriptor.push_back(vk::geometry::storage_cloud());
 
   //---------------------------
 }

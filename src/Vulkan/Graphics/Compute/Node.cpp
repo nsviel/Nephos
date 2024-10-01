@@ -21,7 +21,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  vk_dtc->create_pipeline();
+  //vk_dtc->create_pipeline();
 
   //---------------------------
 }
