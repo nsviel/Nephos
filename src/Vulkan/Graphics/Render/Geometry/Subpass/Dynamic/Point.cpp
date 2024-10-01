@@ -113,7 +113,7 @@ void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipe
 void Point::draw_data(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass){
   //---------------------------
 
-  vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
+  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
   vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, vk_object);
 
   //---------------------------

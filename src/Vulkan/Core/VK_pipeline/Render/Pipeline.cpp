@@ -74,5 +74,12 @@ void Pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure:
 
   //---------------------------
 }
+void Pipeline::cmd_bind_descriptor_set(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline, vk::structure::Descriptor_set& descriptor_set){
+  //---------------------------
+
+  vkCmdBindDescriptorSets(command_buffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.layout, 0, 1, &descriptor_set.handle, 0, nullptr);
+
+  //---------------------------
+}
 
 }

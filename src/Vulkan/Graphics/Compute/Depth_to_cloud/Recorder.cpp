@@ -83,6 +83,7 @@ void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure
   if(!tex_cloud){
     this->create_texture(vk_object);
     tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
+    if(!tex_cloud) say("problem");
   }
   vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_cloud, tex_cloud->wrapper);
 
@@ -90,9 +91,9 @@ void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure
 }
 void Recorder::dispatch_pipeline(vk::structure::Object& vk_object, vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline){
   //---------------------------
-
+say(pipeline.layout);
   // Update descriptor set
-  vk_descriptor_set->bind_descriptor_set(command_buffer.handle, pipeline, pipeline.descriptor.descriptor_set);
+  vk_pipeline->cmd_bind_descriptor_set(command_buffer.handle, pipeline, pipeline.descriptor.descriptor_set);
 
   // Dispatch the compute work
   std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "depth_raw");

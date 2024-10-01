@@ -31,7 +31,6 @@ public:
   void free_handle(vk::structure::Descriptor_set& descriptor_set);
   void create_descriptor(vk::structure::Descriptor_set& descriptor_set, vk::structure::Layout& layout);
   void update_descriptor_set(vk::structure::Descriptor_set& descriptor_set, vk::structure::Layout& layout);
-  void bind_descriptor_set(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline, vk::structure::Descriptor_set& descriptor_set);
 
 private:
   vk::Structure* vk_struct;

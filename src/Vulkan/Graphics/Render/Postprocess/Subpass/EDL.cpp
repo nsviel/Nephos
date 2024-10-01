@@ -87,7 +87,7 @@ void EDL::update_descriptor(vk::structure::Subpass& subpass, vk::structure::Pipe
 void EDL::draw_data(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk_descriptor_set->bind_descriptor_set(subpass.command_buffer->handle, pipeline, pipeline.descriptor.descriptor_set);
+  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, pipeline.descriptor.descriptor_set);
   vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, *vk_struct->core.data.canvas);
 
   //---------------------------
