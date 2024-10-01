@@ -17,4 +17,7 @@ vk::structure::Descriptor uniform_dynamic();
 vk::structure::Descriptor sampler_color();
 vk::structure::Descriptor sampler_depth();
 
+//Storage
+vk::structure::Descriptor storage_cloud();
+
 }

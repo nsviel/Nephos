@@ -9,8 +9,8 @@ namespace vk::structure{class Descriptor;}
 namespace vk::compute::dtc{
 
 //Sampler
-vk::structure::Descriptor sampler_depth();
-vk::structure::Descriptor sampler_table_xy();
-vk::structure::Descriptor sampler_storage_pc();
+vk::structure::Descriptor storage_depth();
+vk::structure::Descriptor storage_tablexy();
+vk::structure::Descriptor storage_cloud();
 
 }

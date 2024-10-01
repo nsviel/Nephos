@@ -77,19 +77,15 @@ vk_transition.image_layout_transition(tex_table_xy->wrapper, VK_IMAGE_LAYOUT_SHA
 }
 void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
   //---------------------------
-say("----------------------------------");
-say("----------------------------------");
-say("----------------------------------");
 
-//Cloud texture
-std::shared_ptr<vk::structure::Storage> storage_cloud = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_cloud");
-std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
-if(!tex_cloud){
-  this->create_texture(vk_object);
-  tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
-  if(!tex_cloud) say("problem");
-}
-vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_cloud, tex_cloud->wrapper);
+  //Cloud texture
+  std::shared_ptr<vk::structure::Storage> storage_cloud = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_cloud");
+  std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
+  if(!tex_cloud){
+    this->create_texture(vk_object);
+    tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
+  }
+  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_cloud, tex_cloud->wrapper);
 
   //Depth texture
   std::shared_ptr<vk::structure::Storage> storage_depth = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_depth");
@@ -100,15 +96,6 @@ vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_cloud
   std::shared_ptr<vk::structure::Storage> storage_tablexy = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_tablexy");
   std::shared_ptr<vk::structure::Texture> tex_table_xy = vk_data->retrieve_vk_texture(vk_object, "depth_table_xy");
   vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_tablexy, tex_table_xy->wrapper);
-
-
-
-
-  say(tex_depth->wrapper.handle);
-  say(tex_table_xy->wrapper.handle);
-  say(tex_cloud->wrapper.handle);
-
-  if(tex_depth->wrapper.layout == VK_IMAGE_LAYOUT_GENERAL) say("okkkkkkkkk");
 
   //---------------------------
 }

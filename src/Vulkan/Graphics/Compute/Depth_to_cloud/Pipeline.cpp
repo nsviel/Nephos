@@ -58,9 +58,9 @@ void Pipeline::set_shader(vk::structure::Pipeline& pipeline){
 void Pipeline::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::sampler_depth());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::sampler_table_xy());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::sampler_storage_pc());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::storage_depth());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::storage_tablexy());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::storage_cloud());
 
   //---------------------------
 }

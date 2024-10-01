@@ -7,7 +7,7 @@
 namespace vk::compute::dtc{
 
 //Sampler
-vk::structure::Descriptor sampler_depth(){
+vk::structure::Descriptor storage_depth(){
   //---------------------------
 
   vk::structure::Descriptor descriptor;
@@ -19,7 +19,7 @@ vk::structure::Descriptor sampler_depth(){
   //---------------------------
   return descriptor;
 }
-vk::structure::Descriptor sampler_table_xy(){
+vk::structure::Descriptor storage_tablexy(){
   //---------------------------
 
   vk::structure::Descriptor descriptor;
@@ -31,7 +31,7 @@ vk::structure::Descriptor sampler_table_xy(){
   //---------------------------
   return descriptor;
 }
-vk::structure::Descriptor sampler_storage_pc(){
+vk::structure::Descriptor storage_cloud(){
   //---------------------------
 
   vk::structure::Descriptor descriptor;

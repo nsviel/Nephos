@@ -73,4 +73,18 @@ vk::structure::Descriptor sampler_depth(){
   return descriptor;
 }
 
+//Storage
+vk::structure::Descriptor storage_cloud(){
+  //---------------------------
+
+  vk::structure::Descriptor descriptor;
+  descriptor.name = "tex_cloud";
+  descriptor.binding = vk::storage::CLOUD;
+  descriptor.type = VK_DESCRIPTOR_TYPE_STORAGE_IMAGE;
+  descriptor.stage = VK_SHADER_STAGE_COMPUTE_BIT;
+
+  //---------------------------
+  return descriptor;
+}
+
 }

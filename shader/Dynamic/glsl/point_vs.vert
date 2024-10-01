@@ -23,8 +23,7 @@ layout(binding = 5) uniform Param{
 };
 
 //Sampler
-layout(binding = 10) uniform sampler2D tex_color;
-layout(binding = 11) uniform sampler2D tex_depth;
+layout(binding = 22, rgba32f) writeonly uniform image2D tex_cloud;
 
 
 void main(){
@@ -36,5 +35,11 @@ void main(){
 
   //debugPrintfEXT("[SHADER] %d", tex_depth_width);
 
+/*
+  ivec2 cloud_size = imageSize(tex_cloud);
+  ivec2 pixel_coord = ivec2(gl_VertexID % cloud_size.x, gl_VertexID / cloud_size.x);
+  vec3 vertexPosition = imageLoad(tex_cloud, pixel_coord).xyz;
+  gl_Position = projection * view * model * vec4(vertexPosition, 1);
+*/
   //---------------------------
 }
