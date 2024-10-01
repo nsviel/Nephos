@@ -4,7 +4,8 @@
 #include <k4a/k4a.hpp>
 #include <memory>
 
-namespace utl::media{struct Image;}
+namespace utl::media{class Image;}
+namespace utl::media{class Storage;}
 
 
 namespace k4n::depth{
@@ -28,7 +29,7 @@ struct Structure{
   k4n::structure::Data data;
   std::shared_ptr<utl::base::Image> image_raw = std::make_shared<utl::base::Image>("depth_raw");
   std::shared_ptr<utl::base::Image> image_colored = std::make_shared<utl::base::Image>("Depth");
-  std::shared_ptr<utl::base::Image> table_xy = std::make_shared<utl::base::Image>("depth_table_xy");
+  std::shared_ptr<utl::base::Storage> table_xy = std::make_shared<utl::base::Storage>("depth_table_xy");
 
   //---------------------------
 };

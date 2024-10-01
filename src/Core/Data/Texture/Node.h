@@ -8,6 +8,7 @@ namespace dat::elm{class Node;}
 namespace dat::gph{class Node;}
 
 namespace dat::img{class Image;}
+namespace dat::img{class Storage;}
 namespace dat::img::gui{class Panel;}
 
 
@@ -29,6 +30,7 @@ public:
   inline dat::elm::Node* get_node_element(){return node_element;}
 
   inline dat::img::Image* get_dat_image(){return dat_image;}
+  inline dat::img::Storage* get_dat_storage(){return dat_storage;}
 
 private:
   vk::Node* node_vulkan;
@@ -36,6 +38,7 @@ private:
   dat::elm::Node* node_element;
 
   dat::img::Image* dat_image;
+  dat::img::Storage* dat_storage;
   dat::img::gui::Panel* gui_stream;
 };
 

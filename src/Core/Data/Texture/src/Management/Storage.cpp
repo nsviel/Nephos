@@ -23,35 +23,35 @@ Storage::Storage(dat::img::Node* node_image){
 Storage::~Storage(){}
 
 //Main function
-void Storage::add_image(dat::base::Entity& entity, std::shared_ptr<utl::base::Storage> image){
+void Storage::add_storage(dat::base::Entity& entity, std::shared_ptr<utl::base::Storage> storage){
   utl::base::Data& data = *entity.data;
   //----------------------------
 
-  if(image->size == 0) return;
-  if(image->width == 0) return;
-  if(image->height == 0) return;
+  if(storage->size == 0) return;
+  if(storage->width == 0) return;
+  if(storage->height == 0) return;
 
-  //Check if image already inseretd
-  auto it = data.map_storage.find(image->name);
+  //Check if storage already inseretd
+  auto it = data.map_storage.find(storage->name);
   if(it == data.map_storage.end()){
-    this->insert_image(entity, image);
+    this->insert_storage(entity, storage);
   }
 
   //----------------------------
 }
 
 //Subfunction
-void Storage::insert_image(dat::base::Entity& entity, std::shared_ptr<utl::base::Storage> image){
+void Storage::insert_storage(dat::base::Entity& entity, std::shared_ptr<utl::base::Storage> storage){
   utl::base::Data& data = *entity.data;
   //----------------------------
 
-  image->UID = dat_uid->generate_UID();
-  data.map_storage[image->name] = image;
-  vk_data->insert_image(data, image);
+  storage->UID = dat_uid->generate_UID();
+  data.map_storage[storage->name] = storage;
+  //vk_data->insert_storage(data, storage);
 
   //----------------------------
 }
-std::shared_ptr<utl::base::Storage> Storage::get_image(dat::base::Entity& entity, std::string query){
+std::shared_ptr<utl::base::Storage> Storage::get_storage(dat::base::Entity& entity, std::string query){
   utl::base::Data& data = *entity.data;
   //----------------------------
 
@@ -61,20 +61,20 @@ std::shared_ptr<utl::base::Storage> Storage::get_image(dat::base::Entity& entity
   //----------------------------
   return nullptr;
 }
-std::shared_ptr<utl::base::Storage> Storage::get_or_create_image(dat::base::Entity& entity, std::string query){
+std::shared_ptr<utl::base::Storage> Storage::get_or_create_storage(dat::base::Entity& entity, std::string query){
   utl::base::Data& data = *entity.data;
   //----------------------------
 
-  //Search for already existing image with same type
+  //Search for already existing storage with same type
   auto it = data.map_storage.find(query);
   if(it != data.map_storage.end()) return it->second;
 
   //Else create it
-  std::shared_ptr<utl::base::Storage> image = std::make_shared<utl::base::Storage>(query);
-  this->add_image(entity, image);
+  std::shared_ptr<utl::base::Storage> storage = std::make_shared<utl::base::Storage>(query);
+  this->add_storage(entity, storage);
 
   //----------------------------
-  return image;
+  return storage;
 }
 
 }

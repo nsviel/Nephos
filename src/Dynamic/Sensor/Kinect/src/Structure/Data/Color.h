@@ -5,8 +5,9 @@
 #include <k4a/k4a.hpp>
 #include <memory>
 
-namespace k4n::structure{struct Data;}
-namespace utl::media{struct Image;}
+namespace k4n::structure{class Data;}
+namespace utl::media{class Image;}
+namespace utl::media{class Storage;}
 
 
 namespace k4n::color{
@@ -28,7 +29,7 @@ struct Structure{
   k4n::color::Configuration config;
   k4n::structure::Data data;
   std::shared_ptr<utl::base::Image> image = std::make_shared<utl::base::Image>("Color");
-  std::shared_ptr<utl::base::Image> table_xy = std::make_shared<utl::base::Image>("color_table_xy");
+  std::shared_ptr<utl::base::Storage> table_xy = std::make_shared<utl::base::Storage>("color_table_xy");
 
   //---------------------------
 };

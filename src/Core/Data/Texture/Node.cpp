@@ -16,6 +16,7 @@ Node::Node(dat::Node* node_data){
   this->node_vulkan = node_data->get_node_vulkan();
 
   this->dat_image = new dat::img::Image(this);
+  this->dat_storage = new dat::img::Storage(this);
   this->gui_stream = new dat::img::gui::Panel(this, &panel_stream->is_open);
 
   //---------------------------

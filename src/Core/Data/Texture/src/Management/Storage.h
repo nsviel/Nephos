@@ -22,12 +22,12 @@ public:
 
 public:
   //Main function
-  void add_image(dat::base::Entity& entityy, std::shared_ptr<utl::base::Storage> image);
+  void add_storage(dat::base::Entity& entityy, std::shared_ptr<utl::base::Storage> storage);
 
   //Subfunction
-  void insert_image(dat::base::Entity& entity, std::shared_ptr<utl::base::Storage> image);
-  std::shared_ptr<utl::base::Storage> get_image(dat::base::Entity& entity, std::string name);
-  std::shared_ptr<utl::base::Storage> get_or_create_image(dat::base::Entity& entity, std::string name);
+  void insert_storage(dat::base::Entity& entity, std::shared_ptr<utl::base::Storage> storage);
+  std::shared_ptr<utl::base::Storage> get_storage(dat::base::Entity& entity, std::string name);
+  std::shared_ptr<utl::base::Storage> get_or_create_storage(dat::base::Entity& entity, std::string name);
 
 private:
   vk::interface::Data* vk_data;
