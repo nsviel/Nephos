@@ -27,8 +27,8 @@ struct Structure{
 
   k4n::color::Configuration config;
   k4n::structure::Data data;
-  std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>("Color");
-  std::shared_ptr<utl::media::Image> table_xy = std::make_shared<utl::media::Image>("color_table_xy");
+  std::shared_ptr<utl::base::Image> image = std::make_shared<utl::base::Image>("Color");
+  std::shared_ptr<utl::base::Image> table_xy = std::make_shared<utl::base::Image>("color_table_xy");
 
   //---------------------------
 };

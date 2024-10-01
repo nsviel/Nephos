@@ -2,7 +2,7 @@
 
 #include <Vulkan/Core/VK_image/Structure/Image.h>
 #include <Vulkan/Core/VK_data/Structure/Buffer.h>
-#include <Utility/Base/Media/Image.h>
+#include <Utility/Base/Data/Texture.h>
 #include <string>
 
 
@@ -14,7 +14,7 @@ struct Texture{
   int UID = 0;
 
   //Actual texture components
-  std::shared_ptr<utl::media::Image> image;
+  std::shared_ptr<utl::base::Image> image;
   vk::structure::Image wrapper;
   vk::data::structure::Buffer stagger;
 

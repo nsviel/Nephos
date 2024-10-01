@@ -17,7 +17,7 @@ struct Structure{
   //---------------------------
 
   //General
-  utl::media::Image image;
+  utl::base::Image image;
   rad::cor::structure::State state;
 
   //Detection stuff

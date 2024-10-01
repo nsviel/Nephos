@@ -26,7 +26,7 @@ Color::~Color(){}
 //Main function
 void Color::extract_data(dat::base::Sensor& sensor){
   rlx::base::Sensor* rlx_sensor = dynamic_cast<rlx::base::Sensor*>(&sensor);
-  std::shared_ptr<utl::media::Image> image = rlx_sensor->image.color;
+  std::shared_ptr<utl::base::Image> image = rlx_sensor->image.color;
   //---------------------------
 
   // Get color frame
@@ -78,7 +78,7 @@ std::string Color::retrieve_format(rs2_format color_format){
   //---------------------------
   return format;
 }
-void Color::retrieve_data(rs2::frame& frame, std::string format, std::shared_ptr<utl::media::Image> image){
+void Color::retrieve_data(rs2::frame& frame, std::string format, std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
   const uint8_t* data = reinterpret_cast<const uint8_t*>(frame.get_data());

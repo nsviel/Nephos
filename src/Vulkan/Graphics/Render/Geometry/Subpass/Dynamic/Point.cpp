@@ -19,7 +19,7 @@ Point::Point(vk::Structure* vk_struct){
   this->vk_point = new vk::geometry::pipeline::dynamic::Point(vk_struct);
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
   this->vk_data = new vk::data::Function(vk_struct);
-  this->vk_storage = new vk::descriptor::Storage(vk_struct);
+  this->vk_storage = new vk::descriptor::Storage_image(vk_struct);
 
   //---------------------------
 }
@@ -114,7 +114,7 @@ void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipe
   vk_sampler->actualize_sampler(vk_object.descriptor_set, *sampler_depth, texture_depth->wrapper);
 */
 
-  std::shared_ptr<vk::structure::Storage> storage_cloud = vk_storage->query_storage(vk_object.descriptor_set, "tex_cloud");
+  std::shared_ptr<vk::structure::Storage_image> storage_cloud = vk_storage->query_storage(vk_object.descriptor_set, "tex_cloud");
   std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
   vk_storage->actualize_storage(vk_object.descriptor_set, *storage_cloud, tex_cloud->wrapper);
 

@@ -26,7 +26,7 @@ std::shared_ptr<vk::structure::Object> Function::retrieve_vk_object(utl::base::D
   //---------------------------
   return it->second;
 }
-std::shared_ptr<vk::structure::Texture> Function::retrieve_vk_texture(utl::media::Image& image){
+std::shared_ptr<vk::structure::Texture> Function::retrieve_vk_texture(utl::base::Image& image){
   //---------------------------
 
   //Search in all vk objects

@@ -21,7 +21,7 @@ Stream::Stream(dat::img::Node* node_image){
 Stream::~Stream(){}
 
 //Main function
-void Stream::draw_stream(std::shared_ptr<utl::media::Image> image, ImVec2 dimension){
+void Stream::draw_stream(std::shared_ptr<utl::base::Image> image, ImVec2 dimension){
   if(!check_image(image)) return;
   //---------------------------
 
@@ -32,7 +32,7 @@ void Stream::draw_stream(std::shared_ptr<utl::media::Image> image, ImVec2 dimens
 }
 
 //Subfunction
-bool Stream::check_image(std::shared_ptr<utl::media::Image> image){
+bool Stream::check_image(std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
   if(!image) return false;
@@ -42,7 +42,7 @@ bool Stream::check_image(std::shared_ptr<utl::media::Image> image){
   //---------------------------
   return true;
 }
-void Stream::update_texture(std::shared_ptr<utl::media::Image> image){
+void Stream::update_texture(std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
   bool update = (current_timestamp != image->timestamp);
@@ -53,7 +53,7 @@ void Stream::update_texture(std::shared_ptr<utl::media::Image> image){
 
   //---------------------------
 }
-void Stream::render_image(std::shared_ptr<utl::media::Image> image, ImVec2& dimension){
+void Stream::render_image(std::shared_ptr<utl::base::Image> image, ImVec2& dimension){
   //---------------------------
 
   glm::vec2 dim = glm::vec2(dimension.x, dimension.y);

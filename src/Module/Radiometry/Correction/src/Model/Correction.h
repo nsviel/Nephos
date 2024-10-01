@@ -12,7 +12,7 @@ namespace rad::cor::io{class Model;}
 namespace dat::base{class Sensor;}
 namespace dat::img{class Image;}
 namespace dat::gph{class Selection;}
-namespace utl::media{class Image;}
+namespace utl::base{class Image;}
 namespace dat::atr{class Field;}
 
 
@@ -27,11 +27,11 @@ public:
 
 public:
   //Main function
-  void make_image_correction(dat::base::Sensor& sensor, std::shared_ptr<utl::media::Image> ir);
+  void make_image_correction(dat::base::Sensor& sensor, std::shared_ptr<utl::base::Image> ir);
 
   //Subfunction
-  void make_correction(dat::base::Sensor& sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data);
-  void update_correction_image(dat::base::Sensor& sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data);
+  void make_correction(dat::base::Sensor& sensor, std::shared_ptr<utl::base::Image> ir, std::vector<uint8_t>& vec_data);
+  void update_correction_image(dat::base::Sensor& sensor, std::shared_ptr<utl::base::Image> ir, std::vector<uint8_t>& vec_data);
   float apply_correction(float I_raw, float R, float It);
 
 private:

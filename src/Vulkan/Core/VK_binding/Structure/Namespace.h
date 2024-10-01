@@ -6,5 +6,5 @@
 #include <Vulkan/Core/VK_binding/Structure/Layout.h>
 #include <Vulkan/Core/VK_binding/Structure/Pushconst.h>
 #include <Vulkan/Core/VK_binding/Structure/Sampler.h>
-#include <Vulkan/Core/VK_binding/Structure/Storage.h>
+#include <Vulkan/Core/VK_binding/Structure/Storage_image.h>
 #include <Vulkan/Core/VK_binding/Structure/Uniform.h>

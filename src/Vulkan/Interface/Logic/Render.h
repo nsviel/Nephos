@@ -9,7 +9,7 @@ namespace vk::gui{class Render;}
 namespace vk::data{class Function;}
 namespace vk::gui{class Imgui;}
 namespace vk::shader{class Reloader;}
-namespace utl::media{class Image;}
+namespace utl::base{class Image;}
 namespace utl::base{class Data;}
 
 
@@ -25,7 +25,7 @@ public:
 public:
   //Main function
   void draw_render_texture(glm::vec2 dimension);
-  void draw_image(std::shared_ptr<utl::media::Image> image, glm::vec2 dimension);
+  void draw_image(std::shared_ptr<utl::base::Image> image, glm::vec2 dimension);
   void reload_shader();
   void new_frame();
 

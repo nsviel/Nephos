@@ -8,7 +8,7 @@ namespace dat::img{class Node;}
 namespace dat::elm{class UID;}
 namespace dat::base{class Entity;}
 namespace vk::interface{class Data;}
-namespace utl::media{class Image;}
+namespace utl::base{class Image;}
 
 
 namespace dat::img{
@@ -22,12 +22,12 @@ public:
 
 public:
   //Main function
-  void add_image(dat::base::Entity& entityy, std::shared_ptr<utl::media::Image> image);
+  void add_image(dat::base::Entity& entityy, std::shared_ptr<utl::base::Image> image);
 
   //Subfunction
-  void insert_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Image> image);
-  std::shared_ptr<utl::media::Image> get_image(dat::base::Entity& entity, std::string name);
-  std::shared_ptr<utl::media::Image> get_or_create_image(dat::base::Entity& entity, std::string name);
+  void insert_image(dat::base::Entity& entity, std::shared_ptr<utl::base::Image> image);
+  std::shared_ptr<utl::base::Image> get_image(dat::base::Entity& entity, std::string name);
+  std::shared_ptr<utl::base::Image> get_or_create_image(dat::base::Entity& entity, std::string name);
 
 private:
   vk::interface::Data* vk_data;

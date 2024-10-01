@@ -6,7 +6,7 @@ namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
 namespace rad::cor::structure{class Circle;}
 namespace dat::base{class Sensor;}
-namespace utl::media{class Image;}
+namespace utl::base{class Image;}
 
 
 namespace rad::cor::image{
@@ -23,9 +23,9 @@ public:
 
   //Subfunction
   void convert_into_gray(cv::Mat& input, cv::Mat& output);
-  void convert_into_cv_image(std::shared_ptr<utl::media::Image> input, cv::Mat& output);
+  void convert_into_cv_image(std::shared_ptr<utl::base::Image> input, cv::Mat& output);
   void convert_into_rgba(cv::Mat& input, cv::Mat& output);
-  void convert_into_utl_image(cv::Mat& input, std::shared_ptr<utl::media::Image> output);
+  void convert_into_utl_image(cv::Mat& input, std::shared_ptr<utl::base::Image> output);
 
   //Shape function
   void draw_circle(cv::Mat& image, std::vector<rad::cor::structure::Circle>& vec_circle);

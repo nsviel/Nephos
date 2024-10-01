@@ -26,7 +26,7 @@ Infrared::~Infrared(){}
 //Main function
 void Infrared::extract_data(dat::base::Sensor& sensor){
   rlx::base::Sensor* rlx_sensor = dynamic_cast<rlx::base::Sensor*>(&sensor);
-  std::shared_ptr<utl::media::Image> image = rlx_sensor->image.depth;
+  std::shared_ptr<utl::base::Image> image = rlx_sensor->image.depth;
   //---------------------------
 
   // Get color and depth frames
@@ -62,7 +62,7 @@ std::string Infrared::retrieve_format(rs2_format depth_format){
   //---------------------------
   return format;
 }
-void Infrared::retrieve_data(rs2::frame& frame, std::string format, std::shared_ptr<utl::media::Image> image){
+void Infrared::retrieve_data(rs2::frame& frame, std::string format, std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
   std::vector<uint8_t> buffer;

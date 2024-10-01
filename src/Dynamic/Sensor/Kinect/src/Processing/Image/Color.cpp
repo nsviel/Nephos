@@ -51,11 +51,10 @@ void Color::retrieve_data(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Color::retrieve_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::media::Image> image = sensor.color.image;
+  std::shared_ptr<utl::base::Image> image = sensor.color.image;
   //---------------------------
 
   //Image
-  image->display = true;
   image->width = sensor.color.data.width;
   image->height = sensor.color.data.height;
   image->format = sensor.color.data.format;
@@ -194,7 +193,7 @@ void Color::retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& da
   //---------------------------
 }
 void Color::convert_bgra_to_rgba(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::media::Image> image = sensor.color.image;
+  std::shared_ptr<utl::base::Image> image = sensor.color.image;
   //---------------------------
 
   // Retrieve the BGR(A) data from the sensor

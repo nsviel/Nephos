@@ -31,7 +31,7 @@ void Table_xy::build_table_xy(k4n::base::Sensor& sensor){
 
 //Subfunction
 void Table_xy::build_color_texture(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::media::Image> image = sensor.color.table_xy;
+  std::shared_ptr<utl::base::Image> image = sensor.color.table_xy;
   if(image->size != 0) return;
   //---------------------------
 
@@ -39,7 +39,6 @@ void Table_xy::build_color_texture(k4n::base::Sensor& sensor){
   this->build_texture(sensor, *image, K4A_CALIBRATION_TYPE_COLOR);
 
   //Image
-  image->display = false;
   image->size = image->data.size();
   image->format = "RG32";
   dat_image->add_image(sensor, image);
@@ -47,7 +46,7 @@ void Table_xy::build_color_texture(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Table_xy::build_depth_texture(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::media::Image> image = sensor.depth.table_xy;
+  std::shared_ptr<utl::base::Image> image = sensor.depth.table_xy;
   if(image->size != 0) return;
   //---------------------------
 
@@ -55,14 +54,13 @@ void Table_xy::build_depth_texture(k4n::base::Sensor& sensor){
   this->build_texture(sensor, *image, K4A_CALIBRATION_TYPE_DEPTH);
 
   //Image
-  image->display = false;
   image->size = image->data.size();
   image->format = "RG32";
   dat_image->add_image(sensor, image);
 
   //---------------------------
 }
-void Table_xy::build_texture(k4n::base::Sensor& sensor, utl::media::Image& image, k4a_calibration_type_t calibration_type){
+void Table_xy::build_texture(k4n::base::Sensor& sensor, utl::base::Image& image, k4a_calibration_type_t calibration_type){
   //---------------------------
 
   //Get calibration

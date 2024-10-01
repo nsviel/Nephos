@@ -24,7 +24,7 @@ Render::~Render(){}
 void Render::draw_render_texture(glm::vec2 dimension){
   vk_render->display_image(vk_struct->graphics.render.presentation.texture, dimension);
 }
-void Render::draw_image(std::shared_ptr<utl::media::Image> image, glm::vec2 dimension){
+void Render::draw_image(std::shared_ptr<utl::base::Image> image, glm::vec2 dimension){
   //---------------------------
 
   auto texture = vk_data->retrieve_vk_texture(*image);

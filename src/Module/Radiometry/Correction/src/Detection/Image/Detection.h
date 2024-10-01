@@ -7,7 +7,7 @@ namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
 namespace dat::base{class Sensor;}
 namespace thr::task{class Pool;}
-namespace utl::media{class Image;}
+namespace utl::base{class Image;}
 namespace rad::cor{class Glyph;}
 namespace rad::cor::image{class Hough;}
 namespace rad::cor::image{class Image;}
@@ -30,7 +30,7 @@ public:
   void wait_thread();
 
   //Subfunction
-  void make_shape_detection(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> image, std::shared_ptr<utl::media::Image> output);
+  void make_shape_detection(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::base::Image> image, std::shared_ptr<utl::base::Image> output);
 
 private:
   thr::task::Pool* thread_pool;

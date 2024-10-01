@@ -23,7 +23,7 @@ Image::Image(dat::img::Node* node_image){
 Image::~Image(){}
 
 //Main function
-void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Image> image){
+void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::base::Image> image){
   utl::base::Data& data = *entity.data;
   //----------------------------
 
@@ -41,7 +41,7 @@ void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Ima
 }
 
 //Subfunction
-void Image::insert_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Image> image){
+void Image::insert_image(dat::base::Entity& entity, std::shared_ptr<utl::base::Image> image){
   utl::base::Data& data = *entity.data;
   //----------------------------
 
@@ -51,7 +51,7 @@ void Image::insert_image(dat::base::Entity& entity, std::shared_ptr<utl::media::
 
   //----------------------------
 }
-std::shared_ptr<utl::media::Image> Image::get_image(dat::base::Entity& entity, std::string query){
+std::shared_ptr<utl::base::Image> Image::get_image(dat::base::Entity& entity, std::string query){
   utl::base::Data& data = *entity.data;
   //----------------------------
 
@@ -61,7 +61,7 @@ std::shared_ptr<utl::media::Image> Image::get_image(dat::base::Entity& entity, s
   //----------------------------
   return nullptr;
 }
-std::shared_ptr<utl::media::Image> Image::get_or_create_image(dat::base::Entity& entity, std::string query){
+std::shared_ptr<utl::base::Image> Image::get_or_create_image(dat::base::Entity& entity, std::string query){
   utl::base::Data& data = *entity.data;
   //----------------------------
 
@@ -70,7 +70,7 @@ std::shared_ptr<utl::media::Image> Image::get_or_create_image(dat::base::Entity&
   if(it != data.map_image.end()) return it->second;
 
   //Else create it
-  std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>(query);
+  std::shared_ptr<utl::base::Image> image = std::make_shared<utl::base::Image>(query);
   this->add_image(entity, image);
 
   //----------------------------

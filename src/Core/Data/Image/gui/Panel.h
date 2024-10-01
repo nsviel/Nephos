@@ -13,7 +13,7 @@ namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::img::gui{class Stream;}
 namespace utl::base{class Element;}
-namespace utl::media{class Image;}
+namespace utl::base{class Image;}
 
 
 namespace dat::img::gui{
@@ -31,7 +31,7 @@ public:
 
   //All devices
   void draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity);
-  void draw_stream_image(std::shared_ptr<utl::media::Image> image, ImVec2 image_size, int idx);
+  void draw_stream_image(std::shared_ptr<utl::base::Image> image, ImVec2 image_size, int idx);
 
 private:
   dat::gph::Selection* gph_selection;

@@ -40,7 +40,7 @@ void Operation::draw_img_image(std::shared_ptr<utl::base::Element> element){
 
   if(ImGui::Button("intensity to image")){
     //std::shared_ptr<dat::base::Entity> entity = dat_element->get_active_entity(element);
-    //std::shared_ptr<utl::media::Image> image = dat_image->get_or_create_image(*entity, "Intensity");
+    //std::shared_ptr<utl::base::Image> image = dat_image->get_or_create_image(*entity, "Intensity");
     //img_image->convert_spherical_pc_to_image(*entity->data, image);
   }
 

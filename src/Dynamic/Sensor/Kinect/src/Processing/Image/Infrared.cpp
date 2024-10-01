@@ -55,11 +55,10 @@ void Infrared::retrieve_data(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Infrared::retrieve_raw_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::media::Image> image = sensor.infra.image_raw;
+  std::shared_ptr<utl::base::Image> image = sensor.infra.image_raw;
   //---------------------------
 
   //Image
-  image->display = false;
   image->data = std::vector<uint8_t>(sensor.infra.data.buffer, sensor.infra.data.buffer + sensor.infra.data.size);
   image->size = image->data.size();
   image->width = sensor.infra.data.width;
@@ -71,7 +70,7 @@ void Infrared::retrieve_raw_image(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Infrared::retrieve_colored_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::media::Image> image = sensor.infra.image_colored;
+  std::shared_ptr<utl::base::Image> image = sensor.infra.image_colored;
   //---------------------------
 
   //Image

@@ -25,13 +25,13 @@ void Data::insert_data(std::shared_ptr<utl::base::Data> data, std::shared_ptr<ut
 void Data::remove_data(utl::base::Data& data){
   vk_data->remove(data);
 }
-void Data::insert_image(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
+void Data::insert_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
   vk_texture->insert_texture(data, image);
 }
-void Data::insert_image(std::shared_ptr<utl::media::Image> image){
+void Data::insert_image(std::shared_ptr<utl::base::Image> image){
   vk_texture->insert_texture(image);
 }
-void Data::update_image(std::shared_ptr<utl::media::Image> image){
+void Data::update_image(std::shared_ptr<utl::base::Image> image){
   vk_texture->update_texture(image);
 }
 

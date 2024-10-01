@@ -8,7 +8,7 @@ namespace rad::cal{class Image;}
 namespace rad::cal{class Rectangle;}
 namespace dat::base{class Sensor;}
 namespace thr::task{class Pool;}
-namespace utl::media{class Image;}
+namespace utl::base{class Image;}
 namespace dat::img{class Image;}
 
 
@@ -28,7 +28,7 @@ public:
   void wait_thread();
 
   //Subfunction
-  void make_shape_detection(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> image, std::shared_ptr<utl::media::Image> output);
+  void make_shape_detection(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::base::Image> image, std::shared_ptr<utl::base::Image> output);
 
 private:
   thr::task::Pool* thread_pool;

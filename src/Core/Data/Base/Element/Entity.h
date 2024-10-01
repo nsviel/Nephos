@@ -2,7 +2,7 @@
 
 #include <Utility/Base/Data/Data.h>
 #include <Utility/Base/Data/Element.h>
-#include <Utility/Base/Media/Image.h>
+#include <Utility/Base/Data/Texture.h>
 #include <fontawesome/IconsFontAwesome6.h>
 #include <memory>
 #include <string>

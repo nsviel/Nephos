@@ -13,7 +13,7 @@ Descriptor_set::Descriptor_set(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
-  this->vk_storage = new vk::descriptor::Storage(vk_struct);
+  this->vk_storage = new vk::descriptor::Storage_image(vk_struct);
 
   //---------------------------
 }

@@ -73,14 +73,6 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = *entity->data;
   //---------------------------
 
-  //Get vector of display image
-  std::vector<std::shared_ptr<utl::media::Image>> vec_image;
-  for(auto& [name, image] : data.map_image){
-    if(image->display){
-      vec_image.push_back(image);
-    }
-  }
-
   //Display capture images
   if(ImGui::BeginTabBar("device_tab##4567")){
     ImVec2 dimension = ImGui::GetContentRegionAvail();
@@ -88,10 +80,10 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
     //All in one
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("All##4567", NULL)){
-      dimension.y = dimension.y / vec_image.size() - 3.33;
+      dimension.y = dimension.y / data.map_image.size() - 3.33;
 
       int index = 0;
-      for(auto& image : vec_image){
+      for(auto& [name, image] : data.map_image){
         this->draw_stream_image(image, dimension, index++);
       }
 
@@ -100,7 +92,7 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
 
     //All image in separate tab
     int index = 0;
-    for(auto& image : vec_image){
+    for(auto& [name, image] : data.map_image){
       std::string title = image->name + "##4567";
       ImGui::SetNextItemWidth(100);
       if(ImGui::BeginTabItem(title.c_str(), NULL)){
@@ -114,7 +106,7 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
 
   //---------------------------
 }
-void Panel::draw_stream_image(std::shared_ptr<utl::media::Image> image, ImVec2 dimension, int idx){
+void Panel::draw_stream_image(std::shared_ptr<utl::base::Image> image, ImVec2 dimension, int idx){
   if(idx >= vec_stream.size()) return;
   //---------------------------
 

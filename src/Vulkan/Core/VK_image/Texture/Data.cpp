@@ -20,7 +20,7 @@ Data::Data(vk::Structure* vk_struct){
 Data::~Data(){}
 
 //Main function
-void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
+void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
   //Retrieve data vk object
@@ -32,7 +32,7 @@ void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::media::Ima
 
   //---------------------------
 }
-void Data::insert_texture(vk::structure::Object& vk_object, std::shared_ptr<utl::media::Image> image){
+void Data::insert_texture(vk::structure::Object& vk_object, std::shared_ptr<utl::base::Image> image){
   if(!check_image(image)) return;
   //---------------------------
 
@@ -49,7 +49,7 @@ void Data::insert_texture(vk::structure::Object& vk_object, std::shared_ptr<utl:
 
   //---------------------------
 }
-void Data::insert_texture(std::shared_ptr<utl::media::Image> image){
+void Data::insert_texture(std::shared_ptr<utl::base::Image> image){
   if(!check_image(image)) return;
   //---------------------------
 
@@ -67,7 +67,7 @@ void Data::insert_texture(std::shared_ptr<utl::media::Image> image){
 
   //---------------------------
 }
-void Data::update_texture(std::shared_ptr<utl::media::Image> image){
+void Data::update_texture(std::shared_ptr<utl::base::Image> image){
   if(!check_image(image)) return;
   //---------------------------
 
@@ -91,7 +91,7 @@ void Data::clean_texture(vk::structure::Object& vk_object){
 
   //---------------------------
 }
-bool Data::check_image(std::shared_ptr<utl::media::Image> image){
+bool Data::check_image(std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
   if(!image) return false;

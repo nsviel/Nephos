@@ -24,7 +24,7 @@ Ressource::~Ressource(){}
 
 //Main function
 void Ressource::create_texture(vk::structure::Texture& texture){
-  utl::media::Image& image = *texture.image;
+  utl::base::Image& image = *texture.image;
   //---------------------------
 
   //Create texture container

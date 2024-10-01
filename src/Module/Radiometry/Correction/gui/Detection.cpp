@@ -158,7 +158,7 @@ void Detection::detection_image(dat::base::Sensor& sensor){
   //---------------------------
 
   //Display image with detected spheres
-  std::shared_ptr<utl::media::Image> image = dat_image->get_image(sensor, "Detection");
+  std::shared_ptr<utl::base::Image> image = dat_image->get_image(sensor, "Detection");
   if(!image) return;
   stream->draw_stream(image, ImVec2(available_space.x, available_space.y - 5));
 

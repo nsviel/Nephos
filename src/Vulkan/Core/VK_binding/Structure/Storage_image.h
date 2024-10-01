@@ -8,7 +8,7 @@
 
 namespace vk::structure{
 
-struct Storage{
+struct Storage_image{
   //---------------------------
 
   std::string name = "";

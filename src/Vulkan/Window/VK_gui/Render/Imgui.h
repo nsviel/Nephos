@@ -8,7 +8,7 @@ namespace vk::window{class Window;}
 namespace vk::instance{class Pool;}
 namespace vk::presentation{class Surface;}
 namespace vk::structure{class Command_buffer;}
-namespace utl::media{class Image;}
+namespace utl::base{class Image;}
 
 
 namespace vk::gui{

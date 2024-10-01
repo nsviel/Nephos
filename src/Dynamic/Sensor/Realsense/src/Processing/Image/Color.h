@@ -6,7 +6,7 @@ namespace rlx{class Node;}
 namespace rlx{class Structure;}
 namespace dat::base{class Sensor;}
 namespace dat::img{class Image;}
-namespace utl::media{class Image;}
+namespace utl::base{class Image;}
 
 
 namespace rlx::processing{
@@ -24,7 +24,7 @@ public:
 
   //Subfunction
   std::string retrieve_format(rs2_format color_format);
-  void retrieve_data(rs2::frame& frame, std::string format, std::shared_ptr<utl::media::Image> image);
+  void retrieve_data(rs2::frame& frame, std::string format, std::shared_ptr<utl::base::Image> image);
 
 private:
   rlx::Structure* rlx_struct;

@@ -9,7 +9,7 @@
 
 namespace dat::img{
 
-void load_image_data(utl::media::Image& image, std::string path){
+void load_image_data(utl::base::Image& image, std::string path){
   //---------------------------
 
   uint8_t* data = stbi_load(path.c_str(), &image.width, &image.height, &image.channel_nb, STBI_rgb_alpha);
@@ -27,7 +27,7 @@ void load_image_data(utl::media::Image& image, std::string path){
 
   //---------------------------
 }
-void add_alpha_channel(utl::media::Image& image){
+void add_alpha_channel(utl::base::Image& image){
   //---------------------------
 
   std::vector<uint8_t> new_data;

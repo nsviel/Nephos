@@ -26,9 +26,9 @@ struct Structure{
 
   k4n::depth::Configuration config;
   k4n::structure::Data data;
-  std::shared_ptr<utl::media::Image> image_raw = std::make_shared<utl::media::Image>("depth_raw");
-  std::shared_ptr<utl::media::Image> image_colored = std::make_shared<utl::media::Image>("Depth");
-  std::shared_ptr<utl::media::Image> table_xy = std::make_shared<utl::media::Image>("depth_table_xy");
+  std::shared_ptr<utl::base::Image> image_raw = std::make_shared<utl::base::Image>("depth_raw");
+  std::shared_ptr<utl::base::Image> image_colored = std::make_shared<utl::base::Image>("Depth");
+  std::shared_ptr<utl::base::Image> table_xy = std::make_shared<utl::base::Image>("depth_table_xy");
 
   //---------------------------
 };

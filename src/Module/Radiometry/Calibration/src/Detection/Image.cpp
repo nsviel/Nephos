@@ -42,7 +42,7 @@ void Image::convert_into_gray(cv::Mat& input, cv::Mat& output){
 
   //---------------------------
 }
-void Image::convert_into_cv_image(std::shared_ptr<utl::media::Image> input, cv::Mat& output){
+void Image::convert_into_cv_image(std::shared_ptr<utl::base::Image> input, cv::Mat& output){
   //------------------------
 
   output.release();
@@ -61,10 +61,10 @@ void Image::convert_into_rgba(cv::Mat& input, cv::Mat& output){
 
   //------------------------
 }
-void Image::convert_into_utl_image(cv::Mat& input, std::shared_ptr<utl::media::Image> output){
+void Image::convert_into_utl_image(cv::Mat& input, std::shared_ptr<utl::base::Image> output){
   //------------------------
 
-  // Set the dimensions of the utl::media::Image
+  // Set the dimensions of the utl::base::Image
   output->width = input.cols;
   output->height = input.rows;
   output->channel_nb = input.channels(); // Assuming result is in BGRA format
@@ -75,7 +75,7 @@ void Image::convert_into_utl_image(cv::Mat& input, std::shared_ptr<utl::media::I
   output->data.resize(data_size);
   output->size = data_size;
 
-  // Copy the pixel data from the OpenCV image to the utl::media::Image
+  // Copy the pixel data from the OpenCV image to the utl::base::Image
   std::memcpy(output->data.data(), input.data, data_size);
 
   //------------------------

@@ -6,7 +6,7 @@
 
 namespace utl::base{class Data;}
 namespace dat::atr{class Field;}
-namespace utl::media{class Image;}
+namespace utl::base{class Image;}
 
 
 namespace dat::img{
@@ -20,11 +20,11 @@ public:
 
 public:
   //Main function
-  void convert_normal_to_image(utl::base::Data& data, std::shared_ptr<utl::media::Image> image);
-  void convert_intensity_to_image(utl::base::Data& data, std::shared_ptr<utl::media::Image> image);
-  void convert_spherical_pc_to_image(utl::base::Data& data, std::shared_ptr<utl::media::Image> image);
-  void convert_whole_spherical_pc_to_image(utl::base::Data& data, std::shared_ptr<utl::media::Image> image);
-  void convert_color_to_image(utl::base::Data& data, std::shared_ptr<utl::media::Image> image);
+  void convert_normal_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image);
+  void convert_intensity_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image);
+  void convert_spherical_pc_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image);
+  void convert_whole_spherical_pc_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image);
+  void convert_color_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image);
 
 private:
   dat::atr::Field* atr_field;

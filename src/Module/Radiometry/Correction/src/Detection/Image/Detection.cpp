@@ -42,8 +42,8 @@ void Detection::run_thread(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   if(rad_struct->state.detection == rad::cor::detection::PROCESSING){
-    std::shared_ptr<utl::media::Image> image = dat_image->get_image(*sensor, "Intensity");
-    std::shared_ptr<utl::media::Image> output = dat_image->get_or_create_image(*sensor, "Detection");
+    std::shared_ptr<utl::base::Image> image = dat_image->get_image(*sensor, "Intensity");
+    std::shared_ptr<utl::base::Image> output = dat_image->get_or_create_image(*sensor, "Detection");
     if(image == nullptr || output == nullptr) return;
 
     if(image->timestamp != output->timestamp){
@@ -68,7 +68,7 @@ void Detection::wait_thread(){
 }
 
 //Subfunction
-void Detection::make_shape_detection(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> image, std::shared_ptr<utl::media::Image> output){
+void Detection::make_shape_detection(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::base::Image> image, std::shared_ptr<utl::base::Image> output){
   if(image == nullptr || output == nullptr) return;
   //---------------------------
 

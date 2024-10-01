@@ -1,4 +1,4 @@
-#include "Storage.h"
+#include "Storage_image.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,31 +7,31 @@
 namespace vk::descriptor{
 
 //Constructor / Destructor
-Storage::Storage(vk::Structure* vk_struct){
+Storage_image::Storage_image(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
 
   //---------------------------
 }
-Storage::~Storage(){}
+Storage_image::~Storage_image(){}
 
 //Main function
-void Storage::create_descriptor(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
+void Storage_image::create_descriptor(vk::structure::Descriptor_set& descriptor_set, vk::structure::Descriptor& descriptor){
   //---------------------------
 
-  std::shared_ptr<vk::structure::Storage> storage = std::make_shared<vk::structure::Storage>();
+  std::shared_ptr<vk::structure::Storage_image> storage = std::make_shared<vk::structure::Storage_image>();
   storage->name = descriptor.name;
   storage->binding = descriptor.binding;
 
-  descriptor_set.map_storage[descriptor.name] = std::move(storage);
+  descriptor_set.map_storage_image[descriptor.name] = std::move(storage);
 
   //---------------------------
 }
-void Storage::actualize_storage(vk::structure::Descriptor_set& descriptor_set){
+void Storage_image::actualize_storage(vk::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
-  for(auto& [name, storage] : descriptor_set.map_storage){;
+  for(auto& [name, storage] : descriptor_set.map_storage_image){;
     if(!storage->image) continue;
 
     //Descriptor image info
@@ -55,7 +55,7 @@ void Storage::actualize_storage(vk::structure::Descriptor_set& descriptor_set){
 
   //---------------------------
 }
-void Storage::actualize_storage(vk::structure::Descriptor_set& descriptor_set, vk::structure::Storage& storage, vk::structure::Image& image){
+void Storage_image::actualize_storage(vk::structure::Descriptor_set& descriptor_set, vk::structure::Storage_image& storage, vk::structure::Image& image){
   //---------------------------
 
   VkDescriptorImageInfo image_info = {};
@@ -78,16 +78,16 @@ void Storage::actualize_storage(vk::structure::Descriptor_set& descriptor_set, v
 }
 
 //Subfunction
-std::shared_ptr<vk::structure::Storage> Storage::query_storage(vk::structure::Descriptor_set& descriptor_set, std::string name){
+std::shared_ptr<vk::structure::Storage_image> Storage_image::query_storage(vk::structure::Descriptor_set& descriptor_set, std::string name){
   //---------------------------
 
-  auto it = descriptor_set.map_storage.find(name);
-  if (it == descriptor_set.map_storage.end()) {
+  auto it = descriptor_set.map_storage_image.find(name);
+  if (it == descriptor_set.map_storage_image.end()) {
     std::cout<<"------------------------"<<std::endl;
     std::cout<<"[error] Update storage -> name not recognized \033[1;31m"<<name<<"\033[0m"<<std::endl;
     std::cout<<"Existing storage image names: "<<std::endl;
 
-    for(auto& [name, storage] : descriptor_set.map_storage){
+    for(auto& [name, storage] : descriptor_set.map_storage_image){
       std::cout<<"\033[1;32m"<<name<<"\033[0m"<<std::endl;
     }
 
