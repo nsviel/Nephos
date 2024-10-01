@@ -11,6 +11,7 @@ Transition::Transition(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_mem_allocator = new vk::memory::Allocator(vk_struct);
+  this->vk_command = new vk::command::Command(vk_struct);
 
   //---------------------------
 }
@@ -65,6 +66,22 @@ void Transition::image_layout_transition(VkCommandBuffer command_buffer, VkImage
 
   //---------------------------
 }
+void Transition::image_layout_transition(vk::structure::Image& image, VkImageLayout old_layout, VkImageLayout new_layout){
+  //---------------------------
+
+  //Image transition from undefined layout to read only layout
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
+  vk_command->start_command_buffer_primary(*command_buffer);
+
+  //Transition
+  this->image_layout_transition(command_buffer->handle, image, old_layout, new_layout);
+
+  //End and submit command
+  vk_command->end_command_buffer(*command_buffer);
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
+
+  //---------------------------
+}
 
 //Subfunction
 VkAccessFlags Transition::find_access_flag(VkImageLayout& layout){
@@ -90,6 +107,10 @@ VkAccessFlags Transition::find_access_flag(VkImageLayout& layout){
     }
     case VK_IMAGE_LAYOUT_PRESENT_SRC_KHR:{
       flag = VK_ACCESS_NONE_KHR;
+      break;
+    }
+    case VK_IMAGE_LAYOUT_GENERAL:{
+      flag = VK_ACCESS_SHADER_READ_BIT | VK_ACCESS_SHADER_WRITE_BIT;
       break;
     }
     default:{
@@ -123,7 +144,7 @@ VkPipelineStageFlags Transition::find_stage_flag(VkImageLayout& layout){
       break;
     }
     case VK_IMAGE_LAYOUT_GENERAL:{
-      flag = VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT;
+      flag = VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_VERTEX_SHADER_BIT;
       break;
     }
     default:{

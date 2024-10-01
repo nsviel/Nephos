@@ -62,6 +62,10 @@ void Recorder::create_texture(vk::structure::Object& vk_object){
   image->height = tex_depth->image->height;
   vk_texture->insert_texture(vk_object, image);
 
+  auto tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
+  vk::memory::Transition vk_transition(vk_struct);
+  vk_transition.image_layout_transition(tex_cloud->wrapper, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_GENERAL); 
+
   //---------------------------
 }
 void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){

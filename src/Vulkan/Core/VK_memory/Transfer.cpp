@@ -63,22 +63,6 @@ void Transfer::copy_image_to_gpu(vk::structure::Image& image, VkBuffer buffer){
 
   //---------------------------
 }
-void Transfer::transit(vk::structure::Image& image){
-  //---------------------------
-
-  //Image transition from undefined layout to read only layout
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
-  vk_command->start_command_buffer_primary(*command_buffer);
-
-  //Transition
-  vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-
-  //End and submit command
-  vk_command->end_command_buffer(*command_buffer);
-  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
-
-  //---------------------------
-}
 void Transfer::copy_gpu_image_to_buffer(vk::structure::Image& image, VkBuffer buffer){
   //---------------------------
 
