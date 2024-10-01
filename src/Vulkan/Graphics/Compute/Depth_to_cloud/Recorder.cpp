@@ -55,7 +55,7 @@ void Recorder::bind_pipeline(vk::structure::Command_buffer& command_buffer, vk::
 void Recorder::create_texture(vk::structure::Object& vk_object){
   //---------------------------
 
-  std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "Depth");
+  std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "depth_raw");
   std::shared_ptr<utl::media::Image> image = std::make_shared<utl::media::Image>("cloud");
   image->format = "RG32";
   image->width = tex_depth->image->width;
@@ -64,7 +64,14 @@ void Recorder::create_texture(vk::structure::Object& vk_object){
 
   auto tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
   vk::memory::Transition vk_transition(vk_struct);
-  vk_transition.image_layout_transition(tex_cloud->wrapper, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_GENERAL); 
+  vk_transition.image_layout_transition(tex_cloud->wrapper, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_GENERAL);
+
+
+vk_transition.image_layout_transition(tex_depth->wrapper, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
+
+
+  std::shared_ptr<vk::structure::Texture> tex_table_xy = vk_data->retrieve_vk_texture(vk_object, "depth_table_xy");
+vk_transition.image_layout_transition(tex_table_xy->wrapper, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
 
   //---------------------------
 }
@@ -73,6 +80,17 @@ void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure
 say("----------------------------------");
 say("----------------------------------");
 say("----------------------------------");
+
+//Cloud texture
+std::shared_ptr<vk::structure::Storage> storage_cloud = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_cloud");
+std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
+if(!tex_cloud){
+  this->create_texture(vk_object);
+  tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
+  if(!tex_cloud) say("problem");
+}
+vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_cloud, tex_cloud->wrapper);
+
   //Depth texture
   std::shared_ptr<vk::structure::Storage> storage_depth = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_depth");
   std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "depth_raw");
@@ -83,15 +101,14 @@ say("----------------------------------");
   std::shared_ptr<vk::structure::Texture> tex_table_xy = vk_data->retrieve_vk_texture(vk_object, "depth_table_xy");
   vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_tablexy, tex_table_xy->wrapper);
 
-  //Cloud texture
-  std::shared_ptr<vk::structure::Storage> storage_cloud = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_cloud");
-  std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
-  if(!tex_cloud){
-    this->create_texture(vk_object);
-    tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
-    if(!tex_cloud) say("problem");
-  }
-  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_cloud, tex_cloud->wrapper);
+
+
+
+  say(tex_depth->wrapper.handle);
+  say(tex_table_xy->wrapper.handle);
+  say(tex_cloud->wrapper.handle);
+
+  if(tex_depth->wrapper.layout == VK_IMAGE_LAYOUT_GENERAL) say("okkkkkkkkk");
 
   //---------------------------
 }

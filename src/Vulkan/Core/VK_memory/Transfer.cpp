@@ -176,7 +176,7 @@ std::shared_ptr<vk::structure::Command_buffer> Transfer::copy_gpu_image_to_gpu_i
   vkCmdCopyImage(command_buffer->handle, image_src.handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, image_dst.handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
 
   // Transition destination image to shader read-only optimal layout if needed
-  vk_transition->image_layout_transition(command_buffer->handle, image_dst.handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_PRESENT_SRC_KHR);
+  vk_transition->image_layout_transition(command_buffer->handle, image_dst, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_PRESENT_SRC_KHR);
 
   //End and submit command buffer
   vk_command->end_command_buffer(*command_buffer);
