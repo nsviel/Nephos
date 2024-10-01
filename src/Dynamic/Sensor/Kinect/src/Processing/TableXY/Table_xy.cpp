@@ -87,21 +87,14 @@ void Table_xy::build_texture(k4n::base::Sensor& sensor, utl::base::Storage& stor
       if(sensor.device.calibration.convert_2d_to_3d(point_xy, 1.f, calibration_type, calibration_type, &point_xyz)){
         storage.data[idx] = point_xyz.xyz.x;
         storage.data[idx + 1] = point_xyz.xyz.y;
-
-        if((idx == 0)) say(point_xyz.xyz.x);
       }
       else{
         // The pixel is invalid
         storage.data[idx] = 0.0f;
         storage.data[idx + 1] = 0.0f;
-
       }
     }
   }
-
-  float* floatData = reinterpret_cast<float*>(storage.data.data());
-  float value = floatData[0];
-  say(value);
 
   //---------------------------
 }
