@@ -23,7 +23,7 @@ Table_xy::~Table_xy(){}
 void Table_xy::build_table_xy(k4n::base::Sensor& sensor){
   //---------------------------
 
-  this->build_color_texture(sensor);
+  //this->build_color_texture(sensor);
   this->build_depth_texture(sensor);
 
   //---------------------------
@@ -71,11 +71,10 @@ void Table_xy::build_texture(k4n::base::Sensor& sensor, utl::media::Image& image
     sensor.device.calibration.color_camera_calibration :
     sensor.device.calibration.depth_camera_calibration;
 
+  //Get variables
   image.width = camera_calibration.resolution_width;
   image.height = camera_calibration.resolution_height;
   image.data = std::vector<uint8_t>(image.width * image.height * sizeof(float) * 2);
-
-  //Create etxture
   float* data_ptr = reinterpret_cast<float*>(image.data.data());
   k4a_float2_t point_xy;
   k4a_float3_t point_xyz;
@@ -91,14 +90,21 @@ void Table_xy::build_texture(k4n::base::Sensor& sensor, utl::media::Image& image
       if(sensor.device.calibration.convert_2d_to_3d(point_xy, 1.f, calibration_type, calibration_type, &point_xyz)){
         image.data[idx] = point_xyz.xyz.x;
         image.data[idx + 1] = point_xyz.xyz.y;
+
+        if((idx == 0)) say(point_xyz.xyz.x);
       }
       else{
         // The pixel is invalid
         image.data[idx] = 0.0f;
         image.data[idx + 1] = 0.0f;
+
       }
     }
   }
+
+  float* floatData = reinterpret_cast<float*>(image.data.data());
+  float value = floatData[0];
+  say(value);
 
   //---------------------------
 }

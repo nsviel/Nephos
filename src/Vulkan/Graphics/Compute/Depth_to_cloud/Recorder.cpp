@@ -73,6 +73,9 @@ vk_transition.image_layout_transition(tex_depth->wrapper, VK_IMAGE_LAYOUT_SHADER
   std::shared_ptr<vk::structure::Texture> tex_table_xy = vk_data->retrieve_vk_texture(vk_object, "depth_table_xy");
 vk_transition.image_layout_transition(tex_table_xy->wrapper, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
 
+
+
+
   //---------------------------
 }
 void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
@@ -96,6 +99,12 @@ void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure
   std::shared_ptr<vk::structure::Storage> storage_tablexy = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_tablexy");
   std::shared_ptr<vk::structure::Texture> tex_table_xy = vk_data->retrieve_vk_texture(vk_object, "depth_table_xy");
   vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_tablexy, tex_table_xy->wrapper);
+
+
+
+  float* floatData = reinterpret_cast<float*>(tex_table_xy->image->data.data());
+  float value = floatData[0];
+  //say(value);
 
   //---------------------------
 }

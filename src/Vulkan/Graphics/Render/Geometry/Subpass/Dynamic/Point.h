@@ -9,6 +9,7 @@ namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
 namespace vk::data{class Vertex;}
 namespace vk::data{class Function;}
+namespace vk::descriptor{class Storage;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
@@ -46,6 +47,7 @@ private:
   vk::render::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
   vk::descriptor::Sampler* vk_sampler;
+  vk::descriptor::Storage* vk_storage;
   vk::data::Function* vk_data;
 };
 

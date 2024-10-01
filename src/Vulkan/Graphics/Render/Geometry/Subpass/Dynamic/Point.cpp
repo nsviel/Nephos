@@ -19,7 +19,7 @@ Point::Point(vk::Structure* vk_struct){
   this->vk_point = new vk::geometry::pipeline::dynamic::Point(vk_struct);
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
   this->vk_data = new vk::data::Function(vk_struct);
-
+  this->vk_storage = new vk::descriptor::Storage(vk_struct);
 
   //---------------------------
 }
@@ -49,12 +49,17 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
 
   for(auto& [uid, vk_object] : vk_struct->core.data.map_object){
     if(!check_data(*vk_object, utl::topology::DYNAMIC_POINT)) continue;
+
+
+    vk::compute::dtc::Recorder recorder(vk_struct);
+    recorder.run_compute(*vk_object);
+
+    
     this->update_uniform(*vk_object, *pipeline);
     this->update_sampler(*vk_object, *pipeline, subpass);
     this->draw_data(*vk_object, *pipeline, subpass);
 
-    vk::compute::dtc::Recorder recorder(vk_struct);
-    recorder.run_compute(*vk_object);
+
   }
 
   //---------------------------
@@ -95,7 +100,7 @@ void Point::update_uniform(vk::structure::Object& vk_object, vk::structure::Pipe
 }
 void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass){
   //---------------------------
-
+/*
   //Color texture
   std::shared_ptr<vk::structure::Sampler> sampler_color = vk_sampler->query_sampler(vk_object.descriptor_set, "tex_color");
   std::shared_ptr<vk::structure::Sampler> sampler_depth = vk_sampler->query_sampler(vk_object.descriptor_set, "tex_depth");
@@ -107,6 +112,11 @@ void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipe
 
   vk_sampler->actualize_sampler(vk_object.descriptor_set, *sampler_color, texture_color->wrapper);
   vk_sampler->actualize_sampler(vk_object.descriptor_set, *sampler_depth, texture_depth->wrapper);
+*/
+
+  std::shared_ptr<vk::structure::Storage> storage_cloud = vk_storage->query_storage(vk_object.descriptor_set, "tex_cloud");
+  std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
+  vk_storage->actualize_storage(vk_object.descriptor_set, *storage_cloud, tex_cloud->wrapper);
 
   //---------------------------
 }

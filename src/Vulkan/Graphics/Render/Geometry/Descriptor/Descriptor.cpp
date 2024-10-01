@@ -81,7 +81,7 @@ vk::structure::Descriptor storage_cloud(){
   descriptor.name = "tex_cloud";
   descriptor.binding = vk::storage::CLOUD;
   descriptor.type = VK_DESCRIPTOR_TYPE_STORAGE_IMAGE;
-  descriptor.stage = VK_SHADER_STAGE_COMPUTE_BIT;
+  descriptor.stage = VK_SHADER_STAGE_VERTEX_BIT;
 
   //---------------------------
   return descriptor;
