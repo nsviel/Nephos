@@ -16,6 +16,7 @@ Infrared::Infrared(k4n::Node* node_k4n){
   dyn::prc::Node* node_processing = node_k4n->get_node_processing();
 
   this->dat_image = node_image->get_dat_image();
+  this->dat_depth = node_image->get_dat_depth();
   this->dyn_struct = node_processing->get_dyn_struct();
 
   //---------------------------
@@ -64,7 +65,7 @@ void Infrared::retrieve_raw_image(k4n::base::Sensor& sensor){
   image->width = sensor.infra.data.width;
   image->height = sensor.infra.data.height;
   image->format = "R16_UINT";
-  //dat_image->add_image(sensor, image);
+  dat_depth->add_depth(sensor, image);
 
   //---------------------------
 }

@@ -26,7 +26,7 @@ struct Structure{
   k4n::infrared::Configuration config;
   k4n::structure::Data data;
   std::shared_ptr<utl::base::Image> image = std::make_shared<utl::base::Image>("Intensity");
-  std::shared_ptr<utl::base::Depth> depth = std::make_shared<utl::base::Depth>("intensity");
+  std::shared_ptr<utl::base::Depth> depth = std::make_shared<utl::base::Depth>("intensity_raw");
 
   //---------------------------
 };

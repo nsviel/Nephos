@@ -14,6 +14,7 @@ Depth::Depth(k4n::Node* node_k4n){
   dat::img::Node* node_image = node_data->get_node_image();
 
   this->dat_image = node_image->get_dat_image();
+  this->dat_depth = node_image->get_dat_depth();
 
   //---------------------------
 }
@@ -62,7 +63,7 @@ void Depth::retrieve_raw_image(k4n::base::Sensor& sensor){
   image->width = sensor.depth.data.width;
   image->height = sensor.depth.data.height;
   image->format = "R16_UINT";
-  //dat_image->add_image(sensor, image);
+  dat_depth->add_depth(sensor, image);
 
   //---------------------------
 }
