@@ -7,11 +7,13 @@ namespace vk::render{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
+namespace vk::pipeline{class Descriptor;}
 namespace vk::data{class Vertex;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Object;}
+namespace vk::structure{class Descriptor_set;}
 
 
 namespace vk::geometry::subpass::topology{
@@ -43,6 +45,7 @@ private:
   vk::data::Vertex* vk_drawer;
   vk::render::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
+  vk::pipeline::Descriptor* vk_descriptor;
 };
 
 }

@@ -46,8 +46,14 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
 
   for(auto& [uid, vk_object] : vk_struct->core.data.map_object){
     if(!check_data(*vk_object, utl::topology::POINT)) continue;
+
+        auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
+
+
     this->update_uniform(subpass, *vk_object, *pipeline);
     this->draw_data(*vk_object, subpass);
+
+    descriptor_set->is_available = true;
   }
 
   //---------------------------

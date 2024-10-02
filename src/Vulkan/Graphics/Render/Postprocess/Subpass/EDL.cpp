@@ -17,6 +17,7 @@ EDL::EDL(vk::Structure* vk_struct){
   this->vk_pipeline = new vk::render::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
+  this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
   this->vk_drawer = new vk::data::Vertex(vk_struct);
 
   //---------------------------
@@ -44,25 +45,23 @@ void EDL::draw_edl(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   //---------------------------
 
+  auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
+
   this->bind_pipeline(subpass, *pipeline);
-  this->update_descriptor(subpass, *pipeline);
-  this->draw_data(subpass, *pipeline);
+  this->update_uniform(subpass, *descriptor_set);
+  this->update_sampler(*pipeline, *descriptor_set);
+  this->draw_data(subpass, *pipeline, *descriptor_set);
+
+  descriptor_set->is_available = true;
 
   //---------------------------
 }
 void EDL::update_sampler(vk::structure::Subpass& subpass){
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["edl"];
   //---------------------------
 
-  std::shared_ptr<vk::structure::Sampler> sampler_color = vk_sampler->query_sampler(pipeline->descriptor.descriptor_set, "tex_color");
-  std::shared_ptr<vk::structure::Sampler> sampler_depth = vk_sampler->query_sampler(pipeline->descriptor.descriptor_set, "tex_depth");
 
-  vk::structure::Framebuffer& framebuffer = vk_struct->graphics.render.renderpass.geometry.framebuffer;
-  sampler_color->image = std::make_shared<vk::structure::Image>(framebuffer.color);
-  sampler_depth->image = std::make_shared<vk::structure::Image>(framebuffer.depth);
 
   //---------------------------
-  vk_sampler->actualize_sampler(pipeline->descriptor.descriptor_set);
 }
 
 //Subfunction
@@ -74,20 +73,33 @@ void EDL::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline
 
   //---------------------------
 }
-void EDL::update_descriptor(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
+void EDL::update_uniform(vk::structure::Subpass& subpass, vk::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
   vk::postprocess::EDL& edl_struct = vk_struct->graphics.render.pipeline.edl;
   edl_struct.tex_width = vk_struct->window.dimension.x;
   edl_struct.tex_height = vk_struct->window.dimension.y;
-  vk_uniform->update_uniform("parameter", pipeline.descriptor.descriptor_set, edl_struct);
+  vk_uniform->update_uniform("parameter", descriptor_set, edl_struct);
 
   //---------------------------
 }
-void EDL::draw_data(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
+void EDL::update_sampler(vk::structure::Pipeline& pipeline, vk::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
-  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, pipeline.descriptor.descriptor_set);
+  std::shared_ptr<vk::structure::Sampler> sampler_color = vk_sampler->query_sampler(descriptor_set, "tex_color");
+  std::shared_ptr<vk::structure::Sampler> sampler_depth = vk_sampler->query_sampler(descriptor_set, "tex_depth");
+
+  vk::structure::Framebuffer& framebuffer = vk_struct->graphics.render.renderpass.geometry.framebuffer;
+  sampler_color->image = std::make_shared<vk::structure::Image>(framebuffer.color);
+  sampler_depth->image = std::make_shared<vk::structure::Image>(framebuffer.depth);
+
+  //---------------------------
+  vk_sampler->actualize_sampler(descriptor_set);
+}
+void EDL::draw_data(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline, vk::structure::Descriptor_set& descriptor_set){
+  //---------------------------
+
+  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, descriptor_set);
   vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, *vk_struct->core.data.canvas);
 
   //---------------------------

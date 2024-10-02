@@ -7,12 +7,14 @@ namespace vk::draw{class Viewport;}
 namespace vk::descriptor{class Sampler;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
+namespace vk::pipeline{class Descriptor;}
 namespace vk::data{class Vertex;}
 namespace vk::data{class Retriever;}
 namespace vk::descriptor{class Storage_image;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
+namespace vk::structure{class Descriptor_set;}
 namespace vk::structure{class Object;}
 
 
@@ -33,9 +35,9 @@ public:
 private:
   //Subfunction
   void bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
-  void update_uniform(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline);
-  void update_storage(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass);
-  void draw_data(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass);
+  void update_uniform(vk::structure::Object& vk_object, vk::structure::Descriptor_set& descriptor_set);
+  void update_storage(vk::structure::Object& vk_object, vk::structure::Descriptor_set& descriptor_set);
+  void draw_data(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass, vk::structure::Descriptor_set& descriptor_set);
   bool check_data(vk::structure::Object& vk_object, int topology);
 
 private:
@@ -49,6 +51,7 @@ private:
   vk::descriptor::Sampler* vk_sampler;
   vk::descriptor::Storage_image* vk_storage;
   vk::data::Retriever* vk_data;
+  vk::pipeline::Descriptor* vk_descriptor;
 };
 
 }

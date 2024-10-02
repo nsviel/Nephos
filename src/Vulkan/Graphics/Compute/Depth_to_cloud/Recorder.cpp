@@ -19,6 +19,7 @@ Recorder::Recorder(vk::Structure* vk_struct){
   this->vk_command_allocator = new vk::commandbuffer::Allocator(vk_struct);
   this->vk_storage = new vk::descriptor::Storage_image(vk_struct);
   this->vk_tex_storage = new vk::texture::Storage(vk_struct);
+  this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
 
   //---------------------------
 }
@@ -29,17 +30,22 @@ void Recorder::run_compute(vk::structure::Object& vk_object){
   std::shared_ptr<vk::structure::Pipeline> pipeline = vk_struct->core.pipeline.map_compute["depth_to_cloud"];
   //---------------------------
 
+  auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
+
   //Start command buffer
   std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
   vk_command->start_command_buffer_primary(*command_buffer);
 
   this->bind_pipeline(*command_buffer, *pipeline);
-  this->update_descriptor(vk_object, *pipeline);
-  this->dispatch_pipeline(vk_object, *command_buffer, *pipeline);
+  this->update_descriptor(vk_object, *descriptor_set);
+  this->dispatch_pipeline(vk_object, *command_buffer, *pipeline, *descriptor_set);
 
   //End command buffer
   vk_command->end_command_buffer(*command_buffer);
   vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
+
+  //std::this_thread::sleep_for(std::chrono::milliseconds(2));
+  descriptor_set->is_available = true;
 
   //---------------------------
 }
@@ -64,38 +70,38 @@ void Recorder::create_texture(vk::structure::Object& vk_object){
 
   //---------------------------
 }
-void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
+void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
   //Cloud texture
-  std::shared_ptr<vk::structure::Storage_image> storage_cloud = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_cloud");
+  std::shared_ptr<vk::structure::Storage_image> storage_cloud = vk_storage->query_storage(descriptor_set, "tex_cloud");
   std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
   if(!tex_cloud){
     this->create_texture(vk_object);
     tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
   }
-  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_cloud, tex_cloud->surface);
+  vk_storage->actualize_storage(descriptor_set, *storage_cloud, tex_cloud->surface);
 
   //Depth texture
-  std::shared_ptr<vk::structure::Storage_image> storage_depth = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_depth");
+  std::shared_ptr<vk::structure::Storage_image> storage_depth = vk_storage->query_storage(descriptor_set, "tex_depth");
   std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "depth_raw");
-  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_depth, tex_depth->surface);
+  vk_storage->actualize_storage(descriptor_set, *storage_depth, tex_depth->surface);
 
   //Table XY texture
-  std::shared_ptr<vk::structure::Storage_image> storage_tablexy = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_tablexy");
+  std::shared_ptr<vk::structure::Storage_image> storage_tablexy = vk_storage->query_storage(descriptor_set, "tex_tablexy");
   std::shared_ptr<vk::structure::Texture> tex_table_xy = vk_data->retrieve_vk_texture(vk_object, "depth_table_xy");
-  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_tablexy, tex_table_xy->surface);
+  vk_storage->actualize_storage(descriptor_set, *storage_tablexy, tex_table_xy->surface);
 
 
 
 
   //---------------------------
 }
-void Recorder::dispatch_pipeline(vk::structure::Object& vk_object, vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline){
+void Recorder::dispatch_pipeline(vk::structure::Object& vk_object, vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline, vk::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
   // Update descriptor set
-  vk_pipeline->cmd_bind_descriptor_set(command_buffer.handle, pipeline, pipeline.descriptor.descriptor_set);
+  vk_pipeline->cmd_bind_descriptor_set(command_buffer.handle, pipeline, descriptor_set);
 
   // Dispatch the compute work
   std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "depth_raw");

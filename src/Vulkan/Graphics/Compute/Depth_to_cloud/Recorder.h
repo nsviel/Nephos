@@ -4,6 +4,7 @@ namespace vk{class Structure;}
 namespace vk::descriptor{class Uniform;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Storage_image;}
+namespace vk::pipeline{class Descriptor;}
 namespace vk::compute{class Pipeline;}
 namespace vk::data{class Retriever;}
 namespace vk::texture{class Storage;}
@@ -13,6 +14,7 @@ namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Command_buffer;}
+namespace vk::structure{class Descriptor_set;}
 
 
 namespace vk::compute::dtc{
@@ -31,8 +33,8 @@ public:
   //Subfunction
   void bind_pipeline(vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline);
   void create_texture(vk::structure::Object& vk_object);
-  void update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline);
-  void dispatch_pipeline(vk::structure::Object& vk_object, vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline);
+  void update_descriptor(vk::structure::Object& vk_object, vk::structure::Descriptor_set& descriptor_set);
+  void dispatch_pipeline(vk::structure::Object& vk_object, vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline, vk::structure::Descriptor_set& descriptor_set);
 
 private:
   vk::Structure* vk_struct;
@@ -44,6 +46,7 @@ private:
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::descriptor::Storage_image* vk_storage;
   vk::texture::Storage* vk_tex_storage;
+  vk::pipeline::Descriptor* vk_descriptor;
 };
 
 }

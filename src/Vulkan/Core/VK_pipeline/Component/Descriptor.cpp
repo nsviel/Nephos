@@ -26,7 +26,6 @@ void Descriptor::create_pipeline_descriptor(vk::structure::Pipeline& pipeline){
 
   vk_layout->create_layout(pipeline.descriptor.layout);
   this->create_descriptor_set_pool(pipeline);
-  vk_descriptor_set->allocate_descriptor_set(pipeline.descriptor.descriptor_set, pipeline.descriptor.layout);
 
   //---------------------------
 }
@@ -34,7 +33,6 @@ void Descriptor::clean_pipeline_descriptor(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   this->clean_descriptor_set_pool(pipeline);
-  vk_uniform->clean_uniform(pipeline.descriptor.descriptor_set);
   vk_layout->clean_layout(pipeline.descriptor.layout);
 
   //---------------------------
@@ -84,9 +82,11 @@ std::shared_ptr<vk::structure::Descriptor_set> Descriptor::query_descriptor_set(
   int index;
   std::shared_ptr<vk::structure::Descriptor_set> descriptor_set;
   do{
+    //Get a random index
     index = distr(gen);
     descriptor_set = pool.tank[index];
 
+    //Lock and if available return index descriptor set
     std::lock_guard<std::mutex> lock(descriptor_set->mutex);
     if(descriptor_set->is_available){
       descriptor_set->is_available = false;

@@ -11,7 +11,6 @@ struct Descriptor{
   //---------------------------
 
   vk::pool::structure::Descriptor_set pool;
-  vk::structure::Descriptor_set descriptor_set;
   vk::structure::Layout layout;
 
   //---------------------------
