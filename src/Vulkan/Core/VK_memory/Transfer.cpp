@@ -21,7 +21,6 @@ Transfer::~Transfer(){}
 
 //Image GPU function
 void Transfer::copy_texture_to_gpu(vk::structure::Texture& texture, void* data){
-  if(texture.image->size == 0) return;
   //---------------------------
 
   //Copy data to stagging buffer
@@ -47,7 +46,7 @@ void Transfer::copy_image_to_gpu(vk::structure::Image& image, VkBuffer buffer){
   VkBufferImageCopy region{};
   region.bufferOffset = 0;
   region.bufferRowLength = 0;
-  region.bufferImageHeight = 0;
+  region.bufferImageHeight = image.height;
   region.imageSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
   region.imageSubresource.mipLevel = 0;
   region.imageSubresource.baseArrayLayer = 0;

@@ -59,7 +59,7 @@ std::shared_ptr<vk::structure::Texture> Depth::create_texture(std::shared_ptr<ut
 
   //Create texture
   vk_image->create_image(texture->surface);
-  vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, depth->size);
+  vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, depth->size * sizeof(uint16_t));
   vk_mem_transfer->copy_texture_to_gpu(*texture, depth->data.data());
 
   //---------------------------

@@ -58,7 +58,7 @@ std::shared_ptr<vk::structure::Texture> Storage::create_texture(std::shared_ptr<
 
   //Create texture
   vk_image->create_image(texture->surface);
-  vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, storage->size);
+  vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, storage->size * sizeof(float));
   vk_mem_transfer->copy_texture_to_gpu(*texture, storage->data.data());
 
   //---------------------------
