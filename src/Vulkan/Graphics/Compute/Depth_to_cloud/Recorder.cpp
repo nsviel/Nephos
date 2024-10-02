@@ -54,7 +54,7 @@ void Recorder::bind_pipeline(vk::structure::Command_buffer& command_buffer, vk::
 }
 void Recorder::create_texture(vk::structure::Object& vk_object){
   //---------------------------
-
+/*
   std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "depth_raw");
   std::shared_ptr<utl::base::Image> image = std::make_shared<utl::base::Image>("cloud");
   image->format = "RG32";
@@ -75,7 +75,7 @@ vk_transition.image_layout_transition(tex_table_xy->surface, VK_IMAGE_LAYOUT_SHA
 
 
 
-
+*/
   //---------------------------
 }
 void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){

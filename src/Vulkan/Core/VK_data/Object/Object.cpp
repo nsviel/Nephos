@@ -48,11 +48,6 @@ void Object::create_object(std::shared_ptr<utl::base::Data> data, std::shared_pt
   //Data
   vk_buffer->create_buffer(*object);
 
-  //Texture
-  for(auto& [name, image] : data->map_image){
-    vk_texture->insert_texture(*object, image);
-  }
-
   //Descriptor
   std::shared_ptr<vk::structure::Pipeline> pipeline = vk_struct->core.pipeline.map_topology[object->data->topology.type];
   vk_descriptor_set->allocate_descriptor_set(object->descriptor_set, pipeline->descriptor.layout);
