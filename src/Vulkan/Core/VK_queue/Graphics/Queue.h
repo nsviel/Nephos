@@ -11,7 +11,7 @@ namespace vk::command::structure{class Set;}
 namespace vk::structure{class Command;}
 namespace vk::queue::graphics{class Submission;}
 namespace vk::synchro{class Fence;}
-namespace vk::synchro::structure{class Fence;}
+namespace vk::structure{class Fence;}
 
 
 namespace vk::queue::graphics{

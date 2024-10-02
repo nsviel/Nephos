@@ -9,7 +9,7 @@
 namespace vk{class Structure;}
 namespace vk::command::structure{class Set;}
 namespace vk::structure{class Command_buffer;}
-namespace vk::synchro::structure{class Fence;}
+namespace vk::structure{class Fence;}
 namespace vk::synchro{class Fence;}
 namespace vk::instance{class Query;}
 

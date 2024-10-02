@@ -25,6 +25,9 @@ public:
   void create_pipeline_descriptor(vk::structure::Pipeline& pipeline);
   void clean_pipeline_descriptor(vk::structure::Pipeline& pipeline);
 
+  //Subfunction
+  vk::structure::Descriptor_set query_descriptor_set(vk::structure::Pipeline& pipeline);
+
 private:
   vk::descriptor::Uniform* vk_uniform;
   vk::descriptor::Sampler* vk_sampler;

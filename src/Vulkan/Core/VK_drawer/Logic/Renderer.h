@@ -3,7 +3,7 @@
 namespace vk::command{class Command;}
 namespace vk::command{class Allocator;}
 namespace vk{class Structure;}
-namespace vk::synchro::structure{class Fence;}
+namespace vk::structure{class Fence;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Command_buffer;}
 

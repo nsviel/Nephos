@@ -48,7 +48,7 @@ void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 
-  vk::synchro::structure::Fence* fence = vk_fence->query_free_fence();
+  vk::structure::Fence* fence = vk_fence->query_free_fence();
 
   VkQueue queue = vk_struct->core.device.queue.transfer.handle;
   VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), fence->handle);

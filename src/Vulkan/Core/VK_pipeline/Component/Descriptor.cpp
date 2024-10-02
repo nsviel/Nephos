@@ -37,6 +37,14 @@ void Descriptor::clean_pipeline_descriptor(vk::structure::Pipeline& pipeline){
   //---------------------------
 }
 
+//Subfunction
+vk::structure::Descriptor_set Descriptor::query_descriptor_set(vk::structure::Pipeline& pipeline){
+  //---------------------------
+
+
+
+  //---------------------------
+}
 
 
 }

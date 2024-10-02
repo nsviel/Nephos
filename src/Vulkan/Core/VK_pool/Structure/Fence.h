@@ -12,7 +12,7 @@ struct Fence{
   //---------------------------
 
   std::mutex mutex;
-  std::vector<vk::synchro::structure::Fence> tank;
+  std::vector<vk::structure::Fence> tank;
   uint32_t size = 100;
 
   //---------------------------

@@ -72,7 +72,7 @@ void Submission::build_submission(vk::command::structure::Set* set){
 void Submission::make_submission(vk::command::structure::Set* set){
   //---------------------------
 
-  vk::synchro::structure::Fence* fence = vk_fence->query_free_fence();
+  vk::structure::Fence* fence = vk_fence->query_free_fence();
 
   VkQueue queue = vk_struct->core.device.queue.graphics.handle;
   VkResult result = vkQueueSubmit(queue, set->vec_info.size(), set->vec_info.data(), fence->handle);
