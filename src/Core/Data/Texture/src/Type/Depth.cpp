@@ -15,7 +15,7 @@ Depth::Depth(dat::img::Node* node_image){
   vk::Node* node_vulkan = node_image->get_node_vulkan();
   dat::elm::Node* node_element = node_image->get_node_element();
 
-  this->vk_data = node_vulkan->get_vk_data();
+  this->vk_texture = node_vulkan->get_vk_texture();
   this->dat_uid = node_element->get_dat_uid();
 
   //---------------------------
@@ -47,7 +47,7 @@ void Depth::insert_depth(dat::base::Entity& entity, std::shared_ptr<utl::base::D
 
   depth->UID = dat_uid->generate_UID();
   data.map_depth[depth->name] = depth;
-  //vk_data->insert_depth(data, depth);
+  vk_texture->insert_depth(data, depth);
 
   //----------------------------
 }

@@ -7,7 +7,7 @@
 namespace dat::img{class Node;}
 namespace dat::elm{class UID;}
 namespace dat::base{class Entity;}
-namespace vk::interface{class Data;}
+namespace vk::interface{class Texture;}
 namespace utl::base{class Depth;}
 
 
@@ -30,7 +30,7 @@ public:
   std::shared_ptr<utl::base::Depth> get_or_create_depth(dat::base::Entity& entity, std::string name);
 
 private:
-  vk::interface::Data* vk_data;
+  vk::interface::Data* vk_texture;
   dat::elm::UID* dat_uid;
 };
 

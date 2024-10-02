@@ -7,7 +7,7 @@
 namespace dat::img{class Node;}
 namespace dat::elm{class UID;}
 namespace dat::base{class Entity;}
-namespace vk::interface{class Data;}
+namespace vk::interface{class Texture;}
 namespace utl::base{class Storage;}
 
 
@@ -30,7 +30,7 @@ public:
   std::shared_ptr<utl::base::Storage> get_or_create_storage(dat::base::Entity& entity, std::string name);
 
 private:
-  vk::interface::Data* vk_data;
+  vk::interface::Texture* vk_texture;
   dat::elm::UID* dat_uid;
 };
 
