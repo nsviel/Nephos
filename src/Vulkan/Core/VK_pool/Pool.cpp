@@ -19,20 +19,20 @@ Pool::~Pool(){}
 void Pool::init(){
   //---------------------------
 
-  this->create_descriptor_set_pool();
+  this->create_descriptor_pool();
 
   //---------------------------
 }
 void Pool::clean(){
   //---------------------------
 
-  this->clean_descriptor_set_pool();
+  this->clean_descriptor_pool();
 
   //---------------------------
 }
 
-//Descriptor pool
-void Pool::create_descriptor_set_pool(){
+//Descriptor set pool
+void Pool::create_descriptor_pool(){
   //---------------------------
 
   //Maximum number of descriptor per type
@@ -56,27 +56,27 @@ void Pool::create_descriptor_set_pool(){
   pool_info.maxSets = 1000 * IM_ARRAYSIZE(pool_size);
   pool_info.poolSizeCount = (uint32_t)IM_ARRAYSIZE(pool_size);
   pool_info.pPoolSizes = pool_size;
-  VkResult result = vkCreateDescriptorPool(vk_struct->core.device.handle, &pool_info, nullptr, &vk_struct->core.pools.descriptor_set.pool);
+  VkResult result = vkCreateDescriptorPool(vk_struct->core.device.handle, &pool_info, nullptr, &vk_struct->core.pools.descriptor.pool);
   if(result != VK_SUCCESS){
     std::cout<<"[error] failed to create descriptor set pool"<<std::endl;
   }
 
   //---------------------------
 }
-void Pool::reset_descriptor_set_pool(){
+void Pool::reset_descriptor_pool(){
   //---------------------------
 
-  VkResult result = vkResetDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.pool, 0);
+  VkResult result = vkResetDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor.pool, 0);
   if(result != VK_SUCCESS){
     std::cout<<"[error] failed to reset descriptor set pool"<<std::endl;
   }
 
   //---------------------------
 }
-void Pool::clean_descriptor_set_pool(){
+void Pool::clean_descriptor_pool(){
   //---------------------------
 
-  vkDestroyDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor_set.pool, nullptr);
+  vkDestroyDescriptorPool(vk_struct->core.device.handle, vk_struct->core.pools.descriptor.pool, nullptr);
 
   //---------------------------
 }

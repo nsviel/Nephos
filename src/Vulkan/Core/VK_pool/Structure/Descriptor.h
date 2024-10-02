@@ -11,12 +11,10 @@
 
 namespace vk::pool::structure{
 
-struct Descriptor_set{
+struct Descriptor{
   //---------------------------
 
-  std::mutex mutex;
-  std::vector<vk::structure::Descriptor_set> tank;
-  uint32_t size = 100;
+  VkDescriptorPool pool = VK_NULL_HANDLE;
 
   //---------------------------
 };
