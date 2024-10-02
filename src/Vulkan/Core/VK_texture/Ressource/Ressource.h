@@ -8,9 +8,9 @@ namespace vk::image{class Screenshot;}
 namespace vk::image{class Image;}
 namespace vk::memory{class Allocator;}
 namespace vk::memory{class Transfer;}
+namespace vk::instance{class UID;}
 namespace vk::data{class Buffer;}
 namespace vk::image{class Format;}
-namespace vk::instance{class UID;}
 namespace utl::base{class Texture;}
 
 
@@ -36,10 +36,10 @@ private:
   vk::memory::Allocator* vk_mem_allocator;
   vk::memory::Transfer* vk_mem_transfer;
   vk::image::Image* vk_image;
+  vk::instance::UID* vk_uid;
   vk::image::Screenshot* vk_screenshot;
   vk::image::Format* vk_format;
   vk::data::Buffer* vk_buffer;
-  vk::instance::UID* vk_uid;
 };
 
 }

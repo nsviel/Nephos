@@ -24,7 +24,7 @@ public:
 
 public:
   //Image copy function
-  void copy_texture_to_gpu(vk::structure::Texture& texture);
+  void copy_texture_to_gpu(vk::structure::Texture& texture, void* data);
   void copy_image_to_gpu(vk::structure::Image& image, VkBuffer buffer);
   void copy_gpu_image_to_buffer(vk::structure::Image& image, VkBuffer buffer);
   void blit_gpu_image_to_gpu_image(vk::structure::Image& image_src, vk::structure::Image& image_dst);
