@@ -60,7 +60,7 @@ void Recorder::create_texture(vk::structure::Object& vk_object){
   storage->format = "RGBA32";
   storage->width = tex_depth->depth->width;
   storage->height = tex_depth->depth->height;
-  vk_tex_storage->insert_empty_storage(*vk_object.data, storage);
+  vk_tex_storage->insert_storage_empty(*vk_object.data, storage);
 
   //---------------------------
 }

@@ -55,6 +55,7 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
     recorder.run_compute(*vk_object);
 
 
+
     this->update_uniform(*vk_object, *pipeline);
     this->update_storage(*vk_object, *pipeline, subpass);
     this->draw_data(*vk_object, *pipeline, subpass);

@@ -29,7 +29,7 @@ public:
 public:
   //Main function
   void insert_storage(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage);
-  void insert_empty_storage(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage);
+  void insert_storage_empty(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage);
   void update_storage(std::shared_ptr<utl::base::Storage> storage);
 
   //Subfunction

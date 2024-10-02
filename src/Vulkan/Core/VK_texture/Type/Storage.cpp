@@ -42,7 +42,7 @@ void Storage::insert_storage(utl::base::Data& data, std::shared_ptr<utl::base::S
 
   //---------------------------
 }
-void Storage::insert_empty_storage(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage){
+void Storage::insert_storage_empty(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage){
   //---------------------------
 
   //Retrieve data vk object
@@ -73,6 +73,8 @@ void Storage::insert_empty_storage(utl::base::Data& data, std::shared_ptr<utl::b
 
 
   vk_object->map_texture[storage->name] = texture;
+
+
 
   //---------------------------
 }
