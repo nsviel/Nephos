@@ -33,11 +33,14 @@ VkFormat Format::find_vk_format(std::string format){
   else if(format == "RG32"){
     vk_format = VK_FORMAT_R32G32_SFLOAT;
   }
+  else if(format == "RGBA32"){
+    vk_format = VK_FORMAT_R32G32B32A32_SFLOAT;
+  }
   else if(format == "R16_UINT"){
     vk_format = VK_FORMAT_R16_UINT;
   }
   else{
-    std::cout<<"[error] texture format not recognized [-> "<<format<<"]"<<std::endl;
+    std::cout<<"[error] texture format not recognized ["<<format<<"]"<<std::endl;
   }
 
   //---------------------------
@@ -55,7 +58,8 @@ VkImageUsageFlags Format::find_usage_from_format(vk::structure::Image& image){
       break;
     }
     case VK_FORMAT_R16_UINT:
-    case VK_FORMAT_R32G32_SFLOAT:{
+    case VK_FORMAT_R32G32_SFLOAT:
+    case VK_FORMAT_R32G32B32A32_SFLOAT:{
       usage |= VK_IMAGE_USAGE_STORAGE_BIT;
       break;
     }

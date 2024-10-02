@@ -26,10 +26,6 @@ void main(){
   // Load the corresponding XY table value, which provides the X and Y coordinates in 3D space.
   vec2 xy_value = imageLoad(xy_table, pixel).xy;
 
-
-    //debugPrintfEXT("[SHADER] %f   %f", xy_value.x, xy_value.y);
-    //debugPrintfEXT("[SHADER] %f   %f    %f", xy_value.x, xy_value.y, vertex_position.z);
-
   // Initialize alpha for transparency; default to fully opaque.
   float alpha = 1.0f;
 
@@ -51,7 +47,7 @@ void main(){
   // Store the computed vertex position and alpha value in the point cloud texture.
   imageStore(tex_cloud, pixel, vec4(vertex_position, alpha));
 
-
+  //  debugPrintfEXT("[SHADER] %f   %f    %f", vertex_position.x, vertex_position.y, vertex_position.z);
 
 
   //---------------------------

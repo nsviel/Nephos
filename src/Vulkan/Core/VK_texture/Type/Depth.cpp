@@ -18,6 +18,7 @@ Depth::Depth(vk::Structure* vk_struct){
   this->vk_uid = new vk::instance::UID(vk_struct);
   this->vk_mem_allocator = new vk::memory::Allocator(vk_struct);
   this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);
+  this->vk_transition = new vk::memory::Transition(vk_struct);
 
   //---------------------------
 }
@@ -42,6 +43,26 @@ void Depth::insert_depth(utl::base::Data& data, std::shared_ptr<utl::base::Depth
 
   //---------------------------
 }
+void Depth::update_depth(std::shared_ptr<utl::base::Depth> depth){
+  if(!vk_ressource->check_texture(depth)) return;
+  //---------------------------
+
+  //Retrieve data vk object
+  auto texture = vk_retriever->retrieve_vk_texture(*depth);
+  if(!texture) return;
+
+  //Check if size hasn't changed
+  if(texture->stagger.size < texture->depth->size){
+    vk_ressource->clean_texture(*texture);
+    return;
+  }
+
+  //Copy and trasition
+  vk_mem_transfer->copy_texture_to_gpu(*texture, texture->depth->data.data());
+  vk_transition->image_layout_transition(texture->surface, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
+
+  //---------------------------
+}
 
 //Subfunction
 std::shared_ptr<vk::structure::Texture> Depth::create_texture(std::shared_ptr<utl::base::Depth> depth){
@@ -61,6 +82,7 @@ std::shared_ptr<vk::structure::Texture> Depth::create_texture(std::shared_ptr<ut
   vk_image->create_image(texture->surface);
   vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, depth->size * sizeof(uint16_t));
   vk_mem_transfer->copy_texture_to_gpu(*texture, depth->data.data());
+  vk_transition->image_layout_transition(texture->surface, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
 
   //---------------------------
   return texture;

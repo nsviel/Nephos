@@ -35,13 +35,13 @@ void main(){
 
   //debugPrintfEXT("[SHADER] %d", tex_depth_width);
 
-/*
+
   ivec2 cloud_size = imageSize(tex_cloud);
   ivec2 pixel_coord = ivec2(gl_VertexIndex % cloud_size.x, gl_VertexIndex / cloud_size.x);
   vec3 vertex_position = imageLoad(tex_cloud, pixel_coord).xyz;
   gl_Position = projection * view * model * vec4(vertex_position, 1);
 
-*/
+
 
 
 

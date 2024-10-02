@@ -25,7 +25,6 @@ void Stream::draw_stream(std::shared_ptr<utl::base::Image> image, ImVec2 dimensi
   if(!check_image(image)) return;
   //---------------------------
 
-  this->update_texture(image);
   this->render_image(image, dimension);
 
   //---------------------------
@@ -41,17 +40,6 @@ bool Stream::check_image(std::shared_ptr<utl::base::Image> image){
 
   //---------------------------
   return true;
-}
-void Stream::update_texture(std::shared_ptr<utl::base::Image> image){
-  //---------------------------
-
-  bool update = (current_timestamp != image->timestamp);
-  if(update){
-    vk_texture->update_image(image);
-    current_timestamp = image->timestamp;
-  }
-
-  //---------------------------
 }
 void Stream::render_image(std::shared_ptr<utl::base::Image> image, ImVec2& dimension){
   //---------------------------

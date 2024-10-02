@@ -9,6 +9,7 @@ namespace vk::image{class Format;}
 namespace vk::image{class Image;}
 namespace vk::memory{class Allocator;}
 namespace vk::memory{class Transfer;}
+namespace vk::memory{class Transition;}
 namespace vk::instance{class UID;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Texture;}
@@ -28,6 +29,7 @@ public:
 public:
   //Main function
   void insert_depth(utl::base::Data& data, std::shared_ptr<utl::base::Depth> depth);
+  void update_depth(std::shared_ptr<utl::base::Depth> depth);
 
   //Subfunction
   std::shared_ptr<vk::structure::Texture> create_texture(std::shared_ptr<utl::base::Depth> depth);
@@ -41,6 +43,7 @@ private:
   vk::memory::Transfer* vk_mem_transfer;
   vk::image::Image* vk_image;
   vk::instance::UID* vk_uid;
+  vk::memory::Transition* vk_transition;
 };
 
 }

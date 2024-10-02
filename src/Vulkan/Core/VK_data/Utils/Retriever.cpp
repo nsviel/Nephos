@@ -43,6 +43,40 @@ std::shared_ptr<vk::structure::Texture> Retriever::retrieve_vk_texture(utl::base
   //---------------------------
   return nullptr;
 }
+std::shared_ptr<vk::structure::Texture> Retriever::retrieve_vk_texture(utl::base::Depth& depth){
+  //---------------------------
+
+  //Search in all vk objects
+  for(auto& [name, vk_object] : vk_struct->core.data.map_object){
+    auto texture = retrieve_vk_texture(*vk_object, depth.name);
+    if(texture) return texture;
+  }
+
+  //Search in all engine textures
+  for(auto& texture : vk_struct->core.data.list_vk_texture){
+    if(texture->depth->UID == depth.UID) return texture;
+  }
+
+  //---------------------------
+  return nullptr;
+}
+std::shared_ptr<vk::structure::Texture> Retriever::retrieve_vk_texture(utl::base::Storage& storage){
+  //---------------------------
+
+  //Search in all vk objects
+  for(auto& [name, vk_object] : vk_struct->core.data.map_object){
+    auto texture = retrieve_vk_texture(*vk_object, storage.name);
+    if(texture) return texture;
+  }
+
+  //Search in all engine textures
+  for(auto& texture : vk_struct->core.data.list_vk_texture){
+    if(texture->storage->UID == storage.UID) return texture;
+  }
+
+  //---------------------------
+  return nullptr;
+}
 std::shared_ptr<vk::structure::Texture> Retriever::retrieve_vk_texture(vk::structure::Object& vk_object, std::string name){
   //---------------------------
 

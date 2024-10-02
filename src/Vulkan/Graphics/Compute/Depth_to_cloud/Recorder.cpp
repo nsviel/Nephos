@@ -18,7 +18,7 @@ Recorder::Recorder(vk::Structure* vk_struct){
   this->vk_command = new vk::command::Command(vk_struct);
   this->vk_command_allocator = new vk::command::Allocator(vk_struct);
   this->vk_storage = new vk::descriptor::Storage_image(vk_struct);
-  this->vk_texture = new vk::texture::Image(vk_struct);
+  this->vk_tex_storage = new vk::texture::Storage(vk_struct);
 
   //---------------------------
 }
@@ -54,28 +54,14 @@ void Recorder::bind_pipeline(vk::structure::Command_buffer& command_buffer, vk::
 }
 void Recorder::create_texture(vk::structure::Object& vk_object){
   //---------------------------
-/*
+
   std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "depth_raw");
-  std::shared_ptr<utl::base::Image> image = std::make_shared<utl::base::Image>("cloud");
-  image->format = "RG32";
-  image->width = tex_depth->image->width;
-  image->height = tex_depth->image->height;
-  vk_texture->insert_image(vk_object, image);
+  std::shared_ptr<utl::base::Storage> storage = std::make_shared<utl::base::Storage>("cloud");
+  storage->format = "RGBA32";
+  storage->width = tex_depth->depth->width;
+  storage->height = tex_depth->depth->height;
+  vk_tex_storage->insert_empty_storage(*vk_object.data, storage);
 
-  auto tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
-  vk::memory::Transition vk_transition(vk_struct);
-  vk_transition.image_layout_transition(tex_cloud->surface, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_GENERAL);
-
-
-vk_transition.image_layout_transition(tex_depth->surface, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
-
-
-  std::shared_ptr<vk::structure::Texture> tex_table_xy = vk_data->retrieve_vk_texture(vk_object, "depth_table_xy");
-vk_transition.image_layout_transition(tex_table_xy->surface, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
-
-
-
-*/
   //---------------------------
 }
 void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
@@ -102,9 +88,6 @@ void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure
 
 
 
-  float* floatData = reinterpret_cast<float*>(tex_table_xy->image->data.data());
-  float value = floatData[0];
-  //say(value);
 
   //---------------------------
 }
@@ -116,7 +99,7 @@ void Recorder::dispatch_pipeline(vk::structure::Object& vk_object, vk::structure
 
   // Dispatch the compute work
   std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "depth_raw");
-  vk_pipeline->cmd_dispatch_pipeline(command_buffer.handle, *tex_depth->image);
+  vk_pipeline->cmd_dispatch_pipeline(command_buffer.handle, *tex_depth->depth);
 
   //---------------------------
 }

@@ -24,7 +24,6 @@ public:
 
   //Subfunction
   bool check_image(std::shared_ptr<utl::base::Image> utl_image);
-  void update_texture(std::shared_ptr<utl::base::Image> utl_image);
   void render_image(std::shared_ptr<utl::base::Image> utl_image, ImVec2& dimension);
 
 private:

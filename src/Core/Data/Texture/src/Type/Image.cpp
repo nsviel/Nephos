@@ -35,6 +35,8 @@ void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::base::Imag
   auto it = data.map_image.find(image->name);
   if(it == data.map_image.end()){
     this->insert_image(entity, image);
+  }else{
+    vk_texture->update_image(image);
   }
 
   //----------------------------

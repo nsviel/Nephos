@@ -62,8 +62,13 @@ void Image::update_image(std::shared_ptr<utl::base::Image> image){
   auto texture = vk_retriever->retrieve_vk_texture(*image);
   if(!texture) return;
 
-  //Create texture from image
-  vk_ressource->update_texture(*texture);
+  //Check if size hasn't changed
+  if(texture->stagger.size < texture->image->size){
+    vk_ressource->clean_texture(*texture);
+    return;
+  }
+
+  vk_mem_transfer->copy_texture_to_gpu(*texture, texture->image->data.data());
 
   //---------------------------
 }

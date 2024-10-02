@@ -35,6 +35,8 @@ void Storage::add_storage(dat::base::Entity& entity, std::shared_ptr<utl::base::
   auto it = data.map_storage.find(storage->name);
   if(it == data.map_storage.end()){
     this->insert_storage(entity, storage);
+  }else{
+    vk_texture->update_storage(storage);
   }
 
   //----------------------------

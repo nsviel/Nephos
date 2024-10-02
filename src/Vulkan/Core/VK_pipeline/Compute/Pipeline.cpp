@@ -59,10 +59,10 @@ void Pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure:
 
   //---------------------------
 }
-void Pipeline::cmd_dispatch_pipeline(VkCommandBuffer& command_buffer, utl::base::Image& image){
+void Pipeline::cmd_dispatch_pipeline(VkCommandBuffer& command_buffer, utl::base::Texture& texture){
   //---------------------------
 
-  vkCmdDispatch(command_buffer, image.width, image.height, 1);
+  vkCmdDispatch(command_buffer, texture.width, texture.height, 1);
 
   //---------------------------
 }

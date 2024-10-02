@@ -8,6 +8,8 @@ namespace vk::structure{class Object;}
 namespace vk::structure{class Texture;}
 namespace utl::base{class Data;}
 namespace utl::base{class Image;}
+namespace utl::base{class Depth;}
+namespace utl::base{class Storage;}
 
 
 namespace vk::data{
@@ -23,6 +25,8 @@ public:
   //Main function
   std::shared_ptr<vk::structure::Object> retrieve_vk_object(utl::base::Data& data);
   std::shared_ptr<vk::structure::Texture> retrieve_vk_texture(utl::base::Image& image);
+  std::shared_ptr<vk::structure::Texture> retrieve_vk_texture(utl::base::Depth& depth);
+  std::shared_ptr<vk::structure::Texture> retrieve_vk_texture(utl::base::Storage& storage);
   std::shared_ptr<vk::structure::Texture> retrieve_vk_texture(vk::structure::Object& vk_object, std::string name);
 
 private:
