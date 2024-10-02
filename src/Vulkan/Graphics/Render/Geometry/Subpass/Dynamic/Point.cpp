@@ -56,7 +56,7 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
 
 
     this->update_uniform(*vk_object, *pipeline);
-    this->update_sampler(*vk_object, *pipeline, subpass);
+    this->update_storage(*vk_object, *pipeline, subpass);
     this->draw_data(*vk_object, *pipeline, subpass);
 
 
@@ -91,7 +91,7 @@ void Point::update_uniform(vk::structure::Object& vk_object, vk::structure::Pipe
 
   //---------------------------
 }
-void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass){
+void Point::update_storage(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass){
   //---------------------------
 
   std::shared_ptr<vk::structure::Storage_image> storage_cloud = vk_storage->query_storage(vk_object.descriptor_set, "tex_cloud");

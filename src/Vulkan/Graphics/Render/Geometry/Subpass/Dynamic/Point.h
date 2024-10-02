@@ -34,7 +34,7 @@ private:
   //Subfunction
   void bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
   void update_uniform(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline);
-  void update_sampler(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass);
+  void update_storage(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass);
   void draw_data(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass);
   bool check_data(vk::structure::Object& vk_object, int topology);
 

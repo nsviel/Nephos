@@ -39,7 +39,6 @@ void Point::set_pipeline(vk::structure::Pipeline& pipeline){
   vk::pipeline::structure::Info pipeline_info{};
   pipeline_info.name = "dynamic_point";
   pipeline_info.topology = utl::topology::DYNAMIC_POINT;
-  pipeline_info.vec_attribut.push_back(vk::attribut::XYZ);
   pipeline_info.vec_attribut.push_back(vk::attribut::RGBA);
   pipeline_info.vec_attribut.push_back(vk::attribut::UV);
   pipeline_info.type = vk::pipeline::RENDER;
