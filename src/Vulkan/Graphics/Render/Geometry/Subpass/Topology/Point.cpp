@@ -17,6 +17,7 @@ Point::Point(vk::Structure* vk_struct){
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_drawer = new vk::data::Vertex(vk_struct);
   this->vk_point = new vk::geometry::pipeline::topology::Point(vk_struct);
+  this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
 
   //---------------------------
 }
@@ -47,11 +48,10 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
   for(auto& [uid, vk_object] : vk_struct->core.data.map_object){
     if(!check_data(*vk_object, utl::topology::POINT)) continue;
 
-        auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
-
+    auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
 
     this->update_uniform(subpass, *vk_object, *pipeline);
-    this->draw_data(*vk_object, subpass);
+    this->draw_data(*vk_object, subpass, *pipeline);
 
     descriptor_set->is_available = true;
   }
@@ -83,14 +83,12 @@ void Point::update_uniform(vk::structure::Subpass& subpass, vk::structure::Objec
   //Topology width
   vk_uniform->update_uniform("width", vk_object.descriptor_set, data.topology.width);
 
-  //Descriptor set
-  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
-
   //---------------------------
 }
-void Point::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass){
+void Point::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
+  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
   vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, vk_object);
 
   //---------------------------

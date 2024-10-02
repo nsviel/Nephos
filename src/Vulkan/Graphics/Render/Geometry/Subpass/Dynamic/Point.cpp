@@ -21,7 +21,7 @@ Point::Point(vk::Structure* vk_struct){
   this->vk_data = new vk::data::Retriever(vk_struct);
   this->vk_storage = new vk::descriptor::Storage_image(vk_struct);
   this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
-  
+
   //---------------------------
 }
 Point::~Point(){}
@@ -52,12 +52,13 @@ void Point::draw_subpass(vk::structure::Subpass& subpass){
     if(!check_data(*vk_object, utl::topology::DYNAMIC_POINT)) continue;
 
 
-    auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
+
 
     vk::compute::dtc::Recorder recorder(vk_struct);
     recorder.run_compute(*vk_object);
 
 
+    auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
 
     this->update_uniform(*vk_object, *descriptor_set);
     this->update_storage(*vk_object, *descriptor_set);

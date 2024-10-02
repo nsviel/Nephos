@@ -17,6 +17,7 @@ Triangle::Triangle(vk::Structure* vk_struct){
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_drawer = new vk::data::Vertex(vk_struct);
   this->vk_triangle = new vk::geometry::pipeline::topology::Triangle(vk_struct);
+  this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
 
   //---------------------------
 }
@@ -50,7 +51,7 @@ void Triangle::draw_subpass(vk::structure::Subpass& subpass){
         auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
 
     this->update_uniform(subpass, *vk_object, *pipeline);
-    this->draw_data(*vk_object, subpass);
+    this->draw_data(*vk_object, subpass, *pipeline);
 
     descriptor_set->is_available = true;
   }
@@ -79,14 +80,12 @@ void Triangle::update_uniform(vk::structure::Subpass& subpass, vk::structure::Ob
   machin.projection = vk_struct->core.presentation.projection;
   vk_uniform->update_uniform("mvp", vk_object.descriptor_set, machin);
 
-  //Descriptor set
-  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
-
   //---------------------------
 }
-void Triangle::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass){
+void Triangle::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
+  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
   vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, vk_object);
 
   //---------------------------

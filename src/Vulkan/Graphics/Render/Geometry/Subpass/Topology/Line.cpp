@@ -17,6 +17,7 @@ Line::Line(vk::Structure* vk_struct){
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_drawer = new vk::data::Vertex(vk_struct);
   this->vk_line = new vk::geometry::pipeline::topology::Line(vk_struct);
+  this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
 
   //---------------------------
 }
@@ -49,8 +50,8 @@ void Line::draw_subpass(vk::structure::Subpass& subpass){
 
     auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
 
-    this->update_uniform(subpass, *vk_object, *pipeline);
-    this->draw_data(*vk_object, subpass);
+    this->update_uniform(subpass, *vk_object, *descriptor_set);
+    this->draw_data(*vk_object, subpass, *pipeline, *descriptor_set);
 
     descriptor_set->is_available = true;
   }
@@ -67,7 +68,7 @@ void Line::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipelin
 
   //---------------------------
 }
-void Line::update_uniform(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
+void Line::update_uniform(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Descriptor_set& descriptor_set){
   utl::base::Data& data = *vk_object.data;
   utl::base::Pose& pose = *vk_object.pose;
   //---------------------------
@@ -77,16 +78,14 @@ void Line::update_uniform(vk::structure::Subpass& subpass, vk::structure::Object
   machin.model = glm::transpose(pose.model);
   machin.view = vk_struct->core.presentation.view;
   machin.projection = vk_struct->core.presentation.projection;
-  vk_uniform->update_uniform("mvp", vk_object.descriptor_set, machin);
-
-  //Descriptor set
-  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
+  vk_uniform->update_uniform("mvp", descriptor_set, machin);
 
   //---------------------------
 }
-void Line::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass){
+void Line::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline, vk::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
+  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, descriptor_set);
   vk_drawer->cmd_line_with(subpass.command_buffer->handle, vk_object);
   vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, vk_object);
 

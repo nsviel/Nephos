@@ -15,6 +15,7 @@ namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Descriptor_set;}
 
+
 namespace vk::geometry::subpass::topology{
 
 class Triangle
@@ -33,7 +34,7 @@ private:
   //Subfunction
   void bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
   void update_uniform(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline);
-  void draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass);
+  void draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
   bool check_data(vk::structure::Object& vk_object, int topology);
 
 private:
