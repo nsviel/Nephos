@@ -14,7 +14,7 @@ Recorder::Recorder(vk::Structure* vk_struct){
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_pipeline = new vk::compute::Pipeline(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
-  this->vk_data = new vk::data::Function(vk_struct);
+  this->vk_data = new vk::data::Retriever(vk_struct);
   this->vk_command = new vk::command::Command(vk_struct);
   this->vk_command_allocator = new vk::command::Allocator(vk_struct);
   this->vk_storage = new vk::descriptor::Storage_image(vk_struct);
@@ -60,7 +60,7 @@ void Recorder::create_texture(vk::structure::Object& vk_object){
   image->format = "RG32";
   image->width = tex_depth->image->width;
   image->height = tex_depth->image->height;
-  vk_texture->insert_texture(vk_object, image);
+  vk_texture->insert_image(vk_object, image);
 
   auto tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
   vk::memory::Transition vk_transition(vk_struct);

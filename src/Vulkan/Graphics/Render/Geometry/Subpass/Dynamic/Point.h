@@ -8,7 +8,7 @@ namespace vk::descriptor{class Sampler;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
 namespace vk::data{class Vertex;}
-namespace vk::data{class Function;}
+namespace vk::data{class Retriever;}
 namespace vk::descriptor{class Storage_image;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
@@ -48,7 +48,7 @@ private:
   vk::draw::Viewport* vk_viewport;
   vk::descriptor::Sampler* vk_sampler;
   vk::descriptor::Storage_image* vk_storage;
-  vk::data::Function* vk_data;
+  vk::data::Retriever* vk_data;
 };
 
 }

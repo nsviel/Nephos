@@ -12,12 +12,12 @@ namespace utl::base{class Image;}
 
 namespace vk::data{
 
-class Function
+class Retriever
 {
 public:
   //Constructor / Destructor
-  Function(vk::Structure* vk_struct);
-  ~Function();
+  Retriever(vk::Structure* vk_struct);
+  ~Retriever();
 
 public:
   //Main function

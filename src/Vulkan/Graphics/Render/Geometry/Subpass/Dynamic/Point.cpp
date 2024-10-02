@@ -18,7 +18,7 @@ Point::Point(vk::Structure* vk_struct){
   this->vk_drawer = new vk::data::Vertex(vk_struct);
   this->vk_point = new vk::geometry::pipeline::dynamic::Point(vk_struct);
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
-  this->vk_data = new vk::data::Function(vk_struct);
+  this->vk_data = new vk::data::Retriever(vk_struct);
   this->vk_storage = new vk::descriptor::Storage_image(vk_struct);
 
   //---------------------------

@@ -1,4 +1,4 @@
-#include "Function.h"
+#include "Retriever.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,17 +7,17 @@
 namespace vk::data{
 
 //Constructor / Destructor
-Function::Function(vk::Structure* vk_struct){
+Retriever::Retriever(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
 
   //---------------------------
 }
-Function::~Function(){}
+Retriever::~Retriever(){}
 
 //Main function
-std::shared_ptr<vk::structure::Object> Function::retrieve_vk_object(utl::base::Data& data){
+std::shared_ptr<vk::structure::Object> Retriever::retrieve_vk_object(utl::base::Data& data){
   //---------------------------
 
   auto it = vk_struct->core.data.map_object.find(data.UID);
@@ -26,7 +26,7 @@ std::shared_ptr<vk::structure::Object> Function::retrieve_vk_object(utl::base::D
   //---------------------------
   return it->second;
 }
-std::shared_ptr<vk::structure::Texture> Function::retrieve_vk_texture(utl::base::Image& image){
+std::shared_ptr<vk::structure::Texture> Retriever::retrieve_vk_texture(utl::base::Image& image){
   //---------------------------
 
   //Search in all vk objects
@@ -43,7 +43,7 @@ std::shared_ptr<vk::structure::Texture> Function::retrieve_vk_texture(utl::base:
   //---------------------------
   return nullptr;
 }
-std::shared_ptr<vk::structure::Texture> Function::retrieve_vk_texture(vk::structure::Object& vk_object, std::string name){
+std::shared_ptr<vk::structure::Texture> Retriever::retrieve_vk_texture(vk::structure::Object& vk_object, std::string name){
   //---------------------------
 
   auto it = vk_object.map_texture.find(name);

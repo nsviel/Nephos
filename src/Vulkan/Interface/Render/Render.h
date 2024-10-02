@@ -6,7 +6,7 @@
 
 namespace vk{class Structure;}
 namespace vk::gui{class Render;}
-namespace vk::data{class Function;}
+namespace vk::data{class Retriever;}
 namespace vk::gui{class Imgui;}
 namespace vk::shader{class Reloader;}
 namespace utl::base{class Image;}
@@ -32,7 +32,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::gui::Render* vk_render;
-  vk::data::Function* vk_data;
+  vk::data::Retriever* vk_data;
   vk::gui::Imgui* vk_imgui;
   vk::shader::Reloader* vk_shader;
 };

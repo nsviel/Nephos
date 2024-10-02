@@ -5,7 +5,7 @@ namespace vk::descriptor{class Uniform;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Storage_image;}
 namespace vk::compute{class Pipeline;}
-namespace vk::data{class Function;}
+namespace vk::data{class Retriever;}
 namespace vk::texture{class Image;}
 namespace vk::command{class Command;}
 namespace vk::command{class Allocator;}
@@ -38,7 +38,7 @@ private:
   vk::Structure* vk_struct;
   vk::descriptor::Uniform* vk_uniform;
   vk::compute::Pipeline* vk_pipeline;
-  vk::data::Function* vk_data;
+  vk::data::Retriever* vk_data;
   vk::command::Command* vk_command;
   vk::command::Allocator* vk_command_allocator;
   vk::descriptor::Descriptor_set* vk_descriptor_set;

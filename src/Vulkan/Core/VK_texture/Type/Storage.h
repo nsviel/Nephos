@@ -4,6 +4,8 @@
 #include <memory>
 
 namespace vk{class Structure;}
+namespace vk::texture{class Ressource;}
+namespace vk::data{class Retriever;}
 
 
 namespace vk::texture{
@@ -21,7 +23,8 @@ public:
 
 private:
   vk::Structure* vk_struct;
-
+  vk::texture::Ressource* vk_ressource;
+  vk::data::Retriever* vk_retriever;
 };
 
 }

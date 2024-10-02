@@ -17,6 +17,7 @@ Ressource::Ressource(vk::Structure* vk_struct){
   this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);
   this->vk_screenshot = new vk::image::Screenshot(vk_struct);
   this->vk_format = new vk::image::Format(vk_struct);
+  this->vk_uid = new vk::instance::UID(vk_struct);
 
   //---------------------------
 }
@@ -32,6 +33,7 @@ void Ressource::create_texture(vk::structure::Texture& texture){
   if(format == VK_FORMAT_UNDEFINED) return;
 
   //Create associated vk_image
+  texture.UID = vk_uid->query_free_UID();
   texture.surface.width = image.width;
   texture.surface.height = image.height;
   texture.surface.format = format;
@@ -72,6 +74,17 @@ void Ressource::clean_texture(vk::structure::Texture& texture){
   vk_buffer->clean_buffer(&texture.stagger);
 
   //---------------------------
+}
+bool Ressource::check_texture(std::shared_ptr<utl::base::Texture> texture){
+  //---------------------------
+
+  if(!texture) return false;
+  if(texture->format == "") return false;
+  if(texture->width == 0) return false;
+  if(texture->height == 0) return false;
+
+  //---------------------------
+  return true;
 }
 
 }

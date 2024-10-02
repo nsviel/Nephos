@@ -12,7 +12,7 @@ Render::Render(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_render = new vk::gui::Render(vk_struct);
-  this->vk_data = new vk::data::Function(vk_struct);
+  this->vk_data = new vk::data::Retriever(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_shader = new vk::shader::Reloader(vk_struct);
 
