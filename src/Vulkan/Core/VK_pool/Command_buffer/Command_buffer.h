@@ -3,15 +3,15 @@
 #include <memory>
 
 namespace vk{class Structure;}
-namespace vk::structure{class Command_buffer;}
 namespace vk::pool::structure{class Command_buffer;}
-namespace vk::structure{class Renderpass;}
-namespace vk::structure{class Object;}
-namespace vk::structure{class Fence;}
 namespace vk::synchro{class Fence;}
 namespace vk::command{class Allocator;}
 namespace vk::instance{class UID;}
 namespace vk::instance{class Query;}
+namespace vk::structure{class Command_buffer;}
+namespace vk::structure{class Renderpass;}
+namespace vk::structure{class Object;}
+namespace vk::structure{class Fence;}
 
 
 namespace vk::command{

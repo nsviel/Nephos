@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vulkan/vulkan.h>
-#include <vector>
+#include <memory>
 
 namespace vk{class Structure;}
 namespace vk::descriptor{class Uniform;}
@@ -9,6 +9,7 @@ namespace vk::descriptor{class Sampler;}
 namespace vk::descriptor{class Layout;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::structure{class Pipeline;}
+namespace vk::structure{class Descriptor_set;}
 
 
 namespace vk::pipeline{
@@ -26,7 +27,7 @@ public:
   void clean_pipeline_descriptor(vk::structure::Pipeline& pipeline);
 
   //Subfunction
-  vk::structure::Descriptor_set query_descriptor_set(vk::structure::Pipeline& pipeline);
+  std::shared_ptr<vk::structure::Descriptor_set> query_descriptor_set(vk::structure::Pipeline& pipeline);
 
 private:
   vk::descriptor::Uniform* vk_uniform;
