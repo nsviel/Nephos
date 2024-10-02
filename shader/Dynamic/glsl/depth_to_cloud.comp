@@ -15,7 +15,8 @@ layout(local_size_x = 1, local_size_y = 1) in;
 void main(){
   //---------------------------
 
-  //debugPrintfEXT("[SHADER] hello");
+  // Initialize alpha for transparency; default to fully opaque.
+  float alpha = 1.0f;
 
   // Retrieve the pixel coordinates for the current invocation.
   ivec2 pixel = ivec2(gl_GlobalInvocationID.xy);
@@ -23,35 +24,24 @@ void main(){
   // Load the depth value from the depth texture at the given pixel location.
   float vertex_value = float(imageLoad(tex_depth, pixel));
 
-  // Load the corresponding XY table value, which provides the X and Y coordinates in 3D space.
+  // Load the corresponding XY table value and check for invalid pixels
   vec2 xy_value = imageLoad(xy_table, pixel).xy;
-
-  // Initialize alpha for transparency; default to fully opaque.
-  float alpha = 1.0f;
-
-  // Compute the vertex position in 3D space using the depth value and XY table coordinates.
-  float x = vertex_value * xy_value.x;
-  float y = vertex_value * xy_value.y;
-  float z = vertex_value;
-  vec3 vertex_position = vec3(-z, -x, -y);
-
-  // Check for invalid pixels (where XY table values are set to zero).
   if (xy_value.x == 0.0f && xy_value.y == 0.0f) {
     alpha = 0.0f;
     vertex_value = 0.0f;
   }
 
-  // Convert vertex positions from millimeters to meters for consistency.
-  vertex_position /= 1000.0f;
+  // Compute the vertex position in 3D space using the depth value and XY table coordinates.
+  float x = vertex_value * xy_value.x;
+  float y = vertex_value * xy_value.y;
+  float z = vertex_value;
 
-  // Flip the X coordinate to match the coordinate conventions between OpenGL and K4A.
-  vertex_position.x *= -1;
+  //Change to put data X axis and convert to meter
+  vec3 vertex_position = vec3(z, -x, -y);
+  vertex_position /= 1000.0f;
 
   // Store the computed vertex position and alpha value in the point cloud texture.
   imageStore(tex_cloud, pixel, vec4(vertex_position, alpha));
-
-  //  debugPrintfEXT("[SHADER] %f   %f    %f", vertex_position.x, vertex_position.y, vertex_position.z);
-
 
   //---------------------------
 }
