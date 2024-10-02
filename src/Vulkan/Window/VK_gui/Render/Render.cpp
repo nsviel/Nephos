@@ -27,7 +27,7 @@ void Render::update_render_texture(){
 
   //Set presentation texture target
   vk::structure::Texture& texture = vk_struct->graphics.render.presentation.texture;
-  texture.wrapper = vk_struct->graphics.render.renderpass.postprocess.framebuffer.color;
+  texture.surface = vk_struct->graphics.render.renderpass.postprocess.framebuffer.color;
 
   //Create presentation texture descriptor
   this->create_image_descriptor(texture);
@@ -37,7 +37,7 @@ void Render::update_render_texture(){
 void Render::create_image_descriptor(vk::structure::Texture& texture){
   //---------------------------
 
-  texture.descriptor_set = ImGui_ImplVulkan_AddTexture(texture.wrapper.sampler, texture.wrapper.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  texture.descriptor_set = ImGui_ImplVulkan_AddTexture(texture.surface.sampler, texture.surface.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //---------------------------
 }

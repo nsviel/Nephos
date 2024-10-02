@@ -11,15 +11,16 @@ namespace vk::structure{
 struct Texture{
   //---------------------------
 
+  //Texture data
   int UID = 0;
-
-  //Actual texture components
-  std::shared_ptr<utl::base::Image> image;
-  vk::structure::Image wrapper;
+  VkDescriptorSet descriptor_set = VK_NULL_HANDLE;
+  vk::structure::Image surface;
   vk::data::structure::Buffer stagger;
 
-  //For gui display
-  VkDescriptorSet descriptor_set = VK_NULL_HANDLE;
+  //Embedded image
+  std::shared_ptr<utl::base::Image> image;
+  std::shared_ptr<utl::base::Depth> depth;
+  std::shared_ptr<utl::base::Storage> storage;
 
   //---------------------------
 };

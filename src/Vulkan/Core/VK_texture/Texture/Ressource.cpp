@@ -32,12 +32,12 @@ void Ressource::create_texture(vk::structure::Texture& texture){
   if(format == VK_FORMAT_UNDEFINED) return;
 
   //Create associated vk_image
-  texture.wrapper.width = image.width;
-  texture.wrapper.height = image.height;
-  texture.wrapper.format = format;
-  texture.wrapper.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  texture.wrapper.usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-  vk_image->create_image(texture.wrapper);
+  texture.surface.width = image.width;
+  texture.surface.height = image.height;
+  texture.surface.format = format;
+  texture.surface.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  texture.surface.usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
+  vk_image->create_image(texture.surface);
 
   //Make associated operation
   vk_mem_allocator->allocate_empty_stagger_buffer(texture.stagger, image.size);
@@ -61,14 +61,14 @@ void Ressource::update_texture(vk::structure::Texture& texture){
 void Ressource::export_texture(vk::structure::Texture& texture){
   //---------------------------
 
-  vk_screenshot->export_image_to_jpeg(texture.wrapper);
+  vk_screenshot->export_image_to_jpeg(texture.surface);
 
   //---------------------------
 }
 void Ressource::clean_texture(vk::structure::Texture& texture){
   //---------------------------
 
-  vk_image->clean_image(texture.wrapper);
+  vk_image->clean_image(texture.surface);
   vk_buffer->clean_buffer(&texture.stagger);
 
   //---------------------------

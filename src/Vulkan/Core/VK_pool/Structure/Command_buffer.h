@@ -15,12 +15,13 @@ namespace vk::pool::structure{
 struct Command_buffer{
   //---------------------------
 
-  std::mutex mutex;
-  VkCommandPool allocator = VK_NULL_HANDLE;
   std::vector<std::shared_ptr<vk::structure::Command_buffer>> tank;
+  std::thread::id thread_ID;
+  std::mutex mutex;
+
+  VkCommandPool allocator = VK_NULL_HANDLE;
   uint32_t size = 100;
   bool is_available = true;
-  std::thread::id thread_ID;
 
   //---------------------------
 };

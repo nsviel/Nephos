@@ -110,13 +110,13 @@ void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipe
   std::shared_ptr<vk::structure::Texture> texture_depth = vk_data->retrieve_vk_texture(vk_object, "Depth");
   if(!texture_color || !texture_depth) return;
 
-  vk_sampler->actualize_sampler(vk_object.descriptor_set, *sampler_color, texture_color->wrapper);
-  vk_sampler->actualize_sampler(vk_object.descriptor_set, *sampler_depth, texture_depth->wrapper);
+  vk_sampler->actualize_sampler(vk_object.descriptor_set, *sampler_color, texture_color->surface);
+  vk_sampler->actualize_sampler(vk_object.descriptor_set, *sampler_depth, texture_depth->surface);
 */
 /*
   std::shared_ptr<vk::structure::Storage_image> storage_cloud = vk_storage->query_storage(vk_object.descriptor_set, "tex_cloud");
   std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
-  vk_storage->actualize_storage(vk_object.descriptor_set, *storage_cloud, tex_cloud->wrapper);
+  vk_storage->actualize_storage(vk_object.descriptor_set, *storage_cloud, tex_cloud->surface);
 */
   //---------------------------
 }

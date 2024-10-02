@@ -64,14 +64,14 @@ void Recorder::create_texture(vk::structure::Object& vk_object){
 
   auto tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
   vk::memory::Transition vk_transition(vk_struct);
-  vk_transition.image_layout_transition(tex_cloud->wrapper, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_GENERAL);
+  vk_transition.image_layout_transition(tex_cloud->surface, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_GENERAL);
 
 
-vk_transition.image_layout_transition(tex_depth->wrapper, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
+vk_transition.image_layout_transition(tex_depth->surface, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
 
 
   std::shared_ptr<vk::structure::Texture> tex_table_xy = vk_data->retrieve_vk_texture(vk_object, "depth_table_xy");
-vk_transition.image_layout_transition(tex_table_xy->wrapper, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
+vk_transition.image_layout_transition(tex_table_xy->surface, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
 
 
 
@@ -88,17 +88,17 @@ void Recorder::update_descriptor(vk::structure::Object& vk_object, vk::structure
     this->create_texture(vk_object);
     tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
   }
-  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_cloud, tex_cloud->wrapper);
+  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_cloud, tex_cloud->surface);
 
   //Depth texture
   std::shared_ptr<vk::structure::Storage_image> storage_depth = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_depth");
   std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "depth_raw");
-  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_depth, tex_depth->wrapper);
+  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_depth, tex_depth->surface);
 
   //Table XY texture
   std::shared_ptr<vk::structure::Storage_image> storage_tablexy = vk_storage->query_storage(pipeline.descriptor.descriptor_set, "tex_tablexy");
   std::shared_ptr<vk::structure::Texture> tex_table_xy = vk_data->retrieve_vk_texture(vk_object, "depth_table_xy");
-  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_tablexy, tex_table_xy->wrapper);
+  vk_storage->actualize_storage(pipeline.descriptor.descriptor_set, *storage_tablexy, tex_table_xy->surface);
 
 
 
