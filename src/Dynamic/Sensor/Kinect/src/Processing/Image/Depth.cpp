@@ -53,31 +53,26 @@ void Depth::retrieve_data(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Depth::retrieve_raw_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Image> image = sensor.depth.image_raw;
+  std::shared_ptr<utl::base::Depth> image = sensor.depth.depth;
   //---------------------------
-/*
+
   //Image
-  image->data = std::vector<uint8_t>(sensor.depth.data.buffer, sensor.depth.data.buffer + sensor.depth.data.size);
+  this->convert_buffer_into_uint16(sensor);
   image->size = image->data.size();
   image->width = sensor.depth.data.width;
   image->height = sensor.depth.data.height;
   image->format = "R16_UINT";
-  image->timestamp = sensor.depth.data.timestamp;
-  dat_image->add_image(sensor, image);
-*/
+  //dat_image->add_image(sensor, image);
+
   //---------------------------
 }
 void Depth::retrieve_colored_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Image> image = sensor.depth.image_colored;
+  std::shared_ptr<utl::base::Image> image = sensor.depth.image;
   //---------------------------
 
-  //Colorization
-  std::vector<uint8_t> buffer;
-  this->convert_image_into_color(sensor, buffer);
-
   //Image
-  image->data = buffer;
-  image->size = buffer.size();
+  this->convert_buffer_into_color(sensor);
+  image->size = image->data.size();
   image->width = sensor.depth.data.width;
   image->height = sensor.depth.data.height;
   image->format = "RGBA8";
@@ -114,16 +109,16 @@ std::string Depth::retrieve_format(k4a_image_format_t color_format){
   //---------------------------
   return format;
 }
-void Depth::convert_image_into_color(k4n::base::Sensor& sensor, std::vector<uint8_t>& buffer){
-  uint8_t* inputBuffer = sensor.depth.data.buffer;
+void Depth::convert_buffer_into_color(k4n::base::Sensor& sensor){
+  uint8_t* buffer = sensor.depth.data.buffer;
   uint16_t range_min = sensor.depth.config.range_min;
   uint16_t range_max = sensor.depth.config.range_max;
   //---------------------------
 
-  buffer = std::vector<uint8_t>(sensor.depth.data.size * 4, 0);
+  std::vector<uint8_t> output = std::vector<uint8_t>(sensor.depth.data.size * 4, 0);
 
   for(int i=0, j=0; i<sensor.depth.data.size; i+=2, j+=4){
-    uint16_t r = *reinterpret_cast<const uint16_t*>(&inputBuffer[i]);
+    uint16_t r = *reinterpret_cast<const uint16_t*>(&buffer[i]);
 
     float R = 0.0f;
     float G = 0.0f;
@@ -141,11 +136,30 @@ void Depth::convert_image_into_color(k4n::base::Sensor& sensor, std::vector<uint
       ImGui::ColorConvertHSVtoRGB(hue, 1.f, 1.f, R, G, B);
     }
 
-    buffer[j] = static_cast<uint8_t>(R * 255);
-    buffer[j + 1] = static_cast<uint8_t>(G * 255);
-    buffer[j + 2] = static_cast<uint8_t>(B * 255);
-    buffer[j + 3] = 255;
+    output[j] = static_cast<uint8_t>(R * 255);
+    output[j + 1] = static_cast<uint8_t>(G * 255);
+    output[j + 2] = static_cast<uint8_t>(B * 255);
+    output[j + 3] = 255;
   }
+
+  sensor.depth.image->data = output;
+
+  //---------------------------
+}
+void Depth::convert_buffer_into_uint16(k4n::base::Sensor& sensor){
+  uint8_t* buffer = sensor.depth.data.buffer;
+  //---------------------------
+
+  std::vector<uint16_t> output = std::vector<uint16_t>(sensor.depth.data.size / 2, 0);
+
+  // Iterate through the data array two bytes at a time
+  for(size_t i=0, idx=0; i<sensor.depth.data.size; i+=2, idx++){
+    // Combine two consecutive bytes into a uint16_t value
+    uint16_t value = (static_cast<uint16_t>(buffer[i+1]) << 8) | static_cast<uint16_t>(buffer[i]);
+    output[idx] = value;
+  }
+
+  sensor.depth.depth->data = output;
 
   //---------------------------
 }

@@ -55,26 +55,25 @@ void Infrared::retrieve_data(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Infrared::retrieve_raw_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Image> image = sensor.infra.image_raw;
+  std::shared_ptr<utl::base::Depth> image = sensor.infra.depth;
   //---------------------------
-/*
+
   //Image
-  image->data = std::vector<uint8_t>(sensor.infra.data.buffer, sensor.infra.data.buffer + sensor.infra.data.size);
+  this->convert_buffer_into_uint16(sensor);
   image->size = image->data.size();
   image->width = sensor.infra.data.width;
   image->height = sensor.infra.data.height;
   image->format = "R16_UINT";
-  image->timestamp = sensor.infra.data.timestamp;
-  dat_image->add_image(sensor, image);
-*/
+  //dat_image->add_image(sensor, image);
+
   //---------------------------
 }
 void Infrared::retrieve_colored_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Image> image = sensor.infra.image_colored;
+  std::shared_ptr<utl::base::Image> image = sensor.infra.image;
   //---------------------------
 
   //Image
-  this->convert_image_into_color(sensor);
+  this->convert_buffer_into_color(sensor);
   image->size = image->data.size();
   image->width = sensor.infra.data.width;
   image->height = sensor.infra.data.height;
@@ -112,7 +111,7 @@ std::string Infrared::retrieve_format(k4a_image_format_t color_format){
   //---------------------------
   return format;
 }
-void Infrared::convert_image_into_color(k4n::base::Sensor& sensor){
+void Infrared::convert_buffer_into_color(k4n::base::Sensor& sensor){
   uint8_t* buffer = sensor.infra.data.buffer;
   uint16_t level_min = sensor.infra.config.level_min;
   uint16_t level_max = sensor.infra.config.level_max;
@@ -139,7 +138,24 @@ void Infrared::convert_image_into_color(k4n::base::Sensor& sensor){
     output[j + 3] = 255;
   }
 
-  sensor.infra.image_colored->data = output;
+  sensor.infra.image->data = output;
+
+  //---------------------------
+}
+void Infrared::convert_buffer_into_uint16(k4n::base::Sensor& sensor){
+  uint8_t* buffer = sensor.infra.data.buffer;
+  //---------------------------
+
+  std::vector<uint16_t> output = std::vector<uint16_t>(sensor.infra.data.size / 2, 0);
+
+  // Iterate through the data array two bytes at a time
+  for(size_t i=0, idx=0; i<sensor.infra.data.size; i+=2, idx++){
+    // Combine two consecutive bytes into a uint16_t value
+    uint16_t value = (static_cast<uint16_t>(buffer[i+1]) << 8) | static_cast<uint16_t>(buffer[i]);
+    output[idx] = value;
+  }
+
+  sensor.infra.depth->data = output;
 
   //---------------------------
 }

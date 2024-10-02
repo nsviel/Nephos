@@ -29,7 +29,8 @@ public:
 
   //Subfunction
   std::string retrieve_format(k4a_image_format_t color_format);
-  void convert_image_into_color(k4n::base::Sensor& sensor);
+  void convert_buffer_into_color(k4n::base::Sensor& sensor);
+  void convert_buffer_into_uint16(k4n::base::Sensor& sensor);
   void find_ir_level(k4n::base::Sensor& sensor);
 
 private:
