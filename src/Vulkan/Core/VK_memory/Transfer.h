@@ -4,8 +4,8 @@
 #include <memory>
 
 namespace vk{class Structure;}
-namespace vk::command{class Command;}
-namespace vk::command{class Allocator;}
+namespace vk::commandbuffer{class Command;}
+namespace vk::commandbuffer{class Allocator;}
 namespace vk::memory{class Transition;}
 namespace vk::structure{class Image;}
 namespace vk::structure{class Texture;}
@@ -37,8 +37,8 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::memory::Transition* vk_transition;
-  vk::command::Command* vk_command;
-  vk::command::Allocator* vk_command_allocator;
+  vk::commandbuffer::Command* vk_command;
+  vk::commandbuffer::Allocator* vk_command_allocator;
 };
 
 }

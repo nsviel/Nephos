@@ -52,7 +52,7 @@ void Submission::make_rendering(){
 void Submission::submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore* semaphore){
   //---------------------------
 
-  vk::command::structure::Set* set = new vk::command::structure::Set();
+  vk::commandbuffer::structure::Set* set = new vk::commandbuffer::structure::Set();
   set->vec_command = std::move(vec_command);;
   set->semaphore = semaphore->handle;
   set->supress = false;

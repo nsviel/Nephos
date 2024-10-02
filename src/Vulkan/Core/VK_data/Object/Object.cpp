@@ -13,7 +13,7 @@ Object::Object(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_buffer = new vk::data::Buffer(vk_struct);
   this->vk_tex_image = new vk::texture::Image(vk_struct);
-  this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
+  this->vk_command_buffer = new vk::commandbuffer::Command_buffer(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uid = new vk::instance::UID(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);

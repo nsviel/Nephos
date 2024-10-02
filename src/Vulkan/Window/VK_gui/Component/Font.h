@@ -3,8 +3,8 @@
 #include <string>
 
 namespace vk{class Structure;}
-namespace vk::command{class Command;}
-namespace vk::command{class Allocator;}
+namespace vk::commandbuffer{class Command;}
+namespace vk::commandbuffer{class Allocator;}
 
 
 namespace vk::gui{
@@ -27,8 +27,8 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::command::Allocator* vk_allocator;
-  vk::command::Command* vk_command;
+  vk::commandbuffer::Allocator* vk_allocator;
+  vk::commandbuffer::Command* vk_command;
 
   std::string path_text;
   std::string path_icon;

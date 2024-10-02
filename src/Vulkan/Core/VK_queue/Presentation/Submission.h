@@ -11,7 +11,7 @@ namespace vk::structure{class Fence;}
 namespace vk::structure{class Semaphore;}
 namespace vk::window{class Window;}
 namespace vk::structure{class Command;}
-namespace vk::command::structure{class Set;}
+namespace vk::commandbuffer::structure{class Set;}
 namespace vk::draw{class Graphical;}
 namespace vk::synchro{class Semaphore;}
 namespace vk::gui{class Imgui;}

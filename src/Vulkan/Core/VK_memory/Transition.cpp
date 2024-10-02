@@ -11,7 +11,7 @@ Transition::Transition(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_mem_allocator = new vk::memory::Allocator(vk_struct);
-  this->vk_command = new vk::command::Command(vk_struct);
+  this->vk_command = new vk::commandbuffer::Command(vk_struct);
 
   //---------------------------
 }

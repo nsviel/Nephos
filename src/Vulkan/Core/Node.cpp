@@ -24,11 +24,11 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_reload = new vk::shader::Reloader(vk_struct);
   this->vk_frame = new vk::presentation::Frame(vk_struct);
   this->vk_canvas = new vk::data::Canvas(vk_struct);
-  this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
+  this->vk_command_buffer = new vk::commandbuffer::Command_buffer(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_fence = new vk::synchro::Fence(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
-  this->vk_allocator = new vk::command::Allocator(vk_struct);
+  this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
   this->vk_queue = new vk::queue::Manager(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_pipeline = new vk::compute::Pipeline(vk_struct);

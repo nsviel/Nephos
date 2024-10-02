@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::command{
+namespace vk::commandbuffer{
 
 //Constructor / Destructor
 Allocator::Allocator(vk::Structure* vk_struct){
@@ -19,7 +19,7 @@ Allocator::~Allocator(){}
 
 //Main function
 void Allocator::init(){
-  this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
+  this->vk_command_buffer = new vk::commandbuffer::Command_buffer(vk_struct);
   //---------------------------
 
   this->create_command_buffer_pool(vk_struct->core.device.queue.graphics);

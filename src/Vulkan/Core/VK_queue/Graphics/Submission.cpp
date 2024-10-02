@@ -20,7 +20,7 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::process_command(vk::command::structure::Set* set){
+void Submission::process_command(vk::commandbuffer::structure::Set* set){
   //---------------------------
 
   this->build_submission(set);
@@ -31,7 +31,7 @@ void Submission::process_command(vk::command::structure::Set* set){
 }
 
 //Subfunction
-void Submission::build_submission(vk::command::structure::Set* set){
+void Submission::build_submission(vk::commandbuffer::structure::Set* set){
   //---------------------------
 
   set->vec_info.clear();
@@ -69,7 +69,7 @@ void Submission::build_submission(vk::command::structure::Set* set){
 
   //---------------------------
 }
-void Submission::make_submission(vk::command::structure::Set* set){
+void Submission::make_submission(vk::commandbuffer::structure::Set* set){
   //---------------------------
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();
@@ -85,7 +85,7 @@ void Submission::make_submission(vk::command::structure::Set* set){
 
   //---------------------------
 }
-void Submission::post_submission(vk::command::structure::Set* set){
+void Submission::post_submission(vk::commandbuffer::structure::Set* set){
   //---------------------------
 
   //Reset all command

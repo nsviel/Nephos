@@ -11,8 +11,8 @@ Renderer::Renderer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_command = new vk::command::Command(vk_struct);
-  this->vk_allocator = new vk::command::Allocator(vk_struct);
+  this->vk_command = new vk::commandbuffer::Command(vk_struct);
+  this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
 
   //---------------------------
 }

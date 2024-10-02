@@ -4,7 +4,7 @@
 #include <random>
 
 
-namespace vk::command{
+namespace vk::commandbuffer{
 
 //Constructor / Destructor
 Command::Command(vk::Structure* vk_struct){
@@ -12,7 +12,7 @@ Command::Command(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_fence = new vk::synchro::Fence(vk_struct);
-  this->vk_allocator = new vk::command::Allocator(vk_struct);
+  this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
   this->vk_uid = new vk::instance::UID(vk_struct);
   this->vk_query = new vk::instance::Query(vk_struct);
 

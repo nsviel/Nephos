@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/Core/VK_binding/Namespace.h>
-#include <Vulkan/Core/VK_command/Namespace.h>
+#include <Vulkan/Core/VK_commandbuffer/Namespace.h>
 #include <Vulkan/Core/VK_data/Namespace.h>
 #include <Vulkan/Core/VK_device/Namespace.h>
 #include <Vulkan/Core/VK_drawer/Namespace.h>

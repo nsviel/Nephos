@@ -3,7 +3,7 @@
 #include <vulkan/vulkan.h>
 
 namespace vk{class Structure;}
-namespace vk::command{class Command;}
+namespace vk::commandbuffer{class Command;}
 namespace vk::memory{class Allocator;}
 namespace vk::structure{class Transition;}
 namespace vk::structure{class Image;}
@@ -30,7 +30,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::command::Command* vk_command;
+  vk::commandbuffer::Command* vk_command;
   vk::memory::Allocator* vk_mem_allocator;
 };
 

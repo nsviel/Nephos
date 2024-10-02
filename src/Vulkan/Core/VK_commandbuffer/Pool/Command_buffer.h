@@ -5,7 +5,7 @@
 namespace vk{class Structure;}
 namespace vk::pool::structure{class Command_buffer;}
 namespace vk::synchro{class Fence;}
-namespace vk::command{class Allocator;}
+namespace vk::commandbuffer{class Allocator;}
 namespace vk::instance{class UID;}
 namespace vk::instance{class Query;}
 namespace vk::structure{class Command_buffer;}
@@ -14,7 +14,7 @@ namespace vk::structure{class Object;}
 namespace vk::structure{class Fence;}
 
 
-namespace vk::command{
+namespace vk::commandbuffer{
 
 class Command_buffer
 {
@@ -36,7 +36,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::synchro::Fence* vk_fence;
-  vk::command::Allocator* vk_allocator;
+  vk::commandbuffer::Allocator* vk_allocator;
   vk::instance::Query* vk_query;
   vk::instance::UID* vk_uid;
 };

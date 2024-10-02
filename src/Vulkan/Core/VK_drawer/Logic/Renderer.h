@@ -1,7 +1,7 @@
 #pragma once
 
-namespace vk::command{class Command;}
-namespace vk::command{class Allocator;}
+namespace vk::commandbuffer{class Command;}
+namespace vk::commandbuffer{class Allocator;}
 namespace vk{class Structure;}
 namespace vk::structure{class Fence;}
 namespace vk::structure{class Renderpass;}
@@ -28,8 +28,8 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::command::Command* vk_command;
-  vk::command::Allocator* vk_allocator;
+  vk::commandbuffer::Command* vk_command;
+  vk::commandbuffer::Allocator* vk_allocator;
 };
 
 }
