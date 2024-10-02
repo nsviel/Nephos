@@ -23,15 +23,15 @@ public:
   ~Transfer();
 
 public:
-  //Image copy function
-  void copy_texture_to_gpu(vk::structure::Texture& texture, void* data);
-  void copy_image_to_gpu(vk::structure::Image& image, VkBuffer buffer);
+  //Texture function
+  void copy_texture_to_gpu(vk::structure::Texture& texture, void* data, VkImageLayout final_layout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  void copy_data_to_gpu(vk::structure::Image& image, VkBuffer buffer, VkImageLayout final_layout);
   void copy_gpu_image_to_buffer(vk::structure::Image& image, VkBuffer buffer);
   void blit_gpu_image_to_gpu_image(vk::structure::Image& image_src, vk::structure::Image& image_dst);
   void copy_gpu_image_to_gpu_image_standalone(vk::structure::Image& image_src, vk::structure::Image& image_dst);
   std::shared_ptr<vk::structure::Command_buffer> copy_gpu_image_to_gpu_image(vk::structure::Image& image_src, vk::structure::Image& image_dst);
 
-  //Data copy function
+  //Vertex function
   void copy_vertex_to_gpu(vk::data::structure::Buffer& buffer, const void* data, VkDeviceSize dataSize);
   void copy_vertex_to_gpu(vk::data::structure::Buffer& buffer, vk::data::structure::Buffer& stagger, const void* data, VkDeviceSize dataSize);
 

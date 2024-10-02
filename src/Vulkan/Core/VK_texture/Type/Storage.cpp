@@ -91,8 +91,7 @@ void Storage::update_storage(std::shared_ptr<utl::base::Storage> storage){
   }
 
   //Copy and trasition
-  vk_mem_transfer->copy_texture_to_gpu(*texture, texture->storage->data.data());
-  vk_transition->image_layout_transition(texture->surface, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
+  vk_mem_transfer->copy_texture_to_gpu(*texture, texture->storage->data.data(), VK_IMAGE_LAYOUT_GENERAL);
 
   //---------------------------
 }
@@ -114,8 +113,7 @@ std::shared_ptr<vk::structure::Texture> Storage::create_texture(std::shared_ptr<
   //Create texture
   vk_image->create_image(texture->surface);
   vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, storage->size * sizeof(float));
-  vk_mem_transfer->copy_texture_to_gpu(*texture, storage->data.data());
-  vk_transition->image_layout_transition(texture->surface, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_GENERAL);
+  vk_mem_transfer->copy_texture_to_gpu(*texture, storage->data.data(), VK_IMAGE_LAYOUT_GENERAL);
 
   //---------------------------
   return texture;

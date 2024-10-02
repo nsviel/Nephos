@@ -19,8 +19,8 @@ Transfer::Transfer(vk::Structure* vk_struct){
 }
 Transfer::~Transfer(){}
 
-//Image GPU function
-void Transfer::copy_texture_to_gpu(vk::structure::Texture& texture, void* data){
+//Texture function
+void Transfer::copy_texture_to_gpu(vk::structure::Texture& texture, void* data, VkImageLayout final_layout){
   //---------------------------
 
   //Copy data to stagging buffer
@@ -30,11 +30,11 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture& texture, void* data){
   vkUnmapMemory(vk_struct->core.device.handle, texture.stagger.mem);
 
   //Copy stagger buffer to GPU
-  this->copy_image_to_gpu(texture.surface, texture.stagger.vbo);
+  this->copy_data_to_gpu(texture.surface, texture.stagger.vbo, final_layout);
 
   //---------------------------
 }
-void Transfer::copy_image_to_gpu(vk::structure::Image& image, VkBuffer buffer){
+void Transfer::copy_data_to_gpu(vk::structure::Image& image, VkBuffer buffer, VkImageLayout final_layout){
   //---------------------------
 
   //Image transition from undefined layout to read only layout
@@ -55,6 +55,7 @@ void Transfer::copy_image_to_gpu(vk::structure::Image& image, VkBuffer buffer){
   region.imageExtent = {image.width, image.height, 1};
   vkCmdCopyBufferToImage(command_buffer->handle, buffer, image.handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
   vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, final_layout);
 
   //End and submit command
   vk_command->end_command_buffer(*command_buffer);
@@ -184,7 +185,7 @@ std::shared_ptr<vk::structure::Command_buffer> Transfer::copy_gpu_image_to_gpu_i
   return command_buffer;
 }
 
-//Buffer GPU function
+//Vertex function
 void Transfer::copy_vertex_to_gpu(vk::data::structure::Buffer& buffer, const void* data, VkDeviceSize data_size){
   if(data_size == 0) return;
   //---------------------------
