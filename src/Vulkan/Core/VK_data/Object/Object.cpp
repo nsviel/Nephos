@@ -12,7 +12,7 @@ Object::Object(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_buffer = new vk::data::Buffer(vk_struct);
-  this->vk_texture = new vk::texture::Data(vk_struct);
+  this->vk_tex_image = new vk::texture::Image(vk_struct);
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uid = new vk::instance::UID(vk_struct);
@@ -62,7 +62,7 @@ void Object::clean_object(std::shared_ptr<vk::structure::Object> object){
 
   //Properly clean object elements
   vk_buffer->clean_buffers(*object);
-  vk_texture->clean_texture(*object);
+  vk_tex_image->clean_texture(*object);
   vk_descriptor_set->clean_descriptor_set(object->descriptor_set);
 
   //Remove from data list

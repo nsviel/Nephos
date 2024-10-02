@@ -15,12 +15,12 @@ namespace utl::base{class Data;}
 
 namespace vk::texture{
 
-class Data
+class Image
 {
 public:
   //Constructor / Destructor
-  Data(vk::Structure* vk_struct);
-  ~Data();
+  Image(vk::Structure* vk_struct);
+  ~Image();
 
 public:
   //Main function

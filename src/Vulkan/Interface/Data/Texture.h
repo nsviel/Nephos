@@ -5,7 +5,7 @@
 #include <memory>
 
 namespace vk{class Structure;}
-namespace vk::texture{class Data;}
+namespace vk::texture{class Image;}
 namespace utl::base{class Image;}
 namespace utl::base{class Data;}
 
@@ -27,7 +27,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::texture::Data* vk_texture;
+  vk::texture::Image* vk_tex_image;
 };
 
 }

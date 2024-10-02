@@ -1,4 +1,4 @@
-#include "Data.h"
+#include "Image.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::texture{
 
 //Constructor / Destructor
-Data::Data(vk::Structure* vk_struct){
+Image::Image(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -17,10 +17,10 @@ Data::Data(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Data::~Data(){}
+Image::~Image(){}
 
 //Main function
-void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
+void Image::insert_texture(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
   //Retrieve data vk object
@@ -32,7 +32,7 @@ void Data::insert_texture(utl::base::Data& data, std::shared_ptr<utl::base::Imag
 
   //---------------------------
 }
-void Data::insert_texture(vk::structure::Object& vk_object, std::shared_ptr<utl::base::Image> image){
+void Image::insert_texture(vk::structure::Object& vk_object, std::shared_ptr<utl::base::Image> image){
   if(!check_image(image)) return;
   //---------------------------
 
@@ -49,7 +49,7 @@ void Data::insert_texture(vk::structure::Object& vk_object, std::shared_ptr<utl:
 
   //---------------------------
 }
-void Data::insert_texture(std::shared_ptr<utl::base::Image> image){
+void Image::insert_texture(std::shared_ptr<utl::base::Image> image){
   if(!check_image(image)) return;
   //---------------------------
 
@@ -67,7 +67,7 @@ void Data::insert_texture(std::shared_ptr<utl::base::Image> image){
 
   //---------------------------
 }
-void Data::update_texture(std::shared_ptr<utl::base::Image> image){
+void Image::update_texture(std::shared_ptr<utl::base::Image> image){
   if(!check_image(image)) return;
   //---------------------------
 
@@ -82,7 +82,7 @@ void Data::update_texture(std::shared_ptr<utl::base::Image> image){
 }
 
 //Subfunction
-void Data::clean_texture(vk::structure::Object& vk_object){
+void Image::clean_texture(vk::structure::Object& vk_object){
   //---------------------------
 
   for(auto& [name, texture] : vk_object.map_texture){
@@ -91,7 +91,7 @@ void Data::clean_texture(vk::structure::Object& vk_object){
 
   //---------------------------
 }
-bool Data::check_image(std::shared_ptr<utl::base::Image> image){
+bool Image::check_image(std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
   if(!image) return false;

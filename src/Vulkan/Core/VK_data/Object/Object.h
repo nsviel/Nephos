@@ -4,7 +4,7 @@
 
 namespace vk{class Structure;}
 namespace vk::data{class Buffer;}
-namespace vk::texture{class Data;}
+namespace vk::texture{class Image;}
 namespace vk::command{class Command_buffer;}
 namespace vk::instance{class UID;}
 namespace vk::synchro{class Synchro;}
@@ -35,7 +35,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::data::Buffer* vk_buffer;
-  vk::texture::Data* vk_texture;
+  vk::texture::Image* vk_tex_image;
   vk::command::Command_buffer* vk_command_buffer;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::instance::UID* vk_uid;

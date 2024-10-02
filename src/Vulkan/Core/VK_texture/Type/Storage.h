@@ -6,14 +6,14 @@
 namespace vk{class Structure;}
 
 
-namespace vk::storage{
+namespace vk::texture{
 
-class Data
+class Storage
 {
 public:
   //Constructor / Destructor
-  Data(vk::Structure* vk_struct);
-  ~Data();
+  Storage(vk::Structure* vk_struct);
+  ~Storage();
 
 public:
   //Main function

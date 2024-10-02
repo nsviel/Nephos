@@ -1,13 +1,13 @@
-#include "Data.h"
+#include "Storage.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace vk::storage{
+namespace vk::texture{
 
 //Constructor / Destructor
-Data::Data(vk::Structure* vk_struct){
+Storage::Storage(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -15,7 +15,7 @@ Data::Data(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Data::~Data(){}
+Storage::~Storage(){}
 
 //Main function
 
