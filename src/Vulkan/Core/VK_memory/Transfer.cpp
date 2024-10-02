@@ -29,33 +29,25 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture& texture, void* data, 
   memcpy(staging_data, data, texture.stagger.size);
   vkUnmapMemory(vk_struct->core.device.handle, texture.stagger.mem);
 
-  //Copy stagger buffer to GPU
-  this->copy_data_to_gpu(texture.surface, texture.stagger.vbo, final_layout);
-
-  //---------------------------
-}
-void Transfer::copy_data_to_gpu(vk::structure::Image& image, VkBuffer buffer, VkImageLayout final_layout){
-  //---------------------------
-
   //Image transition from undefined layout to read only layout
   std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
   vk_command->start_command_buffer_primary(*command_buffer);
 
   //Transition + copy
-  vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->handle, texture.surface, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
   VkBufferImageCopy region{};
   region.bufferOffset = 0;
   region.bufferRowLength = 0;
-  region.bufferImageHeight = image.height;
+  region.bufferImageHeight = texture.surface.height;
   region.imageSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
   region.imageSubresource.mipLevel = 0;
   region.imageSubresource.baseArrayLayer = 0;
   region.imageSubresource.layerCount = 1;
   region.imageOffset = {0, 0, 0};
-  region.imageExtent = {image.width, image.height, 1};
-  vkCmdCopyBufferToImage(command_buffer->handle, buffer, image.handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
-  vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-  vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, final_layout);
+  region.imageExtent = {texture.surface.width, texture.surface.height, 1};
+  vkCmdCopyBufferToImage(command_buffer->handle, texture.stagger.vbo, texture.surface.handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
+  vk_transition->image_layout_transition(command_buffer->handle, texture.surface, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->handle, texture.surface, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, final_layout);
 
   //End and submit command
   vk_command->end_command_buffer(*command_buffer);

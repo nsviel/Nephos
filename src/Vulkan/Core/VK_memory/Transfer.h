@@ -25,7 +25,6 @@ public:
 public:
   //Texture function
   void copy_texture_to_gpu(vk::structure::Texture& texture, void* data, VkImageLayout final_layout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-  void copy_data_to_gpu(vk::structure::Image& image, VkBuffer buffer, VkImageLayout final_layout);
   void copy_gpu_image_to_buffer(vk::structure::Image& image, VkBuffer buffer);
   void blit_gpu_image_to_gpu_image(vk::structure::Image& image_src, vk::structure::Image& image_dst);
   void copy_gpu_image_to_gpu_image_standalone(vk::structure::Image& image_src, vk::structure::Image& image_dst);

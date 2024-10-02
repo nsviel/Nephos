@@ -30,7 +30,10 @@ void main(){
   float alpha = 1.0f;
 
   // Compute the vertex position in 3D space using the depth value and XY table coordinates.
-  vec3 vertex_position = vec3(vertex_value * xy_value.x, vertex_value * xy_value.y, vertex_value);
+  float x = vertex_value * xy_value.x;
+  float y = vertex_value * xy_value.y;
+  float z = vertex_value;
+  vec3 vertex_position = vec3(-z, -x, -y);
 
   // Check for invalid pixels (where XY table values are set to zero).
   if (xy_value.x == 0.0f && xy_value.y == 0.0f) {

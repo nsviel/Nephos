@@ -89,13 +89,6 @@ void Point::update_uniform(vk::structure::Object& vk_object, vk::structure::Pipe
   //Topology width
   vk_uniform->update_uniform("width", vk_object.descriptor_set, data.topology.width);
 
-  //Update parameters
-  std::shared_ptr<vk::structure::Texture> tex_depth = vk_data->retrieve_vk_texture(vk_object, "Depth");
-  vk::geometry::Dynamic dyn_struct;
-  dyn_struct.tex_depth_width = tex_depth->image->width;
-  dyn_struct.tex_depth_height = tex_depth->image->height;
-  vk_uniform->update_uniform("parameter", vk_object.descriptor_set, dyn_struct);
-
   //---------------------------
 }
 void Point::update_sampler(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass){
@@ -121,9 +114,7 @@ bool Point::check_data(vk::structure::Object& vk_object, int topology){
 
   if(data.topology.type != topology) return false;
   if(data.is_visible == false) return false;
-  if(data.xyz.empty()) return false;
   if(data.rgba.empty()) return false;
-  if(data.rgba.size() != data.xyz.size()) return false;
 
   //---------------------------
   return true;
