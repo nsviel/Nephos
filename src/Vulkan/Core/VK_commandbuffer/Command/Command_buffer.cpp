@@ -1,4 +1,4 @@
-#include "Command.h"
+#include "Command_buffer.h"
 
 #include <Vulkan/Namespace.h>
 #include <random>
@@ -7,7 +7,7 @@
 namespace vk::commandbuffer{
 
 //Constructor / Destructor
-Command::Command(vk::Structure* vk_struct){
+Command_buffer::Command_buffer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -18,10 +18,10 @@ Command::Command(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Command::~Command(){}
+Command_buffer::~Command_buffer(){}
 
 //Main function
-std::shared_ptr<vk::structure::Command_buffer> Command::query_free_command_buffer(vk::queue::structure::Queue& queue){
+std::shared_ptr<vk::structure::Command_buffer> Command_buffer::query_free_command_buffer(vk::queue::structure::Queue& queue){
   //---------------------------
 
   vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(queue);
@@ -55,7 +55,7 @@ std::shared_ptr<vk::structure::Command_buffer> Command::query_free_command_buffe
   //---------------------------
   return nullptr;
 }
-void Command::submit_command_buffer(std::shared_ptr<vk::structure::Command_buffer> command_buffer, vk::queue::Base* queue){
+void Command_buffer::submit_command_buffer(std::shared_ptr<vk::structure::Command_buffer> command_buffer, vk::queue::Base* queue){
   //---------------------------
 
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
@@ -64,7 +64,7 @@ void Command::submit_command_buffer(std::shared_ptr<vk::structure::Command_buffe
 
   //---------------------------
 }
-void Command::start_command_buffer_primary(vk::structure::Command_buffer& command_buffer){
+void Command_buffer::start_command_buffer_primary(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
   VkCommandBufferBeginInfo begin_info{};
@@ -79,7 +79,7 @@ void Command::start_command_buffer_primary(vk::structure::Command_buffer& comman
 
   //---------------------------
 }
-void Command::start_command_buffer_secondary(vk::structure::Renderpass* renderpass){
+void Command_buffer::start_command_buffer_secondary(vk::structure::Renderpass* renderpass){
   vk::structure::Framebuffer& frame = renderpass->framebuffer;
   //---------------------------
 /*
@@ -108,7 +108,7 @@ void Command::start_command_buffer_secondary(vk::structure::Renderpass* renderpa
 */
   //---------------------------
 }
-void Command::end_command_buffer(vk::structure::Command_buffer& command_buffer){
+void Command_buffer::end_command_buffer(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
   vk_query->end_query_pass(command_buffer);
@@ -122,7 +122,7 @@ void Command::end_command_buffer(vk::structure::Command_buffer& command_buffer){
 
   //---------------------------
 }
-int Command::find_num_available_command(vk::pool::structure::Command_buffer* pool){
+int Command_buffer::find_num_available_command(vk::pool::structure::Command_buffer* pool){
   int num = 0;
   //---------------------------
 

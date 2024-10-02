@@ -15,7 +15,7 @@ Recorder::Recorder(vk::Structure* vk_struct){
   this->vk_pipeline = new vk::compute::Pipeline(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_data = new vk::data::Retriever(vk_struct);
-  this->vk_command = new vk::commandbuffer::Command(vk_struct);
+  this->vk_command = new vk::commandbuffer::Command_buffer(vk_struct);
   this->vk_command_allocator = new vk::commandbuffer::Allocator(vk_struct);
   this->vk_storage = new vk::descriptor::Storage_image(vk_struct);
   this->vk_tex_storage = new vk::texture::Storage(vk_struct);

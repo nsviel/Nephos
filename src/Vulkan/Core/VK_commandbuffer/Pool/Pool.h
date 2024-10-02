@@ -16,12 +16,12 @@ namespace vk::structure{class Fence;}
 
 namespace vk::commandbuffer{
 
-class Command_buffer
+class Pool
 {
 public:
   //Constructor / Destructor
-  Command_buffer(vk::Structure* vk_struct);
-  ~Command_buffer();
+  Pool(vk::Structure* vk_struct);
+  ~Pool();
 
 public:
   //Main function

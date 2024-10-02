@@ -16,7 +16,7 @@ namespace vk::data{class Canvas;}
 namespace vk::draw{class Viewport;}
 namespace vk::shader{class Reloader;}
 namespace vk::commandbuffer{class Allocator;}
-namespace vk::commandbuffer{class Command_buffer;}
+namespace vk::commandbuffer{class Pool;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
 namespace vk::renderpass{class Renderpass;}
@@ -53,7 +53,7 @@ private:
   vk::device::Logical* vk_device;
   vk::presentation::Swapchain* vk_swapchain;
   vk::renderpass::Renderpass* vk_renderpass;
-  vk::commandbuffer::Command_buffer* vk_command_buffer;
+  vk::commandbuffer::Pool* vk_command_buffer;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::instance::Pool* vk_pool;
   vk::data::Data* vk_data;

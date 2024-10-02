@@ -18,12 +18,12 @@ namespace vk::instance{class Query;}
 
 namespace vk::commandbuffer{
 
-class Command
+class Command_buffer
 {
 public:
   //Constructor / Destructor
-  Command(vk::Structure* vk_struct);
-  ~Command();
+  Command_buffer(vk::Structure* vk_struct);
+  ~Command_buffer();
 
 public:
   //Main function

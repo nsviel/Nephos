@@ -11,7 +11,7 @@ extern "C" {
 namespace vk{class Structure;}
 namespace vk::image{class Image;}
 namespace vk::structure{class Image;}
-namespace vk::commandbuffer{class Command_buffer;}
+namespace vk::commandbuffer{class Pool;}
 namespace vk::commandbuffer{class Allocator;}
 namespace vk::memory{class Transfer;}
 namespace vk::memory{class Allocator;}
@@ -39,7 +39,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::image::Image* vk_image;
-  vk::commandbuffer::Command_buffer* vk_command_buffer;
+  vk::commandbuffer::Pool* vk_command_buffer;
   vk::commandbuffer::Allocator* vk_command_allocator;
   vk::memory::Transfer* vk_mem_transfer;
   vk::memory::Allocator* vk_mem_allocator;

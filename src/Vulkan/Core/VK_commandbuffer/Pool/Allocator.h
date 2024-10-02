@@ -3,7 +3,7 @@
 namespace vk{class Structure;}
 namespace vk::queue::structure{class Queue;}
 namespace vk::pool::structure{class Command_buffer;}
-namespace vk::commandbuffer{class Command_buffer;}
+namespace vk::commandbuffer{class Pool;}
 namespace vk::instance{class Pool;}
 
 
@@ -33,7 +33,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::instance::Pool* vk_pool;
-  vk::commandbuffer::Command_buffer* vk_command_buffer;
+  vk::commandbuffer::Pool* vk_command_buffer;
 };
 
 }

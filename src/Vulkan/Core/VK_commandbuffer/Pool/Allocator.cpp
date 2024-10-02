@@ -19,7 +19,7 @@ Allocator::~Allocator(){}
 
 //Main function
 void Allocator::init(){
-  this->vk_command_buffer = new vk::commandbuffer::Command_buffer(vk_struct);
+  this->vk_command_buffer = new vk::commandbuffer::Pool(vk_struct);
   //---------------------------
 
   this->create_command_buffer_pool(vk_struct->core.device.queue.graphics);

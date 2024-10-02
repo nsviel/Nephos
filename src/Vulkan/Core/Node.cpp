@@ -24,7 +24,7 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_reload = new vk::shader::Reloader(vk_struct);
   this->vk_frame = new vk::presentation::Frame(vk_struct);
   this->vk_canvas = new vk::data::Canvas(vk_struct);
-  this->vk_command_buffer = new vk::commandbuffer::Command_buffer(vk_struct);
+  this->vk_command_buffer = new vk::commandbuffer::Pool(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_fence = new vk::synchro::Fence(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);

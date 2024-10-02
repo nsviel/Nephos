@@ -1,4 +1,4 @@
-#include "Command_buffer.h"
+#include "Pool.h"
 
 #include <Vulkan/Namespace.h>
 #include <random>
@@ -7,7 +7,7 @@
 namespace vk::commandbuffer{
 
 //Constructor / Destructor
-Command_buffer::Command_buffer(vk::Structure* vk_struct){
+Pool::Pool(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -18,10 +18,10 @@ Command_buffer::Command_buffer(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Command_buffer::~Command_buffer(){}
+Pool::~Pool(){}
 
 //Main function
-void Command_buffer::init_pool(vk::pool::structure::Command_buffer* pool){
+void Pool::init_pool(vk::pool::structure::Command_buffer* pool){
   //---------------------------
 
   //Number of command buffer
@@ -44,7 +44,7 @@ void Command_buffer::init_pool(vk::pool::structure::Command_buffer* pool){
 
   //---------------------------
 }
-void Command_buffer::reset_pool(vk::pool::structure::Command_buffer* pool){
+void Pool::reset_pool(vk::pool::structure::Command_buffer* pool){
   //---------------------------
 
   //Clear all old command buffer
@@ -57,7 +57,7 @@ void Command_buffer::reset_pool(vk::pool::structure::Command_buffer* pool){
 
   //---------------------------
 }
-void Command_buffer::clean_pool(vk::pool::structure::Command_buffer* pool){
+void Pool::clean_pool(vk::pool::structure::Command_buffer* pool){
   //---------------------------
 
   //Clear all old command buffer
@@ -70,7 +70,7 @@ void Command_buffer::clean_pool(vk::pool::structure::Command_buffer* pool){
 }
 
 //Subfunction
-void Command_buffer::create_command_buffer_primary(vk::pool::structure::Command_buffer* pool, vk::structure::Command_buffer& command_buffer){
+void Pool::create_command_buffer_primary(vk::pool::structure::Command_buffer* pool, vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
   //Command buffer allocation
@@ -87,7 +87,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::structure::Command_
 
   //---------------------------
 }
-void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data){
+void Pool::create_command_buffer_secondary(vk::structure::Object* data){
   vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(vk_struct->core.device.queue.transfer);
   //---------------------------
 

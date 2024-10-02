@@ -7,7 +7,7 @@ namespace vk::descriptor{class Storage_image;}
 namespace vk::compute{class Pipeline;}
 namespace vk::data{class Retriever;}
 namespace vk::texture{class Storage;}
-namespace vk::commandbuffer{class Command;}
+namespace vk::commandbuffer{class Command_buffer;}
 namespace vk::commandbuffer{class Allocator;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
@@ -39,7 +39,7 @@ private:
   vk::descriptor::Uniform* vk_uniform;
   vk::compute::Pipeline* vk_pipeline;
   vk::data::Retriever* vk_data;
-  vk::commandbuffer::Command* vk_command;
+  vk::commandbuffer::Command_buffer* vk_command;
   vk::commandbuffer::Allocator* vk_command_allocator;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::descriptor::Storage_image* vk_storage;
