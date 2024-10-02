@@ -5,7 +5,7 @@
 #include <Processing/Namespace.h>
 
 
-namespace k4n::processing::image{
+namespace k4n::image{
 
 //Constructor / Destructor
 Infrared::Infrared(k4n::Node* node_k4n){

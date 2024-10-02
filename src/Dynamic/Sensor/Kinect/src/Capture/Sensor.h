@@ -4,8 +4,8 @@
 
 namespace k4n{class Node;}
 namespace k4n::capture{class Capture;}
-namespace k4n::processing::cloud{class Data;}
-namespace k4n::processing::image{class Data;}
+namespace k4n::data{class Cloud;}
+namespace k4n::data{class Image;}
 namespace k4n::gui{class Capture;}
 namespace dyn::prc::cloud{class Operation;}
 namespace dat::sensor{class Pool;}
@@ -32,8 +32,8 @@ public:
   
 private:
   k4n::capture::Capture* k4n_capture;
-  k4n::processing::image::Data* k4n_image;
-  k4n::processing::cloud::Data* k4n_cloud;
+  k4n::data::Image* k4n_image;
+  k4n::data::Cloud* k4n_cloud;
   k4n::gui::Capture* gui_capture;
   dyn::prc::cloud::Operation* dyn_operation;
   dat::sensor::Pool* thr_pool;

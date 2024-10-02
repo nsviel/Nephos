@@ -14,8 +14,8 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   dyn::prc::Node* node_processing = node_k4n->get_node_processing();
 
   this->k4n_playback = new k4n::playback::Playback(node_k4n);
-  this->k4n_image = new k4n::processing::image::Data(node_k4n);
-  this->k4n_cloud = new k4n::processing::cloud::Data(node_k4n);
+  this->k4n_image = new k4n::data::Image(node_k4n);
+  this->k4n_cloud = new k4n::data::Cloud(node_k4n);
   this->gui_playback = new k4n::gui::Playback(node_k4n);
   this->dyn_operation = node_processing->get_ope_cloud();
   this->thr_pool = new dat::sensor::Pool(20);

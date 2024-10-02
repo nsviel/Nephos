@@ -10,7 +10,7 @@ namespace dat::img{class Depth;}
 namespace dyn::prc{class Structure;}
 
 
-namespace k4n::processing::image{
+namespace k4n::image{
 
 class Infrared
 {

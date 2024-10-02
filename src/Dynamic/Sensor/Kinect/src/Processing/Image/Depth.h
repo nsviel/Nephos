@@ -9,7 +9,7 @@ namespace dat::img{class Image;}
 namespace dat::img{class Depth;}
 
 
-namespace k4n::processing::image{
+namespace k4n::image{
 
 class Depth
 {

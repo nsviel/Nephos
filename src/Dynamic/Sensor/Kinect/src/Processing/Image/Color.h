@@ -9,7 +9,7 @@ namespace k4n::base{class Sensor;}
 namespace dat::img{class Image;}
 
 
-namespace k4n::processing::image{
+namespace k4n::image{
 
 class Color
 {

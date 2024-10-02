@@ -4,8 +4,8 @@
 
 namespace k4n{class Node;}
 namespace k4n::playback{class Playback;}
-namespace k4n::processing::cloud{class Data;}
-namespace k4n::processing::image{class Data;}
+namespace k4n::data{class Cloud;}
+namespace k4n::data{class Image;}
 namespace k4n::gui{class Playback;}
 namespace utl::base{class Path;}
 namespace dyn::prc::cloud{class Operation;}
@@ -34,8 +34,8 @@ public:
 
 public:
   k4n::playback::Playback* k4n_playback;
-  k4n::processing::image::Data* k4n_image;
-  k4n::processing::cloud::Data* k4n_cloud;
+  k4n::data::Image* k4n_image;
+  k4n::data::Cloud* k4n_cloud;
   k4n::gui::Playback* gui_playback;
   dyn::prc::cloud::Operation* dyn_operation;
   dat::sensor::Pool* thr_pool;

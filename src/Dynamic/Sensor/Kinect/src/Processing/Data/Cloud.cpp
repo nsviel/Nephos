@@ -1,27 +1,26 @@
-#include "Data.h"
+#include "Cloud.h"
 
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Data/Namespace.h>
 
 
-namespace k4n::processing::cloud{
+namespace k4n::data{
 
 //Constructor / Destructor
-Data::Data(k4n::Node* node_k4n){
+Cloud::Cloud(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_struct = node_k4n->get_k4n_structure();
-  this->k4n_xytable = new k4n::processing::cloud::XY_table(node_k4n);
   this->atr_field = new dat::atr::Field();
   this->atr_location = new dat::atr::Location();
 
   //---------------------------
 }
-Data::~Data(){}
+Cloud::~Cloud(){}
 
 //Main function
-void Data::extract_data(dat::base::Sensor& sensor){
+void Cloud::extract_data(dat::base::Sensor& sensor){
   k4n::base::Sensor* k4n_sensor = dynamic_cast<k4n::base::Sensor*>(&sensor);
   if(check_condition(*k4n_sensor) == false) return;
   //---------------------------
@@ -50,7 +49,7 @@ void Data::extract_data(dat::base::Sensor& sensor){
 }
 
 //Subfunction
-bool Data::check_condition(k4n::base::Sensor& sensor){
+bool Cloud::check_condition(k4n::base::Sensor& sensor){
   //---------------------------
 
   if(!sensor.depth.data.k4a_image.is_valid()) return false;
@@ -61,7 +60,7 @@ bool Data::check_condition(k4n::base::Sensor& sensor){
   //---------------------------
   return true;
 }
-void Data::extraction_init(k4n::base::Sensor& sensor){
+void Cloud::extraction_init(k4n::base::Sensor& sensor){
   //---------------------------
 
   //Create cloud image
@@ -86,7 +85,7 @@ void Data::extraction_init(k4n::base::Sensor& sensor){
 
   //---------------------------
 }
-void Data::extraction_data(k4n::base::Sensor& sensor){
+void Cloud::extraction_data(k4n::base::Sensor& sensor){
   //---------------------------
 
   //Fille vector with data
@@ -99,7 +98,7 @@ void Data::extraction_data(k4n::base::Sensor& sensor){
 
   //---------------------------
 }
-void Data::extraction_transfer(k4n::base::Sensor& sensor){
+void Cloud::extraction_transfer(k4n::base::Sensor& sensor){
   utl::base::Data& data = *sensor.data;
   //---------------------------
 
@@ -128,7 +127,7 @@ void Data::extraction_transfer(k4n::base::Sensor& sensor){
 }
 
 //Data function
-void Data::retrieve_location(k4n::base::Sensor& sensor, int i){
+void Cloud::retrieve_location(k4n::base::Sensor& sensor, int i){
   const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor.cloud.buffer);
   //---------------------------
 
@@ -153,7 +152,7 @@ void Data::retrieve_location(k4n::base::Sensor& sensor, int i){
 
   //---------------------------
 }
-void Data::retrieve_color(k4n::base::Sensor& sensor, int i){
+void Cloud::retrieve_color(k4n::base::Sensor& sensor, int i){
   const uint8_t* buffer_color = sensor.color.data.buffer;
   //---------------------------
 
@@ -169,7 +168,7 @@ void Data::retrieve_color(k4n::base::Sensor& sensor, int i){
 
   //---------------------------
 }
-void Data::retrieve_ir(k4n::base::Sensor& sensor, int i){
+void Cloud::retrieve_ir(k4n::base::Sensor& sensor, int i){
   const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor.infra.data.buffer);
   //---------------------------
 
