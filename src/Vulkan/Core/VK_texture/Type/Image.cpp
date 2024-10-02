@@ -32,7 +32,7 @@ void Image::insert_image(utl::base::Data& data, std::shared_ptr<utl::base::Image
   //---------------------------
 }
 void Image::insert_image(vk::structure::Object& vk_object, std::shared_ptr<utl::base::Image> image){
-  if(!vk_ressource->check_image(image)) return;
+  if(!vk_ressource->check_texture(image)) return;
   //---------------------------
 
   //Check if image already inserted
@@ -48,7 +48,7 @@ void Image::insert_image(vk::structure::Object& vk_object, std::shared_ptr<utl::
   //---------------------------
 }
 void Image::insert_image(std::shared_ptr<utl::base::Image> image){
-  if(!vk_ressource->check_image(image)) return;
+  if(!vk_ressource->check_texture(image)) return;
   //---------------------------
 
   //Check if image already inserted
@@ -65,7 +65,7 @@ void Image::insert_image(std::shared_ptr<utl::base::Image> image){
   //---------------------------
 }
 void Image::update_texture(std::shared_ptr<utl::base::Image> image){
-  if(!vk_ressource->check_image(image)) return;
+  if(!vk_ressource->check_texture(image)) return;
   //---------------------------
 
   //Retrieve data vk object

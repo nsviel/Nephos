@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace vk{class Structure;}
 namespace vk::structure{class Texture;}
 namespace vk::image{class Screenshot;}
@@ -9,6 +11,7 @@ namespace vk::memory{class Transfer;}
 namespace vk::data{class Buffer;}
 namespace vk::image{class Format;}
 namespace vk::instance{class UID;}
+namespace utl::base{class Texture;}
 
 
 namespace vk::texture{
