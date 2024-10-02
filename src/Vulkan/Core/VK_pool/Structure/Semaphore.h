@@ -12,7 +12,7 @@ struct Semaphore{
   //---------------------------
 
   std::mutex mutex;
-  std::vector<vk::synchro::structure::Semaphore> tank;
+  std::vector<vk::structure::Semaphore> tank;
   uint32_t size = 100;
 
   //---------------------------

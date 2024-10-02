@@ -8,7 +8,7 @@ namespace vk::presentation{class Swapchain;}
 namespace vk::presentation{class Surface;}
 namespace vk{class Structure;}
 namespace vk::synchro::structure{class Fence;}
-namespace vk::synchro::structure{class Semaphore;}
+namespace vk::structure{class Semaphore;}
 namespace vk::window{class Window;}
 namespace vk::structure{class Command;}
 namespace vk::command::structure{class Set;}
@@ -31,8 +31,8 @@ public:
   void make_rendering();
 
   //Subfunction
-  void submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore* semaphore);
-  void submit_presentation(vk::synchro::structure::Semaphore* semaphore);
+  void submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore* semaphore);
+  void submit_presentation(vk::structure::Semaphore* semaphore);
   void next_frame_ID();
 
 private:

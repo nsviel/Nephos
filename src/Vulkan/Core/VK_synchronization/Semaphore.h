@@ -2,7 +2,7 @@
 
 namespace vk{class Structure;}
 namespace vk::structure{class Frame;}
-namespace vk::synchro::structure{class Semaphore;}
+namespace vk::structure{class Semaphore;}
 
 
 namespace vk::synchro{
@@ -21,12 +21,12 @@ public:
   void reset_pool();
 
   //Semaphore function
-  void create_semaphore(vk::synchro::structure::Semaphore* semaphore);
-  void clean_semaphore(vk::synchro::structure::Semaphore* semaphore);
-  void reset_semaphore(vk::synchro::structure::Semaphore* semaphore);
+  void create_semaphore(vk::structure::Semaphore* semaphore);
+  void clean_semaphore(vk::structure::Semaphore* semaphore);
+  void reset_semaphore(vk::structure::Semaphore* semaphore);
 
   //Subfunction
-  vk::synchro::structure::Semaphore* query_free_semaphore();
+  vk::structure::Semaphore* query_free_semaphore();
 
 private:
   vk::Structure* vk_struct;

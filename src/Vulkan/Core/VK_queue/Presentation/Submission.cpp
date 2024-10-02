@@ -28,7 +28,7 @@ void Submission::make_rendering(){
 
   //Init
   std::vector<std::unique_ptr<vk::structure::Command>> vec_command;
-  vk::synchro::structure::Semaphore semaphore = *vk_semaphore->query_free_semaphore();
+  vk::structure::Semaphore semaphore = *vk_semaphore->query_free_semaphore();
 
   //Acquiere image
   bool sucess = vk_swapchain->acquire_next_image(&semaphore);
@@ -49,7 +49,7 @@ void Submission::make_rendering(){
 }
 
 //Subfunction
-void Submission::submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore* semaphore){
+void Submission::submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore* semaphore){
   //---------------------------
 
   vk::command::structure::Set* set = new vk::command::structure::Set();
@@ -62,7 +62,7 @@ void Submission::submit_rendering(std::vector<std::unique_ptr<vk::structure::Com
 
   //---------------------------
 }
-void Submission::submit_presentation(vk::synchro::structure::Semaphore* semaphore){
+void Submission::submit_presentation(vk::structure::Semaphore* semaphore){
   vk::structure::Swapchain* swapchain = &vk_struct->core.swapchain;
   //---------------------------
 

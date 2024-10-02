@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace vk{class Structure;}
-namespace vk::synchro::structure{class Semaphore;}
+namespace vk::structure{class Semaphore;}
 namespace vk::presentation{class Swapchain;}
 namespace vk::structure{class Command;}
 namespace vk::structure{class Renderpass;}
@@ -27,8 +27,8 @@ public:
 
 public:
   //Main function
-  void record_renderpass(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore& semaphore);
-  void copy_to_swapchain(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore& semaphore);
+  void record_renderpass(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore);
+  void copy_to_swapchain(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore);
 
 private:
   vk::Structure* vk_struct;

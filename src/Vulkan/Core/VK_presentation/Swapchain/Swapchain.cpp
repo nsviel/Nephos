@@ -181,7 +181,7 @@ void Swapchain::find_swapchain_presentation_mode(){
   //---------------------------
   vk_struct->core.swapchain.presentation_mode = presentation_mode;
 }
-bool Swapchain::acquire_next_image(vk::synchro::structure::Semaphore* semaphore){
+bool Swapchain::acquire_next_image(vk::structure::Semaphore* semaphore){
   vk::structure::Swapchain* swapchain = &vk_struct->core.swapchain;
   //---------------------------
 

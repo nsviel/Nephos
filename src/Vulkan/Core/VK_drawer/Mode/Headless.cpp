@@ -24,7 +24,7 @@ void Headless::draw_frame(){
 
   //vk_struct->core.queue.graphics->wait_for_idle();
   //vk_struct->core.queue.presentation->wait_for_idle();
-  vk::synchro::structure::Semaphore* semaphore = nullptr;
+  vk::structure::Semaphore* semaphore = nullptr;
 
   //Renderpass
   std::vector< std::unique_ptr<vk::structure::Command> > vec_command;
