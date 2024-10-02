@@ -15,7 +15,7 @@ Image::Image(dat::img::Node* node_image){
   vk::Node* node_vulkan = node_image->get_node_vulkan();
   dat::elm::Node* node_element = node_image->get_node_element();
 
-  this->vk_data = node_vulkan->get_vk_data();
+  this->vk_texture = node_vulkan->get_vk_texture();
   this->dat_uid = node_element->get_dat_uid();
 
   //---------------------------
@@ -47,7 +47,7 @@ void Image::insert_image(dat::base::Entity& entity, std::shared_ptr<utl::base::I
 
   image->UID = dat_uid->generate_UID();
   data.map_image[image->name] = image;
-  vk_data->insert_image(data, image);
+  vk_texture->insert_image(data, image);
 
   //----------------------------
 }

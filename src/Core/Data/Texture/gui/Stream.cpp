@@ -13,7 +13,7 @@ Stream::Stream(dat::img::Node* node_image){
 
   vk::Node* node_vulkan = node_image->get_node_vulkan();
 
-  this->vk_data = node_vulkan->get_vk_data();
+  this->vk_texture = node_vulkan->get_vk_texture();
   this->vk_render = node_vulkan->get_vk_render();
 
   //---------------------------
@@ -47,7 +47,7 @@ void Stream::update_texture(std::shared_ptr<utl::base::Image> image){
 
   bool update = (current_timestamp != image->timestamp);
   if(update){
-    vk_data->update_image(image);
+    vk_texture->update_image(image);
     current_timestamp = image->timestamp;
   }
 

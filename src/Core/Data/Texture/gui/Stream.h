@@ -4,7 +4,7 @@
 #include <memory>
 
 namespace dat::img{class Node;}
-namespace vk::interface{class Data;}
+namespace vk::interface{class Texture;}
 namespace vk::interface{class Render;}
 namespace utl::base{class Image;}
 
@@ -28,7 +28,7 @@ public:
   void render_image(std::shared_ptr<utl::base::Image> utl_image, ImVec2& dimension);
 
 private:
-  vk::interface::Data* vk_data;
+  vk::interface::Texture* vk_texture;
   vk::interface::Render* vk_render;
 
   float current_timestamp = -1;

@@ -19,6 +19,7 @@ Node::Node(bool* running){
 
   //Interface
   this->vk_interface_data = new vk::interface::Data(vk_struct);
+  this->vk_interface_texture = new vk::interface::Texture(vk_struct);
   this->vk_interface_window = new vk::interface::Window(vk_struct);
   this->vk_interface_render = new vk::interface::Render(vk_struct);
 
