@@ -5,6 +5,7 @@
 #include <Vulkan/Core/VK_synchronization/Structure/Semaphore.h>
 #include <Vulkan/Core/VK_binding/Structure/Descriptor.h>
 #include <vulkan/vulkan.h>
+#include <thread>
 #include <vector>
 #include <mutex>
 

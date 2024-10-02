@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/Core/VK_image/Structure/Texture.h>
+#include <Vulkan/Core/VK_texture/Structure/Texture.h>
 #include <Vulkan/Core/VK_data/Structure/Object.h>
 #include <unordered_map>
 #include <memory>
