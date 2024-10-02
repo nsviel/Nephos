@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <memory>
 #include <vector>
+#include <mutex>
 
 
 namespace vk::structure{
@@ -15,7 +16,9 @@ namespace vk::structure{
 struct Descriptor_set{
   //---------------------------
 
+  std::mutex mutex;
   VkDescriptorSet handle = VK_NULL_HANDLE;
+  bool is_available = true;
 
   //Associated descriptor
   std::unordered_map<std::string, std::shared_ptr<vk::structure::Pushconst>> map_pushcst;
