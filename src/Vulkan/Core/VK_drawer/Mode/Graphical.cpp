@@ -24,11 +24,10 @@ Graphical::Graphical(vk::Structure* vk_struct){
 Graphical::~Graphical(){}
 
 //Main function
-void Graphical::record_renderpass(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore){
+void Graphical::record_renderpass(vk::structure::Render& render){
   vk_struct->core.profiler.vec_command_buffer.clear();
   //---------------------------
 
-  vk::structure::Render render;
   for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
     render.renderpass = renderpass;
 
@@ -38,32 +37,32 @@ void Graphical::record_renderpass(std::vector<std::unique_ptr<vk::structure::Com
 
     //Create command
     std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-    command->semaphore_wait = semaphore.handle;
+    command->semaphore_wait = render.semaphore->handle;
     command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
     command->command_buffer = render.command_buffer;
-    semaphore = *vk_semaphore->query_free_semaphore();
-    command->semaphore_done = semaphore.handle;
-    vec_command.push_back(std::move(command));
+    render.semaphore = vk_semaphore->query_free_semaphore();
+    command->semaphore_done = render.semaphore->handle;
+    render.vec_command.push_back(std::move(command));
 
     render.renderpass->duration = utl_chrono->stop_ms(render.ts);
   }
 
   //---------------------------
 }
-void Graphical::copy_to_swapchain(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore){
+void Graphical::copy_to_swapchain(vk::structure::Render& render){
   //---------------------------
 
   //Copy renderpass to swapchain image
   vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.presentation;
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_transfer->copy_gpu_image_to_gpu_image(renderpass.framebuffer.color, vk_struct->core.swapchain.vec_frame[vk_struct->core.swapchain.current_ID]->color);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_transfer->copy_gpu_image_to_gpu_image(render.renderpass->framebuffer.color, vk_struct->core.swapchain.vec_frame[vk_struct->core.swapchain.current_ID]->color);
 
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->semaphore_wait = semaphore.handle;
+  command->semaphore_wait = render.semaphore->handle;
   command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
   command->command_buffer = command_buffer;
-  semaphore = *vk_semaphore->query_free_semaphore();
-  command->semaphore_done = semaphore.handle;
-  vec_command.push_back(std::move(command));
+  render.semaphore = vk_semaphore->query_free_semaphore();
+  command->semaphore_done = render.semaphore->handle;
+  render.vec_command.push_back(std::move(command));
 
   //---------------------------
 }

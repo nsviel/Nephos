@@ -26,10 +26,8 @@ Submission::~Submission(){}
 void Submission::make_rendering(){
   //---------------------------
 
+  //Render structure
   vk::structure::Render render;
-
-  //Init
-  std::vector<std::unique_ptr<vk::structure::Command>> vec_command;
   render.semaphore = vk_semaphore->query_free_semaphore();
 
   //Acquiere image
@@ -37,11 +35,11 @@ void Submission::make_rendering(){
   if(!sucess) return;
 
   //Rendering
-  vk_drawer->record_renderpass(vec_command, *render.semaphore);
-  vk_drawer->copy_to_swapchain(vec_command, *render.semaphore);
+  vk_drawer->record_renderpass(render);
+  vk_drawer->copy_to_swapchain(render);
 
   //Submission
-  this->submit_rendering(vec_command, *render.semaphore);
+  this->submit_rendering(render.vec_command, *render.semaphore);
   this->submit_presentation(*render.semaphore);
   this->next_frame_ID();
   vk_semaphore->reset_pool();

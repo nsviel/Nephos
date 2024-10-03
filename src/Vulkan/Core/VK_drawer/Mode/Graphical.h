@@ -29,8 +29,8 @@ public:
 
 public:
   //Main function
-  void record_renderpass(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore);
-  void copy_to_swapchain(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore);
+  void record_renderpass(vk::structure::Render& render);
+  void copy_to_swapchain(vk::structure::Render& render);
 
   //Subfunction
   void prepare_render(vk::structure::Render& render);
