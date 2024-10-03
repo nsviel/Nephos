@@ -34,17 +34,7 @@ void Graphical::record_renderpass(vk::structure::Render& render){
     //Render pass
     this->prepare_render(render);
     vk_render->run_renderpass(render);
-
-    //Create command
-    std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-    command->semaphore_wait = render.semaphore->handle;
-    command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-    command->command_buffer = render.command_buffer;
-    render.semaphore = vk_semaphore->query_free_semaphore();
-    command->semaphore_done = render.semaphore->handle;
-    render.vec_command.push_back(std::move(command));
-
-    render.renderpass->duration = utl_chrono->stop_ms(render.ts);
+    this->prepare_command(render);
   }
 
   //---------------------------
@@ -79,18 +69,17 @@ void Graphical::prepare_render(vk::structure::Render& render){
 }
 void Graphical::prepare_command(vk::structure::Render& render){
   //---------------------------
-/*
-  render.renderpass->duration = utl_chrono->stop_ms(render.ts);
 
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->semaphore_wait = semaphore.handle;
+  command->semaphore_wait = render.semaphore->handle;
   command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
   command->command_buffer = render.command_buffer;
-  semaphore = *vk_semaphore->query_free_semaphore();
-  command->semaphore_done = semaphore.handle;
-  vec_command.push_back(std::move(command));
+  render.semaphore = vk_semaphore->query_free_semaphore();
+  command->semaphore_done = render.semaphore->handle;
+  render.vec_command.push_back(std::move(command));
 
-*/
+  render.renderpass->duration = utl_chrono->stop_ms(render.ts);
+
   //---------------------------
 }
 

@@ -24,13 +24,11 @@ Submission::~Submission(){}
 
 //Main function
 void Submission::make_rendering(){
+  vk::structure::Render render;
   //---------------------------
 
-  //Render structure
-  vk::structure::Render render;
-  render.semaphore = vk_semaphore->query_free_semaphore();
-
   //Acquiere image
+  render.semaphore = vk_semaphore->query_free_semaphore();
   bool sucess = vk_swapchain->acquire_next_image(*render.semaphore);
   if(!sucess) return;
 
@@ -39,8 +37,8 @@ void Submission::make_rendering(){
   vk_drawer->copy_to_swapchain(render);
 
   //Submission
-  this->submit_rendering(render.vec_command, *render.semaphore);
-  this->submit_presentation(*render.semaphore);
+  this->submit_rendering(render);
+  this->submit_presentation(render);
   this->next_frame_ID();
   vk_semaphore->reset_pool();
   vk_imgui->glfw_new_frame();
@@ -49,12 +47,12 @@ void Submission::make_rendering(){
 }
 
 //Subfunction
-void Submission::submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore){
+void Submission::submit_rendering(vk::structure::Render& render){
   //---------------------------
 
   vk::commandbuffer::structure::Set* set = new vk::commandbuffer::structure::Set();
-  set->vec_command = std::move(vec_command);;
-  set->semaphore = semaphore.handle;
+  set->vec_command = std::move(render.vec_command);
+  set->semaphore = render.semaphore->handle;
   set->supress = false;
   vk_struct->core.queue.graphics->add_command(set);
   set->wait_until_done();
@@ -62,17 +60,17 @@ void Submission::submit_rendering(std::vector<std::unique_ptr<vk::structure::Com
 
   //---------------------------
 }
-void Submission::submit_presentation(vk::structure::Semaphore& semaphore){
-  vk::structure::Swapchain* swapchain = &vk_struct->core.swapchain;
+void Submission::submit_presentation(vk::structure::Render& render){
+  vk::structure::Swapchain& swapchain = vk_struct->core.swapchain;
   //---------------------------
 
   VkPresentInfoKHR presentation_info{};
   presentation_info.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
   presentation_info.waitSemaphoreCount = 1;
-  presentation_info.pWaitSemaphores = &semaphore.handle;
+  presentation_info.pWaitSemaphores = &render.semaphore->handle;
   presentation_info.swapchainCount = 1;
-  presentation_info.pSwapchains = &swapchain->handle;
-  presentation_info.pImageIndices = &swapchain->current_ID;
+  presentation_info.pSwapchains = &swapchain.handle;
+  presentation_info.pImageIndices = &swapchain.current_ID;
   presentation_info.pResults = nullptr; // Optional
 
   VkQueue queue = vk_struct->core.device.queue.presentation.handle;

@@ -4,17 +4,18 @@
 #include <vector>
 #include <thread>
 
+namespace vk{class Structure;}
 namespace vk::presentation{class Swapchain;}
 namespace vk::presentation{class Surface;}
-namespace vk{class Structure;}
-namespace vk::structure{class Fence;}
-namespace vk::structure{class Semaphore;}
 namespace vk::window{class Window;}
-namespace vk::structure{class Command;}
 namespace vk::commandbuffer::structure{class Set;}
 namespace vk::draw{class Graphical;}
 namespace vk::synchro{class Semaphore;}
 namespace vk::gui{class Imgui;}
+namespace vk::structure{class Fence;}
+namespace vk::structure{class Semaphore;}
+namespace vk::structure{class Command;}
+namespace vk::structure{class Render;}
 
 
 namespace vk::queue::presentation{
@@ -31,8 +32,8 @@ public:
   void make_rendering();
 
   //Subfunction
-  void submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore);
-  void submit_presentation(vk::structure::Semaphore& semaphore);
+  void submit_rendering(vk::structure::Render& render);
+  void submit_presentation(vk::structure::Render& render);
   void next_frame_ID();
 
 private:
