@@ -23,9 +23,9 @@ public:
   void run_renderpass(vk::structure::Render& render);
 
   //Subfunction
-  void start_renderpass(vk::structure::Renderpass& renderpass);
-  void stop_renderpass(vk::structure::Renderpass& renderpass);
-  void draw_subpass(vk::structure::Renderpass& renderpass);
+  void start_renderpass(vk::structure::Render& render);
+  void draw_subpass(vk::structure::Render& render);
+  void stop_renderpass(vk::structure::Render& render);
 
 private:
   vk::Structure* vk_struct;

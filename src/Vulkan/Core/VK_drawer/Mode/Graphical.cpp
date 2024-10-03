@@ -17,7 +17,8 @@ Graphical::Graphical(vk::Structure* vk_struct){
   this->vk_render = new vk::draw::Renderer(vk_struct);
   this->vk_fence = new vk::synchro::Fence(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
-
+  this->vk_command = new vk::commandbuffer::Command_buffer(vk_struct);
+  
   //---------------------------
 }
 Graphical::~Graphical(){}
@@ -29,8 +30,10 @@ void Graphical::record_renderpass(std::vector<std::unique_ptr<vk::structure::Com
 
   vk::structure::Render render;
   for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
+    //Render elements
     render.ts = utl_chrono->start_t();
     render.renderpass = renderpass;
+    render.command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
 
     //Run renderpass
     vk_render->run_renderpass(render);

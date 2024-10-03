@@ -13,6 +13,7 @@ namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
 namespace vk::memory{class Transfer;}
 namespace sys::timer{class Chrono;}
+namespace vk::commandbuffer{class Command_buffer;}
 
 
 
@@ -38,6 +39,7 @@ private:
   vk::draw::Renderer* vk_render;
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;
+  vk::commandbuffer::Command_buffer* vk_command;
 };
 
 }
