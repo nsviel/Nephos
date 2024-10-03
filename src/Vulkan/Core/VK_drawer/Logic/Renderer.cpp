@@ -22,15 +22,9 @@ Renderer::~Renderer(){}
 void Renderer::run_renderpass(vk::structure::Render& render){
   //---------------------------
 
-
-  render.renderpass->command_buffer = render.command_buffer;
-  render.command_buffer->name = render.renderpass->name;
-
   this->start_renderpass(render);
   this->draw_subpass(render);
   this->stop_renderpass(render);
-
-  vk_command->end_command_buffer(*render.command_buffer);
 
   //---------------------------
 }
@@ -91,6 +85,7 @@ void Renderer::stop_renderpass(vk::structure::Render& render){
   //---------------------------
 
   vkCmdEndRenderPass(render.command_buffer->handle);
+  vk_command->end_command_buffer(*render.command_buffer);
 
   //---------------------------
 }

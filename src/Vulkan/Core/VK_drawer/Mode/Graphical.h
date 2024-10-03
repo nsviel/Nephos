@@ -8,6 +8,7 @@ namespace vk::structure{class Semaphore;}
 namespace vk::presentation{class Swapchain;}
 namespace vk::structure{class Command;}
 namespace vk::structure{class Renderpass;}
+namespace vk::structure{class Render;}
 namespace vk::draw{class Renderer;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
@@ -30,6 +31,10 @@ public:
   //Main function
   void record_renderpass(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore);
   void copy_to_swapchain(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore);
+
+  //Subfunction
+  void prepare_render(vk::structure::Render& render);
+  void prepare_command(vk::structure::Render& render);
 
 private:
   vk::Structure* vk_struct;
