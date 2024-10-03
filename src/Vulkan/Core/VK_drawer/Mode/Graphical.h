@@ -15,7 +15,7 @@ namespace vk::synchro{class Semaphore;}
 namespace vk::memory{class Transfer;}
 namespace sys::timer{class Chrono;}
 namespace vk::commandbuffer{class Command_buffer;}
-
+namespace vk::window{class Window;}
 
 
 namespace vk::draw{
@@ -29,6 +29,7 @@ public:
 
 public:
   //Main function
+  bool acquire_next_image(vk::structure::Render& render);
   void record_renderpass(vk::structure::Render& render);
   void copy_to_swapchain(vk::structure::Render& render);
 
@@ -42,6 +43,7 @@ private:
   vk::presentation::Swapchain* vk_swapchain;
   sys::timer::Chrono* utl_chrono;
   vk::draw::Renderer* vk_render;
+  vk::window::Window* vk_window;
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;
   vk::commandbuffer::Command_buffer* vk_command;

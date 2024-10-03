@@ -29,7 +29,7 @@ void Submission::make_rendering(){
 
   //Acquiere image
   render.semaphore = vk_semaphore->query_free_semaphore();
-  bool sucess = vk_swapchain->acquire_next_image(render);
+  bool sucess = vk_drawer->acquire_next_image(render);
   if(!sucess) return;
 
   //Rendering

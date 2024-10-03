@@ -18,7 +18,8 @@ Graphical::Graphical(vk::Structure* vk_struct){
   this->vk_fence = new vk::synchro::Fence(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->vk_command = new vk::commandbuffer::Command_buffer(vk_struct);
-
+  this->vk_window = new vk::window::Window(vk_struct);
+  
   //---------------------------
 }
 Graphical::~Graphical(){}
@@ -30,12 +31,12 @@ bool Graphical::acquire_next_image(vk::structure::Render& render){
 
   //Acquiring an image from the swap chain
   if(vk_window->is_window_resized()){
-    this->recreate_swapchain();
+    vk_swapchain->recreate_swapchain();
     return false;
   }
   VkResult result = vkAcquireNextImageKHR(vk_struct->core.device.handle, swapchain.handle, UINT64_MAX, render.semaphore->handle, VK_NULL_HANDLE, &swapchain.current_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
-    this->recreate_swapchain();
+    vk_swapchain->recreate_swapchain();
     return false;
   }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
     throw std::runtime_error("[error] failed to acquire swap chain image");
