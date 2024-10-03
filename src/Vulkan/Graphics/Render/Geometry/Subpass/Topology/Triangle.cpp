@@ -31,7 +31,7 @@ void Triangle::create_subpass(vk::structure::Renderpass& renderpass){
   std::shared_ptr<vk::structure::Subpass> subpass = std::make_shared<vk::structure::Subpass>();
   subpass->index = 2;
   subpass->source = 1;
-  subpass->draw_task = [this](vk::structure::Subpass& subpass){this->draw_subpass(subpass);};
+  subpass->draw_task = [this](vk::structure::Render& render){this->draw_subpass(render);};
 
   //Subpass pipeline
   vk_triangle->add_pipeline(*subpass);
@@ -39,54 +39,55 @@ void Triangle::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
 }
-void Triangle::draw_subpass(vk::structure::Subpass& subpass){
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["triangle"];
+void Triangle::draw_subpass(vk::structure::Render& render){
+  render.pipeline = render.subpass->map_pipeline["triangle"];
   //---------------------------
 
-  this->bind_pipeline(subpass, *pipeline);
+  this->bind_pipeline(render);
 
   for(auto& [uid, vk_object] : vk_struct->core.data.map_object){
     if(!check_data(*vk_object, utl::topology::TRIANGLE)) continue;
+    render.object = vk_object;
 
-        auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
+    render.descriptor_set = vk_descriptor->query_descriptor_set(*render.pipeline);
 
-    this->update_uniform(subpass, *vk_object, *pipeline);
-    this->draw_data(*vk_object, subpass, *pipeline);
+    this->update_uniform(render);
+    this->draw_data(render);
 
-    descriptor_set->is_available = true;
+    render.descriptor_set->is_available = true;
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Triangle::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
+void Triangle::bind_pipeline(vk::structure::Render& render){
   //---------------------------
 
-  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
-  vk_viewport->cmd_viewport(subpass.command_buffer->handle);
+  vk_pipeline->cmd_bind_pipeline(render.command_buffer->handle, *render.pipeline);
+  vk_viewport->cmd_viewport(render.command_buffer->handle);
 
   //---------------------------
 }
-void Triangle::update_uniform(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline){
-  utl::base::Data& data = *vk_object.data;
-  utl::base::Pose& pose = *vk_object.pose;
+void Triangle::update_uniform(vk::structure::Render& render){
+  utl::base::Data& data = *render.object->data;
+  utl::base::Pose& pose = *render.object->pose;
   //---------------------------
 
   //MVP
-  vk::geometry::MVP machin;
-  machin.model = glm::transpose(pose.model);
-  machin.view = vk_struct->core.presentation.view;
-  machin.projection = vk_struct->core.presentation.projection;
-  vk_uniform->update_uniform("mvp", vk_object.descriptor_set, machin);
+  vk::geometry::MVP mvp;
+  mvp.model = glm::transpose(pose.model);
+  mvp.view = vk_struct->core.presentation.view;
+  mvp.projection = vk_struct->core.presentation.projection;
+  vk_uniform->update_uniform("mvp", *render.descriptor_set, mvp);
 
   //---------------------------
 }
-void Triangle::draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
+void Triangle::draw_data(vk::structure::Render& render){
   //---------------------------
 
-  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, vk_object.descriptor_set);
-  vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, vk_object);
+  vk_pipeline->cmd_bind_descriptor_set(render.command_buffer->handle, *render.pipeline, *render.descriptor_set);
+  vk_drawer->cmd_draw_vertex(render.command_buffer->handle, *render.object);
 
   //---------------------------
 }

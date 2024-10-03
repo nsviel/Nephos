@@ -34,7 +34,7 @@ void Point::create_subpass(vk::structure::Renderpass& renderpass){
   std::shared_ptr<vk::structure::Subpass> subpass = std::make_shared<vk::structure::Subpass>();
   subpass->index = 3;
   subpass->source = 2;
-  subpass->draw_task = [this](vk::structure::Subpass& subpass){this->draw_subpass(subpass);};
+  subpass->draw_task = [this](vk::structure::Render& render){this->draw_subpass(render);};
 
   //Subpass pipeline
   vk_point->add_pipeline(*subpass);
@@ -42,74 +42,75 @@ void Point::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
 }
-void Point::draw_subpass(vk::structure::Subpass& subpass){
-  std::shared_ptr<vk::structure::Pipeline> pipeline = subpass.map_pipeline["dynamic_point"];
+void Point::draw_subpass(vk::structure::Render& render){
   //---------------------------
 
-  this->bind_pipeline(subpass, *pipeline);
+  render.pipeline = render.subpass->map_pipeline["dynamic_point"];
+
+  this->bind_pipeline(render);
 
   for(auto& [uid, vk_object] : vk_struct->core.data.map_object){
     if(!check_data(*vk_object, utl::topology::DYNAMIC_POINT)) continue;
 
-
+    render.object = vk_object;
 
 
     vk::compute::dtc::Recorder recorder(vk_struct);
     recorder.run_compute(*vk_object);
 
 
-    auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
+    render.descriptor_set = vk_descriptor->query_descriptor_set(*render.pipeline);
 
-    this->update_uniform(*vk_object, *descriptor_set);
-    this->update_storage(*vk_object, *descriptor_set);
-    this->draw_data(*vk_object, *pipeline, subpass, *descriptor_set);
+    this->update_uniform(render);
+    this->update_storage(render);
+    this->draw_data(render);
 
-    descriptor_set->is_available = true;
+    render.descriptor_set->is_available = true;
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Point::bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline){
+void Point::bind_pipeline(vk::structure::Render& render){
   //---------------------------
 
-  vk_pipeline->cmd_bind_pipeline(subpass.command_buffer->handle, pipeline);
-  vk_viewport->cmd_viewport(subpass.command_buffer->handle);
+  vk_pipeline->cmd_bind_pipeline(render.command_buffer->handle, *render.pipeline);
+  vk_viewport->cmd_viewport(render.command_buffer->handle);
 
   //---------------------------
 }
-void Point::update_uniform(vk::structure::Object& vk_object, vk::structure::Descriptor_set& descriptor_set){
-  utl::base::Data& data = *vk_object.data;
-  utl::base::Pose& pose = *vk_object.pose;
+void Point::update_uniform(vk::structure::Render& render){
+  utl::base::Data& data = *render.object->data;
+  utl::base::Pose& pose = *render.object->pose;
   //---------------------------
 
   //MVP
-  vk::geometry::MVP machin;
-  machin.model = glm::transpose(pose.model);
-  machin.view = vk_struct->core.presentation.view;
-  machin.projection = vk_struct->core.presentation.projection;
-  vk_uniform->update_uniform("mvp", descriptor_set, machin);
+  vk::geometry::MVP mvp;
+  mvp.model = glm::transpose(pose.model);
+  mvp.view = vk_struct->core.presentation.view;
+  mvp.projection = vk_struct->core.presentation.projection;
+  vk_uniform->update_uniform("mvp", *render.descriptor_set, mvp);
 
   //Topology width
-  vk_uniform->update_uniform("width", descriptor_set, data.topology.width);
+  vk_uniform->update_uniform("width", *render.descriptor_set, data.topology.width);
 
   //---------------------------
 }
-void Point::update_storage(vk::structure::Object& vk_object, vk::structure::Descriptor_set& descriptor_set){
+void Point::update_storage(vk::structure::Render& render){
   //---------------------------
 
-  std::shared_ptr<vk::structure::Storage_image> storage_cloud = vk_storage->query_storage(descriptor_set, "tex_cloud");
-  std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(vk_object, "cloud");
-  vk_storage->actualize_storage(descriptor_set, *storage_cloud, tex_cloud->surface);
+  std::shared_ptr<vk::structure::Storage_image> storage_cloud = vk_storage->query_storage(*render.descriptor_set, "tex_cloud");
+  std::shared_ptr<vk::structure::Texture> tex_cloud = vk_data->retrieve_vk_texture(*render.object, "cloud");
+  vk_storage->actualize_storage(*render.descriptor_set, *storage_cloud, tex_cloud->surface);
 
   //---------------------------
 }
-void Point::draw_data(vk::structure::Object& vk_object, vk::structure::Pipeline& pipeline, vk::structure::Subpass& subpass, vk::structure::Descriptor_set& descriptor_set){
+void Point::draw_data(vk::structure::Render& render){
   //---------------------------
 
-  vk_pipeline->cmd_bind_descriptor_set(subpass.command_buffer->handle, pipeline, descriptor_set);
-  vk_drawer->cmd_draw_vertex(subpass.command_buffer->handle, vk_object);
+  vk_pipeline->cmd_bind_descriptor_set(render.command_buffer->handle, *render.pipeline, *render.descriptor_set);
+  vk_drawer->cmd_draw_vertex(render.command_buffer->handle, *render.object);
 
   //---------------------------
 }

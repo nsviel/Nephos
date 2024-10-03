@@ -19,7 +19,7 @@ struct Subpass{
   //---------------------------
 
   //Function
-  std::function<void(vk::structure::Subpass& subpass)> draw_task = [](vk::structure::Subpass& subpass){};
+  std::function<void(vk::structure::Render& render)> draw_task = [](vk::structure::Render& render){};
   std::function<void(vk::structure::Subpass& subpass)> update_sampler = [](vk::structure::Subpass& subpass){};
 
   //Subpass info

@@ -5,6 +5,7 @@
 #include <Vulkan/Core/VK_renderpass/Structure/Subpass.h>
 #include <Vulkan/Core/VK_renderpass/Structure/Renderpass.h>
 #include <Vulkan/Core/VK_pipeline/Structure/Pipeline.h>
+#include <Vulkan/Core/VK_data/Structure/Object.h>
 #include <Utility/Namespace.h>
 #include <memory>
 
@@ -18,8 +19,9 @@ struct Render{
   std::shared_ptr<vk::structure::Renderpass> renderpass;
   std::shared_ptr<vk::structure::Subpass> subpass;
   std::shared_ptr<vk::structure::Pipeline> pipeline;
-  std::shared_ptr<vk::structure::Descriptor_set> descriptor_set;
   std::shared_ptr<vk::structure::Command_buffer> command_buffer;
+  std::shared_ptr<vk::structure::Descriptor_set> descriptor_set;
+  std::shared_ptr<vk::structure::Object> object;
 
   //---------------------------
 };

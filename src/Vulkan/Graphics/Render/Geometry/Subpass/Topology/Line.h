@@ -10,6 +10,7 @@ namespace vk::descriptor{class Uniform;}
 namespace vk::pipeline{class Descriptor;}
 namespace vk::data{class Vertex;}
 namespace vk::structure{class Renderpass;}
+namespace vk::structure{class Render;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Object;}
@@ -28,13 +29,13 @@ public:
 public:
   //Main function
   void create_subpass(vk::structure::Renderpass& renderpass);
-  void draw_subpass(vk::structure::Subpass& subpass);
+  void draw_subpass(vk::structure::Render& render);
 
 private:
   //Subfunction
-  void bind_pipeline(vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline);
-  void update_uniform(vk::structure::Subpass& subpass, vk::structure::Object& vk_object, vk::structure::Descriptor_set& descriptor_set);
-  void draw_data(vk::structure::Object& vk_object, vk::structure::Subpass& subpass, vk::structure::Pipeline& pipeline, vk::structure::Descriptor_set& descriptor_set);
+  void bind_pipeline(vk::structure::Render& render);
+  void update_uniform(vk::structure::Render& render);
+  void draw_data(vk::structure::Render& render);
   bool check_data(vk::structure::Object& vk_object, int topology);
 
 private:
