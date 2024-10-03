@@ -9,6 +9,7 @@ namespace vk::presentation{class Frame;}
 namespace vk::renderpass{class Framebuffer;}
 namespace vk::presentation{class Surface;}
 namespace vk::structure{class Semaphore;}
+namespace vk::structure{class Render;}
 namespace vk::synchro{class Synchro;}
 namespace vk::window{class Window;}
 namespace vk::window{class Event;}
@@ -38,7 +39,6 @@ public:
   void find_swapchain_max_nb_image();
   void find_swapchain_surface_format();
   void find_swapchain_presentation_mode();
-  bool acquire_next_image(vk::structure::Semaphore& semaphore);
 
 private:
   vk::Structure* vk_struct;

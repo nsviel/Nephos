@@ -29,7 +29,7 @@ void Submission::make_rendering(){
 
   //Acquiere image
   render.semaphore = vk_semaphore->query_free_semaphore();
-  bool sucess = vk_swapchain->acquire_next_image(*render.semaphore);
+  bool sucess = vk_swapchain->acquire_next_image(render);
   if(!sucess) return;
 
   //Rendering
@@ -40,6 +40,8 @@ void Submission::make_rendering(){
   this->submit_rendering(render);
   this->submit_presentation(render);
   this->next_frame_ID();
+
+  //End rendering
   vk_semaphore->reset_pool();
   vk_imgui->glfw_new_frame();
 
