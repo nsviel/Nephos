@@ -5,9 +5,9 @@
 #include <Vulkan/Core/VK_queue/Presentation/Queue.h>
 
 
-namespace vk::queue::structure{
+namespace vk::queue{
 
-struct Class{
+struct Structure{
   //---------------------------
 
   bool standby = false;

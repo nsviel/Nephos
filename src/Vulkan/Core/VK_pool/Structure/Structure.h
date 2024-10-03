@@ -5,9 +5,9 @@
 #include <Vulkan/Core/VK_pool/Structure/Descriptor.h>
 
 
-namespace vk::pool::structure{
+namespace vk::pool{
 
-struct Pool{
+struct Structure{
   //---------------------------
 
   vk::pool::structure::Fence fence;

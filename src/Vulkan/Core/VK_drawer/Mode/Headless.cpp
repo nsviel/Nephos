@@ -30,7 +30,7 @@ void Headless::draw_frame(){
   std::vector< std::unique_ptr<vk::structure::Command> > vec_command;
 
   int i=0;
-  for(auto& renderpass : vk_struct->graphics.render.renderpass.vec_renderpass){
+  for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
     //Run renderpass
     vk_render->run_renderpass(renderpass);
 
@@ -40,7 +40,7 @@ void Headless::draw_frame(){
     command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
     command->command_buffer = renderpass->command_buffer;
     semaphore = vk_semaphore->query_free_semaphore();
-    if(i < vk_struct->graphics.render.renderpass.vec_renderpass.size() - 1) command->semaphore_done = semaphore->handle;
+    if(i < vk_struct->core.drawer.vec_renderpass.size() - 1) command->semaphore_done = semaphore->handle;
     vec_command.push_back(std::move(command));
 
     i++;

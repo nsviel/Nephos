@@ -7,9 +7,9 @@
 #include <list>
 
 
-namespace vk::data::structure{
+namespace vk::data{
 
-struct Data{
+struct Structure{
   //One structure containing all engined inserted data (vk::object)
   //---------------------------
 

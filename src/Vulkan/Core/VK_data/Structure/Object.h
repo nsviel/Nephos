@@ -15,8 +15,8 @@ namespace vk::structure{
 struct Buffering{
   //---------------------------
 
-  vk::data::structure::Buffer data;
-  vk::data::structure::Buffer stagger;
+  vk::structure::Buffer data;
+  vk::structure::Buffer stagger;
 
   //---------------------------
 };

@@ -178,7 +178,7 @@ std::shared_ptr<vk::structure::Command_buffer> Transfer::copy_gpu_image_to_gpu_i
 }
 
 //Vertex function
-void Transfer::copy_vertex_to_gpu(vk::data::structure::Buffer& buffer, const void* data, VkDeviceSize data_size){
+void Transfer::copy_vertex_to_gpu(vk::structure::Buffer& buffer, const void* data, VkDeviceSize data_size){
   if(data_size == 0) return;
   //---------------------------
 
@@ -193,7 +193,7 @@ void Transfer::copy_vertex_to_gpu(vk::data::structure::Buffer& buffer, const voi
 
   //---------------------------
 }
-void Transfer::copy_vertex_to_gpu(vk::data::structure::Buffer& buffer, vk::data::structure::Buffer& stagger, const void* data, VkDeviceSize data_size){
+void Transfer::copy_vertex_to_gpu(vk::structure::Buffer& buffer, vk::structure::Buffer& stagger, const void* data, VkDeviceSize data_size){
   if(data_size == 0) return;
   //---------------------------
 

@@ -27,7 +27,8 @@ void Graphical::record_renderpass(std::vector<std::unique_ptr<vk::structure::Com
   vk_struct->core.profiler.vec_command_buffer.clear();
   //---------------------------
 
-  for(auto& renderpass : vk_struct->graphics.render.renderpass.vec_renderpass){
+  
+  for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
     sys::timer::Timepoint ts = utl_chrono->start_t();
 
     //Run renderpass

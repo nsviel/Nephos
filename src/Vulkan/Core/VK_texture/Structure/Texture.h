@@ -15,7 +15,7 @@ struct Texture{
   int UID = 0;
   VkDescriptorSet descriptor_set = VK_NULL_HANDLE;
   vk::structure::Image surface;
-  vk::data::structure::Buffer stagger;
+  vk::structure::Buffer stagger;
 
   //Embedded image
   std::shared_ptr<utl::base::Image> image;

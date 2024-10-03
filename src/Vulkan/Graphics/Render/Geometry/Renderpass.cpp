@@ -31,7 +31,7 @@ void Renderpass::init(){
   vk_dynamic_point->create_subpass(renderpass);
 
   //---------------------------
-  vk_struct->graphics.render.renderpass.vec_renderpass.push_back(&renderpass);
+  vk_struct->core.drawer.vec_renderpass.push_back(&renderpass);
 }
 
 }

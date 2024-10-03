@@ -3,7 +3,7 @@
 #include <vulkan/vulkan.h>
 
 
-namespace vk::data::structure{
+namespace vk::structure{
 
 struct Buffer{
   //---------------------------

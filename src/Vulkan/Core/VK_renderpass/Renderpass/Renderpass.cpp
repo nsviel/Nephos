@@ -24,13 +24,13 @@ void Renderpass::init(){
   //---------------------------
 
   //Check for renderpass demande
-  if(vk_struct->graphics.render.renderpass.vec_renderpass.size() == 0){
+  if(vk_struct->core.drawer.vec_renderpass.size() == 0){
     std::cout<<"[error] No renderpass initiated"<<std::endl;
     exit(0);
   }
 
   //Create renderpass according to the vec of renderpass demande
-  for(auto& renderpass : vk_struct->graphics.render.renderpass.vec_renderpass){
+  for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
     this->init_renderpass(*renderpass);
   }
 
@@ -41,7 +41,7 @@ void Renderpass::init(){
 void Renderpass::clean(){
   //---------------------------
 
-  for(auto& renderpass : vk_struct->graphics.render.renderpass.vec_renderpass){
+  for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
     this->clean_renderpass(*renderpass);
   }
 
@@ -117,7 +117,7 @@ void Renderpass::clean_renderpass(vk::structure::Renderpass& renderpass){
 void Renderpass::actualize_sampler(){
   //---------------------------
 
-  for(auto& renderpass : vk_struct->graphics.render.renderpass.vec_renderpass){
+  for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
     for(auto& subpass : renderpass->vec_subpass){
       subpass->update_sampler(*subpass);
     }
