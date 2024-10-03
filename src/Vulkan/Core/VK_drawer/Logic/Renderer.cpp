@@ -77,7 +77,6 @@ void Renderer::draw_subpass(vk::structure::Render& render){
 
   for(size_t i=0; i<render.renderpass->vec_subpass.size(); ++i){
     render.subpass = render.renderpass->vec_subpass[i];
-    render.subpass->command_buffer = render.command_buffer;
     render.subpass->draw_task(render);
 
     //Next subpass
