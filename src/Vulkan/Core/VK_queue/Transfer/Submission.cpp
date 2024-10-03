@@ -45,10 +45,9 @@ void Submission::build_submission(vk::structure::Command_buffer& command_buffer,
   //---------------------------
 }
 void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
-
   //---------------------------
 
-  vk::structure::Fence* fence = vk_fence->query_free_fence();
+  auto fence = vk_fence->query_free_fence();
 
   VkQueue queue = vk_struct->core.device.queue.transfer.handle;
   VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), fence->handle);
@@ -60,7 +59,7 @@ void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
   }
 
   vkWaitForFences(vk_struct->core.device.handle, 1, &fence->handle, VK_TRUE, UINT64_MAX);
-  vk_fence->reset_fence(fence);
+  vk_fence->reset_fence(*fence);
 
   //---------------------------
 }

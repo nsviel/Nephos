@@ -17,40 +17,39 @@ Semaphore::~Semaphore(){}
 
 //Main function
 void Semaphore::init_pool(){
-  vk::pool::structure::Semaphore* pool = &vk_struct->core.pools.semaphore;
+  vk::pool::structure::Semaphore& pool = vk_struct->core.pools.semaphore;
   //---------------------------
 
   //Number of semaphore
-  int number = vk_struct->core.device.physical_device.discrete_gpu ? 100 : 10;
-  pool->size = number;
+  pool.size = vk_struct->core.device.physical_device.discrete_gpu ? 100 : 10;
 
   //Create a pool of semaphore number
-  for(int i=0; i<number; i++){
-    std::shared_ptr<vk::structure::Semaphore> semaphore = std::make_shared<vk::structure::Semaphore>();
+  for(int i=0; i<pool.size; i++){
+    auto semaphore = std::make_shared<vk::structure::Semaphore>();
 
     this->create_semaphore(*semaphore);
     semaphore->is_available = true;
 
-    pool->tank.push_back(semaphore);
+    pool.tank.push_back(semaphore);
   }
 
   //---------------------------
 }
 void Semaphore::clean_pool(){
-  vk::pool::structure::Semaphore* pool = &vk_struct->core.pools.semaphore;
+  vk::pool::structure::Semaphore& pool = vk_struct->core.pools.semaphore;
   //---------------------------
 
-  for(auto& semaphore : pool->tank){
+  for(auto& semaphore : pool.tank){
     this->clean_semaphore(*semaphore);
   }
 
   //---------------------------
 }
 void Semaphore::reset_pool(){
-  vk::pool::structure::Semaphore* pool = &vk_struct->core.pools.semaphore;
+  vk::pool::structure::Semaphore& pool = vk_struct->core.pools.semaphore;
   //---------------------------
 
-  for(auto& semaphore : pool->tank){
+  for(auto& semaphore : pool.tank){
     this->reset_semaphore(*semaphore);
   }
 
@@ -100,13 +99,13 @@ void Semaphore::reset_semaphore(vk::structure::Semaphore& semaphore){
   //---------------------------
 }
 std::shared_ptr<vk::structure::Semaphore> Semaphore::query_free_semaphore(){
-  vk::pool::structure::Semaphore* pool = &vk_struct->core.pools.semaphore;
+  vk::pool::structure::Semaphore& pool = vk_struct->core.pools.semaphore;
   //---------------------------
 
-  std::lock_guard<std::mutex> lock(pool->mutex);
+  std::lock_guard<std::mutex> lock(pool.mutex);
 
   //Find the first free command buffer
-  for(auto& semaphore : pool->tank){
+  for(auto& semaphore : pool.tank){
     if(semaphore->is_available){
       semaphore->is_available = false;
       return semaphore;

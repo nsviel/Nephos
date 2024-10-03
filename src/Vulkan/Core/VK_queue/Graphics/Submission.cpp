@@ -72,7 +72,7 @@ void Submission::build_submission(vk::commandbuffer::structure::Set* set){
 void Submission::make_submission(vk::commandbuffer::structure::Set* set){
   //---------------------------
 
-  vk::structure::Fence* fence = vk_fence->query_free_fence();
+  auto fence = vk_fence->query_free_fence();
 
   VkQueue queue = vk_struct->core.device.queue.graphics.handle;
   VkResult result = vkQueueSubmit(queue, set->vec_info.size(), set->vec_info.data(), fence->handle);
@@ -81,7 +81,7 @@ void Submission::make_submission(vk::commandbuffer::structure::Set* set){
   }
 
   vkWaitForFences(vk_struct->core.device.handle, 1, &fence->handle, VK_TRUE, UINT64_MAX);
-  vk_fence->reset_fence(fence);
+  vk_fence->reset_fence(*fence);
 
   //---------------------------
 }
