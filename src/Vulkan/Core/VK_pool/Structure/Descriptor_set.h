@@ -11,8 +11,8 @@ namespace vk::pool::structure{
 struct Descriptor_set{
   //---------------------------
 
-  std::mutex mutex;
   std::vector<std::shared_ptr<vk::structure::Descriptor_set>> tank;
+  std::mutex mutex;
   uint32_t size = 100;
 
   //---------------------------

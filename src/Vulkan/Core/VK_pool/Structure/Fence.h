@@ -11,8 +11,8 @@ namespace vk::pool::structure{
 struct Fence{
   //---------------------------
 
-  std::mutex mutex;
   std::vector<vk::structure::Fence> tank;
+  std::mutex mutex;
   uint32_t size = 100;
 
   //---------------------------
