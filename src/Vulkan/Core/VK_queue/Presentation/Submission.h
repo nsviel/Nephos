@@ -31,8 +31,8 @@ public:
   void make_rendering();
 
   //Subfunction
-  void submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore* semaphore);
-  void submit_presentation(vk::structure::Semaphore* semaphore);
+  void submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore);
+  void submit_presentation(vk::structure::Semaphore& semaphore);
   void next_frame_ID();
 
 private:

@@ -26,21 +26,23 @@ Submission::~Submission(){}
 void Submission::make_rendering(){
   //---------------------------
 
+  vk::structure::Render render;
+
   //Init
   std::vector<std::unique_ptr<vk::structure::Command>> vec_command;
-  vk::structure::Semaphore semaphore = *vk_semaphore->query_free_semaphore();
+  render.semaphore = vk_semaphore->query_free_semaphore();
 
   //Acquiere image
-  bool sucess = vk_swapchain->acquire_next_image(&semaphore);
+  bool sucess = vk_swapchain->acquire_next_image(*render.semaphore);
   if(!sucess) return;
 
   //Rendering
-  vk_drawer->record_renderpass(vec_command, semaphore);
-  vk_drawer->copy_to_swapchain(vec_command, semaphore);
+  vk_drawer->record_renderpass(vec_command, *render.semaphore);
+  vk_drawer->copy_to_swapchain(vec_command, *render.semaphore);
 
   //Submission
-  this->submit_rendering(vec_command, &semaphore);
-  this->submit_presentation(&semaphore);
+  this->submit_rendering(vec_command, *render.semaphore);
+  this->submit_presentation(*render.semaphore);
   this->next_frame_ID();
   vk_semaphore->reset_pool();
   vk_imgui->glfw_new_frame();
@@ -49,12 +51,12 @@ void Submission::make_rendering(){
 }
 
 //Subfunction
-void Submission::submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore* semaphore){
+void Submission::submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::structure::Semaphore& semaphore){
   //---------------------------
 
   vk::commandbuffer::structure::Set* set = new vk::commandbuffer::structure::Set();
   set->vec_command = std::move(vec_command);;
-  set->semaphore = semaphore->handle;
+  set->semaphore = semaphore.handle;
   set->supress = false;
   vk_struct->core.queue.graphics->add_command(set);
   set->wait_until_done();
@@ -62,14 +64,14 @@ void Submission::submit_rendering(std::vector<std::unique_ptr<vk::structure::Com
 
   //---------------------------
 }
-void Submission::submit_presentation(vk::structure::Semaphore* semaphore){
+void Submission::submit_presentation(vk::structure::Semaphore& semaphore){
   vk::structure::Swapchain* swapchain = &vk_struct->core.swapchain;
   //---------------------------
 
   VkPresentInfoKHR presentation_info{};
   presentation_info.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
   presentation_info.waitSemaphoreCount = 1;
-  presentation_info.pWaitSemaphores = &semaphore->handle;
+  presentation_info.pWaitSemaphores = &semaphore.handle;
   presentation_info.swapchainCount = 1;
   presentation_info.pSwapchains = &swapchain->handle;
   presentation_info.pImageIndices = &swapchain->current_ID;

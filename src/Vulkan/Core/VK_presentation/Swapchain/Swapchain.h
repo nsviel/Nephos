@@ -38,7 +38,7 @@ public:
   void find_swapchain_max_nb_image();
   void find_swapchain_surface_format();
   void find_swapchain_presentation_mode();
-  bool acquire_next_image(vk::structure::Semaphore* semaphore);
+  bool acquire_next_image(vk::structure::Semaphore& semaphore);
 
 private:
   vk::Structure* vk_struct;

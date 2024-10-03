@@ -181,8 +181,8 @@ void Swapchain::find_swapchain_presentation_mode(){
   //---------------------------
   vk_struct->core.swapchain.presentation_mode = presentation_mode;
 }
-bool Swapchain::acquire_next_image(vk::structure::Semaphore* semaphore){
-  vk::structure::Swapchain* swapchain = &vk_struct->core.swapchain;
+bool Swapchain::acquire_next_image(vk::structure::Semaphore& semaphore){
+  vk::structure::Swapchain& swapchain = vk_struct->core.swapchain;
   //---------------------------
 
   //Acquiring an image from the swap chain
@@ -190,7 +190,7 @@ bool Swapchain::acquire_next_image(vk::structure::Semaphore* semaphore){
     this->recreate_swapchain();
     return false;
   }
-  VkResult result = vkAcquireNextImageKHR(vk_struct->core.device.handle, swapchain->handle, UINT64_MAX, semaphore->handle, VK_NULL_HANDLE, &swapchain->current_ID);
+  VkResult result = vkAcquireNextImageKHR(vk_struct->core.device.handle, swapchain.handle, UINT64_MAX, semaphore.handle, VK_NULL_HANDLE, &swapchain.current_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
     this->recreate_swapchain();
     return false;
