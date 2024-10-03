@@ -3,6 +3,7 @@
 #include <Vulkan/Core/VK_renderpass/Structure/Subpass.h>
 #include <Vulkan/Core/VK_renderpass/Structure/Framebuffer.h>
 #include <vulkan/vulkan.h>
+#include <memory>
 #include <vector>
 #include <string>
 
@@ -45,7 +46,7 @@ struct Renderpass{
   //Renderpass
   VkRenderPass handle = VK_NULL_HANDLE;
   std::shared_ptr<vk::structure::Command_buffer> command_buffer;
-  std::vector<vk::structure::Subpass*> vec_subpass;
+  std::vector<std::shared_ptr<vk::structure::Subpass>> vec_subpass;
 
   //Structure
   vk::structure::Framebuffer framebuffer;

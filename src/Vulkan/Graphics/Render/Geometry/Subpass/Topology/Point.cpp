@@ -28,10 +28,10 @@ void Point::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   //Subpass object
-  vk::structure::Subpass* subpass = new vk::structure::Subpass();
+  std::shared_ptr<vk::structure::Subpass> subpass = std::make_shared<vk::structure::Subpass>();
   subpass->index = 0;
   subpass->source = VK_SUBPASS_EXTERNAL;
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass& subpass){this->draw_subpass(subpass);};
 
   //Subpass pipeline
   vk_point->add_pipeline(*subpass);

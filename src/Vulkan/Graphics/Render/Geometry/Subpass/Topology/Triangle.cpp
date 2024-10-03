@@ -28,10 +28,10 @@ void Triangle::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   //Subpass object
-  vk::structure::Subpass* subpass = new vk::structure::Subpass();
+  std::shared_ptr<vk::structure::Subpass> subpass = std::make_shared<vk::structure::Subpass>();
   subpass->index = 2;
   subpass->source = 1;
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){this->draw_subpass(*subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass& subpass){this->draw_subpass(subpass);};
 
   //Subpass pipeline
   vk_triangle->add_pipeline(*subpass);

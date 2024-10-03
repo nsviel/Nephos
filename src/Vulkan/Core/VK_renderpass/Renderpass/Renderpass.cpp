@@ -119,7 +119,7 @@ void Renderpass::actualize_sampler(){
 
   for(auto& renderpass : vk_struct->graphics.render.renderpass.vec_renderpass){
     for(auto& subpass : renderpass->vec_subpass){
-      subpass->update_sampler(subpass);
+      subpass->update_sampler(*subpass);
     }
   }
 
