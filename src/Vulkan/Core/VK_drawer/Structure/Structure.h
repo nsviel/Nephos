@@ -10,7 +10,7 @@ namespace vk::drawer{
 struct Structure{
   //---------------------------
 
-  std::vector<vk::structure::Renderpass*> vec_renderpass;
+  std::vector<std::shared_ptr<vk::structure::Renderpass>> vec_renderpass;
 
   //---------------------------
 };

@@ -1,7 +1,7 @@
 #include "Graphical.h"
 
-#include <Utility/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::draw{
@@ -27,12 +27,13 @@ void Graphical::record_renderpass(std::vector<std::unique_ptr<vk::structure::Com
   vk_struct->core.profiler.vec_command_buffer.clear();
   //---------------------------
 
-  
+  vk::structure::Render render;
   for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
-    sys::timer::Timepoint ts = utl_chrono->start_t();
+    render.ts = utl_chrono->start_t();
+    render.renderpass = renderpass;
 
     //Run renderpass
-    vk_render->run_renderpass(renderpass);
+    vk_render->run_renderpass(render);
 
     //Create command
     std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
@@ -43,7 +44,7 @@ void Graphical::record_renderpass(std::vector<std::unique_ptr<vk::structure::Com
     command->semaphore_done = semaphore.handle;
     vec_command.push_back(std::move(command));
 
-    renderpass->duration = utl_chrono->stop_ms(ts);
+    renderpass->duration = utl_chrono->stop_ms(render.ts);
   }
 
   //---------------------------
@@ -52,7 +53,7 @@ void Graphical::copy_to_swapchain(std::vector<std::unique_ptr<vk::structure::Com
   //---------------------------
 
   //Copy renderpass to swapchain image
-  vk::structure::Renderpass& renderpass = vk_struct->graphics.render.renderpass.presentation;
+  vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.presentation;
   std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_transfer->copy_gpu_image_to_gpu_image(renderpass.framebuffer.color, vk_struct->core.swapchain.vec_frame[vk_struct->core.swapchain.current_ID]->color);
 
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();

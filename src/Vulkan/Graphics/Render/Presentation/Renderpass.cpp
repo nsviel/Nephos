@@ -18,15 +18,15 @@ Renderpass::~Renderpass(){}
 
 //Main function
 void Renderpass::init(){
-  vk::structure::Renderpass& renderpass = vk_struct->graphics.render.renderpass.presentation;
-  renderpass.attachment.target = vk::renderpass::PRESENTATION;
+  std::shared_ptr<vk::structure::Renderpass> renderpass = vk_struct->graphics.render.renderpass.presentation;
+  renderpass->attachment.target = vk::renderpass::PRESENTATION;
   if(vk_struct->interface.param.headless) return;
   //---------------------------
 
-  vk_subpass->create_subpass(renderpass);
+  vk_subpass->create_subpass(*renderpass);
 
   //---------------------------
-  vk_struct->core.drawer.vec_renderpass.push_back(&renderpass);
+  vk_struct->core.drawer.vec_renderpass.push_back(renderpass);
 }
 
 }

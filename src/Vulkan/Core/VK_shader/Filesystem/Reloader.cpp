@@ -25,8 +25,8 @@ void Reloader::hot_shader_reload(){
   //---------------------------
 
   //Realod renderpass
-  this->reload_renderpass(vk_struct->graphics.render.renderpass.geometry);
-  this->reload_renderpass(vk_struct->graphics.render.renderpass.postprocess);
+  this->reload_renderpass(*vk_struct->graphics.render.renderpass.geometry);
+  this->reload_renderpass(*vk_struct->graphics.render.renderpass.postprocess);
 
   //Reupdate sampler and descriptor set
   vk_render->update_render_texture();

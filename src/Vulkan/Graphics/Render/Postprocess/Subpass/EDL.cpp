@@ -89,7 +89,7 @@ void EDL::update_sampler(vk::structure::Pipeline& pipeline, vk::structure::Descr
   std::shared_ptr<vk::structure::Sampler> sampler_color = vk_sampler->query_sampler(descriptor_set, "tex_color");
   std::shared_ptr<vk::structure::Sampler> sampler_depth = vk_sampler->query_sampler(descriptor_set, "tex_depth");
 
-  vk::structure::Framebuffer& framebuffer = vk_struct->graphics.render.renderpass.geometry.framebuffer;
+  vk::structure::Framebuffer& framebuffer = vk_struct->graphics.render.renderpass.geometry->framebuffer;
   sampler_color->image = std::make_shared<vk::structure::Image>(framebuffer.color);
   sampler_depth->image = std::make_shared<vk::structure::Image>(framebuffer.depth);
 

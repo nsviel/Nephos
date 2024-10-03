@@ -79,7 +79,7 @@ void Imgui::create_context(){
   init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
   init_info.Subpass = 0;
   init_info.QueueFamily = vk_struct->core.device.queue.graphics.family_ID;
-  ImGui_ImplVulkan_Init(&init_info, vk_struct->graphics.render.renderpass.presentation.handle);
+  ImGui_ImplVulkan_Init(&init_info, vk_struct->graphics.render.renderpass.presentation->handle);
   ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
 
   //---------------------------

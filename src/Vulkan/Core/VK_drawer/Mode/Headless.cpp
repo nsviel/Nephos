@@ -21,7 +21,7 @@ Headless::~Headless(){}
 //Main function
 void Headless::draw_frame(){
   //---------------------------
-
+/*
   //vk_struct->core.queue.graphics->wait_for_idle();
   //vk_struct->core.queue.presentation->wait_for_idle();
   vk::structure::Semaphore* semaphore = nullptr;
@@ -48,7 +48,7 @@ void Headless::draw_frame(){
 
   //Submission
   vk_struct->core.queue.graphics->add_command(std::move(vec_command));
-
+*/
   //---------------------------
 }
 

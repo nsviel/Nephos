@@ -21,17 +21,17 @@ Renderpass::~Renderpass(){}
 
 //Main function
 void Renderpass::init(){
-  vk::structure::Renderpass& renderpass = vk_struct->graphics.render.renderpass.geometry;
-  renderpass.attachment.target = vk::renderpass::SHADER;
+  std::shared_ptr<vk::structure::Renderpass> renderpass = vk_struct->graphics.render.renderpass.geometry;
+  renderpass->attachment.target = vk::renderpass::SHADER;
   //---------------------------
 
-  vk_point->create_subpass(renderpass);
-  vk_line->create_subpass(renderpass);
-  vk_triangle->create_subpass(renderpass);
-  vk_dynamic_point->create_subpass(renderpass);
+  vk_point->create_subpass(*renderpass);
+  vk_line->create_subpass(*renderpass);
+  vk_triangle->create_subpass(*renderpass);
+  vk_dynamic_point->create_subpass(*renderpass);
 
   //---------------------------
-  vk_struct->core.drawer.vec_renderpass.push_back(&renderpass);
+  vk_struct->core.drawer.vec_renderpass.push_back(renderpass);
 }
 
 }
