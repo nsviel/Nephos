@@ -20,7 +20,7 @@ struct Structure{
 
   vk::structure::Instance instance;
   vk::structure::Viewport viewport;
-  vk::device::structure::Logical device;
+  vk::structure::Logical device;
   vk::structure::Swapchain swapchain;
   vk::data::structure::Data data;
   vk::pool::structure::Pool pools;

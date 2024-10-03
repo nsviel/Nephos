@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace vk{class Structure;}
-namespace vk::device::structure{class Physical;}
+namespace vk::structure{class Physical;}
 namespace vk::queue::structure{class Queue;}
 
 

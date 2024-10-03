@@ -49,7 +49,7 @@ void Manager::create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_
 }
 
 //Subfunction
-void Manager::find_queue_family_composition(vk::device::structure::Physical& physical_device){
+void Manager::find_queue_family_composition(vk::structure::Physical& physical_device){
   //---------------------------
 
   uint32_t nb_queue_family = 0;
@@ -86,7 +86,7 @@ void Manager::find_queue_family_composition(vk::device::structure::Physical& phy
 
   //---------------------------
 }
-bool Manager::suitability_for_presentation(vk::device::structure::Physical& physical_device){
+bool Manager::suitability_for_presentation(vk::structure::Physical& physical_device){
   //---------------------------
 
   bool is_device_suitable = false;
@@ -112,7 +112,7 @@ bool Manager::suitability_for_presentation(vk::device::structure::Physical& phys
   //---------------------------
   return is_device_suitable;
 }
-bool Manager::suitability_for_graphics(vk::device::structure::Physical& physical_device){
+bool Manager::suitability_for_graphics(vk::structure::Physical& physical_device){
   //---------------------------
 
   bool is_device_suitable = false;

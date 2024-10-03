@@ -5,14 +5,14 @@
 #include <vulkan/vulkan.h>
 
 
-namespace vk::device::structure{
+namespace vk::structure{
 
 struct Logical{
   //---------------------------
 
   VkDevice handle = VK_NULL_HANDLE;
   vk::queue::structure::Set queue;
-  vk::device::structure::Physical physical_device;
+  vk::structure::Physical physical_device;
 
   //---------------------------
 };

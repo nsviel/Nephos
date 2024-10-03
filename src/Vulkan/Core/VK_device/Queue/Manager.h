@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace vk{class Structure;}
-namespace vk::device::structure{class Physical;}
+namespace vk::structure{class Physical;}
 namespace vk::queue::structure{class Queue;}
 namespace vk::device::queue{class Assignment;}
 
@@ -24,9 +24,9 @@ public:
   void create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_info);
 
   //Subfunction
-  void find_queue_family_composition(vk::device::structure::Physical& physical_device);
-  bool suitability_for_presentation(vk::device::structure::Physical& physical_device);
-  bool suitability_for_graphics(vk::device::structure::Physical& physical_device);
+  void find_queue_family_composition(vk::structure::Physical& physical_device);
+  bool suitability_for_presentation(vk::structure::Physical& physical_device);
+  bool suitability_for_graphics(vk::structure::Physical& physical_device);
 
 private:
   vk::Structure* vk_struct;

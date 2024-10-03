@@ -6,7 +6,7 @@
 #include <vector>
 
 
-namespace vk::device::structure{
+namespace vk::structure{
 
 struct Physical{
   //---------------------------
