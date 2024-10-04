@@ -39,7 +39,7 @@ void Renderer::make_rendering(){
   //---------------------------
 
   //Recording
-  vk_graphical->acquire_swapchain_image(render);
+  if(!vk_graphical->acquire_swapchain_image(render)) return;
   vk_renderpass->record_all_renderpass(render);
   vk_graphical->copy_to_swapchain(render);
 

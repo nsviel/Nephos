@@ -58,6 +58,17 @@ void Descriptor::create_descriptor_set_pool(vk::structure::Pipeline& pipeline){
 
   //---------------------------
 }
+void Descriptor::reset_descriptor_set_pool(vk::structure::Pipeline& pipeline){
+  vk::pool::structure::Descriptor_set& pool = pipeline.descriptor.pool;
+  //---------------------------
+
+  //Clear all old command buffer
+  for(auto& descriptor_set : pool.tank){
+    descriptor_set->is_available = true;;
+  }
+
+  //---------------------------
+}
 void Descriptor::clean_descriptor_set_pool(vk::structure::Pipeline& pipeline){
   vk::pool::structure::Descriptor_set& pool = pipeline.descriptor.pool;
   //---------------------------

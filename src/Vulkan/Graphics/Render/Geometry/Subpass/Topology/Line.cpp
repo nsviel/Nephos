@@ -53,7 +53,6 @@ void Line::draw_subpass(vk::structure::Render& render){
     this->update_uniform(render);
     this->draw_data(render);
 
-    render.descriptor_set->is_available = true;
   }
 
   //---------------------------

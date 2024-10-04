@@ -28,6 +28,7 @@ public:
 
   //Subfunction
   void create_descriptor_set_pool(vk::structure::Pipeline& pipeline);
+  void reset_descriptor_set_pool(vk::structure::Pipeline& pipeline);
   void clean_descriptor_set_pool(vk::structure::Pipeline& pipeline);
   std::shared_ptr<vk::structure::Descriptor_set> query_descriptor_set(vk::structure::Pipeline& pipeline);
 

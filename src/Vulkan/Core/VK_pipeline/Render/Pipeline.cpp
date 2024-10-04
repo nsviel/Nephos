@@ -70,6 +70,7 @@ void Pipeline::add_pipeline_topology(vk::structure::Subpass& subpass, std::share
 void Pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline& pipeline){
   //---------------------------
 
+  vk_descriptor->reset_descriptor_set_pool(pipeline);
   vkCmdBindPipeline(command_buffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.handle);
 
   //---------------------------

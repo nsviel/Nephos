@@ -25,17 +25,14 @@ Graphical::Graphical(vk::Structure* vk_struct){
 Graphical::~Graphical(){}
 
 //Main function
-void Graphical::acquire_swapchain_image(vk::structure::Render& render){
+bool Graphical::acquire_swapchain_image(vk::structure::Render& render){
   //---------------------------
 
   render.semaphore = vk_semaphore->query_free_semaphore();
   bool sucess = this->acquire_next_image(render);
-  if(!sucess){
-    std::cout<<"[error] failed to acquire next image"<<std::endl;
-    exit(0);
-  }
 
   //---------------------------
+  return sucess;
 }
 
 //Subfunction

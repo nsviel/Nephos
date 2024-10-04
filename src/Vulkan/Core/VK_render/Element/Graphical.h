@@ -29,7 +29,7 @@ public:
 
 public:
   //Main function
-  void acquire_swapchain_image(vk::structure::Render& render);
+  bool acquire_swapchain_image(vk::structure::Render& render);
 
   //Subfunction
   bool acquire_next_image(vk::structure::Render& render);
