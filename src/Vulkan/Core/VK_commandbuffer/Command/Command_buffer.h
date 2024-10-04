@@ -7,7 +7,7 @@ namespace vk::structure{class Command_buffer;}
 namespace vk::pool::structure{class Command_buffer;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
-namespace vk::queue::structure{class Queue;}
+namespace vk::structure{class Queue;}
 namespace vk::queue{class Base;}
 namespace vk::structure{class Fence;}
 namespace vk::synchro{class Fence;}
@@ -27,7 +27,7 @@ public:
 
 public:
   //Main function
-  std::shared_ptr<vk::structure::Command_buffer> query_free_command_buffer(vk::queue::structure::Queue& queue);
+  std::shared_ptr<vk::structure::Command_buffer> query_free_command_buffer(vk::structure::Queue& queue);
   void submit_command_buffer(std::shared_ptr<vk::structure::Command_buffer> command_buffer, vk::queue::Base* queue);
   void start_command_buffer_primary(vk::structure::Command_buffer& command_buffer);
   void start_command_buffer_secondary(vk::structure::Renderpass* renderpass);

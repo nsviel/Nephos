@@ -30,7 +30,7 @@ struct Physical{
 
   std::vector<VkSurfaceFormatKHR> vec_surface_format;
   std::vector<VkPresentModeKHR> presentation_mode;
-  std::vector<vk::queue::structure::Family> vec_queue_family;
+  std::vector<vk::structure::Queue_family> vec_queue_family;
 
   //---------------------------
 };

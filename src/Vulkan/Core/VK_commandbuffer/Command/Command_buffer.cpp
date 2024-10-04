@@ -21,7 +21,7 @@ Command_buffer::Command_buffer(vk::Structure* vk_struct){
 Command_buffer::~Command_buffer(){}
 
 //Main function
-std::shared_ptr<vk::structure::Command_buffer> Command_buffer::query_free_command_buffer(vk::queue::structure::Queue& queue){
+std::shared_ptr<vk::structure::Command_buffer> Command_buffer::query_free_command_buffer(vk::structure::Queue& queue){
   //---------------------------
 
   vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(queue);

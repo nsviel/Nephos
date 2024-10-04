@@ -5,7 +5,7 @@
 
 namespace vk{class Structure;}
 namespace vk::structure{class Physical;}
-namespace vk::queue::structure{class Queue;}
+namespace vk::structure{class Queue;}
 
 
 namespace vk::device::queue{

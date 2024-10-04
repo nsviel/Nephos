@@ -5,7 +5,7 @@
 
 namespace vk{class Structure;}
 namespace vk::structure{class Physical;}
-namespace vk::queue::structure{class Queue;}
+namespace vk::structure{class Queue;}
 namespace vk::device::queue{class Assignment;}
 
 
@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-  void create_queue(vk::queue::structure::Queue& queue);
+  void create_queue(vk::structure::Queue& queue);
   void create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_info);
 
   //Subfunction

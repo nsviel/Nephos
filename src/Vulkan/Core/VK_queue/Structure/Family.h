@@ -4,9 +4,9 @@
 #include <vulkan/vulkan.h>
 
 
-namespace vk::queue::structure{
+namespace vk::structure{
 
-struct Family{
+struct Queue_family{
   //---------------------------
 
   int ID = -1;
@@ -20,7 +20,7 @@ struct Family{
   bool capable_presentation = 0;
 
   VkQueueFamilyProperties property = {};
-  std::vector<vk::queue::structure::Queue*> vec_queue;
+  std::vector<vk::structure::Queue*> vec_queue;
   std::vector<float> vec_priority;
 
   //---------------------------

@@ -94,7 +94,7 @@ void GPU::collect_vulkan_queue(){
 
   //---------------------------
 }
-void GPU::add_queue(vk::queue::structure::Queue& queue, int type){
+void GPU::add_queue(vk::structure::Queue& queue, int type){
   //---------------------------
 
   prf::hardware::structure::Queue prf_queue;

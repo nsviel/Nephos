@@ -19,7 +19,7 @@ Manager::Manager(vk::Structure* vk_struct){
 Manager::~Manager(){}
 
 //Main function
-void Manager::create_queue(vk::queue::structure::Queue& queue){
+void Manager::create_queue(vk::structure::Queue& queue){
   if(queue.family_ID == -1) return;
   //---------------------------
 
@@ -65,7 +65,7 @@ void Manager::find_queue_family_composition(vk::structure::Physical& physical_de
   // Count the number of each type of queue
   for(int i=0; i<nb_queue_family; i++){
     //Queue family properties
-    vk::queue::structure::Family queue_family;
+    vk::structure::Queue_family queue_family;
     queue_family.ID = i;
     queue_family.property = queue_families[i];
     queue_family.nb_queue = queue_family.property.queueCount;

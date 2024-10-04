@@ -9,9 +9,9 @@ namespace vk::queue::structure{
 struct Set{
   //---------------------------
 
-  vk::queue::structure::Queue graphics;
-  vk::queue::structure::Queue presentation;
-  vk::queue::structure::Queue transfer;
+  vk::structure::Queue graphics;
+  vk::structure::Queue presentation;
+  vk::structure::Queue transfer;
 
   //---------------------------
 };

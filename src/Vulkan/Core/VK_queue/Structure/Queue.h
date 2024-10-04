@@ -7,7 +7,7 @@
 #include <string>
 
 
-namespace vk::queue::structure{
+namespace vk::structure{
 
 struct Queue{
   //---------------------------
