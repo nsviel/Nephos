@@ -14,7 +14,7 @@ Submission::Submission(vk::Structure* vk_struct){
   this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
   this->vk_window = new vk::window::Window(vk_struct);
-  this->vk_drawer = new vk::draw::Graphical(vk_struct);
+  this->vk_recorder = new vk::draw::Recorder(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
 
@@ -28,7 +28,7 @@ void Submission::make_rendering(){
   //---------------------------
 
   //Rendering
-  vk_drawer->record_rendering(render);
+  vk_recorder->record_rendering(render);
 
   //Submission
   this->submit_rendering(render);

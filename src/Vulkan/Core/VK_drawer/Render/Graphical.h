@@ -29,14 +29,9 @@ public:
 
 public:
   //Main function
-  void record_rendering(vk::structure::Render& render);
   bool acquire_next_image(vk::structure::Render& render);
-  void record_renderpass(vk::structure::Render& render);
   void copy_to_swapchain(vk::structure::Render& render);
-
-  //Subfunction
-  void prepare_render(vk::structure::Render& render);
-  void prepare_command(vk::structure::Render& render);
+  void next_frame_ID();
 
 private:
   vk::Structure* vk_struct;
