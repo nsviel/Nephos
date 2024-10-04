@@ -29,6 +29,9 @@ public:
 
 public:
   //Main function
+  void acquire_swapchain_image(vk::structure::Render& render);
+
+  //Subfunction
   bool acquire_next_image(vk::structure::Render& render);
   void copy_to_swapchain(vk::structure::Render& render);
   void next_frame_ID();

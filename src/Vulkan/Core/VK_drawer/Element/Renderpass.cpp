@@ -13,7 +13,9 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_command = new vk::commandbuffer::Command_buffer(vk_struct);
   this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
-
+  this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
+  this->utl_chrono = new sys::timer::Chrono();
+  
   //---------------------------
 }
 Renderpass::~Renderpass(){}
@@ -22,14 +24,25 @@ Renderpass::~Renderpass(){}
 void Renderpass::run_renderpass(vk::structure::Render& render){
   //---------------------------
 
+  this->prepare_renderpass(render);
   this->start_renderpass(render);
   this->draw_subpass(render);
   this->stop_renderpass(render);
+  this->prepare_command(render);
 
   //---------------------------
 }
 
 //Subfunction
+void Renderpass::prepare_renderpass(vk::structure::Render& render){
+  //---------------------------
+
+  render.ts = utl_chrono->start_t();
+  render.command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
+  render.command_buffer->name = render.renderpass->name;
+
+  //---------------------------
+}
 void Renderpass::start_renderpass(vk::structure::Render& render){
   //---------------------------
 
@@ -93,6 +106,21 @@ void Renderpass::cmd_next_subset(vk::structure::Render& render){
     vkCmdNextSubpass(render.command_buffer->handle, VK_SUBPASS_CONTENTS_INLINE);
     render.subset_ID++;
   }
+
+  //---------------------------
+}
+void Renderpass::prepare_command(vk::structure::Render& render){
+  //---------------------------
+
+  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
+  command->semaphore_wait = render.semaphore->handle;
+  command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+  command->command_buffer = render.command_buffer;
+  render.semaphore = vk_semaphore->query_free_semaphore();
+  command->semaphore_done = render.semaphore->handle;
+  render.vec_command.push_back(std::move(command));
+
+  render.renderpass->duration = utl_chrono->stop_ms(render.ts);
 
   //---------------------------
 }
