@@ -11,7 +11,7 @@ Queue::Queue(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_submission = new vk::queue::presentation::Submission(vk_struct);
+  this->vk_pipeline = new vk::draw::Renderer(vk_struct);
 
   //---------------------------
   this->start_thread();
@@ -36,7 +36,7 @@ void Queue::thread_loop(){
   if(!thread_running) return;
 
   //Submit command
-  vk_submission->make_rendering();
+  vk_pipeline->make_rendering();
   queue.pop();
 
   //---------------------------
@@ -56,7 +56,7 @@ void Queue::make_rendering_thread(){
 void Queue::make_rendering(){
   //---------------------------
 
-  vk_submission->make_rendering();
+  vk_pipeline->make_rendering();
 
   //---------------------------
 }

@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::queue::presentation{
+namespace vk::draw{
 
 //Constructor / Destructor
 Submission::Submission(vk::Structure* vk_struct){
@@ -23,26 +23,6 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::make_rendering(){
-  vk::structure::Render render;
-  //---------------------------
-
-  //Rendering
-  vk_recorder->record_rendering(render);
-
-  //Submission
-  this->submit_rendering(render);
-  this->submit_presentation(render);
-  vk_swapchain->next_frame_ID();
-
-  //End rendering
-  vk_semaphore->reset_pool();
-  vk_imgui->glfw_new_frame();
-
-  //---------------------------
-}
-
-//Subfunction
 void Submission::submit_rendering(vk::structure::Render& render){
   //---------------------------
 

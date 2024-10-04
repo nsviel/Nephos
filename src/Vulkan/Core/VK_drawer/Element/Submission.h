@@ -1,8 +1,7 @@
 #pragma once
 
-#include <vulkan/vulkan.h>
+#include <memory>
 #include <vector>
-#include <thread>
 
 namespace vk{class Structure;}
 namespace vk::presentation{class Swapchain;}
@@ -18,7 +17,7 @@ namespace vk::structure{class Command;}
 namespace vk::structure{class Render;}
 
 
-namespace vk::queue::presentation{
+namespace vk::draw{
 
 class Submission
 {
