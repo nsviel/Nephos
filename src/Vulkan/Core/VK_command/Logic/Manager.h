@@ -3,13 +3,7 @@
 namespace vk{class Structure;}
 
 
-namespace vk::queue{
-
-enum Type{
-  GRAPHICS = 0,
-  PRESENTATION = 1,
-  TRANSFER = 2,
-};
+namespace vk::command{
 
 class Manager
 {

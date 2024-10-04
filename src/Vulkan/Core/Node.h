@@ -23,7 +23,7 @@ namespace vk::synchro{class Semaphore;}
 namespace vk::renderpass{class Renderpass;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
-namespace vk::queue{class Manager;}
+namespace vk::command{class Manager;}
 namespace utl::base{class Data;}
 namespace utl::base{class Pose;}
 namespace vk::draw{class Renderer;}
@@ -68,7 +68,7 @@ private:
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;
   vk::commandbuffer::Allocator* vk_allocator;
-  vk::queue::Manager* vk_queue;
+  vk::command::Manager* vk_command;
   vk::draw::Renderer* vk_renderer;
 };
 

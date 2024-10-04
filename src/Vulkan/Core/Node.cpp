@@ -29,7 +29,7 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_fence = new vk::synchro::Fence(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
-  this->vk_queue = new vk::queue::Manager(vk_struct);
+  this->vk_command = new vk::command::Manager(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_pipeline = new vk::compute::Pipeline(vk_struct);
   this->vk_renderer = new vk::draw::Renderer(vk_struct);
@@ -48,7 +48,7 @@ void Node::init(){
   vk_surface->init();
   vk_device->init();
   vk_allocator->init();
-  vk_queue->init();
+  vk_command->init();
   vk_pool->init();
   vk_fence->init_pool();
   vk_canvas->init();
@@ -76,7 +76,7 @@ void Node::clean(){
   vk_synchro->wait_idle_and_pause();
 
   vk_imgui->clean();
-  vk_queue->clean();
+  vk_command->clean();
   vk_renderpass->clean();
   vk_pipeline->clean();
   vk_swapchain->clean();

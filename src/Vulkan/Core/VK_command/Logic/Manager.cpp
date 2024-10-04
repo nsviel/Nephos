@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::queue{
+namespace vk::command{
 
 //Constructor / Destructor
 Manager::Manager(vk::Structure* vk_struct){
