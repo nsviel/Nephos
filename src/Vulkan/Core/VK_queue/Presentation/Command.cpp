@@ -1,4 +1,4 @@
-#include "Queue.h"
+#include "Command.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::queue::presentation{
 
 //Constructor / Destructor
-Queue::Queue(vk::Structure* vk_struct){
+Command::Command(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -17,10 +17,10 @@ Queue::Queue(vk::Structure* vk_struct){
   //---------------------------
   this->start_thread();
 }
-Queue::~Queue(){}
+Command::~Command(){}
 
 //Main function
-void Queue::thread_init(){
+void Command::thread_init(){
   //---------------------------
 
   vk_struct->core.device.queue.presentation.type = vk::queue::PRESENTATION;
@@ -28,7 +28,7 @@ void Queue::thread_init(){
 
   //---------------------------
 }
-void Queue::thread_loop(){
+void Command::thread_loop(){
   //---------------------------
 
   //Wait for command
@@ -44,7 +44,7 @@ void Queue::thread_loop(){
 }
 
 //Subfunction
-void Queue::make_rendering_thread(){
+void Command::make_rendering_thread(){
   //---------------------------
 
   mutex.lock();
@@ -54,7 +54,7 @@ void Queue::make_rendering_thread(){
 
   //---------------------------
 }
-void Queue::submit_presentation(vk::structure::Render& render){
+void Command::submit_presentation(vk::structure::Render& render){
   //---------------------------
 
   vk_submission->submit_presentation(render);

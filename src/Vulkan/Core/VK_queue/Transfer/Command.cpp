@@ -1,4 +1,4 @@
-#include "Queue.h"
+#include "Command.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,7 +8,7 @@
 namespace vk::queue::transfer{
 
 //Constructor / Destructor
-Queue::Queue(vk::Structure* vk_struct){
+Command::Command(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -17,10 +17,10 @@ Queue::Queue(vk::Structure* vk_struct){
   //---------------------------
   this->start_thread();
 }
-Queue::~Queue(){}
+Command::~Command(){}
 
 //Main function
-void Queue::thread_init(){
+void Command::thread_init(){
   //---------------------------
 
   vk_struct->core.device.queue.transfer.type = vk::queue::TRANSFER;
@@ -28,7 +28,7 @@ void Queue::thread_init(){
 
   //---------------------------
 }
-void Queue::thread_loop(){
+void Command::thread_loop(){
   //---------------------------
 
   //Wait for command
@@ -44,7 +44,7 @@ void Queue::thread_loop(){
 }
 
 //Subfunction
-void Queue::add_command(std::unique_ptr<vk::structure::Command> command){
+void Command::add_command(std::unique_ptr<vk::structure::Command> command){
   mutex.lock();
   //---------------------------
 

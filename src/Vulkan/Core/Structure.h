@@ -11,7 +11,7 @@
 #include <Vulkan/Core/VK_pipeline/Structure/Structure.h>
 #include <Vulkan/Core/VK_presentation/Structure/Structure.h>
 #include <Vulkan/Core/VK_validation/Structure.h>
-#include <Vulkan/Core/VK_drawer/Structure/Structure.h>
+#include <Vulkan/Core/VK_render/Structure/Structure.h>
 
 
 namespace vk::core{

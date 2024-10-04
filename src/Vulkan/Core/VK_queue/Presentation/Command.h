@@ -12,12 +12,12 @@ namespace vk::structure{class Render;}
 
 namespace vk::queue::presentation{
 
-class Queue : public vk::queue::Base
+class Command : public vk::queue::Base
 {
 public:
   //Constructor / Destructor
-  Queue(vk::Structure* vk_struct);
-  ~Queue();
+  Command(vk::Structure* vk_struct);
+  ~Command();
 
 public:
   //Main function
