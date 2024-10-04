@@ -37,6 +37,8 @@ private:
   vk::Structure* vk_struct;
   vk::synchro::Fence* vk_fence;
   vk::instance::Query* vk_query;
+
+  std::vector<VkSubmitInfo> vec_info;
 };
 
 }

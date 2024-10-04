@@ -24,6 +24,7 @@ public:
   void create_fence(vk::structure::Fence& fence);
   void clean_fence(vk::structure::Fence& fence);
   void reset_fence(vk::structure::Fence& fence);
+  void wait_fence(vk::structure::Fence& fence);
   bool is_fence_available(vk::structure::Fence& fence);
   std::shared_ptr<vk::structure::Fence> query_free_fence();
 

@@ -52,6 +52,7 @@ void Command::add_command(std::unique_ptr<vk::structure::Command> command){
   mutex.lock();
 
   std::shared_ptr<vk::structure::Command_set> set = std::make_shared<vk::structure::Command_set>();
+  set->fence = vk_fence->query_free_fence();
   set->vec_command.push_back(std::move(command));
   queue.push(set);
 
@@ -67,6 +68,7 @@ void Command::add_command(std::vector<std::unique_ptr<vk::structure::Command>> v
   mutex.lock();
 
   std::shared_ptr<vk::structure::Command_set> set = std::make_shared<vk::structure::Command_set>();
+  set->fence = vk_fence->query_free_fence();
   set->vec_command = std::move(vec_command);;
   queue.push(set);
 
@@ -80,6 +82,10 @@ void Command::add_command(std::shared_ptr<vk::structure::Command_set> set){
   //---------------------------
 
   mutex.lock();
+
+  if(!set->fence){
+    set->fence = vk_fence->query_free_fence();
+  }
 
   queue.push(set);
 

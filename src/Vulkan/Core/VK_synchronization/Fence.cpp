@@ -81,6 +81,14 @@ void Fence::reset_fence(vk::structure::Fence& fence){
 
   //---------------------------
 }
+void Fence::wait_fence(vk::structure::Fence& fence){
+  //---------------------------
+
+  vkWaitForFences(vk_struct->core.device.handle, 1, &fence.handle, VK_TRUE, UINT64_MAX);
+  this->reset_fence(fence);
+
+  //---------------------------
+}
 bool Fence::is_fence_available(vk::structure::Fence& fence){
   //---------------------------
 

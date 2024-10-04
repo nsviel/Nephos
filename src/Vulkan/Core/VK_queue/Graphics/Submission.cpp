@@ -34,7 +34,7 @@ void Submission::process_command(std::shared_ptr<vk::structure::Command_set> set
 void Submission::build_submission(std::shared_ptr<vk::structure::Command_set> set){
   //---------------------------
 
-  set->vec_info.clear();
+  vec_info.clear();
   for(auto& command: set->vec_command){
     VkSubmitInfo submit_info{};
     submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -64,7 +64,7 @@ void Submission::build_submission(std::shared_ptr<vk::structure::Command_set> se
       std::cout<<"[error] command buffer is VK_NULL"<<std::endl;
     }
 
-    set->vec_info.push_back(submit_info);
+    vec_info.push_back(submit_info);
   }
 
   //---------------------------
@@ -72,16 +72,15 @@ void Submission::build_submission(std::shared_ptr<vk::structure::Command_set> se
 void Submission::make_submission(std::shared_ptr<vk::structure::Command_set> set){
   //---------------------------
 
-  auto fence = vk_fence->query_free_fence();
+  //auto fence = vk_fence->query_free_fence();
 
   VkQueue queue = vk_struct->core.device.queue.graphics.handle;
-  VkResult result = vkQueueSubmit(queue, set->vec_info.size(), set->vec_info.data(), fence->handle);
+  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), set->fence->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
   }
 
-  vkWaitForFences(vk_struct->core.device.handle, 1, &fence->handle, VK_TRUE, UINT64_MAX);
-  vk_fence->reset_fence(*fence);
+  vk_fence->wait_fence(*set->fence);
 
   //---------------------------
 }
