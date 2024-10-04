@@ -32,12 +32,12 @@ void Image::insert_image(utl::base::Data& data, std::shared_ptr<utl::base::Image
   if(!vk_object) return;
 
   //Check if image already inserted
-  auto vk_texture = vk_retriever->retrieve_vk_texture(*vk_object, image->name);
-  if(vk_texture) return;
+  auto texture = vk_retriever->retrieve_vk_texture(*vk_object, image->name);
+  if(texture) return;
 
   //Create and insert texture
-  auto texture = create_texture(image);
-  vk_object->map_texture[image->name] = texture;
+  auto new_texture = create_texture(image);
+  vk_object->map_texture[image->name] = new_texture;
 
   //---------------------------
 }
@@ -54,12 +54,16 @@ void Image::insert_image(std::shared_ptr<utl::base::Image> image){
 
   //---------------------------
 }
-void Image::update_image(std::shared_ptr<utl::base::Image> image){
+void Image::update_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
   if(!vk_ressource->check_texture(image)) return;
   //---------------------------
 
   //Retrieve data vk object
-  auto texture = vk_retriever->retrieve_vk_texture(*image);
+  auto vk_object = vk_retriever->retrieve_vk_object(data);
+  if(!vk_object) return;
+
+  //Retrieve data vk object
+  auto texture = vk_retriever->retrieve_vk_texture(*vk_object, image->name);
   if(!texture) return;
 
   //Check if size hasn't changed

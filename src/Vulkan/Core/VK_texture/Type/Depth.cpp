@@ -34,21 +34,25 @@ void Depth::insert_depth(utl::base::Data& data, std::shared_ptr<utl::base::Depth
   if(!vk_object) return;
 
   //Check if image already inserted
-  auto vk_texture = vk_retriever->retrieve_vk_texture(*vk_object, depth->name);
-  if(vk_texture) return;
+  auto texture = vk_retriever->retrieve_vk_texture(*vk_object, depth->name);
+  if(texture) return;
 
   //Create and insert texture
-  auto texture = create_texture(depth);
-  vk_object->map_texture[depth->name] = texture;
+  auto new_texture = create_texture(depth);
+  vk_object->map_texture[depth->name] = new_texture;
 
   //---------------------------
 }
-void Depth::update_depth(std::shared_ptr<utl::base::Depth> depth){
+void Depth::update_depth(utl::base::Data& data, std::shared_ptr<utl::base::Depth> depth){
   if(!vk_ressource->check_texture(depth)) return;
   //---------------------------
 
   //Retrieve data vk object
-  auto texture = vk_retriever->retrieve_vk_texture(*depth);
+  auto vk_object = vk_retriever->retrieve_vk_object(data);
+  if(!vk_object) return;
+
+  //Retrieve data vk object
+  auto texture = vk_retriever->retrieve_vk_texture(*vk_object, depth->name);
   if(!texture) return;
 
   //Check if size hasn't changed

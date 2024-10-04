@@ -54,7 +54,7 @@ void Point::draw_subpass(vk::structure::Render& render){
 
     render.object = vk_object;
 
-
+/*
     vk::compute::dtc::Recorder recorder(vk_struct);
     recorder.run_compute(*vk_object);
 
@@ -64,7 +64,7 @@ void Point::draw_subpass(vk::structure::Render& render){
     this->update_uniform(render);
     this->update_storage(render);
     this->draw_data(render);
-
+*/
   }
 
   //---------------------------

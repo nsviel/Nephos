@@ -35,7 +35,7 @@ void Image::extract_data(dat::base::Sensor& sensor){
   tasker->task_begin("depth");
   k4n_depth->extract_data(*k4n_sensor);
   tasker->task_end("depth");
-
+//if(sensor.data->name == "versaille_2") return;
   //Color data
   tasker->task_begin("color");
   k4n_color->extract_data(*k4n_sensor);

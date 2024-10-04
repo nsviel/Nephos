@@ -30,7 +30,7 @@ public:
   //Main function
   void insert_storage(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage);
   void insert_storage_empty(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage);
-  void update_storage(std::shared_ptr<utl::base::Storage> storage);
+  void update_storage(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage);
 
   //Subfunction
   std::shared_ptr<vk::structure::Texture> create_texture(std::shared_ptr<utl::base::Storage> storage);

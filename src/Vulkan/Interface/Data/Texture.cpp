@@ -26,24 +26,24 @@ void Texture::insert_image(utl::base::Data& data, std::shared_ptr<utl::base::Ima
 void Texture::insert_image(std::shared_ptr<utl::base::Image> image){
   vk_tex_image->insert_image(image);
 }
-void Texture::update_image(std::shared_ptr<utl::base::Image> image){
-  vk_tex_image->update_image(image);
+void Texture::update_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
+  vk_tex_image->update_image(data, image);
 }
 
 //Depth
 void Texture::insert_depth(utl::base::Data& data, std::shared_ptr<utl::base::Depth> depth){
   vk_tex_depth->insert_depth(data, depth);
 }
-void Texture::update_depth(std::shared_ptr<utl::base::Depth> depth){
-  vk_tex_depth->update_depth(depth);
+void Texture::update_depth(utl::base::Data& data, std::shared_ptr<utl::base::Depth> depth){
+  vk_tex_depth->update_depth(data, depth);
 }
 
 //Storage
 void Texture::insert_storage(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage){
   vk_tex_storage->insert_storage(data, storage);
 }
-void Texture::update_storage(std::shared_ptr<utl::base::Storage> storage){
-  vk_tex_storage->update_storage(storage);
+void Texture::update_storage(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage){
+  vk_tex_storage->update_storage(data, storage);
 }
 
 

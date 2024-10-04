@@ -29,7 +29,7 @@ public:
 public:
   //Main function
   void insert_depth(utl::base::Data& data, std::shared_ptr<utl::base::Depth> depth);
-  void update_depth(std::shared_ptr<utl::base::Depth> depth);
+  void update_depth(utl::base::Data& data, std::shared_ptr<utl::base::Depth> depth);
 
   //Subfunction
   std::shared_ptr<vk::structure::Texture> create_texture(std::shared_ptr<utl::base::Depth> depth);

@@ -29,7 +29,7 @@ public:
   //Main function
   void insert_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image);
   void insert_image(std::shared_ptr<utl::base::Image> image);
-  void update_image(std::shared_ptr<utl::base::Image> image);
+  void update_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image);
 
   //Subfunction
   std::shared_ptr<vk::structure::Texture> create_texture(std::shared_ptr<utl::base::Image> image);

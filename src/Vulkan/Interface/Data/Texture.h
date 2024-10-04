@@ -27,15 +27,15 @@ public:
   //Image
   void insert_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> utl_image);
   void insert_image(std::shared_ptr<utl::base::Image> image);
-  void update_image(std::shared_ptr<utl::base::Image> image);
+  void update_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image);
 
   //Depth
   void insert_depth(utl::base::Data& data, std::shared_ptr<utl::base::Depth> depth);
-  void update_depth(std::shared_ptr<utl::base::Depth> depth);
+  void update_depth(utl::base::Data& data, std::shared_ptr<utl::base::Depth> depth);
 
   //Storage
   void insert_storage(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage);
-  void update_storage(std::shared_ptr<utl::base::Storage> storage);
+  void update_storage(utl::base::Data& data, std::shared_ptr<utl::base::Storage> storage);
 
 private:
   vk::Structure* vk_struct;

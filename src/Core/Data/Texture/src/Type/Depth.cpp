@@ -36,7 +36,7 @@ void Depth::add_depth(dat::base::Entity& entity, std::shared_ptr<utl::base::Dept
   if(it == data.map_depth.end()){
     this->insert_depth(entity, depth);
   }else{
-    vk_texture->update_depth(depth);
+    vk_texture->update_depth(data, depth);
   }
 
   //----------------------------
