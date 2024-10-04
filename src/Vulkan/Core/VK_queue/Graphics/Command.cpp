@@ -51,7 +51,7 @@ void Command::add_command(std::unique_ptr<vk::structure::Command> command){
 
   mutex.lock();
 
-  vk::structure::Command_set* set = new vk::structure::Command_set();
+  std::shared_ptr<vk::structure::Command_set> set = std::make_shared<vk::structure::Command_set>();
   set->vec_command.push_back(std::move(command));
   queue.push(set);
 
@@ -66,7 +66,7 @@ void Command::add_command(std::vector<std::unique_ptr<vk::structure::Command>> v
 
   mutex.lock();
 
-  vk::structure::Command_set* set = new vk::structure::Command_set();
+  std::shared_ptr<vk::structure::Command_set> set = std::make_shared<vk::structure::Command_set>();
   set->vec_command = std::move(vec_command);;
   queue.push(set);
 
@@ -75,7 +75,7 @@ void Command::add_command(std::vector<std::unique_ptr<vk::structure::Command>> v
 
   //---------------------------
 }
-void Command::add_command(vk::structure::Command_set* set){
+void Command::add_command(std::shared_ptr<vk::structure::Command_set> set){
   if(vk_struct->core.command.standby) return;
   //---------------------------
 

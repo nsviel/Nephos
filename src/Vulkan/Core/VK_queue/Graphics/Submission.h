@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vulkan/vulkan.h>
+#include <memory>
 #include <vector>
 #include <thread>
 #include <mutex>
@@ -25,12 +26,12 @@ public:
 
 public:
   //Main function
-  void process_command(vk::structure::Command_set* set);
+  void process_command(std::shared_ptr<vk::structure::Command_set> set);
 
   //Subfunction
-  void build_submission(vk::structure::Command_set* set);
-  void make_submission(vk::structure::Command_set* set);
-  void post_submission(vk::structure::Command_set* set);
+  void build_submission(std::shared_ptr<vk::structure::Command_set> set);
+  void make_submission(std::shared_ptr<vk::structure::Command_set> set);
+  void post_submission(std::shared_ptr<vk::structure::Command_set> set);
 
 private:
   vk::Structure* vk_struct;

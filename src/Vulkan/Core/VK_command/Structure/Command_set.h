@@ -22,14 +22,12 @@ struct Command_set{
     }
     cv.notify_all();
   }
-
   std::mutex mutex;
   std::condition_variable cv;
   std::vector<VkSubmitInfo> vec_info;
-  std::vector< std::unique_ptr<vk::structure::Command> > vec_command;
-  VkSemaphore semaphore = VK_NULL_HANDLE;
-  bool supress = true;
   bool done = false;
+
+  std::vector< std::unique_ptr<vk::structure::Command> > vec_command;
 
   //---------------------------
 };

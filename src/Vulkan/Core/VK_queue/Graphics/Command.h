@@ -31,14 +31,14 @@ public:
   //Subfunction
   void add_command(std::unique_ptr<vk::structure::Command> command);
   void add_command(std::vector<std::unique_ptr<vk::structure::Command>> vec_command);
-  void add_command(vk::structure::Command_set* set);
+  void add_command(std::shared_ptr<vk::structure::Command_set> set);
 
 private:
   vk::Structure* vk_struct;
   vk::synchro::Fence* vk_fence;
   vk::queue::graphics::Submission* vk_submission;
 
-  std::queue<vk::structure::Command_set*> queue;
+  std::queue<std::shared_ptr<vk::structure::Command_set>> queue;
 };
 
 }

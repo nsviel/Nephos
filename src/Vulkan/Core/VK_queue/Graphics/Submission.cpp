@@ -20,7 +20,7 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::process_command(vk::structure::Command_set* set){
+void Submission::process_command(std::shared_ptr<vk::structure::Command_set> set){
   //---------------------------
 
   this->build_submission(set);
@@ -31,7 +31,7 @@ void Submission::process_command(vk::structure::Command_set* set){
 }
 
 //Subfunction
-void Submission::build_submission(vk::structure::Command_set* set){
+void Submission::build_submission(std::shared_ptr<vk::structure::Command_set> set){
   //---------------------------
 
   set->vec_info.clear();
@@ -69,7 +69,7 @@ void Submission::build_submission(vk::structure::Command_set* set){
 
   //---------------------------
 }
-void Submission::make_submission(vk::structure::Command_set* set){
+void Submission::make_submission(std::shared_ptr<vk::structure::Command_set> set){
   //---------------------------
 
   auto fence = vk_fence->query_free_fence();
@@ -85,7 +85,7 @@ void Submission::make_submission(vk::structure::Command_set* set){
 
   //---------------------------
 }
-void Submission::post_submission(vk::structure::Command_set* set){
+void Submission::post_submission(std::shared_ptr<vk::structure::Command_set> set){
   //---------------------------
 
   //Reset all command
@@ -102,11 +102,7 @@ void Submission::post_submission(vk::structure::Command_set* set){
   }
   set->vec_command.clear();
 
-  if(set->supress){
-    delete set;
-  }else{
-    set->mark_as_done();
-  }
+  set->mark_as_done();
 
   //---------------------------
 }

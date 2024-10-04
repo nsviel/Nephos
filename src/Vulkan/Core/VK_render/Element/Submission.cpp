@@ -22,13 +22,10 @@ Submission::~Submission(){}
 void Submission::submit_rendering(vk::structure::Render& render){
   //---------------------------
 
-  vk::structure::Command_set* set = new vk::structure::Command_set();
+  std::shared_ptr<vk::structure::Command_set> set = std::make_shared<vk::structure::Command_set>();
   set->vec_command = std::move(render.vec_command);
-  set->semaphore = render.semaphore->handle;
-  set->supress = false;
   vk_struct->core.command.graphics->add_command(set);
   set->wait_until_done();
-  delete set;
 
   //---------------------------
 }
