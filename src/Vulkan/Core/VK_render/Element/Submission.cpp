@@ -26,7 +26,7 @@ void Submission::submit_rendering(vk::structure::Render& render){
   set->vec_command = std::move(render.vec_command);
   set->semaphore = render.semaphore->handle;
   set->supress = false;
-  vk_struct->core.queue.graphics->add_command(set);
+  vk_struct->core.command.graphics->add_command(set);
   set->wait_until_done();
   delete set;
 
@@ -36,7 +36,7 @@ void Submission::submit_presentation(vk::structure::Render& render){
   vk::structure::Swapchain& swapchain = vk_struct->core.swapchain;
   //---------------------------
 
-  vk_struct->core.queue.presentation->submit_presentation(render);
+  vk_struct->core.command.presentation->submit_presentation(render);
 
   //---------------------------
 }

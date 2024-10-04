@@ -5,7 +5,7 @@
 #include <Vulkan/Core/VK_queue/Presentation/Command.h>
 
 
-namespace vk::queue{
+namespace vk::command{
 
 struct Structure{
   //---------------------------

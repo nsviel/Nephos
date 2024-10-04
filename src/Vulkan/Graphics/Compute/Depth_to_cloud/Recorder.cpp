@@ -42,7 +42,7 @@ void Recorder::run_compute(vk::structure::Object& vk_object){
 
   //End command buffer
   vk_command->end_command_buffer(*command_buffer);
-  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.command.graphics);
 
   //std::this_thread::sleep_for(std::chrono::milliseconds(2));
   descriptor_set->is_available = true;

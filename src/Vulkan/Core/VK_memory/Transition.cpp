@@ -30,7 +30,7 @@ void Transition::image_layout_transition(vk::structure::Image& image, VkImageLay
 
   //End and submit command
   vk_command->end_command_buffer(*command_buffer);
-  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.command.graphics);
 
   //---------------------------
 }

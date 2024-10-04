@@ -100,7 +100,7 @@ void Font::font_build(){
   ImGui_ImplVulkan_CreateFontsTexture(command_buffer->handle);
 
   vk_command->end_command_buffer(*command_buffer);
-  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.command.graphics);
 
   //---------------------------
 }

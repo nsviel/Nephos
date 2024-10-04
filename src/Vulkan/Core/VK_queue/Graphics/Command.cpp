@@ -46,7 +46,7 @@ void Command::thread_loop(){
 
 //Subfunction
 void Command::add_command(std::unique_ptr<vk::structure::Command> command){
-  if(vk_struct->core.queue.standby) return;
+  if(vk_struct->core.command.standby) return;
   //---------------------------
 
   mutex.lock();
@@ -61,7 +61,7 @@ void Command::add_command(std::unique_ptr<vk::structure::Command> command){
   //---------------------------
 }
 void Command::add_command(std::vector<std::unique_ptr<vk::structure::Command>> vec_command){
-  if(vk_struct->core.queue.standby) return;
+  if(vk_struct->core.command.standby) return;
   //---------------------------
 
   mutex.lock();
@@ -76,7 +76,7 @@ void Command::add_command(std::vector<std::unique_ptr<vk::structure::Command>> v
   //---------------------------
 }
 void Command::add_command(vk::structure::Command_set* set){
-  if(vk_struct->core.queue.standby) return;
+  if(vk_struct->core.command.standby) return;
   //---------------------------
 
   mutex.lock();

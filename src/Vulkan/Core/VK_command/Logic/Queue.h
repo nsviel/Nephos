@@ -5,12 +5,12 @@ namespace vk{class Structure;}
 
 namespace vk::command{
 
-class Manager
+class Queue
 {
 public:
   //Constructor / Destructor
-  Manager(vk::Structure* vk_struct);
-  ~Manager();
+  Queue(vk::Structure* vk_struct);
+  ~Queue();
 
 public:
   //Main function

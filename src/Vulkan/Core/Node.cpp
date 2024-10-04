@@ -29,7 +29,7 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_fence = new vk::synchro::Fence(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
-  this->vk_command = new vk::command::Manager(vk_struct);
+  this->vk_command = new vk::command::Queue(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_pipeline = new vk::compute::Pipeline(vk_struct);
   this->vk_renderer = new vk::draw::Renderer(vk_struct);

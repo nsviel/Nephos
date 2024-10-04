@@ -123,14 +123,18 @@ void Renderpass::cmd_next_subset(vk::structure::Render& render){
 void Renderpass::prepare_command(vk::structure::Render& render){
   //---------------------------
 
+  //Create command
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->semaphore_wait = render.semaphore->handle;
   command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
   command->command_buffer = render.command_buffer;
+
+  //Semaphore
+  command->semaphore_wait = render.semaphore->handle;
   render.semaphore = vk_semaphore->query_free_semaphore();
   command->semaphore_done = render.semaphore->handle;
-  render.vec_command.push_back(std::move(command));
 
+  //Store command
+  render.vec_command.push_back(std::move(command));
   render.renderpass->duration = utl_chrono->stop_ms(render.ts);
 
   //---------------------------

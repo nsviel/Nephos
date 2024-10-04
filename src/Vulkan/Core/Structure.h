@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/Core/VK_data/Structure/Structure.h>
-#include <Vulkan/Core/VK_queue/Structure/Structure.h>
+#include <Vulkan/Core/VK_command/Structure/Structure.h>
 #include <Vulkan/Core/VK_device/Structure/Logical.h>
 #include <Vulkan/Core/VK_instance/Structure/Instance.h>
 #include <Vulkan/Core/VK_presentation/Structure/Swapchain.h>
@@ -25,7 +25,7 @@ struct Structure{
   vk::structure::Swapchain swapchain;
   vk::data::Structure data;
   vk::pool::Structure pools;
-  vk::queue::Structure queue;
+  vk::command::Structure command;
   vk::profiler::Structure profiler;
   vk::pipeline::Structure pipeline;
   vk::presentation::Structure presentation;

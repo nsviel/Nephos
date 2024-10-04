@@ -20,8 +20,8 @@ Synchro::~Synchro(){}
 void Synchro::wait_idle(){
   //---------------------------
 
-  vk_struct->core.queue.graphics->set_pause(true);
-  vk_struct->core.queue.transfer->set_pause(true);
+  vk_struct->core.command.graphics->set_pause(true);
+  vk_struct->core.command.transfer->set_pause(true);
   vkDeviceWaitIdle(vk_struct->core.device.handle);
 
   //---------------------------
@@ -29,9 +29,9 @@ void Synchro::wait_idle(){
 void Synchro::wait_idle_and_pause(){
   //---------------------------
 
-  vk_struct->core.queue.standby = true;
-  vk_struct->core.queue.graphics->set_pause(true);
-  vk_struct->core.queue.transfer->set_pause(true);
+  vk_struct->core.command.standby = true;
+  vk_struct->core.command.graphics->set_pause(true);
+  vk_struct->core.command.transfer->set_pause(true);
   vkDeviceWaitIdle(vk_struct->core.device.handle);
 
   //---------------------------
@@ -39,9 +39,9 @@ void Synchro::wait_idle_and_pause(){
 void Synchro::end_idle(){
   //---------------------------
 
-  vk_struct->core.queue.transfer->set_pause(false);
-  vk_struct->core.queue.graphics->set_pause(false);
-  vk_struct->core.queue.standby = false;
+  vk_struct->core.command.transfer->set_pause(false);
+  vk_struct->core.command.graphics->set_pause(false);
+  vk_struct->core.command.standby = false;
 
   //---------------------------
 }

@@ -51,7 +51,7 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture& texture, void* data, 
 
   //End and submit command
   vk_command->end_command_buffer(*command_buffer);
-  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.command.graphics);
 
   //---------------------------
 }
@@ -76,7 +76,7 @@ void Transfer::copy_gpu_image_to_buffer(vk::structure::Image& image, VkBuffer bu
 
   //End and submit command buffer
   vk_command->end_command_buffer(*command_buffer);
-  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.command.graphics);
 
   //---------------------------
 }
@@ -110,7 +110,7 @@ void Transfer::blit_gpu_image_to_gpu_image(vk::structure::Image& image_src, vk::
 
   //End and submit command buffer
   vk_command->end_command_buffer(*command_buffer);
-  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.command.graphics);
 
   //---------------------------
 }
@@ -141,7 +141,7 @@ void Transfer::copy_gpu_image_to_gpu_image_standalone(vk::structure::Image& imag
 
   //End and submit command buffer
   vk_command->end_command_buffer(*command_buffer);
-  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.graphics);
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.command.graphics);
 
   //---------------------------
 }
@@ -218,7 +218,7 @@ void Transfer::copy_vertex_to_gpu(vk::structure::Buffer& buffer, vk::structure::
   vkCmdCopyBuffer(command_buffer->handle, stagger.vbo, buffer.vbo, 1, &region);
 
   vk_command->end_command_buffer(*command_buffer);
-  vk_command->submit_command_buffer(command_buffer, vk_struct->core.queue.transfer);
+  vk_command->submit_command_buffer(command_buffer, vk_struct->core.command.transfer);
 
   //---------------------------
 }
