@@ -33,7 +33,7 @@ void Submission::make_rendering(){
   //Submission
   this->submit_rendering(render);
   this->submit_presentation(render);
-  this->next_frame_ID();
+  vk_swapchain->next_frame_ID();
 
   //End rendering
   vk_semaphore->reset_pool();
@@ -82,16 +82,6 @@ void Submission::submit_presentation(vk::structure::Render& render){
   }else if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to present swap chain image!");
   }
-
-  //---------------------------
-}
-void Submission::next_frame_ID(){
-  vk::structure::Swapchain* swapchain = &vk_struct->core.swapchain;
-  //---------------------------
-
-  int current_ID = swapchain->current_ID;
-  current_ID = (current_ID + 1) % vk_struct->core.instance.max_frame_inflight;
-  swapchain->current_ID = current_ID;
 
   //---------------------------
 }

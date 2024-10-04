@@ -181,5 +181,15 @@ void Swapchain::find_swapchain_presentation_mode(){
   //---------------------------
   vk_struct->core.swapchain.presentation_mode = presentation_mode;
 }
+void Swapchain::next_frame_ID(){
+  vk::structure::Swapchain& swapchain = vk_struct->core.swapchain;
+  //---------------------------
+
+  int current_ID = swapchain.current_ID;
+  current_ID = (current_ID + 1) % vk_struct->core.instance.max_frame_inflight;
+  swapchain.current_ID = current_ID;
+
+  //---------------------------
+}
 
 }

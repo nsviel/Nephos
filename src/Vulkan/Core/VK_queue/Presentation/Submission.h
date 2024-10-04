@@ -34,7 +34,6 @@ public:
   //Subfunction
   void submit_rendering(vk::structure::Render& render);
   void submit_presentation(vk::structure::Render& render);
-  void next_frame_ID();
 
 private:
   vk::Structure* vk_struct;
