@@ -2,6 +2,7 @@
 
 #include <Utility/Base/Class/Node.h>
 
+namespace vk{class Structure;}
 namespace vk::presentation{class Surface;}
 namespace vk::presentation{class Swapchain;}
 namespace vk::presentation{class Frame;}
@@ -20,13 +21,12 @@ namespace vk::commandbuffer{class Pool;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
 namespace vk::renderpass{class Renderpass;}
-namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
 namespace vk::queue{class Manager;}
 namespace utl::base{class Data;}
 namespace utl::base{class Pose;}
-namespace vk::draw{class Graphical;}
+namespace vk::draw{class Renderer;}
 namespace vk::synchro{class Synchro;}
 namespace vk::compute{class Pipeline;}
 
@@ -43,6 +43,7 @@ public:
 public:
   //Main function
   void init();
+  void loop();
   void clean();
 
 private:
@@ -68,7 +69,7 @@ private:
   vk::synchro::Semaphore* vk_semaphore;
   vk::commandbuffer::Allocator* vk_allocator;
   vk::queue::Manager* vk_queue;
-  vk::draw::Graphical* vk_drawer;
+  vk::draw::Renderer* vk_renderer;
 };
 
 }

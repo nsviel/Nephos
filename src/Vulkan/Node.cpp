@@ -41,7 +41,6 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  vk_render->loop();
   vk_core->loop();
   vk_window->loop();
 

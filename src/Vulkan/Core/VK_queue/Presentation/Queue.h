@@ -24,7 +24,6 @@ public:
 
   //Subfunction
   void make_rendering_thread();
-  void make_rendering();
 
 private:
   vk::Structure* vk_struct;

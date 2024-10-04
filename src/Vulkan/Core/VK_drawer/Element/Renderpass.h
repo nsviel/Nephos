@@ -22,7 +22,8 @@ public:
 
 public:
   //Main function
-  void run_renderpass(vk::structure::Render& render);
+  void record_all_renderpass(vk::structure::Render& render);
+  void record_renderpass(vk::structure::Render& render);
 
   //Subfunction
   void prepare_renderpass(vk::structure::Render& render);

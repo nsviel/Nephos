@@ -20,7 +20,6 @@ public:
 public:
   //Main function
   void init();
-  void loop();
 
 private:
   vk::Structure* vk_struct;

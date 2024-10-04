@@ -32,6 +32,7 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_queue = new vk::queue::Manager(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_pipeline = new vk::compute::Pipeline(vk_struct);
+  this->vk_renderer = new vk::draw::Renderer(vk_struct);
 
   //---------------------------
 }
@@ -59,6 +60,13 @@ void Node::init(){
   vk_imgui->init();
   vk_semaphore->init_pool();
   vk_pipeline->init();
+
+  //---------------------------
+}
+void Node::loop(){
+  //---------------------------
+
+  vk_renderer->loop();
 
   //---------------------------
 }

@@ -15,13 +15,24 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->utl_chrono = new sys::timer::Chrono();
-  
+
   //---------------------------
 }
 Renderpass::~Renderpass(){}
 
 //Main function
-void Renderpass::run_renderpass(vk::structure::Render& render){
+void Renderpass::record_all_renderpass(vk::structure::Render& render){
+  vk_struct->core.profiler.vec_command_buffer.clear();
+  //---------------------------
+
+  for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
+    render.renderpass = renderpass;
+    this->record_renderpass(render);
+  }
+
+  //---------------------------
+}
+void Renderpass::record_renderpass(vk::structure::Render& render){
   //---------------------------
 
   this->prepare_renderpass(render);

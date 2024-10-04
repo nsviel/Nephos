@@ -29,12 +29,5 @@ void Node::init(){
 
   //---------------------------
 }
-void Node::loop(){
-  //---------------------------
-
-  vk_struct->core.queue.presentation->make_rendering();
-
-  //---------------------------
-}
 
 }

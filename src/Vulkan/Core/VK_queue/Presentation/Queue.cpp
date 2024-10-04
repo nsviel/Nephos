@@ -53,12 +53,5 @@ void Queue::make_rendering_thread(){
 
   //---------------------------
 }
-void Queue::make_rendering(){
-  //---------------------------
-
-  vk_pipeline->make_rendering();
-
-  //---------------------------
-}
 
 }

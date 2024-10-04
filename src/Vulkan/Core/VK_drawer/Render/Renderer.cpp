@@ -14,35 +14,45 @@ Renderer::Renderer(vk::Structure* vk_struct){
   this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
   this->vk_window = new vk::window::Window(vk_struct);
-  this->vk_recorder = new vk::draw::Recorder(vk_struct);
+  this->vk_renderpass = new vk::draw::Renderpass(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_submission = new vk::draw::Submission(vk_struct);
+  this->vk_graphical = new vk::draw::Graphical(vk_struct);
 
   //---------------------------
 }
 Renderer::~Renderer(){}
 
 //Main function
-void Renderer::make_rendering(){
-  vk::structure::Render render;
+void Renderer::loop(){
   //---------------------------
 
-  //Rendering
-  vk_recorder->record_rendering(render);
-
-  //Submission
-  vk_submission->submit_rendering(render);
-  vk_submission->submit_presentation(render);
-  vk_swapchain->next_frame_ID();
-
-  //End rendering
-  vk_semaphore->reset_pool();
-  vk_imgui->glfw_new_frame();
+  this->make_rendering();
 
   //---------------------------
 }
 
 //Subfunction
+void Renderer::make_rendering(){
+  vk::structure::Render render;
+  //---------------------------
+
+  //Recording
+  vk_graphical->acquire_swapchain_image(render);
+  vk_renderpass->record_all_renderpass(render);
+  vk_graphical->copy_to_swapchain(render);
+
+  //Submission
+  vk_submission->submit_rendering(render);
+  vk_submission->submit_presentation(render);
+
+  //End rendering
+  vk_swapchain->next_frame_ID();
+  vk_semaphore->reset_pool();
+  vk_imgui->glfw_new_frame();
+
+  //---------------------------
+}
 
 }
