@@ -53,8 +53,10 @@ void Point::draw_subpass(vk::structure::Render& render){
   for(auto& [uid, vk_object] : vk_struct->core.data.map_object){
     if(!check_data(*vk_object, utl::topology::DYNAMIC_POINT)) continue;
 
+    //run compute preprocessing
     vk_depth_to_cloud->run_compute(*vk_object);
-    
+
+    //run graphics
     render.object = vk_object;
     render.descriptor_set = vk_descriptor->query_descriptor_set(*render.pipeline);
 

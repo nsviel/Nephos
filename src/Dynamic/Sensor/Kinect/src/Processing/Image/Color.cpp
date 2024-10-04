@@ -25,7 +25,7 @@ void Color::extract_data(k4n::base::Sensor& sensor){
 
   this->retrieve_data(sensor);
   this->retrieve_image(sensor);
-  this->retrieve_timestamp(sensor);
+  //this->retrieve_timestamp(sensor);
 
   //---------------------------
 }
@@ -51,7 +51,7 @@ void Color::retrieve_data(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Color::retrieve_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Image> image = sensor.color.image;
+  std::shared_ptr<utl::base::Image>& image = sensor.color.image;
   //---------------------------
 
   //Image

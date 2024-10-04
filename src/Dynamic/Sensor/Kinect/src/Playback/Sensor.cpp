@@ -46,7 +46,7 @@ void Sensor::thread_init(){
   graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_operation->run_operation(sensor); });
   graph.add_dependency("capture", "data");
   graph.add_dependency("data", "cloud");
-  graph.add_dependency("cloud", "operation");
+  graph.add_dependency("data", "operation");
 
   //---------------------------
 }

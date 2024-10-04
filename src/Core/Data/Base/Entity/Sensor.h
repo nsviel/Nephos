@@ -2,7 +2,7 @@
 
 #include <Data/Base/Entity/Object.h>
 #include <Data/Sensor/Structure/Timestamp.h>
-#include <Data/Sensor/Structure/Thread.h>
+#include <Data/Sensor/Thread/Thread.h>
 #include <Data/Sensor/Structure/Info.h>
 #include <Data/Sensor/Structure/State.h>
 #include <Data/Sensor/Graph/Graph.h>
