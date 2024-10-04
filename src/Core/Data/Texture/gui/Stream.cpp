@@ -25,7 +25,17 @@ void Stream::draw_stream(std::shared_ptr<utl::base::Image> image, ImVec2 dimensi
   if(!check_image(image)) return;
   //---------------------------
 
-  this->render_image(image, dimension);
+  glm::vec2 dim = glm::vec2(dimension.x, dimension.y);
+  vk_render->draw_image(image, dim);
+
+  //---------------------------
+}
+void Stream::draw_stream(utl::base::Data& data, std::shared_ptr<utl::base::Image> image, ImVec2 dimension){
+  if(!check_image(image)) return;
+  //---------------------------
+
+  glm::vec2 dim = glm::vec2(dimension.x, dimension.y);
+  vk_render->draw_image(data, image, dim);
 
   //---------------------------
 }
@@ -41,14 +51,5 @@ bool Stream::check_image(std::shared_ptr<utl::base::Image> image){
   //---------------------------
   return true;
 }
-void Stream::render_image(std::shared_ptr<utl::base::Image> image, ImVec2& dimension){
-  //---------------------------
-
-  glm::vec2 dim = glm::vec2(dimension.x, dimension.y);
-  vk_render->draw_image(image, dim);
-
-  //---------------------------
-}
-
 
 }

@@ -84,7 +84,7 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
 
       int index = 0;
       for(auto& [name, image] : data.map_image){
-        this->draw_stream_image(image, dimension, index++);
+        this->draw_stream_image(data, image, dimension, index++);
       }
 
       ImGui::EndTabItem();
@@ -96,7 +96,7 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
       std::string title = image->name + "##4567";
       ImGui::SetNextItemWidth(100);
       if(ImGui::BeginTabItem(title.c_str(), NULL)){
-        this->draw_stream_image(image, dimension, index++);
+        this->draw_stream_image(data, image, dimension, index++);
         ImGui::EndTabItem();
       }
     }
@@ -106,13 +106,13 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
 
   //---------------------------
 }
-void Panel::draw_stream_image(std::shared_ptr<utl::base::Image> image, ImVec2 dimension, int idx){
+void Panel::draw_stream_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image, ImVec2 dimension, int idx){
   if(idx >= vec_stream.size()) return;
   //---------------------------
 
   if(image->size == 0) return;
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_stream[idx]->draw_stream(image, dimension);
+  vec_stream[idx]->draw_stream(data, image, dimension);
   //gui_overlay->overlay_capture(entity, &entity->color.data, dimension, image_pose);
 
   //---------------------------

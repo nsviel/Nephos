@@ -7,6 +7,7 @@ namespace dat::img{class Node;}
 namespace vk::interface{class Texture;}
 namespace vk::interface{class Render;}
 namespace utl::base{class Image;}
+namespace utl::base{class Data;}
 
 
 namespace dat::img::gui{
@@ -21,10 +22,10 @@ public:
 public:
   //Main function
   void draw_stream(std::shared_ptr<utl::base::Image> utl_image, ImVec2 dimension);
+  void draw_stream(utl::base::Data& data, std::shared_ptr<utl::base::Image> image, ImVec2 dimension);
 
   //Subfunction
   bool check_image(std::shared_ptr<utl::base::Image> utl_image);
-  void render_image(std::shared_ptr<utl::base::Image> utl_image, ImVec2& dimension);
 
 private:
   vk::interface::Texture* vk_texture;
