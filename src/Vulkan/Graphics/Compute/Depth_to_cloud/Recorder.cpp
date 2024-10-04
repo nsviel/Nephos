@@ -45,9 +45,6 @@ void Recorder::run_compute(vk::structure::Object& vk_object){
   vk_commandbuffer->end_command_buffer(*command_buffer);
   vk_command->submit_graphics_command(command_buffer);
 
-  //std::this_thread::sleep_for(std::chrono::milliseconds(2));
-  descriptor_set->is_available = true;
-
   //---------------------------
 }
 
@@ -55,7 +52,7 @@ void Recorder::run_compute(vk::structure::Object& vk_object){
 void Recorder::bind_pipeline(vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk_pipeline->cmd_bind_pipeline(command_buffer.handle, pipeline);
+  vkCmdBindPipeline(command_buffer.handle, VK_PIPELINE_BIND_POINT_COMPUTE, pipeline.handle);
 
   //---------------------------
 }

@@ -10,7 +10,7 @@ namespace vk::data{class Retriever;}
 namespace vk::texture{class Storage;}
 namespace vk::commandbuffer{class Command_buffer;}
 namespace vk::commandbuffer{class Allocator;}
-namespace vk::command{class Command;} 
+namespace vk::command{class Command;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Object;}

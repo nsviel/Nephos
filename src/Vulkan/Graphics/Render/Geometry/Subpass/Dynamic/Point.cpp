@@ -21,6 +21,7 @@ Point::Point(vk::Structure* vk_struct){
   this->vk_data = new vk::data::Retriever(vk_struct);
   this->vk_storage = new vk::descriptor::Storage_image(vk_struct);
   this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
+  this->vk_depth_to_cloud = new vk::compute::dtc::Recorder(vk_struct);
 
   //---------------------------
 }
@@ -54,17 +55,15 @@ void Point::draw_subpass(vk::structure::Render& render){
 
     render.object = vk_object;
 
-/*
-    vk::compute::dtc::Recorder recorder(vk_struct);
-    recorder.run_compute(*vk_object);
 
+    vk_depth_to_cloud->run_compute(*vk_object);
 
     render.descriptor_set = vk_descriptor->query_descriptor_set(*render.pipeline);
 
     this->update_uniform(render);
     this->update_storage(render);
     this->draw_data(render);
-*/
+
   }
 
   //---------------------------
@@ -74,6 +73,10 @@ void Point::draw_subpass(vk::structure::Render& render){
 void Point::bind_pipeline(vk::structure::Render& render){
   //---------------------------
 
+  std::shared_ptr<vk::structure::Pipeline> pipeline = vk_struct->core.pipeline.map_compute["depth_to_cloud"];
+  vk_descriptor->reset_descriptor_set_pool(*pipeline);
+
+  //Graphics pipeline
   vk_pipeline->cmd_bind_pipeline(render.command_buffer->handle, *render.pipeline);
   vk_viewport->cmd_viewport(render.command_buffer->handle);
 

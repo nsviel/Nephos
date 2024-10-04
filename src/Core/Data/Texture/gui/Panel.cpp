@@ -83,9 +83,7 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
       dimension.y = dimension.y / data.map_image.size() - 3.33;
 
       int index = 0;
-      say(entity->data->name);
       for(auto& [name, image] : data.map_image){
-        say(name);
         this->draw_stream_image(data, image, dimension, index++);
       }
 
