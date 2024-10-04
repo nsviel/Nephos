@@ -4,9 +4,9 @@
 #include <vulkan/vulkan.h>
 
 
-namespace vk::queue::structure{
+namespace vk::structure{
 
-struct Set{
+struct Queue_set{
   //---------------------------
 
   vk::structure::Queue graphics;

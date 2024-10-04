@@ -7,7 +7,7 @@ namespace vk{class Structure;}
 namespace vk::presentation{class Swapchain;}
 namespace vk::presentation{class Surface;}
 namespace vk::window{class Window;}
-namespace vk::commandbuffer::structure{class Set;}
+namespace vk::structure{class Command_set;}
 namespace vk::draw{class Renderpass;}
 namespace vk::draw{class Submission;}
 namespace vk::draw{class Graphical;}

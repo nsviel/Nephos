@@ -30,7 +30,7 @@ void Assignment::assign_queue(){
 
 //Subfunction
 void Assignment::assign_graphics_queue(){
-  vk::queue::structure::Set& set = vk_struct->core.device.queue;
+  vk::structure::Queue_set& set = vk_struct->core.device.queue;
   //---------------------------
 
   int index = 0;
@@ -49,7 +49,7 @@ void Assignment::assign_graphics_queue(){
   //---------------------------
 }
 void Assignment::assign_presentation_queue(){
-  vk::queue::structure::Set& set = vk_struct->core.device.queue;
+  vk::structure::Queue_set& set = vk_struct->core.device.queue;
   //---------------------------
 
   int index = 0;
@@ -68,7 +68,7 @@ void Assignment::assign_presentation_queue(){
   //---------------------------
 }
 void Assignment::assign_transfer_queue(){
-  vk::queue::structure::Set& set = vk_struct->core.device.queue;
+  vk::structure::Queue_set& set = vk_struct->core.device.queue;
   //---------------------------
 
   int index = 0;
@@ -87,7 +87,7 @@ void Assignment::assign_transfer_queue(){
   //---------------------------
 }
 void Assignment::check_proper_assigment(){
-  vk::queue::structure::Set& set = vk_struct->core.device.queue;
+  vk::structure::Queue_set& set = vk_struct->core.device.queue;
   //---------------------------
 
   //check for good assigment

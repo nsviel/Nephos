@@ -4,7 +4,7 @@
 #include <queue>
 
 namespace vk{class Structure;}
-namespace vk::commandbuffer::structure{class Set;}
+namespace vk::structure{class Command_set;}
 namespace vk::queue::presentation{class Submission;}
 namespace vk::draw{class Renderer;}
 namespace vk::structure{class Render;}

@@ -1,14 +1,14 @@
 #pragma once
 
-#include <Vulkan/Core/VK_commandbuffer/Structure/Command_buffer.h>
+#include <Vulkan/Core/VK_command/Structure/Command.h>
 #include <vulkan/vulkan.h>
 #include <condition_variable>
 #include <memory>
 
 
-namespace vk::commandbuffer::structure{
+namespace vk::structure{
 
-struct Set{
+struct Command_set{
   //---------------------------
 
   void wait_until_done(){

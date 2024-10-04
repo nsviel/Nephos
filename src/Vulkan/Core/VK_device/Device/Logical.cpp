@@ -68,7 +68,7 @@ void Logical::create_logical_device(){
   //---------------------------
 }
 void Logical::create_device_queue(){
-  vk::queue::structure::Set& set = vk_struct->core.device.queue;
+  vk::structure::Queue_set& set = vk_struct->core.device.queue;
   //---------------------------
 
   vk_queue->create_queue(set.graphics);

@@ -51,7 +51,7 @@ void Command::add_command(std::unique_ptr<vk::structure::Command> command){
 
   mutex.lock();
 
-  vk::commandbuffer::structure::Set* set = new vk::commandbuffer::structure::Set();
+  vk::structure::Command_set* set = new vk::structure::Command_set();
   set->vec_command.push_back(std::move(command));
   queue.push(set);
 
@@ -66,7 +66,7 @@ void Command::add_command(std::vector<std::unique_ptr<vk::structure::Command>> v
 
   mutex.lock();
 
-  vk::commandbuffer::structure::Set* set = new vk::commandbuffer::structure::Set();
+  vk::structure::Command_set* set = new vk::structure::Command_set();
   set->vec_command = std::move(vec_command);;
   queue.push(set);
 
@@ -75,7 +75,7 @@ void Command::add_command(std::vector<std::unique_ptr<vk::structure::Command>> v
 
   //---------------------------
 }
-void Command::add_command(vk::commandbuffer::structure::Set* set){
+void Command::add_command(vk::structure::Command_set* set){
   if(vk_struct->core.queue.standby) return;
   //---------------------------
 

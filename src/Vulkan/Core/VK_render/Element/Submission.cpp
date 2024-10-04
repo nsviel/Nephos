@@ -22,7 +22,7 @@ Submission::~Submission(){}
 void Submission::submit_rendering(vk::structure::Render& render){
   //---------------------------
 
-  vk::commandbuffer::structure::Set* set = new vk::commandbuffer::structure::Set();
+  vk::structure::Command_set* set = new vk::structure::Command_set();
   set->vec_command = std::move(render.vec_command);
   set->semaphore = render.semaphore->handle;
   set->supress = false;

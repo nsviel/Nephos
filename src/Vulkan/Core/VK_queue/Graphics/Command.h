@@ -7,7 +7,7 @@
 #include <queue>
 
 namespace vk{class Structure;}
-namespace vk::commandbuffer::structure{class Set;}
+namespace vk::structure{class Command_set;}
 namespace vk::structure{class Command;}
 namespace vk::queue::graphics{class Submission;}
 namespace vk::synchro{class Fence;}
@@ -31,14 +31,14 @@ public:
   //Subfunction
   void add_command(std::unique_ptr<vk::structure::Command> command);
   void add_command(std::vector<std::unique_ptr<vk::structure::Command>> vec_command);
-  void add_command(vk::commandbuffer::structure::Set* set);
+  void add_command(vk::structure::Command_set* set);
 
 private:
   vk::Structure* vk_struct;
   vk::synchro::Fence* vk_fence;
   vk::queue::graphics::Submission* vk_submission;
 
-  std::queue<vk::commandbuffer::structure::Set*> queue;
+  std::queue<vk::structure::Command_set*> queue;
 };
 
 }
