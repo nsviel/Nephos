@@ -12,9 +12,8 @@ struct Command{
   //---------------------------
 
   //Command
-  std::string name = "";
   std::shared_ptr<vk::structure::Command_buffer> command_buffer = std::make_shared<vk::structure::Command_buffer>();
-  VkPipelineStageFlags wait_stage = 0;
+  VkPipelineStageFlags wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
 
   //Synchronization
   VkSemaphore semaphore_wait = VK_NULL_HANDLE;

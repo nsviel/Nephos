@@ -20,7 +20,7 @@ Graphical::Graphical(vk::Structure* vk_struct){
   this->vk_command = new vk::commandbuffer::Command_buffer(vk_struct);
   this->vk_window = new vk::window::Window(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
-  
+
   //---------------------------
 }
 Graphical::~Graphical(){}
@@ -69,9 +69,8 @@ void Graphical::copy_to_swapchain(vk::structure::Render& render){
   std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_transfer->copy_gpu_image_to_gpu_image(render.renderpass->framebuffer.color, vk_struct->core.swapchain.vec_frame[vk_struct->core.swapchain.current_ID]->color);
 
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->semaphore_wait = render.semaphore->handle;
-  command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
   command->command_buffer = command_buffer;
+  command->semaphore_wait = render.semaphore->handle;
   render.semaphore = vk_semaphore->query_free_semaphore();
   command->semaphore_done = render.semaphore->handle;
   render.vec_command.push_back(std::move(command));

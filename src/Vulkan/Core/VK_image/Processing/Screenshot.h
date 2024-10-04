@@ -40,7 +40,7 @@ private:
   vk::Structure* vk_struct;
   vk::image::Image* vk_image;
   vk::commandbuffer::Pool* vk_command_buffer;
-  vk::commandbuffer::Allocator* vk_command_allocator;
+  vk::commandbuffer::Allocator* vk_allocator;
   vk::memory::Transfer* vk_mem_transfer;
   vk::memory::Allocator* vk_mem_allocator;
 };

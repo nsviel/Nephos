@@ -15,8 +15,9 @@ Recorder::Recorder(vk::Structure* vk_struct){
   this->vk_pipeline = new vk::compute::Pipeline(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_data = new vk::data::Retriever(vk_struct);
-  this->vk_command = new vk::commandbuffer::Command_buffer(vk_struct);
-  this->vk_command_allocator = new vk::commandbuffer::Allocator(vk_struct);
+  this->vk_command = new vk::command::Command(vk_struct);
+  this->vk_commandbuffer = new vk::commandbuffer::Command_buffer(vk_struct);
+  this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
   this->vk_storage = new vk::descriptor::Storage_image(vk_struct);
   this->vk_tex_storage = new vk::texture::Storage(vk_struct);
   this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
@@ -33,16 +34,16 @@ void Recorder::run_compute(vk::structure::Object& vk_object){
   auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
 
   //Start command buffer
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
-  vk_command->start_command_buffer_primary(*command_buffer);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_commandbuffer->query_free_command_buffer(vk_struct->core.device.queue.graphics);
+  vk_commandbuffer->start_command_buffer_primary(*command_buffer);
 
   this->bind_pipeline(*command_buffer, *pipeline);
   this->update_descriptor(vk_object, *descriptor_set);
   this->dispatch_pipeline(vk_object, *command_buffer, *pipeline, *descriptor_set);
 
   //End command buffer
-  vk_command->end_command_buffer(*command_buffer);
-  vk_command->submit_command_buffer(command_buffer, vk_struct->core.command.graphics);
+  vk_commandbuffer->end_command_buffer(*command_buffer);
+  vk_command->submit_graphics_command(command_buffer);
 
   //std::this_thread::sleep_for(std::chrono::milliseconds(2));
   descriptor_set->is_available = true;

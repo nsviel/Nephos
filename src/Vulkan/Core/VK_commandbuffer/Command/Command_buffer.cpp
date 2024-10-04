@@ -55,15 +55,6 @@ std::shared_ptr<vk::structure::Command_buffer> Command_buffer::query_free_comman
   //---------------------------
   return nullptr;
 }
-void Command_buffer::submit_command_buffer(std::shared_ptr<vk::structure::Command_buffer> command_buffer, vk::queue::Base* queue){
-  //---------------------------
-
-  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->command_buffer = command_buffer;
-  queue->add_command(std::move(command));
-
-  //---------------------------
-}
 void Command_buffer::start_command_buffer_primary(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 

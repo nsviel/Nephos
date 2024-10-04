@@ -28,7 +28,6 @@ public:
 public:
   //Main function
   std::shared_ptr<vk::structure::Command_buffer> query_free_command_buffer(vk::structure::Queue& queue);
-  void submit_command_buffer(std::shared_ptr<vk::structure::Command_buffer> command_buffer, vk::queue::Base* queue);
   void start_command_buffer_primary(vk::structure::Command_buffer& command_buffer);
   void start_command_buffer_secondary(vk::structure::Renderpass* renderpass);
   void end_command_buffer(vk::structure::Command_buffer& command_buffer);

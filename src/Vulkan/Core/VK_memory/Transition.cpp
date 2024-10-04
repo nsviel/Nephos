@@ -10,8 +10,9 @@ Transition::Transition(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
+  this->vk_command = new vk::command::Command(vk_struct);
   this->vk_mem_allocator = new vk::memory::Allocator(vk_struct);
-  this->vk_command = new vk::commandbuffer::Command_buffer(vk_struct);
+  this->vk_commandbuffer = new vk::commandbuffer::Command_buffer(vk_struct);
 
   //---------------------------
 }
@@ -22,15 +23,15 @@ void Transition::image_layout_transition(vk::structure::Image& image, VkImageLay
   //---------------------------
 
   //Image transition from undefined layout to read only layout
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
-  vk_command->start_command_buffer_primary(*command_buffer);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_commandbuffer->query_free_command_buffer(vk_struct->core.device.queue.graphics);
+  vk_commandbuffer->start_command_buffer_primary(*command_buffer);
 
   //Transition
   this->image_layout_transition(command_buffer->handle, image, old_layout, new_layout);
 
   //End and submit command
-  vk_command->end_command_buffer(*command_buffer);
-  vk_command->submit_command_buffer(command_buffer, vk_struct->core.command.graphics);
+  vk_commandbuffer->end_command_buffer(*command_buffer);
+  vk_command->submit_graphics_command(command_buffer);
 
   //---------------------------
 }

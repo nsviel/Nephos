@@ -4,6 +4,7 @@
 #include <memory>
 
 namespace vk{class Structure;}
+namespace vk::command{class Command;}
 namespace vk::commandbuffer{class Command_buffer;}
 namespace vk::commandbuffer{class Allocator;}
 namespace vk::memory{class Transition;}
@@ -37,8 +38,9 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::memory::Transition* vk_transition;
-  vk::commandbuffer::Command_buffer* vk_command;
-  vk::commandbuffer::Allocator* vk_command_allocator;
+  vk::command::Command* vk_command;
+  vk::commandbuffer::Command_buffer* vk_commandbuffer;
+  vk::commandbuffer::Allocator* vk_allocator;
 };
 
 }

@@ -125,7 +125,6 @@ void Renderpass::prepare_command(vk::structure::Render& render){
 
   //Create command
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
   command->command_buffer = render.command_buffer;
 
   //Semaphore
