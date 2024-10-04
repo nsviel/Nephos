@@ -8,6 +8,7 @@ namespace vk::presentation{class Swapchain;}
 namespace vk::presentation{class Surface;}
 namespace vk::window{class Window;}
 namespace vk::structure{class Command_set;}
+namespace vk::compute{class Pipeline;}
 namespace vk::draw{class Renderpass;}
 namespace vk::draw{class Submission;}
 namespace vk::draw{class Graphical;}
@@ -44,6 +45,7 @@ private:
   vk::synchro::Semaphore* vk_semaphore;
   vk::draw::Submission* vk_submission;
   vk::draw::Graphical* vk_graphical;
+  vk::compute::Pipeline* vk_pipeline;
   vk::gui::Imgui* vk_imgui;
 };
 

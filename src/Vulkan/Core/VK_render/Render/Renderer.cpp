@@ -19,6 +19,7 @@ Renderer::Renderer(vk::Structure* vk_struct){
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_submission = new vk::draw::Submission(vk_struct);
   this->vk_graphical = new vk::draw::Graphical(vk_struct);
+  this->vk_pipeline = new vk::compute::Pipeline(vk_struct);
 
   //---------------------------
 }
@@ -49,6 +50,7 @@ void Renderer::make_rendering(){
 
   //End rendering
   vk_semaphore->reset_pool();
+  vk_pipeline->reset();
 
   //---------------------------
 }

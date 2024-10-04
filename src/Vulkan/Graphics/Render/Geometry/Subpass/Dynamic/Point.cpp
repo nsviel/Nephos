@@ -53,11 +53,9 @@ void Point::draw_subpass(vk::structure::Render& render){
   for(auto& [uid, vk_object] : vk_struct->core.data.map_object){
     if(!check_data(*vk_object, utl::topology::DYNAMIC_POINT)) continue;
 
-    render.object = vk_object;
-
-
     vk_depth_to_cloud->run_compute(*vk_object);
-
+    
+    render.object = vk_object;
     render.descriptor_set = vk_descriptor->query_descriptor_set(*render.pipeline);
 
     this->update_uniform(render);
@@ -72,9 +70,6 @@ void Point::draw_subpass(vk::structure::Render& render){
 //Subfunction
 void Point::bind_pipeline(vk::structure::Render& render){
   //---------------------------
-
-  std::shared_ptr<vk::structure::Pipeline> pipeline = vk_struct->core.pipeline.map_compute["depth_to_cloud"];
-  vk_descriptor->reset_descriptor_set_pool(*pipeline);
 
   //Graphics pipeline
   vk_pipeline->cmd_bind_pipeline(render.command_buffer->handle, *render.pipeline);

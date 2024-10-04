@@ -52,7 +52,7 @@ void Recorder::run_compute(vk::structure::Object& vk_object){
 void Recorder::bind_pipeline(vk::structure::Command_buffer& command_buffer, vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vkCmdBindPipeline(command_buffer.handle, VK_PIPELINE_BIND_POINT_COMPUTE, pipeline.handle);
+  vk_pipeline->cmd_bind_pipeline(command_buffer.handle, pipeline);
 
   //---------------------------
 }
