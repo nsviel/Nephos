@@ -29,6 +29,7 @@ public:
 
 public:
   //Main function
+  void record_rendering(vk::structure::Render& render);
   bool acquire_next_image(vk::structure::Render& render);
   void record_renderpass(vk::structure::Render& render);
   void copy_to_swapchain(vk::structure::Render& render);

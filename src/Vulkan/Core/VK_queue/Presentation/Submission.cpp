@@ -27,14 +27,8 @@ void Submission::make_rendering(){
   vk::structure::Render render;
   //---------------------------
 
-  //Acquiere image
-  render.semaphore = vk_semaphore->query_free_semaphore();
-  bool sucess = vk_drawer->acquire_next_image(render);
-  if(!sucess) return;
-
   //Rendering
-  vk_drawer->record_renderpass(render);
-  vk_drawer->copy_to_swapchain(render);
+  vk_drawer->record_rendering(render);
 
   //Submission
   this->submit_rendering(render);

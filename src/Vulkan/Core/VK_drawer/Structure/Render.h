@@ -18,7 +18,11 @@ namespace vk::structure{
 struct Render{
   //---------------------------
 
+  //Info
   sys::timer::Timepoint ts;
+  int subset_ID = 0;
+
+  //Structure
   std::shared_ptr<vk::structure::Renderpass> renderpass;
   std::shared_ptr<vk::structure::Subpass> subpass;
   std::shared_ptr<vk::structure::Pipeline> pipeline;

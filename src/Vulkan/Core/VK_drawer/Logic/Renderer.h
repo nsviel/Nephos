@@ -26,6 +26,7 @@ public:
   void start_renderpass(vk::structure::Render& render);
   void draw_subpass(vk::structure::Render& render);
   void stop_renderpass(vk::structure::Render& render);
+  void cmd_next_subset(vk::structure::Render& render);
 
 private:
   vk::Structure* vk_struct;

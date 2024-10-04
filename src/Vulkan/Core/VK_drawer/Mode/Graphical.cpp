@@ -19,12 +19,27 @@ Graphical::Graphical(vk::Structure* vk_struct){
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->vk_command = new vk::commandbuffer::Command_buffer(vk_struct);
   this->vk_window = new vk::window::Window(vk_struct);
-  
+
   //---------------------------
 }
 Graphical::~Graphical(){}
 
 //Main function
+void Graphical::record_rendering(vk::structure::Render& render){
+  //---------------------------
+
+  //Acquiere image
+  render.semaphore = vk_semaphore->query_free_semaphore();
+  bool sucess = this->acquire_next_image(render);
+  if(!sucess) return;
+
+  //Rendering
+  this->record_renderpass(render);
+  this->copy_to_swapchain(render);
+
+  //---------------------------
+}
+
 bool Graphical::acquire_next_image(vk::structure::Render& render){
   vk::structure::Swapchain& swapchain = vk_struct->core.swapchain;
   //---------------------------

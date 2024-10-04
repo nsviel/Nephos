@@ -69,14 +69,11 @@ void Renderer::start_renderpass(vk::structure::Render& render){
 void Renderer::draw_subpass(vk::structure::Render& render){
   //---------------------------
 
-  for(size_t i=0; i<render.renderpass->vec_subpass.size(); ++i){
-    render.subpass = render.renderpass->vec_subpass[i];
+  render.subset_ID = 0;
+  for(auto& subpass : render.renderpass->vec_subpass){
+    render.subpass = subpass;
     render.subpass->draw_task(render);
-
-    //Next subpass
-    if (i < render.renderpass->vec_subpass.size() - 1) {
-      vkCmdNextSubpass(render.command_buffer->handle, VK_SUBPASS_CONTENTS_INLINE);
-    }
+    this->cmd_next_subset(render);
   }
 
   //---------------------------
@@ -86,6 +83,16 @@ void Renderer::stop_renderpass(vk::structure::Render& render){
 
   vkCmdEndRenderPass(render.command_buffer->handle);
   vk_command->end_command_buffer(*render.command_buffer);
+
+  //---------------------------
+}
+void Renderer::cmd_next_subset(vk::structure::Render& render){
+  //---------------------------
+
+  if (render.subset_ID < render.renderpass->vec_subpass.size() - 1) {
+    vkCmdNextSubpass(render.command_buffer->handle, VK_SUBPASS_CONTENTS_INLINE);
+    render.subset_ID++;
+  }
 
   //---------------------------
 }
