@@ -4,7 +4,7 @@
 #include <memory>
 
 namespace vk{class Structure;}
-namespace vk::draw{class Viewport;}
+namespace vk::presentation{class Viewport;}
 namespace vk::synchro{class Synchro;}
 namespace vk::render{class Component;}
 namespace vk::pipeline{class Descriptor;}

@@ -14,7 +14,7 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_pool = new vk::instance::Pool(vk_struct);
   this->vk_extension = new vk::instance::Extension(vk_struct);
   this->vk_instance = new vk::instance::Instance(vk_struct);
-  this->vk_viewport = new vk::draw::Viewport(vk_struct);
+  this->vk_viewport = new vk::presentation::Viewport(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
   this->vk_device = new vk::device::Logical(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);

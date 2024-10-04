@@ -1,4 +1,4 @@
-#include "Renderer.h"
+#include "Renderpass.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::draw{
 
 //Constructor / Destructor
-Renderer::Renderer(vk::Structure* vk_struct){
+Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -16,10 +16,10 @@ Renderer::Renderer(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Renderer::~Renderer(){}
+Renderpass::~Renderpass(){}
 
 //Main function
-void Renderer::run_renderpass(vk::structure::Render& render){
+void Renderpass::run_renderpass(vk::structure::Render& render){
   //---------------------------
 
   this->start_renderpass(render);
@@ -30,7 +30,7 @@ void Renderer::run_renderpass(vk::structure::Render& render){
 }
 
 //Subfunction
-void Renderer::start_renderpass(vk::structure::Render& render){
+void Renderpass::start_renderpass(vk::structure::Render& render){
   //---------------------------
 
   VkFramebuffer framebuffer = render.renderpass->framebuffer.handle;
@@ -66,7 +66,7 @@ void Renderer::start_renderpass(vk::structure::Render& render){
 
   //---------------------------
 }
-void Renderer::draw_subpass(vk::structure::Render& render){
+void Renderpass::draw_subpass(vk::structure::Render& render){
   //---------------------------
 
   render.subset_ID = 0;
@@ -78,7 +78,7 @@ void Renderer::draw_subpass(vk::structure::Render& render){
 
   //---------------------------
 }
-void Renderer::stop_renderpass(vk::structure::Render& render){
+void Renderpass::stop_renderpass(vk::structure::Render& render){
   //---------------------------
 
   vkCmdEndRenderPass(render.command_buffer->handle);
@@ -86,7 +86,7 @@ void Renderer::stop_renderpass(vk::structure::Render& render){
 
   //---------------------------
 }
-void Renderer::cmd_next_subset(vk::structure::Render& render){
+void Renderpass::cmd_next_subset(vk::structure::Render& render){
   //---------------------------
 
   if (render.subset_ID < render.renderpass->vec_subpass.size() - 1) {

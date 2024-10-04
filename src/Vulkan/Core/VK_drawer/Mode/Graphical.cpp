@@ -14,7 +14,7 @@ Graphical::Graphical(vk::Structure* vk_struct){
   this->vk_transfer = new vk::memory::Transfer(vk_struct);
   this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
   this->utl_chrono = new sys::timer::Chrono();
-  this->vk_render = new vk::draw::Renderer(vk_struct);
+  this->vk_render = new vk::draw::Renderpass(vk_struct);
   this->vk_fence = new vk::synchro::Fence(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->vk_command = new vk::commandbuffer::Command_buffer(vk_struct);

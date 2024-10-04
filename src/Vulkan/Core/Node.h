@@ -13,7 +13,7 @@ namespace vk::descriptor{class Descriptor_set;}
 namespace vk::gui{class Imgui;}
 namespace vk::data{class Data;}
 namespace vk::data{class Canvas;}
-namespace vk::draw{class Viewport;}
+namespace vk::presentation{class Viewport;}
 namespace vk::shader{class Reloader;}
 namespace vk::commandbuffer{class Allocator;}
 namespace vk::commandbuffer{class Pool;}
@@ -57,7 +57,7 @@ private:
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::instance::Pool* vk_pool;
   vk::data::Data* vk_data;
-  vk::draw::Viewport* vk_viewport;
+  vk::presentation::Viewport* vk_viewport;
   vk::shader::Reloader* vk_reload;
   vk::compute::Pipeline* vk_pipeline;
   vk::presentation::Frame* vk_frame;

@@ -8,7 +8,7 @@ namespace vk::render::edl{class Shader;}
 namespace vk::data{class Vertex;}
 namespace vk::postprocess::pipeline{class EDL;}
 namespace vk::render{class Pipeline;}
-namespace vk::draw{class Viewport;}
+namespace vk::presentation{class Viewport;}
 namespace vk::pipeline{class Descriptor;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
@@ -50,7 +50,7 @@ private:
   vk::data::Vertex* vk_drawer;
   vk::postprocess::pipeline::EDL* vk_edl;
   vk::render::Pipeline* vk_pipeline;
-  vk::draw::Viewport* vk_viewport;
+  vk::presentation::Viewport* vk_viewport;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::pipeline::Descriptor* vk_descriptor;
 };

@@ -6,7 +6,7 @@ namespace vk{class Structure;}
 namespace vk::structure{class Viewport;}
 
 
-namespace vk::draw{
+namespace vk::presentation{
 
 class Viewport
 {

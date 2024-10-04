@@ -4,7 +4,7 @@
 
 namespace vk{class Structure;}
 namespace vk::device{class Physical;}
-namespace vk::draw{class Viewport;}
+namespace vk::presentation{class Viewport;}
 namespace vk::presentation{class Frame;}
 namespace vk::renderpass{class Framebuffer;}
 namespace vk::presentation{class Surface;}
@@ -40,10 +40,10 @@ public:
   void find_swapchain_surface_format();
   void find_swapchain_presentation_mode();
   void next_frame_ID();
-  
+
 private:
   vk::Structure* vk_struct;
-  vk::draw::Viewport* vk_viewport;
+  vk::presentation::Viewport* vk_viewport;
   vk::device::Physical* dev_physical;
   vk::presentation::Frame* vk_frame;
   vk::renderpass::Framebuffer* vk_framebuffer;

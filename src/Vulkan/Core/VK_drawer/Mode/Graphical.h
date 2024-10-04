@@ -9,7 +9,7 @@ namespace vk::presentation{class Swapchain;}
 namespace vk::structure{class Command;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Render;}
-namespace vk::draw{class Renderer;}
+namespace vk::draw{class Renderpass;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
 namespace vk::memory{class Transfer;}
@@ -43,7 +43,7 @@ private:
   vk::memory::Transfer* vk_transfer;
   vk::presentation::Swapchain* vk_swapchain;
   sys::timer::Chrono* utl_chrono;
-  vk::draw::Renderer* vk_render;
+  vk::draw::Renderpass* vk_render;
   vk::window::Window* vk_window;
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;

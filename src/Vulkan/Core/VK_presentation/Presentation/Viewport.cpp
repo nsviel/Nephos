@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::draw{
+namespace vk::presentation{
 
 //Constructor / Destructor
 Viewport::Viewport(vk::Structure* vk_struct){

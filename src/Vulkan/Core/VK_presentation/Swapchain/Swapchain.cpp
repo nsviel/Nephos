@@ -12,7 +12,7 @@ Swapchain::Swapchain(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->dev_physical = new vk::device::Physical(vk_struct);
-  this->vk_viewport = new vk::draw::Viewport(vk_struct);
+  this->vk_viewport = new vk::presentation::Viewport(vk_struct);
   this->vk_frame = new vk::presentation::Frame(vk_struct);
   this->vk_framebuffer = new vk::renderpass::Framebuffer(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);

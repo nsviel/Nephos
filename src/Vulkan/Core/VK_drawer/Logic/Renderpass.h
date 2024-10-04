@@ -11,12 +11,12 @@ namespace vk::structure{class Command_buffer;}
 
 namespace vk::draw{
 
-class Renderer
+class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderer(vk::Structure* vk_struct);
-  ~Renderer();
+  Renderpass(vk::Structure* vk_struct);
+  ~Renderpass();
 
 public:
   //Main function

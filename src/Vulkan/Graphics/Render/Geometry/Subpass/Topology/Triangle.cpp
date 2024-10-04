@@ -12,7 +12,7 @@ Triangle::Triangle(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_pipeline = new vk::render::Pipeline(vk_struct);
-  this->vk_viewport = new vk::draw::Viewport(vk_struct);
+  this->vk_viewport = new vk::presentation::Viewport(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_drawer = new vk::data::Vertex(vk_struct);
