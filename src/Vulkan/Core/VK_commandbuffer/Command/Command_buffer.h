@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
 namespace vk{class Structure;}
 namespace vk::structure{class Command_buffer;}
@@ -27,11 +28,14 @@ public:
 
 public:
   //Main function
-  std::shared_ptr<vk::structure::Command_buffer> query_free_command_buffer(vk::structure::Queue& queue);
   void start_command_buffer_primary(vk::structure::Command_buffer& command_buffer);
   void start_command_buffer_secondary(vk::structure::Renderpass* renderpass);
   void end_command_buffer(vk::structure::Command_buffer& command_buffer);
-  int find_num_available_command(vk::pool::structure::Command_buffer* pool);
+
+  //Subfunction
+  std::shared_ptr<vk::structure::Command_buffer> query_graphics_command_buffer(std::string name);
+  std::shared_ptr<vk::structure::Command_buffer> query_transfer_command_buffer(std::string name);
+  std::shared_ptr<vk::structure::Command_buffer> query_free_command_buffer(vk::structure::Queue& queue);
 
 private:
   vk::Structure* vk_struct;

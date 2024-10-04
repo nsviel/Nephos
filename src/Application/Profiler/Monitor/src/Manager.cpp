@@ -71,9 +71,9 @@ void Manager::collect_gpu_task(){
   //---------------------------
 
   float ts_current = 0;
-  for(auto& command_buffer : vk_struct->core.profiler.vec_command_buffer){
-    tasker->add_task(command_buffer.name, ts_current, ts_current + command_buffer.duration);
-    ts_current += command_buffer.duration;
+  for(auto& [name, duration] : vk_struct->core.profiler.map_duration){
+    tasker->add_task(name, ts_current, ts_current + duration);
+    ts_current += duration;
   }
 
   //---------------------------

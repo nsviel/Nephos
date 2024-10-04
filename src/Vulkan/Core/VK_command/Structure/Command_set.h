@@ -11,6 +11,7 @@ namespace vk::structure{
 struct Command_set{
   //---------------------------
 
+  //Stuff for knowing when command bundle has finished submission
   void wait_until_done(){
     std::unique_lock<std::mutex> lock(mutex);
     cv.wait(lock, [this] { return done; });
@@ -26,8 +27,8 @@ struct Command_set{
   std::condition_variable cv;
   bool done = false;
 
+  //Bundle of commands
   std::vector< std::unique_ptr<vk::structure::Command> > vec_command;
-  std::shared_ptr<vk::structure::Fence> fence;
 
   //---------------------------
 };

@@ -26,7 +26,7 @@ public:
   void thread_loop();
 
   //Subfunction
-  void add_command(std::unique_ptr<vk::structure::Command> command);
+  void add_command(std::shared_ptr<vk::structure::Command_buffer> command_buffer);
 
 private:
   vk::Structure* vk_struct;

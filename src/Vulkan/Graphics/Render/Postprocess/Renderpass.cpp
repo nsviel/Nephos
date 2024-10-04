@@ -20,8 +20,10 @@ Renderpass::~Renderpass(){}
 //Init function
 void Renderpass::init(){
   std::shared_ptr<vk::structure::Renderpass> renderpass = vk_struct->graphics.render.renderpass.postprocess;
-  renderpass->attachment.target = vk::renderpass::SHADER;
   //---------------------------
+
+  renderpass->name = "EDL";
+  renderpass->attachment.target = vk::renderpass::SHADER;
 
   vk_edl->create_subpass(*renderpass);
 

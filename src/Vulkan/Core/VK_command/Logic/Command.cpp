@@ -28,9 +28,7 @@ void Command::submit_graphics_command(std::shared_ptr<vk::structure::Command_buf
 void Command::submit_transfer_command(std::shared_ptr<vk::structure::Command_buffer> command_buffer){
   //---------------------------
 
-  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->command_buffer = command_buffer;
-  vk_struct->core.command.transfer->add_command(std::move(command));
+  vk_struct->core.command.transfer->add_command(std::move(command_buffer));
 
   //---------------------------
 }

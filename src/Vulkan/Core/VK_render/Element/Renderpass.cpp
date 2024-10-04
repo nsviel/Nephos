@@ -22,7 +22,6 @@ Renderpass::~Renderpass(){}
 
 //Main function
 void Renderpass::record_all_renderpass(vk::structure::Render& render){
-  vk_struct->core.profiler.vec_command_buffer.clear();
   //---------------------------
 
   for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
@@ -49,8 +48,7 @@ void Renderpass::prepare_renderpass(vk::structure::Render& render){
   //---------------------------
 
   render.ts = utl_chrono->start_t();
-  render.command_buffer = vk_command->query_free_command_buffer(vk_struct->core.device.queue.graphics);
-  render.command_buffer->name = render.renderpass->name;
+  render.command_buffer = vk_command->query_graphics_command_buffer(render.renderpass->name);
 
   //---------------------------
 }

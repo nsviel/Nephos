@@ -21,40 +21,6 @@ Command_buffer::Command_buffer(vk::Structure* vk_struct){
 Command_buffer::~Command_buffer(){}
 
 //Main function
-std::shared_ptr<vk::structure::Command_buffer> Command_buffer::query_free_command_buffer(vk::structure::Queue& queue){
-  //---------------------------
-
-  vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(queue);
-  if(pool == nullptr) return nullptr;
-
-  // Random number generator setup
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int> distr(0, pool->size - 1);
-
-  // Find a random available and unrecorded command buffer
-  int index;
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer;
-  do{
-    index = distr(gen);
-    command_buffer = pool->tank[index];
-
-    std::lock_guard<std::mutex> lock(command_buffer->mutex);
-    if(command_buffer->is_available){
-      //say(index);
-      //say(command_buffer->handle);
-      command_buffer->is_available = false;
-      vkResetCommandBuffer(command_buffer->handle, 0);
-      return command_buffer;
-    }
-  }while(true);
-
-  //Error message
-  std::cout<<"[error] not enough free command buffer"<<std::endl;
-
-  //---------------------------
-  return nullptr;
-}
 void Command_buffer::start_command_buffer_primary(vk::structure::Command_buffer& command_buffer){
   //---------------------------
 
@@ -113,18 +79,58 @@ void Command_buffer::end_command_buffer(vk::structure::Command_buffer& command_b
 
   //---------------------------
 }
-int Command_buffer::find_num_available_command(vk::pool::structure::Command_buffer* pool){
-  int num = 0;
+
+//Subfunction
+std::shared_ptr<vk::structure::Command_buffer> Command_buffer::query_graphics_command_buffer(std::string name){
   //---------------------------
 
-  for(auto& command_buffer : pool->tank){
-    if(command_buffer->is_available){
-      num++;
-    }
-  }
+  auto command_buffer = query_free_command_buffer(vk_struct->core.device.queue.graphics);
+  command_buffer->name = name;
 
   //---------------------------
-  return num;
+  return command_buffer;
 }
+std::shared_ptr<vk::structure::Command_buffer> Command_buffer::query_transfer_command_buffer(std::string name){
+  //---------------------------
 
+  auto command_buffer = query_free_command_buffer(vk_struct->core.device.queue.transfer);
+  command_buffer->name = name;
+
+  //---------------------------
+  return command_buffer;
+}
+std::shared_ptr<vk::structure::Command_buffer> Command_buffer::query_free_command_buffer(vk::structure::Queue& queue){
+  //---------------------------
+
+  vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(queue);
+  if(pool == nullptr) return nullptr;
+
+  // Random number generator setup
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> distr(0, pool->size - 1);
+
+  // Find a random available and unrecorded command buffer
+  int index;
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer;
+  do{
+    index = distr(gen);
+    command_buffer = pool->tank[index];
+
+    std::lock_guard<std::mutex> lock(command_buffer->mutex);
+    if(command_buffer->is_available){
+      //say(index);
+      //say(command_buffer->handle);
+      command_buffer->is_available = false;
+      vkResetCommandBuffer(command_buffer->handle, 0);
+      return command_buffer;
+    }
+  }while(true);
+
+  //Error message
+  std::cout<<"[error] not enough free command buffer"<<std::endl;
+
+  //---------------------------
+  return nullptr;
+}
 }

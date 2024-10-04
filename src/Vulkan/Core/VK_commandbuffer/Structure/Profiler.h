@@ -1,24 +1,16 @@
 #pragma once
 
+#include <unordered_map>
 #include <vector>
 #include <string>
 
 
 namespace vk::profiler{
 
-struct Command_buffer{
-  //---------------------------
-
-  std::string name = "";
-  float duration = -1;
-
-  //---------------------------
-};
-
 struct Structure{
   //---------------------------
 
-  std::vector<vk::profiler::Command_buffer> vec_command_buffer;
+  std::unordered_map<std::string, float> map_duration;
 
   //---------------------------
 };

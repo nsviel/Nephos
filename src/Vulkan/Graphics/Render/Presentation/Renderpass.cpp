@@ -19,9 +19,11 @@ Renderpass::~Renderpass(){}
 //Main function
 void Renderpass::init(){
   std::shared_ptr<vk::structure::Renderpass> renderpass = vk_struct->graphics.render.renderpass.presentation;
-  renderpass->attachment.target = vk::renderpass::PRESENTATION;
   if(vk_struct->interface.param.headless) return;
   //---------------------------
+
+  renderpass->name = "Presentation";
+  renderpass->attachment.target = vk::renderpass::PRESENTATION;
 
   vk_subpass->create_subpass(*renderpass);
 

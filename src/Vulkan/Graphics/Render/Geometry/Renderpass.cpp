@@ -22,8 +22,10 @@ Renderpass::~Renderpass(){}
 //Main function
 void Renderpass::init(){
   std::shared_ptr<vk::structure::Renderpass> renderpass = vk_struct->graphics.render.renderpass.geometry;
-  renderpass->attachment.target = vk::renderpass::SHADER;
   //---------------------------
+
+  renderpass->name = "Geometry";
+  renderpass->attachment.target = vk::renderpass::SHADER;
 
   vk_point->create_subpass(*renderpass);
   vk_line->create_subpass(*renderpass);

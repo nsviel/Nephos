@@ -34,7 +34,7 @@ void Recorder::run_compute(vk::structure::Object& vk_object){
   auto descriptor_set = vk_descriptor->query_descriptor_set(*pipeline);
 
   //Start command buffer
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_commandbuffer->query_free_command_buffer(vk_struct->core.device.queue.graphics);
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_commandbuffer->query_graphics_command_buffer("depth_to_cloud");
   vk_commandbuffer->start_command_buffer_primary(*command_buffer);
 
   this->bind_pipeline(*command_buffer, *pipeline);
