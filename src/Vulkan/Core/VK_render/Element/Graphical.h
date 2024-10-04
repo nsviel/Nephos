@@ -16,7 +16,7 @@ namespace vk::memory{class Transfer;}
 namespace sys::timer{class Chrono;}
 namespace vk::commandbuffer{class Command_buffer;}
 namespace vk::window{class Window;}
-
+namespace vk::gui{class Imgui;} 
 
 namespace vk::draw{
 
@@ -46,6 +46,7 @@ private:
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;
   vk::commandbuffer::Command_buffer* vk_command;
+  vk::gui::Imgui* vk_imgui;
 };
 
 }

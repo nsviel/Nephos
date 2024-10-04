@@ -19,7 +19,8 @@ Graphical::Graphical(vk::Structure* vk_struct){
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->vk_command = new vk::commandbuffer::Command_buffer(vk_struct);
   this->vk_window = new vk::window::Window(vk_struct);
-
+  this->vk_imgui = new vk::gui::Imgui(vk_struct);
+  
   //---------------------------
 }
 Graphical::~Graphical(){}
@@ -27,6 +28,9 @@ Graphical::~Graphical(){}
 //Main function
 bool Graphical::acquire_swapchain_image(vk::structure::Render& render){
   //---------------------------
+
+  vk_swapchain->next_frame_ID();
+  vk_imgui->glfw_new_frame();
 
   render.semaphore = vk_semaphore->query_free_semaphore();
   bool sucess = this->acquire_next_image(render);

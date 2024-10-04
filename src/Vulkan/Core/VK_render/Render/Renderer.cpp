@@ -48,9 +48,7 @@ void Renderer::make_rendering(){
   vk_submission->submit_presentation(render);
 
   //End rendering
-  vk_swapchain->next_frame_ID();
   vk_semaphore->reset_pool();
-  vk_imgui->glfw_new_frame();
 
   //---------------------------
 }
