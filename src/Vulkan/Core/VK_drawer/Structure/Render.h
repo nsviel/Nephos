@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/Core/VK_commandbuffer/Structure/Command_buffer.h>
-#include <Vulkan/Core/VK_commandbuffer/Structure/Command.h>
+#include <Vulkan/Core/VK_command/Structure/Command.h>
 #include <Vulkan/Core/VK_binding/Structure/Descriptor_set.h>
 #include <Vulkan/Core/VK_renderpass/Structure/Subpass.h>
 #include <Vulkan/Core/VK_renderpass/Structure/Renderpass.h>
