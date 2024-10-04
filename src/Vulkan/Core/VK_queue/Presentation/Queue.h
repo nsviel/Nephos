@@ -5,7 +5,9 @@
 
 namespace vk{class Structure;}
 namespace vk::commandbuffer::structure{class Set;}
+namespace vk::queue::presentation{class Submission;}
 namespace vk::draw{class Renderer;}
+namespace vk::structure{class Render;}
 
 
 namespace vk::queue::presentation{
@@ -24,10 +26,12 @@ public:
 
   //Subfunction
   void make_rendering_thread();
+  void submit_presentation(vk::structure::Render& render);
 
 private:
   vk::Structure* vk_struct;
   vk::draw::Renderer* vk_pipeline;
+  vk::queue::presentation::Submission* vk_submission;
 
   std::queue<bool> queue;
 };
