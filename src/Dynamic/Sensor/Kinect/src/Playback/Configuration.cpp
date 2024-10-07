@@ -41,7 +41,7 @@ void Configuration::find_configuration(k4n::playback::Sensor& sensor){
   sensor.setting.depth_resolution = find_resolution_depth(configuration.depth_mode);
   sensor.depth.config.enabled = configuration.depth_track_enabled;
   sensor.depth.config.mode = configuration.depth_mode;
-  sensor.device.playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor.firmware.depth);
+  sensor.device.playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor.device.firmware.depth);
 
   //Color
   k4a_image_format_t required_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
@@ -53,7 +53,7 @@ void Configuration::find_configuration(k4n::playback::Sensor& sensor){
   sensor.color.config.enabled = configuration.color_track_enabled;
   sensor.color.config.resolution = configuration.color_resolution;
   sensor.color.config.format = configuration.color_format;
-  sensor.device.playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor.firmware.color);
+  sensor.device.playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor.device.firmware.color);
 
   //Device
   sensor.infra.config.enabled = configuration.ir_track_enabled;

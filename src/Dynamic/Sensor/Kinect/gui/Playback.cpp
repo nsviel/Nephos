@@ -75,7 +75,7 @@ void Playback::show_firmware_info(k4n::playback::Sensor& sensor){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Device Firmware Version Info");
 
-  k4a_hardware_version_t versionInfo = sensor.device.version;
+  k4a_hardware_version_t versionInfo = sensor.device.firmware.version;
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
   ImGui::BeginTable("device##firmware", 2);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
@@ -152,7 +152,7 @@ void Playback::show_info_color(k4n::playback::Sensor& sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Color firmware"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor.firmware.color.c_str());
+  ImGui::TextColored(color, "%s", sensor.device.firmware.color.c_str());
 
   ImGui::EndTable();
 
@@ -180,7 +180,7 @@ void Playback::show_info_depth(k4n::playback::Sensor& sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor.firmware.depth.c_str());
+  ImGui::TextColored(color, "%s", sensor.device.firmware.depth.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("IR enabled"); ImGui::TableNextColumn();

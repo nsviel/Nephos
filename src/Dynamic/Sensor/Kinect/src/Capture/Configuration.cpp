@@ -73,12 +73,12 @@ void Configuration::find_calibration(k4n::capture::Sensor& sensor){
 void Configuration::find_versioning(k4n::capture::Sensor& sensor){
   //---------------------------
 
-  k4a_hardware_version_t version = sensor.device.version;
-  sensor.firmware.color = std::to_string(version.rgb.major) + "." + std::to_string(version.rgb.minor) + "." + std::to_string(version.rgb.iteration);
-  sensor.firmware.depth = std::to_string(version.depth.major) + "." + std::to_string(version.depth.minor) + "." + std::to_string(version.depth.iteration);
-  sensor.firmware.audio = std::to_string(version.audio.major) + "." + std::to_string(version.audio.minor) + "." + std::to_string(version.audio.iteration);
-  sensor.firmware.build = version.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug";
-  sensor.firmware.constructor = version.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" : version.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned";
+  k4a_hardware_version_t version = sensor.device.firmware.version;
+  sensor.device.firmware.color = std::to_string(version.rgb.major) + "." + std::to_string(version.rgb.minor) + "." + std::to_string(version.rgb.iteration);
+  sensor.device.firmware.depth = std::to_string(version.depth.major) + "." + std::to_string(version.depth.minor) + "." + std::to_string(version.depth.iteration);
+  sensor.device.firmware.audio = std::to_string(version.audio.major) + "." + std::to_string(version.audio.minor) + "." + std::to_string(version.audio.iteration);
+  sensor.device.firmware.build = version.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug";
+  sensor.device.firmware.constructor = version.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" : version.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned";
 
   //---------------------------
 }

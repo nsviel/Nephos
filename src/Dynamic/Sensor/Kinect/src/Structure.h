@@ -15,7 +15,7 @@ struct Structure{
   k4n::transformation::Structure transformation;
   k4n::structure::Configuration config;
   k4n::structure::FPS fps;
-  k4n::structure::Connection connection;
+  k4n::device::Connection connection;
 
   //---------------------------
 };

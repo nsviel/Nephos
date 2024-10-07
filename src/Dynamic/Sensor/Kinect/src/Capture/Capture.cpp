@@ -106,7 +106,7 @@ void Capture::init_device(k4n::capture::Sensor& sensor){
 
   //Get device info
   sensor.info.serial_number = sensor.device.handle.get_serialnum();
-  sensor.device.version = sensor.device.handle.get_version();
+  sensor.device.firmware.version = sensor.device.handle.get_version();
 
   //---------------------------
 }
