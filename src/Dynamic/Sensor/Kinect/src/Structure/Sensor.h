@@ -21,7 +21,7 @@ struct Sensor : public dat::base::Sensor{
 
   k4n::structure::Setting setting;
   k4n::structure::Cloud cloud;
-  k4n::structure::Configuration config;
+  k4n::str::config::Structure config;
 
   //Device
   k4n::device::Structure device;

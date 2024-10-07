@@ -16,14 +16,11 @@ struct Structure{
 
   //General parameters
   int index = -1;
-
-  k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
-
-
   std::shared_ptr<k4a::capture> capture = std::make_shared<k4a::capture>();
   k4n::device::Firmware firmware;
 
   //K4A device related objects
+  k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
   k4a::device handle;
   k4a::calibration calibration;
   k4a::transformation transformation;

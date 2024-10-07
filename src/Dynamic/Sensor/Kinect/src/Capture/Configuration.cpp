@@ -42,7 +42,7 @@ void Configuration::make_default_configuration(){
   k4n_struct->config.color.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
   k4n_struct->config.color.resolution = K4A_COLOR_RESOLUTION_1080P;
 
-  k4n_struct->fps.mode = K4A_FRAMES_PER_SECOND_30;
+  k4n_struct->config.fps.mode = K4A_FRAMES_PER_SECOND_30;
   k4n_struct->config.synchro.depth_delay_off_color_us = 0;
   k4n_struct->config.synchro.wired_mode = K4A_WIRED_SYNC_MODE_STANDALONE;
   k4n_struct->config.synchro.subordinate_delay_off_master_us = 0;
@@ -93,7 +93,7 @@ void Configuration::make_sensor_configuration(k4n::capture::Sensor& sensor){
   configuration.depth_mode = k4n_struct->config.depth.mode;
 
   //Synchro stuff
-  configuration.camera_fps = k4n_struct->fps.mode;
+  configuration.camera_fps = k4n_struct->config.fps.mode;
   configuration.depth_delay_off_color_usec = k4n_struct->config.synchro.depth_delay_off_color_us;
   configuration.wired_sync_mode = k4n_struct->config.synchro.wired_mode;
   configuration.subordinate_delay_off_master_usec = k4n_struct->config.synchro.subordinate_delay_off_master_us;

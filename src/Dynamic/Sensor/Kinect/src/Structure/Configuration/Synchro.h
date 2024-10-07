@@ -4,9 +4,9 @@
 #include <cstdint>
 
 
-namespace k4n::synchro{
+namespace k4n::str::config{
 
-struct Configuration{
+struct Synchro{
   //---------------------------
 
   k4a_wired_sync_mode_t wired_mode = K4A_WIRED_SYNC_MODE_STANDALONE;

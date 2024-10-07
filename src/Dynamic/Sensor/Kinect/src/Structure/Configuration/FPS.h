@@ -3,7 +3,7 @@
 #include <k4a/k4a.hpp>
 
 
-namespace k4n::structure{
+namespace k4n::str::config{
 
 struct FPS{
   //---------------------------

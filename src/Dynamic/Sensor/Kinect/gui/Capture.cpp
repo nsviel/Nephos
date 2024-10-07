@@ -141,8 +141,8 @@ void Capture::configuration_depth(){
     ImGui::SameLine();
     if(ImGui::RadioButton("WFOV Unbinned", &depth_mode, K4A_DEPTH_MODE_WFOV_UNBINNED)){
       k4n_struct->config.depth.mode = K4A_DEPTH_MODE_WFOV_UNBINNED;
-      if(k4n_struct->fps.mode == K4A_FRAMES_PER_SECOND_30){
-        k4n_struct->fps.mode = K4A_FRAMES_PER_SECOND_15;
+      if(k4n_struct->config.fps.mode == K4A_FRAMES_PER_SECOND_30){
+        k4n_struct->config.fps.mode = K4A_FRAMES_PER_SECOND_15;
       }
     }
     ImGui::SetItemTooltip("[1024 x 1024] resolution");
@@ -224,8 +224,8 @@ void Capture::configuration_color(){
     ImGui::SameLine();
     if(ImGui::RadioButton("3072p", &color_resolution, K4A_COLOR_RESOLUTION_3072P)){
       k4n_struct->config.color.resolution = K4A_COLOR_RESOLUTION_3072P;
-      if(k4n_struct->fps.mode == K4A_FRAMES_PER_SECOND_30){
-        k4n_struct->fps.mode = K4A_FRAMES_PER_SECOND_15;
+      if(k4n_struct->config.fps.mode == K4A_FRAMES_PER_SECOND_30){
+        k4n_struct->config.fps.mode = K4A_FRAMES_PER_SECOND_15;
       }
     }
     if(condition) ImGui::EndDisabled();
@@ -346,7 +346,7 @@ void Capture::configuration_camera(k4n::capture::Sensor& sensor){
   //---------------------------
 }
 void Capture::configuration_fps(){
-  int framerate = k4n_struct->fps.mode;
+  int framerate = k4n_struct->config.fps.mode;
   //---------------------------
 
   if(ImGui::TreeNode("FPS")){
@@ -355,18 +355,18 @@ void Capture::configuration_fps(){
     bool condition = (k4n_struct->config.depth.mode == K4A_DEPTH_MODE_WFOV_UNBINNED || k4n_struct->config.color.resolution == K4A_COLOR_RESOLUTION_3072P);
     if(condition) ImGui::BeginDisabled();
     if(ImGui::RadioButton("30 FPS", &framerate, K4A_FRAMES_PER_SECOND_30)){
-      k4n_struct->fps.mode = K4A_FRAMES_PER_SECOND_30;
+      k4n_struct->config.fps.mode = K4A_FRAMES_PER_SECOND_30;
     }
     if(condition) ImGui::EndDisabled();
 
     ImGui::SameLine();
     if(ImGui::RadioButton("15 FPS", &framerate, K4A_FRAMES_PER_SECOND_15)){
-      k4n_struct->fps.mode = K4A_FRAMES_PER_SECOND_15;
+      k4n_struct->config.fps.mode = K4A_FRAMES_PER_SECOND_15;
     }
 
     ImGui::SameLine();
     if(ImGui::RadioButton("5 FPS", &framerate, K4A_FRAMES_PER_SECOND_5)){
-      k4n_struct->fps.mode = K4A_FRAMES_PER_SECOND_5;
+      k4n_struct->config.fps.mode = K4A_FRAMES_PER_SECOND_5;
     }
 
     ImGui::TreePop();

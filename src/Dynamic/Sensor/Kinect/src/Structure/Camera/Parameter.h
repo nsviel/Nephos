@@ -3,27 +3,7 @@
 #include <k4a/k4a.hpp>
 
 
-namespace k4n::camera{
-
-enum Resolution{
-  OFF = 0,
-  P720 = 1,
-  P1080 = 2,
-  P1440 = 3,
-  P1536 = 4,
-  P2160 = 5,
-  P3072 = 6,
-};
-
-enum Format{
-  MJPG = 0,
-  NV12 = 1,
-  YUY2 = 2,
-  BGRA32 = 3,
-  DEPTH16 = 4,
-  IR16 = 5,
-  CUSTOM = 6,
-};
+namespace k4n::str::camera{
 
 struct Exposure{
   //---------------------------
@@ -103,22 +83,6 @@ struct Power_frequency{
   int32_t value = 2;
   k4a_color_control_command_t command = K4A_COLOR_CONTROL_POWERLINE_FREQUENCY;
   k4a_color_control_mode_t mode = K4A_COLOR_CONTROL_MODE_MANUAL;
-
-  //---------------------------
-};
-
-struct Configuration{
-  //---------------------------
-
-  k4n::camera::Exposure exposure;
-  k4n::camera::White_balance white_balance;
-  k4n::camera::Brightness brightness;
-  k4n::camera::Contrast contrast;
-  k4n::camera::Saturation saturation;
-  k4n::camera::Sharpness sharpness;
-  k4n::camera::Gain gain;
-  k4n::camera::Backlight_compensation backlight_compensation;
-  k4n::camera::Power_frequency power_frequency;
 
   //---------------------------
 };
