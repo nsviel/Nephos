@@ -1,4 +1,4 @@
-#include "Color.h"
+#include "Format.h"
 
 #include <Kinect/Namespace.h>
 #include <Data/Namespace.h>
@@ -7,7 +7,7 @@
 namespace k4n::color{
 
 //Constructor / Destructor
-Color::Color(k4n::Node* node_k4n){
+Format::Format(k4n::Node* node_k4n){
   //---------------------------
 
   dat::Node* node_data = node_k4n->get_node_data();
@@ -17,10 +17,10 @@ Color::Color(k4n::Node* node_k4n){
 
   //---------------------------
 }
-Color::~Color(){}
+Format::~Format(){}
 
 //Main function
-std::string Color::retrieve_format(k4a_image_format_t color_format){
+std::string Format::retrieve_format(k4a_image_format_t color_format){
   std::string format = "";
   //---------------------------
 
@@ -52,7 +52,7 @@ std::string Color::retrieve_format(k4a_image_format_t color_format){
 }
 
 //Subfunction
-uint8_t* Color::retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height){
+uint8_t* Format::retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height){
   uint8_t* bgrImage = new uint8_t[width * height * 3];
   //---------------------------
 
@@ -102,7 +102,7 @@ uint8_t* Color::retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int
   //---------------------------
   return bgrImage;
 }
-void Color::retrieve_data_from_capture(k4a::image& image, std::vector<uint8_t>& data, std::string& format){
+void Format::retrieve_data_from_capture(k4a::image& image, std::vector<uint8_t>& data, std::string& format){
   //---------------------------
 /*
 this->tj_handle = tjInitDecompress();
@@ -120,7 +120,7 @@ tjDestroy(tj_handle);
 */
   //---------------------------
 }
-void Color::retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data){
+void Format::retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data){
   //---------------------------
 /*
   int width = image.get_width_pixels();
@@ -141,8 +141,8 @@ void Color::retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& da
 */
   //---------------------------
 }
-void Color::convert_bgra_to_rgba(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Image> image = sensor.color.image;
+void Format::convert_bgra_to_rgba(k4n::colornew::Structure& color){
+/*  std::shared_ptr<utl::base::Image> image = color.image;
   //---------------------------
 
   // Retrieve the BGR(A) data from the sensor
@@ -170,7 +170,7 @@ void Color::convert_bgra_to_rgba(k4n::base::Sensor& sensor){
 
   // Set the size of the RGBA image data
   image->size = rgba_index;
-
+*/
   //---------------------------
 }
 

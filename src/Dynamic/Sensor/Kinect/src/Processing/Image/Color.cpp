@@ -25,7 +25,7 @@ void Color::extract_data(k4n::base::Sensor& sensor){
 
   this->retrieve_data(sensor);
   this->retrieve_image(sensor);
-  //this->retrieve_timestamp(sensor);
+  this->retrieve_timestamp(sensor);
 
   //---------------------------
 }

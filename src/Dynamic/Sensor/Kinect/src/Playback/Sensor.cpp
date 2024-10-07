@@ -13,6 +13,7 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
 
   dyn::prc::Node* node_processing = node_k4n->get_node_processing();
 
+  this->k4n_color = new k4n::color::Data(node_k4n);
   this->k4n_playback = new k4n::playback::Playback(node_k4n);
   this->k4n_image = new k4n::data::Image(node_k4n);
   this->k4n_cloud = new k4n::data::Cloud(node_k4n);
@@ -41,6 +42,7 @@ void Sensor::thread_init(){
 
   //Graph
   graph.add_task("capture", [this](dat::base::Sensor& sensor){ k4n_playback->manage_capture(sensor); });
+  graph.add_task("color", [this](dat::base::Sensor& sensor){ k4n_color->extract_data(sensor); });
   graph.add_task("data", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
   graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
   graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_operation->run_operation(sensor); });
