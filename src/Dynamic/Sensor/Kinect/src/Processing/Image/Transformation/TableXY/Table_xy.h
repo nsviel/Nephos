@@ -1,10 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Structure/Configuration/Transformation.h>
-#include <Thread/Task/Job.h>
-#include <glm/glm.hpp>
-#include <unordered_map>
-#include <memory>
+#include <k4a/k4a.hpp>
 
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
@@ -15,7 +11,7 @@ namespace utl::base{class Storage;}
 
 namespace k4n::processing{
 
-class Table_xy : public thr::Job
+class Table_xy
 {
 public:
   //Constructor / Destructor
