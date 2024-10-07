@@ -21,13 +21,7 @@ public:
   //Main function
   void create_buffer(vk::structure::Vertex& vertex);
   void update_buffer(vk::structure::Vertex& vertex, void* data);
-
-
-
-  void update_buffer(vk::structure::Object& vk_object);
   void clean_buffer(vk::structure::Buffer& buffer);
-
-  //Subfunction
 
 private:
   vk::Structure* vk_struct;

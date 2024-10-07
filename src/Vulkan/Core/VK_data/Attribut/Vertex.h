@@ -19,6 +19,7 @@ public:
 public:
   //Main function
   void build_vertex(vk::structure::Object& vk_object);
+  void update_vertex(vk::structure::Object& vk_object);
   void clean_vertex(vk::structure::Object& vk_object);
 
   //Subfunction

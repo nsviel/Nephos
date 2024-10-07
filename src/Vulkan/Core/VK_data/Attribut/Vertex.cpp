@@ -30,7 +30,6 @@ void Vertex::build_vertex(vk::structure::Object& vk_object){
     vertex.size_max = std::max(data.size_max, vertex.channel * vertex.size);
 
     vk_buffer->create_buffer(vertex);
-    vk_buffer->update_buffer(vertex, data.xyz.data());
     vk_object.map_vertex[vk::vertex::XYZ] = vertex;
   }
 
@@ -43,7 +42,6 @@ void Vertex::build_vertex(vk::structure::Object& vk_object){
     vertex.size_max = std::max(data.size_max, vertex.channel * vertex.size);
 
     vk_buffer->create_buffer(vertex);
-    vk_buffer->update_buffer(vertex, data.rgba.data());
     vk_object.map_vertex[vk::vertex::RGBA] = vertex;
   }
 
@@ -56,8 +54,35 @@ void Vertex::build_vertex(vk::structure::Object& vk_object){
     vertex.size_max = std::max(data.size_max, vertex.channel * vertex.size);
 
     vk_buffer->create_buffer(vertex);
-    vk_buffer->update_buffer(vertex, data.uv.data());
     vk_object.map_vertex[vk::vertex::UV] = vertex;
+  }
+
+  //---------------------------
+  this->update_vertex(vk_object);
+}
+void Vertex::update_vertex(vk::structure::Object& vk_object){
+  utl::base::Data& data = *vk_object.data;
+  //---------------------------
+
+  //XYZ vertex
+  if(!data.xyz.empty()){
+    vk::structure::Vertex& vertex = vk_object.map_vertex[vk::vertex::XYZ];
+    vertex.size = data.xyz.size();
+    vk_buffer->update_buffer(vertex, data.xyz.data());
+  }
+
+  //RGBA vertex
+  if(!data.rgba.empty()){
+    vk::structure::Vertex& vertex = vk_object.map_vertex[vk::vertex::RGBA];
+    vertex.size = data.rgba.size();
+    vk_buffer->update_buffer(vertex, data.rgba.data());
+  }
+
+  //UV vertex
+  if(!data.uv.empty()){
+    vk::structure::Vertex& vertex = vk_object.map_vertex[vk::vertex::UV];
+    vertex.size = data.uv.size();
+    vk_buffer->update_buffer(vertex, data.uv.data());
   }
 
   //---------------------------

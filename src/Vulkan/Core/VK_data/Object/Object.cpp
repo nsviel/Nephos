@@ -45,11 +45,11 @@ void Object::create_object(std::shared_ptr<utl::base::Data> data, std::shared_pt
 void Object::update_object(vk::structure::Object& object){
   //---------------------------
 
-  //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
+  //When vertex was empty at object creation, we need to build them now
   if(object.map_vertex.size() == 0){
     vk_vertex->build_vertex(object);
   }else{
-    vk_buffer->update_buffer(object);
+    vk_vertex->update_vertex(object);
   }
 
   //---------------------------

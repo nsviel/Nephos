@@ -34,32 +34,6 @@ void Buffer::update_buffer(vk::structure::Vertex& vertex, void* data){
 
   //---------------------------
 }
-
-
-void Buffer::update_buffer(vk::structure::Object& vk_object){
-  utl::base::Data& data = *vk_object.data;
-  //---------------------------
-
-  if(!data.xyz.empty()){
-    vk::structure::Vertex vertex = vk_object.map_vertex[vk::vertex::XYZ];
-    vertex.size = data.xyz.size();
-    vk_mem_transfer->copy_vertex_to_gpu(vertex, data.xyz.data());
-  }
-
-  if(!data.rgba.empty()){
-    vk::structure::Vertex vertex = vk_object.map_vertex[vk::vertex::RGBA];
-    vertex.size = data.rgba.size();
-    vk_mem_transfer->copy_vertex_to_gpu(vertex, data.rgba.data());
-  }
-
-  if(!data.uv.empty()){
-    vk::structure::Vertex vertex = vk_object.map_vertex[vk::vertex::UV];
-    vertex.size = data.uv.size();
-    vk_mem_transfer->copy_vertex_to_gpu(vertex, data.uv.data());
-  }
-
-  //---------------------------
-}
 void Buffer::clean_buffer(vk::structure::Buffer& buffer){
   //---------------------------
 
