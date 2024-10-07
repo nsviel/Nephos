@@ -33,7 +33,7 @@ void EDL::create_subpass(vk::structure::Renderpass& renderpass){
   subpass->index = 0;
   subpass->source = VK_SUBPASS_EXTERNAL;
   subpass->draw_task = [this](vk::structure::Render& render){this->draw_subpass(render);};
-  subpass->update_sampler = [this](vk::structure::Subpass& subpass) {this->update_sampler(subpass);};
+  subpass->update_sampler = [this](vk::structure::Subpass& subpass){this->update_sampler(subpass);};
 
   //Subpass pipelines
   vk_edl->add_pipeline(*subpass);

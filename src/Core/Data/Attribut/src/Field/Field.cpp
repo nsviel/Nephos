@@ -43,7 +43,7 @@ glm::vec2 Field::get_field_range(utl::base::Data& data, const std::string& name)
 
   //Get data
   auto field = get_field(data, name);
-  if (!field || field->data.empty()){
+  if(!field || field->data.empty()){
     return glm::vec2(0, 0);
   }
 

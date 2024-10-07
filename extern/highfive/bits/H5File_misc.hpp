@@ -71,7 +71,7 @@ inline File::File(const std::string& filename,
         if(openOrCreate){
             // Will attempt to create ensuring wont clobber any file
             createMode = H5F_ACC_EXCL;
-        } else {
+        }else{
             HDF5ErrMapper::ToException<FileException>(
                 std::string("Unable to open file " + filename));
         }

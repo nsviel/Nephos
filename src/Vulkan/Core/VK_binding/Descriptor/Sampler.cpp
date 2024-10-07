@@ -82,7 +82,7 @@ std::shared_ptr<vk::structure::Sampler> Sampler::query_sampler(vk::structure::De
   //---------------------------
 
   auto it = descriptor_set.map_sampler.find(name);
-  if (it == descriptor_set.map_sampler.end()) {
+  if(it == descriptor_set.map_sampler.end()){
     std::cout<<"------------------------"<<std::endl;
     std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<name<<"\033[0m"<<std::endl;
     std::cout<<"Existing sampler names: "<<std::endl;

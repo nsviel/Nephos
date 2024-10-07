@@ -30,7 +30,7 @@ public:
 
     {
       std::unique_lock<std::mutex> lock(mutex);
-      if (stop)
+      if(stop)
         throw std::runtime_error("submit on stopped ThreadPool");
 
       // Wrap the task to set the promise value upon completion

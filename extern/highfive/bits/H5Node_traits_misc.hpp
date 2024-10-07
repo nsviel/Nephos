@@ -190,7 +190,7 @@ inline bool NodeTraits<Derivate>::_exist(const std::string& node_name, bool rais
     if(val < 0){
         if(raise_errors){
             HDF5ErrMapper::ToException<GroupException>("Invalid link for exist()");
-        } else {
+        }else{
             return false;
         }
     }

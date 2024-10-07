@@ -45,7 +45,7 @@ void Pool::worker_thread(){
     {
       std::unique_lock<std::mutex> lock(mutex);
       cv.wait(lock, [this] { return stop || !queue_task.empty(); });
-      if (stop && queue_task.empty())
+      if(stop && queue_task.empty())
         return;
       task = std::move(queue_task.front());
       queue_task.pop();

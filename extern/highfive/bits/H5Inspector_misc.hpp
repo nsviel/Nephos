@@ -233,7 +233,7 @@ struct inspector<std::vector<T>> {
     static size_t getRank(const type& val){
         if(!val.empty()){
             return ndim + inspector<value_type>::getRank(val[0]);
-        } else {
+        }else{
             return min_ndim;
         }
     }
@@ -436,7 +436,7 @@ struct inspector<T*> {
     static size_t getRank(const type& val){
         if(val != nullptr){
             return ndim + inspector<value_type>::getRank(val[0]);
-        } else {
+        }else{
             return min_ndim;
         }
     }

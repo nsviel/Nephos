@@ -36,7 +36,7 @@ void Layout::create_simple_layout(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   // Ensure pipeline.descriptor.layout.handle is valid
-  if (pipeline.descriptor.layout.handle == VK_NULL_HANDLE) {
+  if(pipeline.descriptor.layout.handle == VK_NULL_HANDLE){
     throw std::runtime_error("[error] Descriptor set layout handle is null!");
   }
   

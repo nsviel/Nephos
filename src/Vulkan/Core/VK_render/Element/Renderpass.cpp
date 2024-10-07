@@ -111,7 +111,7 @@ void Renderpass::stop_renderpass(vk::structure::Render& render){
 void Renderpass::cmd_next_subset(vk::structure::Render& render){
   //---------------------------
 
-  if (render.subset_ID < render.renderpass->vec_subpass.size() - 1) {
+  if(render.subset_ID < render.renderpass->vec_subpass.size() - 1){
     vkCmdNextSubpass(render.command_buffer->handle, VK_SUBPASS_CONTENTS_INLINE);
     render.subset_ID++;
   }

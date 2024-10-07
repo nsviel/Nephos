@@ -47,7 +47,7 @@ struct inspector<cv::Mat_<T>> {
         if(val.empty()){
             return min_ndim;
 
-        } else {
+        }else{
             return static_cast<size_t>(val.dims) +
                    inspector<value_type>::getRank(getAnyElement(val));
         }

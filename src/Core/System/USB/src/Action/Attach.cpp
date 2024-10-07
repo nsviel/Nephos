@@ -39,7 +39,7 @@ void Attach::update_device_map(){
   const char* serial_ptr = udev_device_get_sysattr_value(usb_struct->udev.device, "serial");
   const char* node_ptr = udev_device_get_devnode(usb_struct->udev.device);
 
-  if (serial_ptr && node_ptr){
+  if(serial_ptr && node_ptr){
     std::string serial = std::string(serial_ptr);
     std::string node = std::string(node_ptr);
 
@@ -56,7 +56,7 @@ void Attach::run_capture(){
   const char* serial_ptr = udev_device_get_sysattr_value(usb_struct->udev.device, "serial");
   const char* node_ptr = udev_device_get_devnode(usb_struct->udev.device);
 
-  if (vendor_ptr && product_ptr && serial_ptr && node_ptr){
+  if(vendor_ptr && product_ptr && serial_ptr && node_ptr){
     std::string vendor = std::string(vendor_ptr);
     std::string product = std::string(product_ptr);
     std::string serial = std::string(serial_ptr);

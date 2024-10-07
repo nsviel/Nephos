@@ -599,7 +599,7 @@ static void stb_textedit_delete_selection(IMSTB_TEXTEDIT_STRING *str, STB_Texted
       if(state->select_start < state->select_end){
          stb_textedit_delete(str, state, state->select_start, state->select_end - state->select_start);
          state->select_end = state->cursor = state->select_start;
-      } else {
+      }else{
          stb_textedit_delete(str, state, state->select_end, state->select_start - state->select_end);
          state->select_start = state->cursor = state->select_end;
       }
@@ -741,7 +741,7 @@ retry:
                   ++state->cursor;
                   state->has_preferred_x = 0;
                }
-            } else {
+            }else{
                stb_textedit_delete_selection(str,state); // implicitly clamps
                if(STB_TEXTEDIT_INSERTCHARS(str, state->cursor, &ch, 1)){
                   stb_text_makeundo_insert(state, state->cursor, 1);
@@ -1207,7 +1207,7 @@ static IMSTB_TEXTEDIT_CHARTYPE *stb_text_createundo(StbUndoState *state, int pos
    if(insert_len == 0){
       r->char_storage = -1;
       return NULL;
-   } else {
+   }else{
       r->char_storage = state->undo_char_point;
       state->undo_char_point += insert_len;
       return &state->undo_char[r->char_storage];
@@ -1244,7 +1244,7 @@ static void stb_text_undo(IMSTB_TEXTEDIT_STRING *str, STB_TexteditState *state)
       if(s->undo_char_point + u.delete_length >= IMSTB_TEXTEDIT_UNDOCHARCOUNT){
          // the undo records take up too much character space; there's no space to store the redo characters
          r->insert_length = 0;
-      } else {
+      }else{
          int i;
 
          // there's definitely room to store the characters eventually
@@ -1308,7 +1308,7 @@ static void stb_text_redo(IMSTB_TEXTEDIT_STRING *str, STB_TexteditState *state)
       if(s->undo_char_point + u->insert_length > s->redo_char_point){
          u->insert_length = 0;
          u->delete_length = 0;
-      } else {
+      }else{
          int i;
          u->char_storage = s->undo_char_point;
          s->undo_char_point = s->undo_char_point + u->insert_length;

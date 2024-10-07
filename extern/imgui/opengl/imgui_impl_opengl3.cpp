@@ -790,9 +790,9 @@ bool    ImGui_ImplOpenGL3_CreateDeviceObjects()
 
     const GLchar* vertex_shader_glsl_300_es =
         "precision highp float;\n"
-        "layout (location = 0) in vec2 Position;\n"
-        "layout (location = 1) in vec2 UV;\n"
-        "layout (location = 2) in vec4 Color;\n"
+        "layout(location = 0) in vec2 Position;\n"
+        "layout(location = 1) in vec2 UV;\n"
+        "layout(location = 2) in vec4 Color;\n"
         "uniform mat4 ProjMtx;\n"
         "out vec2 Frag_UV;\n"
         "out vec4 Frag_Color;\n"
@@ -804,9 +804,9 @@ bool    ImGui_ImplOpenGL3_CreateDeviceObjects()
         "}\n";
 
     const GLchar* vertex_shader_glsl_410_core =
-        "layout (location = 0) in vec2 Position;\n"
-        "layout (location = 1) in vec2 UV;\n"
-        "layout (location = 2) in vec4 Color;\n"
+        "layout(location = 0) in vec2 Position;\n"
+        "layout(location = 1) in vec2 UV;\n"
+        "layout(location = 2) in vec4 Color;\n"
         "uniform mat4 ProjMtx;\n"
         "out vec2 Frag_UV;\n"
         "out vec4 Frag_Color;\n"
@@ -844,7 +844,7 @@ bool    ImGui_ImplOpenGL3_CreateDeviceObjects()
         "uniform sampler2D Texture;\n"
         "in vec2 Frag_UV;\n"
         "in vec4 Frag_Color;\n"
-        "layout (location = 0) out vec4 Out_Color;\n"
+        "layout(location = 0) out vec4 Out_Color;\n"
         "void main()\n"
         "{\n"
         "    Out_Color = Frag_Color * texture(Texture, Frag_UV.st);\n"
@@ -854,7 +854,7 @@ bool    ImGui_ImplOpenGL3_CreateDeviceObjects()
         "in vec2 Frag_UV;\n"
         "in vec4 Frag_Color;\n"
         "uniform sampler2D Texture;\n"
-        "layout (location = 0) out vec4 Out_Color;\n"
+        "layout(location = 0) out vec4 Out_Color;\n"
         "void main()\n"
         "{\n"
         "    Out_Color = Frag_Color * texture(Texture, Frag_UV.st);\n"

@@ -183,7 +183,7 @@ struct StringBuffer {
             if(buffer.isVariableLengthString()){
                 if(pad == StringPadding::NullTerminated){
                     buffer.variable_length_pointers[i] = data;
-                } else {
+                }else{
                     buffer.variable_length_buffer[i] = std::string(data, length);
                     buffer.variable_length_pointers[i] = buffer.variable_length_buffer[i].data();
                 }
@@ -216,7 +216,7 @@ struct StringBuffer {
         char const* data() const {
             if(buffer.isVariableLengthString()){
                 return buffer.variable_length_pointers[i];
-            } else {
+            }else{
                 return &buffer.fixed_length_buffer[i * buffer.string_size];
             }
         }
@@ -230,7 +230,7 @@ struct StringBuffer {
         size_t length() const {
             if(buffer.isNullTerminated()){
                 return char_buffer_size(data(), buffer.string_length);
-            } else {
+            }else{
                 return buffer.string_length;
             }
         }
@@ -284,7 +284,7 @@ struct StringBuffer {
         if(isVariableLengthString()){
             variable_length_buffer.resize(n_strings);
             variable_length_pointers.resize(n_strings);
-        } else {
+        }else{
             char pad = padding == StringPadding::SpacePadded ? ' ' : '\0';
             fixed_length_buffer.assign(n_strings * string_size, pad);
         }
@@ -306,7 +306,7 @@ struct StringBuffer {
     void* getPointer(){
         if(file_datatype.isVariableStr()){
             return variable_length_pointers.data();
-        } else {
+        }else{
             return fixed_length_buffer.data();
         }
     }

@@ -2789,7 +2789,7 @@ ImGuiTableSortSpecs* ImGui::TableGetSortSpecs()
     if(!(table->Flags & ImGuiTableFlags_Sortable))
         return NULL;
 
-    // Require layout (in case TableHeadersRow() hasn't been called) as it may alter IsSortSpecsDirty in some paths.
+    // Require layout(in case TableHeadersRow() hasn't been called) as it may alter IsSortSpecsDirty in some paths.
     if(!table->IsLayoutLocked)
         TableUpdateLayout(table);
 

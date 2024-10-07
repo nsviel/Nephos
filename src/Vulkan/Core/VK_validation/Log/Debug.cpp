@@ -50,7 +50,7 @@ void Debug::print_severity(VkDebugUtilsMessageSeverityFlagBitsEXT message_severi
   //---------------------------
 
   //Determine severity
-  switch (message_severity) {
+  switch (message_severity){
     case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:{
       severity = "verbose";
       break;

@@ -28,7 +28,7 @@ T template_null(const T& value){
     return static_cast<T>(0);  // For numeric types
   } else if constexpr (std::is_same_v<T, std::string>){
     return "";  // For std::string
-  } else {
+  }else{
     return T();  // For other types, return default-constructed T
   }
 

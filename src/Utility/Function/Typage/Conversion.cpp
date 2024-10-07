@@ -76,14 +76,14 @@ std::string format_title(const std::string& name, int totalWidth){
 
   int nameLength = name.length();
   int dashLength = (totalWidth - nameLength - 2) / 2;
-  if (totalWidth <= nameLength) return name;
+  if(totalWidth <= nameLength) return name;
 
   std::ostringstream ss;
   ss << std::string(dashLength, '-') << " " << name << " " << std::string(dashLength, '-');
 
   // Add any remaining dashes to ensure it reaches the total width
   int currentLength = ss.str().length();
-  if (currentLength < totalWidth){
+  if(currentLength < totalWidth){
     ss << std::string(totalWidth - currentLength, '-');
   }
 

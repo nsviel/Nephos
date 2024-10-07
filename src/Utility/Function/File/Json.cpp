@@ -70,7 +70,7 @@ void read_value(const std::string& path, const std::string& key, bool& value){
     // Try to parse the value at the final nested level into the value argument
     if(current->is_boolean()){
       value = current->get<bool>(); // Assign value only if it's a boolean
-    } else {
+    }else{
       std::cerr << "[Error] Value for key '" << key << "' is not a boolean in JSON file." << std::endl;
     }
   }

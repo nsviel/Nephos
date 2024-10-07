@@ -291,7 +291,7 @@ inline Chunking::Chunking(DataSetCreateProps& plist, size_t max_dims)
 
     if(n_loaded >= static_cast<int>(_dims.size())){
         *this = Chunking(plist, 8 * max_dims);
-    } else {
+    }else{
         _dims.resize(static_cast<size_t>(n_loaded));
     }
 }

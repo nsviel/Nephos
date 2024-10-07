@@ -51,7 +51,7 @@ void Correction::make_correction(dat::base::Sensor& sensor, std::shared_ptr<utl:
   std::unique_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");
   std::unique_ptr<std::vector<float>> vec_It_ptr = atr_field->get_field_data(data, "It");
   std::unique_ptr<std::vector<float>> vec_Icor_ptr = atr_field->get_field_data(data, "I_cor");
-  if (!vec_R_ptr || !vec_It_ptr || !vec_Icor_ptr) return;
+  if(!vec_R_ptr || !vec_It_ptr || !vec_Icor_ptr) return;
 
   std::vector<float>& vec_Icor = *vec_Icor_ptr;
   std::vector<float>& vec_R = *vec_R_ptr;

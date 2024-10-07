@@ -25,7 +25,7 @@ void Monitor::init(){
 
   //Contexte
   usb_struct->udev.contexte = udev_new();
-  if (!usb_struct->udev.contexte){
+  if(!usb_struct->udev.contexte){
     std::cerr << "Can't create udev\n";
     return;
   }
@@ -64,7 +64,7 @@ void Monitor::loop(){
     int event = FD_ISSET(usb_struct->udev.fd, &fds);
 
     //Even occur
-    if (ret > 0 && event){
+    if(ret > 0 && event){
       this->manage_event();
     }
   }
@@ -112,7 +112,7 @@ void Monitor::manage_event(){
 
   //Event associated device
   usb_struct->udev.device = udev_monitor_receive_device(usb_struct->udev.monitor);
-  if (!usb_struct->udev.device) return;
+  if(!usb_struct->udev.device) return;
 
   //Event action
   std::string action = std::string(udev_device_get_action(usb_struct->udev.device));

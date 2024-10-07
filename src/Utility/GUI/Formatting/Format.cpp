@@ -17,7 +17,7 @@ std::string format_title(const std::string& name, int totalWidth){
    int availableWidth = totalWidth - nameLength - 2; // Subtract spaces around the name
 
    // Ensure the available width is non-negative
-   if (availableWidth < 0){
+   if(availableWidth < 0){
        return name;  // If not enough width, return the name itself
    }
 
@@ -32,7 +32,7 @@ std::string format_title(const std::string& name, int totalWidth){
    std::string result = ss.str();
    int resultLength = static_cast<int>(result.length());
 
-   if (resultLength < totalWidth){
+   if(resultLength < totalWidth){
        result += std::string(totalWidth - resultLength, '-');
    }
 

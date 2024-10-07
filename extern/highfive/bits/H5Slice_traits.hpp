@@ -166,7 +166,7 @@ class HyperSlab {
         for(const auto& sel: selects){
             if(sel.op == Op::None){
                 detail::h5s_select_none(space.getId());
-            } else {
+            }else{
                 detail::h5s_select_hyperslab(space.getId(),
                                              convert(sel.op),
                                              sel.offset.empty() ? nullptr : sel.offset.data(),

@@ -74,7 +74,7 @@ void Graph::process_graph(dat::sensor::Pool& thread_pool, dat::base::Sensor& sen
   //Retrieve zero in-degree nodes
   {
     for(auto& [task_name, node] : map_node){
-      if (node.in_degree == 0){
+      if(node.in_degree == 0){
         queue_running.push(task_name);
       }
     }
@@ -87,7 +87,7 @@ void Graph::process_graph(dat::sensor::Pool& thread_pool, dat::base::Sensor& sen
 
     // Wait for the current node's future to complete
     dat::sensor::Node& node = map_node[task_name];
-    if (node.future.valid()){
+    if(node.future.valid()){
       node.future.wait();
     }
 
@@ -126,8 +126,8 @@ void Graph::wait_completion(){
   std::unique_lock<std::mutex> lock(mutex);
 
   // Iterate over all tasks in the map and wait for their futures to complete
-  for (auto& [task_name, node] : map_node){
-    if (node.future.valid()){
+  for(auto& [task_name, node] : map_node){
+    if(node.future.valid()){
       node.future.wait();  // Wait for the task to complete
     }
   }

@@ -57,7 +57,7 @@ void Converter::convert_intensity_to_image(utl::base::Data& data, std::shared_pt
   //---------------------------
 
   std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if (!vec_I_ptr) return;
+  if(!vec_I_ptr) return;
 
   std::vector<float>& vec_I = *vec_I_ptr;
   std::vector<uint8_t> output = std::vector<uint8_t>(vec_I.size() * 4, 0);
@@ -85,7 +85,7 @@ void Converter::convert_spherical_pc_to_image(utl::base::Data& data, std::shared
   //---------------------------
 
   std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if (!vec_I_ptr) return;
+  if(!vec_I_ptr) return;
 
   std::vector<float>& vec_I = *vec_I_ptr;
   std::vector<glm::vec3>& vec_xyz = data.xyz;
@@ -138,7 +138,7 @@ void Converter::convert_whole_spherical_pc_to_image(utl::base::Data& data, std::
   //---------------------------
 
   std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if (!vec_I_ptr) return;
+  if(!vec_I_ptr) return;
 
   std::vector<float>& vec_I = *vec_I_ptr;
   std::vector<glm::vec3>& vec_xyz = data.xyz;

@@ -4473,7 +4473,7 @@ static const unsigned char *stb_decompress_token(const unsigned char *i)
         if(*i >= 0x80)       stb__match(stb__dout-i[1]-1, i[0] - 0x80 + 1), i += 2;
         else if(*i >= 0x40)  stb__match(stb__dout-(stb__in2(0) - 0x4000 + 1), i[2]+1), i += 3;
         else /* *i >= 0x20 */ stb__lit(i+1, i[0] - 0x20 + 1), i += 1 + (i[0] - 0x20 + 1);
-    } else { // more ifs for cases that expand large, since overhead is amortized
+    }else{ // more ifs for cases that expand large, since overhead is amortized
         if(*i >= 0x18)       stb__match(stb__dout-(stb__in3(0) - 0x180000 + 1), i[3]+1), i += 4;
         else if(*i >= 0x10)  stb__match(stb__dout-(stb__in3(0) - 0x100000 + 1), stb__in2(3)+1), i += 5;
         else if(*i >= 0x08)  stb__lit(i+2, stb__in2(0) - 0x0800 + 1), i += 2 + (stb__in2(0) - 0x0800 + 1);
@@ -4536,7 +4536,7 @@ static unsigned int stb_decompress(unsigned char *output, const unsigned char *i
                 if(stb_adler32(1, output, olen) != (unsigned int) stb__in4(2))
                     return 0;
                 return olen;
-            } else {
+            }else{
                 IM_ASSERT(0); /* NOTREACHED */
                 return 0;
             }

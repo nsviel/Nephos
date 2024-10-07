@@ -48,7 +48,7 @@ std::string Color::retrieve_format(rs2_format color_format){
   std::string format = "";
   //---------------------------
 
-  switch(color_format) {
+  switch(color_format){
     case RS2_FORMAT_RGB8: {
       format = "R8G8B8_SRGB";
       break;
@@ -86,18 +86,18 @@ void Color::retrieve_data(rs2::frame& frame, std::string format, std::shared_ptr
   int size = frame.get_data_size();
 
   // Process the data based on the format
-  if (format == "R8G8B8_SRGB") {
+  if(format == "R8G8B8_SRGB"){
     int pixel_count = size / 3;
     buffer = std::vector<uint8_t>(pixel_count * 4);
 
     // Copy and add alpha channel (255, fully opaque) to each pixel
-    for (int i = 0; i < pixel_count; ++i) {
+    for(int i = 0; i < pixel_count; ++i){
       buffer[i * 4 + 0] = data[i * 3 + 0]; // R
       buffer[i * 4 + 1] = data[i * 3 + 1]; // G
       buffer[i * 4 + 2] = data[i * 3 + 2]; // B
       buffer[i * 4 + 3] = 255;             // A (fully opaque)
     }
-  } else {
+  }else{
     buffer = std::vector<uint8_t>(size);
     std::copy(data, data + size, buffer.begin());
   }

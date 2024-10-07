@@ -39,7 +39,7 @@ inline std::vector<size_t> squeeze(const std::vector<size_t>& dims,
     for(size_t i = 0; i < n_dims; ++i){
         if(!mask[i]){
             squeezed_dims.push_back(dims[i]);
-        } else {
+        }else{
             if(dims[i] != 1){
                 throw Exception("Squeezing non-unity axis: axes[" + std::to_string(i) +
                                 "] = " + std::to_string(axes[i]));

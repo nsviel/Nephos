@@ -24,7 +24,7 @@ void Heatmap::colorization_heatmap(dat::base::Entity& entity){
 
   //Retrieve field
   std::unique_ptr<std::vector<float>> vec_field = atr_field->get_field_data(data, atr_struct->color.field);
-  if (!vec_field) return;
+  if(!vec_field) return;
   std::vector<float> field = *vec_field;
 
   //Normalization

@@ -154,7 +154,7 @@ void Format::convert_bgra_to_rgba(k4n::base::Sensor& sensor){
   size_t rgba_index = 0;
 
   // Convert BGR to RGBA
-  for (size_t i = 0; i < bgr_size; i += 4) {
+  for(size_t i = 0; i < bgr_size; i += 4){
     // Assuming the format is BGRA
     uint8_t b = bgr_buffer[i];     // B
     uint8_t g = bgr_buffer[i + 1]; // G

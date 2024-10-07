@@ -63,7 +63,7 @@ void Object::clean_object(std::shared_ptr<vk::structure::Object> object){
 
   //Remove from data list
   auto it = vk_struct->core.data.map_object.find(object->data->UID);
-  if (it != vk_struct->core.data.map_object.end()){
+  if(it != vk_struct->core.data.map_object.end()){
     vk_struct->core.data.map_object.erase(it);
   }
 

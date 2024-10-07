@@ -48,7 +48,7 @@ struct VertexAttribute {
     uint magic;
 };
 
-mat3 rotationFromQuaternion(vec4 q) {
+mat3 rotationFromQuaternion(vec4 q){
     float qx = q.y;
     float qy = q.z;
     float qz = q.w;

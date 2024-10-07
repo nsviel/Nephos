@@ -28,11 +28,11 @@ void Detach::manage_action(){
 
   const char* node_ptr = udev_device_get_devnode(usb_struct->udev.device);
 
-  if (node_ptr){
+  if(node_ptr){
     std::string node = std::string(node_ptr);
 
     auto it = usb_struct->map_device.find(node);
-    if (it != usb_struct->map_device.end()){
+    if(it != usb_struct->map_device.end()){
             say("unplug");
       std::shared_ptr<dat::base::Sensor> sensor = usb_struct->map_device[node];
       dat_element->remove_entity(sensor);

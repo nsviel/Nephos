@@ -82,7 +82,7 @@ std::shared_ptr<vk::structure::Storage_image> Storage_image::query_storage(vk::s
   //---------------------------
 
   auto it = descriptor_set.map_storage_image.find(name);
-  if (it == descriptor_set.map_storage_image.end()) {
+  if(it == descriptor_set.map_storage_image.end()){
     std::cout<<"------------------------"<<std::endl;
     std::cout<<"[error] Update storage -> name not recognized \033[1;31m"<<name<<"\033[0m"<<std::endl;
     std::cout<<"Existing storage image names: "<<std::endl;

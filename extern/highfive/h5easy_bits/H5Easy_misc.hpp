@@ -30,7 +30,7 @@ inline Exception dump_error(File& file, const std::string& path){
                      path,
                      "H5Easy: Dataset already exists, dump with H5Easy::DumpMode::Overwrite "
                      "to overwrite (with an array of the same shape).");
-    } else {
+    }else{
         return error(
             file,
             path,
@@ -47,7 +47,7 @@ inline DataSet initDataset(File& file,
     if(!file.exist(path)){
         if(!options.compress() && !options.isChunked()){
             return file.createDataSet<T>(path, DataSpace(shape), {}, {}, true);
-        } else {
+        }else{
             std::vector<hsize_t> chunks(shape.begin(), shape.end());
             if(options.isChunked()){
                 chunks = options.getChunkSize();

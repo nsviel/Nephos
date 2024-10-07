@@ -260,7 +260,7 @@ void Set::active_next_entity(std::shared_ptr<dat::base::Set> set){
         // If at the end of the list, cycle back to the beginning
         if(next_it == set->list_entity.end()){
           set->active_entity = *set->list_entity.begin();
-        } else {
+        }else{
           set->active_entity = *next_it;
         }
 

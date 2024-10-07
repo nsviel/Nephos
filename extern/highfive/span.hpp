@@ -36,7 +36,7 @@ struct inspector<std::span<T, Extent>> {
     static size_t getRank(const type& val){
         if(!val.empty()){
             return ndim + inspector<value_type>::getRank(val[0]);
-        } else {
+        }else{
             return min_ndim;
         }
     }

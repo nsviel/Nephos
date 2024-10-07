@@ -42,7 +42,7 @@ void Exporter::write_data_ascii(io::exp::Configuration& config, utl::base::Data&
 
   //Data : xyz (R) (rgb) (nxnynz)
   std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if (!vec_I_ptr) return;
+  if(!vec_I_ptr) return;
 
   std::vector<float>& vec_I = *vec_I_ptr;
   std::vector<glm::vec3>& xyz = data.xyz;

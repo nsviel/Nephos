@@ -31,7 +31,7 @@ struct Texture_data : public utl::base::Texture{
   //---------------------------
 
   Texture_data() = default;
-  Texture_data(std::string name) : Texture(name) {}
+  Texture_data(std::string name) : Texture(name){}
 
   int channel_byte = sizeof(T);
   std::vector<T> data;
@@ -43,7 +43,7 @@ struct Storage : public utl::base::Texture_data<float> {
   //---------------------------
 
   Storage() = default;
-  Storage(std::string name) : Texture_data(name) {}
+  Storage(std::string name) : Texture_data(name){}
 
   //---------------------------
 };
@@ -51,7 +51,7 @@ struct Image : public utl::base::Texture_data<uint8_t> {
   //---------------------------
 
   Image() = default;
-  Image(std::string name) : Texture_data(name) {}
+  Image(std::string name) : Texture_data(name){}
 
   float timestamp = 0;
 
@@ -61,7 +61,7 @@ struct Depth : public utl::base::Texture_data<uint16_t> {
   //---------------------------
 
   Depth() = default;
-  Depth(std::string name) : Texture_data(name) {}
+  Depth(std::string name) : Texture_data(name){}
 
   //---------------------------
 };

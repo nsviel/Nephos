@@ -15,7 +15,7 @@ namespace H5Easy {
 inline Compression::Compression(bool enable){
     if(enable){
         m_compression_level = 9;
-    } else {
+    }else{
         m_compression_level = 0;
     }
 }

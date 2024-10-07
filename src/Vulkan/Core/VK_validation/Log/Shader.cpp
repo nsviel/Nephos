@@ -35,7 +35,7 @@ void Shader::print_message_ID(std::string message){
 
   // Find the position of "[SHADER]"
    size_t pos = message.find("[SHADER]");
-   if(pos != std::string::npos) {
+   if(pos != std::string::npos){
      message = message.substr(pos + std::string("[SHADER]").length());
    }
 

@@ -3,15 +3,15 @@
 #include "./common.glsl"
 
 
-layout (std430, set = 0, binding = 0) readonly buffer Vertices {
+layout(std430, set = 0, binding = 0) readonly buffer Vertices {
     Vertex vertices[];
 };
 
-layout (std430, set = 0, binding = 1) readonly buffer Cov3Ds {
+layout(std430, set = 0, binding = 1) readonly buffer Cov3Ds {
     float cov3ds[];
 };
 
-layout (std140, set = 1, binding = 0) uniform Params {
+layout(std140, set = 1, binding = 0) uniform Params {
     vec4 camera_position;
     mat4 proj_mat;
     mat4 view_mat;
@@ -21,17 +21,17 @@ layout (std140, set = 1, binding = 0) uniform Params {
     float tan_fovy;
 };
 
-layout (std430, set = 1, binding = 1) writeonly buffer VertexAttributes {
+layout(std430, set = 1, binding = 1) writeonly buffer VertexAttributes {
     VertexAttribute attr[];
 };
 
-layout (std430, set = 1, binding = 2) writeonly buffer NumTilesOverlap {
+layout(std430, set = 1, binding = 2) writeonly buffer NumTilesOverlap {
     uint tiles_overlap[];
 };
 
-layout (local_size_x = TILE_WIDTH * TILE_HEIGHT, local_size_y = 1, local_size_z = 1) in;
+layout(local_size_x = TILE_WIDTH * TILE_HEIGHT, local_size_y = 1, local_size_z = 1) in;
 
-mat3 get_projection_jacobian_approx(vec3 t) {
+mat3 get_projection_jacobian_approx(vec3 t){
     float limx = 1.3 * tan_fovx;
     float limy = 1.3 * tan_fovy;
     float txtz = t.x / t.z;
@@ -49,7 +49,7 @@ mat3 get_projection_jacobian_approx(vec3 t) {
     );
 }
 
-mat2 compute_cov2d(vec3 cam) {
+mat2 compute_cov2d(vec3 cam){
     uint index = gl_GlobalInvocationID.x;
     mat3 J = get_projection_jacobian_approx(cam);
     mat3 W = transpose(mat3(view_mat));
@@ -65,12 +65,12 @@ mat2 compute_cov2d(vec3 cam) {
     return mat2(cov2d);
 }
 
-vec3 get_sh_vec3(uint ind) {
+vec3 get_sh_vec3(uint ind){
     uint index = gl_GlobalInvocationID.x;
     return vec3(vertices[index].sh[ind * 3], vertices[index].sh[ind * 3 + 1], vertices[index].sh[ind * 3 + 2]);
 }
 
-vec3 compute_sh() {
+vec3 compute_sh(){
     uint index = gl_GlobalInvocationID.x;
 
     vec3 ray_direction = vertices[index].position.xyz - camera_position.xyz;
@@ -99,7 +99,7 @@ vec3 compute_sh() {
 
     c += 0.5;
 
-    if (c.x < 0.0) {
+    if(c.x < 0.0){
         c.x = 0.0;
     }
 
@@ -112,72 +112,76 @@ float ndc2Pix(float v, int S)
     return ((v + 1.0) * S - 1.0) * 0.5;
 }
 
-void main() {
-    uint index = gl_GlobalInvocationID.x;
-    if (index >= vertices.length()) {
-        return;
-    }
-    if (index == 0) {
-//        debugPrintfEXT("width: %d, height: %d, tan_fovx: %f, tan_fovy: %f\n", width, height, tan_fovx, tan_fovy);
-    }
+void main(){
+  //---------------------------
 
-    ivec2 tile_shape = ivec2((width + TILE_WIDTH - 1) / TILE_WIDTH, (height + TILE_HEIGHT - 1) / TILE_HEIGHT);
+  uint index = gl_GlobalInvocationID.x;
+  if(index >= vertices.length()){
+      return;
+  }
+  if(index == 0){
+//        debugPrintfEXT("width: %d, height: %d, tan_fovx: %f, tan_fovy: %f\n", width, height, tan_fovx, tan_fovy);
+  }
+
+  ivec2 tile_shape = ivec2((width + TILE_WIDTH - 1) / TILE_WIDTH, (height + TILE_HEIGHT - 1) / TILE_HEIGHT);
 //    assert(tile_shape.x == 50 && tile_shape.y == 38, "invalid tile shape: %d %d\n", tile_shape);
 
-    attr[index].color_radii.w = 0.0;
-    tiles_overlap[index] = 0;
+  attr[index].color_radii.w = 0.0;
+  tiles_overlap[index] = 0;
 
-    vec4 p_hom = proj_mat * vertices[index].position;
-    float p_w = 1.0f / p_hom.w;
-    vec3 ndc = vec3(p_hom.xyz * p_w);
+  vec4 p_hom = proj_mat * vertices[index].position;
+  float p_w = 1.0f / p_hom.w;
+  vec3 ndc = vec3(p_hom.xyz * p_w);
 
-    vec4 p_view = view_mat * vertices[index].position;
-    if (p_view.z <= 0.2f) {
-        return;
-    }
+  vec4 p_view = view_mat * vertices[index].position;
+  if(p_view.z <= 0.2f){
+      return;
+  }
 
-    mat2 cov2d = compute_cov2d(p_view.xyz);
-    float det = determinant(cov2d);
-    if (det <= 0.0) {
-        return;
-    }
-    mat2 conic = inverse(cov2d);
-    attr[index].conic_opacity.xyz = vec3(conic[0][0], conic[0][1], conic[1][1]);
-    attr[index].conic_opacity.w = vertices[index].scale_opacity.w;
+  mat2 cov2d = compute_cov2d(p_view.xyz);
+  float det = determinant(cov2d);
+  if(det <= 0.0){
+      return;
+  }
+  mat2 conic = inverse(cov2d);
+  attr[index].conic_opacity.xyz = vec3(conic[0][0], conic[0][1], conic[1][1]);
+  attr[index].conic_opacity.w = vertices[index].scale_opacity.w;
 
-    float mid = 0.5 * (cov2d[0][0] + cov2d[1][1]);
-    float lambda1 = mid + sqrt(max(0.1, mid * mid - det));
-    float lambda2 = mid - sqrt(max(0.1, mid * mid - det));
-    float lambda = max(lambda1, lambda2);
-    float radii = ceil(3.0 * sqrt(lambda));
-//    if (radii > 2.0) {
+  float mid = 0.5 * (cov2d[0][0] + cov2d[1][1]);
+  float lambda1 = mid + sqrt(max(0.1, mid * mid - det));
+  float lambda2 = mid - sqrt(max(0.1, mid * mid - det));
+  float lambda = max(lambda1, lambda2);
+  float radii = ceil(3.0 * sqrt(lambda));
+//    if(radii > 2.0){
 //        debugPrintfEXT("lambda: %f, radii: %f\n", lambda, radii);
 //    }
 
 //    vec2 uv = vec2((ndc.x + 1.0) * 0.5 * width, (ndc.y + 1.0) * 0.5 * height);
-    vec2 uv = vec2(ndc2Pix(ndc.x, int(width)), ndc2Pix(ndc.y, int(height)));
+  vec2 uv = vec2(ndc2Pix(ndc.x, int(width)), ndc2Pix(ndc.y, int(height)));
 
-    uvec4 bounding_box = uvec4(
-            uint(clamp(int((uv.x - radii) / TILE_WIDTH), 0, tile_shape.x)),
-            uint(clamp(int((uv.y - radii) / TILE_HEIGHT), 0, tile_shape.y)),
-            uint(clamp(int((uv.x + radii + TILE_WIDTH - 1) / TILE_WIDTH), 0, tile_shape.x)),
-            uint(clamp(int((uv.y + radii + TILE_HEIGHT - 1) / TILE_HEIGHT), 0, tile_shape.y))
-    );
+  uvec4 bounding_box = uvec4(
+          uint(clamp(int((uv.x - radii) / TILE_WIDTH), 0, tile_shape.x)),
+          uint(clamp(int((uv.y - radii) / TILE_HEIGHT), 0, tile_shape.y)),
+          uint(clamp(int((uv.x + radii + TILE_WIDTH - 1) / TILE_WIDTH), 0, tile_shape.x)),
+          uint(clamp(int((uv.y + radii + TILE_HEIGHT - 1) / TILE_HEIGHT), 0, tile_shape.y))
+  );
 
 //    debugPrintfEXT("radii: %f, uv: %f %f, aabb: %d %d %d %d\n", radii, uv.x, uv.y, ivec4(bounding_box));
 
-    uint num_tiles_overlap = (bounding_box.z - bounding_box.x) * (bounding_box.w - bounding_box.y);
-    if (num_tiles_overlap == 0) {
-        return;
-    }
-    assert(num_tiles_overlap <= width * height, "too many tiles overlap: %d\n", num_tiles_overlap);
-    attr[index].aabb = bounding_box;
+  uint num_tiles_overlap = (bounding_box.z - bounding_box.x) * (bounding_box.w - bounding_box.y);
+  if(num_tiles_overlap == 0){
+      return;
+  }
+  assert(num_tiles_overlap <= width * height, "too many tiles overlap: %d\n", num_tiles_overlap);
+  attr[index].aabb = bounding_box;
 //    assert(bounding_box.x < bounding_box.z && bounding_box.y < bounding_box.w, "invalid aabb: %d %d %d %d\n", ivec4(bounding_box));
-    tiles_overlap[index] = num_tiles_overlap;
-    attr[index].depth = p_view.z;
-    attr[index].color_radii.w = radii;
-    attr[index].color_radii.xyz = compute_sh();
-    attr[index].uv = uv;
-    attr[index].magic = MAGIC;
+  tiles_overlap[index] = num_tiles_overlap;
+  attr[index].depth = p_view.z;
+  attr[index].color_radii.w = radii;
+  attr[index].color_radii.xyz = compute_sh();
+  attr[index].uv = uv;
+  attr[index].magic = MAGIC;
 //    attr[index*2].magic = MAGIC;
+
+  //---------------------------
 }

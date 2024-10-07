@@ -33,7 +33,7 @@ void add_alpha_channel(utl::base::Image& image){
   std::vector<uint8_t> new_data;
   new_data.reserve(image.width * image.height * 4); // Reserve space for RGBA
 
-  for (int i = 0; i < image.data.size(); i += 3) {
+  for(int i = 0; i < image.data.size(); i += 3){
     // Copy RGB values
     new_data.push_back(image.data[i]);     // R
     new_data.push_back(image.data[i + 1]); // G
