@@ -20,32 +20,12 @@ Buffer::~Buffer(){}
 
 //Main function
 void Buffer::create_buffer(vk::structure::Object& vk_object){
-  VkDeviceSize size;
   //---------------------------
 
   for(auto& [type, vertex] : vk_object.map_vertex){
-    vk_mem_allocator->allocate_empty_vertex_buffer(vertex.buffer, vertex.size);
-    vk_mem_allocator->allocate_empty_stagger_buffer(vertex.stagger, vertex.size);
+    vk_mem_allocator->allocate_empty_vertex_buffer(vertex.buffer, vertex.size_max);
+    vk_mem_allocator->allocate_empty_stagger_buffer(vertex.stagger, vertex.size_max);
   }
-
-  int max_data = get_size_buffer(vk_object);
-  if(max_data == 0){
-    //cout<<"[error] max buffer size equal 0"<<std::endl;
-    return;
-  }
-
-  //Find buffer size
-  size = sizeof(glm::vec3) * max_data;
-  vk_mem_allocator->allocate_empty_vertex_buffer(vk_object.buffer.xyz.data, size);
-  vk_mem_allocator->allocate_empty_stagger_buffer(vk_object.buffer.xyz.stagger, size);
-
-  size = sizeof(glm::vec4) * max_data;
-  vk_mem_allocator->allocate_empty_vertex_buffer(vk_object.buffer.rgba.data, size);
-  vk_mem_allocator->allocate_empty_stagger_buffer(vk_object.buffer.rgba.stagger, size);
-
-  size  = sizeof(glm::vec2) * max_data;
-  vk_mem_allocator->allocate_empty_vertex_buffer(vk_object.buffer.uv.data, size);
-  vk_mem_allocator->allocate_empty_stagger_buffer(vk_object.buffer.uv.stagger, size);
 
   this->update_buffer(vk_object);
 
@@ -56,18 +36,21 @@ void Buffer::update_buffer(vk::structure::Object& vk_object){
   //---------------------------
 
   if(!data.xyz.empty()){
-    VkDeviceSize data_size = sizeof(glm::vec3) * data.xyz.size();
-    vk_mem_transfer->copy_vertex_to_gpu(vk_object.buffer.xyz.data, vk_object.buffer.xyz.stagger, data.xyz.data(), data_size);
+    vk::structure::Vertex vertex = vk_object.map_vertex[vk::vertex::XYZ];
+    vertex.size = data.xyz.size();
+    vk_mem_transfer->copy_vertex_to_gpu(vertex, data.xyz.data());
   }
 
   if(!data.rgba.empty()){
-    VkDeviceSize data_size = sizeof(glm::vec4) * data.rgba.size();
-    vk_mem_transfer->copy_vertex_to_gpu(vk_object.buffer.rgba.data, vk_object.buffer.rgba.stagger, data.rgba.data(), data_size);
+    vk::structure::Vertex vertex = vk_object.map_vertex[vk::vertex::RGBA];
+    vertex.size = data.rgba.size();
+    vk_mem_transfer->copy_vertex_to_gpu(vertex, data.rgba.data());
   }
 
   if(!data.uv.empty()){
-    VkDeviceSize data_size = sizeof(glm::vec2) * data.uv.size();
-    vk_mem_transfer->copy_vertex_to_gpu(vk_object.buffer.uv.data, vk_object.buffer.uv.stagger, data.uv.data(), data_size);
+    vk::structure::Vertex vertex = vk_object.map_vertex[vk::vertex::UV];
+    vertex.size = data.uv.size();
+    vk_mem_transfer->copy_vertex_to_gpu(vertex, data.uv.data());
   }
 
   //---------------------------
@@ -75,40 +58,28 @@ void Buffer::update_buffer(vk::structure::Object& vk_object){
 void Buffer::clean_buffers(vk::structure::Object& vk_object){
   //---------------------------
 
-  this->clean_buffer(&vk_object.buffer.xyz.data);
-  this->clean_buffer(&vk_object.buffer.rgba.data);
-  this->clean_buffer(&vk_object.buffer.uv.data);
-
-  this->clean_buffer(&vk_object.buffer.xyz.stagger);
-  this->clean_buffer(&vk_object.buffer.rgba.stagger);
-  this->clean_buffer(&vk_object.buffer.uv.stagger);
+  for(auto& [type, vertex] : vk_object.map_vertex){
+    this->clean_buffer(vertex.buffer);
+    this->clean_buffer(vertex.stagger);
+  }
 
   //---------------------------
 }
-void Buffer::clean_buffer(vk::structure::Buffer* buffer){
+void Buffer::clean_buffer(vk::structure::Buffer& buffer){
   //---------------------------
 
-  if(buffer->vbo != VK_NULL_HANDLE){
-    vkDestroyBuffer(vk_struct->core.device.handle, buffer->vbo, nullptr);
+  if(buffer.vbo != VK_NULL_HANDLE){
+    vkDestroyBuffer(vk_struct->core.device.handle, buffer.vbo, nullptr);
   }
 
-  if(buffer->mem != VK_NULL_HANDLE){
-    vkFreeMemory(vk_struct->core.device.handle, buffer->mem, nullptr);
+  if(buffer.mem != VK_NULL_HANDLE){
+    vkFreeMemory(vk_struct->core.device.handle, buffer.mem, nullptr);
   }
 
   //---------------------------
 }
 
 //Subfunction
-int Buffer::get_size_buffer(vk::structure::Object& vk_object){
-  utl::base::Data& data = *vk_object.data;
-  //---------------------------
-
-  int max_data = (data.size_max != -1) ? data.size_max : data.xyz.size();
-
-  //---------------------------
-  return max_data;
-}
 
 
 }

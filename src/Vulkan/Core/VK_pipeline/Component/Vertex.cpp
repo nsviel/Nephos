@@ -61,7 +61,7 @@ void Vertex::add_vertex_xyz(vk::structure::Pipeline& pipeline){
 
   //Vertex binding
   VkVertexInputBindingDescription description{};
-  description.binding = 0;
+  description.binding = vk::attribut::binding::XYZ;
   description.stride = sizeof(glm::vec3);
   description.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
   pipeline.component.vec_vertex_binding.push_back(description);
@@ -81,7 +81,7 @@ void Vertex::add_vertex_rgba(vk::structure::Pipeline& pipeline){
 
   //Vertex binding
   VkVertexInputBindingDescription description{};
-  description.binding = 1;
+  description.binding = vk::attribut::binding::RGBA;
   description.stride = sizeof(glm::vec4);
   description.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
   pipeline.component.vec_vertex_binding.push_back(description);
@@ -101,7 +101,7 @@ void Vertex::add_vertex_uv(vk::structure::Pipeline& pipeline){
 
   //Vertex binding
   VkVertexInputBindingDescription description{};
-  description.binding = 2;
+  description.binding = vk::attribut::binding::UV;
   description.stride = sizeof(glm::vec2);
   description.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
   pipeline.component.vec_vertex_binding.push_back(description);

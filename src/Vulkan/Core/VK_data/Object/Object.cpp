@@ -36,14 +36,8 @@ void Object::create_object(std::shared_ptr<utl::base::Data> data, std::shared_pt
 
   //Data
   vk_vertex->build_vertex(*object);
-
   vk_buffer->create_buffer(*object);
 
-
-
-  //Descriptor
-  std::shared_ptr<vk::structure::Pipeline> pipeline = vk_struct->core.pipeline.map_topology[object->data->topology.type];
-  vk_descriptor_set->allocate_descriptor_set(object->descriptor_set, pipeline->descriptor.layout);
 
   //Insert data struct into set
   vk_struct->core.data.map_object[data->UID] = object;
@@ -54,7 +48,8 @@ void Object::update_object(vk::structure::Object& object){
   //---------------------------
 
   //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
-  if(object.buffer.xyz.data.mem == 0){
+  if(object.map_vertex.size() == 0){
+    vk_vertex->build_vertex(object);
     vk_buffer->create_buffer(object);
   }else{
     vk_buffer->update_buffer(object);
@@ -68,7 +63,6 @@ void Object::clean_object(std::shared_ptr<vk::structure::Object> object){
   //Properly clean object elements
   vk_buffer->clean_buffers(*object);
   vk_tex_image->clean_texture(*object);
-  vk_descriptor_set->clean_descriptor_set(object->descriptor_set);
 
   //Remove from data list
   auto it = vk_struct->core.data.map_object.find(object->data->UID);

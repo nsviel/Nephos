@@ -90,7 +90,7 @@ void Pool::create_command_buffer_primary(vk::pool::structure::Command_buffer* po
 void Pool::create_command_buffer_secondary(vk::structure::Object* data){
   vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(vk_struct->core.device.queue.transfer);
   //---------------------------
-
+/*
   //Command buffer allocation
   VkCommandBufferAllocateInfo alloc_info{};
   alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
@@ -102,7 +102,7 @@ void Pool::create_command_buffer_secondary(vk::structure::Object* data){
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
   }
-
+*/
   //---------------------------
 }
 

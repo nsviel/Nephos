@@ -11,6 +11,7 @@ Canvas::Canvas(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_buffer = new vk::data::Buffer(vk_struct);
+  this->vk_vertex = new vk::data::Vertex(vk_struct);
   this->vk_data = new vk::data::Data(vk_struct);
 
   //---------------------------
@@ -49,6 +50,7 @@ void Canvas::init(){
   vk_object.data->topology.type = utl::topology::TRIANGLE;
 
   //Create buffer
+  vk_vertex->build_vertex(vk_object);
   vk_buffer->create_buffer(vk_object);
 
   //---------------------------

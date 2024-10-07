@@ -12,6 +12,7 @@ namespace vk::structure{class Image;}
 namespace vk::structure{class Texture;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::structure{class Buffer;}
+namespace vk::structure{class Vertex;}
 
 
 namespace vk::memory{
@@ -32,8 +33,7 @@ public:
   std::shared_ptr<vk::structure::Command_buffer> copy_gpu_image_to_gpu_image(vk::structure::Image& image_src, vk::structure::Image& image_dst);
 
   //Vertex function
-  void copy_vertex_to_gpu(vk::structure::Buffer& buffer, const void* data, VkDeviceSize dataSize);
-  void copy_vertex_to_gpu(vk::structure::Buffer& buffer, vk::structure::Buffer& stagger, const void* data, VkDeviceSize dataSize);
+  void copy_vertex_to_gpu(vk::structure::Vertex& vertex, const void* data);
 
 private:
   vk::Structure* vk_struct;

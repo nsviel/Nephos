@@ -1,13 +1,7 @@
 #pragma once
 
 #include <Vulkan/Core/VK_data/Structure/Buffer.h>
-#include <Vulkan/Core/VK_texture/Structure/Texture.h>
-#include <Vulkan/Core/VK_binding/Structure/Descriptor_set.h>
-#include <Utility/Base/Data/Data.h>
-#include <Utility/Base/Data/Pose.h>
-#include <unordered_map>
-#include <memory>
-#include <list>
+#include <Vulkan/Core/VK_pipeline/Structure/Enum.h>
 
 
 namespace vk::structure{
@@ -15,9 +9,12 @@ namespace vk::structure{
 struct Vertex{
   //---------------------------
 
+  vk::attribut::binding::ID binding;
   vk::structure::Buffer buffer;
   vk::structure::Buffer stagger;
-  size_t size = 0;
+  int channel = 0;
+  int size_max = 0;
+  int size = 0;
 
   //---------------------------
 };

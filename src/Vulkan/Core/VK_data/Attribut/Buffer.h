@@ -21,10 +21,9 @@ public:
   void create_buffer(vk::structure::Object& vk_object);
   void update_buffer(vk::structure::Object& vk_object);
   void clean_buffers(vk::structure::Object& vk_object);
-  void clean_buffer(vk::structure::Buffer* buffer);
+  void clean_buffer(vk::structure::Buffer& buffer);
 
   //Subfunction
-  int get_size_buffer(vk::structure::Object& vk_object);
 
 private:
   vk::Structure* vk_struct;

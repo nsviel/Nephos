@@ -1,8 +1,9 @@
 #pragma once
 
-namespace vk::data{class Buffer;}
-namespace vk::data{class Data;}
 namespace vk{class Structure;}
+namespace vk::data{class Buffer;}
+namespace vk::data{class Vertex;}
+namespace vk::data{class Data;}
 
 
 namespace vk::data{
@@ -22,6 +23,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::data::Buffer* vk_buffer;
+  vk::data::Vertex* vk_vertex;
   vk::data::Data* vk_data;
 };
 

@@ -179,33 +179,20 @@ std::shared_ptr<vk::structure::Command_buffer> Transfer::copy_gpu_image_to_gpu_i
 }
 
 //Vertex function
-void Transfer::copy_vertex_to_gpu(vk::structure::Buffer& buffer, const void* data, VkDeviceSize data_size){
-  if(data_size == 0) return;
+void Transfer::copy_vertex_to_gpu(vk::structure::Vertex& vertex, const void* data){
+  if(vertex.size == 0) return;
   //---------------------------
 
+  VkDeviceSize data_size = vertex.channel * vertex.size;
+
   // Map the buffer's memory and copy the data
-  void* mappedMemory;
-  VkResult result = vkMapMemory(vk_struct->core.device.handle, buffer.mem, 0, data_size, 0, &mappedMemory);
+  void* mapped_memory;
+  VkResult result = vkMapMemory(vk_struct->core.device.handle, vertex.stagger.mem, 0, data_size, 0, &mapped_memory);
   if(result != VK_SUCCESS){
     throw std::runtime_error("Failed to map buffer memory!");
   }
-  memcpy(mappedMemory, data, static_cast<size_t>(data_size));
-  vkUnmapMemory(vk_struct->core.device.handle, buffer.mem);
-
-  //---------------------------
-}
-void Transfer::copy_vertex_to_gpu(vk::structure::Buffer& buffer, vk::structure::Buffer& stagger, const void* data, VkDeviceSize data_size){
-  if(data_size == 0) return;
-  //---------------------------
-
-  // Map the buffer's memory and copy the data
-  void* mappedMemory;
-  VkResult result = vkMapMemory(vk_struct->core.device.handle, stagger.mem, 0, data_size, 0, &mappedMemory);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("Failed to map buffer memory!");
-  }
-  memcpy(mappedMemory, data, static_cast<size_t>(data_size));
-  vkUnmapMemory(vk_struct->core.device.handle, stagger.mem);
+  memcpy(mapped_memory, data, static_cast<size_t>(data_size));
+  vkUnmapMemory(vk_struct->core.device.handle, vertex.stagger.mem);
 
   // Create command buffer to cpy on gpu
   std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_commandbuffer->query_free_command_buffer(vk_struct->core.device.queue.transfer);
@@ -216,7 +203,7 @@ void Transfer::copy_vertex_to_gpu(vk::structure::Buffer& buffer, vk::structure::
 
   VkBufferCopy region = {};
   region.size = data_size;
-  vkCmdCopyBuffer(command_buffer->handle, stagger.vbo, buffer.vbo, 1, &region);
+  vkCmdCopyBuffer(command_buffer->handle, vertex.stagger.vbo, vertex.buffer.vbo, 1, &region);
 
   vk_commandbuffer->end_command_buffer(*command_buffer);
   vk_command->submit_transfer_command(command_buffer);

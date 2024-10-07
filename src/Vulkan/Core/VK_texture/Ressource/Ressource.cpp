@@ -64,7 +64,7 @@ void Ressource::clean_texture(vk::structure::Texture& texture){
   //---------------------------
 
   vk_image->clean_image(texture.surface);
-  vk_buffer->clean_buffer(&texture.stagger);
+  vk_buffer->clean_buffer(texture.stagger);
 
   //---------------------------
 }

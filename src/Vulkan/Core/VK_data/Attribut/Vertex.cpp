@@ -25,24 +25,30 @@ void Vertex::build_vertex(vk::structure::Object& vk_object){
   //XYZ vertex
   if(!data.xyz.empty()){
     vk::structure::Vertex vertex;
-    int size = sizeof(glm::vec3) * data.xyz.size();
-    vertex.size = std::max(data.size_max, size);
+    vertex.channel = sizeof(glm::vec3);
+    vertex.binding = vk::attribut::binding::XYZ;
+    vertex.size = data.xyz.size();
+    vertex.size_max = std::max(data.size_max, vertex.channel * vertex.size);
     vk_object.map_vertex[vk::vertex::XYZ] = vertex;
   }
 
   //RGBA vertex
   if(!data.rgba.empty()){
     vk::structure::Vertex vertex;
-    int size = sizeof(glm::vec4) * data.rgba.size();
-    vertex.size = std::max(data.size_max, size);
+    vertex.channel = sizeof(glm::vec4);
+    vertex.binding = vk::attribut::binding::RGBA;
+    vertex.size = data.rgba.size();
+    vertex.size_max = std::max(data.size_max, vertex.channel * vertex.size);
     vk_object.map_vertex[vk::vertex::RGBA] = vertex;
   }
 
   //UV vertex
   if(!data.uv.empty()){
     vk::structure::Vertex vertex;
-    int size = sizeof(glm::vec2) * data.uv.size();
-    vertex.size = std::max(data.size_max, size);
+    vertex.channel = sizeof(glm::vec2);
+    vertex.binding = vk::attribut::binding::UV;
+    vertex.size = data.uv.size();
+    vertex.size_max = std::max(data.size_max, vertex.channel * vertex.size);
     vk_object.map_vertex[vk::vertex::UV] = vertex;
   }
 
@@ -52,16 +58,11 @@ void Vertex::build_vertex(vk::structure::Object& vk_object){
 //Subfunction
 void Vertex::cmd_draw_vertex(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object){
   //---------------------------
-
-  VkDeviceSize offsets[] = {0};
-  if(vk_object.buffer.xyz.data.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(command_buffer, vk::attribut::binding::XYZ, 1, &vk_object.buffer.xyz.data.vbo, offsets);
-  }
-  if(vk_object.buffer.rgba.data.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(command_buffer, vk::attribut::binding::RGBA, 1, &vk_object.buffer.rgba.data.vbo, offsets);
-  }
-  if(vk_object.buffer.uv.data.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(command_buffer, vk::attribut::binding::UV, 1, &vk_object.buffer.uv.data.vbo, offsets);
+  
+  for(auto& [type, vertex] : vk_object.map_vertex){
+    if(vertex.buffer.vbo == VK_NULL_HANDLE) continue;
+    VkDeviceSize offsets[] = {0};
+    vkCmdBindVertexBuffers(command_buffer, vertex.binding, 1, &vertex.buffer.vbo, offsets);
   }
 
   vkCmdDraw(command_buffer, vk_object.data->xyz.size(), 1, 0, 0);

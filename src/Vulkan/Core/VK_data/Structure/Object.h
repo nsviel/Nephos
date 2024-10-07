@@ -8,44 +8,18 @@
 #include <Utility/Base/Data/Pose.h>
 #include <unordered_map>
 #include <memory>
-#include <list>
 
 
 namespace vk::structure{
 
-struct Buffering{
-  //---------------------------
-
-  vk::structure::Buffer data;
-  vk::structure::Buffer stagger;
-
-  //---------------------------
-};
-
-struct Buffer_set{
-  //---------------------------
-
-  vk::structure::Buffering xyz;
-  vk::structure::Buffering rgba;
-  vk::structure::Buffering uv;
-
-  //---------------------------
-};
-
 struct Object{
   //---------------------------
 
-  //Vulkan stuff
   int UID = 0;
-  VkCommandBuffer command_buffer_secondary = VK_NULL_HANDLE;
-  vk::structure::Descriptor_set descriptor_set;
-
-  //Data
   std::shared_ptr<utl::base::Data> data = std::make_shared<utl::base::Data>();
   std::shared_ptr<utl::base::Pose> pose = std::make_shared<utl::base::Pose>();
   std::unordered_map<std::string, std::shared_ptr<vk::structure::Texture>> map_texture;
   std::unordered_map<vk::vertex::Type, vk::structure::Vertex> map_vertex;
-  vk::structure::Buffer_set buffer;
 
   //---------------------------
 };
