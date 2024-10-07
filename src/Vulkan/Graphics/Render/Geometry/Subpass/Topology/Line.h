@@ -43,7 +43,7 @@ private:
   vk::geometry::pipeline::topology::Line* vk_line;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::descriptor::Uniform* vk_uniform;
-  vk::data::Vertex* vk_drawer;
+  vk::data::Vertex* vk_vertex;
   vk::render::Pipeline* vk_pipeline;
   vk::presentation::Viewport* vk_viewport;
   vk::pipeline::Descriptor* vk_descriptor;

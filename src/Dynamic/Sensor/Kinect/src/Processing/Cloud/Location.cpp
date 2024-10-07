@@ -25,7 +25,7 @@ void Location::extract_data(k4n::base::Sensor& sensor){
 
   this->extraction_data(sensor);
   this->extraction_transfer(sensor);
-  atr_location->compute_height(*k4n_sensor);
+  atr_location->compute_height(sensor);
 
   //---------------------------
 }
@@ -73,7 +73,7 @@ void Location::extraction_transfer(k4n::base::Sensor& sensor){
   data.size = sensor.depth.cloud.size;
   data.width = sensor.depth.cloud.width;
   data.height = sensor.depth.cloud.height;
-  
+
   std::unique_ptr<std::vector<float>> vec_R = atr_field->get_field_data(data, "R");
   if(!vec_R) return;
   *vec_R = sensor.depth.data.R;

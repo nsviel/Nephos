@@ -26,6 +26,7 @@ Image::~Image(){}
 //Main function
 void Image::extract_data(dat::base::Sensor& sensor){
   k4n::base::Sensor* k4n_sensor = dynamic_cast<k4n::base::Sensor*>(&sensor);
+  if(!k4n_sensor->device.capture->is_valid()) return;
   //---------------------------
 
   prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("image");

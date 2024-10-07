@@ -15,7 +15,7 @@ Line::Line(vk::Structure* vk_struct){
   this->vk_viewport = new vk::presentation::Viewport(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
-  this->vk_drawer = new vk::data::Vertex(vk_struct);
+  this->vk_vertex = new vk::data::Vertex(vk_struct);
   this->vk_line = new vk::geometry::pipeline::topology::Line(vk_struct);
   this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
 
@@ -85,8 +85,8 @@ void Line::draw_data(vk::structure::Render& render){
   //---------------------------
 
   vk_pipeline->cmd_bind_descriptor_set(render.command_buffer->handle, *render.pipeline, *render.descriptor_set);
-  vk_drawer->cmd_line_with(render.command_buffer->handle, *render.object);
-  vk_drawer->cmd_draw_vertex(render.command_buffer->handle, *render.object);
+  vk_vertex->cmd_line_with(render.command_buffer->handle, *render.object);
+  vk_vertex->cmd_draw_vertex(render.command_buffer->handle, *render.object);
 
   //---------------------------
 }

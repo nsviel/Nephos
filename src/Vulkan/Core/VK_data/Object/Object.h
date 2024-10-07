@@ -27,9 +27,11 @@ public:
 
 public:
   //Main function
-  void update_object(vk::structure::Object& object);
   void create_object(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose);
+  void update_object(vk::structure::Object& object);
   void clean_object(std::shared_ptr<vk::structure::Object> object);
+
+  //Subfunction
   std::shared_ptr<vk::structure::Object> retrieve_object(utl::base::Data& data);
 
 private:

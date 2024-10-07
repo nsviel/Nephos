@@ -24,18 +24,6 @@ Object::Object(vk::Structure* vk_struct){
 Object::~Object(){}
 
 //Main function
-void Object::update_object(vk::structure::Object& object){
-  //---------------------------
-
-  //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
-  if(object.buffer.xyz.data.mem == 0){
-    vk_buffer->create_buffer(object);
-  }else{
-    vk_buffer->update_buffer(object);
-  }
-
-  //---------------------------
-}
 void Object::create_object(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose){
   //---------------------------
 
@@ -57,6 +45,18 @@ void Object::create_object(std::shared_ptr<utl::base::Data> data, std::shared_pt
 
   //---------------------------
 }
+void Object::update_object(vk::structure::Object& object){
+  //---------------------------
+
+  //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
+  if(object.buffer.xyz.data.mem == 0){
+    vk_buffer->create_buffer(object);
+  }else{
+    vk_buffer->update_buffer(object);
+  }
+
+  //---------------------------
+}
 void Object::clean_object(std::shared_ptr<vk::structure::Object> object){
   //---------------------------
 
@@ -73,6 +73,8 @@ void Object::clean_object(std::shared_ptr<vk::structure::Object> object){
 
   //---------------------------
 }
+
+//Subfunction
 std::shared_ptr<vk::structure::Object> Object::retrieve_object(utl::base::Data& data){
   //---------------------------
 

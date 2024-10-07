@@ -51,9 +51,10 @@ void Cloud::extract_data(dat::base::Sensor& sensor){
 bool Cloud::check_condition(k4n::base::Sensor& sensor){
   //---------------------------
 
-  if(!sensor.color.data.image.is_valid()) return false;
   if(!sensor.depth.data.image.is_valid()) return false;
   if(!sensor.infra.data.image.is_valid()) return false;
+  if(sensor.color.data.buffer == nullptr) return false;
+  if(sensor.color.data.size != sensor.depth.data.size * 2) return false;
 
   //---------------------------
   return true;

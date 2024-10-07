@@ -17,7 +17,9 @@ Vertex::Vertex(vk::Structure* vk_struct){
 }
 Vertex::~Vertex(){}
 
-//Draw command
+//Main function
+
+//Subfunction
 void Vertex::cmd_draw_vertex(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object){
   //---------------------------
 
