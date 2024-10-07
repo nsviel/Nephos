@@ -15,6 +15,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
   this->k4n_color = new k4n::cloud::Color(node_k4n);
   this->k4n_intensity = new k4n::cloud::Intensity(node_k4n);
   this->k4n_location = new k4n::cloud::Location(node_k4n);
+  this->k4n_transformation = new k4n::transformation::Depth_to_cloud(node_k4n);
   this->atr_field = new dat::atr::Field();
   this->atr_location = new dat::atr::Location();
 
@@ -33,7 +34,7 @@ void Cloud::extract_data(dat::base::Sensor& sensor){
 
   //init
   tasker->task_begin("init");
-  this->extraction_init(*k4n_sensor);
+  k4n_transformation->make_transformation(*k4n_sensor);
   tasker->task_end("init");
 
   //Extraction
@@ -64,29 +65,6 @@ bool Cloud::check_condition(k4n::base::Sensor& sensor){
 
   //---------------------------
   return true;
-}
-void Cloud::extraction_init(k4n::base::Sensor& sensor){
-  //---------------------------
-
-  //Create cloud image
-  sensor.depth.cloud.image = k4a::image::create(
-    K4A_IMAGE_FORMAT_CUSTOM,
-    sensor.depth.data.width,
-    sensor.depth.data.height,
-    sensor.depth.data.width * sizeof(int16_t) * 3
-  );
-
-  //Transform depth into cloud
-  sensor.device.transformation.depth_image_to_point_cloud(sensor.depth.data.image, sensor.device.calibration_type, &sensor.depth.cloud.image);
-  sensor.depth.cloud.buffer = sensor.depth.cloud.image.get_buffer();
-  sensor.depth.cloud.size = sensor.depth.cloud.image.get_size() / (3 * sizeof(int16_t));
-
-  //Resize vectors
-  sensor.depth.data.xyz.resize(sensor.depth.cloud.size);
-  sensor.depth.data.R.resize(sensor.depth.cloud.size);
-  sensor.infra.data.Is.resize(sensor.depth.cloud.size);
-
-  //---------------------------
 }
 void Cloud::extraction_transfer(k4n::base::Sensor& sensor){
   utl::base::Data& data = *sensor.data;
