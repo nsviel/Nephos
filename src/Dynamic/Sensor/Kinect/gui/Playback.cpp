@@ -144,11 +144,11 @@ void Playback::show_info_color(k4n::playback::Sensor& sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Color format"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor.setting.color_format.c_str());
+  ImGui::TextColored(color, "%s", sensor.config.color.format_str.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Color resolution"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor.setting.color_resolution.c_str());
+  ImGui::TextColored(color, "%s", sensor.config.color.resolution_str.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Color firmware"); ImGui::TableNextColumn();
@@ -172,11 +172,11 @@ void Playback::show_info_depth(k4n::playback::Sensor& sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth resolution"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor.setting.depth_resolution.c_str());
+  ImGui::TextColored(color, "%s", sensor.config.depth.resolution_str.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth mode"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor.info.depth_mode.c_str());
+  ImGui::TextColored(color, "%s", sensor.config.depth.mode_str.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
@@ -204,7 +204,7 @@ void Playback::show_info_synch(k4n::playback::Sensor& sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Sync mode"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor.setting.wired_mode.c_str());
+  ImGui::TextColored(color, "%s", sensor.config.synchro.wired_mode_str.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();

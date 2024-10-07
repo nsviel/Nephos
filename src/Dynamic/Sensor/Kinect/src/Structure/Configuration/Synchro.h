@@ -9,6 +9,7 @@ namespace k4n::str::config{
 struct Synchro{
   //---------------------------
 
+  std::string wired_mode_str = "";
   k4a_wired_sync_mode_t wired_mode = K4A_WIRED_SYNC_MODE_STANDALONE;
 
   uint32_t subordinate_delay_off_master_us = 0;
