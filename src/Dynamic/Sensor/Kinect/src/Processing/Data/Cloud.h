@@ -32,7 +32,6 @@ public:
 
   //Subfunction
   bool check_condition(k4n::base::Sensor& sensor);
-  void extraction_transfer(k4n::base::Sensor& sensor);
 
 private:
   k4n::Structure* k4n_struct;

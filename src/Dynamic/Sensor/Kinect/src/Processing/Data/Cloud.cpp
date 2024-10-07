@@ -33,9 +33,9 @@ void Cloud::extract_data(dat::base::Sensor& sensor){
   tasker->loop();
 
   //init
-  tasker->task_begin("init");
+  tasker->task_begin("transformation");
   k4n_transformation->make_transformation(*k4n_sensor);
-  tasker->task_end("init");
+  tasker->task_end("transformation");
 
   //Extraction
   tasker->task_begin("extraction");
@@ -44,13 +44,6 @@ void Cloud::extract_data(dat::base::Sensor& sensor){
   k4n_location->extract_data(*k4n_sensor);
   tasker->task_end("extraction");
 
-  //Transfer
-  tasker->task_begin("transfer");
-  this->extraction_transfer(*k4n_sensor);
-  tasker->task_end("transfer");
-
-  atr_location->compute_height(*k4n_sensor);
-
   //---------------------------
 }
 
@@ -58,26 +51,12 @@ void Cloud::extract_data(dat::base::Sensor& sensor){
 bool Cloud::check_condition(k4n::base::Sensor& sensor){
   //---------------------------
 
+  if(!sensor.color.data.image.is_valid()) return false;
   if(!sensor.depth.data.image.is_valid()) return false;
   if(!sensor.infra.data.image.is_valid()) return false;
-  if(sensor.color.data.buffer == nullptr) return false;
-  if(sensor.color.data.size != sensor.depth.data.size * 2) return false;
 
   //---------------------------
   return true;
-}
-void Cloud::extraction_transfer(k4n::base::Sensor& sensor){
-  utl::base::Data& data = *sensor.data;
-  //---------------------------
-
-  std::unique_lock<std::mutex> lock(data.mutex);
-
-  //Info
-  data.size = sensor.depth.cloud.size;
-  data.width = sensor.depth.cloud.width;
-  data.height = sensor.depth.cloud.height;
-
-  //---------------------------
 }
 
 }

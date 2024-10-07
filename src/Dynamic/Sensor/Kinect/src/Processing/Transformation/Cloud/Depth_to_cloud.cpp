@@ -19,7 +19,7 @@ Depth_to_cloud::~Depth_to_cloud(){}
 
 //Main function
 void Depth_to_cloud::make_transformation(k4n::base::Sensor& sensor){
-  if(!sensor.depth.data.image.is_valid()) return false;
+  if(!sensor.depth.data.image.is_valid()) return;
   //---------------------------
 
   this->create_cloud_image(sensor);

@@ -6,6 +6,7 @@
 
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
+namespace k4n::base{class Sensor;}
 
 
 namespace k4n::transformation{
