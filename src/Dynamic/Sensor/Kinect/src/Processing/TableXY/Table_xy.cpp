@@ -31,7 +31,7 @@ void Table_xy::build_table_xy(k4n::base::Sensor& sensor){
 
 //Subfunction
 void Table_xy::build_color_texture(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Storage> storage = sensor.color.table_xy;
+  std::shared_ptr<utl::base::Storage> storage = sensor.color.texture.table_xy;
   if(storage->size != 0) return;
   //---------------------------
 

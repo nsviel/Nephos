@@ -39,8 +39,7 @@ void Color::retrieve_data(k4n::base::Sensor& sensor){
   if(!color.is_valid()) return;
 
   //Data
-  sensor.color.data.name = "color";
-  sensor.color.data.k4a_image = color;
+  sensor.color.data.image = color;
   sensor.color.data.size = color.get_size();
   sensor.color.data.width = color.get_width_pixels();
   sensor.color.data.height = color.get_height_pixels();
@@ -51,7 +50,7 @@ void Color::retrieve_data(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Color::retrieve_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Image>& image = sensor.color.image;
+  std::shared_ptr<utl::base::Image>& image = sensor.color.texture.image;
   //---------------------------
 
   //Image
@@ -108,7 +107,7 @@ uint8_t* Color::retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int
   //---------------------------
 
   /*if(sensor.color.data.format == "YUY2"){
-    sensor.color.data.k4a_image = k4a::image::create_from_buffer(
+    sensor.color.data.image = k4a::image::create_from_buffer(
       K4A_IMAGE_FORMAT_COLOR_BGRA32,
       sensor.infra.data.width,
       sensor.infra.data.height,
@@ -193,7 +192,7 @@ void Color::retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& da
   //---------------------------
 }
 void Color::convert_bgra_to_rgba(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Image> image = sensor.color.image;
+  std::shared_ptr<utl::base::Image> image = sensor.color.texture.image;
   //---------------------------
 
   // Retrieve the BGR(A) data from the sensor

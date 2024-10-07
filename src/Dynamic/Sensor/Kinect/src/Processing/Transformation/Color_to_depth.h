@@ -26,7 +26,6 @@ public:
 
   //Subfunction
   void k4a_color_to_depth(k4n::base::Sensor& sensor);
-  void table_color_to_depth(k4n::base::Sensor& sensor);
   bool check_data(k4n::base::Sensor& sensor);
 
 private:

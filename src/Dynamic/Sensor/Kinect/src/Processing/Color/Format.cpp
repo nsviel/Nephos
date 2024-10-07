@@ -57,7 +57,7 @@ uint8_t* Format::retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, in
   //---------------------------
 
   /*if(sensor.color.data.format == "YUY2"){
-    sensor.color.data.k4a_image = k4a::image::create_from_buffer(
+    sensor.color.data.image = k4a::image::create_from_buffer(
       K4A_IMAGE_FORMAT_COLOR_BGRA32,
       sensor.infra.data.width,
       sensor.infra.data.height,
