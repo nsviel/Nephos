@@ -36,8 +36,6 @@ void Object::create_object(std::shared_ptr<utl::base::Data> data, std::shared_pt
 
   //Data
   vk_vertex->build_vertex(*object);
-  vk_buffer->create_buffer(*object);
-
 
   //Insert data struct into set
   vk_struct->core.data.map_object[data->UID] = object;
@@ -50,7 +48,6 @@ void Object::update_object(vk::structure::Object& object){
   //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
   if(object.map_vertex.size() == 0){
     vk_vertex->build_vertex(object);
-    vk_buffer->create_buffer(object);
   }else{
     vk_buffer->update_buffer(object);
   }
@@ -61,7 +58,7 @@ void Object::clean_object(std::shared_ptr<vk::structure::Object> object){
   //---------------------------
 
   //Properly clean object elements
-  vk_buffer->clean_buffers(*object);
+  vk_vertex->clean_vertex(*object);
   vk_tex_image->clean_texture(*object);
 
   //Remove from data list

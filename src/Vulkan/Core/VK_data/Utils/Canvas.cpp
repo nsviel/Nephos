@@ -51,14 +51,13 @@ void Canvas::init(){
 
   //Create buffer
   vk_vertex->build_vertex(vk_object);
-  vk_buffer->create_buffer(vk_object);
 
   //---------------------------
 }
 void Canvas::clean(){
   //---------------------------
 
-  vk_buffer->clean_buffers(*vk_struct->core.data.canvas);
+  vk_vertex->clean_vertex(*vk_struct->core.data.canvas);
 
   //---------------------------
 }

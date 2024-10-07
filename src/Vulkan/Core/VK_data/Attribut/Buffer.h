@@ -1,10 +1,11 @@
 #pragma once
 
+namespace vk{class Structure;}
 namespace vk::memory{class Allocator;}
 namespace vk::memory{class Transfer;}
-namespace vk{class Structure;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Buffer;}
+namespace vk::structure{class Vertex;}
 
 
 namespace vk::data{
@@ -18,9 +19,12 @@ public:
 
 public:
   //Main function
-  void create_buffer(vk::structure::Object& vk_object);
+  void create_buffer(vk::structure::Vertex& vertex);
+  void update_buffer(vk::structure::Vertex& vertex, void* data);
+
+
+
   void update_buffer(vk::structure::Object& vk_object);
-  void clean_buffers(vk::structure::Object& vk_object);
   void clean_buffer(vk::structure::Buffer& buffer);
 
   //Subfunction

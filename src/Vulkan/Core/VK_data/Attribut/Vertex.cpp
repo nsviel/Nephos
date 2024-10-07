@@ -10,8 +10,7 @@ Vertex::Vertex(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_fence = new vk::synchro::Fence(vk_struct);
-  this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
+  this->vk_buffer = new vk::data::Buffer(vk_struct);
 
   //---------------------------
 }
@@ -29,6 +28,9 @@ void Vertex::build_vertex(vk::structure::Object& vk_object){
     vertex.binding = vk::attribut::binding::XYZ;
     vertex.size = data.xyz.size();
     vertex.size_max = std::max(data.size_max, vertex.channel * vertex.size);
+
+    vk_buffer->create_buffer(vertex);
+    vk_buffer->update_buffer(vertex, data.xyz.data());
     vk_object.map_vertex[vk::vertex::XYZ] = vertex;
   }
 
@@ -39,6 +41,9 @@ void Vertex::build_vertex(vk::structure::Object& vk_object){
     vertex.binding = vk::attribut::binding::RGBA;
     vertex.size = data.rgba.size();
     vertex.size_max = std::max(data.size_max, vertex.channel * vertex.size);
+
+    vk_buffer->create_buffer(vertex);
+    vk_buffer->update_buffer(vertex, data.rgba.data());
     vk_object.map_vertex[vk::vertex::RGBA] = vertex;
   }
 
@@ -49,7 +54,20 @@ void Vertex::build_vertex(vk::structure::Object& vk_object){
     vertex.binding = vk::attribut::binding::UV;
     vertex.size = data.uv.size();
     vertex.size_max = std::max(data.size_max, vertex.channel * vertex.size);
+
+    vk_buffer->create_buffer(vertex);
+    vk_buffer->update_buffer(vertex, data.uv.data());
     vk_object.map_vertex[vk::vertex::UV] = vertex;
+  }
+
+  //---------------------------
+}
+void Vertex::clean_vertex(vk::structure::Object& vk_object){
+  //---------------------------
+
+  for(auto& [type, vertex] : vk_object.map_vertex){
+    vk_buffer->clean_buffer(vertex.buffer);
+    vk_buffer->clean_buffer(vertex.stagger);
   }
 
   //---------------------------
@@ -58,7 +76,7 @@ void Vertex::build_vertex(vk::structure::Object& vk_object){
 //Subfunction
 void Vertex::cmd_draw_vertex(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object){
   //---------------------------
-  
+
   for(auto& [type, vertex] : vk_object.map_vertex){
     if(vertex.buffer.vbo == VK_NULL_HANDLE) continue;
     VkDeviceSize offsets[] = {0};

@@ -19,18 +19,23 @@ Buffer::Buffer(vk::Structure* vk_struct){
 Buffer::~Buffer(){}
 
 //Main function
-void Buffer::create_buffer(vk::structure::Object& vk_object){
+void Buffer::create_buffer(vk::structure::Vertex& vertex){
   //---------------------------
 
-  for(auto& [type, vertex] : vk_object.map_vertex){
-    vk_mem_allocator->allocate_empty_vertex_buffer(vertex.buffer, vertex.size_max);
-    vk_mem_allocator->allocate_empty_stagger_buffer(vertex.stagger, vertex.size_max);
-  }
-
-  this->update_buffer(vk_object);
+  vk_mem_allocator->allocate_empty_vertex_buffer(vertex.buffer, vertex.size_max);
+  vk_mem_allocator->allocate_empty_stagger_buffer(vertex.stagger, vertex.size_max);
 
   //---------------------------
 }
+void Buffer::update_buffer(vk::structure::Vertex& vertex, void* data){
+  //---------------------------
+
+  vk_mem_transfer->copy_vertex_to_gpu(vertex, data);
+
+  //---------------------------
+}
+
+
 void Buffer::update_buffer(vk::structure::Object& vk_object){
   utl::base::Data& data = *vk_object.data;
   //---------------------------
@@ -51,16 +56,6 @@ void Buffer::update_buffer(vk::structure::Object& vk_object){
     vk::structure::Vertex vertex = vk_object.map_vertex[vk::vertex::UV];
     vertex.size = data.uv.size();
     vk_mem_transfer->copy_vertex_to_gpu(vertex, data.uv.data());
-  }
-
-  //---------------------------
-}
-void Buffer::clean_buffers(vk::structure::Object& vk_object){
-  //---------------------------
-
-  for(auto& [type, vertex] : vk_object.map_vertex){
-    this->clean_buffer(vertex.buffer);
-    this->clean_buffer(vertex.stagger);
   }
 
   //---------------------------
