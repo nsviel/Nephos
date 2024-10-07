@@ -15,10 +15,12 @@ struct Configuration{
 
   k4n::str::depth::Configuration depth;
   k4n::str::color::Configuration color;
-  k4n::camera::Configuration camera;
   k4n::str::infra::Configuration ir;
-  k4n::synchro::Configuration synchro;
 
+  k4n::camera::Configuration camera;
+  k4n::synchro::Configuration synchro;
+  k4n::structure::FPS fps;
+  
   //---------------------------
 };
 

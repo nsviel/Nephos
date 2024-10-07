@@ -25,7 +25,6 @@ struct Sensor : public dat::base::Sensor{
   //Device
   k4n::device::Structure device;
   k4n::firmware::Structure firmware;
-  k4n::structure::FPS fps;
 
   std::string type_sensor = "";
 
