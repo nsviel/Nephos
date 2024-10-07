@@ -13,6 +13,8 @@ Cloud::Cloud(k4n::Node* node_k4n){
 
   this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_color = new k4n::cloud::Color(node_k4n);
+  this->k4n_intensity = new k4n::cloud::Intensity(node_k4n);
+  this->k4n_location = new k4n::cloud::Location(node_k4n);
   this->atr_field = new dat::atr::Field();
   this->atr_location = new dat::atr::Location();
 
@@ -40,6 +42,8 @@ void Cloud::extract_data(dat::base::Sensor& sensor){
   tasker->task_end("extraction");
 
   k4n_color->extract_data(*k4n_sensor);
+  k4n_intensity->extract_data(*k4n_sensor);
+  k4n_location->extract_data(*k4n_sensor);
 
   //Transfer
   tasker->task_begin("transfer");

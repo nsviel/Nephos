@@ -8,6 +8,8 @@ namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::base{class Sensor;}
 namespace k4n::cloud{class Color;}
+namespace k4n::cloud{class Intensity;}
+namespace k4n::cloud{class Location;}
 namespace utl::base{class Data;}
 namespace dat::atr{class Field;}
 namespace dat::base{class Sensor;}
@@ -41,6 +43,8 @@ public:
 private:
   k4n::Structure* k4n_struct;
   k4n::cloud::Color* k4n_color;
+  k4n::cloud::Intensity* k4n_intensity;
+  k4n::cloud::Location* k4n_location;
   dat::atr::Field* atr_field;
   dat::atr::Location* atr_location;
 };
