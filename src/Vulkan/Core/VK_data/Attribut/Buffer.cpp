@@ -23,6 +23,11 @@ void Buffer::create_buffer(vk::structure::Object& vk_object){
   VkDeviceSize size;
   //---------------------------
 
+  for(auto& [type, vertex] : vk_object.map_vertex){
+    vk_mem_allocator->allocate_empty_vertex_buffer(vertex.buffer, vertex.size);
+    vk_mem_allocator->allocate_empty_stagger_buffer(vertex.stagger, vertex.size);
+  }
+
   int max_data = get_size_buffer(vk_object);
   if(max_data == 0){
     //cout<<"[error] max buffer size equal 0"<<std::endl;

@@ -18,6 +18,36 @@ Vertex::Vertex(vk::Structure* vk_struct){
 Vertex::~Vertex(){}
 
 //Main function
+void Vertex::build_vertex(vk::structure::Object& vk_object){
+  utl::base::Data& data = *vk_object.data;
+  //---------------------------
+
+  //XYZ vertex
+  if(!data.xyz.empty()){
+    vk::structure::Vertex vertex;
+    int size = sizeof(glm::vec3) * data.xyz.size();
+    vertex.size = std::max(data.size_max, size);
+    vk_object.map_vertex[vk::vertex::XYZ] = vertex;
+  }
+
+  //RGBA vertex
+  if(!data.rgba.empty()){
+    vk::structure::Vertex vertex;
+    int size = sizeof(glm::vec4) * data.rgba.size();
+    vertex.size = std::max(data.size_max, size);
+    vk_object.map_vertex[vk::vertex::RGBA] = vertex;
+  }
+
+  //UV vertex
+  if(!data.uv.empty()){
+    vk::structure::Vertex vertex;
+    int size = sizeof(glm::vec2) * data.uv.size();
+    vertex.size = std::max(data.size_max, size);
+    vk_object.map_vertex[vk::vertex::UV] = vertex;
+  }
+
+  //---------------------------
+}
 
 //Subfunction
 void Vertex::cmd_draw_vertex(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object){

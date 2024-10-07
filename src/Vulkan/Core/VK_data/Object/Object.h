@@ -4,6 +4,7 @@
 
 namespace vk{class Structure;}
 namespace vk::data{class Buffer;}
+namespace vk::data{class Vertex;}
 namespace vk::texture{class Image;}
 namespace vk::commandbuffer{class Pool;}
 namespace vk::instance{class UID;}
@@ -37,6 +38,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::data::Buffer* vk_buffer;
+  vk::data::Vertex* vk_vertex;
   vk::texture::Image* vk_tex_image;
   vk::commandbuffer::Pool* vk_command_buffer;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
