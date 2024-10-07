@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Kinect/src/Structure/Data/Data.h>
+#include <Utility/Namespace.h>
 #include <memory>
 
 namespace utl::media{struct Image;}

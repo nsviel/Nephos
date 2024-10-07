@@ -52,7 +52,7 @@ void Cloud::extract_data(dat::base::Sensor& sensor){
 bool Cloud::check_condition(k4n::base::Sensor& sensor){
   //---------------------------
 
-  if(!sensor.depth.data.k4a_image.is_valid()) return false;
+  if(!sensor.depth.data.image.is_valid()) return false;
   if(!sensor.infra.data.k4a_image.is_valid()) return false;
   if(sensor.color.data.buffer == nullptr) return false;
   if(sensor.color.data.size != sensor.depth.data.size * 2) return false;
@@ -72,7 +72,7 @@ void Cloud::extraction_init(k4n::base::Sensor& sensor){
   );
 
   //Transform depth into cloud
-  sensor.device.transformation.depth_image_to_point_cloud(sensor.depth.data.k4a_image, sensor.cloud.calibration_type, &sensor.cloud.k4a_image);
+  sensor.device.transformation.depth_image_to_point_cloud(sensor.depth.data.image, sensor.cloud.calibration_type, &sensor.cloud.k4a_image);
   sensor.cloud.buffer = sensor.cloud.k4a_image.get_buffer();
   sensor.cloud.size = sensor.cloud.k4a_image.get_size() / (3 * sizeof(int16_t));
 

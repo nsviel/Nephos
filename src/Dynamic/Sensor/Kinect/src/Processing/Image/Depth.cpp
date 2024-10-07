@@ -40,8 +40,7 @@ void Depth::retrieve_data(k4n::base::Sensor& sensor){
   if(!depth.is_valid()) return;
 
   //Data
-  sensor.depth.data.name = "depth";
-  sensor.depth.data.k4a_image = depth;
+  sensor.depth.data.image = depth;
   sensor.depth.data.width = depth.get_width_pixels();
   sensor.depth.data.height = depth.get_height_pixels();
   sensor.depth.data.buffer = depth.get_buffer();
@@ -54,7 +53,7 @@ void Depth::retrieve_data(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Depth::retrieve_raw_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Depth> image = sensor.depth.depth;
+  std::shared_ptr<utl::base::Depth> image = sensor.depth.texture.depth;
   //---------------------------
 
   //Image
@@ -68,7 +67,7 @@ void Depth::retrieve_raw_image(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Depth::retrieve_colored_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Image> image = sensor.depth.image;
+  std::shared_ptr<utl::base::Image> image = sensor.depth.texture.image;
   //---------------------------
 
   //Image
@@ -143,7 +142,7 @@ void Depth::convert_buffer_into_color(k4n::base::Sensor& sensor){
     output[j + 3] = 255;
   }
 
-  sensor.depth.image->data = output;
+  sensor.depth.texture.image->data = output;
 
   //---------------------------
 }
@@ -160,7 +159,7 @@ void Depth::convert_buffer_into_uint16(k4n::base::Sensor& sensor){
     output[idx] = value;
   }
 
-  sensor.depth.depth->data = output;
+  sensor.depth.texture.depth->data = output;
 
   //---------------------------
 }

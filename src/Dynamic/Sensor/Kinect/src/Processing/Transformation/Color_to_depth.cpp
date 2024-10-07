@@ -36,7 +36,7 @@ void Color_to_depth::k4a_color_to_depth(k4n::base::Sensor& sensor){
     sensor.depth.data.height,
     sensor.depth.data.width * 4
   );
-  sensor.device.transformation.color_image_to_depth_camera(sensor.depth.data.k4a_image, sensor.color.data.image, &color_to_depth);
+  sensor.device.transformation.color_image_to_depth_camera(sensor.depth.data.image, sensor.color.data.image, &color_to_depth);
   if(!color_to_depth.is_valid()) return;
 
   //Fill data structure
@@ -51,8 +51,8 @@ void Color_to_depth::k4a_color_to_depth(k4n::base::Sensor& sensor){
 bool Color_to_depth::check_data(k4n::base::Sensor& sensor){
   //---------------------------
 
-  if(!sensor.color.data.image || !sensor.depth.data.k4a_image) return false;
-  if(sensor.depth.data.k4a_image.get_format() != K4A_IMAGE_FORMAT_DEPTH16) return false;
+  if(!sensor.color.data.image || !sensor.depth.data.image) return false;
+  if(sensor.depth.data.image.get_format() != K4A_IMAGE_FORMAT_DEPTH16) return false;
   if(sensor.color.data.image.get_format() != K4A_IMAGE_FORMAT_COLOR_BGRA32) return false;
   if(sensor.depth.data.width == sensor.color.data.width) return false;
 

@@ -57,11 +57,11 @@ void Depth_to_color::find_depth_to_color(k4n::base::Sensor& sensor){
   );
 
   uint32_t value_no_data = 0;
-  sensor.device.transformation.depth_image_to_color_camera_custom(sensor.depth.data.k4a_image, ir, &depth_transformed, &ir_transformed, K4A_TRANSFORMATION_INTERPOLATION_TYPE_LINEAR, value_no_data);
+  sensor.device.transformation.depth_image_to_color_camera_custom(sensor.depth.data.image, ir, &depth_transformed, &ir_transformed, K4A_TRANSFORMATION_INTERPOLATION_TYPE_LINEAR, value_no_data);
   if(!depth_transformed.is_valid()) return;
 
   //Depth transformed
-  sensor.depth.data.k4a_image = depth_transformed;
+  sensor.depth.data.image = depth_transformed;
   sensor.depth.data.size = depth_transformed.get_size();
   sensor.depth.data.width = depth_transformed.get_width_pixels();
   sensor.depth.data.height = depth_transformed.get_height_pixels();
@@ -79,8 +79,8 @@ void Depth_to_color::find_depth_to_color(k4n::base::Sensor& sensor){
 bool Depth_to_color::check_data(k4n::base::Sensor& sensor){
   //---------------------------
 
-  if(!sensor.color.data.image || !sensor.depth.data.k4a_image) return false;
-  if(sensor.depth.data.k4a_image.get_format() != K4A_IMAGE_FORMAT_DEPTH16) return false;
+  if(!sensor.color.data.image || !sensor.depth.data.image) return false;
+  if(sensor.depth.data.image.get_format() != K4A_IMAGE_FORMAT_DEPTH16) return false;
   if(sensor.color.data.image.get_format() != K4A_IMAGE_FORMAT_COLOR_BGRA32) return false;
   if(sensor.depth.data.width == sensor.color.data.width) return false;
 
