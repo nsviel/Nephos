@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Kinect/src/Structure/Namespace.h>
-#include <Kinect/src/Structure/Depth/Structure.h>
-#include <Kinect/src/Structure/Color/Structure.h>
-#include <Kinect/src/Structure/Infrared/Structure.h>
+#include <Kinect/src/Structure/Data/Depth/Structure.h>
+#include <Kinect/src/Structure/Data/Color/Structure.h>
+#include <Kinect/src/Structure/Data/Infrared/Structure.h>
 #include <Data/Namespace.h>
 #include <string>
 

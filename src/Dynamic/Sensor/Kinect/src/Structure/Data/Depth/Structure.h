@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Kinect/src/Structure/Depth/Configuration.h>
-#include <Kinect/src/Structure/Depth/Data.h>
-#include <Kinect/src/Structure/Depth/Texture.h>
+#include <Kinect/src/Structure/Data/Depth/Configuration.h>
+#include <Kinect/src/Structure/Data/Depth/Data.h>
+#include <Kinect/src/Structure/Data/Depth/Texture.h>
 
 
 namespace k4n::str::depth{

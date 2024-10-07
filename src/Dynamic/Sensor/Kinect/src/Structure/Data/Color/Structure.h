@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Kinect/src/Structure/Color/Configuration.h>
-#include <Kinect/src/Structure/Color/Data.h>
-#include <Kinect/src/Structure/Color/Texture.h>
+#include <Kinect/src/Structure/Data/Color/Configuration.h>
+#include <Kinect/src/Structure/Data/Color/Data.h>
+#include <Kinect/src/Structure/Data/Color/Texture.h>
 
 
 namespace k4n::str::color{
