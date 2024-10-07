@@ -68,7 +68,7 @@ void Depth_to_color::find_depth_to_color(k4n::base::Sensor& sensor){
   sensor.depth.data.buffer = depth_transformed.get_buffer();
 
   //IR transformed
-  sensor.infra.data.k4a_image = ir_transformed;
+  sensor.infra.data.image = ir_transformed;
   sensor.infra.data.size = ir_transformed.get_size();
   sensor.infra.data.width = ir_transformed.get_width_pixels();
   sensor.infra.data.height = ir_transformed.get_height_pixels();

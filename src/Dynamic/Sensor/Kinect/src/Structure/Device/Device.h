@@ -3,6 +3,7 @@
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
 #include <k4arecord/record.hpp>
+#include <memory>
 #include <string>
 
 

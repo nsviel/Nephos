@@ -6,14 +6,12 @@
 #include <string>
 
 
-namespace k4n::str::depth{
+namespace k4n::str::infra{
 
 struct Data{
   //---------------------------
 
-  std::vector<glm::vec3> xyz;   //XYZ location
-  std::vector<float> R;         //Range
-  std::vector<float> H;         //Height
+  std::vector<float> Is;        //Intensity
   std::string format = "";
   k4a::image image;
   float timestamp = -1;

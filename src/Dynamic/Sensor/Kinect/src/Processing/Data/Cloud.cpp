@@ -53,7 +53,7 @@ bool Cloud::check_condition(k4n::base::Sensor& sensor){
   //---------------------------
 
   if(!sensor.depth.data.image.is_valid()) return false;
-  if(!sensor.infra.data.k4a_image.is_valid()) return false;
+  if(!sensor.infra.data.image.is_valid()) return false;
   if(sensor.color.data.buffer == nullptr) return false;
   if(sensor.color.data.size != sensor.depth.data.size * 2) return false;
 

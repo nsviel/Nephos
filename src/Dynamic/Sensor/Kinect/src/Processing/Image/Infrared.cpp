@@ -43,8 +43,7 @@ void Infrared::retrieve_data(k4n::base::Sensor& sensor){
   if(!ir.is_valid()) return;
 
   //Data
-  sensor.infra.data.name = "ir";
-  sensor.infra.data.k4a_image = ir;
+  sensor.infra.data.image = ir;
   sensor.infra.data.width = ir.get_width_pixels();
   sensor.infra.data.height = ir.get_height_pixels();
   sensor.infra.data.buffer = ir.get_buffer();
@@ -56,7 +55,7 @@ void Infrared::retrieve_data(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Infrared::retrieve_raw_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Depth> image = sensor.infra.depth;
+  std::shared_ptr<utl::base::Depth> image = sensor.infra.texture.depth;
   //---------------------------
 
   //Image
@@ -70,7 +69,7 @@ void Infrared::retrieve_raw_image(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Infrared::retrieve_colored_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::base::Image> image = sensor.infra.image;
+  std::shared_ptr<utl::base::Image> image = sensor.infra.texture.image;
   //---------------------------
 
   //Image
@@ -139,7 +138,7 @@ void Infrared::convert_buffer_into_color(k4n::base::Sensor& sensor){
     output[j + 3] = 255;
   }
 
-  sensor.infra.image->data = output;
+  sensor.infra.texture.image->data = output;
 
   //---------------------------
 }
@@ -156,7 +155,7 @@ void Infrared::convert_buffer_into_uint16(k4n::base::Sensor& sensor){
     output[idx] = value;
   }
 
-  sensor.infra.depth->data = output;
+  sensor.infra.texture.depth->data = output;
 
   //---------------------------
 }

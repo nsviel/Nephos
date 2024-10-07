@@ -3,6 +3,7 @@
 #include <Kinect/src/Structure/Namespace.h>
 #include <Kinect/src/Structure/Depth/Structure.h>
 #include <Kinect/src/Structure/Color/Structure.h>
+#include <Kinect/src/Structure/Infrared/Structure.h>
 #include <Data/Namespace.h>
 #include <string>
 
@@ -16,7 +17,7 @@ struct Sensor : public dat::base::Sensor{
   k4n::structure::Setting setting;
   k4n::str::color::Structure color;
   k4n::str::depth::Structure depth;
-  k4n::infrared::Structure infra;
+  k4n::str::infra::Structure infra;
   k4n::imu::Structure imu;
   k4n::structure::Cloud cloud;
   k4n::structure::Configuration config;

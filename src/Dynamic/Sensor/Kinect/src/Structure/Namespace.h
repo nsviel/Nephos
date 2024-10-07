@@ -6,3 +6,4 @@
 #include <Kinect/src/Structure/Sensor.h>
 #include <Kinect/src/Structure/Color/Namespace.h>
 #include <Kinect/src/Structure/Depth/Namespace.h>
+#include <Kinect/src/Structure/Infrared/Namespace.h>
