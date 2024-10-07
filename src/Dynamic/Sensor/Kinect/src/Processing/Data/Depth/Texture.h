@@ -5,6 +5,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
+namespace k4n::depth{class Format;}
 namespace dat::img{class Image;}
 namespace dat::img{class Depth;}
 
@@ -26,6 +27,7 @@ public:
 private:
   dat::img::Image* dat_image;
   dat::img::Depth* dat_depth;
+  k4n::depth::Format* k4n_format;
 };
 
 }

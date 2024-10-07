@@ -12,12 +12,12 @@ namespace dat::img{class Image;}
 
 namespace k4n::color{
 
-class Data
+class Texture
 {
 public:
   //Constructor / Destructor
-  Data(k4n::Node* node_k4n);
-  ~Data();
+  Texture(k4n::Node* node_k4n);
+  ~Texture();
 
 public:
   //Main function

@@ -1,4 +1,4 @@
-#include "Data.h"
+#include "Texture.h"
 
 #include <Kinect/Namespace.h>
 #include <Data/Namespace.h>
@@ -7,7 +7,7 @@
 namespace k4n::color{
 
 //Constructor / Destructor
-Data::Data(k4n::Node* node_k4n){
+Texture::Texture(k4n::Node* node_k4n){
   //---------------------------
 
   dat::Node* node_data = node_k4n->get_node_data();
@@ -18,10 +18,10 @@ Data::Data(k4n::Node* node_k4n){
 
   //---------------------------
 }
-Data::~Data(){}
+Texture::~Texture(){}
 
 //Main function
-void Data::retrieve_image(k4n::base::Sensor& sensor){
+void Texture::retrieve_image(k4n::base::Sensor& sensor){
   std::shared_ptr<utl::base::Image>& image = sensor.color.texture.image;
   //---------------------------
 

@@ -15,18 +15,19 @@ Texture::Texture(k4n::Node* node_k4n){
 
   this->dat_image = node_image->get_dat_image();
   this->dat_depth = node_image->get_dat_depth();
+  this->k4n_format = new k4n::depth::Format(node_k4n);
 
   //---------------------------
 }
 Texture::~Texture(){}
 
 //Main function
-void Depth::retrieve_raw_image(k4n::base::Sensor& sensor){
+void Texture::retrieve_raw_image(k4n::base::Sensor& sensor){
   std::shared_ptr<utl::base::Depth> image = sensor.depth.texture.depth;
   //---------------------------
 
   //Image
-  this->convert_buffer_into_uint16(sensor);
+  k4n_format->convert_buffer_into_uint16(sensor);
   image->size = image->data.size();
   image->width = sensor.depth.data.width;
   image->height = sensor.depth.data.height;
@@ -35,12 +36,12 @@ void Depth::retrieve_raw_image(k4n::base::Sensor& sensor){
 
   //---------------------------
 }
-void Depth::retrieve_colored_image(k4n::base::Sensor& sensor){
+void Texture::retrieve_colored_image(k4n::base::Sensor& sensor){
   std::shared_ptr<utl::base::Image> image = sensor.depth.texture.image;
   //---------------------------
 
   //Image
-  this->convert_buffer_into_color(sensor);
+  k4n_format->convert_buffer_into_color(sensor);
   image->size = image->data.size();
   image->width = sensor.depth.data.width;
   image->height = sensor.depth.data.height;
