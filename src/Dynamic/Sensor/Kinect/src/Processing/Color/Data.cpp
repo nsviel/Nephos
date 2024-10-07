@@ -70,11 +70,11 @@ void Data::retrieve_color(k4n::colornew::Structure& color){
 /*  const uint8_t* buffer_color = sensor.color.data.buffer;
   //---------------------------
 k4n::structure::Buffer buffer;
-buffer.rgb.resize(sensor.cloud.size);
-buffer.rgba.resize(sensor.cloud.size);
+buffer.rgb.resize(sensor.depth.cloud.size);
+buffer.rgba.resize(sensor.depth.cloud.size);
 
   #pragma omp parallel for
-  for(int i=0; i<sensor.cloud.size; i++){
+  for(int i=0; i<sensor.depth.cloud.size; i++){
     //Raw values
     int idx = i * 4;
     float r = static_cast<float>(buffer_color[idx + 2]) / 255.0f;

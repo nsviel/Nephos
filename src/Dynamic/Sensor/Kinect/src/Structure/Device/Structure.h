@@ -21,6 +21,7 @@ struct Structure{
 
   //K4A device related objects
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
+  k4a_calibration_type_t calibration_type;
   k4a::device handle;
   k4a::calibration calibration;
   k4a::transformation transformation;

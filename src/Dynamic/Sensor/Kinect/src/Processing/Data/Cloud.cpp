@@ -64,7 +64,7 @@ void Cloud::extraction_init(k4n::base::Sensor& sensor){
   //---------------------------
 
   //Create cloud image
-  sensor.cloud.k4a_image = k4a::image::create(
+  sensor.depth.cloud.image = k4a::image::create(
     K4A_IMAGE_FORMAT_CUSTOM,
     sensor.depth.data.width,
     sensor.depth.data.height,
@@ -72,16 +72,16 @@ void Cloud::extraction_init(k4n::base::Sensor& sensor){
   );
 
   //Transform depth into cloud
-  sensor.device.transformation.depth_image_to_point_cloud(sensor.depth.data.image, sensor.cloud.calibration_type, &sensor.cloud.k4a_image);
-  sensor.cloud.buffer = sensor.cloud.k4a_image.get_buffer();
-  sensor.cloud.size = sensor.cloud.k4a_image.get_size() / (3 * sizeof(int16_t));
+  sensor.device.transformation.depth_image_to_point_cloud(sensor.depth.data.image, sensor.device.calibration_type, &sensor.depth.cloud.image);
+  sensor.depth.cloud.buffer = sensor.depth.cloud.image.get_buffer();
+  sensor.depth.cloud.size = sensor.depth.cloud.image.get_size() / (3 * sizeof(int16_t));
 
   //Resize vectors
-  buffer.xyz.resize(sensor.cloud.size);
-  buffer.rgb.resize(sensor.cloud.size);
-  buffer.rgba.resize(sensor.cloud.size);
-  buffer.Is.resize(sensor.cloud.size);
-  buffer.R.resize(sensor.cloud.size);
+  sensor.depth.data.xyz.resize(sensor.depth.cloud.size);
+  sensor.depth.data.R.resize(sensor.depth.cloud.size);
+  sensor.color.data.rgb.resize(sensor.depth.cloud.size);
+  sensor.color.data.rgba.resize(sensor.depth.cloud.size);
+  sensor.infra.data.Is.resize(sensor.depth.cloud.size);
 
   //---------------------------
 }
@@ -90,7 +90,7 @@ void Cloud::extraction_data(k4n::base::Sensor& sensor){
 
   //Fille vector with data
   #pragma omp parallel for
-  for(int i=0; i<sensor.cloud.size; i++){
+  for(int i=0; i<sensor.depth.cloud.size; i++){
     this->retrieve_location(sensor, i);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
@@ -112,23 +112,23 @@ void Cloud::extraction_transfer(k4n::base::Sensor& sensor){
   std::vector<float>& vec_R = *vec_R_ptr;
 
   //Data
-  data.xyz = buffer.xyz;
-  data.rgb = buffer.rgb;
-  data.rgba = buffer.rgba;
-  vec_I = buffer.Is;
-  vec_R = buffer.R;
+  data.xyz = sensor.depth.data.xyz;
+  data.rgb = sensor.color.data.rgb;
+  data.rgba = sensor.color.data.rgba;
+  vec_I = sensor.infra.data.Is;
+  vec_R = sensor.depth.data.R;
 
   //Info
-  data.size = sensor.cloud.size;
-  data.width = sensor.cloud.width;
-  data.height = sensor.cloud.height;
+  data.size = sensor.depth.cloud.size;
+  data.width = sensor.depth.cloud.width;
+  data.height = sensor.depth.cloud.height;
 
   //---------------------------
 }
 
 //Data function
 void Cloud::retrieve_location(k4n::base::Sensor& sensor, int i){
-  const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor.cloud.buffer);
+  const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor.depth.cloud.buffer);
   //---------------------------
 
   //Raw values
@@ -147,8 +147,8 @@ void Cloud::retrieve_location(k4n::base::Sensor& sensor, int i){
   float R = math::distance_from_origin(xyz);
 
   //Store
-  buffer.xyz[i] = xyz;
-  buffer.R[i] = R;
+  sensor.depth.data.xyz[i] = xyz;
+  sensor.depth.data.R[i] = R;
 
   //---------------------------
 }
@@ -163,8 +163,8 @@ void Cloud::retrieve_color(k4n::base::Sensor& sensor, int i){
   float b = static_cast<float>(buffer_color[idx + 0]) / 255.0f;
 
   //Store
-  buffer.rgb[i] = glm::vec3(r, g, b);
-  buffer.rgba[i] = glm::vec4(r, g, b, 1);
+  sensor.color.data.rgb[i] = glm::vec3(r, g, b);
+  sensor.color.data.rgba[i] = glm::vec4(r, g, b, 1);
 
   //---------------------------
 }
@@ -176,7 +176,7 @@ void Cloud::retrieve_ir(k4n::base::Sensor& sensor, int i){
   float ir = buffer_ir[i];
 
   //Store
-  buffer.Is[i] = ir;
+  sensor.infra.data.Is[i] = ir;
 
   //---------------------------
 }

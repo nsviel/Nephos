@@ -10,6 +10,7 @@ namespace k4n::str::depth{
 struct Structure{
   //---------------------------
 
+  k4n::str::depth::Cloud cloud;
   k4n::str::depth::Configuration config;
   k4n::str::depth::Data data;
   k4n::str::depth::Texture texture;

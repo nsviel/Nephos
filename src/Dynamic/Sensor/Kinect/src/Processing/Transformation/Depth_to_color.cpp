@@ -20,7 +20,7 @@ void Depth_to_color::make_transformation(k4n::base::Sensor& sensor){
   //---------------------------
 
   this->find_depth_to_color(sensor);
-  sensor.cloud.calibration_type = K4A_CALIBRATION_TYPE_COLOR;
+  sensor.device.calibration_type = K4A_CALIBRATION_TYPE_COLOR;
 
   //---------------------------
 }
