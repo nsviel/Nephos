@@ -70,6 +70,34 @@ void Configuration::find_calibration(k4n::playback::Sensor& sensor){
 
   //---------------------------
 }
+void Configuration::find_depth_mode_range(k4n::base::Sensor& sensor){
+  //---------------------------
+
+  switch(sensor.depth.config.mode){
+    case K4A_DEPTH_MODE_NFOV_2X2BINNED:{
+      sensor.depth.config.range_min = 500;
+      sensor.depth.config.range_max = 5800;
+      break;
+    }
+    case K4A_DEPTH_MODE_NFOV_UNBINNED:{
+      sensor.depth.config.range_min = 500;
+      sensor.depth.config.range_max = 4000;
+      break;
+    }
+    case K4A_DEPTH_MODE_WFOV_2X2BINNED:{
+      sensor.depth.config.range_min = 250;
+      sensor.depth.config.range_max = 3000;
+      break;
+    }
+    case K4A_DEPTH_MODE_WFOV_UNBINNED:{
+      sensor.depth.config.range_min = 250;
+      sensor.depth.config.range_max = 2500;
+      break;
+    }
+  }
+
+  //---------------------------
+}
 
 //Subfunction
 std::string Configuration::find_mode_fps(int mode){

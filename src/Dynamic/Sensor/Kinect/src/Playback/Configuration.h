@@ -21,6 +21,7 @@ public:
   void init_configuration(k4n::playback::Sensor& sensor);
   void find_configuration(k4n::playback::Sensor& sensor);
   void find_calibration(k4n::playback::Sensor& sensor);
+  void find_depth_mode_range(k4n::base::Sensor& sensor);
 
   //Subfunction
   std::string find_mode_fps(int mode);
