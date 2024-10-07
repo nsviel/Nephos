@@ -12,6 +12,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_struct = node_k4n->get_k4n_structure();
+  this->k4n_color = new k4n::cloud::Color(node_k4n);
   this->atr_field = new dat::atr::Field();
   this->atr_location = new dat::atr::Location();
 
@@ -37,6 +38,8 @@ void Cloud::extract_data(dat::base::Sensor& sensor){
   tasker->task_begin("extraction");
   this->extraction_data(*k4n_sensor);
   tasker->task_end("extraction");
+
+  k4n_color->extract_data(*k4n_sensor);
 
   //Transfer
   tasker->task_begin("transfer");
@@ -79,8 +82,6 @@ void Cloud::extraction_init(k4n::base::Sensor& sensor){
   //Resize vectors
   sensor.depth.data.xyz.resize(sensor.depth.cloud.size);
   sensor.depth.data.R.resize(sensor.depth.cloud.size);
-  sensor.color.data.rgb.resize(sensor.depth.cloud.size);
-  sensor.color.data.rgba.resize(sensor.depth.cloud.size);
   sensor.infra.data.Is.resize(sensor.depth.cloud.size);
 
   //---------------------------
@@ -92,7 +93,6 @@ void Cloud::extraction_data(k4n::base::Sensor& sensor){
   #pragma omp parallel for
   for(int i=0; i<sensor.depth.cloud.size; i++){
     this->retrieve_location(sensor, i);
-    this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
   }
 
@@ -149,22 +149,6 @@ void Cloud::retrieve_location(k4n::base::Sensor& sensor, int i){
   //Store
   sensor.depth.data.xyz[i] = xyz;
   sensor.depth.data.R[i] = R;
-
-  //---------------------------
-}
-void Cloud::retrieve_color(k4n::base::Sensor& sensor, int i){
-  const uint8_t* buffer_color = sensor.color.data.buffer;
-  //---------------------------
-
-  //Raw values
-  int idx = i * 4;
-  float r = static_cast<float>(buffer_color[idx + 2]) / 255.0f;
-  float g = static_cast<float>(buffer_color[idx + 1]) / 255.0f;
-  float b = static_cast<float>(buffer_color[idx + 0]) / 255.0f;
-
-  //Store
-  sensor.color.data.rgb[i] = glm::vec3(r, g, b);
-  sensor.color.data.rgba[i] = glm::vec4(r, g, b, 1);
 
   //---------------------------
 }
