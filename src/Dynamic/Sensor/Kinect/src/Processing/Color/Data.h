@@ -5,11 +5,9 @@
 #include <string>
 
 namespace k4n{class Node;}
-namespace k4n::color{class Format;}
-namespace k4n::colornew{class Structure;}
 namespace k4n::base{class Sensor;}
+namespace k4n::color{class Format;}
 namespace dat::img{class Image;}
-namespace dat::base{class Sensor;}
 
 
 namespace k4n::color{
@@ -23,17 +21,16 @@ public:
 
 public:
   //Main function
-  void extract_data(dat::base::Sensor& dat_sensor);
+  void extract_data(k4n::base::Sensor& sensor);
 
   //Subfunction
-  void retrieve_data(k4n::colornew::Structure& color);
-  void retrieve_image(k4n::colornew::Structure& color);
-  void retrieve_color(k4n::colornew::Structure& color);
-  void retrieve_timestamp(k4n::colornew::Structure& color);
+  void retrieve_data(k4n::base::Sensor& sensor);
+  void retrieve_image(k4n::base::Sensor& sensor);
+  void retrieve_timestamp(k4n::base::Sensor& sensor);
 
 private:
   dat::img::Image* dat_image;
-  k4n::color::Format* k4a_format;
+  k4n::color::Format* k4n_format;
 };
 
 }

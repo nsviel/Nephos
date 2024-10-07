@@ -141,8 +141,8 @@ void Format::retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& d
 */
   //---------------------------
 }
-void Format::convert_bgra_to_rgba(k4n::colornew::Structure& color){
-/*  std::shared_ptr<utl::base::Image> image = color.image;
+void Format::convert_bgra_to_rgba(k4n::base::Sensor& sensor){
+  std::shared_ptr<utl::base::Image> image = sensor.color.texture.image;
   //---------------------------
 
   // Retrieve the BGR(A) data from the sensor
@@ -170,7 +170,7 @@ void Format::convert_bgra_to_rgba(k4n::colornew::Structure& color){
 
   // Set the size of the RGBA image data
   image->size = rgba_index;
-*/
+
   //---------------------------
 }
 

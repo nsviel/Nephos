@@ -12,7 +12,7 @@ Image::Image(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_struct = node_k4n->get_k4n_structure();
-  this->k4n_color = new k4n::image::Color(node_k4n);
+  this->k4n_color = new k4n::color::Data(node_k4n);
   this->k4n_depth = new k4n::image::Depth(node_k4n);
   this->k4n_ir = new k4n::image::Infrared(node_k4n);
   this->k4n_depth_to_color = new k4n::transformation::Depth_to_color(node_k4n);
