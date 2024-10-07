@@ -18,21 +18,20 @@ namespace dat::atr{class Location;}
 
 namespace k4n::data{
 
-class Cloud
+class Depth_to_cloud
 {
 public:
   //Constructor / Destructor
-  Cloud(k4n::Node* node_k4n);
-  ~Cloud();
+  Depth_to_cloud(k4n::Node* node_k4n);
+  ~Depth_to_cloud();
 
 public:
   //Main function
-  void extract_data(dat::base::Sensor& sensor);
+  void make_transformation(k4n::base::Sensor& sensor);
 
   //Subfunction
   bool check_condition(k4n::base::Sensor& sensor);
   void extraction_init(k4n::base::Sensor& sensor);
-  void extraction_transfer(k4n::base::Sensor& sensor);
 
 private:
   k4n::Structure* k4n_struct;
