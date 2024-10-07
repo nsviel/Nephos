@@ -1,19 +1,14 @@
 #version 450
-#extension GL_GOOGLE_include_directive : enable
-#include "./common.glsl"
-
-#extension GL_EXT_shader_explicit_arithmetic_types_int64 : enable
-//#extension GL_EXT_shader_explicit_arithmetic_types_float16 : enable
 
 // Storage input
 layout(std430, set = 0, binding = 0) readonly buffer Vertices{
-    VertexAttribute attr[];
+  VertexAttribute buffer_attribut[];
 };
 layout(std430, set = 0, binding = 1) readonly buffer Boundaries{
-    uint boundaries[];
+  uint boundaries[];
 };
 layout(std430, set = 0, binding = 2) readonly buffer SortedVertices{
-    uint sorted_vertices[];
+  uint sorted_vertices[];
 };
 
 // Storage output
@@ -21,8 +16,8 @@ layout(set = 1, binding = 0) uniform writeonly image2D output_image;
 
 // Uniform
 layout( push_constant ) uniform Constants{
-    uint width;
-    uint height;
+  uint width;
+  uint height;
 };
 
 // Workgroup
@@ -52,9 +47,9 @@ void main(){
 
   for(uint i = start; i < end; i++){
     uint vertex_key = sorted_vertices[i];
-    vec2 uv = attr[vertex_key].uv;
+    vec2 uv = buffer_attribut[vertex_key].uv;
     vec2 distance = uv - vec2(curr_uv);
-    vec4 co = attr[vertex_key].conic_opacity;
+    vec4 co = buffer_attribut[vertex_key].conic_opacity;
     float power = -0.5f * (co.x * distance.x * distance.x + co.z * distance.y * distance.y) - co.y * distance.x * distance.y;
 
     if(power > 0.0f){
@@ -71,7 +66,7 @@ void main(){
         break;
     }
 
-    c += attr[vertex_key].color_radii.xyz * alpha * T;
+    c += buffer_attribut[vertex_key].color_radii.xyz * alpha * T;
     T = test_T;
   }
 

@@ -1,0 +1,60 @@
+#version 450
+#extension GL_GOOGLE_include_directive : enable
+#include "./common.glsl"
+
+
+// Storage input
+layout(std430, set = 0, binding = 0) readonly buffer Vertices{
+  VertexAttribute buffer_attribut[];
+};
+layout(std430, set = 0, binding = 1) readonly buffer In{
+  uint prefixSum[];
+};
+
+// Storage output
+layout(std430, set = 0, binding = 2) writeonly buffer OutKeys{
+  uint64_t keys[];
+};
+layout(std430, set = 0, binding = 3) writeonly buffer OutPayloads{
+  uint payloads[];
+};
+
+// Uniform
+layout( push_constant ) uniform Constants{
+  uint tileX;
+};
+
+// Workgroup
+layout(local_size_x = 256, local_size_y = 1, local_size_z = 1) in;
+
+
+void main(){
+  //---------------------------
+
+  uint index = gl_GlobalInvocationID.x;
+  if(index >= prefixSum.length()){
+    return;
+  }
+
+  if(buffer_attribut[index].color_radii.w == 0){
+    return;
+  }
+
+  uint ind = index == 0 ? 0 : prefixSum[index - 1];
+
+  for(uint i = buffer_attribut[index].aabb.x; i < buffer_attribut[index].aabb.z; i++){
+    for(uint j = buffer_attribut[index].aabb.y; j < buffer_attribut[index].aabb.w; j++){
+      uint64_t tileIndex = i + j * tileX;
+
+      uint depthBits = floatBitsToUint(buffer_attribut[index].depth);
+      uint64_t k = (tileIndex << 32) | uint64_t(depthBits);
+      keys[ind] = k;
+      payloads[ind] = index;
+      ind++;
+    }
+  }
+
+  assert(ind == prefixSum[index], "ind: %d", ind);
+
+  //---------------------------
+}

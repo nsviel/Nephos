@@ -1,31 +1,33 @@
 #version 450
 
-// Uniform
-layout(std140, set = 1, binding = 0) uniform Params {
-    vec4 camera_position;
-    mat4 proj_mat;
-    mat4 view_mat;
-    uint width;
-    uint height;
-    float tan_fovx;
-    float tan_fovy;
-};
+#define TILE_WIDTH 16
+#define TILE_HEIGHT 16
 
 // Storage input
-layout(std430, set = 0, binding = 0) readonly buffer Vertices {
-    Vertex vertices[];
+layout(std430, set = 0, binding = 0) readonly buffer Vertices{
+  Vertex buffer_vertice[];
 };
-layout(std430, set = 0, binding = 1) readonly buffer Cov3Ds {
-    float cov3ds[];
+layout(std430, set = 0, binding = 1) readonly buffer Cov3Ds{
+  float cov3ds[];
 };
-
 
 // Storage output
-layout(std430, set = 1, binding = 1) writeonly buffer VertexAttributes {
-    VertexAttribute attr[];
+layout(std430, set = 1, binding = 1) writeonly buffer VertexAttributes{
+  VertexAttribute buffer_attribut[];
 };
-layout(std430, set = 1, binding = 2) writeonly buffer NumTilesOverlap {
-    uint tiles_overlap[];
+layout(std430, set = 1, binding = 2) writeonly buffer NumTilesOverlap{
+  uint tiles_overlap[];
+};
+
+// Uniform
+layout(std140, set = 1, binding = 0) uniform Params {
+  vec4 camera_position;
+  mat4 projection;
+  mat4 view;
+  uint width;
+  uint height;
+  float tan_fovx;
+  float tan_fovy;
 };
 
 // Workgroup
@@ -59,7 +61,7 @@ mat2 compute_cov2d(vec3 cam){
 
   uint index = gl_GlobalInvocationID.x;
   mat3 J = get_projection_jacobian_approx(cam);
-  mat3 W = transpose(mat3(view_mat));
+  mat3 W = transpose(mat3(view));
   mat3 Sigma = mat3(
     cov3ds[index * 6], cov3ds[index * 6 + 1], cov3ds[index * 6 + 2],
     cov3ds[index * 6 + 1], cov3ds[index * 6 + 3], cov3ds[index * 6 + 4],
@@ -79,14 +81,14 @@ vec3 get_sh_vec3(uint ind){
   uint index = gl_GlobalInvocationID.x;
 
   //---------------------------
-  return vec3(vertices[index].sh[ind * 3], vertices[index].sh[ind * 3 + 1], vertices[index].sh[ind * 3 + 2]);
+  return vec3(buffer_vertice[index].sh[ind * 3], buffer_vertice[index].sh[ind * 3 + 1], buffer_vertice[index].sh[ind * 3 + 2]);
 }
 vec3 compute_sh(){
   //---------------------------
 
   uint index = gl_GlobalInvocationID.x;
 
-  vec3 ray_direction = vertices[index].position.xyz - camera_position.xyz;
+  vec3 ray_direction = buffer_vertice[index].position.xyz - camera_position.xyz;
   ray_direction /= length(ray_direction);
   float x = ray_direction.x, y = ray_direction.y, z = ray_direction.z;
 
@@ -119,68 +121,80 @@ vec3 compute_sh(){
   //---------------------------
   return c;
 }
-float ndc2Pix(float v, int S){
+float ndc_to_pixel(float v, int S){
   return ((v + 1.0) * S - 1.0) * 0.5;
 }
 
 void main(){
   //---------------------------
 
+  //Get vertex ID
   uint index = gl_GlobalInvocationID.x;
-  if(index >= vertices.length()){
+  if(index >= buffer_vertice.length()){
     return;
   }
 
-  ivec2 tile_shape = ivec2((width + TILE_WIDTH - 1) / TILE_WIDTH, (height + TILE_HEIGHT - 1) / TILE_HEIGHT);
+  //Get title number
+  ivec2 nb_title = ivec2((width + TILE_WIDTH - 1) / TILE_WIDTH, (height + TILE_HEIGHT - 1) / TILE_HEIGHT);
 
-  attr[index].color_radii.w = 0.0;
+  //Init some stuff
+  buffer_attribut[index].color_radii.w = 0.0;
   tiles_overlap[index] = 0;
 
-  vec4 p_hom = proj_mat * vertices[index].position;
+  //MVP matrix
+  vec4 p_hom = projection * buffer_vertice[index].position;
   float p_w = 1.0f / p_hom.w;
   vec3 ndc = vec3(p_hom.xyz * p_w);
+  vec4 p_view = view * buffer_vertice[index].position;
 
-  vec4 p_view = view_mat * vertices[index].position;
+  // Check if the vertex is behind the camera (near plane)
   if(p_view.z <= 0.2f){
     return;
   }
 
+  // 2D covariance matrix based on the view position
   mat2 cov2d = compute_cov2d(p_view.xyz);
   float det = determinant(cov2d);
   if(det <= 0.0){
     return;
   }
   mat2 conic = inverse(cov2d);
-  attr[index].conic_opacity.xyz = vec3(conic[0][0], conic[0][1], conic[1][1]);
-  attr[index].conic_opacity.w = vertices[index].scale_opacity.w;
 
+  // Store the conic opacity values in the attribute buffer
+  buffer_attribut[index].conic_opacity.xyz = vec3(conic[0][0], conic[0][1], conic[1][1]);
+  buffer_attribut[index].conic_opacity.w = buffer_vertice[index].scale_opacity.w;
+
+  // Compute mid-value and eigenvalues for the covariance
   float mid = 0.5 * (cov2d[0][0] + cov2d[1][1]);
   float lambda1 = mid + sqrt(max(0.1, mid * mid - det));
   float lambda2 = mid - sqrt(max(0.1, mid * mid - det));
   float lambda = max(lambda1, lambda2);
   float radii = ceil(3.0 * sqrt(lambda));
 
-  vec2 uv = vec2(ndc2Pix(ndc.x, int(width)), ndc2Pix(ndc.y, int(height)));
+  // Convert NDC coordinates to pixel coordinates for texture mapping
+  vec2 uv = vec2(ndc_to_pixel(ndc.x, int(width)), ndc_to_pixel(ndc.y, int(height)));
 
-  uvec4 bounding_box = uvec4(
-    uint(clamp(int((uv.x - radii) / TILE_WIDTH), 0, tile_shape.x)),
-    uint(clamp(int((uv.y - radii) / TILE_HEIGHT), 0, tile_shape.y)),
-    uint(clamp(int((uv.x + radii + TILE_WIDTH - 1) / TILE_WIDTH), 0, tile_shape.x)),
-    uint(clamp(int((uv.y + radii + TILE_HEIGHT - 1) / TILE_HEIGHT), 0, tile_shape.y))
+  // Calculate the bounding box in tile space for the current vertex
+  uvec4 title_aabb = uvec4(
+    uint(clamp(int((uv.x - radii) / TILE_WIDTH), 0, nb_title.x)),
+    uint(clamp(int((uv.y - radii) / TILE_HEIGHT), 0, nb_title.y)),
+    uint(clamp(int((uv.x + radii + TILE_WIDTH - 1) / TILE_WIDTH), 0, nb_title.x)),
+    uint(clamp(int((uv.y + radii + TILE_HEIGHT - 1) / TILE_HEIGHT), 0, nb_title.y))
   );
 
-  uint num_tiles_overlap = (bounding_box.z - bounding_box.x) * (bounding_box.w - bounding_box.y);
+  // Calculate the number of overlapping tiles based on the bounding box
+  uint num_tiles_overlap = (title_aabb.z - title_aabb.x) * (title_aabb.w - title_aabb.y);
   if(num_tiles_overlap == 0){
-      return;
+    return;
   }
-  assert(num_tiles_overlap <= width * height, "too many tiles overlap: %d\n", num_tiles_overlap);
-  attr[index].aabb = bounding_box;
+
+  // Store the computed bounding box and overlap count in the attribute buffer
   tiles_overlap[index] = num_tiles_overlap;
-  attr[index].depth = p_view.z;
-  attr[index].color_radii.w = radii;
-  attr[index].color_radii.xyz = compute_sh();
-  attr[index].uv = uv;
-  attr[index].magic = MAGIC;
+  buffer_attribut[index].aabb = title_aabb;
+  buffer_attribut[index].depth = p_view.z;
+  buffer_attribut[index].color_radii.w = radii;
+  buffer_attribut[index].color_radii.xyz = compute_sh();
+  buffer_attribut[index].uv = uv;
 
   //---------------------------
 }
