@@ -2,4 +2,3 @@
 
 #include <Kinect/src/Processing/Data/Color/Data.h>
 #include <Kinect/src/Processing/Data/Color/Format.h>
-#include <Kinect/src/Processing/Data/Color/Texture.h>
