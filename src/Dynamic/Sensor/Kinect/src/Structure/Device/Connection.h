@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace k4n::device{
+namespace k4n::str::device{
 
 struct Connection{
   //---------------------------

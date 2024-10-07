@@ -1,6 +1,6 @@
 #pragma once
 
-#include <k4a/k4a.hpp>
+#include <Kinect/src/Structure/Camera/Parameter.h>
 
 
 namespace k4n::str::camera{

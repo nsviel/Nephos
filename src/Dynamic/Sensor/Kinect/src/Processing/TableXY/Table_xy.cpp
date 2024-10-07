@@ -1,6 +1,7 @@
 #include "Table_xy.h"
 
 #include <Kinect/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace k4n::processing{

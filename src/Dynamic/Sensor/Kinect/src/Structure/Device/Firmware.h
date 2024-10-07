@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace k4n::device{
+namespace k4n::str::device{
 
 struct Firmware{
   //---------------------------

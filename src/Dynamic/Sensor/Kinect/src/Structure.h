@@ -14,7 +14,7 @@ struct Structure{
 
   k4n::transformation::Structure transformation;
   k4n::str::config::Structure config;
-  k4n::device::Connection connection;
+  k4n::str::device::Connection connection;
 
   //---------------------------
 };

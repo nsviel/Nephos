@@ -8,7 +8,7 @@
 #include <string>
 
 
-namespace k4n::device{
+namespace k4n::str::device{
 
 struct Structure{
   //Sensor parameters and information
@@ -17,7 +17,7 @@ struct Structure{
   //General parameters
   int index = -1;
   std::shared_ptr<k4a::capture> capture = std::make_shared<k4a::capture>();
-  k4n::device::Firmware firmware;
+  k4n::str::device::Firmware firmware;
 
   //K4A device related objects
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
