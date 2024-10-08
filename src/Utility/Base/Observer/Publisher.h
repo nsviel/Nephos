@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Utility/Base/Class/Panel.h>
-#include <vector>
-#include <string>
+#include <list>
+
+namespace utl::base{class Subscriber;}
 
 
 namespace utl::base{
@@ -18,9 +18,9 @@ public:
   virtual void attach(){}
   virtual void detach(){}
   virtual void notify(){}
-  
-protected:
 
+protected:
+  std::list<utl::base::Subscriber> list_subscriber;
 };
 
 }
