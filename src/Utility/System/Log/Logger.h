@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/System/Log/Enum.h>
 #include <iostream>
 #include <fstream>
 #include <string>

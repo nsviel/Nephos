@@ -40,9 +40,9 @@ std::string Logger::format_message(utl::log::Level level, const std::string& mes
 
   std::string level_str;
   switch (level) {
-    case utl::log::Info:    level_str = "INFO"; break;
-    case utl::log::Warning: level_str = "WARNING"; break;
-    case utl::log::Error:   level_str = "ERROR"; break;
+    case utl::log::INFO:    level_str = "INFO"; break;
+    case utl::log::WARNING: level_str = "WARNING"; break;
+    case utl::log::ERROR:   level_str = "ERROR"; break;
   }
 
   //---------------------------
