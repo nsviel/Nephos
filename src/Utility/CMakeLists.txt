@@ -16,11 +16,13 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+find_package(spdlog REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_EXTERN
 
   Eigen3::Eigen # Eigen
+  spdlog::spdlog_header_only
   -lstdc++fs    # std::experimental::filesystem
   -lnvidia-ml   # Nvidia GPU stuff
 )
