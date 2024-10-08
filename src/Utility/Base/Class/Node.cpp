@@ -1,5 +1,7 @@
 #include "Node.h"
 
+#include <Utility/Namespace.h>
+
 
 namespace utl::base{
 
@@ -10,6 +12,9 @@ utl::base::Node* Node::root;
 Node::Node(){
   //---------------------------
 
+  utl::log::Logger::get_instance("log/node.log");
+
+  utl::log::Logger::get_instance("").log(utl::log::INFO, "hello world");
 
   //---------------------------
 }

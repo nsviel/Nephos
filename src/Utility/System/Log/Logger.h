@@ -15,28 +15,21 @@ public:
   Logger& operator=(const Logger&) = delete;
 
   // Get the single instance of Logger
-  static Logger& getInstance(const std::string& logFilePath) {
-    static Logger instance(logFilePath); // Guaranteed to be destroyed
+  static Logger& get_instance(const std::string& path) {
+    static Logger instance(path); // Guaranteed to be destroyed
     return instance; // Instantiated on first use
   }
 
 public:
-  // Log levels
-  enum class LogLevel {
-    Info,
-    Warning,
-    Error
-  };
-
   //Main function
-  void log(LogLevel level, const std::string& message);
+  void log(utl::log::Level level, const std::string& message);
 
 private:
   // Private constructor
-  Logger(const std::string& logFilePath);
+  Logger(const std::string& path);
   ~Logger();
 
-  std::string formatMessage(LogLevel level, const std::string& message);
+  std::string format_message(utl::log::Level level, const std::string& message);
 
 private:
   std::ofstream file;

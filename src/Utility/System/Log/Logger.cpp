@@ -26,28 +26,27 @@ Logger::~Logger(){
 }
 
 //Main function
-void Logger::log(LogLevel level, const std::string& message) {
+void Logger::log(utl::log::Level level, const std::string& message) {
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mutex); // thread-safe logging
-  std::string logMessage = formatMessage(level, message);
-  std::cout << logMessage << std::endl; // Log to console
-  file << logMessage << std::endl; // Log to file
+  std::string log = format_message(level, message);
+  file << log << std::endl; // Log to file
 
   //---------------------------
 }
-std::string Logger::formatMessage(LogLevel level, const std::string& message) {
+std::string Logger::format_message(utl::log::Level level, const std::string& message) {
   //---------------------------
 
-  std::string levelStr;
+  std::string level_str;
   switch (level) {
-    case LogLevel::Info:    levelStr = "INFO"; break;
-    case LogLevel::Warning: levelStr = "WARNING"; break;
-    case LogLevel::Error:   levelStr = "ERROR"; break;
+    case utl::log::Info:    level_str = "INFO"; break;
+    case utl::log::Warning: level_str = "WARNING"; break;
+    case utl::log::Error:   level_str = "ERROR"; break;
   }
 
   //---------------------------
-  return "[" + levelStr + "] " + message;
+  return "[" + level_str + "] " + message;
 }
 
 }
