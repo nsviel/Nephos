@@ -9,6 +9,7 @@ namespace dat::gph{class Node;}
 namespace dat::ply{class Structure;}
 namespace dat::ply{class State;}
 namespace dat::ply{class Button;}
+namespace dat::ply{class Subscriber;}
 namespace dat::ply::gui{class Panel;}
 
 
@@ -42,6 +43,7 @@ private:
   dat::ply::Structure* ply_struct;
   dat::ply::State* ply_state;
   dat::ply::Button* ply_button;
+  dat::ply::Subscriber* ply_subscriber;
   dat::ply::gui::Panel* gui_player;
 };
 
