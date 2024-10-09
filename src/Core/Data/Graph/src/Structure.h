@@ -2,9 +2,7 @@
 
 #include <Data/Base/Element/Set.h>
 #include <Utility/Namespace.h>
-
-namespace dat::base{class Set;}
-namespace utl::base{class Element;}
+#include <memory>
 
 
 namespace dat::gph{

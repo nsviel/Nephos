@@ -1,7 +1,9 @@
 #pragma once
 
 #include <Utility/Base/Observer/Publisher.h>
-#include <list>
+#include <memory>
+
+namespace utl::base{class Element;}
 
 
 namespace dat::gph{
@@ -16,7 +18,7 @@ public:
   //Main function
   void attach(){}
   void detach(){}
-  void notify(){}
+  void notify_selection(std::shared_ptr<utl::base::Element> element);
 
 protected:
 };

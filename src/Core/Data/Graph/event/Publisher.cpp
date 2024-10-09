@@ -14,6 +14,13 @@ Publisher::Publisher(){
 }
 Publisher::~Publisher(){}
 
-//Subfunction
+//Main function
+void Publisher::notify_selection(std::shared_ptr<utl::base::Element> element){
+  //---------------------------
+
+
+
+  //---------------------------
+}
 
 }

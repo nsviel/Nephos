@@ -38,7 +38,6 @@ void Graph::init(){
   //Engine active elements
   std::shared_ptr<dat::base::Set> set_graph = dat_set->create_subset(gph_struct->set_main, "Graph");
   set_graph->is_suppressible = false;
-  gph_struct->selection = set_graph;
 
   //---------------------------
 }

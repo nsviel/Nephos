@@ -2,11 +2,11 @@
 
 #include <memory>
 
-namespace cam{class Entity;}
-namespace dat::elm{class Set;}
+namespace dat::gph{class Structure;}
 namespace dat::gph{class Node;}
 namespace dat::gph{class Graph;}
-namespace dat::gph{class Structure;}
+namespace dat::gph{class Publisher;}
+namespace dat::elm{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
@@ -32,9 +32,10 @@ public:
   std::shared_ptr<dat::base::Set> get_selected_set();
 
 private:
-  dat::gph::Graph* dat_graph;
-  dat::elm::Set* dat_set;
   dat::gph::Structure* gph_struct;
+  dat::gph::Graph* gph_graph;
+  dat::gph::Publisher* gph_publisher;
+  dat::elm::Set* elm_set;
 };
 
 }
