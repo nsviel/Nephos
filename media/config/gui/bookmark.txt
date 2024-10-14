@@ -1,11 +1,2 @@
-/home/aether/Desktop/
-/home/aether/Desktop/Point_cloud/
-/home/aether/Desktop/Nephos/media/record/
-/home/aether/Desktop/Point_cloud/ply/
-/home/aether/Desktop/Point_cloud/pts/AB_10_colored_limited_sculpture.pts
-/home/aether/Desktop/Point_cloud/obj/backpack.obj
-/home/aether/Desktop/Nephos/media/point_cloud/bunny.ply
-/home/aether/Desktop/cerfav_8.mkv
-/home/aether/Desktop/Point_cloud/ply/hippo2.ply
-/home/aether/Desktop/Point_cloud/ply/Cathedral/pts_regis_01.ply
-/home/aether/Desktop/versaille_0.mkv
+/home/nsv/Desktop/Point_cloud/pts/AB_10_colored_limited_sculpture.pts
+/home/nsv/Desktop/Point_cloud/mkv/versaille_0.json

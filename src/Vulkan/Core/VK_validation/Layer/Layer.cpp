@@ -39,6 +39,7 @@ void Layer::create_validation_messenger(){
     VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT | \
     VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT;
   messenger_info.messageType =
+    VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | \
     VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | \
     VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
   messenger_info.pfnUserCallback = vk::validation::Callback;
@@ -98,6 +99,7 @@ void Layer::create_messenger_info(){
     VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | \
     VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
   messenger_info.messageType =
+    VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | \
     VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | \
     VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
   messenger_info.pfnUserCallback = vk::validation::Callback;
