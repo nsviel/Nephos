@@ -36,30 +36,30 @@ void Init::init(){
 void Init::load_entity(){
   //----------------------------
 
-  utl::base::Path versaille_0("/home/aether/Desktop/versaille_0.mkv");
-  utl::base::Path versaille_0_t("/home/aether/Desktop/versaille_0.json");
+  utl::base::Path versaille_0("/home/nsv/Desktop/versaille_0.mkv");
+  utl::base::Path versaille_0_t("/home/nsv/Desktop/versaille_0.json");
 
-  utl::base::Path versaille_2("/home/aether/Desktop/versaille_2.mkv");
-  utl::base::Path versaille_2_t("/home/aether/Desktop/versaille_2.json");
+  utl::base::Path versaille_2("/home/nsv/Desktop/versaille_2.mkv");
+  utl::base::Path versaille_2_t("/home/nsv/Desktop/versaille_2.json");
 
-  utl::base::Path cerfav("/home/aether/Desktop/cerfav_3_1.mkv");
+  utl::base::Path cerfav("/home/nsv/Desktop/cerfav_3_1.mkv");
 
-  utl::base::Path dragon("/home/aether/Desktop/Nephos/media/point_cloud/dragon.ply");
-  utl::base::Path bunny("/home/aether/Desktop/Nephos/media/point_cloud/bunny.ply");
+  utl::base::Path dragon("/home/nsv/Desktop/Nephos/media/point_cloud/dragon.ply");
+  utl::base::Path bunny("/home/nsv/Desktop/Nephos/media/point_cloud/bunny.ply");
 
-  utl::base::Path sphere("/home/aether/Desktop/Sphere_good.mkv");
+  utl::base::Path sphere("/home/nsv/Desktop/Sphere_good.mkv");
 
-  utl::base::Path pcap("/home/aether/Desktop/pcap_test.pcap");
+  utl::base::Path pcap("/home/nsv/Desktop/pcap_test.pcap");
 
-  utl::base::Path mire("/home/aether/Desktop/Mire.mkv");
+  utl::base::Path mire("/home/nsv/Desktop/Mire.mkv");
 
-  utl::base::Path ply("/home/aether/Desktop/Point_cloud/ply/hippo2.ply");
-  utl::base::Path cath("/home/aether/Desktop/Point_cloud/ply/Cathedral/pts_regis_01.ply");
-  utl::base::Path pts("/home/aether/Desktop/Point_cloud/pts/cloud.pts");
-  utl::base::Path bag("/home/aether/Desktop/intel.bag");
+  utl::base::Path ply("/home/nsv/Desktop/Point_cloud/ply/hippo2.ply");
+  utl::base::Path cath("/home/nsv/Desktop/Point_cloud/ply/Cathedral/pts_regis_01.ply");
+  utl::base::Path pts("/home/nsv/Desktop/Point_cloud/pts/cloud.pts");
+  utl::base::Path bag("/home/nsv/Desktop/intel.bag");
 
-  utl::base::Path viking("/home/aether/Desktop/Point_cloud/obj/viking/viking_room.obj");
-  utl::base::Path viking_tex("/home/aether/Desktop/Point_cloud/obj/viking/viking_room.png");
+  utl::base::Path viking("/home/nsv/Desktop/Point_cloud/obj/viking/viking_room.obj");
+  utl::base::Path viking_tex("/home/nsv/Desktop/Point_cloud/obj/viking/viking_room.png");
 
 
 

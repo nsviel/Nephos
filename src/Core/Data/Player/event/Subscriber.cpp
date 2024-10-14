@@ -1,10 +1,11 @@
 #include "Subscriber.h"
 
+#include <Data/Player/Namespace.h>
 #include <Data/Graph/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace dat::gph{
+namespace dat::ply{
 
 //Constructor / Destructor
 Subscriber::Subscriber(dat::ply::Node* node_player){

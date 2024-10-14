@@ -1,5 +1,7 @@
 #include "Renderer.h"
 
+#include <imgui/core/imgui.h>
+
 
 namespace utl::improfil{
 
@@ -259,13 +261,13 @@ void Renderer::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoin
 
   this->draw_rect(draw_list, leftMinPoint, leftMaxPoint, color, true);
   this->draw_rect(draw_list, rightMinPoint, rightMaxPoint, color, true);
-  std::array<ImVec2, 4> points = {
-    ImVec2(leftMaxPoint.x, leftMinPoint.y),
-    ImVec2(leftMaxPoint.x, leftMaxPoint.y),
-    ImVec2(rightMinPoint.x, rightMaxPoint.y),
-    ImVec2(rightMinPoint.x, rightMinPoint.y)
-  };
-  draw_list->AddConvexPolyFilled(points.data(), int(points.size()), IM_COL32(color.x, color.y, color.z, color.w));
+  std::vector<ImVec2> vec_point;
+  vec_point.push_back(ImVec2(leftMaxPoint.x, leftMinPoint.y));
+  vec_point.push_back(ImVec2(leftMaxPoint.x, leftMaxPoint.y));
+  vec_point.push_back(ImVec2(rightMinPoint.x, rightMaxPoint.y));
+  vec_point.push_back(ImVec2(rightMinPoint.x, rightMinPoint.y));
+
+  draw_list->AddConvexPolyFilled(vec_point.data(), int(vec_point.size()), IM_COL32(color.x, color.y, color.z, color.w));
 
   //---------------------------
 }
@@ -337,7 +339,7 @@ void Renderer::draw_text(ImDrawList *draw_list, glm::vec2 point, glm::vec4 color
 
   //---------------------------
 }
-void Renderer::draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, glm::vec4 color, bool filled = true){
+void Renderer::draw_triangle(ImDrawList *draw_list, std::vector<glm::vec2> points, glm::vec4 color, bool filled = true){
   //---------------------------
 
   if(filled)

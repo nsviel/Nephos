@@ -75,11 +75,16 @@ void Layer::create_layer_info(){
   vec_layer.clear();
   vec_layer.push_back("VK_LAYER_KHRONOS_validation");
 
-  //Feature info
-  std::vector<VkValidationFeatureEnableEXT>& vec_feature = vk_struct->core.validation.vec_feature;
-  vec_feature.clear();
-  //vec_feature.push_back(VK_VALIDATION_FEATURE_ENABLE_BEST_PRACTICES_EXT);
-  vec_feature.push_back(VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT);
+  //Feature enable
+  std::vector<VkValidationFeatureEnableEXT>& vec_feature_enable = vk_struct->core.validation.vec_feature_enable;
+  vec_feature_enable.clear();
+  //vec_feature_enable.push_back(VK_VALIDATION_FEATURE_ENABLE_BEST_PRACTICES_EXT);
+  vec_feature_enable.push_back(VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT);
+
+  //Feature disable
+  std::vector<VkValidationFeatureDisableEXT>& vec_feature_disable = vk_struct->core.validation.vec_feature_disable;
+  vec_feature_disable.clear();
+  vec_feature_disable.push_back(VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT);
 
   //---------------------------
 }
@@ -106,8 +111,10 @@ void Layer::create_feature_info(){
 
   VkValidationFeaturesEXT feature_info = {};
   feature_info.sType = VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT;
-  feature_info.enabledValidationFeatureCount = static_cast<uint32_t>(vk_struct->core.validation.vec_feature.size());
-  feature_info.pEnabledValidationFeatures = vk_struct->core.validation.vec_feature.data();
+  feature_info.enabledValidationFeatureCount = static_cast<uint32_t>(vk_struct->core.validation.vec_feature_enable.size());
+  feature_info.pEnabledValidationFeatures = vk_struct->core.validation.vec_feature_enable.data();
+  feature_info.disabledValidationFeatureCount = static_cast<uint32_t>(vk_struct->core.validation.vec_feature_disable.size());
+  feature_info.pDisabledValidationFeatures = vk_struct->core.validation.vec_feature_disable.data();
   feature_info.pNext = &vk_struct->core.validation.messenger_info;
 
   //---------------------------

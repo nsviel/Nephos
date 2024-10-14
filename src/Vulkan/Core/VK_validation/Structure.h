@@ -11,7 +11,8 @@ struct Structure{
   //---------------------------
 
   std::vector<const char*> vec_layer;
-  std::vector<VkValidationFeatureEnableEXT> vec_feature;
+  std::vector<VkValidationFeatureEnableEXT> vec_feature_enable;
+  std::vector<VkValidationFeatureDisableEXT> vec_feature_disable;
   VkDebugUtilsMessengerCreateInfoEXT messenger_info;
   VkValidationFeaturesEXT feature_info;
   VkDebugUtilsMessengerEXT messenger;

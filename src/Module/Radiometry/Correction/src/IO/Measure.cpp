@@ -2,7 +2,7 @@
 
 #include <Radiometry/Correction/Namespace.h>
 #include <Utility/Namespace.h>
-#include <python/matplotlibcpp.h>
+
 
 
 namespace rad::cor::io{

@@ -7,7 +7,7 @@ namespace dat::ply{class Node;}
 namespace utl::base{class Element;}
 
 
-namespace dat::gph{
+namespace dat::ply{
 
 class Subscriber : public utl::base::Subscriber
 {

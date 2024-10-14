@@ -22,26 +22,15 @@ void Debug::print_header(std::string message){
   //---------------------------
 
   // Split the message into individual objects
-  size_t pose_obj_start = message.find("Object ");
+  size_t pose_obj_start = message.find("|");
+  if (pose_obj_start == std::string::npos) {
+    return; // Exit the function if the substring is not found
+  }
+
   std::string validation_error = message.substr(0, pose_obj_start);
 
   std::cerr << "--------------------------" << std::endl;
   std::cerr << "[" << "\033[1;32mVL\033[0m] " << validation_error << std::endl;
-
-  size_t pose_obj_end = message.find(";", pose_obj_start);
-  std::string obj_info = message.substr(pose_obj_start, pose_obj_end - pose_obj_start);
-
-  // Extract handle and type information
-  size_t pose_han = obj_info.find("handle = ");
-  size_t pose_typ = obj_info.find("type = ");
-  std::string object = obj_info.substr(0, pose_han);
-  std::string handle = obj_info.substr(pose_han + 9, pose_typ - pose_han - 11);
-  std::string type = obj_info.substr(pose_typ + 7);
-
-  // Print type and handle information in shaded colors
-  std::cout << "\033[1;33m" << object << "\033[0m" << std::endl;
-  std::cout << "\033[1;90m" << "type " << "\033[0m" << type << std::endl;
-  std::cout << "\033[1;90m" << "hand " << "\033[0m" << handle << std::endl;
 
   //---------------------------
 }

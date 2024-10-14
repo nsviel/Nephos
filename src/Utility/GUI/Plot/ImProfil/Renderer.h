@@ -45,7 +45,7 @@ private:
   void draw_zone(ImDrawList *draw_list, float ts_begin_ms, float ts_end_ms, glm::vec4 color);
   void draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, glm::vec4 color, bool filled);
   void draw_text(ImDrawList *draw_list, glm::vec2 point, glm::vec4 col, const char *text);
-  void draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, glm::vec4 color, bool filled);
+  void draw_triangle(ImDrawList *draw_list, std::vector<glm::vec2> points, glm::vec4 color, bool filled);
 
 private:
   utl::improfil::Configuration config;

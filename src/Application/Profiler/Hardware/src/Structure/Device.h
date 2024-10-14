@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Hardware/src/Structure/Queue.h>
+#include <stdint.h>
 #include <vector>
 #include <string>
 

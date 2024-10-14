@@ -1,9 +1,5 @@
 #pragma once
 
-#include <highfive/H5File.hpp>
-#include <highfive/H5DataSet.hpp>
-#include <highfive/H5DataSpace.hpp>
-
 #include <IO/Base/Importer.h>
 #include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>

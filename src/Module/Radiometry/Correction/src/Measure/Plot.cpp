@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 #include <Processing/Namespace.h>
 #include <Data/Namespace.h>
-#include <python/matplotlibcpp.h>
+
 
 
 namespace rad::cor{
@@ -55,7 +55,7 @@ void Plot::reset(){
 //Subfunction
 void Plot::plot_measure(){
   //---------------------------
-
+/*
   if(rad_struct->measure.data.size() == 0) return;
 
   // Plot 3D scatter plot
@@ -68,7 +68,7 @@ void Plot::plot_measure(){
   }
   matplotlibcpp::scatter(x, y, z, 1, { {"marker", "."}, {"color", "black"} });
   matplotlibcpp::show();
-
+*/
   //---------------------------
 }
 

@@ -14,13 +14,20 @@ sudo apt install -y libglm-dev libgit2-dev libgtest-dev libtins-dev libavdevice-
 sudo apt install -y libmatroska-dev nlohmann-json3-dev libopencv-dev libusb-1.0-0-dev libflann-dev nvidia-cuda-dev
 
 # LunarG SDK
-wget -qO- https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo tee /etc/apt/trusted.gpg.d/lunarg.asc
-sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-1.3.243-jammy.list https://packages.lunarg.com/vulkan/1.3.243/lunarg-vulkan-1.3.243-jammy.list
+wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
+sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-1.3.296-noble.list https://packages.lunarg.com/vulkan/1.3.296/lunarg-vulkan-1.3.296-noble.list
 sudo apt update
-sudo apt -y install vulkan-sdk
+sudo apt install vulkan-sdk
 
 # Azur kinect SDK
 sudo extern/azur_sdk/install_azure_kinect_camera_u_22.04.sh
+
+#Intel realsense
+sudo apt install libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+sudo apt install v4l-utils libgtk-3-dev libssl-dev
+git clone https://github.com/IntelRealSense/librealsense.git
+cd librealsense
+./scripts/setup_udev_rules.sh
 
 #Robin-map
 sudo apt install -y robin-map-dev
