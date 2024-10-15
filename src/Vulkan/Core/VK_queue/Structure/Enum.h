@@ -9,4 +9,10 @@ enum Type{
   TRANSFER = 2,
 };
 
+enum State{
+  WAIT_COMMAND = 0,
+  SUBMIT_COMMAND = 1,
+  PAUSED = 2,
+};
+
 }

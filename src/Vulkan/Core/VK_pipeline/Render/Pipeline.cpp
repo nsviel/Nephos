@@ -47,7 +47,7 @@ void Pipeline::clean_pipeline(vk::structure::Renderpass& renderpass){
 void Pipeline::recreate_pipeline(vk::structure::Renderpass& renderpass, vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk_synchro->wait_idle_and_pause();
+  vk_synchro->wait_idle();
   vk_component->clean_pipeline_component(pipeline);
   vk_component->create_pipeline_component(renderpass, pipeline);
   vk_synchro->end_idle();

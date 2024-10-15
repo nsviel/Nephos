@@ -38,6 +38,8 @@ void Command::thread_loop(){
   if(!thread_running) return;
 
   //Submit command
+  this->state = vk::queue::SUBMIT_COMMAND;
+  
   vk_submission->process_command(queue.front());
   queue.pop();
 
@@ -46,7 +48,6 @@ void Command::thread_loop(){
 
 //Subfunction
 void Command::add_command(std::unique_ptr<vk::structure::Command> command){
-  if(vk_struct->core.command.standby) return;
   //---------------------------
 
   mutex.lock();
@@ -61,7 +62,6 @@ void Command::add_command(std::unique_ptr<vk::structure::Command> command){
   //---------------------------
 }
 void Command::add_command(std::vector<std::unique_ptr<vk::structure::Command>> vec_command){
-  if(vk_struct->core.command.standby) return;
   //---------------------------
 
   mutex.lock();
@@ -76,7 +76,6 @@ void Command::add_command(std::vector<std::unique_ptr<vk::structure::Command>> v
   //---------------------------
 }
 void Command::add_command(std::shared_ptr<vk::structure::Command_set> set){
-  if(vk_struct->core.command.standby) return;
   //---------------------------
 
   mutex.lock();

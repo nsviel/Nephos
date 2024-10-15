@@ -54,7 +54,7 @@ void Pipeline::clean(){
 void Pipeline::recreate_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  vk_synchro->wait_idle_and_pause();
+  vk_synchro->wait_idle();
   vk_component->clean_pipeline_component(pipeline);
   vk_component->create_pipeline_component(pipeline);
   vk_synchro->end_idle();

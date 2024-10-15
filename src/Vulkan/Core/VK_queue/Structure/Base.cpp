@@ -1,5 +1,6 @@
 #include "Base.h"
 
+#include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 /*
@@ -54,27 +55,33 @@ void Base::stop_thread(){
 void Base::thread_pause(){
   //---------------------------
 
+  if(thread_paused.load()){
+    this->state = vk::queue::PAUSED;
+  }
+
   std::unique_lock<std::mutex> lock(mutex);
-  waiting_for_pause.store(true);  // Indicate thread_pause is about to wait
-  cv_pause.notify_all();          // Notify set_pause that thread_pause is ready
+  cv.wait(lock, [this] { return thread_paused.load() == false || thread_running.load() == false; });
 
-  // Wait for command
-  cv.wait(lock, [this] { return !thread_paused.load() || !thread_running.load(); });
-
-  waiting_for_pause.store(false); // Reset the flag when exiting wait
+  this->state = vk::queue::WAIT_COMMAND;
 
   //---------------------------
 }
 void Base::set_pause(bool value){
   //---------------------------
 
-  std::unique_lock<std::mutex> lock(mutex);
-  thread_paused.store(value);
+  //Say the thread to pause
+  {
+    std::unique_lock<std::mutex> lock(mutex);
+    thread_paused.store(value);
+    cv.notify_all();
+  }
 
-  // Wait until thread_pause is in a waiting state before notifying
-  cv_pause.wait(lock, [this] { return waiting_for_pause.load(); });
-
-  cv.notify_all();
+  // If pausing, wait until thread_pause reaches the waiting state
+  if (value) {
+    while(state == vk::queue::SUBMIT_COMMAND){
+      std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    }
+  }
 
   //---------------------------
 }

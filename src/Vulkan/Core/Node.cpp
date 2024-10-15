@@ -73,7 +73,7 @@ void Node::loop(){
 void Node::clean(){
   //---------------------------
 
-  vk_synchro->wait_idle_and_pause();
+  vk_synchro->wait_idle();
 
   vk_imgui->clean();
   vk_command->clean();

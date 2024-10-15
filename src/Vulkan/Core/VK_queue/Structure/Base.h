@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Vulkan/Core/VK_queue/Structure/Enum.h>
 #include <Vulkan/Core/VK_command/Structure/Command.h>
 #include <condition_variable>
 #include <memory>
@@ -34,11 +35,11 @@ protected:
   virtual void thread_loop(){}
   virtual void thread_end(){}
 
+  vk::queue::State state;
   std::atomic<bool> thread_running{false};
   std::atomic<bool> thread_paused{false};
   std::atomic<bool> waiting_for_pause{false};
   std::condition_variable cv;
-  std::condition_variable cv_pause;
   std::thread thread;
   std::mutex mutex;
 };

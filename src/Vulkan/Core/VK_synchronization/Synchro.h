@@ -15,7 +15,6 @@ public:
 public:
   //Main function
   void wait_idle();
-  void wait_idle_and_pause();
   void end_idle();
 
 private:

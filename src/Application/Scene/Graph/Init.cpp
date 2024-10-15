@@ -36,13 +36,13 @@ void Init::init(){
 void Init::load_entity(){
   //----------------------------
 
-  utl::base::Path versaille_0("/home/nsv/Desktop/versaille_0.mkv");
-  utl::base::Path versaille_0_t("/home/nsv/Desktop/versaille_0.json");
+  utl::base::Path versaille_0("/home/nsv/Desktop/Point_cloud/mkv/versaille_0.mkv");
+  utl::base::Path versaille_0_t("/home/nsv/Desktop/Point_cloud/mkv/versaille_0.json");
 
-  utl::base::Path versaille_2("/home/nsv/Desktop/versaille_2.mkv");
-  utl::base::Path versaille_2_t("/home/nsv/Desktop/versaille_2.json");
+  utl::base::Path versaille_2("/home/nsv/Desktop/Point_cloud/mkv/versaille_2.mkv");
+  utl::base::Path versaille_2_t("/home/nsv/Desktop/Point_cloud/mkv/versaille_2.json");
 
-  utl::base::Path cerfav("/home/nsv/Desktop/cerfav_3_1.mkv");
+  utl::base::Path cerfav("/home/nsv/Desktop/Point_cloud/mkv/cerfav_3_1.mkv");
 
   utl::base::Path dragon("/home/nsv/Desktop/Nephos/media/point_cloud/dragon.ply");
   utl::base::Path bunny("/home/nsv/Desktop/Nephos/media/point_cloud/bunny.ply");

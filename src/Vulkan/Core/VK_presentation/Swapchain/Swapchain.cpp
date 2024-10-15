@@ -63,7 +63,7 @@ void Swapchain::recreate_swapchain(){
 
   //Clean old swapchain
   vk_window->update_window_dim();
-  vk_synchro->wait_idle_and_pause();
+  vk_synchro->wait_idle();
   vk_framebuffer->clean();
   this->clean();
 

@@ -10,7 +10,6 @@ namespace vk::command{
 struct Structure{
   //---------------------------
 
-  bool standby = false;
   vk::queue::transfer::Command* transfer;
   vk::queue::graphics::Command* graphics;
   vk::queue::presentation::Command* presentation;

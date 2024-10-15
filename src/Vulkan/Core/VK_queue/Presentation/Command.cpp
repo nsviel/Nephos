@@ -37,6 +37,8 @@ void Command::thread_loop(){
   if(!thread_running) return;
 
   //Submit command
+  this->state = vk::queue::SUBMIT_COMMAND;
+
   vk_pipeline->make_rendering();
   queue.pop();
 
