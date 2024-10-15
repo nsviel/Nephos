@@ -12,6 +12,7 @@ void Debug::print_message(std::string message){
   //---------------------------
 
   this->print_header(message);
+  //this->print_severity(message);
   this->print_message_ID(message);
 
   //---------------------------
@@ -21,16 +22,8 @@ void Debug::print_message(std::string message){
 void Debug::print_header(std::string message){
   //---------------------------
 
-  // Split the message into individual objects
-  size_t pose_obj_start = message.find("|");
-  if (pose_obj_start == std::string::npos) {
-    return; // Exit the function if the substring is not found
-  }
-
-  std::string validation_error = message.substr(0, pose_obj_start);
-
+  //Isolate message
   std::cerr << "--------------------------" << std::endl;
-  std::cerr << "[" << "\033[1;32mVL\033[0m] " << validation_error << std::endl;
 
   //---------------------------
 }
@@ -41,29 +34,29 @@ void Debug::print_severity(VkDebugUtilsMessageSeverityFlagBitsEXT message_severi
   //Determine severity
   switch (message_severity){
     case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:{
-      severity = "verbose";
+      severity = "VERBOSE";
       break;
     }
     case VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT:{
-      severity = "info";
+      severity = "INFO";
       break;
     }
     case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:{
-      severity = "warning";
+      severity = "WARNING";
       break;
     }
     case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:{
-      severity = "error";
+      severity = "ERROR";
       break;
     }
     default:{
-      severity = "unknown";
+      severity = "UNKNOWN";
       break;
     }
   }
 
   //Print it
-  std::cout << "Severity: [\033[1;33m" << severity << "\033[0m]" << std::endl;
+  std::cout << "Validation [\033[1;33m" << severity << "\033[0m]" << std::endl;
 
   //---------------------------
 }

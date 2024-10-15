@@ -5,6 +5,7 @@
 #include <string>
 
 namespace vk{class Structure;}
+namespace vk::validation{class Messenger;}
 
 
 namespace vk::validation{
@@ -18,18 +19,16 @@ public:
 
 public:
   //Main function
-  void init_validation_info();
-  void create_validation_messenger();
-  void clean_validation_messenger();
+  void init_validation_layer();
 
   //Subfunction
   void create_layer_info();
-  void create_messenger_info();
   void create_feature_info();
   bool check_validation_support();
 
 private:
   vk::Structure* vk_struct;
+  vk::validation::Messenger* vk_messenger;
 };
 
 }

@@ -10,7 +10,8 @@ Instance::Instance(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_validation = new vk::validation::Layer(vk_struct);
+  this->vk_layer = new vk::validation::Layer(vk_struct);
+  this->vk_messenger = new vk::validation::Messenger(vk_struct);
 
   //---------------------------
 }
@@ -20,16 +21,16 @@ Instance::~Instance(){}
 void Instance::init(){
   //---------------------------
 
-  vk_validation->init_validation_info();
+  vk_layer->init_validation_layer();
   this->create_instance();
-  vk_validation->create_validation_messenger();
+  vk_messenger->setup_messenger_function();
 
   //---------------------------
 }
 void Instance::clean(){
   //---------------------------
 
-  vk_validation->clean_validation_messenger();
+  vk_messenger->clean_messenger_function();
   vkDestroyInstance(vk_struct->core.instance.handle, nullptr);
 
   //---------------------------

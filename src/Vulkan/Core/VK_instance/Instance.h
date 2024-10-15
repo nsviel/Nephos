@@ -1,7 +1,8 @@
 #pragma once
 
-namespace vk::validation{class Layer;}
 namespace vk{class Structure;}
+namespace vk::validation{class Layer;}
+namespace vk::validation{class Messenger;}
 
 
 namespace vk::instance{
@@ -22,8 +23,9 @@ public:
   void create_instance();
 
 private:
-  vk::validation::Layer* vk_validation;
   vk::Structure* vk_struct;
+  vk::validation::Layer* vk_layer;
+  vk::validation::Messenger* vk_messenger;
 };
 
 }
