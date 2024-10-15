@@ -3,6 +3,8 @@
 #include <vulkan/vulkan.h>
 #include <string>
 
+namespace vk::validation{class Message;}
+
 
 namespace vk::validation::log{
 
@@ -14,12 +16,11 @@ public:
 
 public:
   //Main function
-  void print_message(std::string message);
+  void print_message(vk::validation::Message& message);
 
   //Subfunction
-  void print_header(std::string message);
-  void print_severity(VkDebugUtilsMessageSeverityFlagBitsEXT message_severity);
-  void print_message_ID(std::string message);
+  void print_header(vk::validation::Message& message);
+  void print_body(vk::validation::Message& message);
 
 private:
 };

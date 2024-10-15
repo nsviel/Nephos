@@ -18,14 +18,17 @@ VKAPI_ATTR VkBool32 VKAPI_CALL Callback(VkDebugUtilsMessageSeverityFlagBitsEXT s
   message.ID = callback_data->messageIdNumber;
   message.severity = find_severity(severity);
   message.type = find_type(type);
-  message.log = find_log(message.text);
+  message.log = find_log(message);
   message.user_data = user_data;
 
   //Print message according to log type
   switch(message.log){
     case vk::validation::DEBUG:{
       vk::validation::log::Debug vk_debug;
-      //vk_debug.print_message(message.text);
+      vk_debug.print_message(message);
+      break;
+    }
+    case vk::validation::VERBOSE:{
       break;
     }
     case vk::validation::SHADER:{
@@ -88,12 +91,16 @@ std::string find_type(VkDebugUtilsMessageTypeFlagsEXT type){
   //---------------------------
   return str;
 }
-vk::validation::Log find_log(std::string& text){
+vk::validation::Log find_log(vk::validation::Message& message){
   vk::validation::Log log = vk::validation::DEBUG;
   //---------------------------
 
-  size_t shader_pose = text.find("[SHADER]");
-  if(shader_pose != std::string::npos){
+  //Info stuff
+  if(message.severity == "info" || message.severity == "verbose"){
+    log = vk::validation::VERBOSE;
+  }
+  //Shader
+  else if(message.text.find("[SHADER]") != std::string::npos){
     log = vk::validation::SHADER;
   }
 

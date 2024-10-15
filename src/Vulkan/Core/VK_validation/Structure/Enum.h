@@ -6,7 +6,8 @@ namespace vk::validation{
 
 enum Log{
   DEBUG = 0,
-  SHADER = 1,
+  VERBOSE = 1,
+  SHADER = 2,
 };
 
 }

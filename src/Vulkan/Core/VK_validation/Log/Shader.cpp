@@ -16,7 +16,7 @@ void Shader::print_message(std::string message){
   //---------------------------
 
   this->print_header(message);
-  this->print_message_ID(message);
+  this->print_body(message);
 
   //---------------------------
 }
@@ -30,7 +30,7 @@ void Shader::print_header(std::string message){
 
   //---------------------------
 }
-void Shader::print_message_ID(std::string message){
+void Shader::print_body(std::string message){
   //---------------------------
 
   // Find the position of "[SHADER]"

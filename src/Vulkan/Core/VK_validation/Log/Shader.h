@@ -18,7 +18,7 @@ public:
 
   //Subfunction
   void print_header(std::string message);
-  void print_message_ID(std::string message);
+  void print_body(std::string message);
 
 private:
 };
