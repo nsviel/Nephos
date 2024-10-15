@@ -13,23 +13,26 @@ VKAPI_ATTR VkBool32 VKAPI_CALL Callback(VkDebugUtilsMessageSeverityFlagBitsEXT s
 
   //Retrieve and store message elements
   vk::validation::Message message;
-  message.texte = std::string(callback_data->pMessage);
+  message.text = std::string(callback_data->pMessage);
   message.name = std::string(callback_data->pMessageIdName);
   message.ID = callback_data->messageIdNumber;
   message.severity = find_severity(severity);
   message.type = find_type(type);
+  message.log = find_log(message.text);
   message.user_data = user_data;
 
-  //Shader printf
-  size_t shaderPos = message.texte.find("[SHADER]");
-  if(shaderPos != std::string::npos){
-    vk::validation::log::Shader vk_shader;
-    vk_shader.print_message(message.texte);
-  }
-  //Common validation layer message
-  else if(type == VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT){
-    vk::validation::log::Debug vk_debug;
-    vk_debug.print_message(message.texte);
+  //Print message according to log type
+  switch(message.log){
+    case vk::validation::DEBUG:{
+      vk::validation::log::Debug vk_debug;
+      //vk_debug.print_message(message.text);
+      break;
+    }
+    case vk::validation::SHADER:{
+      vk::validation::log::Shader vk_shader;
+      //vk_shader.print_message(message.text);
+      break;
+    }
   }
 
   //---------------------------
@@ -84,6 +87,18 @@ std::string find_type(VkDebugUtilsMessageTypeFlagsEXT type){
 
   //---------------------------
   return str;
+}
+vk::validation::Log find_log(std::string& text){
+  vk::validation::Log log = vk::validation::DEBUG;
+  //---------------------------
+
+  size_t shader_pose = text.find("[SHADER]");
+  if(shader_pose != std::string::npos){
+    log = vk::validation::SHADER;
+  }
+
+  //---------------------------
+  return log;
 }
 
 }

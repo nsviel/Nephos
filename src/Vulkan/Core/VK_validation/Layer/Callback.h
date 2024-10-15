@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Vulkan/Core/VK_validation/Structure/Enum.h>
 #include <vulkan/vulkan.h>
 #include <string>
 
@@ -12,5 +13,6 @@ VKAPI_ATTR VkBool32 VKAPI_CALL Callback(VkDebugUtilsMessageSeverityFlagBitsEXT s
 //Subfunction
 std::string find_severity(VkDebugUtilsMessageSeverityFlagBitsEXT severity);
 std::string find_type(VkDebugUtilsMessageTypeFlagsEXT type);
+vk::validation::Log find_log(std::string& text);
 
 }

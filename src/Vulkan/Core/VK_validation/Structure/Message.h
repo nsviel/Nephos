@@ -10,8 +10,8 @@ namespace vk::validation{
 struct Message{
   //---------------------------
 
-  vk::validation::Log log;
-  std::string texte = "";
+  vk::validation::Log log = vk::validation::DEBUG;
+  std::string text = "";
   std::string name = "";
   std::string type = "";
   std::string severity = "";
