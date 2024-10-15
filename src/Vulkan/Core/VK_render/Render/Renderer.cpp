@@ -36,17 +36,16 @@ void Renderer::loop(){
 
 //Subfunction
 void Renderer::make_rendering(){
-  vk::structure::Render render;
+  std::shared_ptr<vk::structure::Render> render = std::make_shared<vk::structure::Render>();
   //---------------------------
 
   //Recording
-  if(!vk_graphical->acquire_swapchain_image(render)) return;
-  vk_renderpass->record_all_renderpass(render);
-  vk_graphical->copy_to_swapchain(render);
+  if(!vk_graphical->acquire_swapchain_image(*render)) return;
+  vk_renderpass->record_all_renderpass(*render);
+  vk_graphical->copy_to_swapchain(*render);
 
   //Submission
   vk_submission->submit_rendering(render);
-  vk_submission->submit_presentation(render);
 
   //End rendering
   vk_semaphore->reset_pool();

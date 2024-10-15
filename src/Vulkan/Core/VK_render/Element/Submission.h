@@ -20,8 +20,7 @@ public:
 
 public:
   //Main function
-  void submit_rendering(vk::structure::Render& render);
-  void submit_presentation(vk::structure::Render& render);
+  void submit_rendering(std::shared_ptr<vk::structure::Render> render);
 
 private:
   vk::Structure* vk_struct;

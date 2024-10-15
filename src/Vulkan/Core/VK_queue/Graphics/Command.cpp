@@ -34,14 +34,14 @@ void Command::thread_loop(){
 
   //Wait for command
   std::unique_lock<std::mutex> lock(mutex);
-  cv.wait(lock, [this]{return (!queue.empty() && !thread_paused) || !thread_running;});
-  if(!thread_running) return;
+  cv.wait(lock, [this]{return !queue.empty() || !thread_running;});
 
   //Submit command
-  this->state = vk::queue::SUBMIT_COMMAND;
-  
-  vk_submission->process_command(queue.front());
-  queue.pop();
+  if(queue.size() > 0){
+    this->state = vk::queue::SUBMIT_COMMAND;
+    vk_submission->process_command(queue.front());
+    queue.pop();
+  }
 
   //---------------------------
 }

@@ -58,14 +58,12 @@ void Instance::create_instance(){
   create_info.ppEnabledLayerNames = vk_struct->core.validation.vec_layer.data();
   create_info.pNext = &vk_struct->core.validation.feature_info;
 
-
-sayHello();
   //Create instance
   VkResult result = vkCreateInstance(&create_info, nullptr, &vk_struct->core.instance.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create vulkan instance");
   }
-sayHello();
+
   //---------------------------
 }
 

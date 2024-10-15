@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace vk{class Structure;}
 namespace vk::presentation{class Swapchain;}
 namespace vk::structure{class Render;}
@@ -17,7 +19,7 @@ public:
 
 public:
   //Main function
-  void submit_presentation(vk::structure::Render& render);
+  void submit_presentation(std::shared_ptr<vk::structure::Render> render);
 
 private:
   vk::Structure* vk_struct;

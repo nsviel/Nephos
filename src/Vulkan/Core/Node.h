@@ -68,7 +68,7 @@ private:
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;
   vk::commandbuffer::Allocator* vk_allocator;
-  vk::command::Queue* vk_command;
+  vk::command::Queue* vk_queue;
   vk::draw::Renderer* vk_renderer;
 };
 

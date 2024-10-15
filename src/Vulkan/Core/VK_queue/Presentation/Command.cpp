@@ -34,29 +34,29 @@ void Command::thread_loop(){
   //Wait for command
   std::unique_lock<std::mutex> lock(mutex);
   cv.wait(lock, [this]{return (!queue.empty() && !thread_paused) || !thread_running;});
-  if(!thread_running) return;
 
   //Submit command
-  this->state = vk::queue::SUBMIT_COMMAND;
-
-  vk_pipeline->make_rendering();
-  queue.pop();
+  if(queue.size() > 0){
+    this->state = vk::queue::SUBMIT_COMMAND;
+    vk_submission->submit_presentation(queue.front());
+    queue.pop();
+  }
 
   //---------------------------
 }
 
 //Subfunction
-void Command::make_rendering_thread(){
+void Command::add_command(std::shared_ptr<vk::structure::Render> render){
   //---------------------------
 
   mutex.lock();
-  queue.push(true);
+  queue.push(render);
   mutex.unlock();
   cv.notify_one();
 
   //---------------------------
 }
-void Command::submit_presentation(vk::structure::Render& render){
+void Command::submit_presentation(std::shared_ptr<vk::structure::Render> render){
   //---------------------------
 
   vk_submission->submit_presentation(render);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Vulkan/Core/VK_queue/Structure/Base.h>
+#include <memory>
 #include <queue>
 
 namespace vk{class Structure;}
@@ -25,15 +26,15 @@ public:
   void thread_loop();
 
   //Subfunction
-  void make_rendering_thread();
-  void submit_presentation(vk::structure::Render& render);
+  void add_command(std::shared_ptr<vk::structure::Render> render);
+  void submit_presentation(std::shared_ptr<vk::structure::Render> render);
 
 private:
   vk::Structure* vk_struct;
   vk::draw::Renderer* vk_pipeline;
   vk::queue::presentation::Submission* vk_submission;
 
-  std::queue<bool> queue;
+  std::queue<std::shared_ptr<vk::structure::Render>> queue;
 };
 
 }
