@@ -10,11 +10,12 @@ namespace vk::validation{
 struct Message{
   //---------------------------
 
+  vk::validation::Log log;
   std::string texte = "";
   std::string name = "";
+  std::string type = "";
+  std::string severity = "";
   uint32_t ID;
-  VkDebugUtilsMessageSeverityFlagBitsEXT severity;
-  VkDebugUtilsMessageTypeFlagsEXT type;
   void* user_data;
 
   //---------------------------

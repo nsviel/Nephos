@@ -7,6 +7,10 @@
 
 namespace vk::validation::log{
 
+//Constructor / Destructor
+Debug::Debug(){}
+Debug::~Debug(){}
+
 //Main function
 void Debug::print_message(std::string message){
   //---------------------------

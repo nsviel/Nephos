@@ -9,10 +9,8 @@ namespace vk::validation::log{
 class Debug
 {
 public:
-  static Debug& get_instance(){
-    static Debug instance;
-    return instance;
-  }
+  Debug();
+  ~Debug();
 
 public:
   //Main function
@@ -24,7 +22,6 @@ public:
   void print_message_ID(std::string message);
 
 private:
-  Debug() = default;
 };
 
 }

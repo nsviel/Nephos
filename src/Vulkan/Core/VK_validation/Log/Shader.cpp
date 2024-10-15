@@ -7,16 +7,16 @@
 
 namespace vk::validation::log{
 
+//Constructor / Destructor
+Shader::Shader(){}
+Shader::~Shader(){}
+
 //Main function
 void Shader::print_message(std::string message){
   //---------------------------
 
-  if(print_terminal){
-    this->print_header(message);
-    this->print_message_ID(message);
-  }else{
-    this->message = message;
-  }
+  this->print_header(message);
+  this->print_message_ID(message);
 
   //---------------------------
 }

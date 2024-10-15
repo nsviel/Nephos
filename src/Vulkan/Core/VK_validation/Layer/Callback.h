@@ -1,12 +1,16 @@
 #pragma once
 
 #include <vulkan/vulkan.h>
-#include <cstring>
+#include <string>
 
 
 namespace vk::validation{
 
-//Validation layer callback function
+//Main function
 VKAPI_ATTR VkBool32 VKAPI_CALL Callback(VkDebugUtilsMessageSeverityFlagBitsEXT severity, VkDebugUtilsMessageTypeFlagsEXT type, const VkDebugUtilsMessengerCallbackDataEXT* callback_data, void* user_data);
+
+//Subfunction
+std::string find_severity(VkDebugUtilsMessageSeverityFlagBitsEXT severity);
+std::string find_type(VkDebugUtilsMessageTypeFlagsEXT type);
 
 }
