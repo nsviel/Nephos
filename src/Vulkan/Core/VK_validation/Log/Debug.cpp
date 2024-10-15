@@ -28,7 +28,7 @@ void Debug::print_header(vk::validation::Message& message){
 
   //Isolate message
   std::cerr << "--------------------------" << std::endl;
-  std::cout << "Validation [\033[1;33m" << message.severity << "\033[0m]" << std::endl;
+  std::cout << "Validation [\033[1;31m" << message.severity << "\033[0m]" << std::endl;
 
   //Message ID
   size_t msg_start = message.text.find("MessageID = ");
@@ -45,11 +45,14 @@ void Debug::print_body(vk::validation::Message& message){
 
   //Message body
   size_t msg_start = message.text.find("MessageID = ");
-  if(msg_start == std::string::npos) return;
   size_t msg_end = message.text.find(" |", msg_start);
-  if(msg_end == std::string::npos) return;
-  std::string msg_body = message.text.substr(msg_end + 3);
-  std::cerr << msg_body << std::endl;
+
+  if(msg_start == std::string::npos || msg_end == std::string::npos){
+    std::cerr << message.text << std::endl;
+  }else{
+    std::string msg_body = message.text.substr(msg_end + 3);
+    std::cerr << msg_body << std::endl;
+  }
 
   //---------------------------
 }
