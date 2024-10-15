@@ -27,7 +27,6 @@ public:
 
   //Subfunction
   void add_command(std::shared_ptr<vk::structure::Render> render);
-  void submit_presentation(std::shared_ptr<vk::structure::Render> render);
 
 private:
   vk::Structure* vk_struct;

@@ -33,7 +33,7 @@ void Command::thread_loop(){
 
   //Wait for command
   std::unique_lock<std::mutex> lock(mutex);
-  cv.wait(lock, [this]{return (!queue.empty() && !thread_paused) || !thread_running;});
+  cv.wait(lock, [this]{return !queue.empty() || !thread_running;});
 
   //Submit command
   if(queue.size() > 0){
@@ -53,13 +53,6 @@ void Command::add_command(std::shared_ptr<vk::structure::Render> render){
   queue.push(render);
   mutex.unlock();
   cv.notify_one();
-
-  //---------------------------
-}
-void Command::submit_presentation(std::shared_ptr<vk::structure::Render> render){
-  //---------------------------
-
-  vk_submission->submit_presentation(render);
 
   //---------------------------
 }

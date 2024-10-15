@@ -22,7 +22,7 @@ void Instance::init(){
 
   vk_validation->init_validation_info();
   this->create_instance();
-  //vk_validation->create_validation_messenger();
+  vk_validation->create_validation_messenger();
 
   //---------------------------
 }

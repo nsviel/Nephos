@@ -36,13 +36,9 @@ void Submission::submit_presentation(std::shared_ptr<vk::structure::Render> rend
   VkQueue queue = vk_struct->core.device.queue.presentation.handle;
   VkResult result = vkQueuePresentKHR(queue, &presentation_info);
 
-  //Window resizing
-  if(vk_window->is_window_resized()){
-    vk_swapchain->recreate_swapchain();
-    return;
-  }
+  //Error handling
   if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR){
-    vk_swapchain->recreate_swapchain();
+    return;
   }else if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to present swap chain image!");
   }

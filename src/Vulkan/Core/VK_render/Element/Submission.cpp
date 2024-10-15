@@ -31,7 +31,7 @@ void Submission::submit_rendering(std::shared_ptr<vk::structure::Render> render)
   set->wait_until_done();
 
   //Presentation
-  vk_struct->core.command.presentation->submit_presentation(render);
+  vk_struct->core.command.presentation->add_command(render);
 
   //---------------------------
 }

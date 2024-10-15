@@ -43,6 +43,7 @@ void Extension::extension_device(){
   vk_struct->core.instance.extension_device.clear();
   if(!vk_struct->interface.param.headless) vk_struct->core.instance.extension_device.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
   vk_struct->core.instance.extension_device.push_back(VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME);
+  vk_struct->core.instance.extension_device.push_back(VK_KHR_SHADER_NON_SEMANTIC_INFO_EXTENSION_NAME);
 
   //---------------------------
 }
