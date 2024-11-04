@@ -18,9 +18,15 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 find_package(glfw3 REQUIRED)
 find_package(Vulkan REQUIRED)
 
+#find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+#find_package(pybind11 REQUIRED)
+#pybind11_add_module(vulkan_engine ${ALL_SOURCES})
+
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_EXTERN
   MAIN_UTILITY
+
+  #Python3::Python
 
   ${Vulkan_LIBRARIES}
   -lglfw        # glfw

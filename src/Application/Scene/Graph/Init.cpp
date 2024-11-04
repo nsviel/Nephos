@@ -36,13 +36,13 @@ void Init::init(){
 void Init::load_entity(){
   //----------------------------
 
-  utl::base::Path versaille_0("/home/nsv/Desktop/Point_cloud/mkv/versaille_0.mkv");
-  utl::base::Path versaille_0_t("/home/nsv/Desktop/Point_cloud/mkv/versaille_0.json");
+  utl::base::Path versaille_0("/home/nsv/Desktop/Data/mkv/versaille_0.mkv");
+  utl::base::Path versaille_0_t("/home/nsv/Desktop/Data/mkv/versaille_0.json");
 
-  utl::base::Path versaille_2("/home/nsv/Desktop/Point_cloud/mkv/versaille_2.mkv");
-  utl::base::Path versaille_2_t("/home/nsv/Desktop/Point_cloud/mkv/versaille_2.json");
+  utl::base::Path versaille_2("/home/nsv/Desktop/Data/mkv/versaille_2.mkv");
+  utl::base::Path versaille_2_t("/home/nsv/Desktop/Data/mkv/versaille_2.json");
 
-  utl::base::Path cerfav("/home/nsv/Desktop/Point_cloud/mkv/cerfav_3_1.mkv");
+  utl::base::Path cerfav("/home/nsv/Desktop/Data/mkv/cerfav_3_1.mkv");
 
   utl::base::Path dragon("/home/nsv/Desktop/Nephos/media/point_cloud/dragon.ply");
   utl::base::Path bunny("/home/nsv/Desktop/Nephos/media/point_cloud/bunny.ply");
@@ -53,13 +53,13 @@ void Init::load_entity(){
 
   utl::base::Path mire("/home/nsv/Desktop/Mire.mkv");
 
-  utl::base::Path ply("/home/nsv/Desktop/Point_cloud/ply/hippo2.ply");
-  utl::base::Path cath("/home/nsv/Desktop/Point_cloud/ply/Cathedral/pts_regis_01.ply");
-  utl::base::Path pts("/home/nsv/Desktop/Point_cloud/pts/cloud.pts");
+  utl::base::Path ply("/home/nsv/Desktop/Data/ply/hippo2.ply");
+  utl::base::Path cath("/home/nsv/Desktop/Data/ply/Cathedral/pts_regis_01.ply");
+  utl::base::Path pts("/home/nsv/Desktop/Data/pts/cloud.pts");
   utl::base::Path bag("/home/nsv/Desktop/intel.bag");
 
-  utl::base::Path viking("/home/nsv/Desktop/Point_cloud/obj/viking/viking_room.obj");
-  utl::base::Path viking_tex("/home/nsv/Desktop/Point_cloud/obj/viking/viking_room.png");
+  utl::base::Path viking("/home/nsv/Desktop/Data/obj/viking/viking_room.obj");
+  utl::base::Path viking_tex("/home/nsv/Desktop/Data/obj/viking/viking_room.png");
 
 
 

@@ -48,6 +48,14 @@ void Logical::create_logical_device(){
   VkPhysicalDeviceFeatures device_features{};
   device_features.samplerAnisotropy = VK_TRUE;
   device_features.wideLines = VK_TRUE;
+  device_features.vertexPipelineStoresAndAtomics = VK_TRUE;
+  device_features.fragmentStoresAndAtomics = VK_TRUE;
+  device_features.shaderInt64 = VK_TRUE;
+
+  //Timeline semaphore
+  VkPhysicalDeviceTimelineSemaphoreFeatures timeline_feature{};
+  timeline_feature.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES;
+  timeline_feature.timelineSemaphore = VK_TRUE;
 
   //Logical device info
   VkDeviceCreateInfo create_info{};
@@ -58,6 +66,7 @@ void Logical::create_logical_device(){
   create_info.enabledExtensionCount = static_cast<uint32_t>(vk_struct->core.instance.extension_device.size());
   create_info.ppEnabledExtensionNames = vk_struct->core.instance.extension_device.data();
   create_info.enabledLayerCount = 0;
+  create_info.pNext = &timeline_feature;
 
   //Creating the logical device
   VkResult result = vkCreateDevice(vk_struct->core.device.physical_device.handle, &create_info, nullptr, &vk_struct->core.device.handle);

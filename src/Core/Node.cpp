@@ -23,7 +23,7 @@ Node::Node(app::Node* node_app){
   this->node_engine = new eng::Node(this);
   this->node_io = new io::Node(this);
   this->node_system = new sys::Node(this);
-  
+
   //---------------------------
 }
 Node::~Node(){}
