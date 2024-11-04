@@ -24,7 +24,7 @@ Manager::~Manager(){}
 void Manager::init(){
   //---------------------------
 
-  std::string default_path = "../media/config/gui/default.json";
+  std::string default_path = "../media/gui/default.json";
 
   sta_struct->path_default.insert(default_path);
   sta_struct->path_current.insert(default_path);

@@ -16,7 +16,7 @@ Font::Font(vk::Structure* vk_struct){
   this->vk_commandbuffer = new vk::commandbuffer::Command_buffer(vk_struct);
   this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
 
-  this->path_text = "../media/config/font/DroidSans.ttf";
+  this->path_text = "../media/font/DroidSans.ttf";
   this->path_icon = "../extern/fontawesome/fa-solid-900.ttf";
 
   //---------------------------
@@ -80,7 +80,7 @@ void Font::font_editor(){
 
   float font_size = 13.0f;
   for(int i=0; i<10; i++){
-    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/config/font/DroidSans.ttf", font_size, &config_editor);
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_editor);
     font_size += 1.0f;
   }
 

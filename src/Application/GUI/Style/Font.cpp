@@ -49,8 +49,8 @@ void Font::gui_select_font(){
   float font_size;
   font_size = 10.0f;
   for(int i=0; i<15; i++){
-    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/config/font/DroidSans.ttf", font_size, &config_text);
-    io.Fonts->AddFontFromFileTTF("../media/config/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_text);
+    io.Fonts->AddFontFromFileTTF("../media/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
     if(i == 0) this->font_gui = font;
     font_size += 1.0f;
     this->vec_font_gui.push_back(font);
@@ -58,7 +58,7 @@ void Font::gui_select_font(){
 
   font_size = 13.0f;
   for(int i=0; i<10; i++){
-    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/config/font/DroidSans.ttf", font_size, &config_editor);
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_editor);
     if(i == 0) this->font_editor = font;
     font_size += 1.0f;
     this->vec_font_editor.push_back(font);

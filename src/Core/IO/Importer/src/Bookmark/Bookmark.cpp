@@ -11,7 +11,7 @@ namespace io::imp{
 Bookmark::Bookmark(io::imp::Node* node_importer){
   //---------------------------
 
-  this->path_bookmark_file = "../media/config/gui/bookmark.txt";
+  this->path_bookmark_file = "../media/gui/bookmark.txt";
 
   //---------------------------
 }
@@ -21,8 +21,7 @@ Bookmark::~Bookmark(){}
 void Bookmark::init(){
   //---------------------------
 
-  this->add_relative_path("../media/point_cloud/bunny.ply");
-  this->add_relative_path("../media/point_cloud/dragon.ply");
+  this->add_relative_path("../media/glyph/dragon.ply");
   this->load_file_bookmark();
 
   //---------------------------

@@ -2,4 +2,4 @@ build/*
 extern/shader/*
 doc/code/*
 media/record/*
-media/config/gui/bookmark.txt
+media/gui/bookmark.txt

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <imgui/editor/Text/editor_text.h>
+#include <imgui/editor/editor_text.h>
 #include <string>
 
 
