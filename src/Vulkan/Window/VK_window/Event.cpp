@@ -29,7 +29,9 @@ void Event::window_close_event(){
   //---------------------------
 
   bool window_closing = glfwWindowShouldClose(vk_struct->window.handle);
-  if(window_closing) vk_struct->window.running = false;
+  if(window_closing){
+    vk_struct->window.running = false;
+  }
 
   //---------------------------
 }

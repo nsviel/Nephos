@@ -17,7 +17,7 @@ Font::Font(vk::Structure* vk_struct){
   this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
 
   this->path_text = "../media/config/font/DroidSans.ttf";
-  this->path_icon = "../extern/fontawesome/webfonts/fa-solid-900.ttf";
+  this->path_icon = "../extern/fontawesome/fa-solid-900.ttf";
 
   //---------------------------
 }
