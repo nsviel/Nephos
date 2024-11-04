@@ -55,13 +55,6 @@ void Graph::reset(){
 
   //---------------------------
 }
-void Graph::clean(){
-  //---------------------------
-
-  dat_set->remove_all_entity(gph_struct->set_main);
-
-  //---------------------------
-}
 
 //Accesseur
 std::shared_ptr<dat::base::Set> Graph::get_set_main(){

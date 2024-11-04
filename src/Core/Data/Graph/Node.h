@@ -25,7 +25,6 @@ public:
 public:
   void init();
   void loop();
-  void clean();
   void gui();
   void reset();
 

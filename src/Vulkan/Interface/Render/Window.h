@@ -26,6 +26,7 @@ public:
   void make_screenshot();
   void set_mat_view(glm::mat4 mat);
   void set_mat_projection(glm::mat4 mat);
+  bool is_running();
 
 private:
   vk::Structure* vk_struct;

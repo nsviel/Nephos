@@ -38,8 +38,6 @@ public:
   inline core::Node* get_node_core(){return node_core;}
   inline mod::Node* get_node_module(){return node_module;}
   inline sce::Node* get_node_scene(){return node_scene;}
-  
-  inline void close(){this->running = false;}
 
 private:
   vk::Node* node_vulkan;
@@ -51,8 +49,6 @@ private:
 
   gui::Node* node_gui;
   sce::Node* node_scene;
-
-  bool running = true;
 };
 
 }

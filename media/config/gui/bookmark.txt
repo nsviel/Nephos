@@ -1,2 +1,1 @@
-/home/nsv/Desktop/Point_cloud/pts/AB_10_colored_limited_sculpture.pts
-/home/nsv/Desktop/Point_cloud/mkv/versaille_0.json
+/home/nsv/Desktop/Data/

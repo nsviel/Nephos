@@ -26,7 +26,6 @@ public:
   void init();
   void loop();
   void reset();
-  void clean();
 
   //Accesseur
   std::shared_ptr<dat::base::Set> get_set_main();

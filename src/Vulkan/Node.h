@@ -20,7 +20,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(bool* running);
+  Node();
   ~Node();
 
 public:

@@ -25,7 +25,7 @@ struct Window{
   glm::vec2 constraint_max = glm::vec2(4000, 4000);
   glm::vec2 center = glm::vec2(0, 0);
   bool resizing = false;
-  bool* running = nullptr;
+  bool running = true;
   int cpt = 0;
 
   //---------------------------

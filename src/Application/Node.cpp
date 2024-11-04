@@ -17,7 +17,7 @@ Node::Node(){
   //---------------------------
 
   this->root = this;
-  this->node_vulkan = new vk::Node(&running);
+  this->node_vulkan = new vk::Node();
   this->node_profiler = new prf::Node(this);
   this->node_core = new core::Node(this);
   this->node_module = new mod::Node(this);
@@ -59,7 +59,9 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  while(running){
+  vk::interface::Window* vk_window = node_vulkan->get_vk_window();
+
+  while(vk_window->is_running()){
     node_profiler->loop();
 
     tasker->task_begin("gui");
@@ -105,7 +107,6 @@ void Node::reset(){
 void Node::end(){
   //---------------------------
 
-  node_core->clean();
   node_vulkan->clean();
 
   //---------------------------

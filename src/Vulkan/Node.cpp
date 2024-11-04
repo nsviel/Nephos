@@ -8,11 +8,11 @@
 namespace vk{
 
 //Constructor / Destructor
-Node::Node(bool* running){
+Node::Node(){
   //---------------------------
 
   //Core
-  this->vk_struct = new vk::Structure(running);
+  this->vk_struct = new vk::Structure();
   this->vk_core = new vk::core::Node(vk_struct);
   this->vk_render = new vk::render::Node(vk_struct);
   this->vk_compute = new vk::compute::Node(vk_struct);

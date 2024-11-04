@@ -28,7 +28,6 @@ public:
   void init();
   void loop();
   void gui();
-  void clean();
   void reset();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}

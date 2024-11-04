@@ -11,12 +11,6 @@ namespace vk{
 struct Structure{
   //---------------------------
 
-  //Constructor
-  Structure(bool* running){
-    this->window.running = running;
-  }
-
-  //Structure
   vk::core::Structure core;
   vk::graphics::Structure graphics;
   vk::structure::Window window;
