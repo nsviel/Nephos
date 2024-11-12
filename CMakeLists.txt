@@ -11,13 +11,15 @@ set(CMAKE_BUILD_TYPE Release)
 set(EXECUTABLE_NAME executable)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/build)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto -fno-fat-lto-objects")
 
 #-----------------
 # Source files
 #-----------------
 add_subdirectory(extern)
 add_subdirectory(src)
-#add_subdirectory(binding)
+add_subdirectory(binding)
 
 #-----------------
 # Executable
