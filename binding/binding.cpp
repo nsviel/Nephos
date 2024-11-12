@@ -6,6 +6,7 @@ namespace py = pybind11;
 PYBIND11_MODULE(pynephos, m) {
     m.doc() = "Vulkan Engine Python Bindings";  // Optional: module docstring
 
-    // Bind the run_vulkan_engine function
+    //Main function
     m.def("run", &run, "Run the Vulkan engine from Python");
+    m.def("add_cloud", &add_cloud, "Run the Vulkan engine from Python");
 }

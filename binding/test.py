@@ -8,3 +8,4 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../build'))
 import pynephos
 
 pynephos.run()
+pynephos.add_cloud()
