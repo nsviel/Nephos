@@ -30,6 +30,7 @@ void Queue::clean(){
 
   vk_struct->core.command.transfer->stop_thread();
   vk_struct->core.command.graphics->stop_thread();
+  vk_struct->core.command.presentation->stop_thread();
 
   //---------------------------
 }

@@ -1,4 +1,3 @@
-set(EXECUTABLE_NAME executable)
 
 #-----------------
 # Source files
@@ -10,16 +9,3 @@ add_subdirectory(Module)
 add_subdirectory(Utility)
 add_subdirectory(Vulkan)
 
-#-----------------
-# Compilation
-#-----------------
-add_executable(${EXECUTABLE_NAME}
-  main.cpp
-)
-
-#-----------------
-# Dependencies
-#-----------------
-target_link_libraries(${EXECUTABLE_NAME}
-  MAIN_APPLICATION
-)

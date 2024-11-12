@@ -22,6 +22,7 @@ void Synchro::wait_idle(){
 
   vk_struct->core.command.graphics->set_pause(true);
   vk_struct->core.command.transfer->set_pause(true);
+  vk_struct->core.command.presentation->set_pause(true);
 
   //---------------------------
 }
@@ -30,6 +31,7 @@ void Synchro::end_idle(){
 
   vk_struct->core.command.transfer->set_pause(false);
   vk_struct->core.command.graphics->set_pause(false);
+  vk_struct->core.command.presentation->set_pause(false);
 
   //---------------------------
 }

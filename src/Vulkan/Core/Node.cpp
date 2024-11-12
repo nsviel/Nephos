@@ -74,9 +74,8 @@ void Node::clean(){
   //---------------------------
 
   vk_synchro->wait_idle();
-
-  vk_imgui->clean();
   vk_queue->clean();
+  vk_imgui->clean();
   vk_renderpass->clean();
   vk_pipeline->clean();
   vk_swapchain->clean();
