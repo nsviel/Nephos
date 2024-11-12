@@ -9,7 +9,9 @@ int main(){
 
   std::cout<<"--- \033[1;34mBegin program\033[0m ---"<<std::endl;
   try{
-    node_app.run();
+    node_app.init();
+    node_app.loop();
+    node_app.end();
   }catch(const std::exception& e){
     std::cerr << e.what() << std::endl;
     return EXIT_FAILURE;

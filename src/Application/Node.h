@@ -24,9 +24,6 @@ public:
 
 public:
   //Main function
-  void run();
-
-  //Subfunction
   void init();
   void loop();
   void gui();

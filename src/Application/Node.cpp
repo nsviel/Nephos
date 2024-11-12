@@ -32,17 +32,6 @@ Node::Node(){
 Node::~Node(){}
 
 //Main function
-void Node::run(){
-  //---------------------------
-
-  this->init();
-  this->loop();
-  this->end();
-
-  //---------------------------
-}
-
-//Subfunction
 void Node::init(){
   //---------------------------
 
