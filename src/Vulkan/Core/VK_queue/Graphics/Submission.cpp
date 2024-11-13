@@ -80,7 +80,7 @@ void Submission::make_submission(std::shared_ptr<vk::structure::Command_set> set
     throw std::runtime_error("[error] command buffer queue submission");
   }
 
-
+  vk_fence->wait_fence(*fence);
 
   //---------------------------
 }

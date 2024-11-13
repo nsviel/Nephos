@@ -24,11 +24,7 @@ void Submission::submit_rendering(std::shared_ptr<vk::structure::Render> render)
   //---------------------------
 
   //Rendering
-  std::shared_ptr<vk::structure::Command_set> set = std::make_shared<vk::structure::Command_set>();
-  set->vec_command = std::move(render->vec_command);
-  vk_struct->core.command.graphics->add_command(set);
-
-  set->wait_until_done();
+  vk_struct->core.command.graphics->add_command(render);
 
   //Presentation
   vk_struct->core.command.presentation->add_command(render);

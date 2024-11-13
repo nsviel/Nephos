@@ -61,29 +61,20 @@ void Command::add_command(std::unique_ptr<vk::structure::Command> command){
 
   //---------------------------
 }
-void Command::add_command(std::vector<std::unique_ptr<vk::structure::Command>> vec_command){
+void Command::add_command(std::shared_ptr<vk::structure::Render> render){
   //---------------------------
 
   mutex.lock();
 
   std::shared_ptr<vk::structure::Command_set> set = std::make_shared<vk::structure::Command_set>();
-  set->vec_command = std::move(vec_command);;
-  queue.push(set);
-
-  mutex.unlock();
-  cv.notify_one();
-
-  //---------------------------
-}
-void Command::add_command(std::shared_ptr<vk::structure::Command_set> set){
-  //---------------------------
-
-  mutex.lock();
+  set->vec_command = std::move(render->vec_command);
 
   queue.push(set);
 
   mutex.unlock();
   cv.notify_one();
+
+  set->wait_until_done();
 
   //---------------------------
 }
