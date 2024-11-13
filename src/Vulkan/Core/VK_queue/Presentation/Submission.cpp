@@ -42,7 +42,7 @@ void Submission::submit_presentation(std::shared_ptr<vk::structure::Render> rend
   }else if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to present swap chain image!");
   }
-
+  vk_fence->wait_fence(*fence);
   //---------------------------
 }
 
