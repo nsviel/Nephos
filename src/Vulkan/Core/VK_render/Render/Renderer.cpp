@@ -38,7 +38,7 @@ void Renderer::loop(){
 void Renderer::make_rendering(){
   std::shared_ptr<vk::structure::Render> render = std::make_shared<vk::structure::Render>();
   //---------------------------
-
+say("start rendering");
   //Recording
   if(!vk_graphical->acquire_swapchain_image(*render)) return;
   vk_renderpass->record_all_renderpass(*render);
@@ -50,6 +50,9 @@ void Renderer::make_rendering(){
   //End rendering
   vk_semaphore->reset_pool();
   vk_pipeline->reset();
+
+  say(render->semaphore->handle);
+  say("submited");
 
   //---------------------------
 }

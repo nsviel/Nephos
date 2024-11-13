@@ -13,9 +13,6 @@ File::File(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
 
-  this->path_output = "output.txt";
-  utl::file::clear(path_output);
-
   //---------------------------
 }
 File::~File(){}

@@ -22,7 +22,7 @@ Submission::~Submission(){}
 //Main function
 void Submission::submit_rendering(std::shared_ptr<vk::structure::Render> render){
   //---------------------------
-  
+
   //Rendering
   std::shared_ptr<vk::structure::Command_set> set = std::make_shared<vk::structure::Command_set>();
   set->vec_command = std::move(render->vec_command);

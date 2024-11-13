@@ -58,8 +58,7 @@ void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
     throw std::runtime_error("[error] graphics queue submission timeout");
   }
 
-  vkWaitForFences(vk_struct->core.device.handle, 1, &fence->handle, VK_TRUE, UINT64_MAX);
-  vk_fence->reset_fence(*fence);
+  vk_fence->wait_fence(*fence);
 
   //---------------------------
 }

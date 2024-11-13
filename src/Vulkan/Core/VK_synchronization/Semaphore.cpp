@@ -80,20 +80,7 @@ void Semaphore::clean_semaphore(vk::structure::Semaphore& semaphore){
 }
 void Semaphore::reset_semaphore(vk::structure::Semaphore& semaphore){
   //---------------------------
-/*
-  // Initialize semaphore signal info
-  VkSemaphoreSignalInfo signalInfo{};
-  signalInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO;
-  signalInfo.semaphore = semaphore.handle; // Assuming 'handle' is the Vulkan semaphore handle
-  signalInfo.value = 0;
 
-  // Call vkSignalSemaphoreKHR to signal (reset) the semaphore
-  VkResult result = vkSignalSemaphore(vk_struct->core.device.handle, &signalInfo);
-  if(result != VK_SUCCESS){
-      throw std::runtime_error("Failed to reset semaphore!");
-  }
-*/
-  // Update the semaphore state if needed
   semaphore.is_available = true;
 
   //---------------------------
@@ -118,5 +105,36 @@ std::shared_ptr<vk::structure::Semaphore> Semaphore::query_free_semaphore(){
   //---------------------------
   return nullptr;
 }
+/*
+std::shared_ptr<vk::structure::Semaphore> Semaphore::query_free_semaphore(){
+  vk::pool::structure::Semaphore& pool = vk_struct->core.pools.semaphore;
+  //---------------------------
+
+  std::lock_guard<std::mutex> lock(pool.mutex);
+
+  // Random number generator setup
+  std::random_device rd;  // Seed for the random number generator
+  std::mt19937 gen(rd()); // Mersenne Twister PRNG
+  std::uniform_int_distribution<int> distr(0, pool.tank.size() - 1);
+
+  //Find the first free command buffer
+  int index;
+  do{
+    index = distr(gen); // Generate a random index
+    auto semaphore = pool.tank[index];
+
+    if(semaphore->is_available){
+      semaphore->is_available = false;
+      return semaphore;
+    }
+  }while(true);
+
+  //Error message
+  std::cout<<"[error] not enough sempahore"<<std::endl;
+
+  //---------------------------
+  return nullptr;
+}
+*/
 
 }
