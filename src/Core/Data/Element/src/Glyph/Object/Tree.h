@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Operation/Namespace.h>
+#include <Operation/Namespace.h>
 #include <Data/Base/Entity/Glyph.h>
 
 

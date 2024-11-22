@@ -18,7 +18,7 @@ struct Command{
   //Synchronization
   VkSemaphore semaphore_wait = VK_NULL_HANDLE;
   VkSemaphore semaphore_done = VK_NULL_HANDLE;
-
+ 
   //---------------------------
 };
 

@@ -1,4 +1,4 @@
-set(LIBRARY_NAME ENGINE_OPERATION)
+set(LIBRARY_NAME CORE_OPERATION)
 
 #-----------------
 # Source files
@@ -13,6 +13,7 @@ file(GLOB_RECURSE ALL_SOURCES
 add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 find_package(OpenCV REQUIRED)
 find_library(LZ4_LIBRARIES NAMES liblz4.so HINTS "lz4/lib")
+find_library(MESHOPTIMIZER_LIB meshoptimizer)
 
 #-----------------
 # Dependencies
@@ -23,6 +24,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
 
   ${OpenCV_LIBS}
   ${LZ4_LIBRARIES}
+  meshoptimizer
   flann
 )
 

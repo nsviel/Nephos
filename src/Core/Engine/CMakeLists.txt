@@ -7,7 +7,7 @@ add_subdirectory(Camera)
 add_subdirectory(Renderer)
 add_subdirectory(Control)
 add_subdirectory(Transformation)
-add_subdirectory(Operation)
+
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp
@@ -30,7 +30,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   ENGINE_RENDERER
   ENGINE_CONTROL
   ENGINE_TRANSFORMATION
-  ENGINE_OPERATION
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

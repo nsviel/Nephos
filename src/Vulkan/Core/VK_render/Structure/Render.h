@@ -32,7 +32,7 @@ struct Render{
   std::shared_ptr<vk::structure::Semaphore> semaphore;
   std::shared_ptr<vk::structure::Fence> fence;
   std::vector<std::unique_ptr<vk::structure::Command>> vec_command;
-  
+
   //---------------------------
 };
 

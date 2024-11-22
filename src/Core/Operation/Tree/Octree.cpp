@@ -1,6 +1,6 @@
 #include "Octree.h"
 
-#include <Engine/Operation/Namespace.h>
+#include <Operation/Namespace.h>
 
 
 namespace ope::tree{

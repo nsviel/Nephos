@@ -1,6 +1,6 @@
 #include "Ransac.h"
 
-#include <Engine/Operation/Namespace.h>
+#include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <cstdlib> // for srand
 #include <ctime>   // for time and time_t

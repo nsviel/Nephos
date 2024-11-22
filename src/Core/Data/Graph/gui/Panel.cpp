@@ -4,7 +4,7 @@
 #include <Data/Element/Namespace.h>
 #include <Core/Namespace.h>
 #include <Engine/Namespace.h>
-#include <Engine/Operation/Namespace.h>
+#include <Operation/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 #include <imgui/core/imgui.h>
 

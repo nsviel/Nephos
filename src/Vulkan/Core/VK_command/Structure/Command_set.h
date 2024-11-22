@@ -26,6 +26,7 @@ struct Command_set{
   std::mutex mutex;
   std::condition_variable cv;
   bool done = false;
+  bool presentation = false;
 
   //Bundle of commands
   std::vector< std::unique_ptr<vk::structure::Command> > vec_command;

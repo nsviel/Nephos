@@ -19,7 +19,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 #-----------------
 add_subdirectory(extern)
 add_subdirectory(src)
-add_subdirectory(binding)
+#add_subdirectory(binding)
 
 #-----------------
 # Executable
@@ -29,5 +29,5 @@ add_executable(${EXECUTABLE_NAME}
 )
 
 target_link_libraries(${EXECUTABLE_NAME}
-  PRIVATE MAIN_APPLICATION
+  PRIVATE MAIN_APPLICATION -lcurl
 )
