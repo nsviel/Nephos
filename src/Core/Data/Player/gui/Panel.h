@@ -27,7 +27,7 @@ public:
 private:
   dat::ply::gui::Player* gui_player;
   dat::ply::gui::Info* gui_info;
-  dat::atr::gui::Color* gui_colorization;
+  dat::atr::gui::Color* gui_color;
   dat::gph::Selection* gph_selection;
   eng::trf::gui::Matrix* gui_transformation;
 

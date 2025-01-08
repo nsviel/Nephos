@@ -21,7 +21,7 @@ Panel::Panel(dat::ply::Node* node_player, bool* show_window){
   this->gui_info = new dat::ply::gui::Info();
   this->gui_player = new dat::ply::gui::Player(node_player);
   this->gui_transformation = new eng::trf::gui::Matrix();
-  this->gui_colorization = new dat::atr::gui::Color(node_attribut);
+  this->gui_color = new dat::atr::gui::Color(node_attribut);
 
   this->show_window = show_window;
   this->name = "Player";
@@ -62,7 +62,7 @@ void Panel::design_panel(){
   gui_player->design_player(*set);
   gui_info->design_info(element);
   gui_info->design_configuration(element);
-  gui_colorization->design_colorization(element);
+  gui_color->design_colorization(element);
   gui_transformation->design_matrix(element);
 
   ImGui::PopStyleColor();
