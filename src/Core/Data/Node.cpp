@@ -59,6 +59,7 @@ void Node::gui(){
   node_element->gui();
   node_player->gui();
   node_image->gui();
+  node_attribut->gui();
 
   //---------------------------
 }

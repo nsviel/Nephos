@@ -27,7 +27,7 @@ void Operation::design_operation(std::shared_ptr<utl::base::Element> element){
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Operation##dynamic")){
-    gui_normal->design_normal();
+    gui_normal->dynamic_normal();
     this->draw_img_image(element);
   }
 

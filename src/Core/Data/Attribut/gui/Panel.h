@@ -5,6 +5,7 @@
 
 namespace dat::atr{class Node;}
 namespace dat::atr::gui{class Color;}
+namespace dat::atr::gui{class Normal;}
 namespace dat::gph{class Selection;}
 
 
@@ -28,6 +29,7 @@ public:
 
 private:
   dat::atr::gui::Color* gui_color;
+  dat::atr::gui::Normal* gui_normal;
   dat::gph::Selection* gph_selection;
 
   std::string panel_name;

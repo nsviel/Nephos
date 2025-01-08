@@ -15,6 +15,7 @@ Panel::Panel(dat::atr::Node* node_attribut){
   dat::gph::Node* node_graph = node_attribut->get_node_graph();
 
   this->gui_color = new dat::atr::gui::Color(node_attribut);
+  this->gui_normal = new dat::atr::gui::Normal(node_attribut);
   this->gph_selection = node_graph->get_gph_selection();
 
   this->panel_show = true;
@@ -51,7 +52,8 @@ void Panel::design_panel(){
   //---------------------------
 
   gui_color->design_colorization(element);
-
+  gui_normal->design_normal();
+  
   //---------------------------
 }
 void Panel::close_panel(){

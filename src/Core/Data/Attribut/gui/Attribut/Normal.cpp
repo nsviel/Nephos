@@ -48,5 +48,26 @@ void Normal::draw_parameter(){
 
   //---------------------------
 }
+void Normal::dynamic_normal(){
+  //---------------------------
+
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
+
+  //Enable
+  ImGui::Checkbox("Activated", &atr_struct->normal.enable);
+
+  //Parameter: kNN
+  ImGui::SetNextItemWidth(100);
+  ImGui::SliderInt("kNN", &atr_struct->normal.knn, 1, 10);
+
+  //Computation time
+  ImGui::Text("Time");
+  ImGui::SameLine();
+  ImGui::TextColored(color, "%.2f ms", atr_struct->normal.time);
+
+  //---------------------------
+}
 
 }

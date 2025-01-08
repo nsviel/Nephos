@@ -6,20 +6,19 @@ namespace dat::atr{class Structure;}
 
 namespace dat::atr::gui{
 
-class Normal
+class Field
 {
 public:
   //Constructor / Destructor
-  Normal(dat::atr::Node* node_attribut);
-  ~Normal();
+  Field(dat::atr::Node* node_attribut);
+  ~Field();
 
 public:
   //Main function
-  void design_normal();
+  void design_field();
 
   //Subfunction
   void draw_parameter();
-  void dynamic_normal();
 
 private:
   dat::atr::Structure* atr_struct;

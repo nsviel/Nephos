@@ -18,6 +18,9 @@ public:
   ~Node();
 
 public:
+  //Main function
+  void gui();
+  
   inline dat::gph::Node* get_node_graph(){return node_graph;}
   inline dat::atr::Structure* get_atr_struct(){return atr_struct;}
 
@@ -25,7 +28,7 @@ private:
   dat::gph::Node* node_graph;
 
   dat::atr::Structure* atr_struct;
-  dat::atr::gui::Panel* gui_attribut;
+  dat::atr::gui::Panel* gui_panel;
 };
 
 }
