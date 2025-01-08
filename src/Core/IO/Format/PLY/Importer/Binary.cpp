@@ -69,7 +69,10 @@ void Binary::parse_vertex_little_endian(io::imp::Configuration* config, std::ifs
   //---------------------------
 
   //Read data
-  int block_size = config->vec_property.size() * config->nb_vertex * sizeof(float);
+  int block_size = 0;
+  for(const auto& property : config->vec_property) {
+    block_size += property.size * config->nb_vertex;
+  }
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 

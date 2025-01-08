@@ -77,7 +77,9 @@ void Operation::ope_color(std::shared_ptr<dat::base::Object> object){
 
   //Bouger oute cette merde dans colorization dat attribut
   std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-
+say(data.rgba.size());
+say(data.rgb.size());
+say(data.rgb.size());
   //If color
   if(data.xyz.size() == 0) return;
   if(data.rgba.size() != 0) return;
@@ -90,7 +92,7 @@ void Operation::ope_color(std::shared_ptr<dat::base::Object> object){
     }
   }
   //Else if intensity
-  else if(!vec_I_ptr && !vec_I_ptr->empty()){
+  else if(vec_I_ptr && !vec_I_ptr->empty()){
     data.rgba.resize(data.xyz.size(), glm::vec4(0, 0, 0, 0));
 
     for(int i=0; i<vec_I_ptr->size(); i++){

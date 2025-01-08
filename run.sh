@@ -25,7 +25,7 @@ elif [ "$1" == "executable" ]; then
     cd $current_dir/build
 
     # Run cmake and make commands for the executable
-    cmake .. && make -j20 && ./executable
+    cmake -G Ninja .. && ninja -j20 && ./executable
 
 else
     # Default behavior if no or unrecognized argument is provided

@@ -120,16 +120,30 @@ void Importer::parse_header_property(io::imp::Configuration& config, std::string
   io::imp::Property property;
   //---------------------------
 
-  //Property type
-  if(type == "float" || type == "float32") property.type = io::imp::FLOAT32;
-  else if(type == "float64" || type == "double") property.type = io::imp::FLOAT64;
-  else if(type == "uint" || type == "uint8") property.type = io::imp::UINT8;
-  else if(type == "uint16") property.type = io::imp::UINT16;
-  else if(type == "int" || type == "int32") property.type = io::imp::UINT32;
-  else if(type == "uchar") property.type = io::imp::UCHAR;
-  else if(type == "ushort") property.type = io::imp::USHORT;
-  else{
-    std::cout<<"[warning] Unknown property type: "<<type<<std::endl;
+  // Property type
+  if (type == "float" || type == "float32") {
+    property.type = io::imp::FLOAT32;
+    property.size = sizeof(float);
+  } else if (type == "float64" || type == "double") {
+    property.type = io::imp::FLOAT64;
+    property.size = sizeof(double);
+  } else if (type == "uint" || type == "uint8") {
+    property.type = io::imp::UINT8;
+    property.size = sizeof(uint8_t);
+  } else if (type == "uint16") {
+    property.type = io::imp::UINT16;
+    property.size = sizeof(uint16_t);
+  } else if (type == "int" || type == "int32") {
+    property.type = io::imp::UINT32;
+    property.size = sizeof(int32_t);
+  } else if (type == "uchar") {
+    property.type = io::imp::UCHAR;
+    property.size = sizeof(unsigned char);
+  } else if (type == "ushort") {
+    property.type = io::imp::USHORT;
+    property.size = sizeof(unsigned short);
+  } else {
+    std::cout << "[warning] Unknown property type: " << type << std::endl;
     return;
   }
 

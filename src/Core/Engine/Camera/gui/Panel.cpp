@@ -117,7 +117,7 @@ void Panel::cam_parameter(){
   //---------------------------
 
   //Camera parameters
-  ImGui::SliderFloat("FOV (°)", &camera->fov, 1.0f, 100.0f);
+  ImGui::SliderFloat("FOV (°)", &camera->fov, 1.0f, 179.0f);
   glm::vec2* sensibility;
   switch(camera->mode){
     case CAMERA_MODE_PLAYER:{
