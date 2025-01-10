@@ -1,7 +1,10 @@
 #pragma once
 
+#include <memory>
+
 namespace dat::atr{class Node;}
 namespace dat::atr{class Structure;}
+namespace utl::base{class Element;}
 
 
 namespace dat::atr::gui{
@@ -15,11 +18,11 @@ public:
 
 public:
   //Main function
-  void design_normal();
+  void design_header(std::shared_ptr<utl::base::Element> element);
 
   //Subfunction
-  void draw_parameter();
-  void dynamic_normal();
+  void draw_static(std::shared_ptr<utl::base::Element> element);
+  void draw_dynamic();
 
 private:
   dat::atr::Structure* atr_struct;

@@ -18,24 +18,25 @@ Normal::Normal(dat::atr::Node* node_attribut){
 Normal::~Normal(){}
 
 //Main function
-void Normal::design_normal(){
+void Normal::design_header(std::shared_ptr<utl::base::Element> element){
+  if(!element) return;
   //---------------------------
 
-  this->draw_parameter();
+  ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
+  if(ImGui::CollapsingHeader("Normal##header")){
+    this->draw_static(element);
+  }
 
   //---------------------------
 }
 
 //Subfunction
-void Normal::draw_parameter(){
+void Normal::draw_static(std::shared_ptr<utl::base::Element> element){
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   //---------------------------
 
-  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
-
   //Enable
-  ImGui::Checkbox("Activated", &atr_struct->normal.enable);
+  ImGui::Button("Compute", ImVec2(100, 0));
 
   //Parameter: kNN
   ImGui::SetNextItemWidth(100);
@@ -48,10 +49,9 @@ void Normal::draw_parameter(){
 
   //---------------------------
 }
-void Normal::dynamic_normal(){
-  //---------------------------
-
+void Normal::draw_dynamic(){
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+  //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
 

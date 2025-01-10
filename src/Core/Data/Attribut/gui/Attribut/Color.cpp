@@ -21,7 +21,7 @@ Color::Color(dat::atr::Node* node_attribut){
 Color::~Color(){}
 
 //Main function
-void Color::design_colorization(std::shared_ptr<utl::base::Element> element){
+void Color::design_header(std::shared_ptr<utl::base::Element> element){
   if(!element) return;
   //---------------------------
 

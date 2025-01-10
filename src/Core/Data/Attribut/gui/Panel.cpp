@@ -51,9 +51,9 @@ void Panel::design_panel(){
   std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
   //---------------------------
 
-  gui_color->design_colorization(element);
-  gui_normal->design_normal();
-  
+  gui_color->design_header(element);
+  gui_normal->design_header(element);
+
   //---------------------------
 }
 void Panel::close_panel(){

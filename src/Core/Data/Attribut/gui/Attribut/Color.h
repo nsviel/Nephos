@@ -5,10 +5,10 @@
 namespace dat::atr{class Node;}
 namespace dat::atr{class Structure;}
 namespace dat::atr{class Color;}
-namespace utl::base{class Element;}
 namespace dat::atr{class Field;}
 namespace dat::base{class Entity;}
 namespace dat::elm{class Element;}
+namespace utl::base{class Element;}
 
 
 namespace dat::atr::gui{
@@ -22,7 +22,7 @@ public:
 
 public:
   //Main function
-  void design_colorization(std::shared_ptr<utl::base::Element> element);
+  void design_header(std::shared_ptr<utl::base::Element> element);
 
   //Subfunction
   void color_mode(std::shared_ptr<utl::base::Element> element);

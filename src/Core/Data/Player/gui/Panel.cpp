@@ -62,7 +62,7 @@ void Panel::design_panel(){
   gui_player->design_player(*set);
   gui_info->design_info(element);
   gui_info->design_configuration(element);
-  gui_color->design_colorization(element);
+  gui_color->design_header(element);
   gui_transformation->design_matrix(element);
 
   ImGui::PopStyleColor();
