@@ -75,7 +75,7 @@ void Subpass::bind_pipeline(vk::structure::Render& render){
 void Subpass::update_uniform(vk::structure::Render& render){
   //---------------------------
 
-  vk::gfx::edl::Structure& edl_struct = vk_struct->graphics.render.pipeline.edl;
+  vk::gfx::edl::Structure& edl_struct = vk_struct->graphics.render.edl_struct;
   edl_struct.tex_width = vk_struct->window.dimension.x;
   edl_struct.tex_height = vk_struct->window.dimension.y;
   vk_uniform->update_uniform("parameter", *render.descriptor_set, edl_struct);

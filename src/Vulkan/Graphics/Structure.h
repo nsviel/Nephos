@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Vulkan/Graphics/Compute/Structure/Structure.h>
-#include <Vulkan/Graphics/Render/Structure/Structure.h>
+#include <Vulkan/Graphics/Compute/Structure.h>
+#include <Vulkan/Graphics/Render/Structure.h>
 
 
 namespace vk::graphics{
