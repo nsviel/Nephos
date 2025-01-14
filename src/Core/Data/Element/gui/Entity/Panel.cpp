@@ -86,6 +86,11 @@ void Panel::entity_button(std::shared_ptr<dat::base::Entity> entity){
     trf_operation->center_object(entity, pose.min);
   }
 
+  //Attribut
+  if(ImGui::Button("A##399", ImVec2(20, 0))){
+    trf_operation->center_object(entity, pose.min);
+  }
+
   //---------------------------
 }
 void Panel::entity_parameter(std::shared_ptr<dat::base::Entity> entity){

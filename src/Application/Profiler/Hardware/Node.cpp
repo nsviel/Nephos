@@ -7,7 +7,6 @@
 namespace prf::hardware{
 
 Node::Node(prf::Node* node_profiler){
-  utl::gui::Panel* prf_panel = add_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
   this->node_vulkan = node_profiler->get_node_vulkan();

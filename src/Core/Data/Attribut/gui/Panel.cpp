@@ -9,7 +9,7 @@
 namespace dat::atr::gui{
 
 //Constructor / Destructor
-Panel::Panel(dat::atr::Node* node_attribut){
+Panel::Panel(dat::atr::Node* node_attribut, bool* show_window){
   //---------------------------
 
   dat::gph::Node* node_graph = node_attribut->get_node_graph();
@@ -18,7 +18,7 @@ Panel::Panel(dat::atr::Node* node_attribut){
   this->gui_normal = new dat::atr::gui::Normal(node_attribut);
   this->gph_selection = node_graph->get_gph_selection();
 
-  this->panel_show = true;
+  this->show_window = show_window;
   this->panel_name = "Attribut";
   this->item_width = 100;
 
@@ -30,13 +30,13 @@ Panel::~Panel(){}
 void Panel::run_panel(){
   //---------------------------
 
-  if(panel_show){
+  if(*show_window){
     ImGuiWindowFlags flag;
     flag |= ImGuiWindowFlags_NoCollapse;
     flag |= ImGuiWindowFlags_AlwaysAutoResize;
 
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.2, 0.2, 0.2, 1));
-    if(ImGui::Begin(panel_name.c_str(), &panel_show, flag) == 1){
+    if(ImGui::Begin(panel_name.c_str(), show_window, flag) == 1){
 
       this->design_panel();
 
@@ -53,13 +53,6 @@ void Panel::design_panel(){
 
   gui_color->design_header(element);
   gui_normal->design_header(element);
-
-  //---------------------------
-}
-void Panel::close_panel(){
-  //---------------------------
-
-  this->panel_show = false;
 
   //---------------------------
 }
