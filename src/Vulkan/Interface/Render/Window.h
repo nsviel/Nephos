@@ -5,7 +5,7 @@
 #include <memory>
 
 namespace vk{class Structure;}
-namespace vk::image{class Screenshot;}
+namespace vk::screenshot{class Export;}
 namespace vk::window{class Window;}
 
 
@@ -31,7 +31,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::image::Screenshot* vk_screenshot;
+  vk::screenshot::Export* vk_screenshot;
   vk::window::Window* vk_window;
 };
 

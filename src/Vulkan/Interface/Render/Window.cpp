@@ -12,7 +12,7 @@ Window::Window(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_window = new vk::window::Window(vk_struct);
-  this->vk_screenshot = new vk::image::Screenshot(vk_struct);
+  this->vk_screenshot = new vk::screenshot::Export(vk_struct);
 
   //---------------------------
 }
