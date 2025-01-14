@@ -100,12 +100,13 @@ void Submission::post_submission(std::shared_ptr<vk::structure::Command_set> set
     }
   }
   set->vec_command.clear();
- 
+
 
   //TODO lancer la presentation submit ici et non pas sur un autre thread!!!!!!!!!!!!!
   //Puis wait for fence
   if(set->presentation){
-
+    //vk::queue::presentation::Submission vk_present;
+    //vk_present.submit_presentation();
   }
 
   set->mark_as_done();

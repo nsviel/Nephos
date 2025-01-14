@@ -45,7 +45,8 @@ void Renderer::make_rendering(){
   vk_graphical->copy_to_swapchain(*render);
 
   //Submission
-  vk_submission->submit_rendering(render);
+  vk_struct->core.command.graphics->add_command(render);
+  vk_struct->core.command.presentation->add_command(render);
 
   //End rendering
   vk_semaphore->reset_pool();
