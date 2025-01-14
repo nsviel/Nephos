@@ -12,6 +12,7 @@
 #include <Vulkan/Core/VK_presentation/Structure/Structure.h>
 #include <Vulkan/Core/VK_validation/Structure.h>
 #include <Vulkan/Core/VK_render/Structure/Structure.h>
+#include <Vulkan/Core/VK_image/Structure/Structure.h>
 
 
 namespace vk::core{
@@ -31,6 +32,7 @@ struct Structure{
   vk::presentation::Structure presentation;
   vk::validation::Structure validation;
   vk::drawer::Structure drawer;
+  vk::image::Structure image;
 
   //---------------------------
 };
