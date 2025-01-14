@@ -8,7 +8,7 @@ namespace vk::render::structure{
 struct Pipeline{
   //---------------------------
 
-  vk::postprocess::edl::Structure edl;
+  vk::gfx::edl::Structure edl;
 
   //---------------------------
 };

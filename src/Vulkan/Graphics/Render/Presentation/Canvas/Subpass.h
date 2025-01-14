@@ -9,14 +9,14 @@ namespace vk::structure{class Render;}
 namespace vk::gui{class Imgui;}
 
 
-namespace vk::present::subpass{
+namespace vk::gfx::canvas{
 
-class Canvas
+class Subpass
 {
 public:
   //Constructor / Destructor
-  Canvas(vk::Structure* vk_struct);
-  ~Canvas();
+  Subpass(vk::Structure* vk_struct);
+  ~Subpass();
 
 public:
   //Main function

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace vk::postprocess::edl{
+namespace vk::gfx::edl{
 
 struct Structure{
   //---------------------------

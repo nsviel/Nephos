@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::postprocess::edl{
+namespace vk::gfx::edl{
 
 //Constructor / Destructor
 Subpass::Subpass(vk::Structure* vk_struct){
@@ -13,7 +13,7 @@ Subpass::Subpass(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
-  this->vk_edl = new vk::postprocess::edl::Pipeline(vk_struct);
+  this->vk_edl = new vk::gfx::edl::Pipeline(vk_struct);
   this->vk_pipeline = new vk::render::Pipeline(vk_struct);
   this->vk_viewport = new vk::presentation::Viewport(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
@@ -75,7 +75,7 @@ void Subpass::bind_pipeline(vk::structure::Render& render){
 void Subpass::update_uniform(vk::structure::Render& render){
   //---------------------------
 
-  vk::postprocess::edl::Structure& edl_struct = vk_struct->graphics.render.pipeline.edl;
+  vk::gfx::edl::Structure& edl_struct = vk_struct->graphics.render.pipeline.edl;
   edl_struct.tex_width = vk_struct->window.dimension.x;
   edl_struct.tex_height = vk_struct->window.dimension.y;
   vk_uniform->update_uniform("parameter", *render.descriptor_set, edl_struct);

@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::postprocess::edl{
+namespace vk::gfx::edl{
 
 //Constructor / Destructor
 Pipeline::Pipeline(vk::Structure* vk_struct){
@@ -62,9 +62,9 @@ void Pipeline::set_shader(vk::structure::Pipeline& pipeline){
 void Pipeline::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::postprocess::edl::sampler_color());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::postprocess::edl::sampler_depth());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::postprocess::edl::uniform_edl());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::gfx::edl::sampler_color());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::gfx::edl::sampler_depth());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::gfx::edl::uniform_edl());
 
   //---------------------------
 }

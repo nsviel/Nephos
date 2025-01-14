@@ -13,7 +13,7 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->rp_scene = new vk::geometry::Renderpass(vk_struct);
   this->rp_edl = new vk::postprocess::Renderpass(vk_struct);
-  this->rp_gui = new vk::present::Renderpass(vk_struct);
+  this->rp_gui = new vk::gfx::presentation::Renderpass(vk_struct);
 
   //---------------------------
 }

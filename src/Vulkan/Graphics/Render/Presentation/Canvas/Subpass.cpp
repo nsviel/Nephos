@@ -1,12 +1,12 @@
-#include "Canvas.h"
+#include "Subpass.h"
 
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::present::subpass{
+namespace vk::gfx::canvas{
 
 //Constructor / Destructor
-Canvas::Canvas(vk::Structure* vk_struct){
+Subpass::Subpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -16,17 +16,17 @@ Canvas::Canvas(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Canvas::~Canvas(){}
+Subpass::~Subpass(){}
 
 //Main function
-void Canvas::create_subpass(vk::structure::Renderpass& renderpass){
+void Subpass::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   //Set subpass object
   std::shared_ptr<vk::structure::Subpass> subpass = std::make_shared<vk::structure::Subpass>();
   subpass->index = 0;
   subpass->source = VK_SUBPASS_EXTERNAL;
-  subpass->draw_task = [this](vk::structure::Render& render){Canvas::draw_subpass(render);};
+  subpass->draw_task = [this](vk::structure::Render& render){Subpass::draw_subpass(render);};
 
   //Set pipeline
   vk_triangle->add_pipeline(*subpass);
@@ -34,7 +34,7 @@ void Canvas::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
 }
-void Canvas::draw_subpass(vk::structure::Render& render){
+void Subpass::draw_subpass(vk::structure::Render& render){
   //---------------------------
 
   vk_imgui->draw_frame(*render.command_buffer);

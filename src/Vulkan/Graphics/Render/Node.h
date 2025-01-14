@@ -5,7 +5,7 @@
 namespace vk{class Structure;}
 namespace vk::postprocess{class Renderpass;}
 namespace vk::geometry{class Renderpass;}
-namespace vk::present{class Renderpass;}
+namespace vk::gfx::presentation{class Renderpass;}
 
 
 namespace vk::render{
@@ -25,7 +25,7 @@ private:
   vk::Structure* vk_struct;
   vk::geometry::Renderpass* rp_scene;
   vk::postprocess::Renderpass* rp_edl;
-  vk::present::Renderpass* rp_gui;
+  vk::gfx::presentation::Renderpass* rp_gui;
 };
 
 }
