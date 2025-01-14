@@ -81,6 +81,31 @@ void Transfer::copy_gpu_image_to_buffer(vk::structure::Image& image, VkBuffer bu
 
   //---------------------------
 }
+void Transfer::copy_gpu_depth_to_buffer(vk::structure::Image& image, VkBuffer buffer){
+  //---------------------------
+
+  //Image transition from undefined layout to read only layout
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_commandbuffer->query_free_command_buffer(vk_struct->core.device.queue.graphics);
+  vk_commandbuffer->start_command_buffer_primary(*command_buffer);
+
+  // Image transition + copy
+  vk_transition->depth_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  VkBufferImageCopy region{};
+  region.bufferOffset = 0,
+  region.bufferRowLength = 0,
+  region.bufferImageHeight = 0,
+  region.imageSubresource = {VK_IMAGE_ASPECT_DEPTH_BIT, 0, 0, 1},
+  region.imageOffset = {0, 0, 0},
+  region.imageExtent = {image.width, image.height, 1};
+  vkCmdCopyImageToBuffer(command_buffer->handle, image.handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, buffer, 1, &region);
+  vk_transition->depth_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+
+  //End and submit command buffer
+  vk_commandbuffer->end_command_buffer(*command_buffer);
+  vk_command->submit_graphics_command(command_buffer);
+
+  //---------------------------
+}
 void Transfer::blit_gpu_image_to_gpu_image(vk::structure::Image& image_src, vk::structure::Image& image_dst){
   //---------------------------
 

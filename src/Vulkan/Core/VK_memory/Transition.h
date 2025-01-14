@@ -3,7 +3,7 @@
 #include <vulkan/vulkan.h>
 
 namespace vk{class Structure;}
-namespace vk::command{class Command;} 
+namespace vk::command{class Command;}
 namespace vk::commandbuffer{class Command_buffer;}
 namespace vk::memory{class Allocator;}
 namespace vk::structure{class Transition;}
@@ -24,6 +24,8 @@ public:
   void image_layout_transition(vk::structure::Image& image, VkImageLayout old_layout, VkImageLayout new_layout);
   void image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image& image, VkImageLayout old_layout, VkImageLayout new_layout);
   void image_layout_transition(VkCommandBuffer command_buffer, VkImage image, VkImageLayout old_layout, VkImageLayout new_layout);
+  void depth_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image& image, VkImageLayout old_layout, VkImageLayout new_layout);
+  void depth_layout_transition(VkCommandBuffer command_buffer, VkImage image, VkImageLayout old_layout, VkImageLayout new_layout);
 
   //Subfunction
   VkAccessFlags find_access_flag(VkImageLayout& layout);

@@ -46,7 +46,7 @@ void Framebuffer::create_framebuffer(vk::structure::Renderpass& renderpass){
   framebuffer.color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
   framebuffer.color.layout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
   framebuffer.depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-  framebuffer.depth.layout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+  framebuffer.depth.layout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 
   this->create_framebuffer_image(framebuffer);
   this->create_framebuffer_handle(renderpass, framebuffer);
@@ -104,7 +104,7 @@ void Framebuffer::clean_framebuffer_image(vk::structure::Framebuffer& framebuffe
   vk_image->clean_image(framebuffer.depth);
 
   framebuffer.vec_attachment.clear();
-  
+
   //---------------------------
 }
 void Framebuffer::clean_framebuffer_handle(VkFramebuffer& fbo){

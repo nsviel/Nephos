@@ -29,7 +29,7 @@ void Screenshot::make_screenshot_depth(){
   //---------------------------
 
   vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.geometry;
-  vk_export->export_image_to_bmp(renderpass.framebuffer.depth);
+  vk_export->export_depth_to_bmp(renderpass.framebuffer.depth);
 
   //---------------------------
 }

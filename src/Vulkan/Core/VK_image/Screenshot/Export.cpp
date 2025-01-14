@@ -44,11 +44,13 @@ void Export::export_image_to_jpeg(vk::structure::Image& image){
   //Save staging buffer data to file
   void* mappedData;
   vkMapMemory(vk_struct->core.device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
+
   int channels = 4;  // Assuming RGBA data
   std::string filename = "temp.jpg";
   if(stbi_write_jpg(filename.c_str(), image.width, image.height, channels, mappedData, image.width * channels) == 0){
     throw std::runtime_error("Failed to write PNG file!");
   }
+
   vkUnmapMemory(vk_struct->core.device.handle, staging_mem);
 
   //Free memory
@@ -99,6 +101,54 @@ void Export::export_image_to_bmp(vk::structure::Image& image){
   //Free memory
   vkDestroyBuffer(vk_struct->core.device.handle, staging_buffer, nullptr);
   vkFreeMemory(vk_struct->core.device.handle, staging_mem, nullptr);
+
+  std::string finalFilename = "image.bmp";
+  std::rename(filename.c_str(), finalFilename.c_str()); // Rename temporary file to final filename
+
+  //---------------------------
+}
+void Export::export_depth_to_bmp(vk::structure::Image& image){
+  //---------------------------
+
+  //Create and fill stagging buffer
+  VkBuffer staging_buffer;
+  VkDeviceMemory staging_mem;
+  VkDeviceSize tex_size = image.width * image.height * sizeof(float);;
+  vk_mem_allocator->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
+  vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
+  vk_mem_transfer->copy_gpu_depth_to_buffer(image, staging_buffer);
+
+  //Find image info
+  VkExtent3D imageExtent = {image.width, image.height, 1};  // Replace with your image dimensions
+  VkDeviceSize bufferSize = calculate_image_size(image.format, imageExtent);
+  if(bufferSize == 0) return;
+
+  //Save staging buffer data to file
+  void* mappedData;
+  vkMapMemory(vk_struct->core.device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
+
+  // Normalize depth data to 8-bit grayscale
+  float* depthData = static_cast<float*>(mappedData);
+  std::vector<uint8_t> grayscaleData(image.width * image.height);
+  for (uint32_t i = 0; i < image.width * image.height; ++i) {
+      float depth = depthData[i];
+      grayscaleData[i] = static_cast<uint8_t>(std::clamp(depth * 255.0f, 0.0f, 255.0f)); // Normalize depth to 0-255
+  }
+
+
+  // Write to BMP
+  std::string filename = "depth_image.bmp";
+  if (stbi_write_bmp(filename.c_str(), image.width, image.height, 1, grayscaleData.data()) == 0) {
+      std::cout << "[error] Failed to write BMP file" << std::endl;
+      return;
+  }
+
+  vkUnmapMemory(vk_struct->core.device.handle, staging_mem);
+
+  // Free memory
+  vkDestroyBuffer(vk_struct->core.device.handle, staging_buffer, nullptr);
+  vkFreeMemory(vk_struct->core.device.handle, staging_mem, nullptr);
+
 
   std::string finalFilename = "image.bmp";
   std::rename(filename.c_str(), finalFilename.c_str()); // Rename temporary file to final filename
@@ -188,6 +238,14 @@ VkDeviceSize Export::calculate_image_size(VkFormat format, VkExtent3D extent){
       break;
     case VK_FORMAT_R8G8B8A8_SRGB:
       bytesPerPixel = 4;
+      break;
+
+    // Add case for depth formats
+    case VK_FORMAT_D32_SFLOAT:
+    case VK_FORMAT_D32_SFLOAT_S8_UINT:
+    case VK_FORMAT_D24_UNORM_S8_UINT:
+    case VK_FORMAT_S8_UINT:
+      bytesPerPixel = 4; // Typically, depth formats are 4 bytes (float or int)
       break;
 
     default:

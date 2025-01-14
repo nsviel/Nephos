@@ -34,7 +34,7 @@ void Attachment::attachment_shader(vk::structure::Renderpass& renderpass){
   // Depth
   vk::structure::Attachment depth;
   depth.index = vk::attachment::DEPTH;
-  depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+  depth.layout_final = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
   this->depth_description(depth);
   this->depth_reference(depth);
   renderpass.attachment.depth = depth;
