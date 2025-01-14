@@ -26,7 +26,8 @@ public:
   //Main function
   void create_camera();
   void reset_camera();
-  void make_screenshot();
+  void make_screenshot_color();
+  void make_screenshot_depth();
 
 private:
   core::Node* node_core;

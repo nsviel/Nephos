@@ -56,7 +56,7 @@ void Ressource::update_texture(vk::structure::Texture& texture){
 void Ressource::export_texture(vk::structure::Texture& texture){
   //---------------------------
 
-  vk_screenshot->export_image_to_jpeg(texture.surface);
+  //vk_screenshot->export_image_to_jpeg(texture.surface);
 
   //---------------------------
 }

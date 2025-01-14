@@ -25,6 +25,7 @@ public:
 public:
   //Main function
   void draw_render_texture(glm::vec2 dimension);
+  void draw_depth_texture(glm::vec2 dimension);
   void draw_image(std::shared_ptr<utl::base::Image> image, glm::vec2 dimension);
   void draw_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image, glm::vec2 dimension);
   void reload_shader();

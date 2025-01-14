@@ -1,4 +1,4 @@
-#include "Screenshot.h"
+#include "Export.h"
 
 #include <Vulkan/Namespace.h>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -10,7 +10,7 @@
 namespace vk::image{
 
 //Constructor / Destructor
-Screenshot::Screenshot(vk::Structure* vk_struct){
+Export::Export(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -22,18 +22,10 @@ Screenshot::Screenshot(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Screenshot::~Screenshot(){}
+Export::~Export(){}
 
 //Main function
-void Screenshot::make_screenshot(){
-  //---------------------------
-
-  vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.postprocess;
-  this->export_image_to_bmp(renderpass.framebuffer.color);
-
-  //---------------------------
-}
-void Screenshot::export_image_to_jpeg(vk::structure::Image& image){
+void Export::export_image_to_jpeg(vk::structure::Image& image){
   //---------------------------
 
   //Create and fill stagging buffer
@@ -68,7 +60,7 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image& image){
 
   //---------------------------
 }
-void Screenshot::export_image_to_bmp(vk::structure::Image& image){
+void Export::export_image_to_bmp(vk::structure::Image& image){
   //---------------------------
 
   //Create and fill stagging buffer
@@ -113,7 +105,7 @@ void Screenshot::export_image_to_bmp(vk::structure::Image& image){
 
   //---------------------------
 }
-void Screenshot::export_image_to_binary(vk::structure::Image& image){
+void Export::export_image_to_binary(vk::structure::Image& image){
   //---------------------------
 
   //Create and fill stagging buffer
@@ -165,7 +157,7 @@ void Screenshot::export_image_to_binary(vk::structure::Image& image){
 }
 
 //Subfunction
-VkDeviceSize Screenshot::calculate_image_size(VkFormat format, VkExtent3D extent){
+VkDeviceSize Export::calculate_image_size(VkFormat format, VkExtent3D extent){
   //---------------------------
 
   // Get the number of bytes per pixel for the specified format

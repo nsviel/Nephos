@@ -28,8 +28,11 @@ glm::vec2 Window::get_window_dimension(){
 void Window::set_mouse_pose(glm::vec2 pose){
   vk_window->set_mouse_pose(pose);
 }
-void Window::make_screenshot(){
-  vk_screenshot->make_screenshot();
+void Window::make_screenshot_color(){
+  vk_screenshot->make_screenshot_color();
+}
+void Window::make_screenshot_depth(){
+  vk_screenshot->make_screenshot_depth();
 }
 void Window::set_mat_view(glm::mat4 mat){
   vk_struct->core.presentation.view = mat;

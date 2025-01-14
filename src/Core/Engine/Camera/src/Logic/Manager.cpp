@@ -58,10 +58,17 @@ void Manager::reset_camera(){
 
   //---------------------------
 }
-void Manager::make_screenshot(){
+void Manager::make_screenshot_color(){
   //---------------------------
 
-  vk_window->make_screenshot();
+  vk_window->make_screenshot_color();
+
+  //---------------------------
+}
+void Manager::make_screenshot_depth(){
+  //---------------------------
+
+  vk_window->make_screenshot_depth();
 
   //---------------------------
 }

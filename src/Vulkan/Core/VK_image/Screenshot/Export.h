@@ -19,16 +19,15 @@ namespace vk::memory{class Allocator;}
 
 namespace vk::image{
 
-class Screenshot
+class Export
 {
 public:
   //Constructor / Destructor
-  Screenshot(vk::Structure* vk_struct);
-  ~Screenshot();
+  Export(vk::Structure* vk_struct);
+  ~Export();
 
 public:
   //Main function
-  void make_screenshot();
   void export_image_to_jpeg(vk::structure::Image& image);
   void export_image_to_bmp(vk::structure::Image& image);
   void export_image_to_binary(vk::structure::Image& image);

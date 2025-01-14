@@ -23,7 +23,8 @@ public:
   glm::vec2 get_mouse_pose();
   glm::vec2 get_window_dimension();
   void set_mouse_pose(glm::vec2 pos);
-  void make_screenshot();
+  void make_screenshot_color();
+  void make_screenshot_depth();
   void set_mat_view(glm::mat4 mat);
   void set_mat_projection(glm::mat4 mat);
   bool is_running();

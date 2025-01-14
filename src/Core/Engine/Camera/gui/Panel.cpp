@@ -58,7 +58,10 @@ void Panel::cam_screenshot(){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Screenshot##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
-    cam_manager->make_screenshot();
+    cam_manager->make_screenshot_color();
+  }
+  if(ImGui::Button("Depth map##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+    cam_manager->make_screenshot_depth();
   }
   ImGui::PopStyleColor(2);
 
