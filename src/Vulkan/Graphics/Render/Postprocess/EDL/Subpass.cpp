@@ -1,19 +1,19 @@
-#include "EDL.h"
+#include "Subpass.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace vk::postprocess::subpass{
+namespace vk::postprocess::edl{
 
 //Constructor / Destructor
-EDL::EDL(vk::Structure* vk_struct){
+Subpass::Subpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
-  this->vk_edl = new vk::postprocess::pipeline::EDL(vk_struct);
+  this->vk_edl = new vk::postprocess::edl::Pipeline(vk_struct);
   this->vk_pipeline = new vk::render::Pipeline(vk_struct);
   this->vk_viewport = new vk::presentation::Viewport(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
@@ -22,10 +22,10 @@ EDL::EDL(vk::Structure* vk_struct){
 
   //---------------------------
 }
-EDL::~EDL(){}
+Subpass::~Subpass(){}
 
 //Init function
-void EDL::create_subpass(vk::structure::Renderpass& renderpass){
+void Subpass::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   //Subpass object
@@ -41,7 +41,7 @@ void EDL::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
 }
-void EDL::draw_subpass(vk::structure::Render& render){
+void Subpass::draw_subpass(vk::structure::Render& render){
   //---------------------------
 
   render.pipeline = render.subpass->map_pipeline["edl"];
@@ -55,7 +55,7 @@ void EDL::draw_subpass(vk::structure::Render& render){
 
   //---------------------------
 }
-void EDL::update_sampler(vk::structure::Subpass& subpass){
+void Subpass::update_sampler(vk::structure::Subpass& subpass){
   //---------------------------
 
 
@@ -64,7 +64,7 @@ void EDL::update_sampler(vk::structure::Subpass& subpass){
 }
 
 //Subfunction
-void EDL::bind_pipeline(vk::structure::Render& render){
+void Subpass::bind_pipeline(vk::structure::Render& render){
   //---------------------------
 
   vk_pipeline->cmd_bind_pipeline(render.command_buffer->handle, *render.pipeline);
@@ -72,17 +72,17 @@ void EDL::bind_pipeline(vk::structure::Render& render){
 
   //---------------------------
 }
-void EDL::update_uniform(vk::structure::Render& render){
+void Subpass::update_uniform(vk::structure::Render& render){
   //---------------------------
 
-  vk::postprocess::EDL& edl_struct = vk_struct->graphics.render.pipeline.edl;
+  vk::postprocess::edl::Structure& edl_struct = vk_struct->graphics.render.pipeline.edl;
   edl_struct.tex_width = vk_struct->window.dimension.x;
   edl_struct.tex_height = vk_struct->window.dimension.y;
   vk_uniform->update_uniform("parameter", *render.descriptor_set, edl_struct);
 
   //---------------------------
 }
-void EDL::update_sampler(vk::structure::Render& render){
+void Subpass::update_sampler(vk::structure::Render& render){
   //---------------------------
 
   std::shared_ptr<vk::structure::Sampler> sampler_color = vk_sampler->query_sampler(*render.descriptor_set, "tex_color");
@@ -95,7 +95,7 @@ void EDL::update_sampler(vk::structure::Render& render){
   //---------------------------
   vk_sampler->actualize_sampler(*render.descriptor_set);
 }
-void EDL::draw_data(vk::structure::Render& render){
+void Subpass::draw_data(vk::structure::Render& render){
   //---------------------------
 
   vk_pipeline->cmd_bind_descriptor_set(render.command_buffer->handle, *render.pipeline, *render.descriptor_set);

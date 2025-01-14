@@ -6,7 +6,7 @@ namespace vk::descriptor{class Uniform;}
 namespace vk::descriptor{class Sampler;}
 namespace vk::render::edl{class Shader;}
 namespace vk::data{class Vertex;}
-namespace vk::postprocess::pipeline{class EDL;}
+namespace vk::postprocess::edl{class Pipeline;}
 namespace vk::render{class Pipeline;}
 namespace vk::presentation{class Viewport;}
 namespace vk::pipeline{class Descriptor;}
@@ -22,14 +22,14 @@ namespace vk::structure{class Render;}
 namespace vk::structure{class Descriptor_set;}
 
 
-namespace vk::postprocess::subpass{
+namespace vk::postprocess::edl{
 
-class EDL
+class Subpass
 {
 public:
   //Constructor / Destructor
-  EDL(vk::Structure* vk_struct);
-  ~EDL();
+  Subpass(vk::Structure* vk_struct);
+  ~Subpass();
 
 public:
   //Main function
@@ -48,7 +48,7 @@ private:
   vk::descriptor::Uniform* vk_uniform;
   vk::descriptor::Sampler* vk_sampler;
   vk::data::Vertex* vk_drawer;
-  vk::postprocess::pipeline::EDL* vk_edl;
+  vk::postprocess::edl::Pipeline* vk_edl;
   vk::render::Pipeline* vk_pipeline;
   vk::presentation::Viewport* vk_viewport;
   vk::descriptor::Descriptor_set* vk_descriptor_set;

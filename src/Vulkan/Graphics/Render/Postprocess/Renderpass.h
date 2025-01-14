@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk{class Structure;}
-namespace vk::postprocess::subpass{class EDL;}
+namespace vk::postprocess::edl{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
 
@@ -20,7 +20,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::postprocess::subpass::EDL* vk_edl;
+  vk::postprocess::edl::Subpass* vk_edl;
 };
 
 }

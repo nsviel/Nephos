@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::postprocess{
+namespace vk::postprocess::edl{
 
 //Uniform
 vk::structure::Descriptor uniform_edl(){
@@ -12,7 +12,7 @@ vk::structure::Descriptor uniform_edl(){
 
   vk::structure::Descriptor descriptor;
   descriptor.name = "parameter";
-  descriptor.size = sizeof(vk::postprocess::EDL);
+  descriptor.size = sizeof(vk::postprocess::edl::Structure);
   descriptor.binding = vk::uniform::PARAMETER;
   descriptor.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
   descriptor.stage = VK_SHADER_STAGE_FRAGMENT_BIT;

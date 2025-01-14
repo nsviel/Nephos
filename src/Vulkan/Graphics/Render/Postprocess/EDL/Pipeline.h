@@ -8,14 +8,14 @@ namespace vk::structure{class Pipeline;}
 namespace vk::render{class Pipeline;}
 
 
-namespace vk::postprocess::pipeline{
+namespace vk::postprocess::edl{
 
-class EDL
+class Pipeline
 {
 public:
   //Constructor / Destructor
-  EDL(vk::Structure* vk_struct);
-  ~EDL();
+  Pipeline(vk::Structure* vk_struct);
+  ~Pipeline();
 
 public:
   //Main function

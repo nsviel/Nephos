@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/Graphics/Render/Postprocess/Descriptor/EDL.h>
+#include <Vulkan/Graphics/Render/Postprocess/EDL/Structure.h>
 
 
 namespace vk::render::structure{
@@ -8,7 +8,7 @@ namespace vk::render::structure{
 struct Pipeline{
   //---------------------------
 
-  vk::postprocess::EDL edl;
+  vk::postprocess::edl::Structure edl;
 
   //---------------------------
 };

@@ -1,13 +1,13 @@
-#include "EDL.h"
+#include "Pipeline.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace vk::postprocess::pipeline{
+namespace vk::postprocess::edl{
 
 //Constructor / Destructor
-EDL::EDL(vk::Structure* vk_struct){
+Pipeline::Pipeline(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -17,10 +17,10 @@ EDL::EDL(vk::Structure* vk_struct){
 
   //---------------------------
 }
-EDL::~EDL(){}
+Pipeline::~Pipeline(){}
 
 //Main function
-void EDL::add_pipeline(vk::structure::Subpass& subpass){
+void Pipeline::add_pipeline(vk::structure::Subpass& subpass){
   std::shared_ptr<vk::structure::Pipeline> pipeline = std::make_shared<vk::structure::Pipeline>();
   pipeline->subpass_ID = subpass.index;
   //---------------------------
@@ -34,7 +34,7 @@ void EDL::add_pipeline(vk::structure::Subpass& subpass){
 }
 
 //Subfunction
-void EDL::set_pipeline(vk::structure::Pipeline& pipeline){
+void Pipeline::set_pipeline(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   pipeline.info.name = "edl";
@@ -44,7 +44,7 @@ void EDL::set_pipeline(vk::structure::Pipeline& pipeline){
 
   //---------------------------
 }
-void EDL::set_shader(vk::structure::Pipeline& pipeline){
+void Pipeline::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
 
   vk::shader::structure::Info shader_info;
@@ -59,12 +59,12 @@ void EDL::set_shader(vk::structure::Pipeline& pipeline){
   //---------------------------
   pipeline.shader.info = shader_info;
 }
-void EDL::set_binding(vk::structure::Pipeline& pipeline){
+void Pipeline::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::postprocess::sampler_color());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::postprocess::sampler_depth());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::postprocess::uniform_edl());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::postprocess::edl::sampler_color());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::postprocess::edl::sampler_depth());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::postprocess::edl::uniform_edl());
 
   //---------------------------
 }

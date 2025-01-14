@@ -6,7 +6,7 @@
 namespace vk::structure{class Descriptor;}
 
 
-namespace vk::postprocess{
+namespace vk::postprocess::edl{
 
 //Uniform
 vk::structure::Descriptor uniform_edl();
