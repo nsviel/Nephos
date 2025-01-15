@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk{class Structure;}
-namespace vk::render{class Pipeline;}
+namespace vk::pipeline::gfx{class Pipeline;}
 namespace vk::renderpass{class Framebuffer;}
 namespace vk::renderpass{class Subpass;}
 namespace vk::renderpass{class Attachment;}
@@ -27,11 +27,13 @@ public:
   void attachment_renderpass(vk::structure::Renderpass& renderpass);
   void create_renderpass(vk::structure::Renderpass& renderpass);
   void clean_renderpass(vk::structure::Renderpass& renderpass);
-  void actualize_sampler();
-  
+  void clean_framebuffer();
+  void create_framebuffer();
+  void update_sampler();
+
 private:
   vk::Structure* vk_struct;
-  vk::render::Pipeline* vk_pipeline;
+  vk::pipeline::gfx::Pipeline* vk_pipeline;
   vk::renderpass::Subpass* vk_subpass;
   vk::renderpass::Framebuffer* vk_framebuffer;
   vk::renderpass::Attachment* vk_attachment;

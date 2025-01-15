@@ -36,17 +36,6 @@ void Viewport::init(){
 
   //---------------------------
 }
-void Viewport::cmd_viewport(VkCommandBuffer& command_buffer){
-  //---------------------------
-
-  //Viewport
-  vkCmdSetViewport(command_buffer, 0, 1, &vk_struct->core.viewport.handle);
-
-  //Scissor
-  vkCmdSetScissor(command_buffer, 0, 1, &vk_struct->core.viewport.scissor);
-
-  //---------------------------
-}
 void Viewport::update_viewport(){
   glm::vec2 win_dim = vk_struct->window.dimension;
   //---------------------------

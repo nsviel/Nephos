@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace vk{class Structure;}
 namespace vk::renderpass{class Renderpass;}
 namespace vk::descriptor{class Uniform;}
@@ -7,8 +9,7 @@ namespace vk::descriptor{class Sampler;}
 namespace vk::render::edl{class Shader;}
 namespace vk::data{class Vertex;}
 namespace vk::gfx::edl{class Pipeline;}
-namespace vk::render{class Pipeline;}
-namespace vk::presentation{class Viewport;}
+namespace vk::pipeline::gfx{class Pipeline;}
 namespace vk::pipeline{class Descriptor;}
 namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
@@ -34,14 +35,14 @@ public:
 public:
   //Main function
   void create_subpass(vk::structure::Renderpass& renderpass);
-  void draw_subpass(vk::structure::Render& render);
+  void draw_subpass(std::shared_ptr<vk::structure::Render> render);
   void update_sampler(vk::structure::Subpass& subpass);
 
   //Subfunction
-  void bind_pipeline(vk::structure::Render& render);
-  void update_uniform(vk::structure::Render& render);
-  void update_sampler(vk::structure::Render& render);
-  void draw_data(vk::structure::Render& render);
+  void bind_pipeline(std::shared_ptr<vk::structure::Render> render);
+  void update_uniform(std::shared_ptr<vk::structure::Render> render);
+  void update_sampler(std::shared_ptr<vk::structure::Render> render);
+  void draw_data(std::shared_ptr<vk::structure::Render> render);
 
 private:
   vk::Structure* vk_struct;
@@ -49,8 +50,7 @@ private:
   vk::descriptor::Sampler* vk_sampler;
   vk::data::Vertex* vk_drawer;
   vk::gfx::edl::Pipeline* vk_edl;
-  vk::render::Pipeline* vk_pipeline;
-  vk::presentation::Viewport* vk_viewport;
+  vk::pipeline::gfx::Pipeline* vk_pipeline;
   vk::descriptor::Descriptor_set* vk_descriptor_set;
   vk::pipeline::Descriptor* vk_descriptor;
 };

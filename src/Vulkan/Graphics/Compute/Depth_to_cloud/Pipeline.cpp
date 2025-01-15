@@ -12,7 +12,7 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
-  this->vk_pipeline = new vk::compute::Pipeline(vk_struct);
+  this->vk_pipeline = new vk::pipeline::compute::Pipeline(vk_struct);
   this->vk_texture = new vk::texture::Image(vk_struct);
 
   //---------------------------

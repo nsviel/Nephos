@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Vulkan/Core/VK_synchronization/Structure/Semaphore.h>
 #include <Vulkan/Core/VK_command/Structure/Command.h>
 #include <vulkan/vulkan.h>
 #include <condition_variable>
@@ -27,6 +28,7 @@ struct Command_set{
   std::condition_variable cv;
   bool done = false;
   bool presentation = false;
+  std::shared_ptr<vk::structure::Semaphore> semaphore;
 
   //Bundle of commands
   std::vector< std::unique_ptr<vk::structure::Command> > vec_command;

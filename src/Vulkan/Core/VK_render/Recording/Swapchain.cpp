@@ -1,4 +1,4 @@
-#include "Graphical.h"
+#include "Swapchain.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::draw{
 
 //Constructor / Destructor
-Graphical::Graphical(vk::Structure* vk_struct){
+Swapchain::Swapchain(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -23,24 +23,41 @@ Graphical::Graphical(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Graphical::~Graphical(){}
+Swapchain::~Swapchain(){}
 
 //Main function
-bool Graphical::acquire_swapchain_image(vk::structure::Render& render){
+bool Swapchain::acquire_swapchain_image(std::shared_ptr<vk::structure::Batch> batch){
   //---------------------------
 
-  vk_swapchain->next_frame_ID();
+  this->next_frame_ID();
   vk_imgui->glfw_new_frame();
 
-  render.semaphore = vk_semaphore->query_free_semaphore();
-  bool sucess = this->acquire_next_image(render);
+  batch->semaphore = vk_semaphore->query_free_semaphore();
+  bool sucess = acquire_next_image(batch);
 
   //---------------------------
   return sucess;
 }
+void Swapchain::copy_to_swapchain(std::shared_ptr<vk::structure::Batch> batch){
+  std::shared_ptr<vk::structure::Render> render = batch->vec_render.back();
+  //---------------------------
+
+  //Copy renderpass to swapchain image
+  vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.presentation;
+  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_transfer->copy_gpu_image_to_gpu_image(render->renderpass->framebuffer.window.color, vk_struct->core.swapchain.vec_frame[vk_struct->core.swapchain.current_ID]->color);
+
+  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
+  command->command_buffer = command_buffer;
+  command->semaphore_wait = batch->semaphore->handle;
+  batch->semaphore = vk_semaphore->query_free_semaphore();
+  command->semaphore_done = batch->semaphore->handle;
+  batch->vec_command.push_back(std::move(command));
+
+  //---------------------------
+}
 
 //Subfunction
-bool Graphical::acquire_next_image(vk::structure::Render& render){
+bool Swapchain::acquire_next_image(std::shared_ptr<vk::structure::Batch> batch){
   vk::structure::Swapchain& swapchain = vk_struct->core.swapchain;
   //---------------------------
 
@@ -49,7 +66,7 @@ bool Graphical::acquire_next_image(vk::structure::Render& render){
     vk_swapchain->recreate_swapchain();
     return false;
   }
-  VkResult result = vkAcquireNextImageKHR(vk_struct->core.device.handle, swapchain.handle, UINT64_MAX, render.semaphore->handle, VK_NULL_HANDLE, &swapchain.current_ID);
+  VkResult result = vkAcquireNextImageKHR(vk_struct->core.device.handle, swapchain.handle, UINT64_MAX, batch->semaphore->handle, VK_NULL_HANDLE, &swapchain.current_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
     vk_swapchain->recreate_swapchain();
     return false;
@@ -61,23 +78,7 @@ bool Graphical::acquire_next_image(vk::structure::Render& render){
   //---------------------------
   return true;
 }
-void Graphical::copy_to_swapchain(vk::structure::Render& render){
-  //---------------------------
-
-  //Copy renderpass to swapchain image
-  vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.presentation;
-  std::shared_ptr<vk::structure::Command_buffer> command_buffer = vk_transfer->copy_gpu_image_to_gpu_image(render.renderpass->framebuffer.color, vk_struct->core.swapchain.vec_frame[vk_struct->core.swapchain.current_ID]->color);
-
-  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
-  command->command_buffer = command_buffer;
-  command->semaphore_wait = render.semaphore->handle;
-  render.semaphore = vk_semaphore->query_free_semaphore();
-  command->semaphore_done = render.semaphore->handle;
-  render.vec_command.push_back(std::move(command));
-
-  //---------------------------
-}
-void Graphical::next_frame_ID(){
+void Swapchain::next_frame_ID(){
   vk::structure::Swapchain& swapchain = vk_struct->core.swapchain;
   //---------------------------
 

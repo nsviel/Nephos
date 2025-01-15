@@ -31,6 +31,7 @@ public:
   //Subfunction
   void build_submission(std::shared_ptr<vk::structure::Command_set> set);
   void make_submission(std::shared_ptr<vk::structure::Command_set> set);
+  void make_presentation(std::shared_ptr<vk::structure::Command_set> set);
   void post_submission(std::shared_ptr<vk::structure::Command_set> set);
 
 private:

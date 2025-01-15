@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace vk{class Structure;}
 namespace vk::renderpass{class Renderpass;}
 namespace vk::geometry::pipeline::topology{class Triangle;}
@@ -21,7 +23,7 @@ public:
 public:
   //Main function
   void create_subpass(vk::structure::Renderpass& renderpass);
-  void draw_subpass(vk::structure::Render& render);
+  void draw_subpass(std::shared_ptr<vk::structure::Render> render);
 
 private:
   vk::Structure* vk_struct;

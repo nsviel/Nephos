@@ -20,8 +20,9 @@ public:
 
 public:
   //Main function
-  void create_color_image(vk::structure::Image* color);
-
+  void create_window_image(vk::structure::Image* color);
+  void create_screenshot_image(vk::structure::Image* color);
+  
   //Subfunction
   VkFormat find_color_format();
 

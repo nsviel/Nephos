@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::render{
+namespace vk::pipeline::gfx{
 
 //Constructor / Destructor
 Component::Component(vk::Structure* vk_struct){

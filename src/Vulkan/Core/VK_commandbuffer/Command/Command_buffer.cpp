@@ -37,7 +37,7 @@ void Command_buffer::start_command_buffer_primary(vk::structure::Command_buffer&
   //---------------------------
 }
 void Command_buffer::start_command_buffer_secondary(vk::structure::Renderpass* renderpass){
-  vk::structure::Framebuffer& frame = renderpass->framebuffer;
+  vk::structure::Framebuffer& frame = renderpass->framebuffer.window;
   //---------------------------
 /*
   // Create a VkCommandBufferInheritanceInfo structure

@@ -64,17 +64,16 @@ void Swapchain::recreate_swapchain(){
   //Clean old swapchain
   vk_window->update_window_dim();
   vk_synchro->wait_idle();
-  vk_framebuffer->clean();
+  vk_renderpass->clean_framebuffer();
   this->clean();
 
   //Create new swapchain
   this->init();
-  vk_framebuffer->init();
+  vk_renderpass->create_framebuffer();
+  vk_renderpass->update_sampler();
   vk_synchro->end_idle();
   vk_imgui->resize_event();
   vk_semaphore->reset_pool();
-  this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
-  vk_renderpass->actualize_sampler();
 
   //---------------------------
 }
@@ -180,16 +179,6 @@ void Swapchain::find_swapchain_presentation_mode(){
 
   //---------------------------
   vk_struct->core.swapchain.presentation_mode = presentation_mode;
-}
-void Swapchain::next_frame_ID(){
-  vk::structure::Swapchain& swapchain = vk_struct->core.swapchain;
-  //---------------------------
-
-  int current_ID = swapchain.current_ID;
-  current_ID = (current_ID + 1) % vk_struct->core.instance.max_frame_inflight;
-  swapchain.current_ID = current_ID;
-
-  //---------------------------
 }
 
 }

@@ -27,14 +27,14 @@ void Render::update_render_texture(){
 
   //Set presentation texture target
   vk::structure::Texture& render = vk_struct->graphics.render.presentation;
-  render.surface = vk_struct->graphics.render.renderpass.postprocess->framebuffer.color;
+  render.surface = vk_struct->graphics.render.renderpass.postprocess->framebuffer.window.color;
 
   //Create presentation texture descriptor
   this->create_image_descriptor(render);
 
   //Set presentation texture target
   vk::structure::Texture& depth = vk_struct->graphics.render.depth;
-  depth.surface = vk_struct->graphics.render.renderpass.geometry->framebuffer.depth;
+  depth.surface = vk_struct->graphics.render.renderpass.geometry->framebuffer.window.depth;
 
   //Create presentation texture descriptor
   this->create_image_descriptor(depth);

@@ -4,11 +4,7 @@
 #include <vector>
 
 namespace vk{class Structure;}
-namespace vk::structure{class Semaphore;}
 namespace vk::presentation{class Swapchain;}
-namespace vk::structure{class Command;}
-namespace vk::structure{class Renderpass;}
-namespace vk::structure{class Render;}
 namespace vk::draw{class Renderpass;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
@@ -16,24 +12,30 @@ namespace vk::memory{class Transfer;}
 namespace sys::timer{class Chrono;}
 namespace vk::commandbuffer{class Command_buffer;}
 namespace vk::window{class Window;}
-namespace vk::gui{class Imgui;} 
+namespace vk::gui{class Imgui;}
+namespace vk::structure{class Command;}
+namespace vk::structure{class Renderpass;}
+namespace vk::structure{class Render;}
+namespace vk::structure{class Batch;}
+namespace vk::structure{class Semaphore;}
+
 
 namespace vk::draw{
 
-class Graphical
+class Swapchain
 {
 public:
   //Constructor / Destructor
-  Graphical(vk::Structure* vk_struct);
-  ~Graphical();
+  Swapchain(vk::Structure* vk_struct);
+  ~Swapchain();
 
 public:
   //Main function
-  bool acquire_swapchain_image(vk::structure::Render& render);
+  bool acquire_swapchain_image(std::shared_ptr<vk::structure::Batch> batch);
+  void copy_to_swapchain(std::shared_ptr<vk::structure::Batch> batch);
 
   //Subfunction
-  bool acquire_next_image(vk::structure::Render& render);
-  void copy_to_swapchain(vk::structure::Render& render);
+  bool acquire_next_image(std::shared_ptr<vk::structure::Batch> batch);
   void next_frame_ID();
 
 private:

@@ -8,7 +8,7 @@ namespace vk::shader{class Module;}
 namespace vk::structure{class Pipeline;}
 
 
-namespace vk::compute{
+namespace vk::pipeline::compute{
 
 class Component
 {

@@ -67,8 +67,28 @@ void Command::add_command(std::shared_ptr<vk::structure::Render> render){
   mutex.lock();
 
   std::shared_ptr<vk::structure::Command_set> set = std::make_shared<vk::structure::Command_set>();
-  set->vec_command = std::move(render->vec_command);
+  set->vec_command.push_back(std::move(render->command));
+  set->presentation = false;
+  set->semaphore = render->semaphore;
+
+  queue.push(set);
+
+  mutex.unlock();
+  cv.notify_one();
+
+  set->wait_until_done();
+
+  //---------------------------
+}
+void Command::add_command(std::shared_ptr<vk::structure::Batch> batch){
+  //---------------------------
+
+  mutex.lock();
+
+  std::shared_ptr<vk::structure::Command_set> set = std::make_shared<vk::structure::Command_set>();
+  set->vec_command = std::move(batch->vec_command);
   set->presentation = true;
+  set->semaphore = batch->semaphore;
 
   queue.push(set);
 

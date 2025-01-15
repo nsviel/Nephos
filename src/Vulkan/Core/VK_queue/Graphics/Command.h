@@ -7,12 +7,13 @@
 #include <queue>
 
 namespace vk{class Structure;}
-namespace vk::structure{class Command_set;}
-namespace vk::structure{class Command;}
 namespace vk::queue::graphics{class Submission;}
 namespace vk::synchro{class Fence;}
 namespace vk::structure{class Fence;}
 namespace vk::structure{class Render;}
+namespace vk::structure{class Batch;}
+namespace vk::structure{class Command_set;}
+namespace vk::structure{class Command;}
 
 
 namespace vk::queue::graphics{
@@ -32,6 +33,7 @@ public:
   //Subfunction
   void add_command(std::unique_ptr<vk::structure::Command> command);
   void add_command(std::shared_ptr<vk::structure::Render> render);
+  void add_command(std::shared_ptr<vk::structure::Batch> batch);
 
 private:
   vk::Structure* vk_struct;

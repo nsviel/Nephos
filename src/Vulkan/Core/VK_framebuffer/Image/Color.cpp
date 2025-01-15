@@ -19,7 +19,7 @@ Color::Color(vk::Structure* vk_struct){
 Color::~Color(){}
 
 //Main function
-void Color::create_color_image(vk::structure::Image* color){
+void Color::create_window_image(vk::structure::Image* color){
   //---------------------------
 
   //Create frame color image
@@ -27,6 +27,20 @@ void Color::create_color_image(vk::structure::Image* color){
   color->format = find_color_format();
   color->width = vk_struct->window.extent.width;
   color->height = vk_struct->window.extent.height;
+  color->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+
+  vk_image->create_image(*color);
+
+  //---------------------------
+}
+void Color::create_screenshot_image(vk::structure::Image* color){
+  //---------------------------
+
+  //Create frame color image
+  color->name = "tex_color";
+  color->format = find_color_format();
+  color->width = 3840;
+  color->height = 2160;
   color->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
 
   vk_image->create_image(*color);

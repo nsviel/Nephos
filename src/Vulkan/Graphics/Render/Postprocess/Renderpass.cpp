@@ -24,6 +24,7 @@ void Renderpass::init(){
 
   renderpass->name = "EDL";
   renderpass->attachment.target = vk::renderpass::SHADER;
+  renderpass->with_screenshot = true;
 
   vk_edl->create_subpass(*renderpass);
 

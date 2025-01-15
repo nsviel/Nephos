@@ -5,7 +5,7 @@
 
 namespace vk{class Structure;}
 namespace vk::synchro{class Synchro;}
-namespace vk::compute{class Component;}
+namespace vk::pipeline::compute{class Component;}
 namespace vk::pipeline{class Descriptor;}
 namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Subpass;}
@@ -13,7 +13,7 @@ namespace vk::structure{class Descriptor_set;}
 namespace utl::base{class Texture;}
 
 
-namespace vk::compute{
+namespace vk::pipeline::compute{
 
 class Pipeline
 {
@@ -37,7 +37,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::pipeline::Descriptor* vk_descriptor;
-  vk::compute::Component* vk_component;
+  vk::pipeline::compute::Component* vk_component;
   vk::synchro::Synchro* vk_synchro;
 };
 

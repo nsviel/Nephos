@@ -25,6 +25,7 @@ void Submission::process_command(std::shared_ptr<vk::structure::Command_set> set
 
   this->build_submission(set);
   this->make_submission(set);
+  this->make_presentation(set);
   this->post_submission(set);
 
   //---------------------------
@@ -84,6 +85,32 @@ void Submission::make_submission(std::shared_ptr<vk::structure::Command_set> set
 
   //---------------------------
 }
+void Submission::make_presentation(std::shared_ptr<vk::structure::Command_set> set){
+  if(!set->presentation) return;
+  vk::structure::Swapchain& swapchain = vk_struct->core.swapchain;
+  //---------------------------
+
+  VkPresentInfoKHR presentation_info{};
+  presentation_info.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+  presentation_info.waitSemaphoreCount = 1;
+  presentation_info.pWaitSemaphores = &set->semaphore->handle;
+  presentation_info.swapchainCount = 1;
+  presentation_info.pSwapchains = &swapchain.handle;
+  presentation_info.pImageIndices = &swapchain.current_ID;
+  presentation_info.pResults = nullptr; // Optional
+
+  VkQueue queue = vk_struct->core.device.queue.graphics.handle;
+  VkResult result = vkQueuePresentKHR(queue, &presentation_info);
+
+  //Error handling
+  if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR){
+    return;
+  }else if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to present swap chain image!");
+  }
+
+  //---------------------------
+}
 void Submission::post_submission(std::shared_ptr<vk::structure::Command_set> set){
   //---------------------------
 
@@ -100,14 +127,6 @@ void Submission::post_submission(std::shared_ptr<vk::structure::Command_set> set
     }
   }
   set->vec_command.clear();
-
-
-  //TODO lancer la presentation submit ici et non pas sur un autre thread!!!!!!!!!!!!!
-  //Puis wait for fence
-  if(set->presentation){
-    //vk::queue::presentation::Submission vk_present;
-    //vk_present.submit_presentation();
-  }
 
   set->mark_as_done();
 

@@ -39,7 +39,6 @@ public:
   void find_swapchain_max_nb_image();
   void find_swapchain_surface_format();
   void find_swapchain_presentation_mode();
-  void next_frame_ID();
 
 private:
   vk::Structure* vk_struct;

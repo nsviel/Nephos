@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/Core/VK_renderpass/Structure/Subpass.h>
-#include <Vulkan/Core/VK_renderpass/Structure/Framebuffer.h>
+#include <Vulkan/Core/VK_framebuffer/Structure/Framebuffer.h>
 #include <vulkan/vulkan.h>
 #include <memory>
 #include <vector>
@@ -36,12 +36,22 @@ struct Subpass_set{
   //---------------------------
 };
 
+struct Framebuffer_set{
+  //---------------------------
+
+  vk::structure::Framebuffer window;
+  vk::structure::Framebuffer screenshot;
+
+  //---------------------------
+};
+
 struct Renderpass{
   //---------------------------
 
   //Info
   std::string name = "";
   float duration = -1;
+  bool with_screenshot = false;
 
   //Renderpass
   VkRenderPass handle = VK_NULL_HANDLE;
@@ -49,7 +59,7 @@ struct Renderpass{
   std::vector<std::shared_ptr<vk::structure::Subpass>> vec_subpass;
 
   //Structure
-  vk::structure::Framebuffer framebuffer;
+  vk::structure::Framebuffer_set framebuffer;
   vk::structure::Subpass_set subpass;
   vk::structure::Attachment_set attachment;
 

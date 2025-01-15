@@ -17,21 +17,16 @@ namespace vk::structure{class Command_set;}
 
 namespace vk::draw{
 
-class Renderer
+class Screenshot
 {
 public:
   //Constructor / Destructor
-  Renderer(vk::Structure* vk_struct);
-  ~Renderer();
+  Screenshot(vk::Structure* vk_struct);
+  ~Screenshot();
 
 public:
   //Main function
-  void loop();
-
-  //Subfunction
-  void make_recording(std::shared_ptr<vk::structure::Batch> batch);
-  void make_submission(std::shared_ptr<vk::structure::Batch> batch);
-  void make_cleaning();
+  void make_screenshot();
 
 private:
   vk::Structure* vk_struct;

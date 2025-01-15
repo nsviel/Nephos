@@ -10,7 +10,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_pipeline = new vk::render::Pipeline(vk_struct);
+  this->vk_pipeline = new vk::pipeline::gfx::Pipeline(vk_struct);
   this->vk_subpass = new Subpass(vk_struct);
   this->vk_framebuffer = new vk::renderpass::Framebuffer(vk_struct);
   this->vk_attachment = new Attachment(vk_struct);
@@ -34,7 +34,8 @@ void Renderpass::init(){
     this->init_renderpass(*renderpass);
   }
 
-  this->actualize_sampler();
+  this->create_framebuffer();
+  this->update_sampler();
 
   //---------------------------
 }
@@ -56,7 +57,6 @@ void Renderpass::init_renderpass(vk::structure::Renderpass& renderpass){
   vk_subpass->create_subpass(renderpass);
   this->create_renderpass(renderpass);
   vk_pipeline->create_pipeline(renderpass);
-  vk_framebuffer->create_framebuffer(renderpass);
 
   //---------------------------
 }
@@ -114,7 +114,25 @@ void Renderpass::clean_renderpass(vk::structure::Renderpass& renderpass){
 
   //---------------------------
 }
-void Renderpass::actualize_sampler(){
+void Renderpass::clean_framebuffer(){
+  //---------------------------
+
+  for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
+    vk_framebuffer->clean_framebuffer(*renderpass);
+  }
+
+  //---------------------------
+}
+void Renderpass::create_framebuffer(){
+  //---------------------------
+
+  for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){
+    vk_framebuffer->create_framebuffer(*renderpass);
+  }
+
+  //---------------------------
+}
+void Renderpass::update_sampler(){
   //---------------------------
 
   for(auto& renderpass : vk_struct->core.drawer.vec_renderpass){

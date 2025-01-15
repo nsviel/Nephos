@@ -26,7 +26,7 @@ void Subpass::create_subpass(vk::structure::Renderpass& renderpass){
   std::shared_ptr<vk::structure::Subpass> subpass = std::make_shared<vk::structure::Subpass>();
   subpass->index = 0;
   subpass->source = VK_SUBPASS_EXTERNAL;
-  subpass->draw_task = [this](vk::structure::Render& render){Subpass::draw_subpass(render);};
+  subpass->draw_task = [this](std::shared_ptr<vk::structure::Render> render){Subpass::draw_subpass(render);};
 
   //Set pipeline
   vk_triangle->add_pipeline(*subpass);
@@ -34,10 +34,10 @@ void Subpass::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
 }
-void Subpass::draw_subpass(vk::structure::Render& render){
+void Subpass::draw_subpass(std::shared_ptr<vk::structure::Render> render){
   //---------------------------
 
-  vk_imgui->draw_frame(*render.command_buffer);
+  vk_imgui->draw_frame(*render->command_buffer);
 
   //---------------------------
 }

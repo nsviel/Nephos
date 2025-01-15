@@ -25,8 +25,8 @@ Export::~Export(){}
 void Export::make_screenshot_color(){
   //---------------------------
 
-  vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.postprocess;
-  this->export_image(renderpass.framebuffer.color);
+  vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.geometry;
+  this->export_image(renderpass.framebuffer.screenshot.color);
 
   //---------------------------
 }
@@ -34,7 +34,7 @@ void Export::make_screenshot_depth(){
   //---------------------------
 
   vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.geometry;
-  this->export_depth(renderpass.framebuffer.depth);
+  this->export_depth(renderpass.framebuffer.screenshot.depth);
 
   //---------------------------
 }

@@ -11,8 +11,7 @@ Point::Point(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_pipeline = new vk::render::Pipeline(vk_struct);
-  this->vk_viewport = new vk::presentation::Viewport(vk_struct);
+  this->vk_pipeline = new vk::pipeline::gfx::Pipeline(vk_struct);
   this->vk_descriptor_set = new vk::descriptor::Descriptor_set(vk_struct);
   this->vk_uniform = new vk::descriptor::Uniform(vk_struct);
   this->vk_drawer = new vk::data::Vertex(vk_struct);
@@ -31,7 +30,7 @@ void Point::create_subpass(vk::structure::Renderpass& renderpass){
   std::shared_ptr<vk::structure::Subpass> subpass = std::make_shared<vk::structure::Subpass>();
   subpass->index = 0;
   subpass->source = VK_SUBPASS_EXTERNAL;
-  subpass->draw_task = [this](vk::structure::Render& render){this->draw_subpass(render);};
+  subpass->draw_task = [this](std::shared_ptr<vk::structure::Render> render){this->draw_subpass(render);};
 
   //Subpass pipeline
   vk_point->add_pipeline(*subpass);
@@ -39,17 +38,17 @@ void Point::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
   renderpass.vec_subpass.push_back(subpass);
 }
-void Point::draw_subpass(vk::structure::Render& render){
-  render.pipeline = render.subpass->map_pipeline["point"];
+void Point::draw_subpass(std::shared_ptr<vk::structure::Render> render){
+  render->pipeline = render->subpass->map_pipeline["point"];
   //---------------------------
 
   this->bind_pipeline(render);
 
   for(auto& [uid, vk_object] : vk_struct->core.data.map_object){
     if(!check_data(*vk_object, utl::topology::POINT)) continue;
-    render.object = vk_object;
+    render->object = vk_object;
 
-    render.descriptor_set = vk_descriptor->query_descriptor_set(*render.pipeline);
+    render->descriptor_set = vk_descriptor->query_descriptor_set(*render->pipeline);
 
     this->update_uniform(render);
     this->draw_data(render);
@@ -60,17 +59,16 @@ void Point::draw_subpass(vk::structure::Render& render){
 }
 
 //Subfunction
-void Point::bind_pipeline(vk::structure::Render& render){
+void Point::bind_pipeline(std::shared_ptr<vk::structure::Render> render){
   //---------------------------
 
-  vk_pipeline->cmd_bind_pipeline(render.command_buffer->handle, *render.pipeline);
-  vk_viewport->cmd_viewport(render.command_buffer->handle);
+  vk_pipeline->cmd_bind_pipeline(render->command_buffer->handle, *render->pipeline);
 
   //---------------------------
 }
-void Point::update_uniform(vk::structure::Render& render){
-  utl::base::Data& data = *render.object->data;
-  utl::base::Pose& pose = *render.object->pose;
+void Point::update_uniform(std::shared_ptr<vk::structure::Render> render){
+  utl::base::Data& data = *render->object->data;
+  utl::base::Pose& pose = *render->object->pose;
   //---------------------------
 
   //MVP
@@ -78,18 +76,18 @@ void Point::update_uniform(vk::structure::Render& render){
   mvp.model = glm::transpose(pose.model);
   mvp.view = vk_struct->core.presentation.view;
   mvp.projection = vk_struct->core.presentation.projection;
-  vk_uniform->update_uniform("mvp", *render.descriptor_set, mvp);
+  vk_uniform->update_uniform("mvp", *render->descriptor_set, mvp);
 
   //Topology width
-  vk_uniform->update_uniform("width", *render.descriptor_set, data.topology.width);
+  vk_uniform->update_uniform("width", *render->descriptor_set, data.topology.width);
 
   //---------------------------
 }
-void Point::draw_data(vk::structure::Render& render){
+void Point::draw_data(std::shared_ptr<vk::structure::Render> render){
   //---------------------------
 
-  vk_pipeline->cmd_bind_descriptor_set(render.command_buffer->handle, *render.pipeline, *render.descriptor_set);
-  vk_drawer->cmd_draw_vertex(render.command_buffer->handle, *render.object);
+  vk_pipeline->cmd_bind_descriptor_set(render->command_buffer->handle, *render->pipeline, *render->descriptor_set);
+  vk_drawer->cmd_draw_vertex(render->command_buffer->handle, *render->object);
 
   //---------------------------
 }

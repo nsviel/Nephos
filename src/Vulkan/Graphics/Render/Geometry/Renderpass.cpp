@@ -26,6 +26,7 @@ void Renderpass::init(){
 
   renderpass->name = "Geometry";
   renderpass->attachment.target = vk::renderpass::SHADER;
+  renderpass->with_screenshot = true;
 
   vk_point->create_subpass(*renderpass);
   vk_line->create_subpass(*renderpass);

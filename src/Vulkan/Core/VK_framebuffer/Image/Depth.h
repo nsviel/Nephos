@@ -19,8 +19,9 @@ public:
 
 public:
   //Main function
-  void create_depth_image(vk::structure::Image* depth);
-
+  void create_window_image(vk::structure::Image* depth);
+  void create_screenshot_image(vk::structure::Image* depth);
+  
   //Subfunctions
   bool find_stencil_component(VkFormat format);
   VkFormat find_supported_format(const std::vector<VkFormat>& candidates, VkImageTiling tiling, VkFormatFeatureFlags features);

@@ -4,14 +4,14 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::compute{
+namespace vk::pipeline::compute{
 
 //Constructor / Destructor
 Pipeline::Pipeline(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_component = new vk::compute::Component(vk_struct);
+  this->vk_component = new vk::pipeline::compute::Component(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
 
