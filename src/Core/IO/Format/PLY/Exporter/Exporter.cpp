@@ -81,14 +81,14 @@ void Exporter::build_structure(io::exp::Configuration& config, utl::base::Data& 
   }
 
   //Intensity
-  std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
+  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
   if(vec_I_ptr && !vec_I_ptr->empty()){
     config.vec_property.push_back(io::exp::I);
     config.nb_property++;
   }
 
   //Timestamp
-  std::unique_ptr<std::vector<float>> vec_ts_ptr = atr_field->get_field_data(data, "ts");
+  std::shared_ptr<std::vector<float>> vec_ts_ptr = atr_field->get_field_data(data, "ts");
   if(vec_ts_ptr && !vec_ts_ptr->empty()){
     config.vec_property.push_back(io::exp::TS);
     config.nb_property++;
@@ -99,7 +99,7 @@ void Exporter::build_structure(io::exp::Configuration& config, utl::base::Data& 
 void Exporter::write_data_ascii(io::exp::Configuration& config, std::ofstream& file, utl::base::Data& data){
   //---------------------------
 
-  std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
+  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
   if(!vec_I_ptr) return;
 
   std::vector<float>& vec_I = *vec_I_ptr;
@@ -145,8 +145,8 @@ void Exporter::write_data_ascii(io::exp::Configuration& config, std::ofstream& f
 void Exporter::write_data_binary(io::exp::Configuration& config, std::ofstream& file, utl::base::Data& data){
   //---------------------------
 
-  std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  std::unique_ptr<std::vector<float>> vec_ts_ptr = atr_field->get_field_data(data, "ts");
+  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
+  std::shared_ptr<std::vector<float>> vec_ts_ptr = atr_field->get_field_data(data, "ts");
   if(!vec_I_ptr || !vec_ts_ptr) return;
 
   std::vector<float>& vec_I = *vec_I_ptr;

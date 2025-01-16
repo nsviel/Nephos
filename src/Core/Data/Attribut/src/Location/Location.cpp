@@ -146,7 +146,7 @@ void Location::compute_height(dat::base::Entity& entity){
   //---------------------------
 
   //Retrieve field
-  std::unique_ptr<std::vector<float>> vec_h_ptr = atr_field->get_field_data(data, "H");
+  std::shared_ptr<std::vector<float>> vec_h_ptr = atr_field->get_field_data(data, "H");
   if(!vec_h_ptr || !vec_h_ptr->empty()) return;
   std::vector<float>& vec_h = *vec_h_ptr;
 
@@ -168,7 +168,7 @@ void Location::compute_range(dat::base::Entity& entity){
   //---------------------------
 
   //Retrieve field
-  std::unique_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");
+  std::shared_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");
   if(!vec_R_ptr || !vec_R_ptr->empty()) return;
   std::vector<float>& vec_R = *vec_R_ptr;
 
@@ -188,8 +188,8 @@ void Location::compute_incidence_angle(dat::base::Entity& entity){
   utl::base::Data& data = *entity.data;
   //---------------------------
 
-  std::unique_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");
-  std::unique_ptr<std::vector<float>> vec_It_ptr = atr_field->get_field_data(data, "It");
+  std::shared_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");
+  std::shared_ptr<std::vector<float>> vec_It_ptr = atr_field->get_field_data(data, "It");
   if(!vec_R_ptr || !vec_It_ptr) return;
 
   std::vector<float>& It = *vec_It_ptr;

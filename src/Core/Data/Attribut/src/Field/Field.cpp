@@ -27,16 +27,16 @@ std::vector<std::string> Field::get_field_names(utl::base::Data& data){
   return vec_name;
 
 }
-std::unique_ptr<std::vector<float>> Field::get_field_data(utl::base::Data& data, const std::string& name){
+std::shared_ptr<std::vector<float>> Field::get_field_data(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   auto field = get_field(data, name);
 
   // Check if field is nullptr
-  if(!field) return std::make_unique<std::vector<float>>();
+  if(!field) return std::make_shared<std::vector<float>>();
 
   //---------------------------
-  return std::make_unique<std::vector<float>>(field->data);
+  return std::make_shared<std::vector<float>>(field->data);
 }
 glm::vec2 Field::get_field_range(utl::base::Data& data, const std::string& name){
   //---------------------------

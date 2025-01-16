@@ -76,7 +76,7 @@ void Operation::ope_color(std::shared_ptr<dat::base::Object> object){
   std::unique_lock<std::mutex> lock(data.mutex);
 
   //Bouger oute cette merde dans colorization dat attribut
-  std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
+  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
 
   //If color
   if(data.xyz.size() == 0) return;

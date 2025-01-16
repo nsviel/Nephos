@@ -74,7 +74,7 @@ void Location::extraction_transfer(k4n::base::Sensor& sensor){
   data.width = sensor.depth.cloud.width;
   data.height = sensor.depth.cloud.height;
 
-  std::unique_ptr<std::vector<float>> vec_R = atr_field->get_field_data(data, "R");
+  std::shared_ptr<std::vector<float>> vec_R = atr_field->get_field_data(data, "R");
   if(!vec_R) return;
   *vec_R = sensor.depth.data.R;
 

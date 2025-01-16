@@ -56,7 +56,7 @@ void Converter::convert_normal_to_image(utl::base::Data& data, std::shared_ptr<u
 void Converter::convert_intensity_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
-  std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
+  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
   if(!vec_I_ptr) return;
 
   std::vector<float>& vec_I = *vec_I_ptr;
@@ -84,7 +84,7 @@ void Converter::convert_intensity_to_image(utl::base::Data& data, std::shared_pt
 void Converter::convert_spherical_pc_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
-  std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
+  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
   if(!vec_I_ptr) return;
 
   std::vector<float>& vec_I = *vec_I_ptr;
@@ -137,7 +137,7 @@ void Converter::convert_spherical_pc_to_image(utl::base::Data& data, std::shared
 void Converter::convert_whole_spherical_pc_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
-  std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
+  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
   if(!vec_I_ptr) return;
 
   std::vector<float>& vec_I = *vec_I_ptr;

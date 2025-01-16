@@ -20,7 +20,7 @@ public:
 public:
   //Main function
   std::vector<std::string> get_field_names(utl::base::Data& data);
-  std::unique_ptr<std::vector<float>> get_field_data(utl::base::Data& data, const std::string& name);
+  std::shared_ptr<std::vector<float>> get_field_data(utl::base::Data& data, const std::string& name);
   glm::vec2 get_field_range(utl::base::Data& data, const std::string& name);
   void set_field_data(utl::base::Data& data, const std::string& name, std::vector<float>& vec);
   void create_field(utl::base::Data& data, const std::string& name);
