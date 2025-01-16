@@ -23,7 +23,7 @@ void Normal::design_header(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
-  if(ImGui::CollapsingHeader("Normal##header")){
+  if(ImGui::CollapsingHeader("Normal##attribut")){
     this->draw_static(element);
   }
 

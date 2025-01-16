@@ -17,6 +17,7 @@ Panel::Panel(dat::atr::Node* node_attribut, bool* show_window){
 
   this->gui_color = new dat::atr::gui::Color(node_attribut);
   this->gui_normal = new dat::atr::gui::Normal(node_attribut);
+  this->gui_field = new dat::atr::gui::Field(node_attribut);
   this->gph_selection = node_graph->get_gph_selection();
   this->dat_element = new dat::elm::Element();
   this->atr_field = new dat::atr::Field();
@@ -54,8 +55,9 @@ void Panel::design_panel(){
   //---------------------------
 
   this->enum_data(element);
-  gui_color->design_header(element);
   gui_normal->design_header(element);
+  gui_color->design_header(element);
+  gui_field->design_header(element);
 
   //---------------------------
 }
@@ -71,6 +73,7 @@ void Panel::enum_data(std::shared_ptr<utl::base::Element> element){
   int size = 1 + (has_color ? 1 : 0) + vec_name.size();
 
   ImGui::PushStyleColor(ImGuiCol_TableRowBg, IM_COL32(0, 0, 0, 255));
+  ImGui::PushStyleColor(ImGuiCol_TableRowBgAlt, IM_COL32(0, 0, 0, 255));
   ImGui::BeginTable("OneLineTable", size, ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchSame);
   ImGui::TableNextRow();
 
@@ -91,7 +94,7 @@ void Panel::enum_data(std::shared_ptr<utl::base::Element> element){
   }
 
   ImGui::EndTable();
-  ImGui::PopStyleColor();
+  ImGui::PopStyleColor(2);
 
   //---------------------------
 }

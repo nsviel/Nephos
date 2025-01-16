@@ -38,7 +38,7 @@ int Logic::get_idx_path_current(){
   //---------------------------
 
   for(int i=0; i<sta_struct->vec_file.size(); i++){
-    std::string& filename = sta_struct->vec_file[i];
+    auto& filename = sta_struct->vec_file[i];
     if(sta_struct->path_current.filename() == filename){
       return i;
     }

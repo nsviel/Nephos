@@ -6,6 +6,7 @@
 namespace dat::atr{class Node;}
 namespace dat::atr::gui{class Color;}
 namespace dat::atr::gui{class Normal;}
+namespace dat::atr::gui{class Field;}
 namespace dat::atr{class Field;}
 namespace dat::gph{class Selection;}
 namespace dat::elm{class Element;}
@@ -32,6 +33,7 @@ public:
 private:
   dat::atr::gui::Color* gui_color;
   dat::atr::gui::Normal* gui_normal;
+  dat::atr::gui::Field* gui_field;
   dat::gph::Selection* gph_selection;
   dat::elm::Element* dat_element;
   dat::atr::Field* atr_field;

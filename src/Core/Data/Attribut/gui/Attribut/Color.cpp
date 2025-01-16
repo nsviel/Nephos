@@ -26,7 +26,7 @@ void Color::design_header(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
-  if(ImGui::CollapsingHeader("Colorization##dynamic")){
+  if(ImGui::CollapsingHeader("Colorization##attribut")){
     this->color_mode(element);
     this->color_option(element);
   }
