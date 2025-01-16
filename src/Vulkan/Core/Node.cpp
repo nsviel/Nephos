@@ -32,7 +32,7 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_queue = new vk::command::Queue(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_pipeline = new vk::pipeline::compute::Pipeline(vk_struct);
-  this->vk_renderer = new vk::draw::Renderer(vk_struct);
+  this->vk_renderer = new vk::render::Renderer(vk_struct);
 
   //---------------------------
 }

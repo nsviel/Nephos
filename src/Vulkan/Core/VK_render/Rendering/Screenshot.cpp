@@ -4,14 +4,14 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::draw{
+namespace vk::render{
 
 //Constructor / Destructor
 Screenshot::Screenshot(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_renderpass = new vk::draw::Renderpass(vk_struct);
+  this->vk_renderpass = new vk::render::Renderpass(vk_struct);
 
   //---------------------------
 }

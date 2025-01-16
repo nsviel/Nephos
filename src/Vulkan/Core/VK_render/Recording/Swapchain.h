@@ -5,7 +5,7 @@
 
 namespace vk{class Structure;}
 namespace vk::presentation{class Swapchain;}
-namespace vk::draw{class Renderpass;}
+namespace vk::render{class Renderpass;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
 namespace vk::memory{class Transfer;}
@@ -20,7 +20,7 @@ namespace vk::structure{class Batch;}
 namespace vk::structure{class Semaphore;}
 
 
-namespace vk::draw{
+namespace vk::render{
 
 class Swapchain
 {
@@ -43,7 +43,7 @@ private:
   vk::memory::Transfer* vk_transfer;
   vk::presentation::Swapchain* vk_swapchain;
   sys::timer::Chrono* utl_chrono;
-  vk::draw::Renderpass* vk_render;
+  vk::render::Renderpass* vk_render;
   vk::window::Window* vk_window;
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;

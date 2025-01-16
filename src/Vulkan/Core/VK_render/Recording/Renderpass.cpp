@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::draw{
+namespace vk::render{
 
 //Constructor / Destructor
 Renderpass::Renderpass(vk::Structure* vk_struct){

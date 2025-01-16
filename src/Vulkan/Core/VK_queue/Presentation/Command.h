@@ -7,7 +7,7 @@
 namespace vk{class Structure;}
 namespace vk::structure{class Command_set;}
 namespace vk::queue::presentation{class Submission;}
-namespace vk::draw{class Renderer;}
+namespace vk::render{class Renderer;}
 namespace vk::structure{class Render;}
 
 
@@ -30,7 +30,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::draw::Renderer* vk_pipeline;
+  vk::render::Renderer* vk_pipeline;
   vk::queue::presentation::Submission* vk_submission;
 
   std::queue<std::shared_ptr<vk::structure::Render>> queue;

@@ -5,8 +5,8 @@
 
 namespace vk{class Structure;}
 namespace vk::pipeline::compute{class Pipeline;}
-namespace vk::draw{class Renderpass;}
-namespace vk::draw{class Swapchain;}
+namespace vk::render{class Renderpass;}
+namespace vk::render{class Swapchain;}
 namespace vk::synchro{class Semaphore;}
 namespace vk::structure{class Fence;}
 namespace vk::structure{class Semaphore;}
@@ -15,7 +15,7 @@ namespace vk::structure{class Batch;}
 namespace vk::structure{class Command_set;}
 
 
-namespace vk::draw{
+namespace vk::render{
 
 class Renderer
 {
@@ -35,9 +35,9 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::draw::Renderpass* vk_renderpass;
+  vk::render::Renderpass* vk_renderpass;
   vk::synchro::Semaphore* vk_semaphore;
-  vk::draw::Swapchain* vk_swapchain;
+  vk::render::Swapchain* vk_swapchain;
   vk::pipeline::compute::Pipeline* vk_pipeline;
 };
 

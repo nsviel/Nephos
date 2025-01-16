@@ -26,7 +26,7 @@ namespace vk::structure{class Object;}
 namespace vk::command{class Queue;}
 namespace utl::base{class Data;}
 namespace utl::base{class Pose;}
-namespace vk::draw{class Renderer;}
+namespace vk::render{class Renderer;}
 namespace vk::synchro{class Synchro;}
 namespace vk::pipeline::compute{class Pipeline;}
 
@@ -69,7 +69,7 @@ private:
   vk::synchro::Semaphore* vk_semaphore;
   vk::commandbuffer::Allocator* vk_allocator;
   vk::command::Queue* vk_queue;
-  vk::draw::Renderer* vk_renderer;
+  vk::render::Renderer* vk_renderer;
 };
 
 }

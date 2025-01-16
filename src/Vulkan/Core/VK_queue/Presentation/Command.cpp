@@ -11,7 +11,7 @@ Command::Command(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_pipeline = new vk::draw::Renderer(vk_struct);
+  this->vk_pipeline = new vk::render::Renderer(vk_struct);
   this->vk_submission = new vk::queue::presentation::Submission(vk_struct);
 
   //---------------------------

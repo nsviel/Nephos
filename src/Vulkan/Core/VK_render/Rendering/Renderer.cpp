@@ -4,16 +4,16 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::draw{
+namespace vk::render{
 
 //Constructor / Destructor
 Renderer::Renderer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_renderpass = new vk::draw::Renderpass(vk_struct);
+  this->vk_renderpass = new vk::render::Renderpass(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
-  this->vk_swapchain = new vk::draw::Swapchain(vk_struct);
+  this->vk_swapchain = new vk::render::Swapchain(vk_struct);
   this->vk_pipeline = new vk::pipeline::compute::Pipeline(vk_struct);
 
   //---------------------------

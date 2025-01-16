@@ -4,11 +4,11 @@
 #include <vector>
 
 namespace vk{class Structure;}
-namespace vk::draw{class Renderpass;}
+namespace vk::render{class Renderpass;}
 namespace vk::structure{class Render;}
 
 
-namespace vk::draw{
+namespace vk::render{
 
 class Screenshot
 {
@@ -28,7 +28,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::draw::Renderpass* vk_renderpass;
+  vk::render::Renderpass* vk_renderpass;
 };
 
 }
