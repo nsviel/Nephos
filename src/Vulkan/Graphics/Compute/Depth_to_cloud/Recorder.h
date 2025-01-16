@@ -18,7 +18,7 @@ namespace vk::structure{class Command_buffer;}
 namespace vk::structure{class Descriptor_set;}
 
 
-namespace vk::compute::dtc{
+namespace vk::gfx::compute::dtc{
 
 class Recorder
 {

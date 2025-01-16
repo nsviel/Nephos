@@ -14,8 +14,8 @@ Node::Node(){
   //Core
   this->vk_struct = new vk::Structure();
   this->vk_core = new vk::core::Node(vk_struct);
-  this->vk_render = new vk::render::Node(vk_struct);
-  this->vk_compute = new vk::compute::Node(vk_struct);
+  this->vk_render = new vk::gfx::render::Node(vk_struct);
+  this->vk_compute = new vk::gfx::compute::Node(vk_struct);
   this->vk_window = new vk::window::Node(vk_struct);
 
   //Interface

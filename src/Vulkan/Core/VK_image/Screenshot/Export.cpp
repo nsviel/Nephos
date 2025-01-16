@@ -25,6 +25,11 @@ Export::~Export(){}
 void Export::make_screenshot_color(){
   //---------------------------
 
+  //  std::shared_ptr<vk::structure::Render> render = std::make_shared<vk::structure::Render>();
+  //render->renderpass = renderpass;
+  //render->framebuffer = std::make_shared<vk::structure::Framebuffer>(renderpass->framebuffer.screenshot);
+
+
   vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.geometry;
   this->export_image(renderpass.framebuffer.screenshot.color);
 

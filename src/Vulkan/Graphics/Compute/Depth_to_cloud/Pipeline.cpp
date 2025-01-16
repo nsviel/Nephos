@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::compute::dtc{
+namespace vk::gfx::compute::dtc{
 
 //Constructor / Destructor
 Pipeline::Pipeline(vk::Structure* vk_struct){
@@ -58,9 +58,9 @@ void Pipeline::set_shader(vk::structure::Pipeline& pipeline){
 void Pipeline::set_binding(vk::structure::Pipeline& pipeline){
   //---------------------------
 
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::storage_depth());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::storage_tablexy());
-  pipeline.descriptor.layout.vec_descriptor.push_back(vk::compute::dtc::storage_cloud());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::gfx::compute::dtc::storage_depth());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::gfx::compute::dtc::storage_tablexy());
+  pipeline.descriptor.layout.vec_descriptor.push_back(vk::gfx::compute::dtc::storage_cloud());
 
   //---------------------------
 }

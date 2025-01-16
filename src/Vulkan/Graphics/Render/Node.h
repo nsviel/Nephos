@@ -8,7 +8,7 @@ namespace vk::geometry{class Renderpass;}
 namespace vk::gfx::presentation{class Renderpass;}
 
 
-namespace vk::render{
+namespace vk::gfx::render{
 
 class Node : public utl::base::Node
 {

@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::compute::dtc{
+namespace vk::gfx::compute::dtc{
 
 //Sampler
 vk::structure::Descriptor storage_depth(){

@@ -6,7 +6,7 @@
 namespace vk::structure{class Descriptor;}
 
 
-namespace vk::compute::dtc{
+namespace vk::gfx::compute::dtc{
 
 //Sampler
 vk::structure::Descriptor storage_depth();

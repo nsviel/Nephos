@@ -12,7 +12,7 @@ namespace vk::pipeline{class Descriptor;}
 namespace vk::data{class Vertex;}
 namespace vk::data{class Retriever;}
 namespace vk::descriptor{class Storage_image;}
-namespace vk::compute::dtc{class Recorder;}
+namespace vk::gfx::compute::dtc{class Recorder;}
 namespace vk::structure{class Render;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
@@ -54,7 +54,7 @@ private:
   vk::descriptor::Storage_image* vk_storage;
   vk::data::Retriever* vk_data;
   vk::pipeline::Descriptor* vk_descriptor;
-  vk::compute::dtc::Recorder* vk_depth_to_cloud;
+  vk::gfx::compute::dtc::Recorder* vk_depth_to_cloud;
 };
 
 }

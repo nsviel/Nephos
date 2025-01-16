@@ -3,10 +3,10 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace vk{class Structure;}
-namespace vk::compute::dtc{class Pipeline;}
+namespace vk::gfx::compute::dtc{class Pipeline;}
 
 
-namespace vk::compute{
+namespace vk::gfx::compute{
 
 class Node : public utl::base::Node
 {
@@ -22,7 +22,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::compute::dtc::Pipeline* vk_dtc;
+  vk::gfx::compute::dtc::Pipeline* vk_dtc;
 };
 
 }

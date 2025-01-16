@@ -72,11 +72,11 @@ void Shader::retrieve_shader_subclasses(){
 
   std::vector<vk::shader::structure::Info*> vec_shader_info;
   if(selection == "EDL"){
-    //vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
+    //vk::gfx::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
     //vec_shader_info = shader_edl->get_vec_shader_info();
   }
   else if(selection == "Scene"){
-    //vk::render::geometry::Shader* shader_scene = vk_render->get_shader_scene();
+    //vk::gfx::render::geometry::Shader* shader_scene = vk_render->get_shader_scene();
     //vec_shader_info = shader_scene->get_vec_shader_info();
   }
 
@@ -95,11 +95,11 @@ std::string Shader::get_path_vs_from_selection(){
   std::string path_vs = "";
 
   if(selection == "EDL"){
-    //vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
+    //vk::gfx::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
     //path_vs = shader_edl->get_glsl_path_vs(ID_subclass);
   }
   else if(selection == "Scene"){
-    //vk::render::geometry::Shader* shader_scene = vk_render->get_shader_scene();
+    //vk::gfx::render::geometry::Shader* shader_scene = vk_render->get_shader_scene();
     //path_vs = shader_scene->get_glsl_path_vs(ID_subclass);
   }
 
@@ -113,11 +113,11 @@ std::string Shader::get_path_fs_from_selection(){
   std::string path_fs = "";
 
   if(selection == "EDL"){
-    //vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
+    //vk::gfx::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
     //path_fs = shader_edl->get_glsl_path_fs(ID_subclass);
   }
   else if(selection == "Scene"){
-    //vk::render::geometry::Shader* shader_scene = vk_render->get_shader_scene();
+    //vk::gfx::render::geometry::Shader* shader_scene = vk_render->get_shader_scene();
     //path_fs = shader_scene->get_glsl_path_fs(ID_subclass);
   }
 
@@ -136,8 +136,8 @@ void Shader::show_parameter(){
   //---------------------------
 }
 void Shader::parameter_EDL(){
-  /*vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
-  vk::render::structure::EDL* edl_param = shader_edl->get_edl_struct();
+  /*vk::gfx::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
+  vk::gfx::render::structure::EDL* edl_param = shader_edl->get_edl_struct();
   //---------------------------
 
   ImGui::SetNextItemWidth(item_width);

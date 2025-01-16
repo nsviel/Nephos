@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::render{
+namespace vk::gfx::render{
 
 //Constructor / Destructor
 Node::Node(vk::Structure* vk_struct){

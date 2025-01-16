@@ -2,7 +2,7 @@
 
 
 
-namespace vk::compute{
+namespace vk::gfx::compute{
 
 struct Structure{
   //---------------------------

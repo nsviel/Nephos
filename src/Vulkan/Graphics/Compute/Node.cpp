@@ -4,14 +4,14 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::compute{
+namespace vk::gfx::compute{
 
 //Constructor / Destructor
 Node::Node(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_dtc = new vk::compute::dtc::Pipeline(vk_struct);
+  this->vk_dtc = new vk::gfx::compute::dtc::Pipeline(vk_struct);
 
   //---------------------------
 }

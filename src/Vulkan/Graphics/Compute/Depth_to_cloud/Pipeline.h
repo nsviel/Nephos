@@ -8,7 +8,7 @@ namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 
 
-namespace vk::compute::dtc{
+namespace vk::gfx::compute::dtc{
 
 class Pipeline
 {

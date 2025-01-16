@@ -9,8 +9,8 @@ namespace vk::graphics{
 struct Structure{
   //---------------------------
 
-  vk::compute::Structure compute;
-  vk::render::Structure render;
+  vk::gfx::compute::Structure compute;
+  vk::gfx::render::Structure render;
 
   //---------------------------
 };

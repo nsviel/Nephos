@@ -6,7 +6,7 @@ namespace vk{class Structure;}
 namespace vk::renderpass{class Renderpass;}
 namespace vk::descriptor{class Uniform;}
 namespace vk::descriptor{class Sampler;}
-namespace vk::render::edl{class Shader;}
+namespace vk::gfx::render::edl{class Shader;}
 namespace vk::data{class Vertex;}
 namespace vk::gfx::edl{class Pipeline;}
 namespace vk::pipeline::gfx{class Pipeline;}
@@ -15,7 +15,7 @@ namespace vk::descriptor{class Descriptor_set;}
 namespace vk::descriptor{class Uniform;}
 namespace vk::descriptor{class Sampler;}
 namespace vk::data{class Vertex;}
-namespace vk::render::edl{class Shader;}
+namespace vk::gfx::render::edl{class Shader;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Pipeline;}
 namespace vk::structure{class Renderpass;}

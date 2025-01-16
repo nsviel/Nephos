@@ -20,7 +20,7 @@ Point::Point(vk::Structure* vk_struct){
   this->vk_data = new vk::data::Retriever(vk_struct);
   this->vk_storage = new vk::descriptor::Storage_image(vk_struct);
   this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
-  this->vk_depth_to_cloud = new vk::compute::dtc::Recorder(vk_struct);
+  this->vk_depth_to_cloud = new vk::gfx::compute::dtc::Recorder(vk_struct);
 
   //---------------------------
 }

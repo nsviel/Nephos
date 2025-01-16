@@ -4,7 +4,7 @@
 #include <memory>
 
 
-namespace vk::render{
+namespace vk::gfx::render{
 
 struct Renderpass{
   //---------------------------
@@ -22,7 +22,7 @@ struct Structure{
   vk::gfx::edl::Structure edl_struct;
   vk::structure::Texture presentation;
   vk::structure::Texture depth;
-  vk::render::Renderpass renderpass;
+  vk::gfx::render::Renderpass renderpass;
 
   //---------------------------
 };
