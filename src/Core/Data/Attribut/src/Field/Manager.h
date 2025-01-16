@@ -9,13 +9,13 @@ namespace utl::base{class Data;}
 namespace utl::base{class Field;}
 
 
-namespace dat::atr{
+namespace dat::atr::field{
 
-class Field
+class Manager
 {
 public:
-  Field();
-  ~Field();
+  Manager();
+  ~Manager();
 
 public:
   //Main function

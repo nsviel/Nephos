@@ -1,21 +1,21 @@
-#include "Field.h"
+#include "Manager.h"
 
 #include <Utility/Namespace.h>
 
 
-namespace dat::atr{
+namespace dat::atr::field{
 
 //Constructor / Destructor
-Field::Field(){
+Manager::Manager(){
   //---------------------------
 
 
   //---------------------------
 }
-Field::~Field(){}
+Manager::~Manager(){}
 
-//Subfunction
-std::vector<std::string> Field::get_field_names(utl::base::Data& data){
+//Main function
+std::vector<std::string> Manager::get_field_names(utl::base::Data& data){
   std::vector<std::string> vec_name;
   //---------------------------
 
@@ -27,7 +27,7 @@ std::vector<std::string> Field::get_field_names(utl::base::Data& data){
   return vec_name;
 
 }
-std::vector<float>& Field::get_field_data(utl::base::Data& data, const std::string& name){
+std::vector<float>& Manager::get_field_data(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   auto field = get_field(data, name);
@@ -41,7 +41,7 @@ std::vector<float>& Field::get_field_data(utl::base::Data& data, const std::stri
   //---------------------------
   return field->data;
 }
-glm::vec2 Field::get_field_range(utl::base::Data& data, const std::string& name){
+glm::vec2 Manager::get_field_range(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   //Get data
@@ -57,7 +57,7 @@ glm::vec2 Field::get_field_range(utl::base::Data& data, const std::string& name)
   //---------------------------
   return glm::vec2(min, max);
 }
-void Field::set_field_data(utl::base::Data& data, const std::string& name, std::vector<float>& vec){
+void Manager::set_field_data(utl::base::Data& data, const std::string& name, std::vector<float>& vec){
   if(vec.size() == 0) return;
   //---------------------------
 
@@ -69,7 +69,7 @@ void Field::set_field_data(utl::base::Data& data, const std::string& name, std::
 }
 
 //Subfunction
-void Field::create_field(utl::base::Data& data, const std::string& name){
+void Manager::create_field(utl::base::Data& data, const std::string& name){
   if(is_field_exists(data, name)) return;
   //---------------------------
 
@@ -79,7 +79,7 @@ void Field::create_field(utl::base::Data& data, const std::string& name){
 
   //---------------------------
 }
-bool Field::is_field_exists(utl::base::Data& data, const std::string& name){
+bool Manager::is_field_exists(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   auto it = data.map_field.find(name);
@@ -91,7 +91,7 @@ bool Field::is_field_exists(utl::base::Data& data, const std::string& name){
 
   //---------------------------
 }
-std::shared_ptr<utl::base::Field> Field::get_field(utl::base::Data& data, const std::string& name){
+std::shared_ptr<utl::base::Field> Manager::get_field(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   auto it = data.map_field.find(name);
