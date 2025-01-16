@@ -129,7 +129,7 @@ void Binary::parse_vertex_little_endian(io::imp::Configuration* config, std::ifs
   buffer.xyz.resize(config->nb_vertex, glm::vec3(0,0,0));
   if(get_property_id(config, io::imp::TS) != -1) buffer.ts.resize(config->nb_vertex, 0);
   if(get_property_id(config, io::imp::I) != -1) buffer.Is.resize(config->nb_vertex, 0);
-  if(get_property_id(config, io::imp::NXYZ) != -1) buffer.Nxyz.resize(config->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(config, io::imp::NXYZ) != -1) buffer.Nxyz.resize(config->nb_vertex, glm::vec3(0, 0, 0));
   if(get_property_id(config, io::imp::RGB) != -1){
     buffer.rgb.resize(config->nb_vertex, glm::vec3(0, 0, 0));
     buffer.rgba.resize(config->nb_vertex, glm::vec4(0, 0, 0, 0));
@@ -214,6 +214,8 @@ void Binary::parse_face_little_endian(io::imp::Configuration* config, std::ifstr
 
       if(index < buffer_tmp.xyz.size()){
         buffer.xyz.push_back(buffer_tmp.xyz[index]);
+        buffer.Nxyz.push_back(buffer_tmp.Nxyz[index]);
+        buffer.Is.push_back(buffer_tmp.Is[index]);
       }
     }
   }

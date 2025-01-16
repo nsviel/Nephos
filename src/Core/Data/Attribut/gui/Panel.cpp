@@ -69,8 +69,9 @@ void Panel::enum_data(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   std::vector<std::string> vec_name = atr_field->get_field_names(*entity->data);
+  bool has_normal = (entity->data->Nxyz.size() != 0);
   bool has_color = (entity->data->rgb.size() != 0);
-  int size = 1 + (has_color ? 1 : 0) + vec_name.size();
+  int size = 1 + (has_normal ? 1 : 0) + (has_color ? 1 : 0) + vec_name.size();
 
   ImGui::PushStyleColor(ImGuiCol_TableRowBg, IM_COL32(0, 0, 0, 255));
   ImGui::PushStyleColor(ImGuiCol_TableRowBgAlt, IM_COL32(0, 0, 0, 255));
@@ -80,6 +81,12 @@ void Panel::enum_data(std::shared_ptr<utl::base::Element> element){
   //Location
   ImGui::TableNextColumn();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "XYZ");
+
+  //Normal
+  if(has_normal){
+    ImGui::TableNextColumn();
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "Nxyz");
+  }
 
   //Color
   if(has_color){

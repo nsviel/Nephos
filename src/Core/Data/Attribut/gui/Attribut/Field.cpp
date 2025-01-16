@@ -74,7 +74,12 @@ void Field::draw_selection(std::shared_ptr<utl::base::Element> element){
 void Field::draw_parameter(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
-
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+  if(ImGui::Button("Normalize##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+    //cam_manager->make_screenshot_color();
+  }
+  ImGui::PopStyleColor(2);
 
   //---------------------------
 }
