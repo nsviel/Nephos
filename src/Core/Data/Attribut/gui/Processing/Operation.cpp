@@ -2,7 +2,7 @@
 
 #include <Data/Attribut/Namespace.h>
 #include <Data/Element/Namespace.h>
-#include <Data/Texture/Namespace.h>
+#include <Data/Image/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 

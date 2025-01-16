@@ -1,6 +1,6 @@
 #include "Panel.h"
 
-#include <Data/Texture/Namespace.h>
+#include <Data/Image/Namespace.h>
 #include <Data/Graph/Namespace.h>
 #include <Data/Element/Namespace.h>
 #include <Engine/Renderer/Namespace.h>

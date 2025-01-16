@@ -9,7 +9,7 @@ add_subdirectory(Player)
 add_subdirectory(Attribut)
 add_subdirectory(Base)
 add_subdirectory(Sensor)
-add_subdirectory(Texture)
+add_subdirectory(Image)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp

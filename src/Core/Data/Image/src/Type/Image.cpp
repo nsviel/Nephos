@@ -1,6 +1,6 @@
 #include "Image.h"
 
-#include <Data/Texture/Namespace.h>
+#include <Data/Image/Namespace.h>
 #include <Data/Element/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>

@@ -1,6 +1,6 @@
 #include "Overlay.h"
 
-#include <Data/Texture/Namespace.h>
+#include <Data/Image/Namespace.h>
 
 
 namespace dat::img::gui{

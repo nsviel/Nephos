@@ -7,4 +7,4 @@
 #include <Data/Graph/Namespace.h>
 #include <Data/Player/Namespace.h>
 #include <Data/Sensor/Namespace.h>
-#include <Data/Texture/Namespace.h>
+#include <Data/Image/Namespace.h>
