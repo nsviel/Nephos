@@ -74,8 +74,8 @@ void Subpass::update_uniform(std::shared_ptr<vk::structure::Render> render){
   //---------------------------
 
   vk::gfx::edl::Structure& edl_struct = vk_struct->graphics.render.edl_struct;
-  edl_struct.tex_width = vk_struct->window.dimension.x;
-  edl_struct.tex_height = vk_struct->window.dimension.y;
+  edl_struct.tex_width = render->framebuffer.current->width;
+  edl_struct.tex_height = render->framebuffer.current->height;
   vk_uniform->update_uniform("parameter", *render->descriptor_set, edl_struct);
 
   //---------------------------
@@ -86,9 +86,8 @@ void Subpass::update_sampler(std::shared_ptr<vk::structure::Render> render){
   std::shared_ptr<vk::structure::Sampler> sampler_color = vk_sampler->query_sampler(*render->descriptor_set, "tex_color");
   std::shared_ptr<vk::structure::Sampler> sampler_depth = vk_sampler->query_sampler(*render->descriptor_set, "tex_depth");
 
-  vk::structure::Framebuffer& framebuffer = vk_struct->graphics.render.renderpass.geometry->framebuffer.window;
-  sampler_color->image = std::make_shared<vk::structure::Image>(framebuffer.color);
-  sampler_depth->image = std::make_shared<vk::structure::Image>(framebuffer.depth);
+  sampler_color->image = std::make_shared<vk::structure::Image>(render->framebuffer.previous->color);
+  sampler_depth->image = std::make_shared<vk::structure::Image>(render->framebuffer.previous->depth);
 
   //---------------------------
   vk_sampler->actualize_sampler(*render->descriptor_set);

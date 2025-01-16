@@ -29,7 +29,8 @@ void Renderpass::record_all_renderpass(std::shared_ptr<vk::structure::Batch> bat
     std::shared_ptr<vk::structure::Render> render = std::make_shared<vk::structure::Render>();
     render->renderpass = renderpass;
     render->semaphore = batch->semaphore;
-    render->framebuffer = std::make_shared<vk::structure::Framebuffer>(renderpass->framebuffer.window);
+    render->framebuffer.previous = std::make_shared<vk::structure::Framebuffer>(vk_struct->graphics.render.renderpass.geometry->framebuffer.window);
+    render->framebuffer.current = std::make_shared<vk::structure::Framebuffer>(renderpass->framebuffer.window);
     render->viewport = std::make_shared<vk::structure::Viewport>(vk_struct->core.viewport);
 
     this->record_renderpass(render);
@@ -79,10 +80,10 @@ void Renderpass::start_renderpass(std::shared_ptr<vk::structure::Render> render)
   VkRenderPassBeginInfo renderpass_info{};
   renderpass_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
   renderpass_info.renderPass = render->renderpass->handle;
-  renderpass_info.framebuffer = render->framebuffer->handle;
+  renderpass_info.framebuffer = render->framebuffer.current->handle;
   renderpass_info.renderArea.offset = {0, 0};
-  renderpass_info.renderArea.extent.width = render->framebuffer->width;
-  renderpass_info.renderArea.extent.height = render->framebuffer->height;
+  renderpass_info.renderArea.extent.width = render->framebuffer.current->width;
+  renderpass_info.renderArea.extent.height = render->framebuffer.current->height;
   renderpass_info.clearValueCount = static_cast<uint32_t>(clear_value.size());
   renderpass_info.pClearValues = clear_value.data();
 

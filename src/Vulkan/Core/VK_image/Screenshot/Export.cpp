@@ -16,6 +16,7 @@ Export::Export(vk::Structure* vk_struct){
   this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
   this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);
   this->vk_mem_allocator = new vk::memory::Allocator(vk_struct);
+  this->vk_render = new vk::render::Screenshot(vk_struct);
 
   //---------------------------
 }
@@ -25,21 +26,35 @@ Export::~Export(){}
 void Export::make_screenshot_color(){
   //---------------------------
 
-  //  std::shared_ptr<vk::structure::Render> render = std::make_shared<vk::structure::Render>();
-  //render->renderpass = renderpass;
-  //render->framebuffer = std::make_shared<vk::structure::Framebuffer>(renderpass->framebuffer.screenshot);
+  //Render framebuffer
+  std::shared_ptr<vk::structure::Render> render = std::make_shared<vk::structure::Render>();
+  render->renderpass = vk_struct->graphics.render.renderpass.geometry;
+  render->framebuffer.current = std::make_shared<vk::structure::Framebuffer>(render->renderpass->framebuffer.screenshot);
+  vk_render->render_screenshot(render);
 
+  //Render framebuffer
+  render = std::make_shared<vk::structure::Render>();
+  render->renderpass = vk_struct->graphics.render.renderpass.postprocess;
+  render->framebuffer.previous = std::make_shared<vk::structure::Framebuffer>(vk_struct->graphics.render.renderpass.geometry->framebuffer.screenshot);
+  render->framebuffer.current = std::make_shared<vk::structure::Framebuffer>(render->renderpass->framebuffer.screenshot);
+  vk_render->render_screenshot(render);
 
-  vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.geometry;
-  this->export_image(renderpass.framebuffer.screenshot.color);
+  //Export image
+  this->export_image(render->framebuffer.current->color);
 
   //---------------------------
 }
 void Export::make_screenshot_depth(){
   //---------------------------
 
-  vk::structure::Renderpass& renderpass = *vk_struct->graphics.render.renderpass.geometry;
-  this->export_depth(renderpass.framebuffer.screenshot.depth);
+  //Render framebuffer
+  std::shared_ptr<vk::structure::Render> render = std::make_shared<vk::structure::Render>();
+  render->renderpass = vk_struct->graphics.render.renderpass.geometry;
+  render->framebuffer.current = std::make_shared<vk::structure::Framebuffer>(render->renderpass->framebuffer.screenshot);
+  vk_render->render_screenshot(render);
+
+  //Export image
+  this->export_depth(render->framebuffer.current->depth);
 
   //---------------------------
 }

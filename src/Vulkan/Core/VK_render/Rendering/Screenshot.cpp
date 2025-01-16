@@ -18,12 +18,11 @@ Screenshot::Screenshot(vk::Structure* vk_struct){
 Screenshot::~Screenshot(){}
 
 //Main function
-void Screenshot::make_screenshot(std::shared_ptr<vk::structure::Render> render){
+void Screenshot::render_screenshot(std::shared_ptr<vk::structure::Render> render){
   //---------------------------
 
   this->make_viewport(render);
   this->make_recording(render);
-  this->make_export();
 
   //---------------------------
 }
@@ -35,15 +34,15 @@ void Screenshot::make_viewport(std::shared_ptr<vk::structure::Render> render){
   vk::structure::Viewport viewport;
   viewport.handle.x = 0.0f;
   viewport.handle.y = 0.0f;
-  viewport.handle.width = static_cast<float>(render->framebuffer->width);
-  viewport.handle.height = static_cast<float>(render->framebuffer->height);
+  viewport.handle.width = static_cast<float>(render->framebuffer.current->width);
+  viewport.handle.height = static_cast<float>(render->framebuffer.current->height);
   viewport.handle.minDepth = 0.0f;
   viewport.handle.maxDepth = 1.0f;
 
   viewport.scissor.offset = {0, 0};
   viewport.scissor.extent = {
-    static_cast<uint32_t>(render->framebuffer->width),
-    static_cast<uint32_t>(render->framebuffer->height)
+    static_cast<uint32_t>(render->framebuffer.current->width),
+    static_cast<uint32_t>(render->framebuffer.current->height)
   };
 
   //---------------------------
@@ -52,18 +51,8 @@ void Screenshot::make_viewport(std::shared_ptr<vk::structure::Render> render){
 void Screenshot::make_recording(std::shared_ptr<vk::structure::Render> render){
   //---------------------------
 
-  auto& renderpass = vk_struct->core.drawer.vec_renderpass[0];
-
   vk_renderpass->record_renderpass(render);
   vk_struct->core.command.graphics->add_command(render);
-
-  //---------------------------
-}
-void Screenshot::make_export(){
-  //---------------------------
-
-  vk::screenshot::Export vk_screenshot(vk_struct);
-  vk_screenshot.make_screenshot_color();
 
   //---------------------------
 }

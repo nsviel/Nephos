@@ -15,6 +15,7 @@ namespace vk::commandbuffer{class Pool;}
 namespace vk::commandbuffer{class Allocator;}
 namespace vk::memory{class Transfer;}
 namespace vk::memory{class Allocator;}
+namespace vk::render{class Screenshot;}
 namespace vk::structure{class Image;}
 
 
@@ -45,6 +46,7 @@ private:
   vk::commandbuffer::Allocator* vk_allocator;
   vk::memory::Transfer* vk_mem_transfer;
   vk::memory::Allocator* vk_mem_allocator;
+  vk::render::Screenshot* vk_render;
 };
 
 }

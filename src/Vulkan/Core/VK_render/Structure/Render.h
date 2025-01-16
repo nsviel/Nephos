@@ -17,6 +17,15 @@
 
 namespace vk::structure{
 
+struct Render_fbo{
+  //---------------------------
+
+  std::shared_ptr<vk::structure::Framebuffer> current;
+  std::shared_ptr<vk::structure::Framebuffer> previous;
+
+  //---------------------------
+};
+
 struct Render{
   //Associated to renderpass operation
   //---------------------------
@@ -26,10 +35,10 @@ struct Render{
   int subset_ID = 0;
 
   //Structure
+  vk::structure::Render_fbo framebuffer;
   std::shared_ptr<vk::structure::Renderpass> renderpass;
   std::shared_ptr<vk::structure::Subpass> subpass;
   std::shared_ptr<vk::structure::Pipeline> pipeline;
-  std::shared_ptr<vk::structure::Framebuffer> framebuffer;
   std::shared_ptr<vk::structure::Command_buffer> command_buffer;
   std::shared_ptr<vk::structure::Descriptor_set> descriptor_set;
   std::shared_ptr<vk::structure::Object> object;

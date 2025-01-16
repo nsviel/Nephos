@@ -31,7 +31,7 @@ struct Structure{
   vk::pipeline::Structure pipeline;
   vk::presentation::Structure presentation;
   vk::validation::Structure validation;
-  vk::drawer::Structure drawer;
+  vk::render::Structure drawer;
   vk::image::Structure image;
 
   //---------------------------
