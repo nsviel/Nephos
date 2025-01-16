@@ -3,14 +3,14 @@
 
 ## Documentation
 
-**-------------------------**
+<!-- ------------------------- -->
 <details><summary>Characteristics</summary>
 
 Hackable point cloud / mesh / mkv visualization and processing.
 
 </details>
 
-**-------------------------**
+<!-- ------------------------- -->
 <details><summary>Installation</summary>
 For now the engine is only supported for Linux OS and was tested on Ubuntu 22.04LTS.
 
@@ -27,7 +27,7 @@ Then compile and run the executable
 ```
 </details>
 
-**-------------------------**
+<!-- ------------------------- -->
 <details><summary>License</summary>
 
  # Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)
