@@ -1,6 +1,8 @@
 # Nephos
 ## Vulkan-Based Point Cloud Engine
 
+![Screenshot from 2025-01-16 17-47-36](https://github.com/user-attachments/assets/16c029b5-146b-4cad-a5ee-c8cd8d344f89)
+
 ## Documentation
 
 <!-- ------------------------- -->
