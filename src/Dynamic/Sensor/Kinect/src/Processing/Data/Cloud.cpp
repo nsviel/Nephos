@@ -16,7 +16,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
   this->k4n_intensity = new k4n::cloud::Intensity(node_k4n);
   this->k4n_location = new k4n::cloud::Location(node_k4n);
   this->k4n_transformation = new k4n::transformation::Depth_to_cloud(node_k4n);
-  this->atr_field = new dat::atr::Field();
+  this->atr_field = new dat::atr::field::Manager();
   this->atr_location = new dat::atr::Location();
 
   //---------------------------

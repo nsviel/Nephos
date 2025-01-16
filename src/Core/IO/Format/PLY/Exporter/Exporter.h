@@ -8,7 +8,7 @@
 #include <iomanip> //setprecision
 
 namespace utl::base{class Pose;}
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 namespace fmt::ply::exporter{class Header;}
 
 
@@ -32,7 +32,7 @@ public:
 
 private:
   fmt::ply::exporter::Header* io_header;
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
 };
 
 }

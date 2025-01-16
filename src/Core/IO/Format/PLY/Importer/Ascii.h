@@ -13,7 +13,7 @@
 #include <stdint.h>
 #include <cstdint>
 
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 
 
 namespace fmt::ply::importer{
@@ -36,7 +36,7 @@ public:
   int get_property_id(io::imp::Configuration* config, io::imp::Field field);
 
 private:
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
 
   io::imp::Buffer buffer;
 };

@@ -20,7 +20,7 @@ Panel::Panel(dat::atr::Node* node_attribut, bool* show_window){
   this->gui_field = new dat::atr::gui::Field(node_attribut);
   this->gph_selection = node_graph->get_gph_selection();
   this->dat_element = new dat::elm::Element();
-  this->atr_field = new dat::atr::Field();
+  this->atr_field = new dat::atr::field::Manager();
 
   this->show_window = show_window;
   this->panel_name = "Attribut";

@@ -11,7 +11,7 @@ namespace fmt::pts{
 Importer::Importer(){
   //---------------------------
 
-  this->atr_field = new dat::atr::Field();
+  this->atr_field = new dat::atr::field::Manager();
 
   this->Is_format = fmt::pts::F2048_2048;
   this->reference.format = ".pts";

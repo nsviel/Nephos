@@ -9,7 +9,7 @@
 #include <fstream>
 #include <iostream>
 
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 
 
 namespace fmt::pts{
@@ -29,7 +29,7 @@ public:
   void write_data_ascii(io::exp::Configuration& config, utl::base::Data& data);
 
 private:
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
 };
 
 }

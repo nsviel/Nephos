@@ -12,7 +12,7 @@ Intensity::Intensity(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_struct = node_k4n->get_k4n_structure();
-  this->atr_field = new dat::atr::Field();
+  this->atr_field = new dat::atr::field::Manager();
   this->atr_location = new dat::atr::Location();
 
   //---------------------------

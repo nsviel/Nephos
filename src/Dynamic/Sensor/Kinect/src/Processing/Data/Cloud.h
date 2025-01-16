@@ -12,7 +12,7 @@ namespace k4n::cloud{class Intensity;}
 namespace k4n::cloud{class Location;}
 namespace k4n::transformation{class Depth_to_cloud;}
 namespace utl::base{class Data;}
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 namespace dat::base{class Sensor;}
 namespace dat::atr{class Location;}
 
@@ -39,7 +39,7 @@ private:
   k4n::cloud::Intensity* k4n_intensity;
   k4n::cloud::Location* k4n_location;
   k4n::transformation::Depth_to_cloud* k4n_transformation;
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
   dat::atr::Location* atr_location;
 };
 

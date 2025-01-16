@@ -4,7 +4,7 @@
 
 namespace dat::atr{class Node;}
 namespace dat::atr{class Structure;}
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 namespace dat::elm{class Element;}
 namespace utl::base{class Element;}
 
@@ -29,7 +29,7 @@ public:
 private:
   dat::atr::Structure* atr_struct;
   dat::elm::Element* dat_element;
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
 
   int selection = 0;
 };

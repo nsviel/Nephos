@@ -13,7 +13,7 @@ Color::Color(dat::atr::Node* node_attribut){
 
   this->atr_struct = node_attribut->get_atr_struct();
   this->atr_color = new dat::atr::Color(node_attribut);
-  this->atr_field = new dat::atr::Field();
+  this->atr_field = new dat::atr::field::Manager();
   this->dat_element = new dat::elm::Element();
 
   //---------------------------

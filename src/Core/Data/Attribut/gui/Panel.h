@@ -7,7 +7,7 @@ namespace dat::atr{class Node;}
 namespace dat::atr::gui{class Color;}
 namespace dat::atr::gui{class Normal;}
 namespace dat::atr::gui{class Field;}
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 namespace dat::gph{class Selection;}
 namespace dat::elm{class Element;}
 namespace utl::base{class Element;}
@@ -36,7 +36,7 @@ private:
   dat::atr::gui::Field* gui_field;
   dat::gph::Selection* gph_selection;
   dat::elm::Element* dat_element;
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
 
   std::string panel_name;
   bool* show_window;

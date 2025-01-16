@@ -7,7 +7,7 @@
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 
 
 namespace dat::atr{
@@ -32,7 +32,7 @@ public:
   void compute_incidence_angle(dat::base::Entity& entity);
 
 private:
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
 };
 
 }

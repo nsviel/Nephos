@@ -10,7 +10,7 @@ namespace dat::atr{
 Location::Location(){
   //---------------------------
 
-  this->atr_field = new dat::atr::Field();
+  this->atr_field = new dat::atr::field::Manager();
 
   //---------------------------
 }

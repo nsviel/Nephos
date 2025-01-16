@@ -11,7 +11,7 @@ namespace dat::img{
 Converter::Converter(){
   //---------------------------
 
-  this->atr_field = new dat::atr::Field();
+  this->atr_field = new dat::atr::field::Manager();
 
   //---------------------------
 }

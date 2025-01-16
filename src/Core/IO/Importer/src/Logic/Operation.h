@@ -18,7 +18,7 @@ namespace dat::base{class Entity;}
 namespace eng::trf{class Transformation;}
 namespace eng::trf{class Operation;}
 namespace eng::trf{class IO;}
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 
 
 namespace io::imp{
@@ -53,7 +53,7 @@ private:
   eng::trf::Transformation* trf_transform;
   eng::trf::Operation* trf_operation;
   eng::trf::IO* trf_io;
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
 };
 
 }

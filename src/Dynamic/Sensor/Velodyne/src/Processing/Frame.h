@@ -1,7 +1,7 @@
 #pragma once
 
 namespace utl::base{class Data;}
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 
 
 namespace vld::processing{
@@ -27,7 +27,7 @@ public:
 private:
   utl::base::Data* frame_onrun;
   utl::base::Data* frame_ended;
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
 };
 
 }

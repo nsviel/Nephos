@@ -12,7 +12,7 @@ Frame::Frame(){
 
   this->frame_onrun = new utl::base::Data();
   this->frame_ended = new utl::base::Data();
-  this->atr_field = new dat::atr::Field();
+  this->atr_field = new dat::atr::field::Manager();
 
   //---------------------------
 }

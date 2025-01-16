@@ -8,7 +8,7 @@ namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::base{class Sensor;}
 namespace utl::base{class Data;}
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 namespace dat::base{class Sensor;}
 namespace dat::atr{class Location;}
 
@@ -32,7 +32,7 @@ public:
 
 private:
   k4n::Structure* k4n_struct;
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
   dat::atr::Location* atr_location;
 };
 

@@ -5,7 +5,7 @@
 #include <memory>
 
 namespace utl::base{class Data;}
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 namespace utl::base{class Image;}
 
 
@@ -27,7 +27,7 @@ public:
   void convert_color_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image);
 
 private:
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
 };
 
 }

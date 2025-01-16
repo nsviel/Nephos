@@ -9,7 +9,7 @@ namespace fmt::ply::importer{
 Ascii::Ascii(){
   //---------------------------
 
-  this->atr_field = new dat::atr::Field();
+  this->atr_field = new dat::atr::field::Manager();
 
   //---------------------------
 }

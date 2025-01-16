@@ -27,7 +27,7 @@ Operation::Operation(io::imp::Node* node_importer){
   this->trf_transform = new eng::trf::Transformation();
   this->trf_operation = new eng::trf::Operation();
   this->trf_io = new eng::trf::IO();
-  this->atr_field = new dat::atr::Field();
+  this->atr_field = new dat::atr::field::Manager();
 
   //---------------------------
 }

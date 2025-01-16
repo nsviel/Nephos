@@ -13,7 +13,7 @@ namespace dat::base{class Sensor;}
 namespace dat::img{class Image;}
 namespace dat::gph{class Selection;}
 namespace utl::base{class Image;}
-namespace dat::atr{class Field;}
+namespace dat::atr::field{class Manager;}
 
 
 namespace rad::cor{
@@ -40,7 +40,7 @@ private:
   rad::cor::Structure* rad_struct;
   rad::cor::Model* rad_model;
   rad::cor::io::Model* rad_io_model;
-  dat::atr::Field* atr_field;
+  dat::atr::field::Manager* atr_field;
 };
 
 }
