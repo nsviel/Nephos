@@ -146,9 +146,8 @@ void Location::compute_height(dat::base::Entity& entity){
   //---------------------------
 
   //Retrieve field
-  std::shared_ptr<std::vector<float>> vec_h_ptr = atr_field->get_field_data(data, "H");
-  if(!vec_h_ptr || !vec_h_ptr->empty()) return;
-  std::vector<float>& vec_h = *vec_h_ptr;
+  std::vector<float>& vec_h = atr_field->get_field_data(data, "H");
+  if(!vec_h.empty()) return;
 
   //Set length
   std::vector<glm::vec3>& xyz = data.xyz;
@@ -168,9 +167,8 @@ void Location::compute_range(dat::base::Entity& entity){
   //---------------------------
 
   //Retrieve field
-  std::shared_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");
-  if(!vec_R_ptr || !vec_R_ptr->empty()) return;
-  std::vector<float>& vec_R = *vec_R_ptr;
+  std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
+  if(!vec_R.empty()) return;
 
   //Set length
   std::vector<glm::vec3>& xyz = data.xyz;
@@ -188,12 +186,8 @@ void Location::compute_incidence_angle(dat::base::Entity& entity){
   utl::base::Data& data = *entity.data;
   //---------------------------
 
-  std::shared_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");
-  std::shared_ptr<std::vector<float>> vec_It_ptr = atr_field->get_field_data(data, "It");
-  if(!vec_R_ptr || !vec_It_ptr) return;
-
-  std::vector<float>& It = *vec_It_ptr;
-  std::vector<float>& R = *vec_R_ptr;
+  std::vector<float>& R = atr_field->get_field_data(data, "R");
+  std::vector<float>& It = atr_field->get_field_data(data, "It");
   std::vector<glm::vec3>& xyz = data.xyz;
   std::vector<glm::vec3>& Nxyz = data.Nxyz;
 

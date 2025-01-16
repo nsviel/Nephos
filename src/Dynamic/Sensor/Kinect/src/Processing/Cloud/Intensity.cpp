@@ -54,9 +54,8 @@ void Intensity::extraction_transfer(k4n::base::Sensor& sensor){
 
   std::unique_lock<std::mutex> lock(data.mutex);
 
-  std::shared_ptr<std::vector<float>> vec_I = atr_field->get_field_data(data, "I");
-  if(!vec_I) return;
-  *vec_I = sensor.infra.data.Is;
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
+  vec_I = sensor.infra.data.Is;
 
   //---------------------------
 }

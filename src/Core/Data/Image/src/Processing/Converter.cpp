@@ -56,10 +56,7 @@ void Converter::convert_normal_to_image(utl::base::Data& data, std::shared_ptr<u
 void Converter::convert_intensity_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
-  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if(!vec_I_ptr) return;
-
-  std::vector<float>& vec_I = *vec_I_ptr;
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   std::vector<uint8_t> output = std::vector<uint8_t>(vec_I.size() * 4, 0);
 
   // Convert the float value to uint8_t
@@ -84,10 +81,7 @@ void Converter::convert_intensity_to_image(utl::base::Data& data, std::shared_pt
 void Converter::convert_spherical_pc_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
-  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if(!vec_I_ptr) return;
-
-  std::vector<float>& vec_I = *vec_I_ptr;
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   std::vector<glm::vec3>& vec_xyz = data.xyz;
   int width = 10000;
   int height = 5000;
@@ -137,10 +131,7 @@ void Converter::convert_spherical_pc_to_image(utl::base::Data& data, std::shared
 void Converter::convert_whole_spherical_pc_to_image(utl::base::Data& data, std::shared_ptr<utl::base::Image> image){
   //---------------------------
 
-  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if(!vec_I_ptr) return;
-
-  std::vector<float>& vec_I = *vec_I_ptr;
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   std::vector<glm::vec3>& vec_xyz = data.xyz;
   int width = 20000;
   int height = 10000;

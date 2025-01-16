@@ -76,7 +76,7 @@ void Operation::ope_color(std::shared_ptr<dat::base::Object> object){
   std::unique_lock<std::mutex> lock(data.mutex);
 
   //Bouger oute cette merde dans colorization dat attribut
-  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
 
   //If color
   if(data.xyz.size() == 0) return;
@@ -90,11 +90,11 @@ void Operation::ope_color(std::shared_ptr<dat::base::Object> object){
     }
   }
   //Else if intensity
-  else if(vec_I_ptr && !vec_I_ptr->empty()){
+  else if(!vec_I.empty()){
     data.rgba.resize(data.xyz.size(), glm::vec4(0, 0, 0, 0));
 
-    for(int i=0; i<vec_I_ptr->size(); i++){
-      float& Is = (*vec_I_ptr)[i];
+    for(int i=0; i<vec_I.size(); i++){
+      float& Is = vec_I[i];
       data.rgba[i] = glm::vec4(Is, Is, Is, 1);
     }
   }

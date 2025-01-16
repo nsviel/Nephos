@@ -23,9 +23,8 @@ void Heatmap::colorization_heatmap(dat::base::Entity& entity){
   //---------------------------
 
   //Retrieve field
-  std::shared_ptr<std::vector<float>> vec_field = atr_field->get_field_data(data, atr_struct->color.field);
-  if(!vec_field) return;
-  std::vector<float> field = *vec_field;
+  std::vector<float>& vec_field = atr_field->get_field_data(data, atr_struct->color.field);
+  std::vector<float> field = vec_field;
 
   //Normalization
   math::normalize(field, atr_struct->color.range, glm::vec2(0, 1));

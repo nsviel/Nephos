@@ -20,11 +20,12 @@ public:
 public:
   //Main function
   std::vector<std::string> get_field_names(utl::base::Data& data);
-  std::shared_ptr<std::vector<float>> get_field_data(utl::base::Data& data, const std::string& name);
+  std::vector<float>& get_field_data(utl::base::Data& data, const std::string& name);
   glm::vec2 get_field_range(utl::base::Data& data, const std::string& name);
   void set_field_data(utl::base::Data& data, const std::string& name, std::vector<float>& vec);
   void create_field(utl::base::Data& data, const std::string& name);
-
+  bool is_field_exists(utl::base::Data& data, const std::string& name);
+  
 private:
   //Subfunction
   std::shared_ptr<utl::base::Field> get_field(utl::base::Data& data, const std::string& name);

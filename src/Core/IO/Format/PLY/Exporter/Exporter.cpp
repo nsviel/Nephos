@@ -81,15 +81,15 @@ void Exporter::build_structure(io::exp::Configuration& config, utl::base::Data& 
   }
 
   //Intensity
-  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if(vec_I_ptr && !vec_I_ptr->empty()){
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
+  if(!vec_I.empty()){
     config.vec_property.push_back(io::exp::I);
     config.nb_property++;
   }
 
   //Timestamp
-  std::shared_ptr<std::vector<float>> vec_ts_ptr = atr_field->get_field_data(data, "ts");
-  if(vec_ts_ptr && !vec_ts_ptr->empty()){
+  std::vector<float>& vec_ts = atr_field->get_field_data(data, "ts");
+  if(!vec_ts.empty()){
     config.vec_property.push_back(io::exp::TS);
     config.nb_property++;
   }
@@ -99,10 +99,7 @@ void Exporter::build_structure(io::exp::Configuration& config, utl::base::Data& 
 void Exporter::write_data_ascii(io::exp::Configuration& config, std::ofstream& file, utl::base::Data& data){
   //---------------------------
 
-  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if(!vec_I_ptr) return;
-
-  std::vector<float>& vec_I = *vec_I_ptr;
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   std::vector<glm::vec3>& xyz = data.xyz;
   std::vector<glm::vec3>& rgb = data.rgb;
   std::vector<glm::vec4>& rgba = data.rgba;
@@ -145,12 +142,8 @@ void Exporter::write_data_ascii(io::exp::Configuration& config, std::ofstream& f
 void Exporter::write_data_binary(io::exp::Configuration& config, std::ofstream& file, utl::base::Data& data){
   //---------------------------
 
-  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  std::shared_ptr<std::vector<float>> vec_ts_ptr = atr_field->get_field_data(data, "ts");
-  if(!vec_I_ptr || !vec_ts_ptr) return;
-
-  std::vector<float>& vec_I = *vec_I_ptr;
-  std::vector<float>& vec_ts = *vec_ts_ptr;
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
+  std::vector<float>& vec_ts = atr_field->get_field_data(data, "ts");
   std::vector<glm::vec3>& xyz = data.xyz;
   std::vector<glm::vec3>& rgb = data.rgb;
   std::vector<glm::vec4>& rgba = data.rgba;

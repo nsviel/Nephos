@@ -41,10 +41,7 @@ void Exporter::write_data_ascii(io::exp::Configuration& config, utl::base::Data&
   }
 
   //Data : xyz (R) (rgb) (nxnynz)
-  std::shared_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if(!vec_I_ptr) return;
-
-  std::vector<float>& vec_I = *vec_I_ptr;
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   std::vector<glm::vec3>& xyz = data.xyz;
   std::vector<glm::vec3>& rgb = data.rgb;
   std::vector<glm::vec4>& rgba = data.rgba;

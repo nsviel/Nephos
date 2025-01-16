@@ -27,16 +27,19 @@ std::vector<std::string> Field::get_field_names(utl::base::Data& data){
   return vec_name;
 
 }
-std::shared_ptr<std::vector<float>> Field::get_field_data(utl::base::Data& data, const std::string& name){
+std::vector<float>& Field::get_field_data(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   auto field = get_field(data, name);
 
   // Check if field is nullptr
-  if(!field) return std::make_shared<std::vector<float>>();
+  if(!field){
+    static std::vector<float> empty_vector;
+    return empty_vector;
+  }
 
   //---------------------------
-  return std::make_shared<std::vector<float>>(field->data);
+  return field->data;
 }
 glm::vec2 Field::get_field_range(utl::base::Data& data, const std::string& name){
   //---------------------------
@@ -65,16 +68,22 @@ void Field::set_field_data(utl::base::Data& data, const std::string& name, std::
   //---------------------------
 }
 void Field::create_field(utl::base::Data& data, const std::string& name){
+  if(is_field_exists(data, name)) return;
+  //---------------------------
+
+  std::shared_ptr<utl::base::Field> new_field = std::make_shared<utl::base::Field>();
+  new_field->name = name;
+  data.map_field[name] = new_field;
+
+  //---------------------------
+}
+bool Field::is_field_exists(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   //Check if field is already present
   auto& field = data.map_field[name];
-  if(field) return;
-
-  //Create it
-  std::shared_ptr<utl::base::Field> new_field = std::make_shared<utl::base::Field>();
-  new_field->name = name;
-  data.map_field[name] = new_field;
+  if(field) return true;
+  else return false;
 
   //---------------------------
 }
