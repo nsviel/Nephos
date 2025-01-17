@@ -12,14 +12,25 @@ set(EXECUTABLE_NAME executable)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/build)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto -fno-fat-lto-objects")
+
+#-----------------
+# Operating System
+#-----------------
+if(WIN32)
+  include(cmake/windows.cmake)
+elseif(APPLE)
+  include(cmake/mac.cmake)
+elseif(UNIX AND NOT APPLE)
+  include(cmake/linux.cmake)
+else()
+  message(STATUS "Unknown operating system")
+endif()
 
 #-----------------
 # Source files
 #-----------------
 add_subdirectory(extern)
 add_subdirectory(src)
-#add_subdirectory(binding)
 
 #-----------------
 # Executable
@@ -29,5 +40,5 @@ add_executable(${EXECUTABLE_NAME}
 )
 
 target_link_libraries(${EXECUTABLE_NAME}
-  PRIVATE MAIN_APPLICATION -lcurl
+  PRIVATE MAIN_APPLICATION
 )
