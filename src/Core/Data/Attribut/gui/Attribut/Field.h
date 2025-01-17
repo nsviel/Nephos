@@ -26,6 +26,7 @@ public:
   void design_header(std::shared_ptr<utl::base::Element> element);
 
   //Subfunction
+  void init_selection(std::shared_ptr<dat::base::Entity> entity);
   void draw_selection(std::shared_ptr<dat::base::Entity> entity);
   void draw_parameter(std::shared_ptr<dat::base::Entity> entity);
 
@@ -34,8 +35,6 @@ private:
   dat::elm::Element* dat_element;
   dat::atr::field::Manager* atr_field;
   dat::atr::field::Operation* ope_field;
-
-  std::string selected_field = "";
 };
 
 }

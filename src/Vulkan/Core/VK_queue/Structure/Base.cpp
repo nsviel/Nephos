@@ -78,7 +78,7 @@ void Base::set_pause(bool value){
 
   // If pausing, wait until thread_pause reaches the waiting state
   if(value){
-    while(state == vk::queue::SUBMIT_COMMAND){
+    while(state != vk::queue::WAIT_COMMAND){
       std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
   }

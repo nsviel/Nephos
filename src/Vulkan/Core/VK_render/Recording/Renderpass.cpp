@@ -139,7 +139,7 @@ void Renderpass::prepare_command(std::shared_ptr<vk::structure::Render> render){
   //Semaphore
   if(render->semaphore){
     command->semaphore_wait = render->semaphore->handle;
-    render->semaphore = vk_semaphore->query_free_semaphore();
+    render->semaphore = vk_semaphore->query_free_semaphore();          
     command->semaphore_done = render->semaphore->handle;
   }
 

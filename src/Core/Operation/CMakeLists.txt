@@ -12,7 +12,6 @@ file(GLOB_RECURSE ALL_SOURCES
 #-----------------
 add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 find_package(OpenCV REQUIRED)
-find_library(LZ4_LIBRARIES NAMES liblz4.so HINTS "lz4/lib")
 find_library(MESHOPTIMIZER_LIB meshoptimizer)
 
 #-----------------
@@ -23,7 +22,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_CORE
 
   ${OpenCV_LIBS}
-  ${LZ4_LIBRARIES}
   meshoptimizer
   flann
 )

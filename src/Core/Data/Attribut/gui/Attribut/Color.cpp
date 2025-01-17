@@ -52,6 +52,8 @@ void Color::design_header(std::shared_ptr<utl::base::Element> element){
     ImGui::Separator();
   }
 
+  this->color_option(element);
+
   //---------------------------
 }
 
@@ -112,6 +114,7 @@ void Color::color_mode_field(std::shared_ptr<utl::base::Element> element){
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("Field##colorization", &atr_struct->color.mode, dat::atr::color::FIELD)){
+    gui_field->init_selection(entity);
     atr_color->make_colorization(element);
   }
 

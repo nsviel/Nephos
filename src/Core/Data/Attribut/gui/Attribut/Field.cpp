@@ -38,12 +38,23 @@ void Field::design_header(std::shared_ptr<utl::base::Element> element){
 }
 
 //Subfunction
-void Field::draw_selection(std::shared_ptr<dat::base::Entity> entity){
+void Field::init_selection(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   std::vector<std::string> vec_name = atr_field->get_field_names(*entity->data);
-  if(selected_field == "" && vec_name.size() != 0) selected_field = vec_name[0];
-  glm::vec2 range = atr_field->get_field_range(*entity->data, selected_field);
+  if(atr_struct->color.field == "" && vec_name.size() != 0){
+    atr_struct->color.field = vec_name[0];
+    atr_struct->color.range = atr_field->get_field_range(*entity->data, vec_name[0]);
+  }
+
+  //---------------------------
+}
+void Field::draw_selection(std::shared_ptr<dat::base::Entity> entity){
+  this->init_selection(entity);
+  //---------------------------
+
+  std::vector<std::string> vec_name = atr_field->get_field_names(*entity->data);
+  glm::vec2 range = atr_field->get_field_range(*entity->data, atr_struct->color.field);
 
   //Field selection table
   static int selection = 0;
@@ -67,7 +78,8 @@ void Field::draw_selection(std::shared_ptr<dat::base::Entity> entity){
       // Second column: display the name with selectable functionality
       const bool is_selected = (selection == i);
       if(ImGui::Selectable(name.c_str(), is_selected, ImGuiSelectableFlags_SpanAllColumns)){
-        this->selected_field = name;
+        atr_struct->color.field = name;
+        atr_struct->color.range = atr_field->get_field_range(*entity->data, name);
         selection = i;
       }
 
@@ -94,18 +106,20 @@ void Field::draw_parameter(std::shared_ptr<dat::base::Entity> entity){
   //Normalization
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-  if(ImGui::Button("Normalize##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
-    ope_field->normalize_field(*entity->data, selected_field);
+  if(ImGui::Button("Normalize##field", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+    ope_field->normalize_field(*entity->data, atr_struct->color.field);
   }
   ImGui::PopStyleColor(2);
 
   //Range
   glm::vec2 range = atr_field->get_field_range(*entity->data, atr_struct->color.field);
+  if(atr_struct->color.range.x < range.x) atr_struct->color.range.x = range.x;
+  if(atr_struct->color.range.y > range.y) atr_struct->color.range.y = range.y;
   float sensitivity = (range.y - range.x) / 100.0f;
   ImGui::Text("Range");
   ImGui::SameLine();
   ImGui::SetNextItemWidth(100);
-  ImGui::DragFloatRange2("Range##321", &atr_struct->color.range.x, &atr_struct->color.range.y, sensitivity, range.x, range.y, "%.2f", "%.2f");
+  ImGui::DragFloatRange2("Range##field", &atr_struct->color.range.x, &atr_struct->color.range.y, sensitivity, range.x, range.y, "%.2f", "%.2f");
 
   //---------------------------
 }

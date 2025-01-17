@@ -97,9 +97,8 @@ void Submission::make_presentation(std::shared_ptr<vk::structure::Command_set> s
   presentation_info.swapchainCount = 1;
   presentation_info.pSwapchains = &swapchain.handle;
   presentation_info.pImageIndices = &swapchain.current_ID;
-  presentation_info.pResults = nullptr; // Optional
 
-  VkQueue queue = vk_struct->core.device.queue.graphics.handle;
+  VkQueue queue = vk_struct->core.device.queue.presentation.handle;
   VkResult result = vkQueuePresentKHR(queue, &presentation_info);
 
   //Error handling

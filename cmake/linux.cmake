@@ -9,3 +9,4 @@ message(STATUS "Configuring for Linux")
 #-----------------
 # Library
 #-----------------
+set(CMAKE_BUILD_RPATH_USE_ORIGIN ON) 
