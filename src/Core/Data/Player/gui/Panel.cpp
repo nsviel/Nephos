@@ -57,15 +57,11 @@ void Panel::design_panel(){
   if(!element || !set) return;
   //---------------------------
 
-  ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
-
   gui_player->design_player(*set);
   gui_info->design_info(element);
   gui_info->design_configuration(element);
   gui_color->design_header(element);
   gui_transformation->design_matrix(element);
-
-  ImGui::PopStyleColor();
 
   //---------------------------
   ImGui::Separator();

@@ -42,6 +42,7 @@ void Field::draw_selection(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   std::vector<std::string> vec_name = atr_field->get_field_names(*entity->data);
+  if(selected_field == "" && vec_name.size() != 0) selected_field = vec_name[0];
   glm::vec2 range = atr_field->get_field_range(*entity->data, selected_field);
 
   //Field selection table
@@ -49,6 +50,7 @@ void Field::draw_selection(std::shared_ptr<dat::base::Entity> entity){
   static ImGuiTableFlags flags;
   flags |= ImGuiTableFlags_RowBg;
   flags |= ImGuiTableFlags_Borders;
+  ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.3f, 0.3f, 0.3f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_TableRowBg, IM_COL32(0, 0, 0, 255));
   if(ImGui::BeginTable("##attribut_field", 3, flags)){
     ImGui::TableSetupColumn("Column 1", ImGuiTableColumnFlags_WidthStretch);
@@ -82,19 +84,28 @@ void Field::draw_selection(std::shared_ptr<dat::base::Entity> entity){
 
     ImGui::EndTable();
   }
-  ImGui::PopStyleColor();
+  ImGui::PopStyleColor(2);
 
   //---------------------------
 }
 void Field::draw_parameter(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
+  //Normalization
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Normalize##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
     ope_field->normalize_field(*entity->data, selected_field);
   }
   ImGui::PopStyleColor(2);
+
+  //Range
+  glm::vec2 range = atr_field->get_field_range(*entity->data, atr_struct->color.field);
+  float sensitivity = (range.y - range.x) / 100.0f;
+  ImGui::Text("Range");
+  ImGui::SameLine();
+  ImGui::SetNextItemWidth(100);
+  ImGui::DragFloatRange2("Range##321", &atr_struct->color.range.x, &atr_struct->color.range.y, sensitivity, range.x, range.y, "%.2f", "%.2f");
 
   //---------------------------
 }

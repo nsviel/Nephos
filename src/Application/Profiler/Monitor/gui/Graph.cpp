@@ -200,10 +200,9 @@ void Graph::draw_graph_command(ImVec2 dimension, ImVec2 pose){
   ImGui::PushStyleColor(ImGuiCol_SliderGrab, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_SliderGrabActive, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
   ImGui::VSliderInt("##Y_axis", ImVec2(24, dimension.y), &prf_struct->max_time, 100, 10, "%d");
-  ImGui::PopStyleColor(6);
 
   ImGui::End();
-  ImGui::PopStyleColor();
+  ImGui::PopStyleColor(6);
 
   //---------------------------
 }

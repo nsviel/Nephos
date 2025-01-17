@@ -36,7 +36,10 @@ void Normal::draw_static(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   //Enable
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   ImGui::Button("Compute", ImVec2(100, 0));
+  ImGui::PopStyleColor(2);
 
   //Parameter: kNN
   ImGui::SetNextItemWidth(100);

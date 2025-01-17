@@ -38,6 +38,7 @@ void Panel::run_panel(){
     ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 2.0f));
     ImGui::PushStyleVar(ImGuiStyleVar_IndentSpacing, 10);
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.3f, 0.3f, 0.3f, 1.0f));
     ImGui::SetNextWindowSizeConstraints(ImVec2(300, 300), ImVec2(600, 600));
     if(ImGui::Begin(name.c_str(), show_window, flag) == 1){
 
@@ -45,7 +46,7 @@ void Panel::run_panel(){
 
       ImGui::End();
     }
-    ImGui::PopStyleColor();
+    ImGui::PopStyleColor(2);
     ImGui::PopStyleVar(3);
   }
 

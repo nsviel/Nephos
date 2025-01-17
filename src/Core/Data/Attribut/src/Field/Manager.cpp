@@ -50,12 +50,20 @@ glm::vec2 Manager::get_field_range(utl::base::Data& data, const std::string& nam
     return glm::vec2(0, 0);
   }
 
-  //Get range
-  float min = *std::min_element(field->data.begin(), field->data.end());
-  float max = *std::max_element(field->data.begin(), field->data.end());
+  //---------------------------
+  return glm::vec2(field->min, field->max);
+}
+void Manager::update_field_range(utl::base::Data& data, const std::string& name){
+  //---------------------------
+
+  //Get data
+  auto field = get_field(data, name);
+  if(field){
+    field->min = *std::min_element(field->data.begin(), field->data.end());
+    field->max = *std::max_element(field->data.begin(), field->data.end());
+  }
 
   //---------------------------
-  return glm::vec2(min, max);
 }
 void Manager::set_field_data(utl::base::Data& data, const std::string& name, std::vector<float>& vec){
   if(vec.size() == 0) return;
@@ -64,6 +72,7 @@ void Manager::set_field_data(utl::base::Data& data, const std::string& name, std
   this->create_field(data, name);
   auto field = get_field(data, name);
   if(field) field->data = vec;
+  this->update_field_range(data, name);
 
   //---------------------------
 }

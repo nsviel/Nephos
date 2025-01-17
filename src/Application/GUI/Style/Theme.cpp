@@ -37,7 +37,7 @@ void Theme::theme_window(){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
-  style.Colors[ImGuiCol_Header] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);
+  style.Colors[ImGuiCol_Header] = ImVec4(0.2f, 0.2f, 0.2f, 1.0f);
   style.Colors[ImGuiCol_Tab] = ImVec4(0.17, 0.28, 0.39, 0.86);
   style.Colors[ImGuiCol_Border] = ImVec4(0, 0, 0, 1.0f);
 

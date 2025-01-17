@@ -237,7 +237,7 @@ void GUI_Slam::parameter_offline(){
         sceneManager->update_glyph(collection);
       }
     }
-    ImGui::PopStyleColor(1);
+    ImGui::PopStyleColor();
 
     //Number of frame to compute
     if(collection != nullptr){

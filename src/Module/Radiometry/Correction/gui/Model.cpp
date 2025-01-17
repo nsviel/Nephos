@@ -85,6 +85,7 @@ void Model::parameter_measure(dat::base::Sensor& sensor){
     if(ImGui::Button("Plot##measure_sphere", ImVec2(120, 0))){
       rad_plot->plot_measure();
     }
+    ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));

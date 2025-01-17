@@ -22,6 +22,7 @@ void Operation::normalize_field(utl::base::Data& data, const std::string& name){
 
   std::vector<float>& vec_field = atr_field->get_field_data(data, name);
   math::normalize(vec_field);
+  atr_field->update_field_range(data, name);
 
   //---------------------------
 }

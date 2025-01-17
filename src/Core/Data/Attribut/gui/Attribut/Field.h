@@ -35,7 +35,7 @@ private:
   dat::atr::field::Manager* atr_field;
   dat::atr::field::Operation* ope_field;
 
-  std::string selected_field;
+  std::string selected_field = "";
 };
 
 }
