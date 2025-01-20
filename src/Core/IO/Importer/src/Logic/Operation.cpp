@@ -92,9 +92,11 @@ void Operation::ope_color(std::shared_ptr<dat::base::Object> object){
   //Else if intensity
   else if(!vec_I.empty()){
     data.rgba.resize(data.xyz.size(), glm::vec4(0, 0, 0, 0));
+    std::vector<float> vec_I_n = vec_I;
+    math::normalize(vec_I_n);
 
-    for(int i=0; i<vec_I.size(); i++){
-      float& Is = vec_I[i];
+    for(int i=0; i<vec_I_n.size(); i++){
+      float& Is = vec_I_n[i];
       data.rgba[i] = glm::vec4(Is, Is, Is, 1);
     }
   }

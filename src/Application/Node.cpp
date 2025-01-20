@@ -5,9 +5,7 @@
 #include <Dynamic/Namespace.h>
 #include <Module/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Profiler/Namespace.h>
-#include <GUI/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Application/Namespace.h>
 
 
 namespace app{
