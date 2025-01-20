@@ -18,14 +18,14 @@ Transformation::Transformation(){
 Transformation::~Transformation(){}
 
 // Translation
-void Transformation::make_translation(utl::base::Pose& pose, glm::vec3 trans){
+void Transformation::make_translation(utl::base::Pose& pose, glm::vec3 coeff){
   if(!pose.is_movable) return;
   //---------------------------
 
-  glm::mat4 translation = trf_utils->get_translation_mat(trans);
+  glm::mat4 translation = trf_utils->get_translation_matrix(coeff);
 
-  pose.COM += trans;
-  pose.translation.coeff += trans;
+  pose.COM += coeff;
+  pose.translation.coeff += coeff;
   pose.translation.matrix *= translation;
   pose.model *= translation;
 
@@ -35,10 +35,10 @@ void Transformation::make_translation(utl::base::Pose& pose, glm::mat4 translati
   if(!pose.is_movable) return;
   //---------------------------
 
-  glm::vec3 trans = glm::vec3(translation[0][3], translation[1][3], translation[2][3]);
+  glm::vec3 coeff = glm::vec3(translation[0][3], translation[1][3], translation[2][3]);
 
-  pose.COM += trans;
-  pose.translation.coeff += trans;
+  pose.COM += coeff;
+  pose.translation.coeff += coeff;
   pose.translation.matrix *= translation;
   pose.model *= translation;
 
@@ -51,11 +51,11 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 COM, glm::ve
   //---------------------------
 
   glm::vec3 radian = type::degree_to_radian(degree);
-  glm::mat4 rotation = trf_utils->get_rotation_mat(radian);
-  glm::mat4 COM_mat = trf_utils->get_translation_mat_neye(COM);
-  glm::mat4 root_mat = trf_utils->get_translation_mat_neye(pose.translation.coeff);
+  glm::mat4 rotation = trf_utils->get_rotation_matrix(radian);
+  glm::mat4 COM_mat = trf_utils->get_translation_matrix(COM);
 
   pose.rotation.matrix *= rotation;
+  pose.rotation.coeff = trf_utils->get_euler_angles(pose.rotation.matrix);
 
   //Rotation around COM
   pose.model -= COM_mat;
@@ -64,6 +64,7 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 COM, glm::ve
 
   // Apply rotation to the root
   pose.translation.coeff = glm::mat3(rotation) * (pose.translation.coeff - COM) + COM;
+  pose.translation.matrix = trf_utils->get_translation_matrix(pose.translation.coeff);
 
   //---------------------------
 }
@@ -73,10 +74,11 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 degree){
 
   glm::vec3& COM = pose.COM;
   glm::vec3 radian = type::degree_to_radian(degree);
-  glm::mat4 rotation = trf_utils->get_rotation_mat(radian);
-  glm::mat4 COM_mat = trf_utils->get_translation_mat_neye(COM);
+  glm::mat4 rotation = trf_utils->get_rotation_matrix(radian);
+  glm::mat4 COM_mat = trf_utils->get_translation_matrix(COM);
 
   pose.rotation.matrix *= rotation;
+  pose.rotation.coeff = trf_utils->get_euler_angles(pose.rotation.matrix);
 
   //Rotation around COM
   pose.model -= COM_mat;
@@ -85,6 +87,7 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 degree){
 
   // Apply rotation to the root
   pose.translation.coeff = glm::mat3(rotation) * (pose.translation.coeff - COM) + COM;
+  pose.translation.matrix = trf_utils->get_translation_matrix(pose.translation.coeff);
 
   //---------------------------
 }
@@ -93,9 +96,10 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 COM, glm::ma
   //---------------------------
 
   //glm::vec3& COM = pose.COM;
-  glm::mat4 COM_mat = trf_utils->get_translation_mat_neye(COM);
+  glm::mat4 COM_mat = trf_utils->get_translation_matrix(COM);
 
   pose.rotation.matrix *= rotation;
+  pose.rotation.coeff = trf_utils->get_euler_angles(pose.rotation.matrix);
 
   //Rotation around COM
   pose.model -= COM_mat;
@@ -104,6 +108,7 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 COM, glm::ma
 
   // Apply rotation to the root
   pose.translation.coeff = glm::mat3(rotation) * (pose.translation.coeff - COM) + COM;
+  pose.translation.matrix = trf_utils->get_translation_matrix(pose.translation.coeff);
 
   //---------------------------
 }
@@ -124,9 +129,11 @@ void Transformation::make_rotation_axe_X(utl::base::Pose& pose, float degree){
 
   // Mettez à jour les composantes de rotation cumulatives
   pose.rotation.matrix = rotationMatrixXLocal * pose.rotation.matrix;
+  pose.rotation.coeff = trf_utils->get_euler_angles(pose.rotation.matrix);
 
   // Mettez à jour les composantes de translation cumulatives
   pose.translation.matrix = glm::translate(glm::mat4(1.0f), translation) * pose.translation.matrix;
+  pose.translation.coeff = trf_utils->get_translation_from_matrix(pose.translation.matrix);
 
   //---------------------------
 }
@@ -153,7 +160,7 @@ void Transformation::make_scaling(utl::base::Pose& pose, float scale){
 void Transformation::make_transformation(utl::base::Pose& pose, glm::vec3 COM, glm::mat4 translation, glm::mat4 rotation){
   //---------------------------
 
-  glm::mat4 COM_mat = trf_utils->get_translation_mat_neye(COM);
+  glm::mat4 COM_mat = trf_utils->get_translation_matrix(COM);
 
   pose.model = translation;
   pose.model -= COM_mat;

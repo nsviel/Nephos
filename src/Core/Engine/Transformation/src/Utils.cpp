@@ -11,33 +11,23 @@ Utils::Utils(){}
 Utils::~Utils(){}
 
 //Main function
-glm::mat4 Utils::get_translation_mat(glm::vec3 trans){
-  glm::mat4 translation(1.0);
+glm::mat4 Utils::get_translation_matrix(glm::vec3 coeff){
+  glm::mat4 matrix(0.0);
   //---------------------------
 
-  translation[0][3] = trans.x;
-  translation[1][3] = trans.y;
-  translation[2][3] = trans.z;
+  matrix[0][3] = coeff.x;
+  matrix[1][3] = coeff.y;
+  matrix[2][3] = coeff.z;
 
   //---------------------------
-  return translation;
+  return matrix;
 }
-glm::mat4 Utils::get_translation_mat_neye(glm::vec3 trans){
-  glm::mat4 translation(0.0);
+glm::mat4 Utils::get_rotation_matrix(glm::vec3 r){
   //---------------------------
 
-  translation[0][3] = trans.x;
-  translation[1][3] = trans.y;
-  translation[2][3] = trans.z;
-
-  //---------------------------
-  return translation;
-}
-glm::mat4 Utils::get_rotation_mat(glm::vec3 r){
   glm::mat4 Rx(1.0);
   glm::mat4 Ry(1.0);
   glm::mat4 Rz(1.0);
-  //---------------------------
 
   Rx[1][1]=cos(r.x);
   Rx[2][1]=sin(r.x);
@@ -109,6 +99,50 @@ glm::mat4 Utils::find_transformation_from_file(std::string path){
 
   //---------------------------
   return mat;
+}
+glm::vec3 Utils::get_euler_angles(glm::mat4 rotation){
+  // Assume the matrix is of the form:
+  //   | R11, R12, R13, 0 |
+  //   | R21, R22, R23, 0 |
+  //   | R31, R32, R33, 0 |
+  //   |  0,   0,   0, 1 |
+  //---------------------------
+
+  glm::vec3 angles;
+
+  // Check for gimbal lock (if matrix is close to singular, i.e., pitch = ±90 degrees)
+  if(rotation[2][0] < 1.0f){
+    if(rotation[2][0] > -1.0f){
+      // Standard case (no gimbal lock)
+      angles.x = std::atan2(rotation[2][1], rotation[2][2]);  // Pitch
+      angles.y = std::atan2(-rotation[2][0], std::sqrt(rotation[0][0] * rotation[0][0] + rotation[1][0] * rotation[1][0])); // Yaw
+      angles.z = std::atan2(rotation[1][0], rotation[0][0]);  // Roll
+    }else{
+      // Gimbal lock at pitch = +90 degrees
+      angles.x = 0.0f;
+      angles.y = std::atan2(rotation[0][1], rotation[0][2]);  // Yaw
+      angles.z = std::atan2(rotation[1][0], rotation[1][1]);  // Roll
+    }
+  }else{
+    // Gimbal lock at pitch = -90 degrees
+    angles.x = 0.0f;
+    angles.y = std::atan2(rotation[0][1], rotation[0][2]);  // Yaw
+    angles.z = std::atan2(-rotation[1][0], rotation[1][1]);  // Roll
+  }
+
+  //---------------------------
+  return angles;
+}
+glm::vec3 Utils::get_translation_from_matrix(const glm::mat4& matrix){
+  glm::vec3 coeff;
+  //---------------------------
+
+  coeff.x = matrix[0][3];
+  coeff.y = matrix[1][3];
+  coeff.z = matrix[2][3];
+
+  //---------------------------
+  return coeff;
 }
 void Utils::save_transformation_to_file(glm::mat4& mat, std::string path){
   //---------------------------

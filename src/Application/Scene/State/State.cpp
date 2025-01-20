@@ -24,7 +24,7 @@ State::~State(){}
 
 //Main function
 void State::export_json(){
-  std::string path = "";
+  std::string path = "scene.json";
   //---------------------------
 
 
