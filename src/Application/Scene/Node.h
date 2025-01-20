@@ -4,7 +4,8 @@
 
 namespace app{class Node;}
 namespace core{class Node;}
-namespace sce{class Init;}
+namespace sce{class Import;}
+namespace sce{class Structure;}
 
 
 namespace sce{
@@ -26,7 +27,8 @@ private:
   core::Node* node_core;
 
   //Child
-  sce::Init* sce_init;
+  sce::Structure* sce_struct;
+  sce::Import* sce_import;
 };
 
 }

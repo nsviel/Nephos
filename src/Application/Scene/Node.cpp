@@ -15,7 +15,8 @@ Node::Node(app::Node* node_app){
   this->node_core = node_app->get_node_core();
 
   //Child
-  this->sce_init = new sce::Init(this);
+  this->sce_struct = new sce::Structure();
+  this->sce_import = new sce::Import(this);
 
   //---------------------------
 }
@@ -24,7 +25,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  sce_init->init();
+  sce_import->init();
 
   //---------------------------
 }

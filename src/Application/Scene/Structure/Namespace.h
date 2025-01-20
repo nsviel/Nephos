@@ -1,3 +1,3 @@
 #pragma once
 
-#include <Scene/Structure/Scene.h>
+#include <Scene/Structure/Structure.h>

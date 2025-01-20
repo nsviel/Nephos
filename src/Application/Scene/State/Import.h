@@ -4,10 +4,8 @@
 #include <memory>
 
 namespace sce{class Node;}
-namespace sce::structure{class Scene;}
-namespace sce::structure{class Set;}
-namespace dat::gph{class Graph;}
-namespace dat::base{class Set;}
+namespace io::imp{class Structure;}
+namespace io::imp{class Loader;}
 
 
 namespace sce{
@@ -21,10 +19,15 @@ public:
 
 public:
   //Main function
+  void init();
   void import_json();
 
+  //Subfunction
+  void load_objects(std::string path);
+
 private:
-  dat::gph::Graph* dat_graph;
+  io::imp::Loader* io_loader;
+  io::imp::Structure* io_struct;
 };
 
 }
