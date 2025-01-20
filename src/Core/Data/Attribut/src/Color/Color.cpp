@@ -116,7 +116,7 @@ void Color::colorization_normal(dat::base::Entity& entity){
   #pragma omp parallel for
   for(int i=0; i<data.Nxyz.size(); i++){
     glm::vec3& Nxyz = data.Nxyz[i];
-    glm::vec4 normal = glm::vec4(Nxyz, 1.0) * pose.rotat;
+    glm::vec4 normal = glm::vec4(Nxyz, 1.0) * pose.rotation.matrix;
 
     float R = (1 + normal.x) / 2;
     float G = (1 + normal.y) / 2;

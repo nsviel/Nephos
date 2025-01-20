@@ -25,8 +25,8 @@ void Transformation::make_translation(utl::base::Pose& pose, glm::vec3 trans){
   glm::mat4 translation = trf_utils->get_translation_mat(trans);
 
   pose.COM += trans;
-  pose.root += trans;
-  pose.trans *= translation;
+  pose.translation.coeff += trans;
+  pose.translation.matrix *= translation;
   pose.model *= translation;
 
   //---------------------------
@@ -38,8 +38,8 @@ void Transformation::make_translation(utl::base::Pose& pose, glm::mat4 translati
   glm::vec3 trans = glm::vec3(translation[0][3], translation[1][3], translation[2][3]);
 
   pose.COM += trans;
-  pose.root += trans;
-  pose.trans *= translation;
+  pose.translation.coeff += trans;
+  pose.translation.matrix *= translation;
   pose.model *= translation;
 
   //---------------------------
@@ -53,9 +53,9 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 COM, glm::ve
   glm::vec3 radian = type::degree_to_radian(degree);
   glm::mat4 rotation = trf_utils->get_rotation_mat(radian);
   glm::mat4 COM_mat = trf_utils->get_translation_mat_neye(COM);
-  glm::mat4 root_mat = trf_utils->get_translation_mat_neye(pose.root);
+  glm::mat4 root_mat = trf_utils->get_translation_mat_neye(pose.translation.coeff);
 
-  pose.rotat *= rotation;
+  pose.rotation.matrix *= rotation;
 
   //Rotation around COM
   pose.model -= COM_mat;
@@ -63,7 +63,7 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 COM, glm::ve
   pose.model += COM_mat;
 
   // Apply rotation to the root
-  pose.root = glm::mat3(rotation) * (pose.root - COM) + COM;
+  pose.translation.coeff = glm::mat3(rotation) * (pose.translation.coeff - COM) + COM;
 
   //---------------------------
 }
@@ -76,7 +76,7 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 degree){
   glm::mat4 rotation = trf_utils->get_rotation_mat(radian);
   glm::mat4 COM_mat = trf_utils->get_translation_mat_neye(COM);
 
-  pose.rotat *= rotation;
+  pose.rotation.matrix *= rotation;
 
   //Rotation around COM
   pose.model -= COM_mat;
@@ -84,7 +84,7 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 degree){
   pose.model += COM_mat;
 
   // Apply rotation to the root
-  pose.root = glm::mat3(rotation) * (pose.root - COM) + COM;
+  pose.translation.coeff = glm::mat3(rotation) * (pose.translation.coeff - COM) + COM;
 
   //---------------------------
 }
@@ -95,7 +95,7 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 COM, glm::ma
   //glm::vec3& COM = pose.COM;
   glm::mat4 COM_mat = trf_utils->get_translation_mat_neye(COM);
 
-  pose.rotat *= rotation;
+  pose.rotation.matrix *= rotation;
 
   //Rotation around COM
   pose.model -= COM_mat;
@@ -103,7 +103,7 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 COM, glm::ma
   pose.model += COM_mat;
 
   // Apply rotation to the root
-  pose.root = glm::mat3(rotation) * (pose.root - COM) + COM;
+  pose.translation.coeff = glm::mat3(rotation) * (pose.translation.coeff - COM) + COM;
 
   //---------------------------
 }
@@ -123,10 +123,10 @@ void Transformation::make_rotation_axe_X(utl::base::Pose& pose, float degree){
   pose.model = glm::translate(glm::mat4(1.0f), translation) * rotationMatrixXLocal * pose.model;
 
   // Mettez à jour les composantes de rotation cumulatives
-  pose.rotat = rotationMatrixXLocal * pose.rotat;
+  pose.rotation.matrix = rotationMatrixXLocal * pose.rotation.matrix;
 
   // Mettez à jour les composantes de translation cumulatives
-  pose.trans = glm::translate(glm::mat4(1.0f), translation) * pose.trans;
+  pose.translation.matrix = glm::translate(glm::mat4(1.0f), translation) * pose.translation.matrix;
 
   //---------------------------
 }
@@ -136,13 +136,15 @@ void Transformation::make_scaling(utl::base::Pose& pose, float scale){
   if(!pose.is_movable) return;
   //---------------------------
 
-  glm::mat4 scaling(1.0);
-  scaling[0][0] = scale;
-  scaling[1][1] = scale;
-  scaling[2][2] = scale;
+  glm::vec3 scale_coeff = glm::vec3(scale);
+  glm::mat4 scale_mat(1.0);
+  scale_mat[0][0] = scale_coeff.x;
+  scale_mat[1][1] = scale_coeff.y;
+  scale_mat[2][2] = scale_coeff.z;
 
-  pose.scale *= scaling;
-  pose.model *= scaling;
+  pose.scale.matrix *= scale_mat;
+  pose.scale.coeff *= scale_coeff;
+  pose.model *= scale_mat;
 
   //---------------------------
 }

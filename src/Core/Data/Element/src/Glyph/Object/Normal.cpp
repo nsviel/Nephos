@@ -77,7 +77,7 @@ void Normal::construct(dat::base::Entity& entity){
     if(nxyz == glm::vec3(0, 0, 0)) continue;
 
     glm::vec3 xyz_n = glm::vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
-    glm::vec4 nxyz_h = glm::vec4(nxyz.x,  nxyz.y,  nxyz.z, 1) * entity.pose->rotat;
+    glm::vec4 nxyz_h = glm::vec4(nxyz.x,  nxyz.y,  nxyz.z, 1) * entity.pose->rotation.matrix;
     glm::vec4 rgb_n = glm::vec4(abs(nxyz_h.x),  abs(nxyz_h.y), abs(nxyz_h.z), 1);
 
     xyz_g.push_back(xyz);

@@ -158,7 +158,7 @@ void Operation::make_translation_from_root(std::shared_ptr<dat::base::Entity> en
   //---------------------------
 
   utl::base::Pose& pose = *entity->pose;
-  glm::vec3 translation = new_root - pose.root;
+  glm::vec3 translation = new_root - pose.translation.coeff;
   trf_transform->make_translation(pose, translation);
 
   //---------------------------
