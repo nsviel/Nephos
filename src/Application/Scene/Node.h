@@ -21,6 +21,7 @@ public:
   void init();
 
   inline core::Node* get_node_core(){return node_core;}
+  inline sce::Structure* get_sce_struct(){return sce_struct;}
 
 private:
   //Dependancy

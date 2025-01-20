@@ -4,8 +4,7 @@
 #include <memory>
 
 namespace sce{class Node;}
-namespace sce::structure{class Scene;}
-namespace sce::structure{class Set;}
+namespace sce{class Structure;}
 namespace dat::gph{class Graph;}
 namespace dat::base{class Set;}
 
@@ -28,6 +27,8 @@ public:
 
 private:
   dat::gph::Graph* dat_graph;
+
+  sce::Structure* sce_struct;
 };
 
 }

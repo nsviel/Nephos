@@ -15,6 +15,7 @@ Import::Import(sce::Node* node_scene){
   io::Node* node_io = node_core->get_node_io();
   io::imp::Node* node_importer = node_io->get_node_importer();
 
+  this->sce_struct = node_scene->get_sce_struct();
   this->io_loader = node_importer->get_io_loader();
   this->io_struct = node_importer->get_io_struct();
 
@@ -26,20 +27,18 @@ Import::~Import(){}
 void Import::init(){
   //---------------------------
 
-  std::string path = "../media/scene/";
   std::string name = "base.json";
 
-  this->load_objects(path + name);
+  this->load_objects(sce_struct->path + name);
 
   //---------------------------
 }
 void Import::import_json(){
   //---------------------------
 
-  std::string path = "../media/scene/";
   std::string name = "base.json";
 
-  this->load_objects(path + name);
+  this->load_objects(sce_struct->path + name);
 
   //---------------------------
 }

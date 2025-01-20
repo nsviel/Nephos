@@ -16,6 +16,7 @@ Export::Export(sce::Node* node_scene){
   dat::Node* node_data = node_core->get_node_data();
   dat::gph::Node* node_graph = node_data->get_node_graph();
 
+  this->sce_struct = node_scene->get_sce_struct();
   this->dat_graph = node_graph->get_gph_graph();
 
   //---------------------------
@@ -26,7 +27,6 @@ Export::~Export(){}
 void Export::export_json(){
   //---------------------------
 
-  std::string path = "../media/scene/";
   std::string name = "base.json";
 
   // Create a JSON object to store the matrix values
@@ -36,7 +36,7 @@ void Export::export_json(){
   this->populate_scene(j, set_graph);
 
   // Write the JSON object to the file
-  std::ofstream file(path + name);
+  std::ofstream file(sce_struct->path + name);
   if(file.is_open()){
     file << j.dump(4); // Use dump(4) for pretty printing with an indentation of 4 spaces
     file.close();
