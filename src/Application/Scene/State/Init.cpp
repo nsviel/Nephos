@@ -18,6 +18,7 @@ Init::Init(sce::Node* node_scene){
 
   this->io_loader = node_importer->get_io_loader();
   this->io_struct = node_importer->get_io_struct();
+  this->sce_export = new sce::Export(node_scene);
 
   //---------------------------
 }
@@ -28,6 +29,7 @@ void Init::init(){
   //----------------------------
 
   this->load_entity();
+  //sce_export->export_json();
 
   //----------------------------
 }

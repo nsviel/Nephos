@@ -2,6 +2,7 @@
 
 namespace core{class Node;}
 namespace sce{class Node;}
+namespace sce{class Export;}
 namespace io::imp{class Structure;}
 namespace io::imp{class Loader;}
 namespace utl::base{class Selection;}
@@ -25,6 +26,7 @@ public:
 
 private:
   core::Node* node_core;
+  sce::Export* sce_export;
   io::imp::Loader* io_loader;
   io::imp::Structure* io_struct;
   utl::base::Selection* selection = nullptr;

@@ -30,7 +30,7 @@ struct Scene{
   //---------------------------
 
   std::string name = "";
-  std::vector<sce::structure::Set> vec_set;
+  sce::structure::Set set;
 
   //---------------------------
 };

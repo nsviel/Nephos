@@ -1,26 +1,27 @@
 #pragma once
 
+#include <Utility/Namespace.h>
 #include <memory>
 
 namespace sce{class Node;}
 namespace sce::structure{class Scene;}
+namespace sce::structure{class Set;}
 namespace dat::gph{class Graph;}
 namespace dat::base{class Set;}
 
 
 namespace sce{
 
-class State
+class Import
 {
 public:
   //Constructor / Destructor
-  State(sce::Node* node_scene);
-  ~State();
+  Import(sce::Node* node_scene);
+  ~Import();
 
 public:
   //Main function
-  void export_json();
-  void populate_scene(sce::structure::Scene& sce_struct, std::shared_ptr<dat::base::Set> set);
+  void import_json();
 
 private:
   dat::gph::Graph* dat_graph;
