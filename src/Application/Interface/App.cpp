@@ -17,7 +17,7 @@ App::~App(){}
 //Main function
 void App::init(){
   //---------------------------
-  
+
   node_app.init();
 
   // Start the node_app loop in a separate thread

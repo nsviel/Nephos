@@ -3,10 +3,8 @@
 #include <Application/Node.h>
 #include <thread>
 
-
-
-
 namespace app{class Node;}
+
 
 class App
 {
