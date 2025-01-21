@@ -11,6 +11,7 @@ namespace mod{class Node;}
 namespace gui{class Node;}
 namespace sce{class Node;}
 namespace prf::monitor{class Tasker;}
+namespace vk::interface{class Window;}
 
 
 namespace app{
@@ -28,7 +29,7 @@ public:
   void loop();
   void gui();
   void reset();
-  void end();
+  void close();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
@@ -43,6 +44,7 @@ private:
   dyn::Node* node_dynamic;
   mod::Node* node_module;
   prf::monitor::Tasker* tasker;
+  vk::interface::Window* vk_window;
 
   gui::Node* node_gui;
   sce::Node* node_scene;

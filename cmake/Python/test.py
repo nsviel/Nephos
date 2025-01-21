@@ -1,13 +1,25 @@
 import sys
 import os
-
-# Add the directory containing the shared object to the Python path
-sys.path.append(os.path.join(os.path.dirname(__file__), '../build'))
-
-
 import pynephos
+from pynput import keyboard
 
-app = pynephos.App()
-app.init()
-app.add_cloud()
-app.run()
+#Nephos stuff
+nephos = pynephos.App()
+nephos.run()
+nephos.add_cloud()
+
+#Main loop
+def on_press(key):
+    try:
+        if key == keyboard.Key.esc:
+            print("Esc key pressed. Exiting loop...")
+            return False  # This will stop the listener
+    except AttributeError:
+        pass
+
+# Start listening for keyboard input
+with keyboard.Listener(on_press=on_press) as listener:
+    listener.join()
+
+#Nephos close
+nephos.close()

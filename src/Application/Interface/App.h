@@ -14,8 +14,8 @@ public:
   ~App();
 
 public:
-  void init();
   void run();
+  void close();
   void add_cloud();
 
 

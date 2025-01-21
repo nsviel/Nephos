@@ -15,7 +15,7 @@ App::App(){
 App::~App(){}
 
 //Main function
-void App::init(){
+void App::run(){
   //---------------------------
 
   node_app.init();
@@ -23,14 +23,14 @@ void App::init(){
   // Start the node_app loop in a separate thread
   this->thread = std::thread([this]() {
     node_app.loop();  // Run the app loop
-    node_app.end();   // Clean up after the loop
   });
 
   //---------------------------
 }
-void App::run(){
+void App::close(){
   //---------------------------
 
+  node_app.close();   // Clean up after the loop
   this->thread.join();
 
   //---------------------------

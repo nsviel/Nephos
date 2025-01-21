@@ -27,6 +27,7 @@ public:
   void make_screenshot_depth();
   void set_mat_view(glm::mat4 mat);
   void set_mat_projection(glm::mat4 mat);
+  void close_window();
   bool is_running();
 
 private:

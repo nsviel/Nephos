@@ -1,0 +1,5 @@
+setup.py
+pynephos.egg-info/PKG-INFO
+pynephos.egg-info/SOURCES.txt
+pynephos.egg-info/dependency_links.txt
+pynephos.egg-info/top_level.txt

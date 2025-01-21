@@ -8,7 +8,7 @@ PYBIND11_MODULE(pynephos, m) {
 
   py::class_<App>(m, "App")
   .def(py::init<>())  // Bind the constructor of App (assumes default constructor)
-  .def("init", &App::init, "Run the Vulkan engine from Python")
   .def("run", &App::run, "Run the Vulkan engine from Python")
+  .def("close", &App::close, "Close the Vulkan engine from Python")
   .def("add_cloud", &App::add_cloud, "Add a cloud to the Vulkan engine");
 }

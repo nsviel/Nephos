@@ -11,7 +11,6 @@ int main(){
   try{
     node_app.init();
     node_app.loop();
-    node_app.end();
   }catch(const std::exception& e){
     std::cerr << e.what() << std::endl;
     return EXIT_FAILURE;

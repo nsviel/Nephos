@@ -19,7 +19,8 @@ public:
   void create_window();
   void destroy_window();
   void create_surface();
-
+  void close_window();
+  
   //Subfunction
   bool is_window_resized();
   void update_window_dim();

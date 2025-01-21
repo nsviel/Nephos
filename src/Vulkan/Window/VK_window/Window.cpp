@@ -59,6 +59,13 @@ void Window::create_surface(){
 
   //---------------------------
 }
+void Window::close_window(){
+  //---------------------------
+
+  glfwSetWindowShouldClose(vk_struct->window.handle, GLFW_TRUE);
+
+  //---------------------------
+}
 
 //Subfunction
 void Window::update_window_dim(){

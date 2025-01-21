@@ -40,6 +40,9 @@ void Window::set_mat_view(glm::mat4 mat){
 void Window::set_mat_projection(glm::mat4 mat){
   vk_struct->core.presentation.projection = mat;
 }
+void Window::close_window(){
+  vk_window->close_window();
+}
 bool Window::is_running(){
   return vk_struct->window.running;
 }

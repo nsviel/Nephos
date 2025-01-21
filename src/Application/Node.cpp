@@ -24,6 +24,7 @@ Node::Node(){
   this->node_scene = new sce::Node(this);
   this->node_gui = new gui::Node(this);
   this->tasker = node_profiler->get_tasker_cpu();
+  this->vk_window = node_vulkan->get_vk_window();
 
   //---------------------------
 }
@@ -46,8 +47,7 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  vk::interface::Window* vk_window = node_vulkan->get_vk_window();
-
+  //Main loop
   while(vk_window->is_running()){
     node_profiler->loop();
 
@@ -72,6 +72,9 @@ void Node::loop(){
     tasker->task_end("module");
   }
 
+  //Clean engine stuff
+  node_vulkan->clean();
+
   //---------------------------
 }
 void Node::gui(){
@@ -91,10 +94,10 @@ void Node::reset(){
 
   //---------------------------
 }
-void Node::end(){
+void Node::close(){
   //---------------------------
 
-  node_vulkan->clean();
+  vk_window->close_window();
 
   //---------------------------
 }
