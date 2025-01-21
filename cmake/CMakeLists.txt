@@ -2,4 +2,4 @@
 #-----------------
 # Source files
 #-----------------
-#add_subdirectory(Python)
+add_subdirectory(Python)

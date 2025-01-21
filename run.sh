@@ -6,7 +6,7 @@ current_dir=$PWD
 clear
 
 # Check if an argument was passed
-if [ "$1" == "binding" ]; then
+if [ "$1" == "python" ]; then
     # If the first argument is "bindings", build the Python bindings
     echo "Building Python bindings..."
 
@@ -15,9 +15,10 @@ if [ "$1" == "binding" ]; then
     cd $current_dir/build
 
     # Run cmake and make commands for Python bindings (replace with actual build commands)
-    cmake .. && make -j20 && python3 ../binding/test.py
+    export PYTHONPATH=$PYTHONPATH:$(pwd)/build
+    cmake -G Ninja .. && ninja -j20 && python3 ../cmake/Python/test.py
 
-elif [ "$1" == "executable" ]; then
+else
     # If the first argument is "executable", build and run the executable normally
     echo "Building and running the executable..."
 
@@ -26,9 +27,4 @@ elif [ "$1" == "executable" ]; then
 
     # Run cmake and make commands for the executable
     cmake -G Ninja .. && ninja -j20 && ./executable
-
-else
-    # Default behavior if no or unrecognized argument is provided
-    echo "Usage: $0 [binding|executable]"
-    exit 1
 fi
