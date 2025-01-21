@@ -1,0 +1,20 @@
+# MANIFEST.in
+
+# Include all .cpp files in the src directory
+recursive-include src *.cpp
+
+# Include the CMakeLists.txt file in the package
+include CMakeLists.txt
+
+# Include README and LICENSE
+include README.md LICENSE
+
+# If there are any shaders or other assets, include them as well
+recursive-include shader *.vert *.frag
+
+# Include any .so, .pyd, or .dll files that may be created
+recursive-include my_package *.so *.pyd *.dll
+
+# Explicitly exclude unwanted files or directories
+exclude .gitignore
+exclude .DS_Store

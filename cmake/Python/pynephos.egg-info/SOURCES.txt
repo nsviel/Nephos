@@ -1,3 +1,5 @@
+CMakeLists.txt
+MANIFEST.in
 setup.py
 pynephos.egg-info/PKG-INFO
 pynephos.egg-info/SOURCES.txt
