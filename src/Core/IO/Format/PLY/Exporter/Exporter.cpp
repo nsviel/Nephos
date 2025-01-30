@@ -14,7 +14,7 @@ Exporter::Exporter(){
   this->io_header = new fmt::ply::exporter::Header();
   this->atr_field = new dat::atr::field::Manager();
 
-  this->reference.format = ".ply";
+  this->format.ascii = ".ply";
   this->vec_encoding.push_back(io::exp::ASCII);
   this->vec_encoding.push_back(io::exp::BINARY);
 

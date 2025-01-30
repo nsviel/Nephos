@@ -7,7 +7,7 @@ namespace fmt::xyz{
 Importer::Importer(){
   //---------------------------
 
-  this->reference.format = ".xyz";
+  this->format.ascii = ".xyz";
 
   //---------------------------
 }

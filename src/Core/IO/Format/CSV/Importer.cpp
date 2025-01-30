@@ -10,7 +10,7 @@ namespace fmt::csv{
 Importer::Importer(){
   //---------------------------
 
-  this->reference.format = ".csv";
+  this->format.ascii = ".csv";
 
   //---------------------------
 }

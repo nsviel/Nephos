@@ -12,7 +12,7 @@ Exporter::Exporter(){
 
   this->atr_field = new dat::atr::field::Manager();
 
-  this->reference.format = ".pts";
+  this->format.ascii = ".pts";
   this->vec_encoding.push_back(io::exp::ASCII);
 
   //---------------------------

@@ -5,13 +5,14 @@
 
 namespace io::base{
 
-struct Reference{
+struct Format{
   //---------------------------
 
   std::string name = "";
   std::string vendor = "";
   std::string product = "";
-  std::string format = "";
+  std::string ascii = "";
+  std::string binary = "";
 
   //---------------------------
 };

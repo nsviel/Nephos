@@ -14,7 +14,7 @@ Importer::Importer(){
   this->retrieve_rgb = true;
   this->retrieve_N = true;
   this->IdataFormat = 0;
-  this->reference.format = ".ptx";
+  this->format.ascii = ".ptx";
 
   //---------------------------
 }

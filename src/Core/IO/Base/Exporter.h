@@ -2,7 +2,7 @@
 
 #include <Exporter/src/Structure/Configuration.h>
 #include <Exporter/src/Structure/Enum.h>
-#include <IO/Base/Reference.h>
+#include <IO/Base/Format.h>
 #include <Utility/Base/Data/Data.h>
 #include <vector>
 
@@ -15,7 +15,7 @@ struct Exporter{
   virtual void export_data(io::exp::Configuration& config, utl::base::Data& data){}
 
   std::vector<io::exp::Encoding> vec_encoding;
-  io::base::Reference reference;
+  io::base::Format format;
 
   //---------------------------
 };

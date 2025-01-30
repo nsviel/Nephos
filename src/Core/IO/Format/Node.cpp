@@ -27,6 +27,7 @@ void Node::init(){
   //Importer
   io_importer->insert_importer(new fmt::ply::Importer());
   io_importer->insert_importer(new fmt::obj::Importer());
+  io_importer->insert_importer(new fmt::gltf::Importer());
   io_importer->insert_importer(new fmt::csv::Importer());
   io_importer->insert_importer(new fmt::pts::Importer());
   io_importer->insert_importer(new fmt::ptx::Importer());

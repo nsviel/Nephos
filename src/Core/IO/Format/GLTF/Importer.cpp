@@ -1,5 +1,6 @@
 #include "Importer.h"
 
+#include <Data/Namespace.h>
 #define TINYGLTF_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -12,7 +13,7 @@ namespace fmt::gltf{
 Importer::Importer(){
   //---------------------------
 
-  this->reference.format = ".gltf";
+  this->format.ascii = ".glb";
 
   //---------------------------
 }
@@ -20,16 +21,21 @@ Importer::~Importer(){}
 
 //Main function
 std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
-  utl::base::Data* data = new utl::base::Data();
   //---------------------------
-/*
-  data->name = utl::path::get_name_from_path(path.data);
-  data->path = path;
 
-  this->load_file(path.data);
-*/
+  //Init
+  std::shared_ptr<dat::base::Object> object = std::make_shared<dat::base::Object>();
+  object->name = utl::path::get_name_from_path(path.build());
+  object->data->name = utl::path::get_name_from_path(path.build());
+  object->data->path = path;
+  object->data->path.format = format.ascii;
+  object->data->topology.type = utl::topology::POINT;
+
+  //Init
+  this->load_file(path.build());
+
   //---------------------------
-  return nullptr;
+  return object;
 }
 
 //Subfunction

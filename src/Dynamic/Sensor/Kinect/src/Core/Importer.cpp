@@ -26,10 +26,10 @@ void Importer::insert_importer(){
   //---------------------------
 
   //Set kinect reference
-  this->reference.name = "Kinect Azure Depth Camera";
-  this->reference.vendor = "045e";
-  this->reference.product = "097b";
-  this->reference.format = ".mkv";
+  this->format.name = "Kinect Azure Depth Camera";
+  this->format.vendor = "045e";
+  this->format.product = "097b";
+  this->format.ascii = ".mkv";
 
   //Insert importer in engine
   io::imp::Importer* io_importer = node_importer->get_io_importer();

@@ -24,7 +24,7 @@ Importer::Importer(vld::Node* node_velodyne){
   this->packet_range_on = false;
   this->packet_beg = 0;
   this->packet_end = 0;
-  this->reference.format = ".pcap";
+  this->format.ascii = ".pcap";
 
   //---------------------------
 }

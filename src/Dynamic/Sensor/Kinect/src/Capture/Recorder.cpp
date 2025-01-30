@@ -9,7 +9,7 @@ namespace k4n::capture{
 Recorder::Recorder(){
   //---------------------------
 
-  //this->reference.format = ".mkv";
+  //this->format.ascii = ".mkv";
 
   //---------------------------
 }

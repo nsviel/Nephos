@@ -26,10 +26,10 @@ void Importer::insert_importer(){
   //---------------------------
 
   //Set kinect reference
-  this->reference.name = "Intel RealSense Depth Camera 455";
-  this->reference.vendor = "8086";
-  this->reference.product = "0b5c";
-  this->reference.format = ".bag";
+  this->format.name = "Intel RealSense Depth Camera 455";
+  this->format.vendor = "8086";
+  this->format.product = "0b5c";
+  this->format.ascii = ".bag";
 
   //Insert importer in engine
   io::imp::Importer* io_importer = node_importer->get_io_importer();

@@ -24,7 +24,7 @@ void Exporter::export_entity(std::shared_ptr<dat::base::Entity> entity, std::str
   for(int i=0; i<vec_exporter.size(); i++){
     io::base::Exporter* exporter = vec_exporter[i];
 
-    if(entity->data->path.format == exporter->reference.format){
+    if(entity->data->path.format == exporter->format.ascii){
       this->export_with_config(exporter, entity, path);
     }
   }
@@ -81,7 +81,7 @@ bool Exporter::is_format_supported(std::string format){
   for(int i=0; i<vec_exporter.size(); i++){
     io::base::Exporter* exporter = vec_exporter[i];
 
-    if(format == exporter->reference.format){
+    if(format == exporter->format.ascii){
       return true;
     }
   }
@@ -116,7 +116,7 @@ std::vector<std::string> Exporter::get_supported_format(){
 
   for(int i=0; i<vec_exporter.size(); i++){
     io::base::Exporter* exporter = vec_exporter[i];
-    vec_format.push_back(exporter->reference.format);
+    vec_format.push_back(exporter->format.ascii);
   }
 
   //---------------------------
@@ -129,7 +129,7 @@ std::vector<io::exp::Encoding> Exporter::get_supported_encoding(std::string form
   for(int i=0; i<vec_exporter.size(); i++){
     io::base::Exporter* exporter = vec_exporter[i];
 
-    if(format == exporter->reference.format){
+    if(format == exporter->format.ascii){
       vec_encoding = exporter->vec_encoding;
       break;
     }
