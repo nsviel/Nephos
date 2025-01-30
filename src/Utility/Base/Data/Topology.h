@@ -6,9 +6,12 @@ namespace utl::topology{
 enum Type{
   POINT = 0,
   LINE = 1,
-  TRIANGLE = 2,
-  QUAD = 3,
-  DYNAMIC_POINT = 4,
+  LINE_STRIP = 2,
+  TRIANGLE = 3,
+  TRIANGLE_STRIP = 4,
+  TRIANGLE_FAN = 5,
+  QUAD = 6,
+  DYNAMIC_POINT = 7,
 };
 
 }

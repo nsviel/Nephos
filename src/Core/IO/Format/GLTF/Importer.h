@@ -28,7 +28,8 @@ public:
   void load_glb(std::string path, tinygltf::Model& model);
   void info_model(tinygltf::Model& model);
   void parse_meshes(tinygltf::Model& model, std::shared_ptr<utl::base::Data> data);
-
+  void parse_mode(int mode, std::shared_ptr<utl::base::Data> data);
+  
 private:
 
 };

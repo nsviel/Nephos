@@ -1,5 +1,4 @@
 #include "Importer.h"
-#include "Structure.h"
 
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
@@ -32,7 +31,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   object->data->name = utl::path::get_name_from_path(path.build());
   object->data->path = path;
   object->data->path.format = format.ascii;
-  object->data->topology.type = utl::topology::POINT;
+  object->data->topology.type = utl::topology::TRIANGLE;
 
   //Model
   tinygltf::Model model;
@@ -128,6 +127,8 @@ void Importer::info_model(tinygltf::Model& model){
 void Importer::parse_meshes(tinygltf::Model& model, std::shared_ptr<utl::base::Data> data){
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec3> vec_rgb;
+  std::vector<glm::vec3> idx_xyz;
+  std::vector<glm::vec3> idx_rgb;
   //---------------------------
 
   //Meshes
@@ -153,27 +154,101 @@ void Importer::parse_meshes(tinygltf::Model& model, std::shared_ptr<utl::base::D
 
       // Extract color data (RGB)
       if (primitive.attributes.find("COLOR_0") != primitive.attributes.end()) {
-        const auto& colorAccessor = model.accessors[primitive.attributes.at("COLOR_0")];
-        const auto& colorBufferView = model.bufferViews[colorAccessor.bufferView];
-        const auto& colorBuffer = model.buffers[colorBufferView.buffer];
+        const auto& rgb_it = model.accessors[primitive.attributes.at("COLOR_0")];
+        const auto& rgb_view = model.bufferViews[rgb_it.bufferView];
+        const auto& rgb_buffer = model.buffers[rgb_view.buffer];
 
-        const float* colorData = reinterpret_cast<const float*>(&colorBuffer.data[colorBufferView.byteOffset]);
+        const float* rgb_data = reinterpret_cast<const float*>(&rgb_buffer.data[rgb_view.byteOffset]);
 
         std::cout << "Colors (RGB):\n";
         for (size_t i = 0; i < numVertices; ++i) {
-          float r = colorData[i * 3 + 0];
-          float g = colorData[i * 3 + 1];
-          float b = colorData[i * 3 + 2];
+          float r = rgb_data[i * 3 + 0];
+          float g = rgb_data[i * 3 + 1];
+          float b = rgb_data[i * 3 + 2];
           vec_rgb.push_back(glm::vec3(r, g, b));
         }
-      } else {
-        std::cout << "No color data available.\n";
       }
+
+      // Extract indices and reorder XYZ
+      if (primitive.indices > -1) {
+        const auto& idx_it = model.accessors[primitive.indices];
+        const auto& idx_view = model.bufferViews[idx_it.bufferView];
+        const auto& idx_buffer = model.buffers[idx_view.buffer];
+
+        const unsigned int* idx_data = reinterpret_cast<const unsigned int*>(&idx_buffer.data[idx_view.byteOffset]);
+        size_t idx_size = idx_it.count;
+
+        //Indexed xyz
+        for (size_t i = 0; i < idx_size; ++i) {
+          unsigned int index = idx_data[i];
+          idx_xyz.push_back(vec_xyz[index]);
+        }
+
+        //Indexed rgb
+        if(vec_rgb.size() != 0)
+        for (size_t i = 0; i < idx_size; ++i) {
+          unsigned int index = idx_data[i];
+          idx_rgb.push_back(vec_rgb[index]);
+        }
+      }else{
+        idx_xyz = vec_xyz;
+        idx_rgb = vec_rgb;
+      }
+
+      // Retrieve texture information (if available)
+      if (primitive.material >= 0) {
+        const auto& material = model.materials[primitive.material];
+
+        // Check for base color texture
+        if (material.pbrMetallicRoughness.baseColorTexture.index >= 0) {
+          const auto& textureIndex = material.pbrMetallicRoughness.baseColorTexture.index;
+          const auto& texture = model.textures[textureIndex];
+          const auto& image = model.images[texture.source];
+
+          std::cout << "Texture found for mesh: " << mesh.name << std::endl;
+          std::cout << "Texture: " << texture.name << ", Image: " << image.uri << std::endl;
+        } else {
+          std::cout << "No base color texture available for mesh: " << mesh.name << std::endl;
+        }
+      }
+
     }
   }
 
-  data->xyz = vec_xyz;
-  data->rgb = vec_rgb;
+  data->xyz = idx_xyz;
+  data->rgb = idx_rgb;
+
+  //---------------------------
+}
+void Importer::parse_mode(int mode, std::shared_ptr<utl::base::Data> data){
+  //---------------------------
+
+  switch (mode) {
+    case TINYGLTF_MODE_POINTS:{
+      data->topology.type = utl::topology::POINT;
+      break;
+    }
+    case TINYGLTF_MODE_LINE:{
+      data->topology.type = utl::topology::LINE;
+      break;
+    }
+    case TINYGLTF_MODE_LINE_STRIP:{
+      data->topology.type = utl::topology::LINE_STRIP;
+      break;
+    }
+    case TINYGLTF_MODE_TRIANGLES:{
+      data->topology.type = utl::topology::TRIANGLE;
+      break;
+    }
+    case TINYGLTF_MODE_TRIANGLE_STRIP:{
+      data->topology.type = utl::topology::TRIANGLE_STRIP;
+      break;
+    }
+    case TINYGLTF_MODE_TRIANGLE_FAN:{
+      data->topology.type = utl::topology::TRIANGLE_FAN;
+      break;
+    }
+  }
 
   //---------------------------
 }

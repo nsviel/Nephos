@@ -12,7 +12,7 @@ Utils::~Utils(){}
 
 //Main function
 glm::mat4 Utils::get_translation_matrix(glm::vec3 coeff){
-  glm::mat4 matrix(0.0);
+  glm::mat4 matrix(1.0);
   //---------------------------
 
   matrix[0][3] = coeff.x;

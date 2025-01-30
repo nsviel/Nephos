@@ -1,34 +1,14 @@
 #pragma once
 
-#include <gltf/tiny_gltf.h>
-#include <vector>
+#include <Utility/Base/Data/Path.h>
+#include <string>
 
 
-namespace fmt::gltf::structure{
+namespace fmt::gltf{
 
-struct Node{
+struct Structure{
   //---------------------------
 
-  tinygltf::Node handle;
-  std::vector<tinygltf::Mesh> vec_mesh;
-
-  //---------------------------
-};
-
-struct Scene{
-  //---------------------------
-
-  tinygltf::Scene handle;
-  std::vector<fmt::gltf::structure::Node> vec_node;
-
-  //---------------------------
-};
-
-struct Model{
-  //---------------------------
-
-  tinygltf::Model handle;
-  std::vector<fmt::gltf::structure::Scene> vec_scene;
 
   //---------------------------
 };
