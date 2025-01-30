@@ -1,8 +1,13 @@
 #pragma once
 
 #include <IO/Base/Importer.h>
-#include <Utility/Function/File/Path.h>
+#include <gltf/tiny_gltf.h>
+#include <memory>
 #include <string>
+
+namespace utl::base{class Path;}
+namespace utl::base{class Data;}
+namespace fmt::gltf::structure{class Model;}
 
 
 namespace fmt::gltf{
@@ -19,7 +24,10 @@ public:
   std::shared_ptr<utl::base::Element> import(utl::base::Path path);
 
   //Subfunction
-  void load_file(std::string path);
+  void load_gltf(std::string path, tinygltf::Model& model);
+  void load_glb(std::string path, tinygltf::Model& model);
+  void info_model(tinygltf::Model& model);
+  void parse_meshes(tinygltf::Model& model, std::shared_ptr<utl::base::Data> data);
 
 private:
 

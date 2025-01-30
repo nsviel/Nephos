@@ -39,7 +39,7 @@ io::base::Importer* Importer::obtain_importer(std::string format){
   //---------------------------
 
   for(io::base::Importer* importer : io_struct->vec_importer){
-    if(importer->format.ascii == format){
+    if(importer->format.ascii == format || importer->format.binary == format){
       return importer;
     }
   }
@@ -66,7 +66,7 @@ bool Importer::is_format_supported(std::string format){
   //---------------------------
 
   for(io::base::Importer* importer : io_struct->vec_importer){
-    if(format == importer->format.ascii){
+    if(format == importer->format.ascii || importer->format.binary == format){
       return true;
     }
   }
