@@ -3,6 +3,7 @@
 #define TINYGLTF_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
+#include <gltf/tiny_gltf.h>
 
 
 namespace fmt::gltf{
@@ -35,6 +36,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
 void Importer::load_file(std::string path){
   //---------------------------
 
+  tinygltf::Model model;
   tinygltf::TinyGLTF loader;
   std::string err;
   std::string warn;

@@ -16,8 +16,8 @@ if [ "$1" == "python" ]; then
 
     # Run cmake and make commands for Python bindings (replace with actual build commands)
     #export PYTHONPATH=$PYTHONPATH:$(pwd)/build
-    #cmake -G Ninja .. && ninja -j20 && python ../cmake/Python/test_so.py
-    cmake -G Ninja .. && ninja -j20 && python -m pip install ..
+    #cmake -G Ninja .. && ninja -j20 && python ../cmake/Python/test.py
+    cmake -G Ninja .. && ninja -j20 #&& python -m pip install ../cmake/Python
 
 else
     # If the first argument is "executable", build and run the executable normally

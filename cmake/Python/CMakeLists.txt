@@ -13,10 +13,12 @@ pybind11_add_module(${PACKAGE_NAME}
 
 set_target_properties(${PACKAGE_NAME} PROPERTIES
   LIBRARY_OUTPUT_NAME "pynephos"
-  LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
-  #LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../binding
+  LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/pynephos
 )
 
 target_link_libraries(${PACKAGE_NAME}
   PRIVATE MAIN_APPLICATION
 )
+file(COPY ${CMAKE_SOURCE_DIR}/shader/ DESTINATION ${CMAKE_BINARY_DIR}/pynephos/shader)
+file(COPY ${CMAKE_SOURCE_DIR}/media/ DESTINATION ${CMAKE_BINARY_DIR}/pynephos/media)
+file(WRITE ${CMAKE_BINARY_DIR}/pynephos/__init__.py "")
