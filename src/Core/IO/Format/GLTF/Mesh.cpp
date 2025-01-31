@@ -3,9 +3,6 @@
 
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
-#define TINYGLTF_IMPLEMENTATION
-#define STB_IMAGE_IMPLEMENTATION
-#define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <gltf/tiny_gltf.h>
 
 
@@ -28,8 +25,8 @@ void Mesh::parse_mesh(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base:
   for (auto& primitive : tinygltf.mesh.primitives) {
     tinygltf.primitive = primitive;
 
-    this->parse_primitive_xyz(tinygltf, data);
     this->parse_primitive_mode(tinygltf, data);
+    this->parse_primitive_xyz(tinygltf, data);
     this->parse_primitive_rgb(tinygltf, data);
     this->parse_primitive_idx(tinygltf, data);
     this->parse_primitive_tex(tinygltf, data);

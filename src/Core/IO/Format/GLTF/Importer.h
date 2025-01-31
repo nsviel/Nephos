@@ -7,6 +7,7 @@
 
 namespace utl::base{class Path;}
 namespace utl::base{class Data;}
+namespace fmt::gltf{class Mesh;}
 namespace fmt::gltf::structure{class Model;}
 
 
@@ -27,11 +28,9 @@ public:
   void load_gltf(std::string path, tinygltf::Model& model);
   void load_glb(std::string path, tinygltf::Model& model);
   void info_model(tinygltf::Model& model);
-  void parse_meshes(tinygltf::Model& model, std::shared_ptr<utl::base::Data> data);
-  void parse_mode(int mode, std::shared_ptr<utl::base::Data> data);
-  
-private:
 
+private:
+  fmt::gltf::Mesh* gltf_mesh;
 };
 
 }
