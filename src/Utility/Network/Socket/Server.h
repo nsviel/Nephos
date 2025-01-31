@@ -5,7 +5,7 @@
 #include <vector>
 
 
-namespace sys::network{
+namespace net::sok{
 
 class Server
 {

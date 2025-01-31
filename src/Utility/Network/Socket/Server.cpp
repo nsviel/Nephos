@@ -12,7 +12,7 @@
 #include <bitset>
 
 
-namespace sys::network{
+namespace net::sok{
 
 //Constructor / Destructor
 Server::Server(){
