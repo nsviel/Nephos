@@ -5,7 +5,7 @@
 
 namespace llmr{class Node;}
 namespace dat::gph{class Selection;}
-namespace dat::base{class Sensor;}
+namespace dat::base{class Entity;}
 
 
 namespace llmr::gui{
@@ -20,11 +20,10 @@ public:
 public:
   //Main function
   void run_panel();
-  void design_panel(dat::base::Sensor& sensor);
+  void design_panel(dat::base::Entity& entity);
 
   //Subfunction
-  void tab_correction(dat::base::Sensor& sensor);
-  void tab_calibration(dat::base::Sensor& sensor);
+  void prompt_input(dat::base::Entity& entity);
 
 private:
   dat::gph::Selection* gph_selection;

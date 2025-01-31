@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LLMR)
+set(LIBRARY_NAME MODULE_LLMR)
 
 #-----------------
 # Source files

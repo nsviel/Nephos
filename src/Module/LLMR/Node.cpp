@@ -19,17 +19,17 @@ Node::Node(mod::Node* node_module){
   this->node_data = node_core->get_node_data();
 
   //Child
-  //this->gui_panel = new llmr::gui::Panel(this, &panel->is_open);
+  this->gui_panel = new llmr::gui::Panel(this, &panel->is_open);
 
   //---------------------------
 }
 Node::~Node(){}
 
 //Main function
-void Node::loop(){
+void Node::gui(){
   //---------------------------
 
-  //gui_panel->run_panel();
+  gui_panel->run_panel();
 
   //---------------------------
 }

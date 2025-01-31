@@ -20,11 +20,11 @@ public:
 
 public:
   //Main function
-  void loop();
+  void gui();
 
   inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}
-  
+
 private:
   //Dependancy
   core::Node* node_core;
