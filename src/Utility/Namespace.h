@@ -5,3 +5,4 @@
 #include <Utility/GUI/Namespace.h>
 #include <Utility/Colormap/Namespace.h>
 #include <Utility/System/Namespace.h>
+#include <Utility/Network/Namespace.h>
