@@ -1,4 +1,4 @@
-#include "Image.h"
+#include "Texture.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::image{
 
 //Constructor / Destructor
-Image::Image(vk::Structure* vk_struct){
+Texture::Texture(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -17,10 +17,10 @@ Image::Image(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Image::~Image(){}
+Texture::~Texture(){}
 
 //Main function
-void Image::init(){
+void Texture::init(){
   //---------------------------
 
   //Create blank image
@@ -36,7 +36,7 @@ void Image::init(){
 
   //---------------------------
 }
-void Image::clean(){
+void Texture::clean(){
   //---------------------------
 
   //Create blank image

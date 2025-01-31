@@ -42,6 +42,7 @@ void Operation::insert_object(std::shared_ptr<dat::base::Object> object){
 
   this->ope_clean();
   this->ope_color(object);
+  this->ope_texture(object);
   this->ope_transformation(object);
   this->ope_validation(object);
   this->ope_insertion(object);

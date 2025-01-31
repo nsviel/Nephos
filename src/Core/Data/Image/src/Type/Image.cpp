@@ -27,7 +27,8 @@ void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::base::Imag
   utl::base::Data& data = *entity.data;
   //----------------------------
 
-  if(image->size == 0) return;
+  if(!image) return;
+  if(image->size == 0 && image->data.size() == 0) return;
   if(image->width == 0) return;
   if(image->height == 0) return;
 

@@ -9,12 +9,12 @@ namespace vk::structure{class Image;}
 
 namespace vk::image{
 
-class Image
+class Texture
 {
 public:
   //Constructor / Destructor
-  Image(vk::Structure* vk_struct);
-  ~Image();
+  Texture(vk::Structure* vk_struct);
+  ~Texture();
 
 public:
   //Main function

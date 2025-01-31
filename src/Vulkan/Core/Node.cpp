@@ -33,7 +33,7 @@ Node::Node(vk::Structure* vk_struct){
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_pipeline = new vk::pipeline::compute::Pipeline(vk_struct);
   this->vk_renderer = new vk::render::Renderer(vk_struct);
-  this->vk_image = new vk::image::Image(vk_struct);
+  this->vk_texture = new vk::image::Texture(vk_struct);
 
   //---------------------------
 }
@@ -53,7 +53,7 @@ void Node::init(){
   vk_pool->init();
   vk_fence->init_pool();
   vk_canvas->init();
-  vk_image->init();
+  vk_texture->init();
 
   //Render
   vk_swapchain->init();
@@ -82,7 +82,7 @@ void Node::clean(){
   vk_pipeline->clean();
   vk_swapchain->clean();
   vk_canvas->clean();
-  vk_image->clean();
+  vk_texture->clean();
   vk_data->clean();
   vk_fence->clean_pool();
   vk_semaphore->clean_pool();

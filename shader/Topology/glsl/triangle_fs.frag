@@ -20,7 +20,8 @@ void main(){
   //---------------------------
 
   if(has_texture){
-    //out_rgb = texture(tex_sampler, frag_uv);
+    out_rgb = texture(tex_sampler, frag_uv);
+    //out_rgb = vec4(0, 1, 0, 1.0);
   }else{
     out_rgb = vec4(frag_rgb, 1.0);
   }

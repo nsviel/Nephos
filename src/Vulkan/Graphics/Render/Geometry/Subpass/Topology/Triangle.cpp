@@ -89,7 +89,15 @@ void Triangle::update_sampler(std::shared_ptr<vk::structure::Render> render){
   //---------------------------
 
   std::shared_ptr<vk::structure::Sampler> sampler_color = vk_sampler->query_sampler(*render->descriptor_set, "tex_sampler");
-  sampler_color->image = std::make_shared<vk::structure::Image>(vk_struct->core.image.blank);
+
+  if(data.texture){
+    vk::data::Retriever retriever(vk_struct);
+
+    std::shared_ptr<vk::structure::Texture> texture = retriever.retrieve_vk_texture(*data.texture);
+  //  if(texture) sampler_color->image = std::make_shared<vk::structure::Image>(texture->surface);
+  }else{
+    sampler_color->image = std::make_shared<vk::structure::Image>(vk_struct->core.image.blank);
+  }
 
   //---------------------------
   vk_sampler->actualize_sampler(*render->descriptor_set);

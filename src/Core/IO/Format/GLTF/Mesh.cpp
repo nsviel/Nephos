@@ -5,6 +5,7 @@
 #include <Data/Namespace.h>
 #include <gltf/tiny_gltf.h>
 #include <image/stb_image.h>
+#include <image/stb_image_write.h>
 
 
 namespace fmt::gltf{
@@ -164,10 +165,11 @@ void Mesh::parse_primitive_tex(fmt::gltf::Structure& tinygltf, std::shared_ptr<u
             std::vector<uint8_t> final_image_data(img_data, img_data + (width * height * 4));  // RGBA
 
             std::shared_ptr<utl::base::Image> texture = std::make_shared<utl::base::Image>();
+            texture->name = "texture";
             texture->width = width;
             texture->height = height;
-            texture->size = width * height * 4;
             texture->data = final_image_data;
+            texture->size = final_image_data.size();
             data->texture = texture;
 
             // Optionally, free image data after use
