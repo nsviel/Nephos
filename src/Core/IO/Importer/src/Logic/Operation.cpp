@@ -15,6 +15,7 @@ Operation::Operation(io::imp::Node* node_importer){
   dat::Node* node_data = node_importer->get_node_data();
   dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
+  dat::img::Node* node_image = node_data->get_node_image();
   eng::Node* node_engine = node_importer->get_node_engine();
 
   this->io_struct = node_importer->get_io_struct();
@@ -22,6 +23,7 @@ Operation::Operation(io::imp::Node* node_importer){
   this->dat_graph = node_graph->get_gph_graph();
   this->dat_set = node_element->get_dat_set();
   this->dat_glyph = node_element->get_dat_glyph();
+  this->dat_image = node_image->get_dat_image();
   this->gph_element = node_graph->get_gph_element();
   this->gph_selection = node_graph->get_gph_selection();
   this->trf_transform = new eng::trf::Transformation();
@@ -150,6 +152,14 @@ void Operation::ope_validation(std::shared_ptr<dat::base::Object> object){
   utl::base::Data& data = *object->data;
 
   if(data.uv.empty()) data.uv.resize(data.xyz.size(), glm::vec2(0.0f, 0.0f));
+
+  //---------------------------
+}
+void Operation::ope_texture(std::shared_ptr<dat::base::Object> object){
+  if(!object) return;
+  //---------------------------
+
+  dat_image->add_image(*object, object->data->texture);
 
   //---------------------------
 }

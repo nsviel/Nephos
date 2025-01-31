@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk{class Structure;}
-namespace vk::image{class Image;}
+namespace vk::image{class Ressource;}
 namespace vk::image{class Color;}
 
 
@@ -21,7 +21,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::image::Image* vk_image;
+  vk::image::Ressource* vk_image;
   vk::image::Color* vk_color;
 };
 

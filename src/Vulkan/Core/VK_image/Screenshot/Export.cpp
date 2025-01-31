@@ -11,7 +11,7 @@ Export::Export(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_format = new vk::screenshot::Format(vk_struct);
-  this->vk_image = new vk::image::Image(vk_struct);
+  this->vk_image = new vk::image::Ressource(vk_struct);
   this->vk_command_buffer = new vk::commandbuffer::Pool(vk_struct);
   this->vk_allocator = new vk::commandbuffer::Allocator(vk_struct);
   this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);

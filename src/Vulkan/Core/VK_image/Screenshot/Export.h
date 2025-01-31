@@ -10,7 +10,7 @@ extern "C" {
 
 namespace vk{class Structure;}
 namespace vk::screenshot{class Format;}
-namespace vk::image{class Image;}
+namespace vk::image{class Ressource;}
 namespace vk::commandbuffer{class Pool;}
 namespace vk::commandbuffer{class Allocator;}
 namespace vk::memory{class Transfer;}
@@ -41,7 +41,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::screenshot::Format* vk_format;
-  vk::image::Image* vk_image;
+  vk::image::Ressource* vk_image;
   vk::commandbuffer::Pool* vk_command_buffer;
   vk::commandbuffer::Allocator* vk_allocator;
   vk::memory::Transfer* vk_mem_transfer;

@@ -22,7 +22,7 @@ public:
 
 public:
   //Main function
-  void add_image(dat::base::Entity& entityy, std::shared_ptr<utl::base::Image> image);
+  void add_image(dat::base::Entity& entity, std::shared_ptr<utl::base::Image> image);
 
   //Subfunction
   void insert_image(dat::base::Entity& entity, std::shared_ptr<utl::base::Image> image);

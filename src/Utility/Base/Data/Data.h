@@ -5,13 +5,15 @@
 #include <Utility/Base/Data/Topology.h>
 #include <Utility/Base/Data/Path.h>
 #include <Utility/Base/Data/Texture.h>
-#include <map>
+
 #include <glm/glm.hpp>
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
 #include <mutex>
 #include <list>
+#include <map>
 
 
 namespace utl::base{
@@ -35,6 +37,7 @@ struct Data : public utl::base::Element{
   //Infos
   utl::base::Path path;
   utl::base::Topology topology;
+  std::shared_ptr<utl::base::Image> texture;
   glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
   glm::vec3 centroid = glm::vec3(0.0f, 0.0f, 0.0f);
 

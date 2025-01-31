@@ -18,6 +18,7 @@ namespace vk::presentation{class Viewport;}
 namespace vk::shader{class Reloader;}
 namespace vk::commandbuffer{class Allocator;}
 namespace vk::commandbuffer{class Pool;}
+namespace vk::image{class Image;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
 namespace vk::renderpass{class Renderpass;}
@@ -65,6 +66,7 @@ private:
   vk::synchro::Synchro* vk_synchro;
   vk::data::Canvas* vk_canvas;
   vk::gui::Imgui* vk_imgui;
+  vk::image::Image* vk_image;
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;
   vk::commandbuffer::Allocator* vk_allocator;

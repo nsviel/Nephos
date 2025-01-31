@@ -4,6 +4,7 @@
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
 #include <gltf/tiny_gltf.h>
+#include <image/stb_image.h>
 
 
 namespace fmt::gltf{
@@ -133,7 +134,6 @@ void Mesh::parse_primitive_idx(fmt::gltf::Structure& tinygltf, std::shared_ptr<u
 void Mesh::parse_primitive_tex(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data){
   //---------------------------
 
-  // Retrieve texture information (if available)
   if (tinygltf.primitive.material >= 0) {
     const auto& material = tinygltf.model.materials[tinygltf.primitive.material];
 
@@ -143,8 +143,39 @@ void Mesh::parse_primitive_tex(fmt::gltf::Structure& tinygltf, std::shared_ptr<u
       const auto& texture = tinygltf.model.textures[tex_idx];
       const auto& image = tinygltf.model.images[texture.source];
 
-      std::cout << "Texture found for mesh: " << tinygltf.mesh.name << std::endl;
-      std::cout << "Texture: " << texture.name << ", Image: " << image.uri << std::endl;
+      if (image.uri.empty()) {
+        // Image is embedded in the buffers
+        if (image.bufferView >= 0) {
+          const auto& buffer_view = tinygltf.model.bufferViews[image.bufferView];
+          const auto& buffer = tinygltf.model.buffers[buffer_view.buffer];
+
+          // Extract image data from the buffer (embedded)
+          size_t offset = buffer_view.byteOffset;
+          size_t length = buffer_view.byteLength;
+
+          std::vector<uint8_t> image_data(buffer.data.begin() + offset, buffer.data.begin() + offset + length);
+
+          // Use stb_image to decode the raw binary image data
+          int width, height, channels;
+          unsigned char* img_data = stbi_load_from_memory(image_data.data(), image_data.size(), &width, &height, &channels, STBI_rgb_alpha);
+
+          if (img_data) {
+            // Store the image as a vector<uint8_t>
+            std::vector<uint8_t> final_image_data(img_data, img_data + (width * height * 4));  // RGBA
+
+            std::shared_ptr<utl::base::Image> texture = std::make_shared<utl::base::Image>();
+            texture->width = width;
+            texture->height = height;
+            texture->size = width * height * 4;
+            texture->data = final_image_data;
+            data->texture = texture;
+
+            // Optionally, free image data after use
+            stbi_image_free(img_data);
+          }
+        }
+      }
+
     }
   }
 

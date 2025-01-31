@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace vk{class Structure;}
-namespace vk::image{class Image;}
+namespace vk::image{class Ressource;}
 namespace vk::presentation{class Surface;}
 namespace vk::structure{class Image;}
 
@@ -28,7 +28,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::image::Image* vk_image;
+  vk::image::Ressource* vk_image;
   vk::presentation::Surface* vk_surface;
 };
 

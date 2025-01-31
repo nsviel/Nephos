@@ -17,6 +17,7 @@ Triangle::Triangle(vk::Structure* vk_struct){
   this->vk_drawer = new vk::data::Vertex(vk_struct);
   this->vk_triangle = new vk::geometry::pipeline::topology::Triangle(vk_struct);
   this->vk_descriptor = new vk::pipeline::Descriptor(vk_struct);
+  this->vk_sampler = new vk::descriptor::Sampler(vk_struct);
 
   //---------------------------
 }
@@ -78,7 +79,14 @@ void Triangle::update_uniform(std::shared_ptr<vk::structure::Render> render){
   mvp.projection = vk_struct->core.presentation.projection;
   vk_uniform->update_uniform("mvp", *render->descriptor_set, mvp);
 
+  //Texture
+  bool has_texture = false;
+  vk_uniform->update_uniform("has_texture", *render->descriptor_set, has_texture);
+
+  std::shared_ptr<vk::structure::Sampler> sampler_color = vk_sampler->query_sampler(*render->descriptor_set, "tex_sampler");
+
   //---------------------------
+  vk_sampler->actualize_sampler(*render->descriptor_set);
 }
 void Triangle::draw_data(std::shared_ptr<vk::structure::Render> render){
   //---------------------------

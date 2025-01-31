@@ -13,6 +13,9 @@ struct Structure{
   vk::screenshot::Formats screenshot_format = vk::screenshot::BMP;
   glm::vec2 screenshot_dim =  glm::vec2(4096, 2000);
 
+  //Image
+  vk::structure::Image blank;  
+
   //---------------------------
 };
 

@@ -3,7 +3,7 @@
 #include <vulkan/vulkan.h>
 #include <vector>
 
-namespace vk::image{class Image;}
+namespace vk::image{class Ressource;}
 namespace vk{class Structure;}
 namespace vk::structure{class Image;}
 
@@ -29,7 +29,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::image::Image* vk_image;
+  vk::image::Ressource* vk_image;
 };
 
 }

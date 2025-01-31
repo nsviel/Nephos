@@ -5,7 +5,7 @@
 namespace vk{class Structure;}
 namespace vk::structure{class Texture;}
 namespace vk::screenshot{class Export;}
-namespace vk::image{class Image;}
+namespace vk::image{class Ressource;}
 namespace vk::memory{class Allocator;}
 namespace vk::memory{class Transfer;}
 namespace vk::instance{class UID;}
@@ -35,7 +35,7 @@ private:
   vk::Structure* vk_struct;
   vk::memory::Allocator* vk_mem_allocator;
   vk::memory::Transfer* vk_mem_transfer;
-  vk::image::Image* vk_image;
+  vk::image::Ressource* vk_image;
   vk::instance::UID* vk_uid;
   vk::screenshot::Export* vk_screenshot;
   vk::image::Format* vk_format;

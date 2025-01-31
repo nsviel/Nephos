@@ -14,7 +14,7 @@ Storage::Storage(vk::Structure* vk_struct){
   this->vk_ressource = new vk::texture::Ressource(vk_struct);
   this->vk_retriever = new vk::data::Retriever(vk_struct);
   this->vk_format = new vk::image::Format(vk_struct);
-  this->vk_image = new vk::image::Image(vk_struct);
+  this->vk_image = new vk::image::Ressource(vk_struct);
   this->vk_uid = new vk::instance::UID(vk_struct);
   this->vk_mem_allocator = new vk::memory::Allocator(vk_struct);
   this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);

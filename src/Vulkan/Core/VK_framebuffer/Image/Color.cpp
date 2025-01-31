@@ -11,7 +11,7 @@ Color::Color(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_image = new vk::image::Image(vk_struct);
+  this->vk_image = new vk::image::Ressource(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
 
   //---------------------------

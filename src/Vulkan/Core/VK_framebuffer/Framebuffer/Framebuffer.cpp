@@ -12,7 +12,7 @@ Framebuffer::Framebuffer(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_color = new vk::image::Color(vk_struct);
   this->vk_depth = new vk::image::Depth(vk_struct);
-  this->vk_image = new vk::image::Image(vk_struct);
+  this->vk_image = new vk::image::Ressource(vk_struct);
 
   //---------------------------
 }

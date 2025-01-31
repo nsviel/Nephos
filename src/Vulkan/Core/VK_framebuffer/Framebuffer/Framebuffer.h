@@ -5,7 +5,7 @@
 namespace vk{class Structure;}
 namespace vk::image{class Color;}
 namespace vk::image{class Depth;}
-namespace vk::image{class Image;}
+namespace vk::image{class Ressource;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Framebuffer;}
 namespace vk::structure{class Frame;}
@@ -36,7 +36,7 @@ private:
   vk::Structure* vk_struct;
   vk::image::Color* vk_color;
   vk::image::Depth* vk_depth;
-  vk::image::Image* vk_image;
+  vk::image::Ressource* vk_image;
 };
 
 }
