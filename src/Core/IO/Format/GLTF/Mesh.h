@@ -20,6 +20,7 @@ public:
 
 public:
   //Main function
+  void parse_meshes(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
   void parse_mesh(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
 
   //Subfunction

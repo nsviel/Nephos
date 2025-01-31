@@ -18,6 +18,18 @@ Mesh::Mesh(){
 Mesh::~Mesh(){}
 
 //Main function
+void Mesh::parse_meshes(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data){
+  //---------------------------
+
+  //Meshes
+  for(auto& mesh : tinygltf.model.meshes){
+    tinygltf.mesh = mesh;
+
+    this->parse_mesh(tinygltf, data);
+  }
+
+  //---------------------------
+}
 void Mesh::parse_mesh(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data){
   //---------------------------
 
