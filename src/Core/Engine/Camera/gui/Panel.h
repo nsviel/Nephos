@@ -23,7 +23,7 @@ public:
   void design_panel();
 
   //Sub functions
-  void cam_screenshot();
+  void cam_action();
   void cam_info();
   void cam_parameter();
   void cam_pather();

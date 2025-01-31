@@ -43,7 +43,7 @@ void Panel::run_panel(){
 void Panel::design_panel(){
   //---------------------------
 
-  this->cam_screenshot();
+  this->cam_action();
   this->cam_info();
   this->cam_parameter();
   this->cam_pather();
@@ -52,7 +52,7 @@ void Panel::design_panel(){
 }
 
 //Subfunction
-void Panel::cam_screenshot(){
+void Panel::cam_action(){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
@@ -62,6 +62,9 @@ void Panel::cam_screenshot(){
   }
   if(ImGui::Button("Depth map##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
     cam_manager->make_screenshot_depth();
+  }
+  if(ImGui::Button("Reset pose##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+    cam_manager->reset_camera();
   }
   ImGui::PopStyleColor(2);
 
