@@ -17,6 +17,7 @@ public:
 
 public:
   //Main function
+  glm::mat4 get_COM_matrix(glm::vec3 coeff);
   glm::mat4 get_translation_matrix(glm::vec3 trans);
   glm::mat4 get_rotation_matrix(glm::vec3 radian);
   glm::mat4 find_transformation_from_file(std::string path);

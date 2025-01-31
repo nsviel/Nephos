@@ -52,7 +52,7 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 COM, glm::ve
 
   glm::vec3 radian = type::degree_to_radian(degree);
   glm::mat4 rotation = trf_utils->get_rotation_matrix(radian);
-  glm::mat4 COM_mat = trf_utils->get_translation_matrix(COM);
+  glm::mat4 COM_mat = trf_utils->get_COM_matrix(COM);
 
   pose.rotation.matrix *= rotation;
   pose.rotation.coeff = trf_utils->get_euler_angles(pose.rotation.matrix);
@@ -65,7 +65,7 @@ void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 COM, glm::ve
   // Apply rotation to the root
   pose.translation.coeff = glm::mat3(rotation) * (pose.translation.coeff - COM) + COM;
   pose.translation.matrix = trf_utils->get_translation_matrix(pose.translation.coeff);
-
+  
   //---------------------------
 }
 void Transformation::make_rotation(utl::base::Pose& pose, glm::vec3 degree){

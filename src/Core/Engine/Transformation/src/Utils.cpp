@@ -22,6 +22,17 @@ glm::mat4 Utils::get_translation_matrix(glm::vec3 coeff){
   //---------------------------
   return matrix;
 }
+glm::mat4 Utils::get_COM_matrix(glm::vec3 coeff){
+  glm::mat4 matrix(0.0);
+  //---------------------------
+
+  matrix[0][3] = coeff.x;
+  matrix[1][3] = coeff.y;
+  matrix[2][3] = coeff.z;
+
+  //---------------------------
+  return matrix;
+}
 glm::mat4 Utils::get_rotation_matrix(glm::vec3 r){
   //---------------------------
 
