@@ -48,12 +48,11 @@ void Triangle::draw_subpass(std::shared_ptr<vk::structure::Render> render){
   for(auto& [uid, vk_object] : vk_struct->core.data.map_object){
     if(!check_data(*vk_object, utl::topology::TRIANGLE)) continue;
     render->object = vk_object;
-
     render->descriptor_set = vk_descriptor->query_descriptor_set(*render->pipeline);
 
     this->update_uniform(render);
+    this->update_sampler(render);
     this->draw_data(render);
-
   }
 
   //---------------------------
@@ -80,10 +79,17 @@ void Triangle::update_uniform(std::shared_ptr<vk::structure::Render> render){
   vk_uniform->update_uniform("mvp", *render->descriptor_set, mvp);
 
   //Texture
-  bool has_texture = false;
+  bool has_texture = (data.texture) ? true : false;
   vk_uniform->update_uniform("has_texture", *render->descriptor_set, has_texture);
 
+  //---------------------------
+}
+void Triangle::update_sampler(std::shared_ptr<vk::structure::Render> render){
+  utl::base::Data& data = *render->object->data;
+  //---------------------------
+
   std::shared_ptr<vk::structure::Sampler> sampler_color = vk_sampler->query_sampler(*render->descriptor_set, "tex_sampler");
+  sampler_color->image = std::make_shared<vk::structure::Image>(vk_struct->core.image.blank);
 
   //---------------------------
   vk_sampler->actualize_sampler(*render->descriptor_set);

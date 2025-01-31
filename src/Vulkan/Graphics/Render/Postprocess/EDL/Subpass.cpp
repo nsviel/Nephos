@@ -51,12 +51,10 @@ void Subpass::draw_subpass(std::shared_ptr<vk::structure::Render> render){
   this->update_sampler(render);
   this->draw_data(render);
 
-
   //---------------------------
 }
 void Subpass::update_sampler(vk::structure::Subpass& subpass){
   //---------------------------
-
 
 
   //---------------------------

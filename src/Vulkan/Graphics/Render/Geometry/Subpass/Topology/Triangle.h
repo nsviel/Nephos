@@ -36,6 +36,7 @@ private:
   //Subfunction
   void bind_pipeline(std::shared_ptr<vk::structure::Render> render);
   void update_uniform(std::shared_ptr<vk::structure::Render> render);
+  void update_sampler(std::shared_ptr<vk::structure::Render> render);
   void draw_data(std::shared_ptr<vk::structure::Render> render);
   bool check_data(vk::structure::Object& vk_object, int topology);
 

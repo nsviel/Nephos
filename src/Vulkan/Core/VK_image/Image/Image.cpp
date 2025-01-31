@@ -25,9 +25,13 @@ void Image::init(){
 
   //Create blank image
   vk::structure::Image& blank = vk_struct->core.image.blank;
+  blank.name = "blank";
   blank.width = 100;
   blank.height = 100;
-  blank.size = 100 * 100 * 4;
+  blank.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  blank.usage = VK_IMAGE_USAGE_SAMPLED_BIT;
+  blank.format = VK_FORMAT_R8G8B8A8_UNORM;
+  blank.layout = VK_IMAGE_LAYOUT_GENERAL;
   vk_image->create_image(blank);
 
   //---------------------------
