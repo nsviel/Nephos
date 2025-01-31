@@ -14,7 +14,7 @@ struct Structure{
   glm::vec2 screenshot_dim =  glm::vec2(4096, 2000);
 
   //Image
-  vk::structure::Image blank;  
+  vk::structure::Texture blank;  
 
   //---------------------------
 };

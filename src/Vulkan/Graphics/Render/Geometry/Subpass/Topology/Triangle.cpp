@@ -94,9 +94,9 @@ void Triangle::update_sampler(std::shared_ptr<vk::structure::Render> render){
     vk::data::Retriever retriever(vk_struct);
 
     std::shared_ptr<vk::structure::Texture> texture = retriever.retrieve_vk_texture(*data.texture);
-  //  if(texture) sampler_color->image = std::make_shared<vk::structure::Image>(texture->surface);
+    if(texture) sampler_color->image = std::make_shared<vk::structure::Image>(texture->surface);
   }else{
-    sampler_color->image = std::make_shared<vk::structure::Image>(vk_struct->core.image.blank);
+    sampler_color->image = std::make_shared<vk::structure::Image>(vk_struct->core.image.blank.surface);
   }
 
   //---------------------------

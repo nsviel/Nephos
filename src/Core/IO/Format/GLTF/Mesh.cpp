@@ -42,6 +42,7 @@ void Mesh::parse_mesh(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base:
     this->parse_primitive_mode(tinygltf, data);
     this->parse_primitive_xyz(tinygltf, data);
     this->parse_primitive_rgb(tinygltf, data);
+    this->parse_primitive_uv(tinygltf, data);
     this->parse_primitive_idx(tinygltf, data);
     this->parse_primitive_tex(tinygltf, data);
   }
@@ -94,6 +95,32 @@ void Mesh::parse_primitive_rgb(fmt::gltf::Structure& tinygltf, std::shared_ptr<u
 
   //---------------------------
 }
+void Mesh::parse_primitive_uv(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data){
+  data->uv.clear();
+  //---------------------------
+
+  if (tinygltf.primitive.attributes.find("TEXCOORD_0") != tinygltf.primitive.attributes.end()) {
+    int uv_accessor_index = tinygltf.primitive.attributes.at("TEXCOORD_0");
+    const auto& uv_accessor = tinygltf.model.accessors[uv_accessor_index];
+    const auto& uv_buffer_view = tinygltf.model.bufferViews[uv_accessor.bufferView];
+    const auto& uv_buffer = tinygltf.model.buffers[uv_buffer_view.buffer];
+
+    // Extract the UV data from the buffer
+    size_t uv_offset = uv_buffer_view.byteOffset + uv_accessor.byteOffset;
+    size_t uv_data_size = uv_accessor.count * 2 * sizeof(float); // 2 floats per UV (x, y)
+
+    std::vector<uint8_t> uv_data(uv_buffer.data.begin() + uv_offset, uv_buffer.data.begin() + uv_offset + uv_data_size);
+
+    // Convert the raw UV data into floats (x, y)
+    std::vector<glm::vec2> uvs(uv_accessor.count);
+    memcpy(uvs.data(), uv_data.data(), uv_data_size);
+
+    // Store the UVs (you can store them in your mesh data or further process them)
+    data->uv = uvs;
+  }
+
+  //---------------------------
+}
 void Mesh::parse_primitive_idx(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data){
   data->idx.clear();
   //---------------------------
@@ -107,7 +134,7 @@ void Mesh::parse_primitive_idx(fmt::gltf::Structure& tinygltf, std::shared_ptr<u
     const unsigned int* idx_data = reinterpret_cast<const unsigned int*>(&idx_buffer.data[idx_view.byteOffset]);
     size_t idx_size = idx_it.count;
 
-    //Indexed xyz
+    //Index
     for (size_t i = 0; i < idx_size; ++i) {
       data->idx.push_back(idx_data[i]);
     }
@@ -122,12 +149,21 @@ void Mesh::parse_primitive_idx(fmt::gltf::Structure& tinygltf, std::shared_ptr<u
 
     //Indexed rgb
     std::vector<glm::vec3> vec_rgb;
-    if(vec_rgb.size() != 0)
+    if(data->rgb.size() != 0)
     for (size_t i = 0; i < idx_size; ++i) {
       unsigned int index = data->idx[i];
       vec_rgb.push_back(data->rgb[index]);
     }
     data->rgb = vec_rgb;
+
+    //Indexed uv
+    std::vector<glm::vec2> vec_uv;
+    if(data->uv.size() != 0)
+    for (size_t i = 0; i < idx_size; ++i) {
+      unsigned int index = data->idx[i];
+      vec_uv.push_back(data->uv[index]);
+    }
+    data->uv = vec_uv;
   }
 
   //---------------------------

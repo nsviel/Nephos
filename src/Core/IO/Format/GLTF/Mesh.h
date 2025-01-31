@@ -26,6 +26,7 @@ public:
   //Subfunction
   void parse_primitive_xyz(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
   void parse_primitive_rgb(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
+  void parse_primitive_uv(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
   void parse_primitive_mode(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
   void parse_primitive_idx(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
   void parse_primitive_tex(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
