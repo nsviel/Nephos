@@ -7,6 +7,7 @@ namespace vk{class Node;}
 namespace core{class Node;}
 
 namespace rad{class Node;}
+namespace llmr{class Node;}
 
 
 namespace mod{
@@ -36,6 +37,7 @@ private:
 
   //Child
   rad::Node* node_radio;
+  llmr::Node* node_llmr;
 };
 
 }

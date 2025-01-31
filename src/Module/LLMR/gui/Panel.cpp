@@ -1,6 +1,6 @@
 #include "Panel.h"
 
-#include <Radiometry/Namespace.h>
+#include <LLMR/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -8,18 +8,16 @@
 namespace llmr::gui{
 
 //Constructor / Destructor
-Panel::Panel(rad::Node* node_radio, bool* show_window){
+Panel::Panel(llmr::Node* node_llmr, bool* show_window){
   //---------------------------
 
-  dat::Node* node_data = node_radio->get_node_data();
+  dat::Node* node_data = node_llmr->get_node_data();
   dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->gph_selection = node_graph->get_gph_selection();
-  this->gui_correction = new rad::cor::gui::Tab(node_radio);
-  this->gui_calibration = new rad::cal::gui::Tab(node_radio);
 
   this->show_window = show_window;
-  this->name = "Radiometry";
+  this->name = "LLMR";
 
   //---------------------------
 }
@@ -71,7 +69,6 @@ void Panel::tab_correction(dat::base::Sensor& sensor){
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
   if(ImGui::BeginTabItem("Correction##radiometry_tab")){
-    gui_correction->design_tab(sensor);
 
     ImGui::EndTabItem();
   }
@@ -83,7 +80,6 @@ void Panel::tab_calibration(dat::base::Sensor& sensor){
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
   if(ImGui::BeginTabItem("Calibration##radiometry_tab")){
-    gui_calibration->design_tab(sensor);
 
     ImGui::EndTabItem();
   }

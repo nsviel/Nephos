@@ -5,6 +5,7 @@
 #include <Data/Namespace.h>
 
 #include <Radiometry/Namespace.h>
+#include <LLMR/Namespace.h>
 
 
 namespace mod{
@@ -17,6 +18,7 @@ Node::Node(app::Node* node_app){
   this->node_vulkan = node_app->get_node_vulkan();
 
   this->node_radio = new rad::Node(this);
+  this->node_llmr = new llmr::Node(this);
 
   //---------------------------
 }
@@ -34,6 +36,7 @@ void Node::loop(){
   //---------------------------
 
   node_radio->loop();
+  node_llmr->loop();
 
   //---------------------------
 }

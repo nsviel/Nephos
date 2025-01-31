@@ -1,4 +1,4 @@
 #pragma once
 
-#include <LLMR/Node.h>
 #include <LLMR/gui/Namespace.h>
+#include <LLMR/Node.h>
