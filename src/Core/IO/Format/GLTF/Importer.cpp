@@ -23,6 +23,7 @@ Importer::~Importer(){}
 
 //Main function
 std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
+  utl::base::Element element;
   //---------------------------
 
   //Init
@@ -40,7 +41,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   }else if(path.format == ".glb"){
     this->load_glb(path.build(), model);
   }
-
+  
   //Meshes
   this->parse_meshes(model, object->data);
 

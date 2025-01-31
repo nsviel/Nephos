@@ -1,38 +1,35 @@
 #pragma once
 
-#include <IO/Base/Importer.h>
 #include <gltf/tiny_gltf.h>
+#include <glm/glm.hpp>
 #include <memory>
-#include <string>
+#include <vector>
 
-namespace utl::base{class Path;}
+namespace fmt::gltf{class Structure;}
 namespace utl::base{class Data;}
-namespace fmt::gltf::structure{class Model;}
 
 
 namespace fmt::gltf{
 
-class Importer : public io::base::Importer
+class Mesh
 {
 public:
   //Constructor / Destructor
-  Importer();
-  ~Importer();
+  Mesh();
+  ~Mesh();
 
 public:
   //Main function
-  void parse_mesh(tinygltf::Mesh& mesh);
+  void parse_mesh(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
 
   //Subfunction
-  void parse_primitive_xyz(tinygltf::Primitive& primitive);
-  void parse_primitive_xyz(tinygltf::Primitive& primitive);
-  void parse_primitive_xyz(tinygltf::Primitive& primitive);
-  void parse_primitive_xyz(tinygltf::Primitive& primitive);
-  void parse_primitive_mode(tinygltf::Primitive& primitive);
+  void parse_primitive_xyz(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
+  void parse_primitive_rgb(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
+  void parse_primitive_mode(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
+  void parse_primitive_idx(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
+  void parse_primitive_tex(fmt::gltf::Structure& tinygltf, std::shared_ptr<utl::base::Data> data);
 
 private:
-  std::vector<glm::vec3> vec_xyz;
-  std::vector<glm::vec3> vec_rgb;
 };
 
 }

@@ -44,6 +44,7 @@ struct Data : public utl::base::Element{
   std::vector<glm::vec4> rgba;  //Displayed color data
   std::vector<glm::vec3> Nxyz;  //Normal
   std::vector<glm::vec2> uv;    //UV coordinate
+  std::vector<unsigned int> idx;//vertice index
   std::map<std::string, std::shared_ptr<utl::base::Field>> map_field;
   std::map<std::string, std::shared_ptr<utl::base::Image>> map_image;
   std::map<std::string, std::shared_ptr<utl::base::Depth>> map_depth;
