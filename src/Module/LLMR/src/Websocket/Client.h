@@ -4,6 +4,7 @@
 #include <websocketpp/client.hpp>
 #include <memory>
 #include <string>
+#include <thread>
 
 typedef websocketpp::client<websocketpp::config::asio_client> client;
 typedef websocketpp::lib::shared_ptr<websocketpp::lib::asio::ssl::context> context_ptr;
@@ -23,7 +24,8 @@ public:
 
 public:
   //Main function
-  void setup();
+  void start_connection();
+  void setup_connection();
 
   //Subfunction
   void on_open(websocketpp::connection_hdl hdl, client* c);
@@ -33,7 +35,7 @@ public:
   context_ptr on_tls_init(const char * hostname, websocketpp::connection_hdl);
 
 private:
-
+  std::thread thread;
 };
 
 }

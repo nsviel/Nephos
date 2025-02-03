@@ -30,7 +30,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  llmr_wsok->setup();
+  llmr_wsok->start_connection();
 
   //---------------------------
 }

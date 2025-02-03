@@ -15,7 +15,16 @@ Client::Client(){
 Client::~Client(){}
 
 //Main function
-void Client::setup(){
+void Client::start_connection(){
+  //---------------------------
+
+  // Create and detach the thread 
+  this->thread = std::thread(&Client::setup_connection, this);
+  this->thread.detach();
+
+  //---------------------------
+}
+void Client::setup_connection(){
   //---------------------------
 
   client c;
@@ -49,7 +58,7 @@ void Client::setup(){
   } catch (websocketpp::exception const & e) {
     std::cout << "WebSocket Exception: " << e.what() << std::endl;
   }
-sayHello();
+
   //---------------------------
 }
 
