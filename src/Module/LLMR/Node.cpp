@@ -19,7 +19,7 @@ Node::Node(mod::Node* node_module){
   this->node_data = node_core->get_node_data();
 
   //Child
-  this->llmr_wsok = new net::wsok::Client();
+  this->llmr_interface = new llmr::Interface();
   this->gui_panel = new llmr::gui::Panel(this, &panel->is_open);
 
   //---------------------------
@@ -30,7 +30,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  llmr_wsok->start_connection();
+  llmr_interface->init();
 
   //---------------------------
 }

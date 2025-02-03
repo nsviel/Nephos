@@ -47,14 +47,14 @@ void Client::setup_connection(){
     // Create a connection
     websocketpp::lib::error_code ec;
     client::connection_ptr con = c.get_connection(uri, ec);
-    if (ec) {
+    if(ec){
       std::cout << "Could not create connection because: " << ec.message() << std::endl;
       return;
     }
     c.connect(con);
 
     c.run();
-  } catch (websocketpp::exception const & e) {
+  }catch(websocketpp::exception const & e){
     std::cout << "WebSocket Exception: " << e.what() << std::endl;
   }
 
@@ -62,19 +62,24 @@ void Client::setup_connection(){
 }
 
 //Subfunction
-void Client::send_message(websocketpp::connection_hdl hdl, client* c){
+void Client::send_message(std::string message){
   //---------------------------
 
-  std::cout << "[OK] WebSocket connection opened" << std::endl;
-  websocketpp::lib::error_code ec;
-  client::connection_ptr con = c->get_con_from_hdl(hdl, ec);
-
-  if(ec){
-    std::cout << "[error] Failed to get websocket connection pointer: " << ec.message() << std::endl;
+  if (!hdl.lock()) {
+    std::cout << "[Error] No active connection!" << std::endl;
     return;
   }
-  std::string payload = "{\"userKey\":\"API_KEY\", \"symbol\":\"EURUSD,GBPUSD\"}";
-  c->send(con, payload, websocketpp::frame::opcode::text);
+
+  // Send the message using the WebSocket connection
+  websocketpp::lib::error_code ec;
+  client::connection_ptr con = c.get_con_from_hdl(hdl, ec);
+  if (ec) {
+    std::cout << "[Error] Failed to get connection pointer: " << ec.message() << std::endl;
+    return;
+  }
+
+  // Send the message
+  c.send(con, message, websocketpp::frame::opcode::text);
 
   //---------------------------
 }

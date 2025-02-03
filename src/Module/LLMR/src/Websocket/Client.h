@@ -28,7 +28,7 @@ public:
   void setup_connection();
 
   //Subfunction
-  void send_message(websocketpp::connection_hdl hdl, client* c);
+  void send_message(std::string message);
   void on_open(websocketpp::connection_hdl hdl, client* c);
   void on_message(websocketpp::connection_hdl hdl, client::message_ptr msg);
   void on_fail(websocketpp::connection_hdl hdl);

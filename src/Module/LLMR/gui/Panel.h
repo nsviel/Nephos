@@ -4,6 +4,7 @@
 #include <string>
 
 namespace llmr{class Node;}
+namespace llmr{class Interface;}
 namespace dat::gph{class Selection;}
 namespace dat::base{class Entity;}
 
@@ -27,6 +28,7 @@ public:
 
 private:
   dat::gph::Selection* gph_selection;
+  llmr::Interface* llmr_interface;
 
   std::string name;
   bool* show_window;

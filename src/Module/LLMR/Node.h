@@ -6,7 +6,7 @@ namespace mod{class Node;}
 namespace core{class Node;}
 namespace dat{class Node;}
 
-namespace net::wsok{class Client;}
+namespace llmr{class Interface;}
 namespace llmr::gui{class Panel;}
 
 
@@ -26,6 +26,7 @@ public:
 
   inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}
+  inline llmr::Interface* get_llmr_interface(){return llmr_interface;}
 
 private:
   //Dependancy
@@ -33,7 +34,7 @@ private:
   dat::Node* node_data;
 
   //Child
-  net::wsok::Client* llmr_wsok;
+  llmr::Interface* llmr_interface;
   llmr::gui::Panel* gui_panel;
 };
 
