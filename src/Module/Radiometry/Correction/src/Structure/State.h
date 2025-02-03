@@ -23,7 +23,7 @@ namespace rad::cor{
 
 enum State{
   NO_DATA = 0,
-  HAS_DATA = 3,
+  HAS_DATA = 1,
 };
 
 }

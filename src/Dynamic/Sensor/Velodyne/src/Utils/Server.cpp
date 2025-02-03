@@ -19,7 +19,7 @@ namespace vld::utils{
 Server::Server(){
   //---------------------------
 
-  this->sock_server = new sys::network::Server();
+  this->sock_server = new net::sok::Server();
 
   //---------------------------
 }

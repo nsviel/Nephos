@@ -1,12 +1,16 @@
 #pragma once
-/*
-#include <websocketpp/config/asio_client.hpp>
+
+/*#include <websocketpp/config/asio_client.hpp>
 #include <websocketpp/client.hpp>
 #include <memory>
 #include <string>
 
 typedef websocketpp::client<websocketpp::config::asio_tls_client> client;
 typedef websocketpp::lib::shared_ptr<websocketpp::lib::asio::ssl::context> context_ptr;
+
+using websocketpp::lib::placeholders::_1;
+using websocketpp::lib::placeholders::_2;
+using websocketpp::lib::bind;
 
 namespace net::wsok{
 
