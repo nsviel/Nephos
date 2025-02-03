@@ -28,14 +28,17 @@ public:
   void setup_connection();
 
   //Subfunction
+  void send_message(websocketpp::connection_hdl hdl, client* c);
   void on_open(websocketpp::connection_hdl hdl, client* c);
-  void on_message(websocketpp::connection_hdl, client::message_ptr msg);
+  void on_message(websocketpp::connection_hdl hdl, client::message_ptr msg);
   void on_fail(websocketpp::connection_hdl hdl);
   void on_close(websocketpp::connection_hdl hdl);
   context_ptr on_tls_init(const char * hostname, websocketpp::connection_hdl);
 
 private:
   std::thread thread;
+  client c;
+  websocketpp::connection_hdl hdl;
 };
 
 }

@@ -18,7 +18,7 @@ Client::~Client(){}
 void Client::start_connection(){
   //---------------------------
 
-  // Create and detach the thread 
+  // Create and detach the thread
   this->thread = std::thread(&Client::setup_connection, this);
   this->thread.detach();
 
@@ -27,7 +27,6 @@ void Client::start_connection(){
 void Client::setup_connection(){
   //---------------------------
 
-  client c;
   std::string hostname = "localhost:8765";
   std::string uri = "ws://" + hostname;
 
@@ -63,19 +62,27 @@ void Client::setup_connection(){
 }
 
 //Subfunction
-void Client::on_open(websocketpp::connection_hdl hdl, client* c){
+void Client::send_message(websocketpp::connection_hdl hdl, client* c){
   //---------------------------
 
-  std::cout << "WebSocket connection opened!" << std::endl;
+  std::cout << "[OK] WebSocket connection opened" << std::endl;
   websocketpp::lib::error_code ec;
   client::connection_ptr con = c->get_con_from_hdl(hdl, ec);
 
   if(ec){
-    std::cout << "Failed to get connection pointer: " << ec.message() << std::endl;
+    std::cout << "[error] Failed to get websocket connection pointer: " << ec.message() << std::endl;
     return;
   }
   std::string payload = "{\"userKey\":\"API_KEY\", \"symbol\":\"EURUSD,GBPUSD\"}";
   c->send(con, payload, websocketpp::frame::opcode::text);
+
+  //---------------------------
+}
+void Client::on_open(websocketpp::connection_hdl hdl, client* c){
+  //---------------------------
+
+  std::cout << "[OK] WebSocket connection opened" << std::endl;
+  this->hdl = hdl;
 
   //---------------------------
 }
