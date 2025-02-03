@@ -6,6 +6,7 @@ namespace mod{class Node;}
 namespace core{class Node;}
 namespace dat{class Node;}
 
+namespace net::wsok{class Client;}
 namespace llmr::gui{class Panel;}
 
 
@@ -20,6 +21,7 @@ public:
 
 public:
   //Main function
+  void init();
   void gui();
 
   inline core::Node* get_node_core(){return node_core;}
@@ -31,6 +33,7 @@ private:
   dat::Node* node_data;
 
   //Child
+  net::wsok::Client* llmr_wsok;
   llmr::gui::Panel* gui_panel;
 };
 
