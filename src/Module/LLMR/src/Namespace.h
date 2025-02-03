@@ -1,4 +1,5 @@
 #pragma once
 
-#include <LLMR/src/Websocket/Client.h>
-#include <LLMR/src/Interface.h>
+#include <LLMR/src/Websocket/Namespace.h>
+#include <LLMR/src/Logic/Namespace.h>
+#include <LLMR/src/Structure.h>

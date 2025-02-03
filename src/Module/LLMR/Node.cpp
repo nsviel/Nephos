@@ -20,7 +20,7 @@ Node::Node(mod::Node* node_module){
 
   //Child
   this->llmr_struct = new llmr::Structure();
-  this->llmr_interface = new llmr::Interface();
+  this->llmr_interface = new llmr::Interface(this);
   this->gui_panel = new llmr::gui::Panel(this, &panel->is_open);
 
   //---------------------------

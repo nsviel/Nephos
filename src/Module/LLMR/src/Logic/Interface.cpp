@@ -7,7 +7,7 @@
 namespace llmr{
 
 //Constructor / Destructor
-Interface::Interface(){
+Interface::Interface(llmr::Node* node_llmr){
   //---------------------------
 
   this->llmr_wsok = new net::wsok::Client();

@@ -2,6 +2,7 @@
 
 #include <string>
 
+namespace llmr{class Node;}
 namespace net::wsok{class Client;}
 
 
@@ -11,7 +12,7 @@ class Interface
 {
 public:
   //Constructor / Destructor
-  Interface();
+  Interface(llmr::Node* node_llmr);
   ~Interface();
 
 public:

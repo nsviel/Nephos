@@ -1,6 +1,7 @@
 #include "Client.h"
 
 #include <iostream>
+#include <LLMR/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -96,7 +97,9 @@ void Client::on_open(websocketpp::connection_hdl hdl, client* c){
 void Client::on_message(websocketpp::connection_hdl, client::message_ptr msg){
   //---------------------------
 
-  std::cout << "Received message: " << msg->get_payload() << std::endl;
+  std::string answer = msg->get_payload();
+  std::cout << "Received message: " << answer << std::endl;
+  llmr_struct->vec_message.push_back(answer);
 
   //---------------------------
 }
