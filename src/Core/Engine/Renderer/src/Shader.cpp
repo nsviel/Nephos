@@ -3,6 +3,7 @@
 #include <Engine/Renderer/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Utility/GUI/Terminal/Namespace.h>
 
 
 namespace rnd{

@@ -1,14 +1,18 @@
 #include "Terminal.h"
 #include "Structure.h"
 
+#include <LLMR/Namespace.h>
+#include <Utility/Namespace.h>
 
-namespace utl::gui::terminal{
+
+namespace llmr::gui{
 
 //Constructor / Destructor
-Terminal::Terminal(){
+Terminal::Terminal(llmr::Node* node_llmr){
   //---------------------------
 
-  this->ter_struct = new utl::gui::terminal::Structure();
+  this->ter_struct = new llmr::gui::terminal::Structure();
+  this->llmr_interface = node_llmr->get_llmr_interface();
 
   //---------------------------
 }
@@ -205,26 +209,18 @@ void Terminal::execute_command(const char* command_line){
 
   ter_struct->history.push_back(Strdup(command_line));
 
-  // Process command
-  if(Stricmp(command_line, "CLEAR") == 0){
-    clear_log();
-  }
-  else if(Stricmp(command_line, "HELP") == 0){
-    add_log("Commands:");
-    for(int i = 0; i < ter_struct->vec_command.Size; i++)
-      add_log("- %s", ter_struct->vec_command[i]);
-  }
-  else if(Stricmp(command_line, "HISTORY") == 0){
-    int first = ter_struct->history.Size - 10;
-    for(int i = first > 0 ? first : 0; i < ter_struct->history.Size; i++)
-      add_log("%3d: %s\n", i, ter_struct->history[i]);
-  }
-  else{
-    add_log("Unknown command: '%s'\n", command_line);
-  }
+  std::string input(command_line);
+  this->process_input(input);
 
   // On command input, we scroll to bottom even if ter_struct->is_autoscroll==false
   ter_struct->scroll_to_bottom = true;
+
+  //---------------------------
+}
+void Terminal::process_input(std::string command_line){
+  //---------------------------
+say(command_line);
+  llmr_interface->send_llm_message(command_line);
 
   //---------------------------
 }

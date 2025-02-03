@@ -4,10 +4,9 @@
 #include <string>
 
 namespace llmr{class Node;}
-namespace llmr{class Interface;}
 namespace dat::gph{class Selection;}
 namespace dat::base{class Entity;}
-namespace utl::gui::terminal{class Terminal;}
+namespace llmr::gui{class Terminal;}
 
 
 namespace llmr::gui{
@@ -28,9 +27,8 @@ public:
   void prompt_input(dat::base::Entity& entity);
 
 private:
-  utl::gui::terminal::Terminal* utl_terminal;
+  llmr::gui::Terminal* utl_terminal;
   dat::gph::Selection* gph_selection;
-  llmr::Interface* llmr_interface;
 
   std::string name;
   bool* show_window;

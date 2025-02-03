@@ -3,6 +3,7 @@
 #include <LLMR/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Utility/GUI/Terminal/Namespace.h>
 
 
 namespace llmr::gui{
@@ -15,8 +16,7 @@ Panel::Panel(llmr::Node* node_llmr, bool* show_window){
   dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->gph_selection = node_graph->get_gph_selection();
-  this->llmr_interface = node_llmr->get_llmr_interface();
-  this->utl_terminal = new utl::gui::terminal::Terminal();
+  this->utl_terminal = new llmr::gui::Terminal(node_llmr);
 
   this->show_window = show_window;
   this->name = "LLMR";

@@ -19,6 +19,7 @@ Node::Node(mod::Node* node_module){
   this->node_data = node_core->get_node_data();
 
   //Child
+  this->llmr_struct = new llmr::Structure();
   this->llmr_interface = new llmr::Interface();
   this->gui_panel = new llmr::gui::Panel(this, &panel->is_open);
 

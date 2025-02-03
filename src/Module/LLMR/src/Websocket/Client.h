@@ -6,6 +6,9 @@
 #include <string>
 #include <thread>
 
+namespace llmr{class Node;}
+namespace llmr{class Structure;}
+
 typedef websocketpp::client<websocketpp::config::asio_client> client;
 typedef websocketpp::lib::shared_ptr<websocketpp::lib::asio::ssl::context> context_ptr;
 
@@ -13,13 +16,14 @@ using websocketpp::lib::placeholders::_1;
 using websocketpp::lib::placeholders::_2;
 using websocketpp::lib::bind;
 
+
 namespace net::wsok{
 
 class Client
 {
 public:
   //Constructor / Destructor
-  Client();
+  Client(llmr::Node* node_llmr);
   ~Client();
 
 public:
@@ -36,6 +40,8 @@ public:
   context_ptr on_tls_init(const char * hostname, websocketpp::connection_hdl);
 
 private:
+  llmr::Structure* llmr_struct;
+
   std::thread thread;
   client c;
   websocketpp::connection_hdl hdl;

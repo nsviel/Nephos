@@ -7,8 +7,10 @@
 namespace net::wsok{
 
 //Constructor / Destructor
-Client::Client(){
+Client::Client(llmr::Node* node_llmr){
   //---------------------------
+
+  this->llmr_struct = node_llmr->get_llmr_struct();
 
   //---------------------------
 }
