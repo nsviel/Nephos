@@ -13,6 +13,7 @@ Terminal::Terminal(llmr::Node* node_llmr){
 
   this->ter_struct = new llmr::gui::terminal::Structure();
   this->llmr_interface = node_llmr->get_llmr_interface();
+  this->llmr_struct = node_llmr->get_llmr_struct();
 
   //---------------------------
 }
@@ -39,7 +40,7 @@ void Terminal::add_log(const char* fmt, ...){
   vsnprintf(buf, IM_ARRAYSIZE(buf), fmt, args);
   buf[IM_ARRAYSIZE(buf)-1] = 0;
   va_end(args);
-  ter_struct->vec_item.push_back(Strdup(buf));
+  llmr_struct->vec_item.push_back(std::string(buf));
 
   //---------------------------
 }
@@ -47,7 +48,7 @@ void Terminal::add_log(std::string& log){
   //---------------------------
 
   char* copy = ImStrdup(log.c_str());
-  ter_struct->vec_item.push_back(copy);
+  llmr_struct->vec_item.push_back(std::string(copy));
 
   //---------------------------
 }
@@ -85,10 +86,10 @@ void Terminal::add_file(std::string prefix, std::string path){
 void Terminal::clear_log(){
   //---------------------------
 
-  for(int i = 0; i < ter_struct->vec_item.Size; i++){
-    free(ter_struct->vec_item[i]);
+  for(int i = 0; i < llmr_struct->vec_item.size(); i++){
+    //free(llmr_struct->vec_item[i]);
   }
-  ter_struct->vec_item.clear();
+  llmr_struct->vec_item.clear();
 
   //---------------------------
 }
@@ -132,7 +133,8 @@ void Terminal::draw_console(){
     // - Split them into same height items would be simpler and facilitate random-seeking into your list.
     // - Consider using manual call to IsRectVisible() and skipping extraneous decoration from your items.
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4, 1)); // Tighten spacing
-    for(const char* item : ter_struct->vec_item){
+    for(std::string& item_str : llmr_struct->vec_item){
+      const char* item = item_str.c_str();
       if(!ter_struct->filter.PassFilter(item))
         continue;
 

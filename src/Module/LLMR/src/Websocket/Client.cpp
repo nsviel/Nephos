@@ -99,7 +99,7 @@ void Client::on_message(websocketpp::connection_hdl, client::message_ptr msg){
 
   std::string answer = msg->get_payload();
   std::cout << "Received message: " << answer << std::endl;
-  llmr_struct->vec_message.push_back(answer);
+  llmr_struct->vec_item.push_back(answer);
 
   //---------------------------
 }

@@ -9,6 +9,8 @@
 namespace llmr::gui::terminal{class Structure;}
 namespace llmr{class Interface;}
 namespace llmr{class Node;}
+namespace llmr{class Structure;}
+
 
 namespace llmr::gui{
 
@@ -47,6 +49,7 @@ public:
   }
 
 private:
+  llmr::Structure* llmr_struct;
   llmr::Interface* llmr_interface;
   llmr::gui::terminal::Structure* ter_struct;
 };
