@@ -7,7 +7,7 @@ namespace rnd{class Node;}
 namespace vk::shader{class Reloader;}
 namespace vk::gfx::render{class Render;}
 namespace core{class Node;}
-namespace utl::gui::widget{class Console;}
+namespace utl::gui::widget{class Terminal;}
 namespace utl::gui::editor{class Text;}
 namespace rnd{class Shader;}
 
@@ -53,7 +53,7 @@ private:
   core::Node* node_core;
   utl::gui::editor::Text* editor_vs;
   utl::gui::editor::Text* editor_fs;
-  utl::gui::widget::Console* gui_console;
+  utl::gui::widget::Terminal* gui_console;
 
   std::vector<std::string> vec_shader_class;
   std::vector<std::string> vec_shader_subclass;

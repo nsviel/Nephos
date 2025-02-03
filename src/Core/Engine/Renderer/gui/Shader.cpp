@@ -19,7 +19,7 @@ Shader::Shader(rnd::Node* node_renderer, bool* show_window){
   this->node_core = node_core;
   this->editor_vs = new utl::gui::editor::Text();
   this->editor_fs = new utl::gui::editor::Text();
-  this->gui_console = new utl::gui::widget::Console();
+  this->gui_console = new utl::gui::widget::Terminal();
   this->itf_shader = node_renderer->get_rnd_shader();
 
   this->item_width = 100;

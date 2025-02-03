@@ -1,20 +1,95 @@
-#include "Console.h"
+#include "Terminal.h"
 
 
 namespace utl::gui::widget{
 
 //Constructor / Destructor
-Console::Console(){
+Terminal::Terminal(){
   //---------------------------
 
   this->AutoScroll = true;
 
   //---------------------------
 }
-Console::~Console(){}
+Terminal::~Terminal(){}
 
 //Main function
-void Console::draw_console(std::string title){
+void Terminal::draw_terminal(){
+  //---------------------------
+
+  this->draw_console();
+  this->draw_input();
+
+  //---------------------------
+}
+
+//Log function
+void Terminal::add_log(const char* fmt, ...){
+  //---------------------------
+
+  // FIXME-OPT
+  char buf[1024];
+  va_list args;
+  va_start(args, fmt);
+  vsnprintf(buf, IM_ARRAYSIZE(buf), fmt, args);
+  buf[IM_ARRAYSIZE(buf)-1] = 0;
+  va_end(args);
+  Items.push_back(Strdup(buf));
+
+  //---------------------------
+}
+void Terminal::add_log(std::string& log){
+  //---------------------------
+
+  char* copy = ImStrdup(log.c_str());
+  Items.push_back(copy);
+
+  //---------------------------
+}
+void Terminal::add_file(std::string prefix, std::string path){
+  //---------------------------
+
+  //Retrieve file content
+  std::ifstream inputFile(path.c_str());
+  if(!inputFile.is_open()){
+    std::cerr << "Failed to open the file for reading." << std::endl;
+    return;
+  }
+  std::string content((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
+  inputFile.close();
+
+  //Add content into console
+  if(content != ""){
+    if(prefix == "error"){
+      this->add_log("[error]");
+    }
+    this->add_log(content.c_str());
+  }
+
+  //Clear file
+  std::ofstream outputFile(path.c_str(), std::ofstream::out);
+  if(outputFile.is_open()){
+    outputFile.close();
+  }else{
+    std::cerr << "Failed to open the file for clearing." << std::endl;
+    return;
+  }
+
+  //---------------------------
+}
+void Terminal::clear_log(){
+  //---------------------------
+
+  for(int i = 0; i < Items.Size; i++){
+    free(Items[i]);
+  }
+  Items.clear();
+
+  //---------------------------
+}
+
+//Subfunction
+void Terminal::draw_console(){
   //---------------------------
 
   // Reserve enough left-over height for 1 separator + 1 input text
@@ -83,79 +158,17 @@ void Console::draw_console(std::string title){
 
   //---------------------------
 }
-
-//Add / clear function
-void Console::add_log(const char* fmt, ...){
-  //---------------------------
-
-  // FIXME-OPT
-  char buf[1024];
-  va_list args;
-  va_start(args, fmt);
-  vsnprintf(buf, IM_ARRAYSIZE(buf), fmt, args);
-  buf[IM_ARRAYSIZE(buf)-1] = 0;
-  va_end(args);
-  Items.push_back(Strdup(buf));
-
-  //---------------------------
-}
-void Console::add_log(std::string& log){
-  //---------------------------
-
-  char* copy = ImStrdup(log.c_str());
-  Items.push_back(copy);
-
-  //---------------------------
-}
-void Console::add_file(std::string prefix, std::string path){
-  //---------------------------
-
-  //Retrieve file content
-  std::ifstream inputFile(path.c_str());
-  if(!inputFile.is_open()){
-    std::cerr << "Failed to open the file for reading." << std::endl;
-    return;
-  }
-  std::string content((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
-  inputFile.close();
-
-  //Add content into console
-  if(content != ""){
-    if(prefix == "error"){
-      this->add_log("[error]");
-    }
-    this->add_log(content.c_str());
-  }
-
-  //Clear file
-  std::ofstream outputFile(path.c_str(), std::ofstream::out);
-  if(outputFile.is_open()){
-    outputFile.close();
-  }else{
-    std::cerr << "Failed to open the file for clearing." << std::endl;
-    return;
-  }
-
-  //---------------------------
-}
-void Console::clear_log(){
-  //---------------------------
-
-  for(int i = 0; i < Items.Size; i++){
-    free(Items[i]);
-  }
-  Items.clear();
-
-  //---------------------------
-}
-
-//Subfunction
-void Console::draw_command_line(){
+void Terminal::draw_input(){
   //---------------------------
 
   bool reclaim_focus = false;
-  ImGuiInputTextFlags input_text_flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_EscapeClearsAll | ImGuiInputTextFlags_CallbackCompletion | ImGuiInputTextFlags_CallbackHistory;
-  if(ImGui::InputText("Input", InputBuf, IM_ARRAYSIZE(InputBuf), input_text_flags, &TextEditCallbackStub, (void*)this)){
+  ImGuiInputTextFlags flag;
+  flag |= ImGuiInputTextFlags_EnterReturnsTrue;
+  flag |= ImGuiInputTextFlags_EscapeClearsAll;
+  flag |= ImGuiInputTextFlags_CallbackCompletion;
+  flag |= ImGuiInputTextFlags_CallbackHistory;
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
+  if(ImGui::InputText("##terminal_input", InputBuf, IM_ARRAYSIZE(InputBuf), flag, &TextEditCallbackStub, (void*)this)){
     char* s = InputBuf;
     Strtrim(s);
     if(s[0]){
@@ -165,9 +178,14 @@ void Console::draw_command_line(){
     reclaim_focus = true;
   }
 
+  // Auto-focus on window apparition
+  ImGui::SetItemDefaultFocus();
+  if(reclaim_focus)
+      ImGui::SetKeyboardFocusHere(-1); // Auto focus previous widget
+
   //---------------------------
 }
-void Console::ExecCommand(const char* command_line){
+void Terminal::ExecCommand(const char* command_line){
   //---------------------------
 
   add_log("# %s\n", command_line);
@@ -211,7 +229,7 @@ void Console::ExecCommand(const char* command_line){
 
   //---------------------------
 }
-int Console::TextEditCallback(ImGuiInputTextCallbackData* data){
+int Terminal::TextEditCallback(ImGuiInputTextCallbackData* data){
   //---------------------------
 
   //add_log("cursor: %d, selection: %d-%d", data->CursorPos, data->SelectionStart, data->SelectionEnd);

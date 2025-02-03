@@ -9,21 +9,26 @@
 
 namespace utl::gui::widget{
 
-class Console
+class Terminal
 {
 public:
   //Constructor / Destructor
-  Console();
-  ~Console();
+  Terminal();
+  ~Terminal();
 
 public:
   //Main function
+  void draw_terminal();
+
+  //Log function
   void clear_log();
   void add_log(const char* fmt, ...);
   void add_log(std::string& log);
   void add_file(std::string prefixe, std::string path);
-  void draw_console(std::string title);
-  void draw_command_line();
+
+  //Subfunction
+  void draw_console();
+  void draw_input();
   void ExecCommand(const char* command_line);
   int TextEditCallback(ImGuiInputTextCallbackData* data);
 
@@ -33,7 +38,7 @@ public:
   static char* Strdup(const char* s)                           { IM_ASSERT(s); size_t len = strlen(s) + 1; void* buf = malloc(len); IM_ASSERT(buf); return (char*)memcpy(buf, (const void*)s, len); }
   static void  Strtrim(char* s)                                { char* str_end = s + strlen(s); while(str_end > s && str_end[-1] == ' ') str_end--; *str_end = 0; }
   static int TextEditCallbackStub(ImGuiInputTextCallbackData* data){
-    Console* console = (Console*)data->UserData;
+    Terminal* console = (Terminal*)data->UserData;
     return console->TextEditCallback(data);
   }
 

@@ -16,6 +16,7 @@ Panel::Panel(llmr::Node* node_llmr, bool* show_window){
 
   this->gph_selection = node_graph->get_gph_selection();
   this->llmr_interface = node_llmr->get_llmr_interface();
+  this->utl_terminal = new utl::gui::widget::Terminal();
 
   this->show_window = show_window;
   this->name = "LLMR";
@@ -57,21 +58,8 @@ void Panel::design_panel(dat::base::Entity& entity){
 void Panel::prompt_input(dat::base::Entity& entity){
   //---------------------------
 
-  //Text input
-  ImVec2 size(-1, 20);
-  static char buffer[1024*16] = "";
-  ImGui::InputTextMultiline("##prompt", buffer, sizeof(buffer), ImVec2(-1, 100));
-
-  //Submit button
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
-  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-  if(ImGui::Button("Submit##222", ImVec2(-1, 0))){
-    std::string str(buffer);
-    llmr_interface->send_llm_message(str);
-    memset(buffer, 0, sizeof(buffer));
-  }
-  ImGui::PopStyleColor(2);
-
+  utl_terminal->draw_terminal();
+  
   //---------------------------
 }
 
