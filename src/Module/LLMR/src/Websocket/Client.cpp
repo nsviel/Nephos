@@ -35,9 +35,9 @@ void Client::setup_connection(){
 
   try {
     //initialize WebSocket
-    c.set_access_channels(websocketpp::log::alevel::all);
+    c.set_access_channels(websocketpp::log::alevel::none);
     c.clear_access_channels(websocketpp::log::alevel::frame_payload);
-    c.set_error_channels(websocketpp::log::elevel::all);
+    c.set_error_channels(websocketpp::log::elevel::none);
     c.init_asio();
 
     // Set up event
@@ -98,7 +98,6 @@ void Client::on_message(websocketpp::connection_hdl, client::message_ptr msg){
   //---------------------------
 
   std::string answer = msg->get_payload();
-  std::cout << "Received message: " << answer << std::endl;
   llmr_struct->vec_item.push_back(answer);
 
   //---------------------------
