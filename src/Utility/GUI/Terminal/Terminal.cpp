@@ -1,13 +1,14 @@
 #include "Terminal.h"
+#include "Structure.h"
 
 
-namespace utl::gui::widget{
+namespace utl::gui::terminal{
 
 //Constructor / Destructor
 Terminal::Terminal(){
   //---------------------------
 
-  this->AutoScroll = true;
+  this->ter_struct = new utl::gui::terminal::Structure();
 
   //---------------------------
 }
@@ -34,7 +35,7 @@ void Terminal::add_log(const char* fmt, ...){
   vsnprintf(buf, IM_ARRAYSIZE(buf), fmt, args);
   buf[IM_ARRAYSIZE(buf)-1] = 0;
   va_end(args);
-  Items.push_back(Strdup(buf));
+  ter_struct->vec_item.push_back(Strdup(buf));
 
   //---------------------------
 }
@@ -42,7 +43,7 @@ void Terminal::add_log(std::string& log){
   //---------------------------
 
   char* copy = ImStrdup(log.c_str());
-  Items.push_back(copy);
+  ter_struct->vec_item.push_back(copy);
 
   //---------------------------
 }
@@ -80,10 +81,10 @@ void Terminal::add_file(std::string prefix, std::string path){
 void Terminal::clear_log(){
   //---------------------------
 
-  for(int i = 0; i < Items.Size; i++){
-    free(Items[i]);
+  for(int i = 0; i < ter_struct->vec_item.Size; i++){
+    free(ter_struct->vec_item[i]);
   }
-  Items.clear();
+  ter_struct->vec_item.clear();
 
   //---------------------------
 }
@@ -93,8 +94,8 @@ void Terminal::draw_console(){
   //---------------------------
 
   // Reserve enough left-over height for 1 separator + 1 input text
-  const float footer_height_to_reserve = ImGui::GetFrameHeightWithSpacing();
-  if(ImGui::BeginChild("ScrollingRegion", ImVec2(0, 100), false, ImGuiWindowFlags_HorizontalScrollbar)){
+  const float footer_height_to_reserve = ImGui::GetStyle().ItemSpacing.y + ImGui::GetFrameHeightWithSpacing();
+  if(ImGui::BeginChild("ScrollingRegion", ImVec2(0, -footer_height_to_reserve), ImGuiChildFlags_NavFlattened, ImGuiWindowFlags_HorizontalScrollbar)){
     if(ImGui::BeginPopupContextWindow()){
       if(ImGui::Selectable("Clear")){
         clear_log();
@@ -127,8 +128,8 @@ void Terminal::draw_console(){
     // - Split them into same height items would be simpler and facilitate random-seeking into your list.
     // - Consider using manual call to IsRectVisible() and skipping extraneous decoration from your items.
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4, 1)); // Tighten spacing
-    for(const char* item : Items){
-      if(!Filter.PassFilter(item))
+    for(const char* item : ter_struct->vec_item){
+      if(!ter_struct->filter.PassFilter(item))
         continue;
 
       // Normally you would store more information in your item than just a string.
@@ -148,9 +149,9 @@ void Terminal::draw_console(){
 
     // Keep up at the bottom of the scroll region if we were already at the bottom at the beginning of the frame.
     // Using a scrollbar or mouse-wheel will take away from the bottom edge.
-    if(ScrollToBottom || (AutoScroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY()))
+    if(ter_struct->scroll_to_bottom || (ter_struct->is_autoscroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY()))
       ImGui::SetScrollHereY(1.0f);
-    ScrollToBottom = false;
+    ter_struct->scroll_to_bottom = false;
 
     ImGui::PopStyleVar();
   }
@@ -168,11 +169,11 @@ void Terminal::draw_input(){
   flag |= ImGuiInputTextFlags_CallbackCompletion;
   flag |= ImGuiInputTextFlags_CallbackHistory;
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
-  if(ImGui::InputText("##terminal_input", InputBuf, IM_ARRAYSIZE(InputBuf), flag, &TextEditCallbackStub, (void*)this)){
-    char* s = InputBuf;
+  if(ImGui::InputText("##terminal_input", ter_struct->input_buffer, IM_ARRAYSIZE(ter_struct->input_buffer), flag, &TextEditCallbackStub, (void*)this)){
+    char* s = ter_struct->input_buffer;
     Strtrim(s);
     if(s[0]){
-      ExecCommand(s);
+      execute_command(s);
     }
     strcpy(s, "");
     reclaim_focus = true;
@@ -185,22 +186,22 @@ void Terminal::draw_input(){
 
   //---------------------------
 }
-void Terminal::ExecCommand(const char* command_line){
+void Terminal::execute_command(const char* command_line){
   //---------------------------
 
   add_log("# %s\n", command_line);
 
   // Insert into history. First find match and delete it so it can be pushed to the back.
   // This isn't trying to be smart or optimal.
-  HistoryPos = -1;
-  for(int i = History.Size - 1; i >= 0; i--)
-      if(Stricmp(History[i], command_line) == 0)
+  ter_struct->history_pose = -1;
+  for(int i = ter_struct->history.Size - 1; i >= 0; i--)
+      if(Stricmp(ter_struct->history[i], command_line) == 0)
       {
-          free(History[i]);
-          History.erase(History.begin() + i);
+          free(ter_struct->history[i]);
+          ter_struct->history.erase(ter_struct->history.begin() + i);
           break;
       }
-  History.push_back(Strdup(command_line));
+  ter_struct->history.push_back(Strdup(command_line));
 
   // Process command
   if(Stricmp(command_line, "CLEAR") == 0)
@@ -210,22 +211,22 @@ void Terminal::ExecCommand(const char* command_line){
   else if(Stricmp(command_line, "HELP") == 0)
   {
       add_log("Commands:");
-      for(int i = 0; i < Commands.Size; i++)
-          add_log("- %s", Commands[i]);
+      for(int i = 0; i < ter_struct->vec_command.Size; i++)
+          add_log("- %s", ter_struct->vec_command[i]);
   }
   else if(Stricmp(command_line, "HISTORY") == 0)
   {
-      int first = History.Size - 10;
-      for(int i = first > 0 ? first : 0; i < History.Size; i++)
-          add_log("%3d: %s\n", i, History[i]);
+      int first = ter_struct->history.Size - 10;
+      for(int i = first > 0 ? first : 0; i < ter_struct->history.Size; i++)
+          add_log("%3d: %s\n", i, ter_struct->history[i]);
   }
   else
   {
       add_log("Unknown command: '%s'\n", command_line);
   }
 
-  // On command input, we scroll to bottom even if AutoScroll==false
-  ScrollToBottom = true;
+  // On command input, we scroll to bottom even if ter_struct->is_autoscroll==false
+  ter_struct->scroll_to_bottom = true;
 
   //---------------------------
 }
@@ -250,9 +251,9 @@ int Terminal::TextEditCallback(ImGuiInputTextCallbackData* data){
 
             // Build a list of candidates
             ImVector<const char*> candidates;
-            for(int i = 0; i < Commands.Size; i++)
-                if(Strnicmp(Commands[i], word_start, (int)(word_end - word_start)) == 0)
-                    candidates.push_back(Commands[i]);
+            for(int i = 0; i < ter_struct->vec_command.Size; i++)
+                if(Strnicmp(ter_struct->vec_command[i], word_start, (int)(word_end - word_start)) == 0)
+                    candidates.push_back(ter_struct->vec_command[i]);
 
             if(candidates.Size == 0)
             {
@@ -301,25 +302,25 @@ int Terminal::TextEditCallback(ImGuiInputTextCallbackData* data){
         }
     case ImGuiInputTextFlags_CallbackHistory:{
           // Example of HISTORY
-          const int prev_history_pos = HistoryPos;
+          const int prev_history_pos = ter_struct->history_pose;
           if(data->EventKey == ImGuiKey_UpArrow)
           {
-              if(HistoryPos == -1)
-                  HistoryPos = History.Size - 1;
-              else if(HistoryPos > 0)
-                  HistoryPos--;
+              if(ter_struct->history_pose == -1)
+                  ter_struct->history_pose = ter_struct->history.Size - 1;
+              else if(ter_struct->history_pose > 0)
+                  ter_struct->history_pose--;
           }
           else if(data->EventKey == ImGuiKey_DownArrow)
           {
-              if(HistoryPos != -1)
-                  if(++HistoryPos >= History.Size)
-                      HistoryPos = -1;
+              if(ter_struct->history_pose != -1)
+                  if(++ter_struct->history_pose >= ter_struct->history.Size)
+                      ter_struct->history_pose = -1;
           }
 
           // A better implementation would preserve the data on the current input line along with cursor position.
-          if(prev_history_pos != HistoryPos)
+          if(prev_history_pos != ter_struct->history_pose)
           {
-              const char* history_str = (HistoryPos >= 0) ? History[HistoryPos] : "";
+              const char* history_str = (ter_struct->history_pose >= 0) ? ter_struct->history[ter_struct->history_pose] : "";
               data->DeleteChars(0, data->BufTextLen);
               data->InsertChars(0, history_str);
           }

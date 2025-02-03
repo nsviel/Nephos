@@ -6,8 +6,10 @@
 #include <fstream>
 #include <string>
 
+namespace utl::gui::terminal{class Structure;}
 
-namespace utl::gui::widget{
+
+namespace utl::gui::terminal{
 
 class Terminal
 {
@@ -29,7 +31,7 @@ public:
   //Subfunction
   void draw_console();
   void draw_input();
-  void ExecCommand(const char* command_line);
+  void execute_command(const char* command_line);
   int TextEditCallback(ImGuiInputTextCallbackData* data);
 
   // Portable helpers
@@ -43,14 +45,7 @@ public:
   }
 
 private:
-  char                  InputBuf[256];
-  ImVector<char*>       Items;
-  ImVector<const char*> Commands;
-  ImVector<char*>       History;
-  int                   HistoryPos;    // -1: new line, 0..History.Size-1 browsing history.
-  ImGuiTextFilter       Filter;
-  bool                  AutoScroll;
-  bool                  ScrollToBottom;
+  utl::gui::terminal::Structure* ter_struct;
 };
 
 }
