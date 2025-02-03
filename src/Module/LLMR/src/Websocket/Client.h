@@ -1,6 +1,6 @@
 #pragma once
 
-/*#include <websocketpp/config/asio_client.hpp>
+#include <websocketpp/config/asio_client.hpp>
 #include <websocketpp/client.hpp>
 #include <memory>
 #include <string>
@@ -23,6 +23,9 @@ public:
 
 public:
   //Main function
+  void setup();
+
+  //Subfunction
   void on_open(websocketpp::connection_hdl hdl, client* c);
   void on_message(websocketpp::connection_hdl, client::message_ptr msg);
   void on_fail(websocketpp::connection_hdl hdl);
@@ -34,4 +37,3 @@ private:
 };
 
 }
-*/

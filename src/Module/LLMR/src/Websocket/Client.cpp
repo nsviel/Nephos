@@ -2,9 +2,44 @@
 
 #include <iostream>
 
+
+namespace net::wsok{
+
+//Main function
 /*
+int Client::setup(){
+  client c;
+  std::string hostname = "marketdata.tradermade.com/feedadv";
+  std::string uri = "wss://" + hostname;
 
+  try {
+    c.set_access_channels(websocketpp::log::alevel::all);
+    c.clear_access_channels(websocketpp::log::alevel::frame_payload);
+    c.set_error_channels(websocketpp::log::elevel::all);
+    c.init_asio();
 
+    c.set_message_handler(&on_message);
+    c.set_tls_init_handler(bind(&on_tls_init, hostname.c_str(), ::_1));
+
+    c.set_open_handler(bind(&on_open, ::_1, &c));
+    c.set_fail_handler(bind(&on_fail, ::_1));
+    c.set_close_handler(bind(&on_close, ::_1));
+    c.set_error_channels(websocketpp::log::elevel::all);  // Enable detailed error logging
+    websocketpp::lib::error_code ec;
+    client::connection_ptr con = c.get_connection(uri, ec);
+    if (ec) {
+      std::cout << "Could not create connection because: " << ec.message() << std::endl;
+      return 0;
+    }
+    c.connect(con);
+
+    c.run();
+  } catch (websocketpp::exception const & e) {
+    std::cout << "WebSocket Exception: " << e.what() << std::endl;
+  }
+}*/
+
+//Subfunction
 void Client::on_open(websocketpp::connection_hdl hdl, client* c) {
   //---------------------------
 
@@ -59,34 +94,4 @@ context_ptr Client::on_tls_init(const char * hostname, websocketpp::connection_h
   return ctx;
 }
 
-int main(int argc, char* argv[]) {
-  client c;
-  std::string hostname = "marketdata.tradermade.com/feedadv";
-  std::string uri = "wss://" + hostname;
-
-  try {
-    c.set_access_channels(websocketpp::log::alevel::all);
-    c.clear_access_channels(websocketpp::log::alevel::frame_payload);
-    c.set_error_channels(websocketpp::log::elevel::all);
-    c.init_asio();
-
-    c.set_message_handler(&on_message);
-    c.set_tls_init_handler(bind(&on_tls_init, hostname.c_str(), ::_1));
-
-    c.set_open_handler(bind(&on_open, ::_1, &c));
-    c.set_fail_handler(bind(&on_fail, ::_1));
-    c.set_close_handler(bind(&on_close, ::_1));
-    c.set_error_channels(websocketpp::log::elevel::all);  // Enable detailed error logging
-    websocketpp::lib::error_code ec;
-    client::connection_ptr con = c.get_connection(uri, ec);
-    if (ec) {
-      std::cout << "Could not create connection because: " << ec.message() << std::endl;
-      return 0;
-    }
-    c.connect(con);
-
-    c.run();
-  } catch (websocketpp::exception const & e) {
-    std::cout << "WebSocket Exception: " << e.what() << std::endl;
-  }
-}*/
+}
