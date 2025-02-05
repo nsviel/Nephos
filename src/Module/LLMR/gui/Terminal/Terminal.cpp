@@ -131,23 +131,43 @@ void Terminal::draw_console(){
       // - Consider using manual call to IsRectVisible() and skipping extraneous decoration from your items.
     */
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4, 1)); // Tighten spacing
-    for(std::string& item_str : llmr_struct->vec_item){
-      std::string str = break_lines(item_str);
-      const char* item = str.c_str();
-      // Normally you would store more information in your item than just a string.
-      // (e.g. make Items[] an array of structure, store color/type etc.)
-      ImVec4 color;
-      bool has_color = false;
-      if(strstr(item, "[error]")){ color = ImVec4(1.0f, 0.4f, 0.4f, 1.0f); has_color = true; }
-      else if(strncmp(item, "# ", 2) == 0){ color = ImVec4(1.0f, 0.8f, 0.6f, 1.0f); has_color = true; }
-      if(has_color){
-        ImGui::PushStyleColor(ImGuiCol_Text, color);
-      }
-      ImGui::TextUnformatted(item);
-      if(has_color){
-        ImGui::PopStyleColor();
-      }
-    }
+    ImGuiListClipper clipper;
+    clipper.Begin(llmr_struct->vec_item.size());  // Pass the total number of items in the list
+
+    // Start clipping and rendering the visible items
+    while (clipper.Step()) {
+        for (int i = clipper.DisplayStart; i < clipper.DisplayEnd; i++) {
+            // Get the string from the item
+            std::string str = break_lines(llmr_struct->vec_item[i]);
+            const char* item = str.c_str();
+
+            // Initialize color and flags
+            ImVec4 color;
+            bool has_color = false;
+
+            // Set color based on the item content
+            if (strstr(item, "[error]")) {
+                color = ImVec4(1.0f, 0.4f, 0.4f, 1.0f); // Red color for errors
+                has_color = true;
+            }
+            else if (strncmp(item, "# ", 2) == 0) {
+                color = ImVec4(1.0f, 0.8f, 0.6f, 1.0f); // Light orange color for headers
+                has_color = true;
+            }
+
+            // Apply the color if necessary
+            if (has_color) {
+                ImGui::PushStyleColor(ImGuiCol_Text, color);
+            }
+
+            // Render the text
+            ImGui::TextUnformatted(item);
+
+            // Restore the style color
+            if (has_color) {
+                ImGui::PopStyleColor();
+            }
+        }
 
     // Keep up at the bottom of the scroll region if we were already at the bottom at the beginning of the frame.
     // Using a scrollbar or mouse-wheel will take away from the bottom edge.
