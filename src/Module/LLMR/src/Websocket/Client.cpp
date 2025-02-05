@@ -51,7 +51,7 @@ void Client::setup_connection(){
     websocketpp::lib::error_code ec;
     client::connection_ptr con = c.get_connection(uri, ec);
     if(ec){
-      std::cout << "Could not create connection because: " << ec.message() << std::endl;
+      std::cout << "[error] Could not create connection because: " << ec.message() << std::endl;
       return;
     }
     c.connect(con);
@@ -105,14 +105,14 @@ void Client::on_message(websocketpp::connection_hdl, client::message_ptr msg){
 void Client::on_fail(websocketpp::connection_hdl hdl){
   //---------------------------
 
-  std::cout << "WebSocket connection failed!" << std::endl;
+  std::cout << "[error] WebSocket connection failed!" << std::endl;
 
   //---------------------------
 }
 void Client::on_close(websocketpp::connection_hdl hdl){
   //---------------------------
 
-  std::cout << "WebSocket connection closed!" << std::endl;
+  std::cout << "[OK] WebSocket connection closed!" << std::endl;
 
   //---------------------------
 }

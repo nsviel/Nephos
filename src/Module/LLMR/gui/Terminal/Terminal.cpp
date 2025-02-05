@@ -15,6 +15,8 @@ Terminal::Terminal(llmr::Node* node_llmr){
   this->llmr_interface = node_llmr->get_llmr_interface();
   this->llmr_struct = node_llmr->get_llmr_struct();
 
+  llmr_struct->vec_item.push_back("Hello there ! How can i help you today ?");
+
   //---------------------------
 }
 Terminal::~Terminal(){}
@@ -130,7 +132,8 @@ void Terminal::draw_console(){
     */
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4, 1)); // Tighten spacing
     for(std::string& item_str : llmr_struct->vec_item){
-      const char* item = item_str.c_str();
+      std::string str = break_lines(item_str);
+      const char* item = str.c_str();
       // Normally you would store more information in your item than just a string.
       // (e.g. make Items[] an array of structure, store color/type etc.)
       ImVec4 color;
@@ -318,6 +321,51 @@ int Terminal::TextEditCallback(ImGuiInputTextCallbackData* data){
 
   //---------------------------
   return 0;
+}
+std::string Terminal::break_lines(const std::string& text){
+  //---------------------------
+
+  ImVec2 windowSize = ImGui::GetWindowSize();  // Get current window size
+  int windowWidth = static_cast<int>(ImGui::GetContentRegionAvail().x);
+  int maxCharsPerLine = windowWidth / 6;
+
+  std::istringstream stream(text);
+  std::string word;
+  std::vector<std::string> lines;
+  std::string line;
+
+  int currentLineLength = 0;
+
+  while (stream >> word) {
+      // Check if adding the word would exceed the max length for the line
+      if (currentLineLength + word.length() + (line.empty() ? 0 : 1) > maxCharsPerLine) {
+          lines.push_back(line);  // Add the current line to the result
+          line = word;  // Start a new line with the current word
+          currentLineLength = word.length();
+      } else {
+          // If the line has space, add the word to the line
+          if (!line.empty()) {
+              line += " ";  // Add a space before the word (if it's not the first word in the line)
+              currentLineLength += 1;  // Account for the space
+          }
+          line += word;  // Add the word to the line
+          currentLineLength += word.length();
+      }
+  }
+
+  // Add any remaining words as the last line
+  if (!line.empty()) {
+      lines.push_back(line);
+  }
+
+  // Combine the lines with newlines
+  std::string result;
+  for (const auto& l : lines) {
+      result += l + "\n";
+  }
+
+  //---------------------------
+  return result;
 }
 
 }
