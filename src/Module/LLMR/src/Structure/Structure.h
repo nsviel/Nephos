@@ -9,7 +9,7 @@ namespace llmr{
 struct Structure{
   //---------------------------
 
-  std::vector<std::string> vec_item;
+  llmr::structure::Terminal terminal;
 
   //---------------------------
 };

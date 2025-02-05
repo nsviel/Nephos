@@ -97,8 +97,9 @@ void Client::on_open(websocketpp::connection_hdl hdl, client* c){
 void Client::on_message(websocketpp::connection_hdl, client::message_ptr msg){
   //---------------------------
 
-  std::string answer = msg->get_payload();
-  llmr_struct->vec_item.push_back(answer);
+  llmr::structure::Item item;
+  item.texte = msg->get_payload();
+  llmr_struct->terminal.vec_item.push_back(item);
 
   //---------------------------
 }

@@ -6,7 +6,7 @@
 
 namespace llmr::structure{
 
-struct Structure{
+struct Item{
   //---------------------------
 
   std::string texte = "";

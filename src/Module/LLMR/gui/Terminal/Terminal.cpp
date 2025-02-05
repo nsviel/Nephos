@@ -10,11 +10,12 @@ namespace llmr::gui{
 Terminal::Terminal(llmr::Node* node_llmr){
   //---------------------------
 
-  this->ter_struct = new llmr::structure::Terminal();
   this->llmr_interface = node_llmr->get_llmr_interface();
   this->llmr_struct = node_llmr->get_llmr_struct();
 
-  llmr_struct->vec_item.push_back("Hello there ! How can i help you today ?");
+  llmr::structure::Item item;
+  item.texte = "Hello there ! How can i help you today ?";
+  llmr_struct->terminal.vec_item.push_back(item);
 
   //---------------------------
 }
@@ -41,7 +42,10 @@ void Terminal::add_log(const char* fmt, ...){
   vsnprintf(buf, IM_ARRAYSIZE(buf), fmt, args);
   buf[IM_ARRAYSIZE(buf)-1] = 0;
   va_end(args);
-  llmr_struct->vec_item.push_back(std::string(buf));
+
+  llmr::structure::Item item;
+  item.texte = std::string(buf);
+  llmr_struct->terminal.vec_item.push_back(item);
 
   //---------------------------
 }
@@ -49,7 +53,10 @@ void Terminal::add_log(std::string& log){
   //---------------------------
 
   char* copy = ImStrdup(log.c_str());
-  llmr_struct->vec_item.push_back(std::string(copy));
+
+  llmr::structure::Item item;
+  item.texte = std::string(copy);
+  llmr_struct->terminal.vec_item.push_back(item);
 
   //---------------------------
 }
@@ -87,10 +94,7 @@ void Terminal::add_file(std::string prefix, std::string path){
 void Terminal::clear_log(){
   //---------------------------
 
-  for(int i = 0; i < llmr_struct->vec_item.size(); i++){
-    //free(llmr_struct->vec_item[i]);
-  }
-  llmr_struct->vec_item.clear();
+  llmr_struct->terminal.vec_item.clear();
 
   //---------------------------
 }
@@ -104,13 +108,13 @@ void Terminal::draw_console(){
   if(ImGui::BeginChild("ScrollingRegion", ImVec2(ImGui::GetContentRegionAvail().x, -footer_height_to_reserve), ImGuiChildFlags_NavFlattened, ImGuiWindowFlags_HorizontalScrollbar)){
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4, 1)); // Tighten spacing
     ImGuiListClipper clipper;
-    clipper.Begin(llmr_struct->vec_item.size());  // Pass the total number of items in the list
+    clipper.Begin(llmr_struct->terminal.vec_item.size());  // Pass the total number of items in the list
 
     // Start clipping and rendering the visible items
     while (clipper.Step()) {
-        for (int i = clipper.DisplayStart; i < clipper.DisplayEnd; i++) {
+        for (int i = clipper.DisplayStart; i < clipper.DisplayEnd; i++){
             // Get the string from the item
-            std::string str = break_lines(llmr_struct->vec_item[i]);
+            std::string str = break_lines(llmr_struct->terminal.vec_item[i].texte);
             const char* item = str.c_str();
 
             // Initialize color and flags
@@ -145,9 +149,9 @@ void Terminal::draw_console(){
 
     // Keep up at the bottom of the scroll region if we were already at the bottom at the beginning of the frame.
     // Using a scrollbar or mouse-wheel will take away from the bottom edge.
-    if(ter_struct->scroll_to_bottom || (ter_struct->is_autoscroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY()))
+    if(llmr_struct->terminal.scroll_to_bottom || (llmr_struct->terminal.is_autoscroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY()))
       ImGui::SetScrollHereY(1.0f);
-    ter_struct->scroll_to_bottom = false;
+    llmr_struct->terminal.scroll_to_bottom = false;
 
     ImGui::PopStyleVar();
   }
@@ -165,8 +169,8 @@ void Terminal::draw_input(){
   flag |= ImGuiInputTextFlags_CallbackCompletion;
   flag |= ImGuiInputTextFlags_CallbackHistory;
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
-  if(ImGui::InputText("##terminal_input", ter_struct->input_buffer, IM_ARRAYSIZE(ter_struct->input_buffer), flag, &TextEditCallbackStub, (void*)this)){
-    char* s = ter_struct->input_buffer;
+  if(ImGui::InputText("##terminal_input", llmr_struct->terminal.input_buffer, IM_ARRAYSIZE(llmr_struct->terminal.input_buffer), flag, &TextEditCallbackStub, (void*)this)){
+    char* s = llmr_struct->terminal.input_buffer;
     Strtrim(s);
     if(s[0]){
       this->execute_command(s);
@@ -190,22 +194,22 @@ void Terminal::execute_command(const char* command_line){
 
   // Insert into history. First find match and delete it so it can be pushed to the back.
   // This isn't trying to be smart or optimal.
-  ter_struct->history_pose = -1;
-  for(int i = ter_struct->history.Size - 1; i >= 0; i--){
-    if(Stricmp(ter_struct->history[i], command_line) == 0){
-      free(ter_struct->history[i]);
-      ter_struct->history.erase(ter_struct->history.begin() + i);
+  llmr_struct->terminal.history_pose = -1;
+  for(int i = llmr_struct->terminal.history.Size - 1; i >= 0; i--){
+    if(Stricmp(llmr_struct->terminal.history[i], command_line) == 0){
+      free(llmr_struct->terminal.history[i]);
+      llmr_struct->terminal.history.erase(llmr_struct->terminal.history.begin() + i);
       break;
     }
   }
 
-  ter_struct->history.push_back(Strdup(command_line));
+  llmr_struct->terminal.history.push_back(Strdup(command_line));
 
   std::string input(command_line);
   this->process_input(input);
 
-  // On command input, we scroll to bottom even if ter_struct->is_autoscroll==false
-  ter_struct->scroll_to_bottom = true;
+  // On command input, we scroll to bottom even if llmr_struct->terminal.is_autoscroll==false
+  llmr_struct->terminal.scroll_to_bottom = true;
 
   //---------------------------
 }
@@ -237,9 +241,9 @@ int Terminal::TextEditCallback(ImGuiInputTextCallbackData* data){
 
             // Build a list of candidates
             ImVector<const char*> candidates;
-            for(int i = 0; i < ter_struct->vec_command.Size; i++)
-                if(Strnicmp(ter_struct->vec_command[i], word_start, (int)(word_end - word_start)) == 0)
-                    candidates.push_back(ter_struct->vec_command[i]);
+            for(int i = 0; i < llmr_struct->terminal.vec_command.Size; i++)
+                if(Strnicmp(llmr_struct->terminal.vec_command[i], word_start, (int)(word_end - word_start)) == 0)
+                    candidates.push_back(llmr_struct->terminal.vec_command[i]);
 
             if(candidates.Size == 0)
             {
@@ -288,25 +292,25 @@ int Terminal::TextEditCallback(ImGuiInputTextCallbackData* data){
         }
     case ImGuiInputTextFlags_CallbackHistory:{
           // Example of HISTORY
-          const int prev_history_pos = ter_struct->history_pose;
+          const int prev_history_pos = llmr_struct->terminal.history_pose;
           if(data->EventKey == ImGuiKey_UpArrow)
           {
-              if(ter_struct->history_pose == -1)
-                  ter_struct->history_pose = ter_struct->history.Size - 1;
-              else if(ter_struct->history_pose > 0)
-                  ter_struct->history_pose--;
+              if(llmr_struct->terminal.history_pose == -1)
+                  llmr_struct->terminal.history_pose = llmr_struct->terminal.history.Size - 1;
+              else if(llmr_struct->terminal.history_pose > 0)
+                  llmr_struct->terminal.history_pose--;
           }
           else if(data->EventKey == ImGuiKey_DownArrow)
           {
-              if(ter_struct->history_pose != -1)
-                  if(++ter_struct->history_pose >= ter_struct->history.Size)
-                      ter_struct->history_pose = -1;
+              if(llmr_struct->terminal.history_pose != -1)
+                  if(++llmr_struct->terminal.history_pose >= llmr_struct->terminal.history.Size)
+                      llmr_struct->terminal.history_pose = -1;
           }
 
           // A better implementation would preserve the data on the current input line along with cursor position.
-          if(prev_history_pos != ter_struct->history_pose)
+          if(prev_history_pos != llmr_struct->terminal.history_pose)
           {
-              const char* history_str = (ter_struct->history_pose >= 0) ? ter_struct->history[ter_struct->history_pose] : "";
+              const char* history_str = (llmr_struct->terminal.history_pose >= 0) ? llmr_struct->terminal.history[llmr_struct->terminal.history_pose] : "";
               data->DeleteChars(0, data->BufTextLen);
               data->InsertChars(0, history_str);
           }
