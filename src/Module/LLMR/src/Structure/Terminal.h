@@ -15,13 +15,9 @@ struct Terminal{
   //---------------------------
 
   std::vector<llmr::structure::Item> vec_item;
-  ImVector<const char*> vec_command;
-  ImVector<char*>       history;
-  ImGuiTextFilter       filter;
-  char                  input_buffer[256];
-  int                   history_pose;    // -1: new line, 0..History.Size-1 browsing history.
-  bool                  is_autoscroll = true;
-  bool                  scroll_to_bottom;
+  char input_buffer[256];
+  bool is_autoscroll = true;
+  bool scroll_to_bottom = true;
 
   //---------------------------
 };
