@@ -7,9 +7,9 @@
 #include <string>
 
 
-namespace llmr::gui::terminal{
+namespace llmr::structure{
 
-struct Structure{
+struct Terminal{
   //---------------------------
 
   ImVector<char*>       vec_item;
