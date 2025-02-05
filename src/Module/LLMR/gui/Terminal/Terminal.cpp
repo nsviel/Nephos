@@ -32,24 +32,7 @@ void Terminal::draw_terminal(){
 }
 
 //Log function
-void Terminal::add_log(const char* fmt, ...){
-  //---------------------------
-
-  // FIXME-OPT
-  char buf[1024];
-  va_list args;
-  va_start(args, fmt);
-  vsnprintf(buf, IM_ARRAYSIZE(buf), fmt, args);
-  buf[IM_ARRAYSIZE(buf)-1] = 0;
-  va_end(args);
-
-  llmr::structure::Item item;
-  item.texte = std::string(buf);
-  llmr_struct->terminal.vec_item.push_back(item);
-
-  //---------------------------
-}
-void Terminal::add_log(std::string& log){
+void Terminal::add_log(std::string log){
   //---------------------------
 
   char* copy = ImStrdup(log.c_str());
@@ -112,40 +95,41 @@ void Terminal::draw_console(){
 
     // Start clipping and rendering the visible items
     while (clipper.Step()) {
-        for (int i = clipper.DisplayStart; i < clipper.DisplayEnd; i++){
-            // Get the string from the item
-            std::string str = break_lines(llmr_struct->terminal.vec_item[i].texte);
-            const char* item = str.c_str();
+      for (int i = clipper.DisplayStart; i < clipper.DisplayEnd; i++){
+        // Get the string from the item
+        llmr::structure::Item& item = llmr_struct->terminal.vec_item[i];
+        std::string str = break_lines(item.texte);
+        const char* item_cc = str.c_str();
 
-            // Initialize color and flags
-            ImVec4 color;
-            bool has_color = false;
+        // Initialize color and flags
+        ImVec4 color;
+        bool has_color = false;
 
-            // Set color based on the item content
-            if (strstr(item, "[error]")) {
-                color = ImVec4(1.0f, 0.4f, 0.4f, 1.0f); // Red color for errors
-                has_color = true;
-            }
-            else if (strncmp(item, "# ", 2) == 0) {
-                color = ImVec4(1.0f, 0.8f, 0.6f, 1.0f); // Light orange color for headers
-                has_color = true;
-            }
+        // Set color based on the item content
+        if (strstr(item_cc, "[error]")) {
+            color = ImVec4(1.0f, 0.4f, 0.4f, 1.0f); // Red color for errors
+            has_color = true;
+        }
+        else if (strncmp(item_cc, "# ", 2) == 0) {
+            color = ImVec4(1.0f, 0.8f, 0.6f, 1.0f); // Light orange color for headers
+            has_color = true;
+        }
 
-            // Apply the color if necessary
-            if (has_color) {
-                ImGui::PushStyleColor(ImGuiCol_Text, color);
-            }
+        // Apply the color if necessary
+        if (has_color) {
+          ImGui::PushStyleColor(ImGuiCol_Text, color);
+        }
 
-            // Render the text
-            ImGui::TextUnformatted(item);
+        // Render the text
+        ImGui::TextUnformatted(item_cc);
 
-            // Restore the style color
-            if (has_color) {
-                ImGui::PopStyleColor();
-            }
+        // Restore the style color
+        if (has_color) {
+          ImGui::PopStyleColor();
         }
       }
-      clipper.End();
+    }
+    clipper.End();
 
     // Keep up at the bottom of the scroll region if we were already at the bottom at the beginning of the frame.
     // Using a scrollbar or mouse-wheel will take away from the bottom edge.
@@ -190,7 +174,8 @@ void Terminal::draw_input(){
 void Terminal::execute_command(const char* command_line){
   //---------------------------
 
-  this->add_log("# %s\n", command_line);
+  std::string log = "# " + std::string(command_line) + "\n";
+  this->add_log(log);
 
   // Insert into history. First find match and delete it so it can be pushed to the back.
   // This isn't trying to be smart or optimal.
@@ -247,8 +232,9 @@ int Terminal::TextEditCallback(ImGuiInputTextCallbackData* data){
 
             if(candidates.Size == 0)
             {
-                // No match
-                add_log("No match for \"%.*s\"!\n", (int)(word_end - word_start), word_start);
+              // No match
+              //std::string log = "No match for \"%.*s\"!\n", (int)(word_end - word_start), word_start);
+              //add_log("No match for \"%.*s\"!\n", (int)(word_end - word_start), word_start);
             }
             else if(candidates.Size == 1)
             {
@@ -284,8 +270,11 @@ int Terminal::TextEditCallback(ImGuiInputTextCallbackData* data){
 
                 // List matches
                 add_log("Possible matches:\n");
-                for(int i = 0; i < candidates.Size; i++)
-                    add_log("- %s\n", candidates[i]);
+                for(int i = 0; i < candidates.Size; i++){
+                  std::string log = "- " + std::string(candidates[i]) + "\n";
+                  add_log(log);
+                }
+
             }
 
             break;

@@ -26,8 +26,7 @@ public:
 
   //Log function
   void clear_log();
-  void add_log(const char* fmt, ...);
-  void add_log(std::string& log);
+  void add_log(std::string log);
   void add_file(std::string prefixe, std::string path);
 
   //Subfunction
