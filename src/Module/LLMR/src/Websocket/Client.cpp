@@ -3,6 +3,7 @@
 #include <iostream>
 #include <LLMR/Namespace.h>
 #include <Utility/Namespace.h>
+#include <nlohmann/json.hpp>
 
 
 namespace llmr::wsok{
@@ -99,7 +100,7 @@ void Client::close_connection(){
 }
 
 //Subfunction
-void Client::send_message(std::string message){
+void Client::send_message(std::string command, std::string message){
   if(!llmr_struct->wsok.connection_open) return;
   //---------------------------
 
@@ -116,8 +117,16 @@ void Client::send_message(std::string message){
     return;
   }
 
-  // Send the message
-  llmr_struct->wsok.c.send(con, message, websocketpp::frame::opcode::text);
+  // Create a JSON object with command and message
+  nlohmann::json j;
+  j["command"] = command;
+  j["message"] = message;
+
+  // Serialize the JSON object into a string
+  std::string json_str = j.dump();  // Converts the JSON object to a string
+
+  // Send the serialized JSON string
+  llmr_struct->wsok.c.send(con, json_str, websocketpp::frame::opcode::text);
 
   //---------------------------
 }
@@ -127,7 +136,7 @@ void Client::on_open(websocketpp::connection_hdl hdl, client* c){
   llmr_terminal->add_log("WebSocket connection opened", "ok");
   llmr_struct->wsok.hdl = hdl;
   llmr_struct->wsok.connection_open = true;
-  this->send_message("get_library");
+  this->send_message("get", "library");
 
   //---------------------------
 }

@@ -27,7 +27,7 @@ void Interface::init(){
 void Interface::send_llm_message(std::string message){
   //---------------------------
 
-  llmr_wsok->send_message(message);
+  llmr_wsok->send_message("chat", message);
 
   //---------------------------
 }
