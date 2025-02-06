@@ -23,6 +23,7 @@ public:
   //Main function
   void start_connection();
   void setup_connection();
+  void setup_client();
 
   //Subfunction
   void reconnection_loop();

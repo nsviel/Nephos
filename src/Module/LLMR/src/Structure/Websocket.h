@@ -26,6 +26,7 @@ struct Websocket{
   websocketpp::connection_hdl hdl;
   websocketpp::client<websocketpp::config::asio_client> c;
   bool connection_open = false;
+  bool client_setup = false;
 
   //---------------------------
 };
