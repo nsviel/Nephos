@@ -10,7 +10,7 @@ namespace llmr{
 Interface::Interface(llmr::Node* node_llmr){
   //---------------------------
 
-  this->llmr_wsok = new net::wsok::Client(node_llmr);
+  this->llmr_wsok = new llmr::wsok::Client(node_llmr);
 
   //---------------------------
 }

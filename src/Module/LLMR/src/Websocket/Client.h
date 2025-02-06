@@ -8,9 +8,10 @@
 namespace llmr{class Node;}
 namespace llmr{class Structure;}
 namespace llmr{class Terminal;}
+namespace llmr::wsok{class Message;}
 
 
-namespace net::wsok{
+namespace llmr::wsok{
 
 class Client
 {
@@ -22,11 +23,14 @@ public:
 public:
   //Main function
   void start_connection();
-  void setup_connection();
+  void reconnection_loop();
+
+  //Socket
   void setup_client();
+  void setup_connection();
+  void close_connection();
 
   //Subfunction
-  void reconnection_loop();
   void send_message(std::string message);
   void on_open(websocketpp::connection_hdl hdl, client* c);
   void on_message(websocketpp::connection_hdl hdl, client::message_ptr msg);
@@ -37,6 +41,7 @@ public:
 private:
   llmr::Structure* llmr_struct;
   llmr::Terminal* llmr_terminal;
+  llmr::wsok::Message* wsok_message;
 
   std::thread thread;
 };

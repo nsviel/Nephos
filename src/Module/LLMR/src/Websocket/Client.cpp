@@ -5,7 +5,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace net::wsok{
+namespace llmr::wsok{
 
 //Constructor / Destructor
 Client::Client(llmr::Node* node_llmr){
@@ -13,6 +13,7 @@ Client::Client(llmr::Node* node_llmr){
 
   this->llmr_struct = node_llmr->get_llmr_struct();
   this->llmr_terminal = node_llmr->get_llmr_terminal();
+  this->wsok_message = new llmr::wsok::Message(node_llmr);
 
   //---------------------------
 }
@@ -31,10 +32,9 @@ void Client::start_connection(){
 void Client::reconnection_loop(){
   //---------------------------
 
-  while (true) {
+  while(true){
     // Check if the connection is lost (disconnected)
-    if (!llmr_struct->wsok.connection_open) {
-      llmr_terminal->add_log("WebSocket connection...", "ok");
+    if(!llmr_struct->wsok.connection_open){
       this->setup_client();
       this->setup_connection();
     }
@@ -45,6 +45,8 @@ void Client::reconnection_loop(){
 
   //---------------------------
 }
+
+//Socket
 void Client::setup_client(){
   if(llmr_struct->wsok.client_setup) return;
   //---------------------------
@@ -86,9 +88,19 @@ void Client::setup_connection(){
 
   //---------------------------
 }
+void Client::close_connection(){
+  //---------------------------
+
+  llmr_struct->wsok.c.close(llmr_struct->wsok.hdl, websocketpp::close::status::normal, "");
+  llmr_struct->wsok.connection_open = false;
+  llmr_struct->wsok.hdl.reset();
+
+  //---------------------------
+}
 
 //Subfunction
 void Client::send_message(std::string message){
+  if(!llmr_struct->wsok.connection_open) return;
   //---------------------------
 
   if (!llmr_struct->wsok.hdl.lock()) {
@@ -115,19 +127,26 @@ void Client::on_open(websocketpp::connection_hdl hdl, client* c){
   llmr_terminal->add_log("WebSocket connection opened", "ok");
   llmr_struct->wsok.hdl = hdl;
   llmr_struct->wsok.connection_open = true;
+  this->send_message("get_library");
 
   //---------------------------
 }
 void Client::on_message(websocketpp::connection_hdl, client::message_ptr msg){
-  std::string payload = msg->get_payload();
   //---------------------------
 
-  if(payload == "ping"){
+  if(msg->get_payload() == "ping"){
     llmr_struct->wsok.c.send(llmr_struct->wsok.hdl, "pong", websocketpp::frame::opcode::text);
   }else{
-    llmr::structure::Item item;
-    item.texte = msg->get_payload();
-    llmr_struct->terminal.vec_item.push_back(item);
+    llmr::structure::Message message;
+    message.size = msg->get_payload().size();
+    message.opcode = msg->get_opcode();
+    if(message.opcode == websocketpp::frame::opcode::binary){
+      message.payload = std::vector<uint8_t>(msg->get_payload().begin(), msg->get_payload().end());
+    }
+    else if(message.opcode == websocketpp::frame::opcode::text){
+      message.payload = msg->get_payload();
+    }
+    wsok_message->recv_message(message);
   }
 
   //---------------------------
@@ -136,8 +155,7 @@ void Client::on_fail(websocketpp::connection_hdl hdl){
   //---------------------------
 
   llmr_terminal->add_log("WebSocket connection failed", "error");
-  llmr_struct->wsok.connection_open = false;
-  llmr_struct->wsok.hdl.reset();
+  this->close_connection();
 
   //---------------------------
 }
@@ -145,8 +163,7 @@ void Client::on_close(websocketpp::connection_hdl hdl){
   //---------------------------
 
   llmr_terminal->add_log("WebSocket connection closed", "info");
-  llmr_struct->wsok.connection_open = false;
-  llmr_struct->wsok.hdl.reset();
+  this->close_connection();
 
   //---------------------------
 }

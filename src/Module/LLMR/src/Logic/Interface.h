@@ -3,7 +3,7 @@
 #include <string>
 
 namespace llmr{class Node;}
-namespace net::wsok{class Client;}
+namespace llmr::wsok{class Client;}
 
 
 namespace llmr{
@@ -21,7 +21,7 @@ public:
   void send_llm_message(std::string message);
 
 private:
-  net::wsok::Client* llmr_wsok;
+  llmr::wsok::Client* llmr_wsok;
 };
 
 }
