@@ -16,7 +16,7 @@ Panel::Panel(llmr::Node* node_llmr, bool* show_window){
   dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->gph_selection = node_graph->get_gph_selection();
-  this->utl_terminal = new llmr::gui::Terminal(node_llmr);
+  this->gui_terminal = new llmr::gui::Terminal(node_llmr);
 
   this->show_window = show_window;
   this->name = "LLMR";
@@ -58,7 +58,7 @@ void Panel::design_panel(dat::base::Entity& entity){
 void Panel::prompt_input(dat::base::Entity& entity){
   //---------------------------
 
-  utl_terminal->draw_terminal();
+  gui_terminal->draw_terminal();
 
   //---------------------------
 }

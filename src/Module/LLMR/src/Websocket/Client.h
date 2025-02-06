@@ -8,6 +8,7 @@
 
 namespace llmr{class Node;}
 namespace llmr{class Structure;}
+namespace llmr{class Terminal;}
 
 typedef websocketpp::client<websocketpp::config::asio_client> client;
 typedef websocketpp::lib::shared_ptr<websocketpp::lib::asio::ssl::context> context_ptr;
@@ -41,6 +42,7 @@ public:
 
 private:
   llmr::Structure* llmr_struct;
+  llmr::Terminal* llmr_terminal;
 
   std::thread thread;
   client c;

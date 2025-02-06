@@ -4,9 +4,9 @@
 #include <string>
 
 namespace llmr{class Node;}
+namespace llmr::gui{class Terminal;}
 namespace dat::gph{class Selection;}
 namespace dat::base{class Entity;}
-namespace llmr::gui{class Terminal;}
 
 
 namespace llmr::gui{
@@ -27,7 +27,7 @@ public:
   void prompt_input(dat::base::Entity& entity);
 
 private:
-  llmr::gui::Terminal* utl_terminal;
+  llmr::gui::Terminal* gui_terminal;
   dat::gph::Selection* gph_selection;
 
   std::string name;

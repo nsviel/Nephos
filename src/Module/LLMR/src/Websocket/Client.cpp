@@ -12,6 +12,7 @@ Client::Client(llmr::Node* node_llmr){
   //---------------------------
 
   this->llmr_struct = node_llmr->get_llmr_struct();
+  this->llmr_terminal = node_llmr->get_llmr_terminal();
 
   //---------------------------
 }
@@ -69,7 +70,7 @@ void Client::send_message(std::string message){
   //---------------------------
 
   if (!hdl.lock()) {
-    std::cout << "[Error] No active connection!" << std::endl;
+    llmr_terminal->add_log("No active connection", "error");
     return;
   }
 
