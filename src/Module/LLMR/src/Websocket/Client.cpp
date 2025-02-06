@@ -23,7 +23,7 @@ void Client::start_connection(){
   //---------------------------
 
   // Create and detach the thread
-  this->thread = std::thread(&Client::setup_connection, this);
+  this->thread = std::thread(&Client::reconnection_loop, this);
   this->thread.detach();
 
   //---------------------------
@@ -31,11 +31,9 @@ void Client::start_connection(){
 void Client::setup_connection(){
   //---------------------------
 
-  std::string hostname = "localhost:8765";
-  std::string uri = "ws://" + hostname;
-
-  try {
+  try{
     //initialize WebSocket
+    client& c = llmr_struct->wsok.c;
     c.set_access_channels(websocketpp::log::alevel::none);
     c.clear_access_channels(websocketpp::log::alevel::frame_payload);
     c.set_error_channels(websocketpp::log::elevel::none);
@@ -50,7 +48,7 @@ void Client::setup_connection(){
 
     // Create a connection
     websocketpp::lib::error_code ec;
-    client::connection_ptr con = c.get_connection(uri, ec);
+    client::connection_ptr con = c.get_connection(llmr_struct->wsok.uri, ec);
     if(ec){
       std::cout << "[error] Could not create connection because: " << ec.message() << std::endl;
       return;
@@ -66,24 +64,40 @@ void Client::setup_connection(){
 }
 
 //Subfunction
+void Client::reconnection_loop(){
+  //---------------------------
+
+  while (true) {
+    // Check if the connection is lost (disconnected)
+    if (!llmr_struct->wsok.connection_open) {
+      std::cout << "Connection lost. Reconnecting..." << std::endl;
+      this->setup_connection();  // Reattempt to set up the connection
+    }
+
+    // Wait for 10 seconds before attempting to reconnect
+    std::this_thread::sleep_for(std::chrono::seconds(10));
+  }
+
+  //---------------------------
+}
 void Client::send_message(std::string message){
   //---------------------------
 
-  if (!hdl.lock()) {
+  if (!llmr_struct->wsok.hdl.lock()) {
     llmr_terminal->add_log("No active connection", "error");
     return;
   }
 
   // Send the message using the WebSocket connection
   websocketpp::lib::error_code ec;
-  client::connection_ptr con = c.get_con_from_hdl(hdl, ec);
+  client::connection_ptr con = llmr_struct->wsok.c.get_con_from_hdl(llmr_struct->wsok.hdl, ec);
   if (ec) {
     std::cout << "[Error] Failed to get connection pointer: " << ec.message() << std::endl;
     return;
   }
 
   // Send the message
-  c.send(con, message, websocketpp::frame::opcode::text);
+  llmr_struct->wsok.c.send(con, message, websocketpp::frame::opcode::text);
 
   //---------------------------
 }
@@ -91,16 +105,22 @@ void Client::on_open(websocketpp::connection_hdl hdl, client* c){
   //---------------------------
 
   llmr_terminal->add_log("WebSocket connection opened", "ok");
-  this->hdl = hdl;
+  llmr_struct->wsok.hdl = hdl;
+  llmr_struct->wsok.connection_open = true;
 
   //---------------------------
 }
 void Client::on_message(websocketpp::connection_hdl, client::message_ptr msg){
+  std::string payload = msg->get_payload();
   //---------------------------
 
-  llmr::structure::Item item;
-  item.texte = msg->get_payload();
-  llmr_struct->terminal.vec_item.push_back(item);
+  if(payload == "ping"){
+    llmr_struct->wsok.c.send(llmr_struct->wsok.hdl, "pong", websocketpp::frame::opcode::text);
+  }else{
+    llmr::structure::Item item;
+    item.texte = msg->get_payload();
+    llmr_struct->terminal.vec_item.push_back(item);
+  }
 
   //---------------------------
 }
@@ -108,6 +128,7 @@ void Client::on_fail(websocketpp::connection_hdl hdl){
   //---------------------------
 
   llmr_terminal->add_log("WebSocket connection failed", "error");
+  llmr_struct->wsok.connection_open = false;
 
   //---------------------------
 }
@@ -115,6 +136,7 @@ void Client::on_close(websocketpp::connection_hdl hdl){
   //---------------------------
 
   llmr_terminal->add_log("WebSocket connection closed", "info");
+  llmr_struct->wsok.connection_open = false;
 
   //---------------------------
 }
