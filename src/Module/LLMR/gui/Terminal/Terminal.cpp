@@ -44,7 +44,7 @@ void Terminal::draw_console(){
       for (int i = clipper.DisplayStart; i < clipper.DisplayEnd; i++){
         // Get the string from the item
         llmr::structure::Item& item = llmr_struct->terminal.vec_item[i];
-        std::string prefix = (item.prefix != "") ? item.prefix + " " : "";
+        std::string prefix = (item.prefix != "") ? "[" + item.prefix + "] " : "";
         std::string texte = prefix + break_lines(item.texte);
 
         // Render the text

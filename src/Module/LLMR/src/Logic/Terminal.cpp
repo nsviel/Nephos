@@ -11,7 +11,7 @@ Terminal::Terminal(llmr::Node* node_llmr){
   //---------------------------
 
   this->llmr_struct = node_llmr->get_llmr_struct();
-  
+
   //---------------------------
 }
 Terminal::~Terminal(){}
@@ -24,7 +24,9 @@ void Terminal::add_log(std::string log, std::string prefix = ""){
   glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
   if(prefix != "")
   if(prefix == "#") color = glm::vec4(1.0f, 0.8f, 0.6f, 1.0f);
+  else if(prefix == "ok") color = glm::vec4(0.4f, 1.0f, 0.4f, 1.0f);
   else if(prefix == "error") color = glm::vec4(1.0f, 0.4f, 0.4f, 1.0f);
+  else if(prefix == "info") color = glm::vec4(1.0f, 1.0f, 0.4f, 1.0f);
   else if(prefix == "\\o/") color = glm::vec4(0.4f, 1.0f, 0.4f, 1.0f);
 
   //Item
