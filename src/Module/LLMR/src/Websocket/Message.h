@@ -24,6 +24,10 @@ public:
   //Main function
   void recv_message(llmr::structure::Message message);
 
+  //Subfunction
+  void manage_binary(llmr::structure::Message message);
+  void manage_texte(llmr::structure::Message message);
+
 private:
   llmr::Structure* llmr_struct;
   llmr::Terminal* llmr_terminal;

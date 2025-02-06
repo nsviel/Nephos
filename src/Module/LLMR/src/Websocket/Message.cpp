@@ -22,20 +22,36 @@ Message::~Message(){}
 void Message::recv_message(llmr::structure::Message message){
   //---------------------------
 
-  if(message.opcode == websocketpp::frame::opcode::binary){
-    std::cout << "Received binary data (image)" << std::endl;
-
-    // Save the received binary data to an image file
-    std::ofstream out("received_image.jpg", std::ios::binary);
-    out.write(reinterpret_cast<const char*>(msg->get_payload().data()), msg->get_payload().size());
-    out.close();
-
-    std::cout << "Image saved as 'received_image.jpg'" << std::endl;
-  }else{
-    llmr::structure::Item item;
-    item.texte = message;
-    llmr_struct->terminal.vec_item.push_back(item);
+  if (message.opcode == websocketpp::frame::opcode::binary) {
+    this->manage_binary(message);
+  } else {
+    this->manage_texte(message);
   }
+
+  //---------------------------
+}
+
+//Subfunction
+void Message::manage_binary(llmr::structure::Message message){
+  //---------------------------
+
+  std::cout << "Received binary data (image)" << std::endl;
+
+  const std::vector<uint8_t>& binary_data = std::get<std::vector<uint8_t>>(message.payload);
+  std::ofstream out("received_image.jpg", std::ios::binary);
+  out.write(reinterpret_cast<const char*>(binary_data.data()), binary_data.size());
+  out.close();
+
+  std::cout << "Image saved as 'received_image.jpg'" << std::endl;
+
+  //---------------------------
+}
+void Message::manage_texte(llmr::structure::Message message){
+  //---------------------------
+
+  llmr::structure::Item item;
+  item.texte = std::get<std::string>(message.payload);  // assuming payload is std::string
+  llmr_struct->terminal.vec_item.push_back(item);
 
   //---------------------------
 }
