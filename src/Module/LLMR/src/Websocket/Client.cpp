@@ -133,7 +133,7 @@ void Client::send_message(std::string command, std::string message){
 void Client::on_open(websocketpp::connection_hdl hdl, client* c){
   //---------------------------
 
-  llmr_terminal->add_log("WebSocket connection opened", "ok");
+  llmr_terminal->add_log("Connection opened", "ok");
   llmr_struct->wsok.hdl = hdl;
   llmr_struct->wsok.connection_open = true;
   this->send_message("get", "library");
@@ -163,7 +163,7 @@ void Client::on_message(websocketpp::connection_hdl, client::message_ptr msg){
 void Client::on_fail(websocketpp::connection_hdl hdl){
   //---------------------------
 
-  llmr_terminal->add_log("WebSocket connection failed", "error");
+  llmr_terminal->add_log("Connection failed", "error");
   this->close_connection();
 
   //---------------------------
@@ -171,7 +171,7 @@ void Client::on_fail(websocketpp::connection_hdl hdl){
 void Client::on_close(websocketpp::connection_hdl hdl){
   //---------------------------
 
-  llmr_terminal->add_log("WebSocket connection closed", "info");
+  llmr_terminal->add_log("Connection closed", "info");
   this->close_connection();
 
   //---------------------------
