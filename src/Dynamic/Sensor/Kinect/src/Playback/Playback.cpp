@@ -27,13 +27,13 @@ Playback::~Playback(){}
 //Main function
 void Playback::init(k4n::playback::Sensor& sensor){
   //---------------------------
-
+sayHello();
   this->init_info(sensor);
   this->init_playback(sensor);
   this->init_timestamp(sensor);
   dat_sensor->init_sensor(sensor);
   k4n_config->init_configuration(sensor);
-
+sayHello();
   //---------------------------
 }
 void Playback::clean(k4n::playback::Sensor& sensor){
@@ -69,8 +69,23 @@ void Playback::init_playback(k4n::playback::Sensor& sensor){
 
   //Init playback object
   std::string path = sensor.data->path.build();
-  if(path == "") return;
-  sensor.device.playback = k4a::playback::open(path.c_str());
+
+  if (path.empty()) {
+    std::cerr << "[error] Kinect sensor playback path empty" << std::endl;
+    return;
+  }
+
+  std::ifstream file(path);
+  if (!file.good()) {
+    std::cerr << "Error: File not found or inaccessible: " << path << std::endl;
+    return;
+  }
+
+  try {
+    sensor.device.playback = k4a::playback::open(path.c_str());
+  } catch (const std::exception &e) {
+    std::cerr << "Exception: " << e.what() << std::endl;
+  }
 
   //Check validity
   if(!sensor.device.playback){

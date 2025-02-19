@@ -20,7 +20,7 @@ Perspective::Perspective(cam::Node* node_camera){
 Perspective::~Perspective(){}
 
 //Main function
-glm::mat4 Perspective::compute_proj_perspective(std::shared_ptr<cam::Entity> camera){
+glm::mat4 Perspective::compute_projection(std::shared_ptr<cam::Entity> camera){
   glm::mat4 cam_proj = glm::mat4(1.0f);
   if(camera == nullptr) return cam_proj;
   //---------------------------

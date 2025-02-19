@@ -17,6 +17,7 @@ MVP::MVP(cam::Node* node_camera){
   this->vk_window = node_vulkan->get_vk_window();
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_perspective = new cam::projection::Perspective(node_camera);
+  this->cam_ortho = new cam::projection::Orthographic(node_camera);
 
   //---------------------------
 }
@@ -55,11 +56,11 @@ glm::mat4 MVP::compute_camera_proj(){
 
   switch(camera->projection){
     case CAMERA_PROJ_PERSPECTIVE:{
-      projection = cam_perspective->compute_proj_perspective(camera);
+      projection = cam_perspective->compute_projection(camera);
       break;
     }
     case CAMERA_PROJ_ORTHOGRAPHIC:{
-      //projection = cam_proj->compute_proj_ortho(camera);
+      projection = cam_ortho->compute_projection(camera);
       break;
     }
   }

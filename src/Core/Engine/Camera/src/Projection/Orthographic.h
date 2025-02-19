@@ -17,10 +17,10 @@ public:
 
 public:
   //Main function
-  glm::mat4 compute_proj_ortho(std::shared_ptr<cam::Entity> camera);
+  glm::mat4 compute_projection(std::shared_ptr<cam::Entity> camera);
 
   //Subfunction
-  void ortho_zoom(std::shared_ptr<cam::Entity> camera, float value);
+  void camera_zoom(std::shared_ptr<cam::Entity> camera, float value);
 
 private:
 

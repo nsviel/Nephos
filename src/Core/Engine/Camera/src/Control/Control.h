@@ -9,6 +9,7 @@ namespace cam{class Node;}
 namespace cam{class Structure;}
 namespace cam{class Entity;}
 namespace cam::projection{class Perspective;}
+namespace cam::projection{class Orthographic;}
 namespace cam::mode{class Base;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Set;}
@@ -40,6 +41,7 @@ public:
 private:
   cam::Structure* cam_struct;
   cam::projection::Perspective* cam_perspective;
+  cam::projection::Orthographic* cam_ortho;
   vk::interface::Window* vk_window;
 };
 

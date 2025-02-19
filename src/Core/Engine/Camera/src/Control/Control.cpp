@@ -17,6 +17,7 @@ Control::Control(cam::Node* node_camera){
   this->vk_window = node_vulkan->get_vk_window();
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_perspective = new cam::projection::Perspective(node_camera);
+  this->cam_ortho = new cam::projection::Orthographic(node_camera);
 
   cam_struct->vec_mode.push_back(new cam::mode::Player(node_camera));
   cam_struct->vec_mode.push_back(new cam::mode::Arcball(node_camera));
@@ -87,7 +88,7 @@ void Control::control_zoom(float value){
       break;
     }
     case CAMERA_PROJ_ORTHOGRAPHIC:{
-      //cam_proj->ortho_zoom(camera, value);
+      cam_ortho->camera_zoom(camera, value);
       break;
     }
   }

@@ -7,6 +7,7 @@
 
 namespace cam{class Node;}
 namespace cam::projection{class Perspective;}
+namespace cam::projection{class Orthographic;}
 namespace cam::mode{class Base;}
 namespace cam{class Entity;}
 namespace cam{class Structure;}
@@ -36,6 +37,7 @@ public:
 
 private:
   cam::projection::Perspective* cam_perspective;
+  cam::projection::Orthographic* cam_ortho;
   cam::Structure* cam_struct;
   vk::interface::Window* vk_window;
 };

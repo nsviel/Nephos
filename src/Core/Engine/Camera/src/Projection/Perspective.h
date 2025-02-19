@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  glm::mat4 compute_proj_perspective(std::shared_ptr<cam::Entity> camera);
+  glm::mat4 compute_projection(std::shared_ptr<cam::Entity> camera);
 
 private:
   vk::interface::Window* vk_window;
