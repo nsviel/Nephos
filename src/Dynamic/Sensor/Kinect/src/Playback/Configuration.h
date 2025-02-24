@@ -3,7 +3,6 @@
 #include <memory>
 #include <string>
 
-namespace k4n{class Node;}
 namespace k4n::playback{class Sensor;}
 namespace k4n::base{class Sensor;}
 
@@ -14,7 +13,7 @@ class Configuration
 {
 public:
   //Constructor / Destructor
-  Configuration(k4n::Node* node_k4n);
+  Configuration();
   ~Configuration();
 
 public:

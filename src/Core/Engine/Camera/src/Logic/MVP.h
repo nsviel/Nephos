@@ -32,7 +32,6 @@ public:
   //Subfunction
   glm::mat4 compute_camera_view();
   glm::mat4 compute_camera_proj();
-  glm::mat4 compute_camera_mvp();
   glm::mat4 compute_camera_pose();
 
 private:

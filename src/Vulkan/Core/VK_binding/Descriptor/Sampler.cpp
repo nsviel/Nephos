@@ -28,7 +28,7 @@ void Sampler::create_descriptor(vk::structure::Descriptor_set& descriptor_set, v
 
   //---------------------------
 }
-void Sampler::actualize_sampler(vk::structure::Descriptor_set& descriptor_set){
+void Sampler::update_sampler(vk::structure::Descriptor_set& descriptor_set){
   //---------------------------
 
   for(auto& [name, sampler] : descriptor_set.map_sampler){;
@@ -55,7 +55,7 @@ void Sampler::actualize_sampler(vk::structure::Descriptor_set& descriptor_set){
 
   //---------------------------
 }
-void Sampler::actualize_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Sampler& sampler, vk::structure::Image& image){
+void Sampler::update_sampler(vk::structure::Descriptor_set& descriptor_set, vk::structure::Sampler& sampler, vk::structure::Image& image){
   //---------------------------
 
   VkDescriptorImageInfo image_info = {};

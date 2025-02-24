@@ -68,18 +68,6 @@ glm::mat4 MVP::compute_camera_proj(){
   //---------------------------
   return projection;
 }
-glm::mat4 MVP::compute_camera_mvp(){
-  //---------------------------
-
-  glm::mat4 cam_modl = glm::mat4(1);
-  glm::mat4 cam_view = compute_camera_view();
-  glm::mat4 cam_proj = compute_camera_proj();
-
-  glm::mat4 mvpMatrix = cam_proj * cam_view * cam_modl;
-
-  //---------------------------
-  return mvpMatrix;
-}
 glm::mat4 MVP::compute_camera_pose(){
   std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------

@@ -1,5 +1,9 @@
 #include "Playback.h"
 
+#include <k4a/k4a.hpp>
+#include <k4arecord/playback.hpp>
+#include <k4arecord/record.hpp>
+
 #include <Kinect/Namespace.h>
 #include <Data/Namespace.h>
 #include <Profiler/Namespace.h>
@@ -16,9 +20,9 @@ Playback::Playback(k4n::Node* node_k4n){
   dat::img::Node* node_image = node_data->get_node_image();
 
   this->k4n_struct = node_k4n->get_k4n_structure();
-  this->k4n_config = new k4n::playback::Configuration(node_k4n);
   this->dat_sensor = node_element->get_dat_sensor();
   this->dat_image = node_image->get_dat_image();
+  this->k4n_config = new k4n::playback::Configuration();
 
   //---------------------------
 }
@@ -27,13 +31,13 @@ Playback::~Playback(){}
 //Main function
 void Playback::init(k4n::playback::Sensor& sensor){
   //---------------------------
-sayHello();
+
   this->init_info(sensor);
   this->init_playback(sensor);
   this->init_timestamp(sensor);
   dat_sensor->init_sensor(sensor);
   k4n_config->init_configuration(sensor);
-sayHello();
+
   //---------------------------
 }
 void Playback::clean(k4n::playback::Sensor& sensor){

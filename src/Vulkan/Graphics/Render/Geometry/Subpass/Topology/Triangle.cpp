@@ -73,7 +73,7 @@ void Triangle::update_uniform(std::shared_ptr<vk::structure::Render> render){
 
   //MVP
   vk::geometry::MVP mvp;
-  mvp.model = glm::transpose(pose.model);
+  mvp.model = pose.model;
   mvp.view = vk_struct->core.presentation.view;
   mvp.projection = vk_struct->core.presentation.projection;
   vk_uniform->update_uniform("mvp", *render->descriptor_set, mvp);
@@ -100,7 +100,7 @@ void Triangle::update_sampler(std::shared_ptr<vk::structure::Render> render){
   }
 
   //---------------------------
-  vk_sampler->actualize_sampler(*render->descriptor_set);
+  vk_sampler->update_sampler(*render->descriptor_set);
 }
 void Triangle::draw_data(std::shared_ptr<vk::structure::Render> render){
   //---------------------------

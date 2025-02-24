@@ -9,13 +9,14 @@ layout(location = 0) out vec4 out_rgb;
 
 //Uniform
 layout(binding = 5) uniform Param{
-  bool activated;
   float z_near;
   float z_far;
   float strength;
   float radius;
   int tex_width;
   int tex_height;
+  bool activated;
+  bool is_ortho;
 };
 
 //Sampler
@@ -40,8 +41,13 @@ vec2 table_index[8] = vec2[](\
 float compute_depth_normalized(float depth){
   //---------------------------
 
-  float depth_norm = (2 * z_far * z_near) / ((z_far + z_near) - (2.0 * depth - 1.0) * (z_far - z_near));
-  depth_norm = (depth_norm - z_near) / (z_far - z_near);
+  float depth_norm;
+  if (is_ortho) {
+    depth_norm = (depth - z_near) / (z_far - z_near);
+  } else {
+    depth_norm = (2 * z_far * z_near) / ((z_far + z_near) - (2.0 * depth - 1.0) * (z_far - z_near));
+    depth_norm = (depth_norm - z_near) / (z_far - z_near);
+  }
   depth_norm = clamp(depth_norm, 0.0, 1.0);
 
   //---------------------------

@@ -37,6 +37,7 @@ void Node::loop(){
   //---------------------------
 
   node_camera->loop();
+  node_renderer->loop();
 
   //---------------------------
 }

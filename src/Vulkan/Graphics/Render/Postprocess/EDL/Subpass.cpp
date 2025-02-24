@@ -88,7 +88,7 @@ void Subpass::update_sampler(std::shared_ptr<vk::structure::Render> render){
   sampler_depth->image = std::make_shared<vk::structure::Image>(render->framebuffer.previous->depth);
 
   //---------------------------
-  vk_sampler->actualize_sampler(*render->descriptor_set);
+  vk_sampler->update_sampler(*render->descriptor_set);
 }
 void Subpass::draw_data(std::shared_ptr<vk::structure::Render> render){
   //---------------------------

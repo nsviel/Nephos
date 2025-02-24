@@ -1,6 +1,7 @@
 #include "Shader.h"
 
 #include <Engine/Renderer/Namespace.h>
+#include <Engine/Camera/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Utility/GUI/Terminal/Namespace.h>
@@ -14,9 +15,11 @@ Shader::Shader(rnd::Node* node_renderer){
 
   vk::Node* node_vulkan = node_renderer->get_node_vulkan();
   vk::Structure* vk_struct = node_vulkan->get_vk_struct();
+  cam::Node* node_camera = node_renderer->get_node_camera();
 
+  this->cam_struct = node_camera->get_cam_struct();
   this->vk_reload = new vk::shader::Reloader(vk_struct);
-  //this->vk_render = node_vulkan->get_vk_render();
+  this->vk_struct = node_vulkan->get_vk_struct();
   this->node_core = node_core;
   this->gui_console = new utl::gui::terminal::Terminal();
 
@@ -44,6 +47,18 @@ void Shader::init(){
 */
   //---------------------------
 }
+void Shader::update(){
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
+  //---------------------------
+
+  vk::gfx::edl::Structure& edl_struct = vk_struct->graphics.render.edl_struct;
+  edl_struct.z_near = camera->clip_near;
+  edl_struct.z_far = camera->clip_far;
+  edl_struct.is_ortho = (camera->projection == cam::CAMERA_PROJ_ORTHOGRAPHIC) ? true : false;
+
+  //---------------------------
+}
+
 void Shader::design_panel(){
   //---------------------------
 /*

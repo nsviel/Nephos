@@ -4,12 +4,13 @@
 #include <vector>
 
 namespace rnd{class Node;}
+namespace vk{class Structure;}
 namespace vk::shader{class Reloader;}
 namespace vk::gfx::render{class Render;}
 namespace core{class Node;}
 namespace utl::gui::terminal{class Terminal;}
 namespace utl::gui::editor{class Text;}
-
+namespace cam{class Structure;}
 
 namespace rnd{
 
@@ -23,6 +24,7 @@ public:
 public:
   //Main function
   void init();
+  void update();
   void design_panel();
 
   //Design function
@@ -50,6 +52,8 @@ public:
   std::string get_path_fs_from_selection();
 
 private:
+  cam::Structure* cam_struct;
+  vk::Structure* vk_struct;
   vk::shader::Reloader* vk_reload;
   vk::gfx::render::Render* vk_render;
   core::Node* node_core;

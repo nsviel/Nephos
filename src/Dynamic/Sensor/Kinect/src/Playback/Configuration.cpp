@@ -1,12 +1,18 @@
 #include "Configuration.h"
 
+#include <k4a/k4a.hpp>
+#include <k4arecord/playback.hpp>
+#include <k4arecord/record.hpp>
+#include <k4arecord/types.h>
+#include <chrono>
+
 #include <Kinect/Namespace.h>
 
 
 namespace k4n::playback{
 
 //Constructor / Destructor
-Configuration::Configuration(k4n::Node* node_k4n){
+Configuration::Configuration(){
   //---------------------------
 
   //---------------------------
@@ -291,7 +297,7 @@ std::string Configuration::find_mode_color_format(int mode){
 float Configuration::find_mkv_ts_beg(std::string path){
   //---------------------------
 
-  k4a::playback playback = k4a::playback::open(path.c_str());;
+  k4a::playback playback = k4a::playback::open(path.c_str());
   playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
 
   k4a::capture capture;
@@ -309,7 +315,7 @@ float Configuration::find_mkv_ts_beg(std::string path){
 float Configuration::find_mkv_ts_end(std::string path){
   //---------------------------
 
-  k4a::playback playback = k4a::playback::open(path.c_str());;
+  k4a::playback playback = k4a::playback::open(path.c_str());
   playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_END);
 
   k4a::capture capture;

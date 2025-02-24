@@ -163,7 +163,7 @@ void Set::insert_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat
   //---------------------------
 }
 void Set::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
-  if(!entity) return;
+  if(!entity || !set) return;
   //---------------------------
 
   // Check if the set has the entity to be removed
@@ -197,7 +197,7 @@ void Set::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat
 
   // Recursively call remove for each nested set
   for(auto& subset : set->list_subset){
-    this->remove_entity(subset, entity);
+    //this->remove_entity(subset, entity);
   }
 
   //Remove if empty
