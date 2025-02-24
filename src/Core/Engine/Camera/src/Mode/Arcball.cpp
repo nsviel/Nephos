@@ -100,13 +100,13 @@ void Arcball::camera_zoom(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
   // Perspective zoom
-  glm::vec3 cam_forwardMove = camera->cam_F * speed * camera->velocity * glm::vec3(0.1, 0.1, 0.1);
-  glm::vec3 new_pose = camera->cam_P + cam_forwardMove;
+  glm::vec3 cam_forwardMove = camera->cam_forward * speed * camera->velocity * glm::vec3(0.1, 0.1, 0.1);
+  glm::vec3 new_pose = camera->cam_pose + cam_forwardMove;
 
   // Check if the new pose is within the allowed range
   float min_COM_dist = 0.1;
   if(glm::distance(new_pose, camera->cam_COM) > min_COM_dist){
-    camera->cam_P = new_pose;
+    camera->cam_pose = new_pose;
   }
 
   //---------------------------
@@ -119,11 +119,11 @@ glm::mat4 Arcball::compute_camera_view(std::shared_ptr<cam::Entity> camera){
   //---------------------------
 
   //Compute camera
-  camera->cam_F = camera->cam_COM - camera->cam_P;
-  camera->cam_U = normalize(cross(camera->cam_R, camera->cam_F));
+  camera->cam_forward = camera->cam_COM - camera->cam_pose;
+  camera->cam_up = normalize(cross(camera->cam_right, camera->cam_forward));
 
   //Compute view matrix
-  cam_view = lookAt(camera->cam_P, camera->cam_COM, camera->cam_U);
+  cam_view = glm::lookAt(camera->cam_pose, camera->cam_COM, camera->cam_up);
 
   //---------------------------
   return cam_view;
@@ -132,27 +132,27 @@ void Arcball::rotate_by_angle(std::shared_ptr<cam::Entity> camera, glm::vec2 ang
   //---------------------------
 
   // Get the homogenous position of the camera and pivot point
-  glm::vec4 cam_P(camera->cam_P.x, camera->cam_P.y, camera->cam_P.z, 1);
+  glm::vec4 cam_pose(camera->cam_pose.x, camera->cam_pose.y, camera->cam_pose.z, 1);
   glm::vec4 cam_COM(camera->cam_COM.x, camera->cam_COM.y, camera->cam_COM.z, 1);
-  glm::vec4 cam_R(camera->cam_R.x, camera->cam_R.y, camera->cam_R.z, 1);
+  glm::vec4 cam_right(camera->cam_right.x, camera->cam_right.y, camera->cam_right.z, 1);
 
   // step 2: Rotate the camera around the pivot point on the first axis.
   glm::mat4x4 Rz(1.0f);
   Rz = glm::rotate(Rz, angle.x, glm::vec3(0, 0, 1));
-  cam_P = (Rz * (cam_P - cam_COM)) + cam_COM;
-  camera->cam_R = Rz * cam_R;
+  cam_pose = (Rz * (cam_pose - cam_COM)) + cam_COM;
+  camera->cam_right = Rz * cam_right;
 
   // Step 3: Rotate the camera around the pivot point on the second axis.
   glm::mat4x4 Rr(1.0f);
-  Rr = glm::rotate(Rr, angle.y, camera->cam_R);
-  cam_P = (Rr * (cam_P - cam_COM)) + cam_COM;
+  Rr = glm::rotate(Rr, angle.y, camera->cam_right);
+  cam_pose = (Rr * (cam_pose - cam_COM)) + cam_COM;
 
   // Calculate the new camera position without modifying it if the bottom viewport is too close
-  if(cam_P.z - camera->clip_near < 0.0f){
-    cam_P.z = camera->clip_near;
+  if(cam_pose.z - camera->clip_near < 0.0f){
+    cam_pose.z = camera->clip_near;
   }
 
-  camera->cam_P = cam_P;
+  camera->cam_pose = cam_pose;
 
   //---------------------------
 }
@@ -160,9 +160,9 @@ void Arcball::displace_camera_COM(std::shared_ptr<cam::Entity> camera, const glm
   //---------------------------
 
   // Extract the camera's forward, right, and up vectors
-  glm::vec3 forward = normalize(camera->cam_F);
-  glm::vec3 right = normalize(camera->cam_R);
-  glm::vec3 up = normalize(camera->cam_U);
+  glm::vec3 forward = normalize(camera->cam_forward);
+  glm::vec3 right = normalize(camera->cam_right);
+  glm::vec3 up = normalize(camera->cam_up);
 
   // Displace camera COM
   glm::vec3 local_displacement = glm::vec3(0);
@@ -178,7 +178,7 @@ void Arcball::displace_camera_COM(std::shared_ptr<cam::Entity> camera, const glm
 
   // Displace camera accordingly
   if(COM_new.z >= 0){
-    camera->cam_P += local_displacement;
+    camera->cam_pose += local_displacement;
     camera->cam_COM = COM_new;
   }
 

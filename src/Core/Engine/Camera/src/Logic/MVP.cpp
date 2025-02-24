@@ -72,14 +72,14 @@ glm::mat4 MVP::compute_camera_pose(){
   std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
-  glm::vec3 zaxis = normalize(camera->cam_F);
-  glm::vec3 xaxis = normalize(cross(camera->cam_U, zaxis));
+  glm::vec3 zaxis = normalize(camera->cam_forward);
+  glm::vec3 xaxis = normalize(cross(camera->cam_up, zaxis));
   glm::vec3 yaxis = cross(zaxis, xaxis);
 
   glm::mat4 absPose(
-    xaxis[0], yaxis[0], zaxis[0], camera->cam_P[0],
-    xaxis[1], yaxis[1], zaxis[1], camera->cam_P[1],
-    xaxis[2], yaxis[2], zaxis[2], camera->cam_P[2],
+    xaxis[0], yaxis[0], zaxis[0], camera->cam_pose[0],
+    xaxis[1], yaxis[1], zaxis[1], camera->cam_pose[1],
+    xaxis[2], yaxis[2], zaxis[2], camera->cam_pose[2],
     0,       0,       0,     1);
 
   //---------------------------

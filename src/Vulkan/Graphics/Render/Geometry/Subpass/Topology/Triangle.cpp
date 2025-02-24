@@ -73,7 +73,7 @@ void Triangle::update_uniform(std::shared_ptr<vk::structure::Render> render){
 
   //MVP
   vk::geometry::MVP mvp;
-  mvp.model = pose.model;
+  mvp.model = glm::transpose(pose.model);
   mvp.view = vk_struct->core.presentation.view;
   mvp.projection = vk_struct->core.presentation.projection;
   vk_uniform->update_uniform("mvp", *render->descriptor_set, mvp);

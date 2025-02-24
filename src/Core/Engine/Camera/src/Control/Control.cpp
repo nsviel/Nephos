@@ -112,8 +112,8 @@ void Control::set_camera_COM(glm::vec3 value){
   // Calculate the displacement vector
   glm::vec3 displacement = value - camera->cam_COM;
 
-  // Update the camera position (cam_P) to maintain the same relative position
-  camera->cam_P += displacement;
+  // Update the camera position (cam_pose) to maintain the same relative position
+  camera->cam_pose += displacement;
 
   // Update the camera center (COM)
   camera->cam_COM = value;
@@ -148,7 +148,7 @@ void Control::set_camera_proj(std::shared_ptr<cam::Entity> camera, int projectio
     case CAMERA_PROJ_ORTHOGRAPHIC:{
       camera->reset();
       camera->projection = projection;
-      camera->cam_P = glm::vec3(-20, -20, 10);
+      camera->cam_pose = glm::vec3(-20, -20, 10);
       camera->clip_far = 1000.0;
       break;
     }

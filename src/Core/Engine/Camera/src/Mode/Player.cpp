@@ -25,42 +25,42 @@ Player::~Player(){}
 void Player::camera_forward(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
-  camera->cam_P += camera->cam_F * speed;
+  camera->cam_pose += camera->cam_forward * speed;
 
   //---------------------------
 }
 void Player::camera_backward(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
-  camera->cam_P -= camera->cam_F * speed;
+  camera->cam_pose -= camera->cam_forward * speed;
 
   //---------------------------
 }
 void Player::camera_right(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
-  camera->cam_P += camera->cam_R * speed;
+  camera->cam_pose += camera->cam_right * speed;
 
   //---------------------------
 }
 void Player::camera_left(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
-  camera->cam_P -= camera->cam_R * speed;
+  camera->cam_pose -= camera->cam_right * speed;
 
   //---------------------------
 }
 void Player::camera_up(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
-  camera->cam_P += camera->cam_U * speed;
+  camera->cam_pose += camera->cam_up * speed;
 
   //---------------------------
 }
 void Player::camera_down(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
-  camera->cam_P -= camera->cam_U * speed;
+  camera->cam_pose -= camera->cam_up * speed;
 
   //---------------------------
 }
@@ -97,7 +97,7 @@ void Player::camera_zoom(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
   //Perspective zoom
-  camera->cam_P += camera->cam_F * speed * camera->velocity * glm::vec3(0.1, 0.1, 0.1);
+  camera->cam_pose += camera->cam_forward * speed * camera->velocity * glm::vec3(0.1, 0.1, 0.1);
 
   //---------------------------
 }
@@ -119,13 +119,13 @@ glm::mat4 Player::compute_camera_view(std::shared_ptr<cam::Entity> camera){
   float elevation = camera->angle_elevation;
 
   //Compute camera
-  camera->cam_R = normalize(glm::vec3(cos(azimuth - M_PI/2.0f), sin(azimuth - M_PI/2.0f), 0));
-  camera->cam_F = glm::vec3(cos(elevation) * cos(azimuth), cos(elevation) * sin(azimuth), sin(elevation));
-  camera->cam_U = normalize(cross(camera->cam_R, camera->cam_F));
-  glm::vec3 cam_target = camera->cam_P + camera->cam_F;
+  camera->cam_right = normalize(glm::vec3(cos(azimuth - M_PI/2.0f), sin(azimuth - M_PI/2.0f), 0));
+  camera->cam_forward = glm::vec3(cos(elevation) * cos(azimuth), cos(elevation) * sin(azimuth), sin(elevation));
+  camera->cam_up = normalize(cross(camera->cam_right, camera->cam_forward));
+  glm::vec3 cam_target = camera->cam_pose + camera->cam_forward;
 
   //Compute view matrix
-  cam_view = lookAt(camera->cam_P, cam_target, camera->cam_U);
+  cam_view = glm::lookAt(camera->cam_pose, cam_target, camera->cam_up);
 
   camera->mat_view = cam_view;
 

@@ -40,10 +40,10 @@ public:
 
 public:
   //Camera pose
-  glm::vec3 cam_F = glm::vec3(0.0f); // Front
-  glm::vec3 cam_R = glm::vec3(0.0f); // Right
-  glm::vec3 cam_U = glm::vec3(0.0f); // Up
-  glm::vec3 cam_P = glm::vec3(0.0f); // Pose
+  glm::vec3 cam_forward = glm::vec3(0.0f); // Front
+  glm::vec3 cam_right = glm::vec3(0.0f); // Right
+  glm::vec3 cam_up = glm::vec3(0.0f); // Up
+  glm::vec3 cam_pose = glm::vec3(0.0f); // Pose
   glm::vec3 cam_COM = glm::vec3(0.0f);
   float angle_azimuth = 0;
   float angle_elevation = 0;

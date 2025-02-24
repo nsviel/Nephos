@@ -89,16 +89,16 @@ void Panel::cam_info(){
   ImGui::Text("Pose"); ImGui::TableNextColumn();
   switch(camera->mode){
     case CAMERA_MODE_PLAYER:{
-      float* floatArray = reinterpret_cast<float*>(&camera->cam_P);
+      float* floatArray = reinterpret_cast<float*>(&camera->cam_pose);
       ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f, "%.2f");
       ImGui::SameLine();
       if(ImGui::Button("R")){
-        camera->cam_P = glm::vec3(0, 0, 0);
+        camera->cam_pose = glm::vec3(0, 0, 0);
       }
       break;
     }
     case CAMERA_MODE_ARCBALL:{
-      ImGui::TextColored(color, "%.2f   %.2f   %.2f", camera->cam_P[0], camera->cam_P[1], camera->cam_P[2]);
+      ImGui::TextColored(color, "%.2f   %.2f   %.2f", camera->cam_pose[0], camera->cam_pose[1], camera->cam_pose[2]);
       break;
     }
   }
