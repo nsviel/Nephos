@@ -31,6 +31,7 @@ void Entity::update_pose(){
 void Entity::reset(){
   //---------------------------
 
+  /*
   this->angle_azimuth = M_PI/4;
   this->angle_elevation = -M_PI/6;
   this->fov = 65;
@@ -47,6 +48,24 @@ void Entity::reset(){
   this->cam_up = glm::vec3(0.0f);
   this->cam_pose = glm::vec3(-2, -2, 2);
   this->cam_COM = glm::vec3(0.0f, 0.0f, 1.0f);
+  */
+
+  this->angle_azimuth = 0;
+  this->angle_elevation = 0;
+  this->fov = 65;
+  this->velocity = 3;
+  this->zoom = 0;
+  this->clip_far = 1000.0;
+  this->clip_near = 0.01;
+
+  this->player_mouse_sensibility = glm::vec2(0.003, 0.003);
+  this->arcball_mouse_sensibility = glm::vec2(0.3, 0.2);
+
+  this->cam_forward = glm::vec3(1, 0, 0);
+  this->cam_right = glm::vec3(0, -1, 0);
+  this->cam_up = glm::vec3(0, 0, 1);
+  this->cam_pose = glm::vec3(-2, 0, 0);
+  this->cam_COM = glm::vec3(0.0f, 0.0f, 0.0f);
 
   //---------------------------
 }

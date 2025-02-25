@@ -126,7 +126,6 @@ glm::mat4 Player::compute_camera_view(std::shared_ptr<cam::Entity> camera){
 
   //Compute view matrix
   cam_view = glm::lookAt(camera->cam_pose, cam_target, camera->cam_up);
-
   camera->mat_view = cam_view;
 
   //---------------------------

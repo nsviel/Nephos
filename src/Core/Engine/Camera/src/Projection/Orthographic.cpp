@@ -34,7 +34,7 @@ glm::mat4 Orthographic::compute_projection(std::shared_ptr<cam::Entity> camera){
   cam_proj = glm::ortho(-zoom_factor, zoom_factor, -zoom_factor, zoom_factor, z_near, z_far);
 
   // Transpose for OpenGL compatibility and flip the Y axis
-  cam_proj = glm::transpose(cam_proj);
+  //cam_proj = glm::transpose(cam_proj);
   cam_proj[1][1] *= -1;  // OpenGL convention for flipped Y axis
 
   // Save the projection matrix to the camera entity

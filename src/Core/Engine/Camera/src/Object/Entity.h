@@ -48,7 +48,6 @@ public:
   float angle_azimuth = 0;
   float angle_elevation = 0;
   bool cam_move = false;
-  bool cam_pose = false;
 
   //Camera paramater
   float fov = 0;

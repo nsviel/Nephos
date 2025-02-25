@@ -33,7 +33,7 @@ glm::mat4 Perspective::compute_projection(std::shared_ptr<cam::Entity> camera){
   float ratio = window_dim.x / window_dim.y;
 
   cam_proj = glm::perspective(fov, ratio, z_near, z_far);
-  cam_proj[1][1] *= -1; // Because glm is designed for OpenGL convention
+  cam_proj[1][1] *= -1;  // This inverts the Y-axis for Vulkan convention
 
   camera->mat_proj = cam_proj;
 
