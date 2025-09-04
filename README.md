@@ -1,19 +1,13 @@
 # Nephos
-## Vulkan-Based Point Cloud Engine
-
-![Screenshot from 2025-01-16 17-47-36](https://github.com/user-attachments/assets/16c029b5-146b-4cad-a5ee-c8cd8d344f89)
+## Vulkan-Based Engine
 
 ## Documentation
 
 <!-- ------------------------- -->
-<details><summary>Characteristics</summary>
-
 Hackable point cloud / mesh / mkv visualization and processing.
 
-</details>
-
 <!-- ------------------------- -->
-<details><summary>Installation</summary>
+<summary>Installation</summary>
 For now the engine is only supported for Linux OS and was tested on Ubuntu 22.04LTS.
 
 To proceed with the installation, run the script file in the program directory
@@ -27,10 +21,9 @@ Then compile and run the executable
  or
  ./run.sh
 ```
-</details>
 
 <!-- ------------------------- -->
-<details><summary>License</summary>
+<summary>License</summary>
 
  # Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)
 
@@ -55,4 +48,3 @@ Then compile and run the executable
 
  For the full legal text, see [CC BY-NC 4.0 License](https://creativecommons.org/licenses/by-nc/4.0/legalcode).
 
-</details>

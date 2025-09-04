@@ -33,7 +33,7 @@ void Element::remove_entity(std::shared_ptr<dat::base::Entity> entity){
 void Element::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
   if(!set || !entity) return;
   //---------------------------
-say("---sss-");
+
   //Check for selection
   if(gph_struct->selection.lock() == entity){
     gph_selection->select_next_element();

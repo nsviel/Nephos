@@ -68,55 +68,56 @@ void Binary::parse_vertex_little_endian(io::imp::Configuration* config, std::ifs
   this->buffer = {};
   //---------------------------
 
-  //Read data
+  // Calculate block size
   int block_size = 0;
   for(const auto& property : config->vec_property) {
     block_size += property.size * config->nb_vertex;
   }
-  char* block_data = new char[block_size];
-  file.read(block_data, block_size);
+
+  // Read data
+  std::vector<char> block_data(block_size);
+  file.read(block_data.data(), block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
-  std::vector<std::vector<float>> block_vec;
-  block_vec.resize(config->vec_property.size(), std::vector<float>(config->nb_vertex));
+  std::vector<std::vector<float>> block_vec(config->vec_property.size(), std::vector<float>(config->nb_vertex));
   for(int i=0; i<config->nb_vertex; i++){
     for(int j=0; j<config->vec_property.size(); j++){
-      io::imp::Property* property = &config->vec_property[j];
+      const auto& property = config->vec_property[j];
 
-      switch(property->type){
+      switch(property.type){
         case io::imp::FLOAT32:{
-          float value = get_float_from_binary(block_data, offset);
+          float value = get_float_from_binary(block_data.data(), offset);
           block_vec[j][i] = value;
           break;
         }
         case io::imp::FLOAT64:{
-          float value = get_double_from_binary(block_data, offset);
+          float value = get_double_from_binary(block_data.data(), offset);
           block_vec[j][i] = value;
           break;
         }
         case io::imp::UINT8:{
-          float value = get_uint8_from_binary(block_data, offset);
+          float value = get_uint8_from_binary(block_data.data(), offset);
           block_vec[j][i] = value;
           break;
         }
         case io::imp::UINT16:{
-          float value = get_uint16_from_binary(block_data, offset);
+          float value = get_uint16_from_binary(block_data.data(), offset);
           block_vec[j][i] = value;
           break;
         }
         case io::imp::UINT32:{
-          float value = get_uint32_from_binary(block_data, offset);
+          float value = get_uint32_from_binary(block_data.data(), offset);
           block_vec[j][i] = value;
           break;
         }
         case io::imp::UCHAR:{
-          float value = get_uchar_from_binary(block_data, offset);
+          float value = get_uchar_from_binary(block_data.data(), offset);
           block_vec[j][i] = value;
           break;
         }
         case io::imp::USHORT:{
-          float value = get_ushort_from_binary(block_data, offset);
+          float value = get_ushort_from_binary(block_data.data(), offset);
           block_vec[j][i] = value;
           break;
         }
@@ -139,9 +140,9 @@ void Binary::parse_vertex_little_endian(io::imp::Configuration* config, std::ifs
   //#pragma omp parallel for
   for(int i=0; i<config->nb_vertex; i++){
     for(int j=0; j<config->vec_property.size(); j++){
-      io::imp::Property* property = &config->vec_property[j];
+      const auto& property = config->vec_property[j];
 
-      switch(property->field){
+      switch(property.field){
         case io::imp::XYZ:{ //Location
           glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
           buffer.xyz[i] = point;
@@ -179,6 +180,7 @@ void Binary::parse_vertex_little_endian(io::imp::Configuration* config, std::ifs
   //---------------------------
 }
 void Binary::parse_face_little_endian(io::imp::Configuration* config, std::ifstream& file){
+  /* TODO: Il faudra configurer les types de la liste des faces en fonction du header */
   if(config->nb_face == 0) return;
   //---------------------------
 
@@ -186,45 +188,47 @@ void Binary::parse_face_little_endian(io::imp::Configuration* config, std::ifstr
   io::imp::Buffer buffer_tmp = buffer;
   this->buffer = {};
 
-  //Get face index
-  int block_size_id = 4 * config->nb_face * sizeof(int);
-  char* block_data_id = new char[block_size_id];
-  file.read(block_data_id, block_size_id);
+  //Get data block size
+  std::size_t block_size = 5 * config->nb_face * sizeof(int); // Assuming each face has a maximum of 5 indices
+  std::vector<char> block_data(block_size);
+
+  //Read data block in file
+  file.read(block_data.data(), block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
-  int nb_vertice;
+  int dim = 0;
   for(int i=0; i<config->nb_face; i++){
     //Get number of face vertices
-    int value =  (int)*((unsigned char *) (block_data_id + offset));
-    offset += sizeof(unsigned char);
-    nb_vertice = value;
+    uint8_t nb_indice = *reinterpret_cast<char*>(block_data.data() + offset);
+    offset += sizeof(uint8_t);
+    dim = int(nb_indice);
 
-    //Get face vertices index
-    std::vector<int> idx;
-    for(int j=0; j<value; j++){
-      int value =  *((int *) (block_data_id + offset));
+    // Read the vertex indices for the face
+    std::vector<int> vec_indice(dim);
+    for(int j=0; j<dim; j++){
+      int indice = *reinterpret_cast<int*>(block_data.data() + offset);
       offset += sizeof(int);
-      idx.push_back(value);
+      vec_indice[j] = indice;
     }
 
-    //Location
-    for(int j=0; j<idx.size(); j++){
-      int& index = idx[j];
+    //Retrieve face data from indices
+    for(int j=0; j<dim; j++){
+      int& indice = vec_indice[j];
 
-      if(index < buffer_tmp.xyz.size()){
-        buffer.xyz.push_back(buffer_tmp.xyz[index]);
-        buffer.Nxyz.push_back(buffer_tmp.Nxyz[index]);
-        buffer.Is.push_back(buffer_tmp.Is[index]);
+      if(indice < buffer_tmp.xyz.size()){
+        buffer.xyz.push_back(buffer_tmp.xyz[indice]);
+        if(buffer_tmp.Nxyz.size() != 0) buffer.Nxyz.push_back(buffer_tmp.Nxyz[indice]);
+        if(buffer_tmp.Is.size() != 0) buffer.Is.push_back(buffer_tmp.Is[indice]);
       }
     }
   }
 
   //Deduce drawing type
-  if(nb_vertice == 3){
+  if(dim == 3){
     config->topology = utl::topology::TRIANGLE;
   }
-  else if(nb_vertice == 4){
+  else if(dim == 4){
     config->topology = utl::topology::QUAD;
   }
 
@@ -287,27 +291,29 @@ void Binary::parse_vertex_big_endian(io::imp::Configuration* config, std::ifstre
 void Binary::parse_face_big_endian(io::imp::Configuration* config, std::ifstream& file){
   if(config->nb_face == 0) return;
   //---------------------------
-
+/*
   //Init
   io::imp::Buffer buffer_tmp = buffer;
   this->buffer = {};
 
-  //Get face index
-  int block_size_id = 4 * config->nb_face * sizeof(int);
-  char* block_data_id = new char[block_size_id];
-  file.read(block_data_id, block_size_id);
+  //Get data block size
+  int block_size = 4 * config->nb_face * sizeof(int);
+  std::vector<char> block_data(block_size);
+
+  //Read data block from file
+  file.read(block_data.data(), block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   int nb_vertice;
   for(int i=0; i<config->nb_face; i++){
     //Get number of face vertices
-    int value =  (int)*((unsigned char *) (block_data_id + offset));
+    unsigned char value = *reinterpret_cast<unsigned char*>(block_data.data() + offset);
     offset += sizeof(unsigned char);
     nb_vertice = value;
 
     //Get face vertices index
-    std::vector<int> idx;
+    std::vector<int> idx(value);
     for(int j=0; j<value; j++){
       int value =  *((int *) (block_data_id + offset));
       offset += sizeof(int);
@@ -327,7 +333,7 @@ void Binary::parse_face_big_endian(io::imp::Configuration* config, std::ifstream
   else if(nb_vertice == 4){
     config->topology = utl::topology::QUAD;
   }
-
+*/
   //---------------------------
 }
 void Binary::reorder_by_timestamp(utl::base::Data& data){/*

@@ -153,9 +153,7 @@ void Importer::parse_header_property(io::imp::Configuration& config, std::string
   else if(field == "nx") property.field = io::imp::NXYZ;
   else if(field == "red") property.field = io::imp::RGB;
   else if(field == "scalar_field" || field == "scalar_Scalar_field" || field == "scalar_Density" || field == "intensity") property.field = io::imp::I;
-  else{
-    property.field = io::imp::VOID;
-  }
+  else property.field = io::imp::VOID;
 
   //Store property
   config.vec_property.push_back(property);

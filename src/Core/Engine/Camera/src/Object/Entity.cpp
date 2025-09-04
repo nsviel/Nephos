@@ -60,6 +60,7 @@ void Entity::reset(){
 
   this->player_mouse_sensibility = glm::vec2(0.003, 0.003);
   this->arcball_mouse_sensibility = glm::vec2(0.3, 0.2);
+  this->projection = CAMERA_PROJ_PERSPECTIVE; // CAMERA_PROJ_ORTHOGRAPHIC
 
   this->cam_forward = glm::vec3(1, 0, 0);
   this->cam_right = glm::vec3(0, -1, 0);

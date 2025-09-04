@@ -24,7 +24,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   Eigen3::Eigen # Eigen
   spdlog::spdlog_header_only
   -lstdc++fs    # std::experimental::filesystem
-  -lnvidia-ml   # Nvidia GPU stuff
+  #-lnvidia-ml   # Nvidia GPU stuff
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

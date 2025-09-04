@@ -125,14 +125,14 @@ glm::mat4 Arcball::compute_camera_view(std::shared_ptr<cam::Entity> camera){
   //Compute view matrix
   cam_view = glm::lookAt(camera->cam_pose, camera->cam_COM, camera->cam_up);
   camera->mat_view = cam_view;
-  
+
   //---------------------------
   return cam_view;
 }
 void Arcball::rotate_by_angle(std::shared_ptr<cam::Entity> camera, glm::vec2 angle){
   //---------------------------
 
-  // Get the homogenous position of the camera and pivot point
+  // Get the homogeneous position of the camera and pivot point
   glm::vec4 cam_pose(camera->cam_pose.x, camera->cam_pose.y, camera->cam_pose.z, 1);
   glm::vec4 cam_COM(camera->cam_COM.x, camera->cam_COM.y, camera->cam_COM.z, 1);
   glm::vec4 cam_right(camera->cam_right.x, camera->cam_right.y, camera->cam_right.z, 1);
@@ -140,27 +140,29 @@ void Arcball::rotate_by_angle(std::shared_ptr<cam::Entity> camera, glm::vec2 ang
   // step 2: Rotate the camera around the pivot point on the first axis.
   glm::mat4x4 Rz(1.0f);
   Rz = glm::rotate(Rz, angle.x, glm::vec3(0, 0, 1));
-  cam_pose = (Rz * (cam_pose - cam_COM)) + cam_COM;
-  glm::vec3 new_cam_right = Rz * cam_right;
+  glm::vec4 new_cam_pose = (Rz * (cam_pose - cam_COM)) + cam_COM;
+  glm::vec3 new_cam_right = glm::mat3(Rz) * camera->cam_right; // Apply rotation to right vector
 
   // Step 3: Rotate the camera around the pivot point on the second axis.
   glm::mat4x4 Rr(1.0f);
   Rr = glm::rotate(Rr, angle.y, new_cam_right);
-  cam_pose = (Rr * (cam_pose - cam_COM)) + cam_COM;
+  glm::vec4 final_cam_pose = (Rr * (new_cam_pose - cam_COM)) + cam_COM;
 
-  // Prevent flipping: Check if the new up vector is too close to (0,0,-1)
-  glm::vec3 new_cam_forward = glm::normalize(glm::vec3(cam_pose - cam_COM));
+  // Prevent flipping: Check if the new forward vector is too close to a problematic orientation
+  glm::vec3 new_cam_forward = glm::normalize(glm::vec3(final_cam_pose - cam_COM));
   if (glm::abs(glm::dot(new_cam_forward, glm::vec3(0, 0, 1))) > 0.99f) {
-    return;  // Ignore rotation to prevent flipping
+    // If too close to flipping, cancel the second rotation (Rr) and keep the first rotation (Rz)
+    final_cam_pose = new_cam_pose; // Keep the cam pose after first rotation (Rz)
   }
 
   // Calculate the new camera position without modifying it if the bottom viewport is too close
-  if(cam_pose.z - camera->clip_near < 0.0f){
-    return;
+  if (final_cam_pose.z - camera->clip_near < 0.0f) {
+    final_cam_pose.z = camera->clip_near;
   }
 
+  // Update the camera with the valid rotations
   camera->cam_right = new_cam_right;
-  camera->cam_pose = cam_pose;
+  camera->cam_pose = glm::vec3(final_cam_pose);
 
   //---------------------------
 }
